@@ -1,7 +1,7 @@
 { stdenv, requireFile, zlib, cpio, curl, which } :
 let 
   version = "2017.3.196";
-  url = https://software.intel.com/en-us/mkl;
+  url = https://software.intel.com/en-us/intel-mpi-library;
   filename = "l_mpi_" + version + ".tgz";
 
   rpath = stdenv.lib.makeLibraryPath [
