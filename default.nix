@@ -5,6 +5,8 @@ pkgs: with pkgs; {
 
   gamess-mkl = callPackage ./gamess { mathlib=callPackage ./mkl { } ; useMkl = true; };
 
+  libxc = callPackage ./libxc {};
+
   mkl = callPackage ./mkl { };
   
   impi = callPackage ./impi { };
