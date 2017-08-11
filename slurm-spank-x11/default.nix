@@ -27,6 +27,14 @@ in
         install -m 755 slurm-spank-x11 $out/bin
         install -m 755 x11.so $out/lib
       '';
+
+    meta = with stdenv.lib; {
+      homepage = https://github.com/hautreux/slurm-spank-x11;
+      description = "Plugin for SLURM to allow for interactive X11 sessions";
+      platform = platforms.linux;
+      license = licences.gpl3;
+      maintainers = [ "markus.kowalewski@gmail.com" ];
+    };
   }
 
   
