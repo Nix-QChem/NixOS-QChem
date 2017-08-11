@@ -12,10 +12,9 @@ in
 
     buildInputs = [ gfortran ];
     nativeBuildInputs = [ perl ];
-    outputs = [ "out" "dev" ];
 
     meta = {
-      description = "lLibrary of exchange-correlation functionals for density-functional theory";
+      description = "Library of exchange-correlation functionals for density-functional theory";
       homepage = http://octopus-code.org/wiki/Libxc;
       licenses = stdenv.lib.licenses.gpl3;
       platforms = stdenv.lib.platforms.linux;
