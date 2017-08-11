@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
      csh=`which tcsh`
      gver=`gfortran -dumpversion | sed "s/.[0-9]$//"`
 
-     # There's a csh in nix but it's binary is tcsh
+     # There's a csh in nix but its binary is tcsh
      find -type f -executable -exec sed -i "s:/bin/csh:$csh:" \{} \;
 
      gver="5.3"
@@ -88,28 +88,49 @@ stdenv.mkDerivation rec {
      # patch gms-files.csh
      sed -i "s:\$GMSPATH/auxdata:$out/share/auxdata:" gms-files.csh
 
-     '';
- buildPhase = ''
-    cd build
-    make ${if enableParallelBuilding then "-j$NIX_BUILD_CORES -l$NIX_BUILD_CORES" else ""}
-     '';
+  '';
+     
+  buildPhase = ''
+      cd build
+      make ${if enableParallelBuilding then "-j$NIX_BUILD_CORES -l$NIX_BUILD_CORES" else ""}
+  '';
 
- configurePhase = ''
- 	./config
-     '';
+  configurePhase = ''
+ 	    ./config
+  '';
 
   installPhase = ''
-     mkdir -p $out/bin
-     cp ../rungms $out/bin
-     cp ../gms-files.csh $out/bin
+      mkdir -p $out/bin
+      cp ../rungms $out/bin
+      cp ../gms-files.csh $out/bin
 
-     cp -a *.x $out/bin
+      cp -a *.x $out/bin
 
-     mkdir -p $out/share
+      mkdir -p $out/share
 
-     cp install.info $out/share # keep it for documentation purposes
-     cp -a ../auxdata $out/share
-     '';
+      cp install.info $out/share # keep it for documentation purposes
+      cp -a ../auxdata $out/share
+
+      cp -a ../tests $out/share
+  '';
+
+  doCheck = false;
+
+  # run the basic test
+  checkPhase = ''
+      mkdir scr
+      export SCR=`readlink -f scr`
+      mkdir userscr
+      export USERSCR=`readlink -f userscr`
+
+      mkdir check
+      cp -r ../tests/standard/* check
+      cd check
+
+      for i in `seq -w 1 47`; do ../../rungms exam$i.inp > exam$i.log ; done
+
+      ./checktst | grep "All 47 test results are correct"
+  '';
 
 
   enableParallelBuilding = true;
@@ -120,7 +141,7 @@ stdenv.mkDerivation rec {
   meta = {
      description = "Quantum chemistry program supporting HF/CI/MP/CC";
      homepage    =  http://www.msg.ameslab.gov/gamess;
-     license = stdenv.lib.licences.unfree;
+     licenses = stdenv.lib.licences.unfree;
      platforms = [ "x86_64-linux" ]; 
   };
 }
