@@ -4,6 +4,10 @@ pkgs: with pkgs; {
   gamess = callPackage ./gamess { mathlib=atlas; };
 
   gamess-mkl = callPackage ./gamess { mathlib=callPackage ./mkl { } ; useMkl = true; };
+  
+  octopus-minimal = callPackage ./octopus {};
+
+  arpackng = callPackage ./arpack-ng {};
 
   libxc = callPackage ./libxc {};
 
