@@ -13,6 +13,8 @@ in
     buildInputs = [ gfortran ];
     nativeBuildInputs = [ perl ];
 
+    doCheck = true;
+
     meta = {
       description = "Library of exchange-correlation functionals for density-functional theory";
       homepage = http://octopus-code.org/wiki/Libxc;
