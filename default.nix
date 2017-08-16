@@ -7,6 +7,8 @@ pkgs: with pkgs; {
   
   octopus-minimal = callPackage ./octopus {};
 
+  nwchem = callPackage ./nwchem { };
+
   arpackng = callPackage ./arpack-ng {};
 
   libxc = callPackage ./libxc {};
