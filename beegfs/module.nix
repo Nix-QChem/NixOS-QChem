@@ -179,12 +179,12 @@ in
         };
       };
 
-#fileSystems.${cfg.client.mountPoint} = mkIf cfg.client.enable {
-#        device = "beegfs_nodev";
-#        fsType = "beegfs;
-#        mountPoint = cfg.client.mountPoint;
-#        options = [ "cfgFile=/etc/beegfs/beegfs-client.conf" ];
-#      };
+      fileSystems.${cfg.client.mountPoint} = mkIf cfg.client.enable {
+        device = "beegfs_nodev";
+        fsType = "beegfs";
+        mountPoint = cfg.client.mountPoint;
+        options = [ "cfgFile=/etc/beegfs/beegfs-client.conf" ];
+      };
 
       # Server Stuff
       systemd.services.beegfsMgmtd = mkIf cfg.mgmtd.enable {
