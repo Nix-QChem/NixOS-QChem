@@ -49,6 +49,18 @@ in
           '';  
         };
 
+        client = {
+          enable = mkEnableOption "BeeGFS client";
+          
+          mountPoint = mkOption {
+            type = types.str;
+            default = "/beegfs";
+            description = ''
+              Mount point under which the beegfs should be mounted.
+            '';
+          };
+        };
+
         mgmtd = {
           enable = mkEnableOption "BeeGFS mgmtd daemon";
 
@@ -133,18 +145,48 @@ in
 
     ###### implementation
     config = 
-    mkIf ( cfg.mgmtd.enable || 
+    mkIf ( cfg.client.enable ||
+           cfg.mgmtd.enable || 
            cfg.meta.enable ||
            cfg.storage.enable ) {
 
-
       environment.systemPackages = [ pkgs.beegfs ];
 
-      environment.etc."beegfs-client.conf" = {
+      # Put the client.conf in the standard location where the
+      # commandline tools expect it 
+      environment.etc."beegfs/beegfs-client.conf" = {
         enable = true;
         text = configClient;
       };
 
+
+      # Client Stuff
+      boot = mkIf cfg.client.enable {
+        kernelModules = [ "beegfs" ];
+        extraModulePackages = [ pkgs.beegfs-module ];
+      };
+
+      systemd.services.beegfsHelperd = mkIf cfg.client.enable {
+        path = with pkgs; [ beegfs ];
+        wantedBy = [ "multi-user.target" ];
+        requires = [ "network-online.target" ];
+        after = [ "network-online.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.beegfs}/bin/beegfs-helperd pidFile=/run/beegfs-helperd.pid";
+          PIDfile = "/run/beegfs-helperd.pid"; 
+          TimeoutStopSec = "300";
+        };
+      };
+
+#fileSystems.${cfg.client.mountPoint} = mkIf cfg.client.enable {
+#        device = "beegfs_nodev";
+#        fsType = "beegfs;
+#        mountPoint = cfg.client.mountPoint;
+#        options = [ "cfgFile=/etc/beegfs/beegfs-client.conf" ];
+#      };
+
+      # Server Stuff
       systemd.services.beegfsMgmtd = mkIf cfg.mgmtd.enable {
         path = with pkgs; [ beegfs ];
         wantedBy = [ "multi-user.target" ];

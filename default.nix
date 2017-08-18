@@ -21,4 +21,6 @@ pkgs: with pkgs; {
   slurmSpankX11 = callPackage ./slurm-spank-x11 { } ; # make X11 work in srun sessions 
   
   beegfs = callPackage ./beegfs { };
+  beegfs-module = callPackage ./beegfs/kernel-module.nix { kernel=pkgs.linux_4_9; };
+
 }

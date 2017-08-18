@@ -40,13 +40,6 @@ in
       make -j4 -C beegfs_storage/build/
       make -j4 -C beegfs_utils/build/
 
-      ${stdenv.lib.optionalString buildKernelModule ''
-        export hardeningDisable=pic
-        cd beegfs_client_module/build
-        export KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build/
-        make -C beegfs_client_module/build
-        cd ../..
-      ''}
     '';
 
     installPhase = ''
@@ -54,8 +47,14 @@ in
       mkdir -p $out/lib
 
       cp beegfs_admon/build/beegfs-admon $out/bin 
+      cp beegfs_admon/build/dist/usr/bin/beegfs-admon-gui $out/bin 
+
       cp beegfs_ctl/build/beegfs-ctl $out/bin
       cp beegfs_fsck/build/beegfs-fsck $out/bin
+
+      cp beegfs_utils/scripts/beegfs-check-servers $out/bin
+      cp beegfs_utils/scripts/beegfs-df $out/bin
+
       cp beegfs_helperd/build/beegfs-helperd $out/bin
       cp beegfs_client_module/build/dist/sbin/beegfs-setup-client $out/bin
 
