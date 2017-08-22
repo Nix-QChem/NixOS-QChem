@@ -150,7 +150,12 @@ in
            cfg.meta.enable ||
            cfg.storage.enable ) {
 
-      environment.systemPackages = [ pkgs.beegfs ];
+      environment.systemPackages = with pkgs; [ ] 
+        ++ lib.optional cfg.client.enable beegfs-helperd
+        ++ lib.optional cfg.mgmtd.enable beegfs-mgmtd
+        ++ lib.optional cfg.meta.enable beegfs-meta
+        ++ lib.optional cfg.storage.enable beegfs-storage
+        ;
 
       # Put the client.conf in the standard location where the
       # commandline tools expect it 
@@ -167,13 +172,13 @@ in
       };
 
       systemd.services.beegfsHelperd = mkIf cfg.client.enable {
-        path = with pkgs; [ beegfs ];
+        path = with pkgs; [ beegfs-helperd ];
         wantedBy = [ "multi-user.target" ];
         requires = [ "network-online.target" ];
         after = [ "network-online.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.beegfs}/bin/beegfs-helperd pidFile=/run/beegfs-helperd.pid";
+          ExecStart = "${pkgs.beegfs-helperd}/bin/beegfs-helperd pidFile=/run/beegfs-helperd.pid";
           PIDfile = "/run/beegfs-helperd.pid"; 
           TimeoutStopSec = "300";
         };
@@ -183,41 +188,41 @@ in
         device = "beegfs_nodev";
         fsType = "beegfs";
         mountPoint = cfg.client.mountPoint;
-        options = [ "cfgFile=/etc/beegfs/beegfs-client.conf" ];
+        options = [ "cfgFile=/etc/beegfs/beegfs-client.conf" "_netdev" ];
       };
 
       # Server Stuff
       systemd.services.beegfsMgmtd = mkIf cfg.mgmtd.enable {
-        path = with pkgs; [ beegfs ];
+        path = with pkgs; [ beegfs-mgmtd ];
         wantedBy = [ "multi-user.target" ];
         after = [ "network-online.target" "zfs.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.beegfs}/bin/beegfs-mgmtd cfgFile=${configMgmtd} pidFile=/run/beegfs-mgmtd.pid";
+          ExecStart = "${pkgs.beegfs-mgmtd}/bin/beegfs-mgmtd cfgFile=${configMgmtd} pidFile=/run/beegfs-mgmtd.pid";
           PIDfile = "/run/beegfs-mgmtd.pid"; 
           TimeoutStopSec = "300";
         };
       };
 
       systemd.services.beegfsMeta = mkIf cfg.meta.enable {
-        path = with pkgs; [ beegfs ];
+        path = with pkgs; [ beegfs-meta ];
         wantedBy = [ "multi-user.target" ];
         after = [ "network-online.target" "zfs.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.beegfs}/bin/beegfs-meta cfgFile=${configMeta} pidFile=/run/beegfs-mgmtd.pid";
+          ExecStart = "${pkgs.beegfs-meta}/bin/beegfs-meta cfgFile=${configMeta} pidFile=/run/beegfs-mgmtd.pid";
           PIDfile = "/run/beegfs-meta.pid"; 
           TimeoutStopSec = "300";
         };
       };
       
       systemd.services.beegfsStorage = mkIf cfg.storage.enable {
-        path = with pkgs; [ beegfs ];
+        path = with pkgs; [ beegfs-storage ];
         wantedBy = [ "multi-user.target" ];
         after = [ "network-online.target" "zfs.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.beegfs}/bin/beegfs-storage cfgFile=${configStorage} pidFile=/run/beegfs-mgmtd.pid";
+          ExecStart = "${pkgs.beegfs-storage}/bin/beegfs-storage cfgFile=${configStorage} pidFile=/run/beegfs-mgmtd.pid";
           PIDfile = "/run/beegfs-storage.pid"; 
           TimeoutStopSec = "300";
         };
