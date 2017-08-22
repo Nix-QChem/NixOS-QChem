@@ -1,7 +1,6 @@
 { stdenv, fetchurl, bash, pkgconfig, unzip, which, coreutils,
   libuuid, attr, xfsprogs, cppunit,
   zlib, openssl, sqlite, openjdk,
-  buildKernelModule ? false, kernel ? null 
 } :
 
 let
