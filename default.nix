@@ -9,6 +9,8 @@ pkgs: with pkgs; {
 
   nwchem = callPackage ./nwchem { };
 
+  qdng = callPackage ./qdng { };
+
   arpackng = callPackage ./arpack-ng {};
 
   libxc = callPackage ./libxc {};
