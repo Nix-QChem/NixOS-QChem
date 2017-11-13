@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden5.7.tar.gz";
-    sha256 = "0x6ryga0dwrkylc8pb93f9w6ypska06kq7d0rxb8151jnndg9glf";
+    sha256 = "0gaq11gm09ax25lvgfrvxv9dxvi76hps116fp6k7sqgvdd68vf0s";
   };
 
   enableParallelBuilding = true;
