@@ -22,7 +22,7 @@ pkgs: with pkgs; {
   slurm17 = callPackage ./slurm { } ; # fixed version from the master branch
   slurmSpankX11 = callPackage ./slurm-spank-x11 { } ; # make X11 work in srun sessions 
   
-#  beegfs = callPackage ./beegfs { };
+  beegfs = callPackage ./beegfs { };
   beegfs-opentk = callPackage ./beegfs/opentk.nix { };
   beegfs-utils = callPackage ./beegfs/utils.nix { };
   beegfs-meta = callPackage ./beegfs/meta.nix { };

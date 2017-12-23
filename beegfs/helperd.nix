@@ -15,17 +15,21 @@ in
 
     buildInputs = [ beegfs-opentk ];
     postPatch = ''
-      find -type f -executable -exec sed -i "s:/bin/bash:/usr/bin/env bash:" \{} \;
+      find -type f -executable -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;
       find -type f -name Makefile -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;
       find -type f -name Makefile -exec sed -i "s:/bin/true:${coreutils}/bin/true:" \{} \;
       find -type f -name "*.mk" -exec sed -i "s:/bin/true:${coreutils}/bin/true:" \{} \;
     '';
 
+    makeFlags = [
+      "-Cbeegfs_common/build"
+#      "-Cbeegfs_helperd/build"
+    ];
 
-    buildPhase = ''
-      make -j4 -C beegfs_common/build/
-      make -j4 -C beegfs_helperd/build/
-    '';
+#    buildPhase = ''
+#      make -j4 -C beegfs_common/build/
+#      make -j4 -C beegfs_helperd/build/
+#    '';
 
     installPhase = ''
       mkdir -p $out/bin
