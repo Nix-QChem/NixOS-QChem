@@ -51,7 +51,32 @@ let
     ${cfg.client.extraConfig}
   '';
 
+  serviceList = [
+    { service = "admon"; cfgFile = configAdmon; }
+    { service = "meta"; cfgFile = configMeta; }
+    { service = "mgmtd"; cfgFile = configMgmtd; }
+    { service = "storage"; cfgFile = configStorage; }
+  ];
+
   # function to generate systemd.service entries
+  systemdEntry = service: cfgFile: (mapAttrs' 
+    ( name: cfg:  (nameValuePair "beegfs-${service}-${name}" (mkIf cfg."${service}".enable {
+        path = with pkgs; [ beegfs ];
+        wantedBy = [ "multi-user.target" ];
+        requires = [ "network-online.target" ];
+        after = [ "network-online.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = ''
+            ${pkgs.beegfs}/bin/beegfs-${service} \
+              cfgFile=${cfgFile name cfg} \
+              pidFile=/run/beegfs-${service}-${name}.pid
+          '';
+          PIDfile = "/run/beegfs-${service}-${name}.pid"; 
+          TimeoutStopSec = "300";
+        };
+      }))) cfg);
+
   systemdHelperd =  mapAttrs' 
     ( name: cfg:  (nameValuePair "beegfsHelperd-${name}" (mkIf cfg.client.enable {
         path = with pkgs; [ beegfs ];
@@ -70,78 +95,14 @@ let
         };
       }))) cfg;
 
-  systemdAdmon =  mapAttrs'
-   (name : cfg: (nameValuePair "beegfsAdmon-${name}" (mkIf cfg.admon.enable {
-     path = with pkgs; [ beegfs ];
-     wantedBy = [ "multi-user.target" ];
-     after = [ "network-online.target" "zfs.target" ];
-     serviceConfig = {
-       Type = "simple";
-       ExecStart = ''
-         ${pkgs.beegfs}/bin/beegfs-admon  \
-           cfgFile=${configAdmon name cfg} \
-           pidFile=/run/beegfs-admon-${name}.pid
-       '';
-       PIDfile = "/run/beegfs-admon-${name}.pid"; 
-       TimeoutStopSec = "300";
-     };
-   }))) cfg;
-       
-  systemdMgmtd =  mapAttrs'
-   (name : cfg: (nameValuePair "beegfsMgmtd-${name}" (mkIf cfg.mgmtd.enable {
-     path = with pkgs; [ beegfs ];
-     wantedBy = [ "multi-user.target" ];
-     after = [ "network-online.target" "zfs.target" ];
-     serviceConfig = {
-       Type = "simple";
-       ExecStart = ''
-         ${pkgs.beegfs}/bin/beegfs-mgmtd  \
-           cfgFile=${configMgmtd name cfg} \
-           pidFile=/run/beegfs-mgmtd-${name}.pid
-       '';
-       PIDfile = "/run/beegfs-mgmtd-${name}.pid"; 
-       TimeoutStopSec = "300";
-     };
-   }))) cfg;
-       
-  systemdMeta =  mapAttrs'
-   (name : cfg: (nameValuePair "beegfsMeta-${name}" (mkIf cfg.meta.enable {
-      path = with pkgs; [ beegfs ];
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" "zfs.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = ''${pkgs.beegfs}/bin/beegfs-meta \
-          cfgFile=${configMeta name cfg} \
-          pidFile=/run/beegfs-mgmtd-${name}.pid
-        ''; 
-        PIDfile = "/run/beegfs-meta-${name}.pid";
-        TimeoutStopSec = "300";
-      };
-   }))) cfg;
-       
-  systemdStorage =  mapAttrs'
-   (name : cfg: (nameValuePair "beegfsStorage-${name}" (mkIf cfg.storage.enable {
-      path = with pkgs; [ beegfs ];
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" "zfs.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = '' ${pkgs.beegfs}/bin/beegfs-storage \
-          cfgFile=${configStorage name cfg} \
-          pidFile=/run/beegfs-mgmtd-${name}.pid
-        '';
-        PIDfile = "/run/beegfs-storage-${name}.pid"; 
-        TimeoutStopSec = "300";
-     };
-  }))) cfg;
-
 
 in
   {
     ###### interface 
 
     options = {
+      services.beegfsEnable = mkEnableOption "BeeGFS";
+
       services.beegfs = mkOption {
         default = {};
         description = ''
@@ -155,10 +116,7 @@ in
           type = types.str;
           default = null;
           example = "master";
-          description = ''
-            Hostname of mgmt node. This options is needed if storage of meta data
-            service is enabled.
-          '';  
+          description = ''Hostname of managament host'';  
         };
    
         connPortShift = mkOption {
@@ -177,7 +135,7 @@ in
             type = types.str;
             default = "/beegfs";
             description = ''
-              Mount point under which the beegfs should be mounted.
+              Mount point under which the beegfs filesytem should be mounted.
             '';
           };
           
@@ -185,7 +143,7 @@ in
             type = types.lines;
             default = "";
             description = ''
-              Addional lines for beegfs-client.conf. See documentation
+              Additional lines for beegfs-client.conf. See documentation
               for further details.
             '';
           };
@@ -196,7 +154,7 @@ in
             type = types.lines;
             default = "";
             description = ''
-              Addional lines for beegfs-helperd.conf. See documentation
+              Additional lines for beegfs-helperd.conf. See documentation
               for further details.
             '';
           };
@@ -221,7 +179,7 @@ in
             type = types.lines;
             default = "";
             description = ''
-              Addional lines for beegfs-mgmtd.conf. See documentation
+              Additional lines for beegfs-mgmtd.conf. See documentation
               for further details.
             '';
           };
@@ -235,7 +193,7 @@ in
             type = types.lines;
             default = "";
             description = ''
-              Addional lines for beegfs-admon.conf. See documentation
+              Additional lines for beegfs-admon.conf. See documentation
               for further details.
             '';
           };
@@ -261,7 +219,7 @@ in
             type = types.str;
             default = "";
             description = ''
-              Addional lines for beegfs-meta.conf. See documentation
+              Additional lines for beegfs-meta.conf. See documentation
               for further details.
             '';
           };
@@ -280,7 +238,7 @@ in
               Must not be shared with other beegfs daemons.
               The underlying filesystem must be mounted with xattr turned on.
               This directory must exist and it must be initialized
-              with "beegfs-setup-storate -C -s <serviceID> -i <storageTargetID> -p <storeDir>"
+              with "beegfs-setup-storage -C -s <serviceID> -i <storageTargetID> -p <storeDir>"
             '';
           };
 
@@ -288,7 +246,7 @@ in
             type = types.str;
             default = "";
             description = ''
-              Addional lines for beegfs-meta.conf. See documentation
+              Addional lines for beegfs-storage.conf. See documentation
               for further details.
             '';
           };
@@ -300,14 +258,8 @@ in
 
     ###### implementation
 
-
-
     config = 
-# TODO: a general beegfs.enable
-#     mkIf ( cfg.client.enable ||
-#           cfg.mgmtd.enable || 
-#           cfg.meta.enable ||
-#           cfg.storage.enable ) {
+      mkIf config.services.beegfsEnable 
       {
 
       #environment.systemPackages = with pkgs; [ beegfs ];
@@ -333,6 +285,7 @@ in
       };
 
 
+      # mount points
       fileSystems = mapAttrs'
         (name: cfg: (nameValuePair cfg.client.mountPoint (mkIf cfg.client.enable {
             device = "beegfs_nodev";
@@ -341,7 +294,8 @@ in
             options = [ "cfgFile=/etc/beegfs/beegfs-client-${name}.conf" "_netdev" ];
           }))) cfg;
 
-      systemd.services = systemdHelperd // systemdMgmtd // systemdAdmon // systemdMeta // systemdStorage;
+      systemd.services = systemdHelperd // 
+        foldr (a: b: a//b) {} (map (x: systemdEntry x.service x.cfgFile) serviceList);
     };
   }
 
