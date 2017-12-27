@@ -1,6 +1,5 @@
 { stdenv, fetchurl, bash, which, coreutils,
-  libuuid, attr, kmod, kernel,
-  zlib, openssl   
+  kmod, kernel
 } :
 
 let
@@ -16,8 +15,7 @@ in
 
     hardeningDisable = [ "fortify" "pic" "stackprotector" ];
 
-    nativeBuildInputs = [ which bash kmod ];
-    buildInputs = [ libuuid attr zlib openssl  ];
+    nativeBuildInputs = [ which bash coreutils kmod ];
     postPatch = ''
       find -type f -executable -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;
       find -type f -name Makefile -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;

@@ -1,5 +1,5 @@
 { stdenv, fetchurl, which, openssh, gcc, gfortran, 
-  openmpi, atlasWithLapack, python, tcsh, bash } :
+  openmpi, liblapackWithAtlas, python, tcsh, bash } :
 let
   version = "6.6";
 in
@@ -15,7 +15,7 @@ in
 
     hardeningDisable = [ "format" ];
     nativeBuildInputs = [ gcc ];
-    buildInputs = [ tcsh openssh which gfortran openmpi atlasWithLapack which python ];
+    buildInputs = [ tcsh openssh which gfortran openmpi liblapackWithAtlas which python ];
 
     postPatch = ''
       find -type f -executable -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;
@@ -38,7 +38,7 @@ in
       export BLAS_SIZE="8"
       export USE_MPI=y
       export USE_INTERNALBLAS=y
-#export BLASOPT="-L${atlasWithLapack}/lib -llapack -lf77blas -lcblas -latlas"
+#export BLASOPT="-L${liblapackWithAtlas}/lib -llapack -lf77blas -lcblas -latlas"
       export BLAS_SIZE=4
       export USE_64TO32=y
       export USE_PYTHONCONFIG="y"
