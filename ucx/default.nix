@@ -1,5 +1,7 @@
 { stdenv, fetchFromGitHub, autoconf, automake, libtool
 , doxygen, numactl, rdma-core
+# Enable machine-specific optimizations
+, enableOpt ? false
 } :
 
 let
@@ -16,10 +18,22 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ autoconf automake libtool doxygen ];
+
   buildInputs = [ numactl rdma-core  ];
+
+  configureFlags = [ "" ] #[ "--enable-gtest" ]
+    ++ stdenv.lib.optional enableOpt "--enable-optimizations";
+
+  enableParallelBuilding = true;
+
+  doCheck = false; # Fails because C++ error in verbs.h
 
   preConfigure = ''
     ./autogen.sh
+  '';
+
+  checkPhase = ''
+    make gtest
   '';
 
   meta = with stdenv.lib; {
