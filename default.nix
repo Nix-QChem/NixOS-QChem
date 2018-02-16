@@ -42,6 +42,8 @@ let
     openshmem-ofi = callPackage ./openshmem { conduit="ofi"; };
 
     slurmSpankX11 = pkgs.slurmSpankX11; # make X11 work in srun sessions
+
+    ucx = callPackage ./ucx { };
   };
 
 in pkgs-qc
