@@ -14,7 +14,7 @@ let
 
     octopus = pkgs.octopus;
 
-    ga = callPackage ./ga {  };
+    ga = callPackage ./ga { ssh=openssh; };
 
     nwchem = callPackage ./nwchem { };
 

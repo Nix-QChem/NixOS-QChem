@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub, automake, autoconf, libtool
-, openmpi, openblas, gfortran
+, openmpi, openblas, gfortran, ssh
 } :
 
 let
@@ -16,41 +16,34 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ automake autoconf libtool ];
-  buildInputs = [ openmpi openblas gfortran ];
+  buildInputs = [ openmpi openblas gfortran ssh ];
 
-  configureFlags = [ "--with-tcgmsg"
-                     "--with-mpi"
-                     "--enable-peigs"
-                     "--enable-underscoring"
-                     "--with-blas8=${openblas}/lib -lopenblas" ];
 
   preConfigure = ''
-    autoreconf
-#   aclocal \
-#    && automake --gnu --add-missing \
-#    && autoconf
+    autoreconf -ivf
+    configureFlagsArray+=( "--enable-unit-tests" \
+                           "--enable-i8" \
+                           "--with-mpi" \
+                           "--with-mpi3" \
+                           "--enable-peigs" \
+                           "--enable-eispack" \
+                           "--enable-underscoring" \
+                           "--with-blas8=${openblas}/lib -lopenblas" )
   '';
 
-#  cmakeFlags = [
-#    "-DENABLE_F77=ON"
-#    "-DMPI_MT=OFF"
-#    "-DENABLE_CXX=ON"
-#    "-DENABLE_I8=ON"
-#    "-DENABLE_ARMCI_MEM_OPTION=ON"
-#  ];
+  MPIEXEC="${openmpi}/bin/mpirun -np";
 
-
-  doCheck = true;
+  doCheck = false; # does not work, test call evaluates wrong
 
   enableParallelBuild = true;
 
-  checkPhase = "make test";
+  checkPhase = "make check";
 
   meta = with stdenv.lib; {
-    description = "Globals arrays";
-    homepage = https://;
-#license = with licenses; gpl2;
-    platforms = with platforms; linux;
+    description = "Globals arrays library";
+    homepage = http://hpc.pnl.gov/globalarrays/;
+   #license = licenses.bsd3;
+    platforms = platforms.linux;
   };
 }
 
