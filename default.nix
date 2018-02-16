@@ -26,5 +26,13 @@ in with pkgs; {
 
   impi = callPackage ./impi { };
 
+  openshmem = callPackage ./openshmem { };
+
+  openshmem-smp = openshmem;
+
+  openshmem-udp = callPackage ./openshmem { conduit="udp"; };
+
+  openshmem-ibv = callPackage ./openshmem { conduit="ibv"; };
+
   slurmSpankX11 = pkgs.slurmSpankX11; # make X11 work in srun sessions
 }
