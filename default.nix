@@ -29,7 +29,11 @@ let
 
     mkl = callPackage ./mkl { };
 
+    ibsim = callPackage ./ibsim { };
+
     impi = callPackage ./impi { };
+
+    infiniband-diags = callPackage ./infiniband-diags { };
 
     openshmem = callPackage ./openshmem {};
 
@@ -40,6 +44,8 @@ let
     openshmem-ibv = callPackage ./openshmem { conduit="ibv"; };
 
     openshmem-ofi = callPackage ./openshmem { conduit="ofi"; };
+
+    opensm =  callPackage ./opensm { };
 
     slurmSpankX11 = pkgs.slurmSpankX11; # make X11 work in srun sessions
 
