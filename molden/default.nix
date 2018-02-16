@@ -1,40 +1,41 @@
-{ stdenv, fetchurl, gfortran, mesa_glu, xorg } : 
+{ stdenv, fetchurl, gfortran, mesa_glu, xorg } :
 
 stdenv.mkDerivation rec {
   version = "5.7";
   name = "molden-${version}";
-
-  prePatch = ''
-     substituteInPlace ./makefile --replace '-L/usr/X11R6/lib'  "" \
-                                  --replace '-I/usr/X11R6/include' "" \
-                                  --replace '/usr/local/' $out/ \
-                                  --replace 'sudo' "" \
-				  --replace '-C surf depend' '-C surf' 
-     sed -in '/^# DO NOT DELETE THIS LINE/q;' surf/Makefile
-  '';
-
-  preInstall = ''
-     mkdir -p $out/bin
-     '';
 
   src = fetchurl {
     url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden5.7.tar.gz";
     sha256 = "0gaq11gm09ax25lvgfrvxv9dxvi76hps116fp6k7sqgvdd68vf0s";
   };
 
-  enableParallelBuilding = true;
-
   buildInputs = [ gfortran mesa_glu xorg.libX11 xorg.libXmu ];
 
-  meta = {
+  prePatch = ''
+     substituteInPlace ./makefile --replace '-L/usr/X11R6/lib'  "" \
+                                  --replace '-I/usr/X11R6/include' "" \
+                                  --replace '/usr/local/' $out/ \
+                                  --replace 'sudo' "" \
+				                          --replace '-C surf depend' '-C surf'
+     sed -in '/^# DO NOT DELETE THIS LINE/q;' surf/Makefile
+  '';
+
+  preInstall = ''
+     mkdir -p $out/bin
+  '';
+
+  enableParallelBuilding = true;
+
+  meta = with stdenv.lib; {
      description = "Display and manipulate molecular structures";
-     homepage    =  http://www.cmbi.ru.nl/molden/;
+     homepage = http://www.cmbi.ru.nl/molden/;
      license = {
-	fullName = "Free for academic/non-profit use.";
-	shortName = "academic use";
-	url = http://www.cmbi.ru.nl/molden/CopyRight.html;
+	     fullName = "Free for academic/non-profit use.";
+	     shortName = "academic use";
+	     url = http://www.cmbi.ru.nl/molden/CopyRight.html;
+       free = false;
      };
-     platforms = [ "x86_64-linux" "i686-linux" ]; 
+     platforms = platforms.linux;
   };
 }
 
