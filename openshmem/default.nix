@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, perl, rdma-core
+{ stdenv, fetchurl, perl, rdma-core, libfabric
 , fetchFromGitHub, libelf, gfortran
 , conduit ? "smp" # communication model: smp, udp, ibv, ofi
 } :
@@ -14,7 +14,7 @@ let
       sha256 = "15ylh3mknjfl1i3bc6qizblakh32vggcjkpv3sj9hjhpaf6ckn5m";
     };
 
-    buildInputs = [ perl rdma-core ];
+    buildInputs = [ perl rdma-core libfabric ];
 
     doCheck = true;
   };
