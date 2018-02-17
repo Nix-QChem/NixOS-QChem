@@ -6,6 +6,7 @@ let
 
   pkgs-qc = with pkgs; {
 
+    ### Quantum Chem
     cp2k = callPackage ./cp2k { };
 
     molden = pkgs.molden;
@@ -14,11 +15,13 @@ let
 
     gamess-mkl = callPackage ./gamess { mathlib=callPackage ./mkl { } ; useMkl = true; };
 
-    octopus = pkgs.octopus;
-
     ga = callPackage ./ga { ssh=openssh; };
 
+    libxc = pkgs.libxc;
+
     nwchem = callPackage ./nwchem { };
+
+    octopus = pkgs.octopus;
 
     openmolcas = callPackage ./openmolcas {
       texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
@@ -27,19 +30,19 @@ let
 
     qdng = callPackage ./qdng { };
 
-    libfabric = callPackage ./libfabric { };
-
-    libint = callPackage ./libint { };
-
-    libxc = pkgs.libxc;
-
-    mkl = callPackage ./mkl { };
+    ### HPC libs and Tools
 
     ibsim = callPackage ./ibsim { };
 
     impi = callPackage ./impi { };
 
     infiniband-diags = callPackage ./infiniband-diags { };
+
+    libfabric = callPackage ./libfabric { };
+
+    libint = callPackage ./libint { };
+
+    mkl = callPackage ./mkl { };
 
     openshmem = callPackage ./openshmem {};
 
