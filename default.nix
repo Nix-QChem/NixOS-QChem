@@ -6,6 +6,8 @@ let
 
   pkgs-qc = with pkgs; {
 
+    cp2k = callPackage ./cp2k { };
+
     molden = pkgs.molden;
 
     gamess = callPackage ./gamess { mathlib=atlas; };
@@ -26,6 +28,10 @@ let
     qdng = callPackage ./qdng { };
 
     libfabric = callPackage ./libfabric { };
+
+    libint = callPackage ./libint { };
+
+    libxc = pkgs.libxc;
 
     mkl = callPackage ./mkl { };
 
