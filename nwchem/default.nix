@@ -1,5 +1,5 @@
-{ stdenv, fetchFromGitHub, which, openssh, gcc, gfortran, perl,
-  openmpi, openblas, python, tcsh, git, bash, automake, autoconf } :
+{ stdenv, fetchFromGitHub, which, openssh, gcc, gfortran, perl, gnumake
+,  openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool } :
 let
   version = "6.8";
 
@@ -9,8 +9,8 @@ let
     rev = "v5.6.3";
     sha256 = "0dgrli9rdxffzl0nd3998fbnlnlibx7ahid2v0nhis1r1i71k1dn";
   };
-in
-  stdenv.mkDerivation {
+
+in stdenv.mkDerivation {
     name = "nwchem-${version}";
 
     src = fetchFromGitHub {
@@ -21,56 +21,47 @@ in
     };
 
 #hardeningDisable = [ "format" ];
-    nativeBuildInputs = [ gcc perl git automake autoconf ];
+    nativeBuildInputs = [ perl automake autoconf libtool ];
     buildInputs = [ tcsh openssh which gfortran openmpi openblas which python ];
 
+
     postUnpack = ''
-      echo "getting GA sources"
-      export srcRoot=`pwd`
-      export gaSrc="$srcRoot/nwchem-v6.8-release-src/src/tools/ga-5.6.3/"
-      echo $gaSrc
-      mkdir -p $gaSrc
-      cp -r ${ga_src}/* $gaSrc
-      chmod -R u+w $gaSrc
-      cd $gaSrc
-
-      mkdir build-aux
-      autoreconf -vif
-
-      cd $srcRoot
+      cp -r ${ga_src}/ source/src/tools/ga-5.6.3
+      chmod -R u+w source/src/tools/ga-5.6.3
     '';
 
     postPatch = ''
+
 #      find -type f -executable -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;
-#      find -type f -executable -exec sed -i "s:/bin/csh:${tcsh}/bin/tcsh:" \{} \;
+      find -type f -executable -exec sed -i "s:/bin/csh:${tcsh}/bin/tcsh:" \{} \;
       find -type f -name "GNUmakefile" -exec sed -i "s:/usr/bin/gcc:${gcc}/bin/gcc:" \{} \;
+      find -type f -name "GNUmakefile" -exec sed -i "s:/bin/rm:rm:" \{} \;
       find -type f -executable -exec sed -i "s:/bin/rm:rm:" \{} \;
       find -type f -name "makelib.h" -exec sed -i "s:/bin/rm:rm:" \{} \;
+
+
+      # Overwrite script, skipping the download
+      echo -e '#!/bin/sh\n cd ga-5.6.3;autoreconf -ivf' > src/tools/get-tools-github
+
       patchShebangs ./
 
-#  sed -i "/GET_TOOLS=/d" src/tools/GNUmakefilea
-       sed -i "s/wget/echo/" src/tools/get-tools
-       sed -i "s/wget/echo/" src/tools/get-tools-github
-       alias wget='echo'
-       alias curl='echo'
-       touch src/tools/ga-5.6.3.tar.gz
     '';
-
-    meta = {
-      description = "Quantum chemistry program";
-      licenses = stdenv.lib.licenses.free;
-    };
 
     enableParallelBuilding = true;
 
     preBuild = ''
+      ln -s ${ga_src} src/tools/ga-5.6.3.tar.gz
+
+
       export NWCHEM_TOP="`pwd`"
       export NWCHEM_TARGET="LINUX64"
 
       export ARMCI_NETWORK="MPI-MT"
       export USE_MPI=y
       export USE_MPIF=y
-      export LIBMPI="-lmpi_f90 -lmpi_f77 -lmpi -ldl -Wl,--export-dynamic -lnsl -lutil"
+      export LIBMPI=`mpif90 -showme:link`
+#export LIBMPI="-lmpi_f90 -lmpi_f77 -lmpi -ldl -Wl,--export-dynamic -lnsl -lutil"
+
 
       export NWCHEM_MODULES="all python"
       export MRCC_METHODS=TRUE
@@ -84,33 +75,43 @@ in
       export BLASOPT="-L${openblas}/lib -lopenblas"
 
       export BLAS_SIZE="8"
-#      export USE_INTERNALBLAS=y
-#      export BLAS_SIZE=4
-#export USE_64TO32=y
+      #export USE_INTERNALBLAS=y
+      #export BLAS_SIZE=4
+      #export USE_64TO32=y
       cd src
 
       echo "ROOT: $NWCHEM_TOP"
       make nwchem_config
-#      make 64_to_32
+      #make 64_to_32
     '';
 
     installPhase = ''
-      mkdir -p $out/bin
+      mkdir -p $out/bin $out/share/nwchem
+
       cp $NWCHEM_TOP/bin/LINUX64/nwchem $out/bin
 
-      cp -r $NWCHEM_TOP/src/data $out/share
+      cp -r $NWCHEM_TOP/src/data $out/share/nwchem
 
-      cp -r $NWCHEM_TOP/src/basis/libraries $out/share
+      cp -r $NWCHEM_TOP/src/basis/libraries $out/share/nwchem
 
-      cp -r $NWCHEM_TOP/QA $out/share
+      cp -r $NWCHEM_TOP/QA $out/share/nwchem
     '';
 
     checkPhase = ''
       cd $NWCHEM_TOP/QA
-      ./doqmtests.mpi
+      ./doqmtests.mpi 1 fast
     '';
 
     doCheck=true;
+
+    meta = {
+      description = "Quantum chemistry program";
+      license = {
+        fullName = "Educational Community License, Version 2.0";
+        url = https://github.com/nwchemgit/nwchem/blob/release-6-8/LICENSE.TXT;
+      };
+    };
+
   }
 
 
