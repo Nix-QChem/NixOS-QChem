@@ -4,7 +4,7 @@ let
 
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs-qc);
 
-  pkgs-qc = with pkgs; {
+  pkgs-qc = with pkgs; rec {
 
     ### Quantum Chem
     cp2k = callPackage ./cp2k { };
@@ -30,7 +30,9 @@ let
 
     qdng = callPackage ./qdng { };
 
-    scalapack = callPackage ./scalapack { openblas=openblasCompat; };
+    scalapackCompat = callPackage ./scalapack { openblas=openblasCompat; };
+
+    scalapack = callPackage ./scalapack { mpi=openmpi-ilp64; };
 
     ### HPC libs and Tools
 
@@ -45,6 +47,10 @@ let
     libint = callPackage ./libint { };
 
     mkl = callPackage ./mkl { };
+
+    openmpi-ilp64 = callPackage ./openmpi { ILP64=true; };
+
+    openmpi = callPackage ./openmpi { };
 
     openshmem = callPackage ./openshmem { };
 
