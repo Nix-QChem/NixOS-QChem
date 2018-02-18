@@ -15,7 +15,7 @@ let
 
     gamess-mkl = callPackage ./gamess { mathlib=callPackage ./mkl { } ; useMkl = true; };
 
-    ga = callPackage ./ga { ssh=openssh; };
+    ga = callPackage ./ga { };
 
     libxc = pkgs.libxc;
 
@@ -29,6 +29,8 @@ let
     };
 
     qdng = callPackage ./qdng { };
+
+    scalapack = callPackage ./scalapack { openblas=openblasCompat; };
 
     ### HPC libs and Tools
 
@@ -44,7 +46,7 @@ let
 
     mkl = callPackage ./mkl { };
 
-    openshmem = callPackage ./openshmem {};
+    openshmem = callPackage ./openshmem { };
 
     openshmem-smp = openshmem;
 
