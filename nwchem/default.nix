@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub, which, openssh, gcc, gfortran, perl, gnumake
-,  openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool } :
+, openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool, makeWrapper } :
 let
   version = "6.8";
 
@@ -21,7 +21,7 @@ in stdenv.mkDerivation {
     };
 
 #hardeningDisable = [ "format" ];
-    nativeBuildInputs = [ perl automake autoconf libtool ];
+    nativeBuildInputs = [ perl automake autoconf libtool makeWrapper ];
     buildInputs = [ tcsh openssh which gfortran openmpi openblas which python ];
 
 
@@ -85,24 +85,47 @@ in stdenv.mkDerivation {
       #make 64_to_32
     '';
 
+    postBuild = ''
+      cd $NWCHEM_TOP/src/util
+      make version
+      make
+      cd $NWCHEM_TOP/src
+      make link
+    '';
+
     installPhase = ''
       mkdir -p $out/bin $out/share/nwchem
 
       cp $NWCHEM_TOP/bin/LINUX64/nwchem $out/bin
-
-      cp -r $NWCHEM_TOP/src/data $out/share/nwchem
-
-      cp -r $NWCHEM_TOP/src/basis/libraries $out/share/nwchem
-
+      cp -r $NWCHEM_TOP/src/data $out/share/nwchem/
+      cp -r $NWCHEM_TOP/src/basis/libraries $out/share/nwchem/data
+      cp -r $NWCHEM_TOP/src/nwpw/libraryps $out/share/nwchem/data
       cp -r $NWCHEM_TOP/QA $out/share/nwchem
+
+      wrapProgram $out/bin/nwchem --set NWCHEM_BASIS_LIBRARY $out/share/nwchem/data
+
+      cat > $out/share/nwchem/nwchemrc << EOF
+        nwchem_basis_library $out/share/nwchem/data/libraries/
+        nwchem_nwpw_library $out/share/nwchem//data/libraryps/
+        ffield amber
+        amber_1 $out/share/nwchem/data/amber_s/
+        amber_2 $out/share/nwchem/data/amber_q/
+        amber_3 $out/share/nwchem/data/amber_x/
+        amber_4 $out/share/nwchem/data/amber_u/
+        spce    $out/share/nwchem/data/solvents/spce.rst
+        charmm_s $out/share/nwchem/data/charmm_s/
+        charmm_x $out/share/nwchem/data/charmm_x/
+EOF
     '';
+
+    setupHook = ./setupHook.sh;
 
     checkPhase = ''
       cd $NWCHEM_TOP/QA
       ./doqmtests.mpi 1 fast
     '';
 
-    doCheck=true;
+    doCheck=false;
 
     meta = {
       description = "Quantum chemistry program";
