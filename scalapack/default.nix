@@ -36,6 +36,8 @@ in stdenv.mkDerivation {
     # make sure the test starts even if we have less than 4 cores
     export OMPI_MCA_rmaps_base_oversubscribe=1
 
+    sed -i "s/TimeOut: 1500/TimeOut: 3600/" DartConfiguration.tcl
+
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`/lib
     export CTEST_OUTPUT_ON_FAILURE=1
 
