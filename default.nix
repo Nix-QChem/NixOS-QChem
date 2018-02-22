@@ -24,7 +24,8 @@ let
     octopus = pkgs.octopus;
 
     openmolcas = callPackage ./openmolcas {
-      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+#texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+      texLive=texlive.combined.scheme-basic;
       openblas=openblas;
     };
 
@@ -65,6 +66,8 @@ let
     opensm =  callPackage ./opensm { };
 
     slurmSpankX11 = pkgs.slurmSpankX11; # make X11 work in srun sessions
+
+    sos = callPackage ./sos { };
 
     ucx = callPackage ./ucx { };
   };
