@@ -1,5 +1,7 @@
-{ stdenv, fetchFromGitHub, automake, autoconf, libtool
-, openmpi, openblas, gfortran, ssh
+{ stdenv, pkgs, fetchFromGitHub, automake, autoconf, libtool
+, openblas, gfortran
+, ssh ? pkgs.openssh
+, mpi ? pkgs.openmpi
 } :
 
 let
@@ -16,8 +18,7 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ automake autoconf libtool ];
-  buildInputs = [ openmpi openblas gfortran ssh ];
-
+  buildInputs = [ mpi openblas gfortran ssh ];
 
   preConfigure = ''
     autoreconf -ivf
@@ -30,8 +31,6 @@ in stdenv.mkDerivation {
                            "--enable-underscoring" \
                            "--with-blas8=${openblas}/lib -lopenblas" )
   '';
-
-  MPIEXEC="${openmpi}/bin/mpirun -np";
 
   doCheck = false; # does not work, test call evaluates wrong
 
