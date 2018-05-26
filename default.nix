@@ -1,3 +1,7 @@
+{ srcurl ? null  # base url for non-free packages
+, licMolpro ?  null # string containing the license token
+} : self: super:
+
 let
   # prefer 18.03
   pkgs = import (fetchTarball http://nixos.org/channels/nixos-18.03/nixexprs.tar.xz) {};
@@ -7,11 +11,13 @@ let
   pkgs-qc = with pkgs; rec {
 
     ### Quantum Chem
-    bagel = callPackage ./bagel { openblas=openblasCompat; scalapack=scalapackCompat.overrideAttrs ( super: { doCheck=false; } ); };
+    bagel = callPackage ./bagel {
+      openblas=openblasCompat;
+      scalapack=scalapackCompat.overrideAttrs ( super: { doCheck=false; } ); };
 
     cp2k = callPackage ./cp2k { };
 
-    molden = pkgs.molden;
+    molden = super.molden;
 
     gamess = callPackage ./gamess { mathlib=atlas; };
 
@@ -19,11 +25,13 @@ let
 
     ga = callPackage ./ga { };
 
-    libxc = pkgs.libxc;
+    libxc = super.libxc;
 
     nwchem = callPackage ./nwchem { };
 
-    octopus = pkgs.octopus;
+    molpro = callPackage ./molpro { token=licMolpro; };
+
+    octopus = super.octopus;
 
     openmolcas = callPackage ./openmolcas {
 #texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
