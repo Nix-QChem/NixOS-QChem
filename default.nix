@@ -29,7 +29,7 @@ let
 
     nwchem = callPackage ./nwchem { };
 
-    molpro = callPackage ./molpro { token=licMolpro; };
+    molpro = callPackage ./molpro { srcurl=srcurl; token=licMolpro; };
 
     octopus = super.octopus;
 
