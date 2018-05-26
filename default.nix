@@ -1,12 +1,14 @@
 let
-  # prefer 18.03-pre (master branch)
-  pkgs = import (fetchTarball http://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {};
+  # prefer 18.03
+  pkgs = import (fetchTarball http://nixos.org/channels/nixos-18.03/nixexprs.tar.xz) {};
 
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs-qc);
 
   pkgs-qc = with pkgs; rec {
 
     ### Quantum Chem
+    bagel = callPackage ./bagel { openblas=openblasCompat; scalapack=scalapackCompat.overrideAttrs ( super: { doCheck=false; } ); };
+
     cp2k = callPackage ./cp2k { };
 
     molden = pkgs.molden;
@@ -46,6 +48,15 @@ let
     libfabric = callPackage ./libfabric { };
 
     libint = callPackage ./libint { };
+
+    libint-bagel = callPackage ./libint { cfg = [
+      "--enable-eri=1"
+      "--enable-eri3=1"
+      "--enable-eri2=1"
+      "--with-max-am=6"
+      "--with-cartgauss-ordering=bagel"
+      "--enable-contracted-ints"
+    ];};
 
     mkl = callPackage ./mkl { };
 
