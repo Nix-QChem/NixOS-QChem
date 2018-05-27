@@ -1,31 +1,45 @@
-{ stdenv, fetchgit, gfortran, fftw, protobuf, liblapack, blas,
-  automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
+{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, liblapack, blas
+, automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
+, srcurl ? null
 }:
 
 let
-  rev = "";
-in
-   stdenv.mkDerivation {
-     name = "qdng";
-     src = fetchgit {
-       url = /home/markus/src/QDng.git;
-       rev = "7a2178054096e9dbd45f400b23056d4b348641ea";
-       sha256 = "0hgy4dl17f65ns13d2hqxf7a4nj4sm2c6gc9z107y8f91q9j7mw1";
-     };
-    
-     preConfigure = ''
-       ./genbs
-     '';
+  version = "20180527";
+  srcfile = "qdng-${version}.tar.xz";
+  sha256 = "16agzp2aqb6yjmdpbnshjh6cw4kliqfvgfrbj76xcrycrbyk8hf9";
 
-     buildInputs = [ gfortran fftw protobuf liblapack 
-                     blas bzip2 zlib libxml2
-                     flex bison ];
-     nativeBuildInputs = [ automake autoconf libtool ];
+in stdenv.mkDerivation {
+  name = "qdng-${version}";
 
-     meta = {
-       description = "Quantum dynamics program package";
-       platforms = stdenv.lib.platforms.linux;
-       maintainer = "markus.kowalewski@gmail.com";
-     };
+  src = if srcurl != null then
+    fetchurl {
+      url = srcurl + "/" + srcfile;
+      sha256 = sha256;
+    }
+  else
+    requireFile {
+      url = "http://nowebsite";
+      name = srcfile;
+      inherit sha256;
+    };
 
-   }
+  configureFlags = [ "--enable-openmp" ];
+
+  enableParallelBuilding = true;
+
+  preConfigure = ''
+    ./genbs
+  '';
+
+  buildInputs = [ gfortran fftw protobuf liblapack
+                  blas bzip2 zlib libxml2
+                  flex bison ];
+  nativeBuildInputs = [ automake autoconf libtool ];
+
+  meta = {
+    description = "Quantum dynamics program package";
+    platforms = stdenv.lib.platforms.linux;
+    maintainer = "markus.kowalewski@gmail.com";
+  };
+
+}

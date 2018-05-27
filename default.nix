@@ -39,7 +39,7 @@ let
       openblas=openblas;
     };
 
-    qdng = callPackage ./qdng { };
+    qdng = callPackage ./qdng { srcurl=srcurl; };
 
     scalapackCompat = callPackage ./scalapack { openblas=openblasCompat; };
 

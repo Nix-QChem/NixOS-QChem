@@ -118,7 +118,7 @@ in stdenv.mkDerivation {
 EOF
     '';
 
-    setupHook = ./setupHook.sh;
+#setupHook = ./setupHook.sh;
 
     checkPhase = ''
       cd $NWCHEM_TOP/QA
