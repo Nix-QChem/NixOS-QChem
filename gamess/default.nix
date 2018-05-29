@@ -6,13 +6,13 @@
 #
 
 { stdenv, requireFile, nettools, which,
-  gfortran, tcsh, mathlib , useMkl ? false } : 
+  gfortran, tcsh, mathlib , useMkl ? false } :
 
 let
   version = "20170420";
   hurl =  http://www.msg.ameslab.gov/gamess;
 
-  target = 
+  target =
     if stdenv.system == "i686-linux" then
       "linux32"
     else if stdenv.system == "x86_64-linux" then
@@ -58,9 +58,9 @@ stdenv.mkDerivation rec {
      substituteInPlace ./config --replace 'GMS_DDI_COMM=$<' "GMS_DDI_COMM=sockets" \
                                 --replace 'GMS_PHI=$<' "GMS_PHI=no" \
                                 --replace 'GMS_SHMTYPE=$<' "GMS_SHMTYPE=sysv" \
-                                --replace 'GMS_OPENMP=$<' "GMS_OPENMP=no" 
+                                --replace 'GMS_OPENMP=$<' "GMS_OPENMP=no"
 
-      # patch for MKL/atlas				
+      # patch for MKL/atlas
       if [ "${withMKL}" == "yes" ]; then
          substituteInPlace ./config --replace 'GMS_MATHLIB=$<' "GMS_MATHLIB=mkl" \
                                     --replace 'mklhead=$<' "mklhead=${mathlib}" \
@@ -68,15 +68,15 @@ stdenv.mkDerivation rec {
 
       else
          substituteInPlace ./config --replace 'GMS_MATHLIB=$<' "GMS_MATHLIB=atlas" \
-                                    --replace 'GMS_MATHLIB_PATH=$<' "GMS_MATHLIB_PATH=${mathlib}/lib"  
-      fi			  
+                                    --replace 'GMS_MATHLIB_PATH=$<' "GMS_MATHLIB_PATH=${mathlib}/lib"
+      fi
 
-     # Answer 'no' for LIBCCHEM feature 
+     # Answer 'no' for LIBCCHEM feature
      sed -i '1629s/\$</no/' ./config
-    
+
      # remove all remaining prompts
-     substituteInPlace ./config --replace 'reply=$<'  "" 
-     substituteInPlace ./config --replace 'tput clear'  "" 
+     substituteInPlace ./config --replace 'reply=$<'  ""
+     substituteInPlace ./config --replace 'tput clear'  ""
 
      # Fix the linker script for MKL
      sed -i '539s/-Wl/-ldl -Wl/' ./lked
@@ -89,7 +89,7 @@ stdenv.mkDerivation rec {
      sed -i "s:\$GMSPATH/auxdata:$out/share/auxdata:" gms-files.csh
 
   '';
-     
+
   buildPhase = ''
       cd build
       make ${if enableParallelBuilding then "-j$NIX_BUILD_CORES -l$NIX_BUILD_CORES" else ""}
@@ -142,7 +142,7 @@ stdenv.mkDerivation rec {
      description = "Quantum chemistry program supporting HF/CI/MP/CC";
      homepage    =  http://www.msg.ameslab.gov/gamess;
      licenses = stdenv.lib.licences.unfree;
-     platforms = [ "x86_64-linux" ]; 
+     platforms = [ "x86_64-linux" ];
   };
 }
 
