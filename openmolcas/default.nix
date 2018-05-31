@@ -1,20 +1,21 @@
-{ stdenv, fetchurl, cmake, gfortran
+{ stdenv, fetchurl, cmake, gfortran, perl
 , openblas, hdf5-cpp, python3, texLive
+, pythonPackages
 } :
 
 let
-  version = "v18.0.o180115-1800";
+  version = "v18.0.o180526-1800";
 
 in stdenv.mkDerivation {
   name = "openmolcas-${version}";
 
   src = fetchurl {
     url = "https://gitlab.com/Molcas/OpenMolcas/repository/${version}/archive.tar.bz2";
-    sha256 = "1y06c51df2a3rqfk83kml1fj4zi47gml90k9gq8787zifycbhyxj";
+    sha256 = "0kh0zd8jrhr92dcj7r8fhqia1ryzwr0sbxzfk3mk1a3zp9wmig8j";
   };
 
-  nativeBuildInputs = [ cmake texLive ];
-  buildInputs = [ gfortran openblas hdf5-cpp python3 ];
+  nativeBuildInputs = [ perl cmake texLive ];
+  buildInputs = [ gfortran openblas hdf5-cpp python3 pythonPackages.six ];
 
   cmakeFlags = [
     "-DOPENMP=ON"
