@@ -8,7 +8,6 @@ let
   # prefer 18.03
   #super = import (fetchTarball http://nixos.org/channels/nixos-18.03/nixexprs.tar.xz) {};
 
-
 in with super; {
 
   ### Quantum Chem
