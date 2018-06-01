@@ -44,6 +44,8 @@ in with super; {
     openblas = openblas;
   };
 
+  molcas = self.openmolcas;
+
   qdng = callPackage ./qdng { srcurl=srcurl; };
 
   scalapackCompat = self.callPackage ./scalapack { openblas = openblasCompat; };
