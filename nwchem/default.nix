@@ -127,6 +127,8 @@ EOF
 
     doCheck=false;
 
+    doInstallCheck = true;
+
     installCheckPhase = ''
       # run a simple water test
       $out/bin/nwchem $out/share/nwchem/QA/tests/h2o/h2o.nw > h2o.out
