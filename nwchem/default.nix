@@ -127,6 +127,12 @@ EOF
 
     doCheck=false;
 
+    installCheckPhase = ''
+      # run a simple water test
+      $out/bin/nwchem $out/share/nwchem/QA/tests/h2o/h2o.nw > h2o.out
+      grep "Total SCF energy" h2o.out  | grep 76.010538
+    '';
+
     meta = {
       description = "Quantum chemistry program";
       license = {
