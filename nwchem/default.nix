@@ -102,7 +102,7 @@ in stdenv.mkDerivation {
       cp -r $NWCHEM_TOP/src/nwpw/libraryps $out/share/nwchem/data
       cp -r $NWCHEM_TOP/QA $out/share/nwchem
 
-      wrapProgram $out/bin/nwchem --set NWCHEM_BASIS_LIBRARY $out/share/nwchem/data
+      wrapProgram $out/bin/nwchem --set NWCHEM_BASIS_LIBRARY $out/share/nwchem/data/libraries/
 
       cat > $out/share/nwchem/nwchemrc << EOF
         nwchem_basis_library $out/share/nwchem/data/libraries/
