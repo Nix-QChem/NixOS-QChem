@@ -95,26 +95,50 @@ in stdenv.mkDerivation {
     installPhase = ''
       mkdir -p $out/bin $out/share/nwchem
 
-      cp $NWCHEM_TOP/bin/LINUX64/nwchem $out/bin
+      cp $NWCHEM_TOP/bin/LINUX64/nwchem $out/bin/.nwchem-wrapped
       cp -r $NWCHEM_TOP/src/data $out/share/nwchem/
       cp -r $NWCHEM_TOP/src/basis/libraries $out/share/nwchem/data
       cp -r $NWCHEM_TOP/src/nwpw/libraryps $out/share/nwchem/data
       cp -r $NWCHEM_TOP/QA $out/share/nwchem
 
-      wrapProgram $out/bin/nwchem --set NWCHEM_BASIS_LIBRARY $out/share/nwchem/data/libraries/
+      # create wrapper
+      cat << EOF > $out/bin/nwchem
+      #!/bin/sh
+
+      if [ \$# == 0 ]; then
+      echo
+      echo "Usage: `basename \$0` [number of procs] <input file name>"
+      echo
+      exit
+      fi
+
+      if [ -z "\$NWCHEM_BASIS_LIBRARY" ]; then
+      NWCHEM_BASIS_LIBRARY=$out/share/nwchem/data/libraries/
+      fi
+
+      if [ \$# -gt 2 ]; then
+      np=\$1; shift;
+      ${openmpi}/bin/mpirun -np \$1 $out/bin/.nwchem-wrapped \$@
+      else
+      ${openmpi}/bin/mpirun $out/bin/.nwchem-wrapped \$@
+      fi
+      EOF
+
+      chmod 755 $out/bin/nwchem
+
 
       cat > $out/share/nwchem/nwchemrc << EOF
-        nwchem_basis_library $out/share/nwchem/data/libraries/
-        nwchem_nwpw_library $out/share/nwchem//data/libraryps/
-        ffield amber
-        amber_1 $out/share/nwchem/data/amber_s/
-        amber_2 $out/share/nwchem/data/amber_q/
-        amber_3 $out/share/nwchem/data/amber_x/
-        amber_4 $out/share/nwchem/data/amber_u/
-        spce    $out/share/nwchem/data/solvents/spce.rst
-        charmm_s $out/share/nwchem/data/charmm_s/
-        charmm_x $out/share/nwchem/data/charmm_x/
-EOF
+      nwchem_basis_library $out/share/nwchem/data/libraries/
+      nwchem_nwpw_library $out/share/nwchem//data/libraryps/
+      ffield amber
+      amber_1 $out/share/nwchem/data/amber_s/
+      amber_2 $out/share/nwchem/data/amber_q/
+      amber_3 $out/share/nwchem/data/amber_x/
+      amber_4 $out/share/nwchem/data/amber_u/
+      spce    $out/share/nwchem/data/solvents/spce.rst
+      charmm_s $out/share/nwchem/data/charmm_s/
+      charmm_x $out/share/nwchem/data/charmm_x/
+      EOF
     '';
 
     checkPhase = ''
