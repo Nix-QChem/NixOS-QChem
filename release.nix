@@ -3,7 +3,7 @@
 }
 let
 
-  pkgs = nixpkgs { overlays = [ (import ./defaults.nix) config ]; };
+  pkgs = nixpkgs { overlays = [ (import ./defaults.nix) config ]; }
 
 in {
     inherit (pkgs)
