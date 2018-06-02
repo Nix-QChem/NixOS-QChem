@@ -1,13 +1,15 @@
+{ nixpkgs ? import <nixpkgs>
+, config ? {}
+}
 let
-  pkgs = import <nixpkgs> {};
+
+  pkgs = nixpkgs { overlays = [ (import ./defaults.nix) config ]; };
 
 in {
-  qchem = {
     inherit (pkgs)
       molden
       molcas
       nwchem
       gamess;
-  };
 }
 
