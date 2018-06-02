@@ -73,11 +73,11 @@ in with super; {
 
   openmpi-ilp64 = callPackage ./openmpi { ILP64=true; };
 
-  openmpi = callPackage ./openmpi { };
+  #openmpi = self openmpi { };
 
   openshmem = callPackage ./openshmem { };
 
-  openshmem-smp = openshmem;
+  openshmem-smp = self.openshmem;
 
   openshmem-udp = callPackage ./openshmem { conduit="udp"; };
 
