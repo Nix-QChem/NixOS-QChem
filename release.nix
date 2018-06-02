@@ -1,5 +1,6 @@
 { nixpkgs ? import (fetchTarball https://nixos.org/channels/nixos-18.03/nixexprs.tar.xz)
 , config ? {}
+, CI ? {}
 } :
 
 let
