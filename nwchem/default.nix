@@ -23,7 +23,7 @@ in stdenv.mkDerivation {
 #hardeningDisable = [ "format" ];
     nativeBuildInputs = [ perl automake autoconf libtool makeWrapper ];
     buildInputs = [ tcsh openssh which gfortran openmpi openblas which python ];
-
+    propagatedUserEnvPkgs = [ openmpi ];
 
     postUnpack = ''
       cp -r ${ga_src}/ source/src/tools/ga-5.6.3
@@ -32,7 +32,6 @@ in stdenv.mkDerivation {
 
     postPatch = ''
 
-#      find -type f -executable -exec sed -i "s:/bin/bash:${bash}/bin/bash:" \{} \;
       find -type f -executable -exec sed -i "s:/bin/csh:${tcsh}/bin/tcsh:" \{} \;
       find -type f -name "GNUmakefile" -exec sed -i "s:/usr/bin/gcc:${gcc}/bin/gcc:" \{} \;
       find -type f -name "GNUmakefile" -exec sed -i "s:/bin/rm:rm:" \{} \;
@@ -117,8 +116,6 @@ in stdenv.mkDerivation {
         charmm_x $out/share/nwchem/data/charmm_x/
 EOF
     '';
-
-#setupHook = ./setupHook.sh;
 
     checkPhase = ''
       cd $NWCHEM_TOP/QA
