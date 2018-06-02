@@ -27,7 +27,7 @@ in stdenv.mkDerivation {
   '';
 
   meta = with stdenv.lib; {
-    description = ""Brilliantly Advanced General Electronic-structure Library;
+    description = "Brilliantly Advanced General Electronic-structure Library";
     homepage = http://www.shiozaki.northwestern.edu/bagel.php;
     license = with licenses; gpl3;
     platforms = platforms.linux;
