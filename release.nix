@@ -1,16 +1,20 @@
-{ config ? {}, pin ? true } :
+{ config ? {}, stable ? true } :
 
 
 let
-
-  pkgs = (import <nixpkgs>) {
+  input = {
     overlays = [ ((import ./default.nix) config) ];
     config.allowUnfree=true;
- };
+  };
+
+#  if stable then
+    pkgs = (import <nixpkgs>) input;
+#  else
+#    (pkgs = (import (fetchGit { url="https://github/NixOS/nixpkgs"; })) input)
+
 
 in {
   inherit (pkgs)
-    cp2k
     molcas
     nwchem
     molden;
@@ -19,6 +23,9 @@ in {
   {
     inherit (pkgs)
       qdng
+      gamess
+      gamess-mkl
+      mkl
       molden;
   }
   else {}

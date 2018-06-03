@@ -5,15 +5,26 @@ self: super:
 
 
 let
-  # prefer 18.03
-  #super = import (fetchTarball http://nixos.org/channels/nixos-18.03/nixexprs.tar.xz) {};
+  lF = { sha256, srcfile, website ? "" } :
+  if srcurl != null then
+    super.fetchurl {
+      url = srcurl + "/" + srcfile;
+      sha256 = sha256;
+    }
+  else
+   super.requireFile {
+      url = website;
+      name = srcfile;
+      inherit sha256;
+    };
+
 
 in with super; {
 
   ### Quantum Chem
   bagel = callPackage ./bagel {
     openblas= openblasCompat;
-    scalapack= scalapackCompat.overrideAttrs ( super: { doCheck=false; } );
+    scalapack= self.scalapackCompat.overrideAttrs ( super_: { doCheck=false; } );
   };
 
   cp2k = callPackage ./cp2k { };
@@ -29,15 +40,15 @@ in with super; {
     };
   });
 
-  gamess = callPackage ./gamess { mathlib=atlas; };
+  gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 
-  gamess-mkl = callPackage ./gamess { mathlib=self.callPackage ./mkl { } ; useMkl = true; };
+  gamess-mkl = callPackage ./gamess { localFile=lF; mathlib=self.mkl; useMkl = true; };
 
   ga = callPackage ./ga { };
 
   nwchem = callPackage ./nwchem { };
 
-  molpro = callPackage ./molpro { srcurl=srcurl; token=licMolpro; };
+  molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
 
   openmolcas = callPackage ./openmolcas {
     texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
@@ -46,11 +57,11 @@ in with super; {
 
   molcas = self.openmolcas;
 
-  qdng = callPackage ./qdng { srcurl=srcurl; };
+  qdng = callPackage ./qdng { localFile=lF; };
 
-  scalapackCompat = self.callPackage ./scalapack { openblas = openblasCompat; };
+  scalapackCompat =callPackage ./scalapack { openblas = openblasCompat; };
 
-  scalapack = self.callPackage ./scalapack { mpi=self.openmpi-ilp64; };
+#  scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
   ### HPC libs and Tools
 
@@ -71,15 +82,15 @@ in with super; {
     "--enable-contracted-ints"
   ];};
 
-  mkl = callPackage ./mkl { };
+  mkl = callPackage ./mkl { localFile=lF; };
 
-  openmpi-ilp64 = callPackage ./openmpi { ILP64=true; };
+#  openmpi-ilp64 = callPackage ./openmpi { ILP64=true; };
 
   #openmpi = self openmpi { };
 
   openshmem = callPackage ./openshmem { };
 
-  openshmem-smp = self.openshmem;
+#  openshmem-smp = self.openshmem;
 
   openshmem-udp = callPackage ./openshmem { conduit="udp"; };
 

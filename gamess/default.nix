@@ -5,7 +5,7 @@
 #       * Add check routine acutally running the test
 #
 
-{ stdenv, requireFile, nettools, which,
+{ stdenv, localFile, nettools, which,
   gfortran, tcsh, mathlib , useMkl ? false } :
 
 let
@@ -26,15 +26,10 @@ stdenv.mkDerivation rec {
   filename = name + ".tar.gz";
   withMKL = if useMkl then "yes" else "no";
 
-  src = requireFile {
-     name = filename;
-     url = hurl;
-     message = ''
-	This nix expression requires the file ${filename} to be present.
-	Go to ${hurl} and obtain a copy of GAMESS.
-	Place the file in the nix store with nix-store --add-fixed sha256 ${filename}
-	'';
-     sha256 = "19wdw5djxazvd1yjk1v8v0ms5cxzb84jsizc8xd7sg998zhlfrva";
+  src = localFile {
+    srcfile = filename;
+    sha256 = "19wdw5djxazvd1yjk1v8v0ms5cxzb84jsizc8xd7sg998zhlfrva";
+    website = hurl;
   };
 
 

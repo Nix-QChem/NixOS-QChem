@@ -1,4 +1,4 @@
-{ stdenv, requireFile, zlib, cpio, curl, which
+{ stdenv, localFile, zlib, cpio, curl, which
 , srcurl ? null
 } :
 let
@@ -10,17 +10,12 @@ let
      zlib
      ] + ":${stdenv.cc.cc.lib}/lib64";
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   name = "mkl-" + version;
 
-  src = requireFile {
-     name = filename;
-     url = url;
-     message = ''
-	This nix expression requires the file ${filename} to be present.
-	Go to ${url} and obtain a copy of MKL.
-	Place the file in the nix store with nix-store --add-fixed sha256 ${filename}
-	'';
+  src = localFile {
+     srcfile = filename;
+     website = url;
      sha256 = "1jpiam010kpyr4wnav2ah4y2dfzj4m7k064qih9xcr511y3rawpx";
   };
 

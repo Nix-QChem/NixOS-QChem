@@ -1,28 +1,20 @@
-{ stdenv, fetchurl, requireFile, python
+{ stdenv, localFile, fetchurl, requireFile, python
 , srcurl ? null
 , token
 } :
 let
   version = "2015.1.33";
-  srcfile = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
-  sha256 = "1y9fjky7vl8lrgxvr2lxycihyi2kxwyilzf2jdvfla68jk1wlwf3";
 
 in stdenv.mkDerivation {
   name = "molpro-${version}";
 
-  src = if srcurl != null then
-    fetchurl {
-      url = srcurl + "/" + srcfile;
-      sha256 = sha256;
-    }
-  else
-    requireFile {
-     name = srcfile;
-     url = http://www.molpro.net;
-     inherit sha256;
-   };
+  src = localFile {
+    website = http://www.molpro.net;
+    srcfile = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
+    sha256 = "1y9fjky7vl8lrgxvr2lxycihyi2kxwyilzf2jdvfla68jk1wlwf3";
+  };
 
-   buildInputs = [ python ];
+  buildInputs = [ python ];
 
   unpackPhase = ''
     mkdir -p source
