@@ -118,9 +118,13 @@ in stdenv.mkDerivation {
 
       if [ \$# -gt 2 ]; then
       np=\$1; shift;
-      ${openmpi}/bin/mpirun -np \$1 $out/bin/.nwchem-wrapped \$@
-      else
+      if [ \$np == 0 ]; then
       ${openmpi}/bin/mpirun $out/bin/.nwchem-wrapped \$@
+      else
+      ${openmpi}/bin/mpirun -np \$1 $out/bin/.nwchem-wrapped \$@
+      fi
+      else
+      $out/bin/.nwchem-wrapped \$@
       fi
       EOF
 
