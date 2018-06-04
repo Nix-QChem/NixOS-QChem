@@ -1,16 +1,28 @@
-{ config ? {}, stable ? true } :
+{ config ? null, stable ? true } :
 
 
 let
+
+  qc-cfg = builtins.tryEval (import <qchem-config>);
+
+  cfg = if config == null then
+    if qc-cfg.success then
+      qc-cfg.value
+    else
+     {}
+  else
+    config;
+
   input = {
-    overlays = [ ((import ./default.nix) config) ];
+    overlays = [ ((import ./default.nix) cfg) ];
     config.allowUnfree=true;
   };
 
-#  if stable then
-    pkgs = (import <nixpkgs>) input;
-#  else
-#    (pkgs = (import (fetchGit { url="https://github/NixOS/nixpkgs"; })) input)
+  pkgs = if stable then
+    (import <nixpkgs>) input
+  else
+    (import (fetchGit { url="https://github/NixOS/nixpkgs"; })) input;
+
 
 
 in {
@@ -19,7 +31,7 @@ in {
     nwchem
     molden;
 } //
-  (if builtins.hasAttr "srcurl" config then
+  (if builtins.hasAttr "srcurl" cfg then
   {
     inherit (pkgs)
       qdng
@@ -31,7 +43,7 @@ in {
   else {}
   )
   //
-  (if builtins.hasAttr "licMolpro" config then
+  (if builtins.hasAttr "licMolpro" cfg then
   {
     inherit (pkgs)
       molpro;
