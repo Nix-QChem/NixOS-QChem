@@ -1,5 +1,6 @@
 { srcurl ? null  # base url for non-free packages
 , licMolpro ?  null # string containing the license token
+, optAVX ? true # turn of AVX optimizations
 } :
 self: super:
 
@@ -64,6 +65,14 @@ in with super; {
 #  scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
   ### HPC libs and Tools
+
+  fftw = if optAVX then
+    fftw.overrideDerivation ( oldAttrs: {
+    configureFlags = oldAttrs.configureFlags
+      ++ [ "--enable-avx" "--enable-avx2" "--enable-generic-simd256" ];
+  })
+  else
+    super.fftw;
 
   ibsim = callPackage ./ibsim { };
 

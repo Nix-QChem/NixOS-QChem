@@ -27,6 +27,7 @@ let
 
 in {
   inherit (pkgs)
+    fftw
     molcas
     nwchem
     molden;
