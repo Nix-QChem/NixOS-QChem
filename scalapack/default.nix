@@ -20,7 +20,7 @@ in stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  doCheck = true;
+  doCheck = false;
 
   inherit (openblas) blas64;
 
