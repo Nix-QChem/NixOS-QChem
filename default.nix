@@ -61,7 +61,7 @@ in with super; {
 
   molcas = self.openmolcas;
 
-  qdng = callPackage ./qdng { localFile=lF; fftw=fftwOpt; };
+  qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 
   sharc = callPackage ./sharc { };
 
