@@ -45,7 +45,7 @@ in stdenv.mkDerivation {
     fi
     ${openmpi}/bin/mpirun ''${@:1:$#-1} $out/bin/BAGEL ''${@:$#}
     EOF 
-    chmod +x $out/bin/bagel
+    chmod 755 $out/bin/bagel
   '';
 
   installCheckPhase = ''
