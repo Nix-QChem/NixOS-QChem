@@ -60,6 +60,8 @@ in with super; {
 
   qdng = callPackage ./qdng { localFile=lF; };
 
+  sharc = callPackage ./sharc { };
+
   scalapackCompat =callPackage ./scalapack { openblas = openblasCompat; };
 
   # Unsported
