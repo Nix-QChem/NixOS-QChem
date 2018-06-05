@@ -64,7 +64,9 @@ in with super; {
 
   scalapackCompat =callPackage ./scalapack { openblas = openblasCompat; };
 
-#  scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
+  # Unsported
+  # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
+
 
   ### HPC libs and Tools
 
@@ -95,13 +97,13 @@ in with super; {
 
   mkl = callPackage ./mkl { localFile=lF; };
 
-#  openmpi-ilp64 = callPackage ./openmpi { ILP64=true; };
-
-  #openmpi = self openmpi { };
+  openmpi-ilp64 = openmpi.overrideDerivation ( oldAttrs: {
+    FCFLAGS="-fdefault-integer-8";
+  });
 
   openshmem = callPackage ./openshmem { };
 
-#  openshmem-smp = self.openshmem;
+  openshmem-smp = self.openshmem;
 
   openshmem-udp = callPackage ./openshmem { conduit="udp"; };
 
