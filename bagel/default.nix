@@ -1,8 +1,6 @@
 { stdenv, fetchFromGitHub, autoconf, automake, libtool
-, python, boost, openmpi, libxc, fetchpatch
-# blas/lapack implementation
-# requires openblas >= 0.3.0
-, mathlib
+, python, boost, openmpi, libxc, fetchpatch, openblas
+, scalapack, makeWrapper, openssh
 } :
 
 let
@@ -18,14 +16,13 @@ in stdenv.mkDerivation {
     sha256 = "1yxkhqd9rng02g3zd7c1b32ish1b0gkrvfij58v5qrd8yaiy6pyy";
   };
 
-  nativeBuildInputs = [ autoconf automake libtool ];
-  buildInputs = [ python boost libxc mathlib ];
+  nativeBuildInputs = [ autoconf automake libtool openssh ];
+  buildInputs = [ python boost libxc openblas scalapack openmpi ];
 
-  CXXFLAGS="-DNDEBUG -O3 -mavx";
-  LD_FLAGS="-lopenblas";
+  CXXFLAGS="-DNDEBUG -O3 -mavx -lopenblas";
 
-  configureFlags = [ "--disable-scalapack" "--disable-smith" "--with-libxc" ];
-#  configureFlags = [ "--with-libxc" ];
+#  configureFlags = [ "--disable-scalapack" "--with-mpi" "--disable-smith" "--with-libxc" ];
+  configureFlags = [ "--with-libxc" "--with-mpi=openmpi" ];
 
   postPatch = ''
     # Fixed upstream
@@ -37,6 +34,30 @@ in stdenv.mkDerivation {
   '';
 
   enableParallelBuilding = true;
+
+  postInstall = ''
+    cat << EOF > $out/bin/bagel
+    if [ $# -lt 1 ]; then
+    echo
+    echo "Usage: `basename $0` [mpirun parameters] <input file>"
+    echo
+    exit
+    fi
+    ${openmpi}/bin/mpirun ''${@:1:$#-1} $out/bin/BAGEL ''${@:$#}
+    EOF 
+    chmod +x $out/bin/bagel
+  '';
+
+  installCheckPhase = ''
+    echo "Running HF test"
+    export OMP_NUM_THREADS=1
+    mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log
+    echo "Check output"
+    grep "SCF iteration converged" log
+    grep "99.847790" log
+  '';
+
+  doInstallCheck = true;
 
   meta = with stdenv.lib; {
     description = "Brilliantly Advanced General Electronic-structure Library";

@@ -27,6 +27,7 @@ let
 
 in {
   inherit (pkgs)
+    bagel
     fftw
     molcas
     nwchem
