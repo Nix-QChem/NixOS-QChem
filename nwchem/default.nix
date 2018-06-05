@@ -2,11 +2,12 @@
 , openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool, makeWrapper } :
 let
   version = "6.8";
+  versionGA = "5.6.3"; # Fixed by nwchem
 
   ga_src = fetchFromGitHub {
     owner = "GlobalArrays";
     repo = "ga";
-    rev = "v5.6.3";
+    rev = "v${versionGA}";
     sha256 = "0dgrli9rdxffzl0nd3998fbnlnlibx7ahid2v0nhis1r1i71k1dn";
   };
 
@@ -26,8 +27,8 @@ in stdenv.mkDerivation {
     propagatedUserEnvPkgs = [ openmpi ];
 
     postUnpack = ''
-      cp -r ${ga_src}/ source/src/tools/ga-5.6.3
-      chmod -R u+w source/src/tools/ga-5.6.3
+      cp -r ${ga_src}/ source/src/tools/ga-${versionGA}
+      chmod -R u+w source/src/tools/ga-${versionGA}
     '';
 
     postPatch = ''
