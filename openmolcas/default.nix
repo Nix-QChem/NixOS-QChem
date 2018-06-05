@@ -1,11 +1,20 @@
 { stdenv, fetchurl, cmake, gfortran, perl
 , openblas, hdf5-cpp, python3, texLive
-, makeWrapper
+, armadillo
+, makeWrapper, fetchFromGitHub
 } :
 
 let
   version = "master-o180529-0800";
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
+
+  srcLibwfa = fetchFromGitHub {
+    owner = "libwfa";
+    repo = "libwfa";
+    rev = "efd3d5bafd403f945e3ea5bee17d43e150ef78b2";
+    sha256 = "0qzs8s0pjrda7icws3f1a55rklfw7b94468ym5zsgp86ikjf2rlz";
+  };
+
 
 in stdenv.mkDerivation {
   name = "openmolcas-${version}";
@@ -15,23 +24,37 @@ in stdenv.mkDerivation {
     sha256 = "0dr5i7b2mklnrcy6y6q9snahbxv2l7s38090my553g5kl5xb3r8x";
   };
 
+  prePatch = ''
+    rm -r External/libwfa
+    cp -r ${srcLibwfa} External/libwfa
+    chmod -R u+w External/
+  '';
+
   nativeBuildInputs = [ perl cmake texLive makeWrapper ];
-  buildInputs = [ gfortran openblas hdf5-cpp python ];
+  buildInputs = [ gfortran openblas hdf5-cpp python armadillo ];
+
+  # tests are not running right now.
+  doCheck = false;
+
+  doInstallCheck = true;
+
+  enableParallelBuilding = true;
 
   cmakeFlags = [
     "-DOPENMP=ON"
     "-DLINALG=OpenBLAS"
-    "-DTOOLS=OFF"
+    "-DTOOLS=ON"
     "-DHDF5=ON"
+    "-DFDE=ON"
+    "-DWFA=ON"
     "-DCTEST=ON"
     "-DOPENBLASROOT=${openblas}"
   ];
 
   postConfigure = ''
+    # The Makefile will install pymolcas during the build grrr.
     mkdir -p $out/bin
     export PATH=$PATH:$out/bin
-
-    echo ${python}
   '';
 
   postFixup = ''
@@ -44,7 +67,7 @@ in stdenv.mkDerivation {
 
   installCheckPhase = ''
      #
-     # Minimal check if installation is runs
+     # Minimal check if installation runs properly
      #
 
      export MOLCAS_WORKDIR=./
@@ -68,20 +91,22 @@ in stdenv.mkDerivation {
 
      $out/bin/pymolcas $inp.inp > $inp.out
 
+     echo "Check for sucessful run:"
      grep "Happy landing" $inp.status
-
-     grep "Total SCF energy"  $inp.out | grep 74.880174
+     echo "Check for correct energy:"
+     grep "Total SCF energy" $inp.out | grep 74.880174
   '';
 
-  doInstallCheck = true;
-
-  enableParallelBuilding = true;
+  checkPhase = ''
+    make test
+  '';
 
   meta = with stdenv.lib; {
     description = "Quantum chemistry software package";
     homepage = https://gitlab.com/Molcas/OpenMolcas;
-    license = with licenses; lgpl21;
-    platforms = with platforms; linux;
+    maintainers = [ maintainers.markuskowa ];
+    license = licenses.lgpl21;
+    platforms = platforms.linux;
   };
 }
 
