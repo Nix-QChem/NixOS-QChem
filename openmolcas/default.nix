@@ -5,7 +5,7 @@
 } :
 
 let
-  version = "master-o180529-0800";
+  version = "20180529"; # master-o180529-0800
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
   srcLibwfa = fetchFromGitHub {
