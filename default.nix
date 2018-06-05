@@ -23,10 +23,13 @@ let
 in with super; {
 
   ### Quantum Chem
-  bagel = callPackage ./bagel {
-    openblas= openblasCompat;
-    scalapack= self.scalapackCompat.overrideAttrs ( super_: { doCheck=false; } );
-  };
+#  bagel-atlas = callPackage ./bagel { mathlib = atlas; };
+  bagel = callPackage ./bagel { mathlib = mkl; };
+
+#bagel = callPackage ./bagel {
+#    openblas= openblasCompat;
+#    scalapack= self.scalapackCompat.overrideAttrs ( super_: { doCheck=false; } );
+#  };
 
   cp2k = callPackage ./cp2k { };
 
@@ -58,19 +61,19 @@ in with super; {
 
   molcas = self.openmolcas;
 
-  qdng = callPackage ./qdng { localFile=lF; };
+  qdng = callPackage ./qdng { localFile=lF; fftw=fftwOpt; };
 
   sharc = callPackage ./sharc { };
 
-  scalapackCompat =callPackage ./scalapack { openblas = openblasCompat; };
+  scalapackCompat = callPackage ./scalapack { openblas = openblasCompat; };
 
-  # Unsported
+  # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
 
   ### HPC libs and Tools
 
-  fftw = if optAVX then
+  fftwOpt = if optAVX then
     fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
       ++ [ "--enable-avx" "--enable-avx2" "--enable-generic-simd256" ];
@@ -96,6 +99,9 @@ in with super; {
   ];};
 
   mkl = callPackage ./mkl { localFile=lF; };
+
+  openblas3Compat = callPackage ./openblas { blas64 = false; };
+  openblas3 = callPackage ./openblas { };
 
   openmpi-ilp64 = openmpi.overrideDerivation ( oldAttrs: {
     FCFLAGS="-fdefault-integer-8";
