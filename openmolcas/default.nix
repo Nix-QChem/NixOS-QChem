@@ -1,11 +1,13 @@
-{ stdenv, fetchurl, cmake, gfortran, perl
+{ stdenv, fetchFromGitLab, cmake, gfortran, perl
 , openblas, hdf5-cpp, python3, texLive
 , armadillo
 , makeWrapper, fetchFromGitHub
 } :
 
 let
-  version = "20180529"; # master-o180529-0800
+  version = "20180529"; 
+  gitLabRev = "b6b9ceffccae0dd7f14c099468334fee0b1071fc";
+
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
   srcLibwfa = fetchFromGitHub {
@@ -19,9 +21,11 @@ let
 in stdenv.mkDerivation {
   name = "openmolcas-${version}";
 
-  src = fetchurl {
-    url = "https://gitlab.com/Molcas/OpenMolcas/repository/${version}/archive.tar.bz2";
-    sha256 = "0dr5i7b2mklnrcy6y6q9snahbxv2l7s38090my553g5kl5xb3r8x";
+  src = fetchFromGitLab {
+    owner = "Molcas";
+    repo = "OpenMolcas";
+    rev = gitLabRev;
+    sha256 = "0k05wy5gjpkibafzr9jnxas134m9sbnxrvblz1wb9l4cj2l0hb11";
   };
 
   prePatch = ''
