@@ -33,16 +33,17 @@ in with super; {
 
   cp2k = callPackage ./cp2k { };
 
-  molden = molden.overrideDerivation ( oldAttrs: {
-    # Use a local version to overcome update dilema
-    src = fetchurl {
-      url = "${if srcurl == null
-              then "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/"
-              else srcurl}
-              /molden5.7.tar.gz";
-      sha256 = "12kir7xsd4r22vx8dyqin5diw8xx3fz4i3s849wjgap6ccmw1qqh";
-    };
-  });
+  molden = callPackage ./molden { };
+#  molden = molden.overrideDerivation ( oldAttrs: {
+#    # Use a local version to overcome update dilema
+#    src = fetchurl {
+#      url = "${if srcurl == null
+#              then "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/"
+#              else srcurl}
+#              /molden5.7.tar.gz";
+#      sha256 = "12kir7xsd4r22vx8dyqin5diw8xx3fz4i3s849wjgap6ccmw1qqh";
+#    };
+#  });
 
   gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 

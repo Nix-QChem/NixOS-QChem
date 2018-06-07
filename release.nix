@@ -29,6 +29,7 @@ in {
   inherit (pkgs)
     bagel
     fftw
+    ga
     molcas
     nwchem
     molden;

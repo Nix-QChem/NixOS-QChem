@@ -1,6 +1,6 @@
-{ stdenv, fetchFromGitLab, cmake, gfortran, perl
+{ stdenv, pkgs, fetchFromGitLab, cmake, gfortran, perl
 , openblas, hdf5-cpp, python3, texLive
-, armadillo
+, armadillo, mpi ? pkgs.openmpi, ga, openssh
 , makeWrapper, fetchFromGitHub
 } :
 
@@ -35,7 +35,7 @@ in stdenv.mkDerivation {
   '';
 
   nativeBuildInputs = [ perl cmake texLive makeWrapper ];
-  buildInputs = [ gfortran openblas hdf5-cpp python armadillo ];
+  buildInputs = [ gfortran openblas hdf5-cpp python armadillo mpi ga openssh ];
 
   # tests are not running right now.
   doCheck = false;
@@ -46,6 +46,8 @@ in stdenv.mkDerivation {
 
   cmakeFlags = [
     "-DOPENMP=ON"
+    "-DGA=ON"
+    "-DMPI=ON"
     "-DLINALG=OpenBLAS"
     "-DTOOLS=ON"
     "-DHDF5=ON"
@@ -54,6 +56,8 @@ in stdenv.mkDerivation {
     "-DCTEST=ON"
     "-DOPENBLASROOT=${openblas}"
   ];
+ 
+  GAROOT=ga;
 
   postConfigure = ''
     # The Makefile will install pymolcas during the build grrr.

@@ -5,7 +5,7 @@
 } :
 
 let
-  version = "5.6.3";
+  version = "5.7";
 
 in stdenv.mkDerivation {
   name = "ga-${version}";
@@ -14,7 +14,7 @@ in stdenv.mkDerivation {
     owner = "GlobalArrays";
     repo = "ga";
     rev = "v${version}";
-    sha256 = "0dgrli9rdxffzl0nd3998fbnlnlibx7ahid2v0nhis1r1i71k1dn";
+    sha256 = "07i2idaas7pq3in5mdqq5ndvxln5q87nyfgk3vzw85r72c4fq5jh";
   };
 
   nativeBuildInputs = [ automake autoconf libtool ];
@@ -26,17 +26,16 @@ in stdenv.mkDerivation {
                            "--enable-i8" \
                            "--with-mpi" \
                            "--with-mpi3" \
-                           "--enable-peigs" \
                            "--enable-eispack" \
                            "--enable-underscoring" \
                            "--with-blas8=${openblas}/lib -lopenblas" )
   '';
 
   doCheck = false; # does not work, test call evaluates wrong
+ 
+  checkTarget = "check";
 
   enableParallelBuild = true;
-
-  checkPhase = "make check";
 
   meta = with stdenv.lib; {
     description = "Globals arrays library";
