@@ -43,12 +43,12 @@ in stdenv.mkDerivation {
     cat << EOF > $out/bin/bagel
     if [ \$# -lt 1 ]; then
     echo
-    echo "Usage: `basename \$0` [mpirun parameters] <input file>"
+    echo "Usage: `basename \\$0` [mpirun parameters] <input file>"
     echo
     exit
     fi
-    ${mpi}/bin/mpirun ''\${@:1:$#-1} $out/bin/BAGEL ''\${@:$#}
-    EOF 
+    ${mpi}/bin/mpirun \''${@:1:$#-1} $out/bin/BAGEL \''${@:$#}
+    EOF
     chmod 755 $out/bin/bagel
   '';
 
