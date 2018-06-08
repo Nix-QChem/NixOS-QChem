@@ -22,16 +22,40 @@ let
   # build a package with specfific MPI implementation
   withMpi = pkg : mpi :
     super.appendToName mpi.name (pkg.override { mpi = mpi; });
+
+  # Build a whole package set for a specific MPI implementation
+  makeMpi = pkg: MPI: with super; {
+    mpi = pkg;
+
+    ga = callPackage ./ga { mpi=pkg; };
+
+    scalapackCompat = callPackage ./scalapack { openblas = self.openblas3Compat; mpi=pkg; };
+
+    bagel = callPackage ./bagel { openblas = self.openblas3Compat; mpi=pkg; scalapack=MPI.scalapackCompat; };
+
+    nwchem = callPackage ./nwchem { mpi=pkg; };
+
+    openmolcas = callPackage ./openmolcas {
+      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+      openblas = self.openblas3;
+      mpi=pkg;
+      ga=MPI.ga;
+    };
+  };
   
 in with super; 
 
 {
+  pkgsOpenmpi = makeMpi 
+     (super.openmpi.overrideDerivation ( oldAttrs: {
+       configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
+     })) self.pkgsOpenmpi;
+
+  pkgsMpich = makeMpi self.mpich2 self.pkgsMpich;
 
   ### Quantum Chem
-  bagel = callPackage ./bagel { openblas = self.openblas3Compat; scalapack=self.scalapackCompat; };
+  bagel = self.pkgsOpenmpi.bagel;
   
-  bagel-mpich = callPackage ./bagel { mpi=mpich2; openblas = self.openblas3Compat; scalapack=self.scalapackCompat-mpich; };
-
   cp2k = callPackage ./cp2k { };
  
   molden = molden.overrideDerivation ( oldAttrs: {
@@ -48,33 +72,17 @@ in with super;
   gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 
   gamess-mkl = callPackage ./gamess { localFile=lF; mathlib=self.mkl; useMkl = true; };
-
-  ga = callPackage ./ga { };
-  
-  ga-mpich = withMpi self.ga mpich2 ;
  
-  nwchem = callPackage ./nwchem { };
+  nwchem = self.pkgsOpenmpi.nwchem;
   
-  nwchem-mpich = callPackage ./nwchem { mpi=mpich2; };
-
   molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
 
-  openmolcas = callPackage ./openmolcas {
-    texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
-    openblas = self.openblas3;
-  };
-
-  molcas = self.openmolcas;
+  molcas = self.pkgsOpenmpi.openmolcas;
  
-  molcas-mpich = self.molcas.override { mpi = mpich2; ga = self.ga-mpich; };
-
   qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 
   sharc = callPackage ./sharc { };
 
-  scalapackCompat = callPackage ./scalapack { openblas = self.openblas3Compat; };
-  
-  scalapackCompat-mpich = withMpi self.scalapackCompat mpich2;
 
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
