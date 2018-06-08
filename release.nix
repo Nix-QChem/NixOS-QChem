@@ -26,15 +26,21 @@ let
 
 
 in {
-  pkgs-mpich = {inherit (pkgs) molcas-mpich nwchem-mpich; };
+  pkgs-mpich = { 
+    inherit (pkgs) 
+      bagel-mpich 
+      molcas-mpich 
+      nwchem-mpich; 
+  };
+
   inherit (pkgs)
     bagel
     fftw
     molcas
     nwchem
     molden;
-} //
-  (if builtins.hasAttr "srcurl" cfg then
+
+} // (if builtins.hasAttr "srcurl" cfg then
   {
     inherit (pkgs)
       qdng
@@ -45,8 +51,7 @@ in {
   }
   else {}
   )
-  //
-  (if builtins.hasAttr "licMolpro" cfg then
+  // (if builtins.hasAttr "licMolpro" cfg then
   {
     inherit (pkgs)
       molpro;

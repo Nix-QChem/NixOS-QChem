@@ -29,6 +29,8 @@ in with super;
 
   ### Quantum Chem
   bagel = callPackage ./bagel { openblas = self.openblas3Compat; scalapack=self.scalapackCompat; };
+  
+  bagel-mpich = callPackage ./bagel { mpi=mpich2; openblas = self.openblas3Compat; scalapack=self.scalapackCompat-mpich; };
 
   cp2k = callPackage ./cp2k { };
  
@@ -72,7 +74,7 @@ in with super;
 
   scalapackCompat = callPackage ./scalapack { openblas = self.openblas3Compat; };
   
-  scalapackCompat-mpich = withMpi mpich2 self.scalapackCompat;
+  scalapackCompat-mpich = withMpi self.scalapackCompat mpich2;
 
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };

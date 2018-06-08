@@ -6,6 +6,11 @@
 let
   version = "1.1.1";
 
+  mpiName = (builtins.parseDrvName mpi.name).name;
+  mpiType = if mpiName == "openmpi" then mpiName
+       else if mpiName == "mpich"  then "mvapich"
+       else throw "mpi type ${mpiName} not supported";
+
 in stdenv.mkDerivation {
   name = "bagel-${version}";
 
@@ -21,7 +26,7 @@ in stdenv.mkDerivation {
 
   CXXFLAGS="-DNDEBUG -O3 -mavx -lopenblas";
 
-  configureFlags = [ "--with-libxc" "--with-mpi=${(builtins.parseDrvName mpi.name).name}" ];
+  configureFlags = [ "--with-libxc" "--with-mpi=${mpiType}" ];
 
   postPatch = ''
     # Fixed upstream
@@ -36,13 +41,13 @@ in stdenv.mkDerivation {
 
   postInstall = ''
     cat << EOF > $out/bin/bagel
-    if [ $# -lt 1 ]; then
+    if [ \$# -lt 1 ]; then
     echo
-    echo "Usage: `basename $0` [mpirun parameters] <input file>"
+    echo "Usage: `basename \$0` [mpirun parameters] <input file>"
     echo
     exit
     fi
-    ${mpi}/bin/mpirun ''${@:1:$#-1} $out/bin/BAGEL ''${@:$#}
+    ${mpi}/bin/mpirun ''\${@:1:$#-1} $out/bin/BAGEL ''\${@:$#}
     EOF 
     chmod 755 $out/bin/bagel
   '';
