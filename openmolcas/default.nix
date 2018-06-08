@@ -16,8 +16,7 @@ let
     rev = "efd3d5bafd403f945e3ea5bee17d43e150ef78b2";
     sha256 = "0qzs8s0pjrda7icws3f1a55rklfw7b94468ym5zsgp86ikjf2rlz";
   };
-
-
+ 
 in stdenv.mkDerivation {
   name = "openmolcas-${version}";
 

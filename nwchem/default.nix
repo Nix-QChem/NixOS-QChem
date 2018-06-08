@@ -1,5 +1,5 @@
-{ stdenv, fetchFromGitHub, which, openssh, gcc, gfortran, perl, gnumake
-, openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool, makeWrapper } :
+{ stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl, gnumake
+, mpi ? pkgs.openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool, makeWrapper } :
 let
   version = "6.8";
   versionGA = "5.6.3"; # Fixed by nwchem
@@ -23,8 +23,8 @@ in stdenv.mkDerivation {
 
 #hardeningDisable = [ "format" ];
     nativeBuildInputs = [ perl automake autoconf libtool makeWrapper ];
-    buildInputs = [ tcsh openssh which gfortran openmpi openblas which python ];
-    propagatedUserEnvPkgs = [ openmpi ];
+    buildInputs = [ tcsh openssh which gfortran mpi openblas which python ];
+    propagatedUserEnvPkgs = [ mpi ];
 
     postUnpack = ''
       cp -r ${ga_src}/ source/src/tools/ga-${versionGA}
@@ -120,9 +120,9 @@ in stdenv.mkDerivation {
       if [ \$# -gt 2 ]; then
       np=\$1; shift;
       if [ \$np == 0 ]; then
-      ${openmpi}/bin/mpirun $out/bin/.nwchem-wrapped \$@
+      ${mpi}/bin/mpirun $out/bin/.nwchem-wrapped \$@
       else
-      ${openmpi}/bin/mpirun -np \$1 $out/bin/.nwchem-wrapped \$@
+      ${mpi}/bin/mpirun -np \$1 $out/bin/.nwchem-wrapped \$@
       fi
       else
       $out/bin/.nwchem-wrapped \$@

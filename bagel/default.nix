@@ -1,5 +1,5 @@
-{ stdenv, fetchFromGitHub, autoconf, automake, libtool
-, python, boost, openmpi, libxc, fetchpatch, openblas
+{ stdenv, pkgs, fetchFromGitHub, autoconf, automake, libtool
+, python, boost, mpi ? pkgs.openmpi, libxc, fetchpatch, openblas
 , scalapack, makeWrapper, openssh
 } :
 
@@ -17,12 +17,11 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ autoconf automake libtool openssh ];
-  buildInputs = [ python boost libxc openblas scalapack openmpi ];
+  buildInputs = [ python boost libxc openblas scalapack mpi ];
 
   CXXFLAGS="-DNDEBUG -O3 -mavx -lopenblas";
 
-#  configureFlags = [ "--disable-scalapack" "--with-mpi" "--disable-smith" "--with-libxc" ];
-  configureFlags = [ "--with-libxc" "--with-mpi=openmpi" ];
+  configureFlags = [ "--with-libxc" "--with-mpi=${(builtins.parseDrvName mpi.name).name}" ];
 
   postPatch = ''
     # Fixed upstream
@@ -43,7 +42,7 @@ in stdenv.mkDerivation {
     echo
     exit
     fi
-    ${openmpi}/bin/mpirun ''${@:1:$#-1} $out/bin/BAGEL ''${@:$#}
+    ${mpi}/bin/mpirun ''${@:1:$#-1} $out/bin/BAGEL ''${@:$#}
     EOF 
     chmod 755 $out/bin/bagel
   '';

@@ -26,10 +26,10 @@ let
 
 
 in {
+  pkgs-mpich = {inherit (pkgs) molcas-mpich nwchem-mpich; };
   inherit (pkgs)
     bagel
     fftw
-    ga
     molcas
     nwchem
     molden;
