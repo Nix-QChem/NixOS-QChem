@@ -42,22 +42,24 @@ let
       ga=MPI.ga;
     };
   };
-  
-in with super; 
+
+in with super;
 
 {
-  pkgsOpenmpi = makeMpi 
+  openmpiPkgs = makeMpi
      (super.openmpi.overrideDerivation ( oldAttrs: {
        configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
-     })) self.pkgsOpenmpi;
+     })) self.openmpiPkgs;
 
-  pkgsMpich = makeMpi self.mpich2 self.pkgsMpich;
+  mpichPkgs = makeMpi self.mpich2 self.mpichPkgs;
+
+  mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;
 
   ### Quantum Chem
-  bagel = self.pkgsOpenmpi.bagel;
-  
+  bagel = self.openmpiPkgs.bagel;
+
   cp2k = callPackage ./cp2k { };
- 
+
   molden = molden.overrideDerivation ( oldAttrs: {
     # Use a local version to overcome update dilema
     src = fetchurl {
@@ -72,13 +74,13 @@ in with super;
   gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 
   gamess-mkl = callPackage ./gamess { localFile=lF; mathlib=self.mkl; useMkl = true; };
- 
-  nwchem = self.pkgsOpenmpi.nwchem;
-  
+
+  nwchem = self.openmpiPkgs.nwchem;
+
   molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
 
-  molcas = self.pkgsOpenmpi.openmolcas;
- 
+  molcas = self.openmpiPkgs.openmolcas;
+
   qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 
   sharc = callPackage ./sharc { };
@@ -116,6 +118,8 @@ in with super;
 
   mkl = callPackage ./mkl { localFile=lF; };
 
+  mvapich = callPackage ./mvapich { };
+
   openblas3Compat = callPackage ./openblas { blas64 = false; };
   openblas3 = callPackage ./openblas { };
 
@@ -124,9 +128,7 @@ in with super;
     configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
   });
 
-  openmpi = openmpi.overrideDerivation ( oldAttrs: {
-    configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
-  });
+  openmpi = self.openmpiPkgs.mpi;
 
   openshmem = callPackage ./openshmem { };
 

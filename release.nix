@@ -26,11 +26,18 @@ let
 
 
 in {
-  pkgsMpich = { 
-    inherit (pkgs.pkgsMpich) 
-      bagel 
-      openmolcas 
-      nwchem; 
+  mpichPkgs = {
+    inherit (pkgs.mpichPkgs)
+      bagel
+      openmolcas
+      nwchem;
+  };
+
+  mvapichPkgs = {
+    inherit (pkgs.mvapichPkgs)
+      bagel
+      openmolcas
+      nwchem;
   };
 
   inherit (pkgs)

@@ -9,6 +9,7 @@ let
   mpiName = (builtins.parseDrvName mpi.name).name;
   mpiType = if mpiName == "openmpi" then mpiName
        else if mpiName == "mpich"  then "mvapich"
+       else if mpiName == "mvapich"  then mpiName
        else throw "mpi type ${mpiName} not supported";
 
 in stdenv.mkDerivation {
