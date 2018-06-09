@@ -47,7 +47,7 @@ in stdenv.mkDerivation {
     echo
     exit
     fi
-    ${mpi}/bin/mpirun \''${@:1:$#-1} $out/bin/BAGEL \''${@:$#}
+    ${mpi}/bin/mpirun \''${@:1:\$#-1} $out/bin/BAGEL \''${@:\$#}
     EOF
     chmod 755 $out/bin/bagel
   '';
