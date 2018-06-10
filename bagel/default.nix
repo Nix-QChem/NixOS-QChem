@@ -56,6 +56,7 @@ in stdenv.mkDerivation {
   installCheckPhase = ''
     echo "Running HF test"
     export OMP_NUM_THREADS=1
+    export MV2_ENABLE_AFFINITY=0 
     mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log
     echo "Check output"
     grep "SCF iteration converged" log

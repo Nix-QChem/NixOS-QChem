@@ -1,6 +1,6 @@
 { stdenv, fetchurl, pkgconfig, bison, numactl, libxml2
 , perl, gfortran, slurm, openssh, hwloc, rdma-core
-, infiniband-diags, opensm
+, infiniband-diags, opensm, zlib
 # Compile with slurm as a process manager
 , useSlurm ? false
 } :
@@ -17,6 +17,7 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ pkgconfig bison ];
+  propagatedBuildInputs = [ numactl rdma-core zlib infiniband-diags opensm ];
   buildInputs = [ numactl libxml2
                   perl gfortran
                   slurm openssh
@@ -34,6 +35,8 @@ in stdenv.mkDerivation {
       patchelf --set-rpath "$out/lib" $entry
     done
   '';
+
+  enableParallelBuilding = true;
 
   meta = with stdenv.lib; {
     description = "MPI-3.1 implementation optimized for Infiband transport";
