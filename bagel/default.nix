@@ -29,6 +29,8 @@ in stdenv.mkDerivation {
 
   configureFlags = [ "--with-libxc" "--with-mpi=${mpiType}" ];
 
+  outputs = [ "out" "tests" ];
+
   postPatch = ''
     # Fixed upstream
     sed -i '/using namespace std;/i\#include <string.h>' src/util/math/algo.cc
@@ -51,6 +53,10 @@ in stdenv.mkDerivation {
     ${mpi}/bin/mpirun \''${@:1:\$#-1} $out/bin/BAGEL \''${@:\$#}
     EOF
     chmod 755 $out/bin/bagel
+
+    # copy test jobs
+    mkdir -p $tests/
+    cp test/* $tests 
   '';
 
   installCheckPhase = ''
@@ -65,10 +71,13 @@ in stdenv.mkDerivation {
 
   doInstallCheck = true;
 
+  doCheck = true;
+
   meta = with stdenv.lib; {
     description = "Brilliantly Advanced General Electronic-structure Library";
     homepage = http://www.shiozaki.northwestern.edu/bagel.php;
-    license = with licenses; gpl3;
+    license = licenses.gpl3;
+    maintainers = maintainers.markuskowa;
     platforms = platforms.linux;
   };
 }
