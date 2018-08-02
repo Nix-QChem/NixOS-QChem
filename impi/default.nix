@@ -1,4 +1,4 @@
-{ stdenv, requireFile, zlib, cpio, curl, which } :
+{ stdenv, localFile, zlib, cpio, curl, which } :
 let 
   version = "2017.3.196";
   url = https://software.intel.com/en-us/intel-mpi-library;
@@ -11,14 +11,9 @@ in
 stdenv.mkDerivation rec {
   name = "impi-" + version;
 
-  src = requireFile {
-     name = filename;
-     url = url;
-     message = ''
-	This nix expression requires the file ${filename} to be present.
-	Go to ${url} and obtain a copy of MKL.
-	Place the file in the nix store with nix-store --add-fixed sha256 ${filename}
-	'';
+  src = localFile {
+     srcfile = filename;
+     website = url;
      sha256 = "1w47zgkr1j21w5x78af9xkal5wvpml3ja7kyrryd4gxxbfyfznfs";
   };
 

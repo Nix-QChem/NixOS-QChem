@@ -29,9 +29,16 @@ let
 
     ga = callPackage ./ga { mpi=pkg; };
 
-    scalapackCompat = callPackage ./scalapack { openblas = self.openblas3Compat; mpi=pkg; };
+    scalapackCompat = callPackage ./scalapack { blas = self.openblas3Compat; mpi=pkg; };
+    
+    scalapackCompat-mkl = callPackage ./scalapack { blas = self.mkl; mpi=pkg; };
 
-    bagel = callPackage ./bagel { openblas = self.openblas3Compat; mpi=pkg; scalapack=MPI.scalapackCompat; };
+    # Relativistic methods are broken with non-MKL libs
+    bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
+
+    # mkl is the default. 
+    bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; };
+    bagel = MPI.bagel-mkl;
 
     nwchem = callPackage ./nwchem { mpi=pkg; };
 
@@ -101,7 +108,7 @@ in with super;
 
   ibsim = callPackage ./ibsim { };
 
-  impi = callPackage ./impi { };
+  impi = callPackage ./impi { localFile = lF; };
 
   libfabric = callPackage ./libfabric { };
 

@@ -1,14 +1,16 @@
-{ stdenv, pkgs, fetchurl, cmake, gfortran, openblas
+{ stdenv, lib, pkgs, fetchurl, cmake, gfortran, blas
 , mpi ? pkgs.openmpi, ssh ? pkgs.openssh
 } :
 
-#assert openblas.blas64 -> mpi.ILP64 == true;
+# ILP64 version is defunct
 
 let
   version = "2.0.2";
 
+  blasName = (builtins.parseDrvName blas.name).name;
+
 in stdenv.mkDerivation {
-  name = "scalapack-${version}";
+  name = "scalapack-${version}" + lib.optionalString (blasName != "openblas") "-${blasName}";
 
   src = fetchurl {
     url = "http://www.netlib.org/scalapack/scalapack-${version}.tgz";
@@ -16,25 +18,32 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ gfortran mpi ssh openblas ];
+  buildInputs = [ gfortran mpi ssh blas ];
 
   enableParallelBuilding = true;
 
-  doCheck = false;
+  doCheck = true;
 
-  inherit (openblas) blas64;
+  #  inherit (openblas) blas64;
+
+  CFLAGS = "-O3 -mavx";
+  FFLAGS = "-O3 -mavx";
 
   preConfigure = ''
     cmakeFlagsArray+=( -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON
-      -DLAPACK_LIBRARIES="-L${openblas}/lib -lopenblas"
-      -DBLAS_LIBRARIES="-L${openblas}/lib -lopenblas"
-      -DCMAKE_Fortran_FLAGS=${if openblas.blas64 then "-fdefault-integer-8" else ""}
+      -DLAPACK_LIBRARIES=${if blasName == "openblas" then "-lopenblas" 
+         else "'-lmkl_gf_lp64 -lmkl_sequential -lmkl_core'"}
+      -DBLAS_LIBRARIES=${if blasName == "openblas" then "-lopenblas"
+         else "'-lmkl_gf_lp64 -lmkl_sequential -lmkl_core'"}
       )
   '';
 
   checkPhase = ''
     # make sure the test starts even if we have less than 4 cores
     export OMPI_MCA_rmaps_base_oversubscribe=1
+
+    # Run single threaded
+    export OMP_NUM_THREADS=1
 
     sed -i "s/TimeOut: 1500/TimeOut: 3600/" DartConfiguration.tcl
 
