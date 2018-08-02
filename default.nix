@@ -67,16 +67,7 @@ in with super;
 
   cp2k = callPackage ./cp2k { };
 
-  molden = molden.overrideDerivation ( oldAttrs: {
-    # Use a local version to overcome update dilema
-    src = fetchurl {
-      url = "${if srcurl == null
-              then "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/"
-              else srcurl}
-              /molden5.8.tar.gz";
-    sha256 = "1dwkkp83id2674iphn3cb7bmlsg0fm41f5dgkbcf0ygj044sqyx1";
-    };
-  });
+  molden = callPackage ./molden { localFile=lf; };
 
   gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 

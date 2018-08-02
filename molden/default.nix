@@ -1,16 +1,17 @@
-{ stdenv, fetchurl, which, gfortran, mesa, xorg } :
-  
+{ stdenv, localFile, which, gfortran, mesa, xorg, freeglut } :
+
 stdenv.mkDerivation rec {
-  version = "5.8";
+  version = "5.7";
   name = "molden-${version}";
 
-  src = fetchurl {
-    url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden${version}.tar.gz";
-    sha256 = "1dwkkp83id2674iphn3cb7bmlsg0fm41f5dgkbcf0ygj044sqyx1";
+  src = localFile {
+    website = http://www.cmbi.ru.nl/molden;
+    srcfile = "molden${version}.tar.gz";
+    sha256 = "12kir7xsd4r22vx8dyqin5diw8xx3fz4i3s849wjgap6ccmw1qqh";
   };
 
   nativeBuildInputs = [ which ];
-  buildInputs = [ gfortran mesa xorg.libX11 xorg.libXmu ];
+  buildInputs = [ gfortran mesa freeglut xorg.libX11 xorg.libXmu ];
 
   postPatch = ''
      substituteInPlace ./makefile --replace '-L/usr/X11R6/lib'  "" \
@@ -21,8 +22,16 @@ stdenv.mkDerivation rec {
      sed -in '/^# DO NOT DELETE THIS LINE/q;' surf/Makefile
   '';
 
+  postBuild = ''
+    make moldenogl
+  '';
+
   preInstall = ''
      mkdir -p $out/bin
+  '';
+
+  postInstall = ''
+    cp moldenogl $out/bin
   '';
 
   enableParallelBuilding = true;
