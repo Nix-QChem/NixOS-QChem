@@ -21,7 +21,7 @@ let
   pkgs = if stable then
     (import <nixpkgs>) input
   else
-    (import (fetchGit { url="https://github/NixOS/nixpkgs"; })) input;
+    (import (fetchGit { url="https://github.com/NixOS/nixpkgs"; })) input;
 
 
 
@@ -40,12 +40,18 @@ in {
       nwchem;
   };
 
+  scalapack=pkgs.openmpiPkgs.scalapackCompat-mkl;
+
   inherit (pkgs)
     bagel
     fftw
     molcas
     nwchem
     molden;
+
+   tests = {
+     bagel = import ./tests/bagel-native.nix { pkgs=pkgs; bagel=pkgs.bagel; };
+   };
 
 } // (if builtins.hasAttr "srcurl" cfg then
   {
@@ -54,6 +60,7 @@ in {
       gamess
       gamess-mkl
       mkl
+      impi
       molden;
   }
   else {}

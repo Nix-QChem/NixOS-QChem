@@ -6,7 +6,10 @@ let
       logFile=`basename ${t.input}`.log
       result=`basename ${t.input}`.res
 
-      echo -ne "Running test ${t.name}:\t\t\t\t\t"
+      mkdir -p ${t.name}.dir
+      cd ${t.name}.dir
+
+      echo "Running test ${t.name}"
       SECONDS=0
 
       ${pkgs.writeScript "testDriver.sh" t.driver} ${t.input} > $logFile
@@ -14,16 +17,26 @@ let
       echo "Runtime: $SECONDS s" >> $result
 
       echo "Result:" >> $result
-      grep '${t.result}' ${if t.outfile != null then t.outfile else "$logFile"} >> $result
-      if [ ! $? ]; then
-        echo "[Test failed!]"
+      ${if t.result != null then
+        "grep -e '" + t.result + "' " + (if t.outfile != null then t.outfile else "$logFile") + " >> $result\n"
       else
-        echo "[OK]"
-      fi
+        ""
+      }
+
+      ${if t.error != null then
+        "grep -e '" + t.error + "' " 
+        + (if t.outfile != null then t.outfile else "$logFile") + " >> $result "
+        + "&& false"
+      else
+        ""
+      }
 
       cp $logFile $out
       cp $result $out
       ${if t.outfile != null then "cp " + t.outfile  + " $out" else ""}
+   
+      cd ..   
+      rm -r ${t.name}.dir
       }
       '') tests);
 
@@ -33,8 +46,10 @@ let
 
 
 in stdenv.mkDerivation {
+  
+  name = "test-" + name;
 
-  inherit name buildInputs;
+  inherit buildInputs;
 
   phases = [ "setupPhase" "runPhase" ];
 
@@ -52,7 +67,7 @@ in stdenv.mkDerivation {
     echo -n "" > $out/summary
     for i in $results; do
       t=`sed -n 's/Runtime: //p' $i`
-      echo -e "`basename $i`:\t\t\t$t" >> $out/summary
+      printf '%s\033[40G%s\n' `basename $i` "$t" >> $out/summary
     done
 
     echo
