@@ -60,7 +60,7 @@ in {
       gamess
       gamess-mkl
       mkl
-      impi
+      #impi
       molden;
   }
   else {}

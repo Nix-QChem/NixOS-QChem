@@ -67,7 +67,7 @@ in with super;
 
   cp2k = callPackage ./cp2k { };
 
-  molden = callPackage ./molden { localFile=lf; };
+  molden = callPackage ./molden { localFile=lF; };
 
   gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 
@@ -99,7 +99,7 @@ in with super;
 
   ibsim = callPackage ./ibsim { };
 
-  impi = callPackage ./impi { localFile = lF; };
+  # impi = callPackage ./impi { localFile = lF; };
 
   libfabric = callPackage ./libfabric { };
 
