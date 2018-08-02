@@ -1,14 +1,14 @@
 { stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl, gnumake
 , mpi ? pkgs.openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool, makeWrapper } :
 let
-  version = "6.8";
-  versionGA = "5.6.3"; # Fixed by nwchem
+  version = "6.8.1";
+  versionGA = "5.6.5"; # Fixed by nwchem
 
   ga_src = fetchFromGitHub {
     owner = "GlobalArrays";
     repo = "ga";
     rev = "v${versionGA}";
-    sha256 = "0dgrli9rdxffzl0nd3998fbnlnlibx7ahid2v0nhis1r1i71k1dn";
+    sha256 = "19klm8hqf319pm5mgsw8ma6c7bxbkyzi8l7hlagvfw7qjanm979v";
   };
 
 in stdenv.mkDerivation {
@@ -17,8 +17,8 @@ in stdenv.mkDerivation {
     src = fetchFromGitHub {
       owner = "nwchemgit";
       repo = "nwchem";
-      rev = "v${version}-release";
-      sha256 = "1v3gam7bg3x4lzx5n91bpr7646py54h03lzanpnq22ma7666r30r";
+      rev = "${version}-release";
+      sha256 = "1z91gnf1iqr2bvcqns5j3c46lyfxhvwv254siksa31wbmw5s68s2";
     };
 
 #hardeningDisable = [ "format" ];
@@ -41,7 +41,7 @@ in stdenv.mkDerivation {
 
 
       # Overwrite script, skipping the download
-      echo -e '#!/bin/sh\n cd ga-5.6.3;autoreconf -ivf' > src/tools/get-tools-github
+      echo -e '#!/bin/sh\n cd ga-${versionGA};autoreconf -ivf' > src/tools/get-tools-github
 
       patchShebangs ./
 
@@ -50,7 +50,7 @@ in stdenv.mkDerivation {
     enableParallelBuilding = true;
 
     preBuild = ''
-      ln -s ${ga_src} src/tools/ga-5.6.3.tar.gz
+      ln -s ${ga_src} src/tools/ga-${versionGA}.tar.gz
 
 
       export NWCHEM_TOP="`pwd`"
