@@ -38,6 +38,7 @@ let
 
     # mkl is the default. 
     bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; };
+    bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
     bagel = MPI.bagel-mkl;
 
     nwchem = callPackage ./nwchem { mpi=pkg; };

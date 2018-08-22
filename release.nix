@@ -26,6 +26,14 @@ let
 
 
 in {
+  openmpiPkgs = {
+    inherit (pkgs.openmpiPkgs)
+      bagel-mkl-scl
+      bagel
+      openmolcas
+      nwchem;
+  };
+
   mpichPkgs = {
     inherit (pkgs.mpichPkgs)
       bagel
@@ -47,7 +55,8 @@ in {
     fftw
     molcas
     nwchem
-    molden;
+    molden
+    sharc;
 
    tests = {
      bagel = import ./tests/bagel-native.nix { pkgs=pkgs; bagel=pkgs.bagel; };
