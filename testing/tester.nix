@@ -1,7 +1,7 @@
 { stdenv, lib, pkgs, buildInputs, name, tests } :
 
 let
-  setupTests = builtins.concatStringsSep "\n" (map (t : ''
+  setupTests = pkgs.writeShellScriptBin "setupTests.sh" (builtins.concatStringsSep "\n" (map (t : ''
       run-${t.name} () {
       logFile=`basename ${t.input}`.log
       result=`basename ${t.input}`.res
@@ -38,7 +38,7 @@ let
       cd ..   
       rm -r ${t.name}.dir
       }
-      '') tests);
+      '') tests));
 
    runTests = builtins.concatStringsSep "\n" (map (t : ''
       run-${t.name}
@@ -53,11 +53,13 @@ in stdenv.mkDerivation {
 
   phases = [ "setupPhase" "runPhase" ];
 
-  setupPhase = setupTests;
+  setupPhase = ''
+    source ${setupTests}/bin/setupTests.sh
+  '';
 
   runPhase = ''
     mkdir -p $out
-
+ 
     echo
     echo "Running all tests:"
     ${runTests}
