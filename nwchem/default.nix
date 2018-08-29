@@ -1,5 +1,8 @@
-{ stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl, gnumake
-, mpi ? pkgs.openmpi, openblas, python, tcsh, git, bash, automake, autoconf, libtool, makeWrapper } :
+{ stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl
+, mpi ? pkgs.openmpi, openblas, python, tcsh, bash
+, automake, autoconf, libtool, makeWrapper 
+} :
+
 let
   version = "6.8.1";
   versionGA = "5.6.5"; # Fixed by nwchem
