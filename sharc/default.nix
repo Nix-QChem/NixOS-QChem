@@ -1,7 +1,10 @@
-{ stdenv, fetchFromGitHub, gfortran, openblas, fftw, python2 } :
+{ stdenv, fetchFromGitHub, makeWrapper, gfortran
+, openblasCompat, fftw, python2, molcas 
+} :
 
 let
   version = "V2.0";
+  python = python2.withPackages(p: with p; [ numpy ]);
 
 in stdenv.mkDerivation {
   name = "sharc-${version}";
@@ -13,20 +16,29 @@ in stdenv.mkDerivation {
     sha256 = "14zsmqpcxjsycfqwdknfl9jqlpdyjxf4kagjh1kyrfq0lyavh6dm";
   };
 
-  nativeBuildInputs = [ ];
-  buildInputs = [ gfortran openblas fftw python2 ];
+  nativeBuildInputs = [ makeWrapper ];
+  buildInputs = [ gfortran openblasCompat fftw python ];
+
+  patches = [ ./testing.patch ];
 
   postPatch = ''
     # SHARC make file
     sed -i 's/^F90.*=.*/F90 = gfortran/' source/Makefile;
     sed -i 's/^LD.*=.*/LD = -lopenblas -lfftw3/' source/Makefile;
-    sed -i 's:^EXEDIR.*=.*:EXEDIR = $out/bin:' source/Makefile;
+    sed -i 's:^EXEDIR.*=.*:EXEDIR = ''${out}/bin:' source/Makefile;
+
+    # purify output
+    substituteInPlace source/Makefile --replace 'shell date' 'shell echo 0' \
+                                      --replace 'shell hostname' 'shell echo nixos' \
+                                      --replace 'shell pwd' 'shell echo nixos' 
+    
 
     # WF overlap
     sed -i 's:^LALIB.*=.*:LALIB = -lopenblas -fopenmp:' wfoverlap/source/Makefile;
 
-    rm bin/wfoverlap_ascii.x
-    rm bin/wfoverlap.x
+    rm bin/*.x
+
+    patchShebangs wfoverlap/scripts
   '';
 
   buildPhase = ''
@@ -38,14 +50,45 @@ in stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    mkdir -p $out/bin
+    mkdir -p $out/bin $out/share/sharc/tests
+
+    cd source
+    make install
+    cd ..
+
     cp -u bin/* $out/bin
+    cp wfoverlap/scripts/* $out/bin
+
+    cp doc/* $out/share/sharc
+    cp -r tests/* $out/share/sharc/tests
+
+    chmod +x $out/bin/*
+
+    ln -s $out/share/sharc/tests $out/tests
+
+    for i in `find $out/bin -name '*MOLCAS*'`; do
+      wrapProgram $i --set SHARC $out/bin --set MOLCAS ${molcas}
+    done
+
+    wrapProgram $out/bin/tests.py --set SHARC $out/bin --set MOLCAS ${molcas}
+    wrapProgram $out/bin/sharc.x --set SHARC $out/bin 
+  '';
+
+  postFixup = ''
+    for i in `find $out/share -name run.sh`; do
+       # shebang is broken (missing !)
+       echo "fixing $i"
+       sed -i '1s:.*:#!${stdenv.shell}:' $i
+       sed -i "s:\$SHARC:$out/bin:" $i
+       sed -i 's/cd \$COPY_DIR/cd $COPY_DIR\;chmod -R +w \*/' $i
+    done
   '';
 
   meta = with stdenv.lib; {
     description = "Molecular dynamics (MD) program suite for excited states";
     homepage = https://www.sharc-md.org;
     license = licenses.gpl3;
+    maintainers = maintainers.markuskowa;
     platforms = platforms.linux;
   };
 }
