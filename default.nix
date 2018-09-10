@@ -29,14 +29,16 @@ let
 
     ga = callPackage ./ga { mpi=pkg; };
 
+    osu-benchmark = callPackage ./osu-benchmark { mpi=pkg; };
+
     scalapackCompat = callPackage ./scalapack { blas = self.openblas3Compat; mpi=pkg; };
-    
+
     scalapackCompat-mkl = callPackage ./scalapack { blas = self.mkl; mpi=pkg; };
 
     # Relativistic methods are broken with non-MKL libs
     bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
 
-    # mkl is the default. 
+    # mkl is the default.
     bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; };
     bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
     bagel = MPI.bagel-mkl;

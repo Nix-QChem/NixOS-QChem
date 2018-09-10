@@ -31,6 +31,7 @@ in {
       bagel-mkl-scl
       bagel
       openmolcas
+      osu-benchmark
       nwchem;
   };
 
@@ -38,6 +39,7 @@ in {
     inherit (pkgs.mpichPkgs)
       bagel
       openmolcas
+      osu-benchmark
       nwchem;
   };
 
@@ -45,6 +47,7 @@ in {
     inherit (pkgs.mvapichPkgs)
       bagel
       openmolcas
+      osu-benchmark
       nwchem;
   };
 
