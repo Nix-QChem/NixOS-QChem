@@ -10,21 +10,29 @@ in stdenv.mkDerivation {
     sha256 = "03a9j14sdr4npcj1qf98v0pjj5q7mfsqlg9q6mbnz3idd4vk24is";
   };
 
-  nativeBuildInputs = [ mpi ];
-  buildInputs = [ ];
+  buildInputs = [ mpi ];
 
   preConfigure = ''
-   export CXX="${mpi}/bin/mpicc"
-   export CC="${mpi}/bin/mpicxx"
+    export CXX="${mpi}/bin/mpicc"
+    export CC="${mpi}/bin/mpicxx"
   '';
 
-  buildPhase = "make";
+  postInstall = ''
+    mkdir $out/bin
+
+    cat > $out/bin/osu_run_all << EOF
+    #!${stdenv.shell}
+    for i in `find $out/libexec -type f`; do
+      ${mpi}/bin/mpirun -np 2 $i
+    done
+    EOF
+  '';
 
   meta = with stdenv.lib; {
-    description = "";
-    homepage = https://;
-    license = with licenses; gpl2;
-    platforms = with platforms; linux;
+    description = "MPI micro benchmark suite";
+    homepage = http://mvapich.cse.ohio-state.edu/benchmarksi;
+    license = licenses.bsd3;
+    platforms = platforms.linux;
   };
 }
 
