@@ -85,6 +85,8 @@ in with super;
   qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 
   sharc = callPackage ./sharc { };
+  
+  sharc-v1 = callPackage ./sharc/V1.nix { localFile=lF; };
 
 
   # Unsuported. Scalapack does not work with ILP64
