@@ -5,7 +5,7 @@
 } :
 
 let
-  version = "18.09"; 
+  version = "18.09";
   gitLabRev = "v${version}";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
@@ -16,7 +16,7 @@ let
     rev = "efd3d5bafd403f945e3ea5bee17d43e150ef78b2";
     sha256 = "0qzs8s0pjrda7icws3f1a55rklfw7b94468ym5zsgp86ikjf2rlz";
   };
- 
+
 in stdenv.mkDerivation {
   name = "openmolcas-${version}";
 
@@ -24,7 +24,7 @@ in stdenv.mkDerivation {
     owner = "Molcas";
     repo = "OpenMolcas";
     rev = gitLabRev;
-    sha256 = "0k05wy5gjpkibafzr9jnxas134m9sbnxrvblz1wb9l4cj2l0hb11";
+    sha256 = "1di1ygifx7ycfpwh25mv76xlv15wqfdmqzjsg5nani2d5z0arri2";
   };
 
   prePatch = ''
@@ -55,7 +55,7 @@ in stdenv.mkDerivation {
     "-DCTEST=ON"
     "-DOPENBLASROOT=${openblas}"
   ];
- 
+
   GAROOT=ga;
 
   postConfigure = ''
