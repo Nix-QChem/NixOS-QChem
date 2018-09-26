@@ -5,8 +5,8 @@
 } :
 
 let
-  version = "20180529"; 
-  gitLabRev = "b6b9ceffccae0dd7f14c099468334fee0b1071fc";
+  version = "18.09"; 
+  gitLabRev = "v${version}";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
