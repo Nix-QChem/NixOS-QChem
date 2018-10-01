@@ -51,6 +51,13 @@ let
       mpi=pkg;
       ga=MPI.ga;
     };
+    
+    openmolcas-mkl = callPackage ./openmolcas {
+      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+      openblas = self.mkl;
+      mpi=pkg;
+      ga=MPI.ga;
+    };
   };
 
 in with super;
@@ -81,6 +88,8 @@ in with super;
   molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
 
   molcas = self.openmpiPkgs.openmolcas;
+  
+  molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
 
   qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 

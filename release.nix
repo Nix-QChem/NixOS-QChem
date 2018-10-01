@@ -31,6 +31,7 @@ in {
       bagel-mkl-scl
       bagel
       openmolcas
+      openmolcas-mkl
       osu-benchmark
       nwchem;
   };

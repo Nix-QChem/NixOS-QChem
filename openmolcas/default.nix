@@ -47,14 +47,13 @@ in stdenv.mkDerivation {
     "-DOPENMP=ON"
     "-DGA=ON"
     "-DMPI=ON"
-    "-DLINALG=OpenBLAS"
+    "-DLINALG=${if (builtins.parseDrvName openblas.name).name == "mkl" then "MKL" else "OpenBLAS"}"
     "-DTOOLS=ON"
     "-DHDF5=ON"
     "-DFDE=ON"
     "-DWFA=ON"
     "-DCTEST=ON"
-    "-DOPENBLASROOT=${openblas}"
-  ];
+  ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas}" ]);
 
   GAROOT=ga;
 
