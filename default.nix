@@ -93,7 +93,7 @@ in with super;
 
   qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 
-  sharc = callPackage ./sharc { molcas=molcas-mkl; };
+  sharc = callPackage ./sharc { molcas=self.molcas-mkl; };
   
   sharc-v1 = callPackage ./sharc/V1.nix { localFile=lF; };
 
