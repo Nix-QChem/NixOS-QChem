@@ -3,7 +3,7 @@
 , token
 } :
 let
-  version = "2015.1.38";
+  version = "2018.1.1";
 
 in stdenv.mkDerivation {
   name = "molpro-${version}";
@@ -11,7 +11,7 @@ in stdenv.mkDerivation {
   src = localFile {
     website = http://www.molpro.net;
     srcfile = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
-    sha256 = "15rkf1q0f4sf2ya4jb54ivy4zybzkz07n0g8d7vcaxx0m73lxnk6";
+    sha256 = "19i89bjkznrv0na7wjj5bhb28lyp9360pr575nvp8acxsavny0ic";
   };
 
   buildInputs = [ python ];
