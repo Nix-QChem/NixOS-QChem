@@ -1,4 +1,4 @@
-{ stdenv, pkgs, fetchFromGitLab, cmake, gfortran, perl
+{ stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
 , openblas, hdf5-cpp, python3, texLive
 , armadillo, mpi ? pkgs.openmpi, ga, openssh
 , makeWrapper, fetchFromGitHub
@@ -27,11 +27,18 @@ in stdenv.mkDerivation {
     sha256 = "1di1ygifx7ycfpwh25mv76xlv15wqfdmqzjsg5nani2d5z0arri2";
   };
 
+  patches = [ (fetchpatch {
+    name = "excessive-h5-size"; # Can be removed in the update
+    url = "https://gitlab.com/Molcas/OpenMolcas/commit/73fae685ed8a0c41d5109ce96ade31d4924c3d9a.patch";
+    sha256 = "1wdk1vpc0y455dinbxhc8qz3fh165wpdcrhbxia3g2ppmmpi11sc";
+  }) ];
+
   prePatch = ''
     rm -r External/libwfa
     cp -r ${srcLibwfa} External/libwfa
     chmod -R u+w External/
   '';
+
 
   nativeBuildInputs = [ perl cmake texLive makeWrapper ];
   buildInputs = [ gfortran openblas hdf5-cpp python armadillo mpi ga openssh ];
