@@ -1,8 +1,11 @@
-{ stdenv, fetchurl, fetchpatch, gfortran, perl, which, config, coreutils
+{ stdenv, fetchFromGitHub, fetchpatch, gfortran, perl, which, config, coreutils
 # Most packages depending on openblas expect integer width to match
 # pointer width, but some expect to use 32-bit integers always
 # (for compatibility with reference BLAS).
 , blas64 ? null
+# Select the optimization target
+# See https://github.com/xianyi/OpenBLAS/blob/develop/TargetList.txt
+, target ? null
 }:
 
 with stdenv.lib;
@@ -10,6 +13,9 @@ with stdenv.lib;
 let blas64_ = blas64; in
 
 let
+
+  setTarget = x: if target == null then x else target;
+
   # To add support for a new platform, add an element to this set.
   configs = {
     armv6l-linux = {
@@ -57,34 +63,34 @@ let
 
     x86_64-linux = {
       BINARY = "64";
-      TARGET = "HASWELL";
+      TARGET = setTarget "ATHLON";
       DYNAMIC_ARCH = "1";
       CC = "gcc";
-      USE_OPENMP = if stdenv.hostPlatform.isMusl then "0" else "1";
+      USE_OPENMP = "1";
     };
   };
 in
 
 let
   config =
-    configs.${stdenv.system}
-    or (throw "unsupported system: ${stdenv.system}");
+    configs.${stdenv.hostPlatform.system}
+    or (throw "unsupported system: ${stdenv.hostPlatform.system}");
 in
 
 let
   blas64 =
     if blas64_ != null
       then blas64_
-      else hasPrefix "x86_64" stdenv.system;
-
-  version = "0.3.0";
+      else hasPrefix "x86_64" stdenv.hostPlatform.system;
 in
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   name = "openblas-${version}";
-  src = fetchurl {
-    url = "https://github.com/xianyi/OpenBLAS/archive/v${version}.tar.gz";
-    sha256 = "18giv3lsh8cva01z4rhsx8jvgliknni0jp7vxkc69qxb14vm8lfg";
-    name = "openblas-${version}.tar.gz";
+  version = "0.3.3";
+  src = fetchFromGitHub {
+    owner = "xianyi";
+    repo = "OpenBLAS";
+    rev = "v${version}";
+    sha256 = "0cpkvfvc14xm9mifrm919rp8vrq70gpl7r2sww4f0izrl39wklwx";
   };
 
   inherit blas64;
@@ -118,15 +124,24 @@ stdenv.mkDerivation {
     ] ++ stdenv.lib.optional (stdenv.hostPlatform.libc == "musl") "NO_AFFINITY=1"
     ++ mapAttrsToList (var: val: var + "=" + val) config;
 
-  patches = stdenv.lib.optional (stdenv.hostPlatform.libc != "glibc")
-    # https://github.com/xianyi/OpenBLAS/pull/1247
-    (fetchpatch {
-      url = "https://github.com/xianyi/OpenBLAS/commit/88a35ff457f55e527e0e8a503a0dc61976c1846d.patch";
-      sha256 = "1a3qrhvl5hp06c53fjqghq4zgf6ls7narm06l0shcvs57hznh09n";
-    });
+    patches = [];
 
   doCheck = true;
   checkTarget = "tests";
+
+  postInstall = ''
+    # Write pkgconfig aliases. Upstream report:
+    # https://github.com/xianyi/OpenBLAS/issues/1740
+    for alias in blas cblas lapack; do
+      cat <<EOF > $out/lib/pkgconfig/$alias.pc
+Name: $alias
+Version: ${version}
+Description: $alias provided by the OpenBLAS package.
+Cflags: -I$out/include
+Libs: -L$out/lib -lopenblas
+EOF
+    done
+  '';
 
   meta = with stdenv.lib; {
     description = "Basic Linear Algebra Subprograms";
@@ -135,4 +150,10 @@ stdenv.mkDerivation {
     platforms = platforms.unix;
     maintainers = with maintainers; [ ttuegel ];
   };
+
+  # We use linkName to pass a different name to --with-blas-libs for
+  # fflas-ffpack and linbox, because we use blas on darwin but openblas
+  # elsewhere.
+  # See see https://github.com/NixOS/nixpkgs/pull/45013.
+  passthru.linkName = "openblas";
 }

@@ -31,7 +31,7 @@ let
 
     osu-benchmark = callPackage ./osu-benchmark { mpi=pkg; };
 
-    scalapackCompat = callPackage ./scalapack { blas = self.openblas3Compat; mpi=pkg; };
+    scalapackCompat = callPackage ./scalapack { blas = self.openblasCompat; mpi=pkg; };
 
     scalapackCompat-mkl = callPackage ./scalapack { blas = self.mkl; mpi=pkg; };
 
@@ -47,11 +47,11 @@ let
 
     openmolcas = callPackage ./openmolcas {
       texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
-      openblas = self.openblas3;
+      openblas = self.openblas;
       mpi=pkg;
       ga=MPI.ga;
     };
-    
+
     openmolcas-mkl = callPackage ./openmolcas {
       texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
       openblas = self.mkl;
@@ -88,13 +88,13 @@ in with super;
   molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
 
   molcas = self.openmpiPkgs.openmolcas;
-  
+
   molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
 
-  qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
+  qdng = callPackage ./qdng { localFile=lF; fftw=self.fftw; };
 
   sharc = callPackage ./sharc { molcas=self.molcas-mkl; };
-  
+
   sharc-v1 = callPackage ./sharc/V1.nix { localFile=lF; };
 
 
@@ -103,7 +103,7 @@ in with super;
 
   ### HPC libs and Tools
 
-  fftwOpt = if optAVX then
+  fftw = if optAVX then
     fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
       ++ [ "--enable-avx" "--enable-avx2" ];
@@ -132,8 +132,8 @@ in with super;
 
   mvapich = callPackage ./mvapich { };
 
-  openblas3Compat = callPackage ./openblas { blas64 = false; };
-  openblas3 = callPackage ./openblas { };
+  openblasCompat = callPackage ./openblas { blas64 = false; target="SKYLAKEX"; };
+  openblas = callPackage ./openblas {  target="SKYLAKEX"; };
 
   openmpi-ilp64 = openmpi.overrideDerivation ( oldAttrs: {
     FCFLAGS="-fdefault-integer-8";
