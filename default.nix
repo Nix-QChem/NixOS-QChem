@@ -66,7 +66,12 @@ in with super;
 
 {
   openmpiPkgs = makeMpi ( super.openmpi.overrideAttrs (oa: {
-    configureFlags = oa.configureFlags ++ [ "--with-pmix=${self.pmix}" ];
+    configureFlags = oa.configureFlags ++ [
+      "--with-pmix=${self.pmix}"
+      "--with-libevent=${libevent.dev}"
+      "--with-libevent-libdir=${libevent}/lib"
+    ];
+    buildInputs = oa.buildInputs ++ [ super.openssl ];
   })) self.openmpiPkgs;
 
   mpichPkgs = makeMpi self.mpich2 self.mpichPkgs;
