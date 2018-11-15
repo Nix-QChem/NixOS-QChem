@@ -35,6 +35,8 @@ let
 
     scalapackCompat-mkl = callPackage ./scalapack { blas = self.mkl; mpi=pkg; };
 
+    cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapackCompat; };
+
     # Relativistic methods are broken with non-MKL libs
     bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
 
@@ -72,16 +74,31 @@ in with super;
 
   mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;
 
+
   ### Quantum Chem
+  cp2k = self.openmpiPkgs.cp2k;
+
   bagel = self.openmpiPkgs.bagel;
 
-  cp2k = callPackage ./cp2k { };
+  molden = super.molden.overrideDerivation (oa: {
+    src = super.fetchurl {
+      url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden${oa.version}.tar.gz";
+      sha256 = "1sfv04zv6z5ga739nf6929442mr4dryprrf1ih1vckqbx2wlv8k5";
+    };
+  });
 
-  molden = callPackage ./molden { localFile=lF; };
+  ergoscf = callPackage ./ergoscf { };
 
   gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
 
   gamess-mkl = callPackage ./gamess { localFile=lF; mathlib=self.mkl; useMkl = true; };
+
+  # fix a bug in the header file, which causes bagel to fail
+  libxc = super.libxc.overrideDerivation (oa: {
+    postFixup = ''
+      sed -i '/#include "config.h"/d' $out/include/xc.h
+    '';
+  });
 
   nwchem = self.openmpiPkgs.nwchem;
 

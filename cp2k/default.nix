@@ -1,54 +1,54 @@
-{ stdenv, fetchurl, python, gfortran, openblas
-, fftw, libint, libxc
+{ stdenv, pkgs, fetchFromGitHub, python, gfortran, openblasCompat
+, fftw, libint, libxc, mpi, gsl, scalapack, openssh, makeWrapper
 } :
 
 let
-  version = "5.1";
+  version = "6.1.0";
 
-in stdenv.mkDerivation {
+  cp2kVersion = "psmp";
+
+  config = pkgs.writeText "cp2kConfig" ''
+    CC         = gcc
+    CPP        =
+    FC         = mpif90
+    LD         = mpif90
+    AR         = ar -r
+    DFLAGS     = -D__FFTW3 -D__LIBXC -D__parallel -D__SCALAPACK \
+                 -D__MPI_VERSION=3 -D__F2008 \
+                 -D__LIBINT_MAX_AM=7 -D__LIBDERIV_MAX_AM1=6 -D__MAX_CONTR=4
+
+    FCFLAGS    = $(DFLAGS) -O2 -ffast-math -ffree-form -ffree-line-length-none \
+                 -ftree-vectorize -funroll-loops -mtune=native -std=f2008 \
+                 -I${libxc}/include
+    LIBS       = -lfftw3 -lfftw3_threads -lscalapack -lopenblas \
+                 -lxcf03 -lxc -lint2
+  '';
+
+in stdenv.mkDerivation rec {
   name = "cp2k-${version}";
 
-  src = fetchurl {
-    url = "https://sourceforge.net/projects/cp2k/files/cp2k-${version}.tar.bz2";
-    sha256 = "04j4j04sn0w4a91xidfrqswa01y6jiyy24441cpahkrmjfsi6dp2";
+  src = fetchFromGitHub {
+    owner = "cp2k";
+    repo = "cp2k";
+    rev = "v${version}";
+    sha256 = "1c2f1pqa2basv034dds1lnpswxczhk20kx3vh5w84skmc34v6921";
   };
 
-  nativeBuildInputs = [ python ];
-  buildInputs = [ gfortran fftw libint libxc openblas ];
+  nativeBuildInputs = [ python openssh makeWrapper ];
+  buildInputs = [ gfortran fftw libint libxc openblasCompat mpi scalapack ];
 
   makeFlags = [
     "ARCH=Linux-x86-64-gfortran"
-    "VERSION=ssmp"
+    "VERSION=${cp2kVersion}"
   ];
 
-  doCheck = true;
+  doCheck = false; # to big
+
+  enableParallelBuilding = true;
 
   postPatch = ''
-    cat >arch/Linux-x86-64-gfortran.ssmp <<EOF
-      CC         = gcc
-      CPP        =
-      FC         = gfortran
-      LD         = gfortran -fopenmp -L${openblas}/lib -lopenblas
-      AR         = ar -r
-      FFTW_INC=${fftw}/include
-      FFTW_LIB=-L${fftw}/lib -lfftw3 -lfftw3_threads
-      LIBINT_INC=${libint}/include
-      LIBINT_LIB=-L${libint}/lib
-      LIBXC_INC=${libxc}/include
-      LIBXC_LIB=-L${libxc}/lib -lxc -lxcf90
-      LIBLAPACK_LIB=-L${openblas}/lib -lopenblas
-      DFLAGS     = -D__FFTW3 -D__LIBXC \
-                   -D__LIBINT_MAX_AM=7 -D__LIBDERIV_MAX_AM1=6 -D__MAX_CONTR=4
-      CPPFLAGS   =
-      FCFLAGS    = $(DFLAGS) -O2 -ffast-math -ffree-form -ffree-line-length-none \
-               -fopenmp -ftree-vectorize -funroll-loops \
-               -I$(FFTW_INC) -I$(LIBINT_INC) -I$(LIBXC_INC)
-      LDFLAGS    = $(FCFLAGS)
-      LIBS       =  $(LIBLAPACK_LIB) $(FFTW_LIB) $(LIBXC_LIB)
-      #                 $(LIBINT_LIB)/libderiv.a\
-      #                 $(LIBINT_LIB)/libint.a
-EOF
-
+    cp ${config} arch/Linux-x86-64-gfortran.${cp2kVersion}
+    patchShebangs tools
   '';
 
   preBuild = ''
@@ -56,14 +56,21 @@ EOF
   '';
 
   checkPhase = ''
-    make test
+    make ${toString makeFlags} test
   '';
 
   installPhase = ''
-    mkdir -p $out/bin
+    mkdir -p $out/bin $out/share/cp2k
 
+    cd ..
     cp exe/Linux-x86-64-gfortran/* $out/bin
-    ln -s $out/bin/cp2k.ssmp $out/bin/cp2k
+    makeWrapper $out/bin/cp2k.${cp2kVersion} $out/bin/cp2k --set CP2K_DATA_DIR $out/share/cp2k
+
+    cp -r data/* $out/share/cp2k
+
+    ln -s ${mpi}/bin/mpirun $out/bin/mpirun
+    ln -s ${mpi}/bin/mpiexec $out/bin/mpiexec
+
   '';
 
   meta = with stdenv.lib; {

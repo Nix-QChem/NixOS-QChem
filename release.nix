@@ -28,6 +28,7 @@ let
 in {
   openmpiPkgs = {
     inherit (pkgs.openmpiPkgs)
+      cp2k
       bagel-mkl-scl
       bagel
       openmolcas
@@ -55,7 +56,9 @@ in {
   scalapack=pkgs.openmpiPkgs.scalapackCompat-mkl;
 
   inherit (pkgs)
+    cp2k
     bagel
+    ergoscf
     fftw
     molcas
     nwchem

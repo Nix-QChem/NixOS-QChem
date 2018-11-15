@@ -4,7 +4,7 @@
 } :
 
 let
-  version = "1.1.2";
+  version = "1.2.0";
 
   blasName = (builtins.parseDrvName blas.name).name;
 
@@ -21,11 +21,11 @@ in stdenv.mkDerivation {
     owner = "nubakery";
     repo = "bagel";
     rev = "v${version}";
-    sha256 = "1c6pz3b73i4mly0pw1gv5cn1p88b1gjjyqn5nh1xspp3pfls6fs5";
+    sha256 = "0md36nsccy4zmwyq3j3jrjsdcgn0ypnf7as10ilysy98g7l0iybq";
   };
 
   nativeBuildInputs = [ autoconf automake libtool openssh boost159 ];
-  buildInputs = [ python boost159 libxc blas mpi ] 
+  buildInputs = [ python boost159 libxc blas mpi ]
                 ++ lib.optional (scalapack != null) scalapack;
 
   #
@@ -39,7 +39,7 @@ in stdenv.mkDerivation {
 
   BOOST_ROOT=boost159;
 
-  configureFlags = [ "--with-libxc" "--with-mpi=${mpiType}" "--with-boost=${boost159}" ] 
+  configureFlags = [ "--with-libxc" "--with-mpi=${mpiType}" "--with-boost=${boost159}" ]
                    ++ lib.optional ( blasName == "mkl" ) "--enable-mkl";
 
 #  outputs = [ "out" ];
@@ -69,13 +69,13 @@ in stdenv.mkDerivation {
 
     # install test jobs
     mkdir -p $out/share/tests
-    cp test/* $out/share/tests 
+    cp test/* $out/share/tests
   '';
 
   installCheckPhase = ''
     echo "Running HF test"
     export OMP_NUM_THREADS=1
-    export MV2_ENABLE_AFFINITY=0 
+    export MV2_ENABLE_AFFINITY=0
     mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log
     echo "Check output"
     grep "SCF iteration converged" log
