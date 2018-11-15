@@ -65,10 +65,9 @@ let
 in with super;
 
 {
-  openmpiPkgs = makeMpi
-     (super.openmpi.overrideDerivation ( oldAttrs: {
-       configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
-     })) self.openmpiPkgs;
+  openmpiPkgs = makeMpi ( super.openmpi.overrideAttrs (oa: {
+    configureFlags = oa.configureFlags ++ [ "--with-pmix=${self.pmix}" ];
+  })) self.openmpiPkgs;
 
   mpichPkgs = makeMpi self.mpich2 self.mpichPkgs;
 
@@ -170,6 +169,8 @@ in with super;
   openshmem-ofi = callPackage ./openshmem { conduit="ofi"; };
 
   sos = callPackage ./sos { };
+
+  pmix = callPackage ./pmix { };
 
   ucx = callPackage ./ucx { };
 }
