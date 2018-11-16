@@ -65,19 +65,21 @@ let
 in with super;
 
 {
-  openmpiPkgs = makeMpi ( super.openmpi.overrideAttrs (oa: {
-    configureFlags = oa.configureFlags ++ [
-      "--with-pmix=${self.pmix}"
-      "--with-libevent=${libevent.dev}"
-      "--with-libevent-libdir=${libevent}/lib"
-    ];
-    buildInputs = oa.buildInputs ++ [ super.openssl ];
-  })) self.openmpiPkgs;
+  openmpiPkgs = makeMpi self.openmpi self.openmpiPkgs;
 
   mpichPkgs = makeMpi self.mpich2 self.mpichPkgs;
 
   mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;
 
+#  openmpi = super.openmpi.overrideAttrs (oa: {
+#    configureFlags = oa.configureFlags ++ [
+#      "--with-pmix=${self.pmix}"
+#      "--with-pmi=${self.pmix}"
+#      "--with-libevent=${libevent.dev}"
+#      "--with-libevent-libdir=${libevent}/lib"
+#    ];
+#    buildInputs = oa.buildInputs ++ [ self.pmix super.openssl ];
+#  });
 
   ### Quantum Chem
   cp2k = self.openmpiPkgs.cp2k;
@@ -160,8 +162,6 @@ in with super;
     FCFLAGS="-fdefault-integer-8";
     configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
   });
-
-  openmpi = self.openmpiPkgs.mpi;
 
   openshmem = callPackage ./openshmem { };
 
