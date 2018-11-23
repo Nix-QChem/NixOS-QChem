@@ -59,6 +59,8 @@ in {
       ibsim
       sos
       openshmem
+      osss-ucx
+      pmix
       ucx;
 
   };

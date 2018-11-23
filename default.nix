@@ -173,6 +173,8 @@ in with super;
 
   openshmem-ofi = callPackage ./openshmem { conduit="ofi"; };
 
+  osss-ucx = callPackage ./osss-ucx { };
+
   sos = callPackage ./sos { };
 
   pmix = callPackage ./pmix { };
