@@ -56,7 +56,11 @@ in {
 
   extra = {
     inherit (pkgs)
-      ibsim;
+      ibsim
+      sos
+      openshmem
+      ucx;
+
   };
 
   scalapack=pkgs.openmpiPkgs.scalapackCompat-mkl;
