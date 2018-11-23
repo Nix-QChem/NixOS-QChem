@@ -6,12 +6,13 @@
 let
   version = "1.3";
 
-  gasnet = stdenv.mkDerivation {
-    name = "gasnet-1.30.0";
+  gasnet = stdenv.mkDerivation rec {
+    version = "1.32.0";
+    name = "gasnet-${version}";
 
     src = fetchurl {
-      url = https://gasnet.lbl.gov/GASNet-1.30.0.tar.gz;
-      sha256 = "15ylh3mknjfl1i3bc6qizblakh32vggcjkpv3sj9hjhpaf6ckn5m";
+      url = "https://gasnet.lbl.gov/download/GASNet-${version}.tar.gz";
+      sha256 = "048mxqqpwk22gzs32v7lff85fksrdgl6q6y4fwpi8z5w7d5pgr22";
     };
 
     buildInputs = [ perl rdma-core libfabric ];
