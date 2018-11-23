@@ -14,8 +14,9 @@ in stdenv.mkDerivation {
   meta = with stdenv.lib; {
     description = "";
     homepage = https://;
-    license = with licenses; gpl2;
-    platforms = with platforms; linux ++ darwin;
+    license = licenses.;
+    maintainers = [  ];
+    platforms = platforms.linux;
   };
 }
 
