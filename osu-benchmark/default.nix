@@ -22,8 +22,8 @@ in stdenv.mkDerivation {
 
     cat > $out/bin/osu_run_all << EOF
     #!${stdenv.shell}
-    for i in `find $out/libexec -type f`; do
-      ${mpi}/bin/mpirun -np 2 $i
+    for i in `find $out/libexec -type f | tr '\n' ' '`; do
+      ${mpi}/bin/mpirun -np 2 \$i
     done
     EOF
   '';
