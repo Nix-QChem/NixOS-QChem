@@ -177,7 +177,7 @@ in with super;
 
   pmix = callPackage ./pmix { };
 
-  ucx = callPackage ./ucx { };
+  ucx = callPackage ./ucx { enableOpt=true; };
 }
 
 
