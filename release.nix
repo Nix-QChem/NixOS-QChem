@@ -53,6 +53,12 @@ in {
       nwchem;
   };
 
+
+  extra = {
+    inherit (pkgs)
+      ibsim;
+  };
+
   scalapack=pkgs.openmpiPkgs.scalapackCompat-mkl;
 
   inherit (pkgs)
