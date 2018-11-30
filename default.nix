@@ -35,7 +35,7 @@ let
 
     scalapackCompat-mkl = callPackage ./scalapack { blas = self.mkl; mpi=pkg; };
 
-    cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapackCompat; };
+    cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapackCompat; fftw=self.fftwOpt; };
 
     # Relativistic methods are broken with non-MKL libs
     bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
@@ -114,9 +114,9 @@ in with super;
 
   molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
 
-  qdng = callPackage ./qdng { localFile=lF; fftw=self.fftw; };
+  qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
 
-  sharc = callPackage ./sharc { molcas=self.molcas-mkl; };
+  sharc = callPackage ./sharc { molcas=self.molcas-mkl; fftw=self.fftwOpt; };
 
   sharc-v1 = callPackage ./sharc/V1.nix { localFile=lF; };
 
@@ -126,10 +126,13 @@ in with super;
 
   ### HPC libs and Tools
 
-  fftw = if optAVX then
+
+  # Provide an optimized fftw library.
+  # Overriding fftw completely causes a mass rebuild!
+  fftwOpt = if optAVX then
     fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
-      ++ [ "--enable-avx" "--enable-avx2" ];
+      ++ [ "--enable-avx" "--enable-avx2" "--enable-avx512" "--enable-fma" ];
   })
   else
     super.fftw;

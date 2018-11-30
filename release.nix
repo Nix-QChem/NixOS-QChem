@@ -75,8 +75,7 @@ in {
     molcas
     nwchem
     molden
-    sharc
-    sharc-v1;
+    sharc;
 
    tests = {
      bagel = import ./tests/bagel-native.nix { pkgs=pkgs; bagel=pkgs.bagel; };
