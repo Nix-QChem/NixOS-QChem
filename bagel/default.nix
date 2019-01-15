@@ -4,7 +4,7 @@
 } :
 
 let
-  version = "1.2.0";
+  version = "1.2.2";
 
   blasName = (builtins.parseDrvName blas.name).name;
 
@@ -21,7 +21,7 @@ in stdenv.mkDerivation {
     owner = "nubakery";
     repo = "bagel";
     rev = "v${version}";
-    sha256 = "0md36nsccy4zmwyq3j3jrjsdcgn0ypnf7as10ilysy98g7l0iybq";
+    sha256 = "184p55dkp49s99h5dpf1ysyc9fsarzx295h7x0id8y0b1ggb883d";
   };
 
   nativeBuildInputs = [ autoconf automake libtool openssh boost159 ];
