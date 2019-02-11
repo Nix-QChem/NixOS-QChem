@@ -64,8 +64,6 @@ in stdenv.mkDerivation rec {
     export OMPI_MCA_rmaps_base_oversubscribe=1
     export CP2K_DATA_DIR=data
 
-    pwd
-    ls
     mpirun -np 2 exe/Linux-x86-64-gfortran/libcp2k_unittest.${cp2kVersion}
     mpirun -np 2 exe/Linux-x86-64-gfortran/dbcsr_test_csr_conversions.${cp2kVersion}
     mpirun -np 2 exe/Linux-x86-64-gfortran/dbcsr_unittest.${cp2kVersion}
