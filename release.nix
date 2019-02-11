@@ -90,6 +90,7 @@ in {
       gamess-mkl
       mkl
       #impi
+      mctdh
       molden;
   }
   else {}

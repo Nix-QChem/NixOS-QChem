@@ -108,6 +108,8 @@ in with super;
 
   nwchem = self.openmpiPkgs.nwchem;
 
+  mctdh = callPackage ./mctdh { localFile=lF; };
+
   molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
 
   molcas = self.openmpiPkgs.openmolcas;
