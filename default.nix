@@ -102,9 +102,6 @@ in with super;
 
   sharc = callPackage ./sharc { molcas=self.molcas-mkl; fftw=self.fftwOpt; };
 
-  sharc-v1 = callPackage ./sharc/V1.nix { localFile=lF; };
-
-
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
@@ -134,8 +131,6 @@ in with super;
   ### HPC libs and Tools
 
   ibsim = callPackage ./ibsim { };
-
-  # impi = callPackage ./impi { localFile = lF; };
 
   libfabric = callPackage ./libfabric { };
 
