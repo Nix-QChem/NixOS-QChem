@@ -1,21 +1,20 @@
-{ stdenv, localFile, zlib, cpio, curl, which
+{ stdenv, requireFile, zlib, cpio, curl, which
 , srcurl ? null
 } :
 let
   version = "2017.3.196";
-  url = https://software.intel.com/en-us/mkl;
   filename = "l_mkl_" + version + ".tgz";
 
   rpath = stdenv.lib.makeLibraryPath [
      zlib
-     ] + ":${stdenv.cc.cc.lib}/lib64";
-in
-stdenv.mkDerivation {
+   ] + ":${stdenv.cc.cc.lib}/lib64";
+
+in stdenv.mkDerivation {
   name = "mkl-" + version;
 
-  src = localFile {
-     srcfile = filename;
-     website = url;
+  src = requireFile {
+     name = filename;
+     url = https://software.intel.com/en-us/mkl;
      sha256 = "1jpiam010kpyr4wnav2ah4y2dfzj4m7k064qih9xcr511y3rawpx";
   };
 

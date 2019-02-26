@@ -6,19 +6,6 @@ self: super:
 
 
 let
-  lF = { sha256, srcfile, website ? "" } :
-  if srcurl != null then
-    super.fetchurl {
-      url = srcurl + "/" + srcfile;
-      sha256 = sha256;
-    }
-  else
-   super.requireFile {
-      url = website;
-      name = srcfile;
-      inherit sha256;
-    };
-
   # build a package with specfific MPI implementation
   withMpi = pkg : mpi :
     super.appendToName mpi.name (pkg.override { mpi = mpi; });
@@ -31,18 +18,18 @@ let
 
     osu-benchmark = callPackage ./osu-benchmark { mpi=pkg; };
 
+    # scalapack is only valid with ILP32
     scalapackCompat = callPackage ./scalapack { blas = self.openblasCompat; mpi=pkg; };
+    scalapack = callPackage ./scalapack { blas = self.openblasCompat; mpi=pkg; };
 
-    scalapackCompat-mkl = callPackage ./scalapack { blas = self.mkl; mpi=pkg; };
-
-    cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapackCompat; fftw=self.fftwOpt; };
+    cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapack; fftw=self.fftwOpt; };
 
     # Relativistic methods are broken with non-MKL libs
-    bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
+    bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; };
 
     # mkl is the default.
     bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; };
-    bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapackCompat; };
+    bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; };
     bagel = MPI.bagel-mkl;
 
     nwchem = callPackage ./nwchem { mpi=pkg; };
@@ -65,21 +52,20 @@ let
 in with super;
 
 {
+  # Allow to provide a local download source for unfree packages
+  requireFile = if srcurl == null then super.requireFile else
+    { name, sha256, ... } :
+    super.fetchurl {
+      url = srcurl + "/" + name;
+      sha256 = sha256;
+    };
+
+  # MPI packages sets
   openmpiPkgs = makeMpi self.openmpi self.openmpiPkgs;
 
   mpichPkgs = makeMpi self.mpich2 self.mpichPkgs;
 
   mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;
-
-#  openmpi = super.openmpi.overrideAttrs (oa: {
-#    configureFlags = oa.configureFlags ++ [
-#      "--with-pmix=${self.pmix}"
-#      "--with-pmi=${self.pmix}"
-#      "--with-libevent=${libevent.dev}"
-#      "--with-libevent-libdir=${libevent}/lib"
-#    ];
-#    buildInputs = oa.buildInputs ++ [ self.pmix super.openssl ];
-#  });
 
   ### Quantum Chem
   cp2k = self.openmpiPkgs.cp2k;
@@ -95,10 +81,6 @@ in with super;
 
   ergoscf = callPackage ./ergoscf { };
 
-  gamess = callPackage ./gamess { localFile=lF; mathlib=atlas; };
-
-  gamess-mkl = callPackage ./gamess { localFile=lF; mathlib=self.mkl; useMkl = true; };
-
   # fix a bug in the header file, which causes bagel to fail
   libxc = super.libxc.overrideDerivation (oa: {
     postFixup = ''
@@ -108,15 +90,15 @@ in with super;
 
   nwchem = self.openmpiPkgs.nwchem;
 
-  mctdh = callPackage ./mctdh { localFile=lF; };
+  mctdh = callPackage ./mctdh { };
 
-  molpro = callPackage ./molpro { localFile=lF; token=licMolpro; };
+  molpro = callPackage ./molpro { token=licMolpro; };
 
   molcas = self.openmpiPkgs.openmolcas;
 
   molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
 
-  qdng = callPackage ./qdng { localFile=lF; fftw=self.fftwOpt; };
+  qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
   sharc = callPackage ./sharc { molcas=self.molcas-mkl; fftw=self.fftwOpt; };
 
@@ -126,8 +108,7 @@ in with super;
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
-  ### HPC libs and Tools
-
+  ### Optmized HPC libs
 
   # Provide an optimized fftw library.
   # Overriding fftw completely causes a mass rebuild!
@@ -138,6 +119,19 @@ in with super;
   })
   else
     super.fftw;
+
+  # Causes a lot of rebuilds
+  openblasCompat = if optAVX then
+    callPackage ./openblas { blas64 = false; target="SKYLAKEX"; }
+  else
+    super.openblasCompat;
+
+  openblas = if optAVX then
+    callPackage ./openblas { target="SKYLAKEX"; }
+  else
+    super.openblas;
+
+  ### HPC libs and Tools
 
   ibsim = callPackage ./ibsim { };
 
@@ -156,17 +150,9 @@ in with super;
     "--enable-contracted-ints"
   ];};
 
-  mkl = callPackage ./mkl { localFile=lF; };
+  mkl = callPackage ./mkl { };
 
   mvapich = callPackage ./mvapich { };
-
-  openblasCompat = callPackage ./openblas { blas64 = false; target="SKYLAKEX"; };
-  openblas = callPackage ./openblas {  target="SKYLAKEX"; };
-
-  openmpi-ilp64 = openmpi.overrideDerivation ( oldAttrs: {
-    FCFLAGS="-fdefault-integer-8";
-    configureFlags = oldAttrs.configureFlags ++ [ "--with-pmix" ];
-  });
 
   openshmem = callPackage ./openshmem { };
 

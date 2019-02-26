@@ -1,6 +1,4 @@
-{ stdenv, localFile, fetchurl, requireFile, python
-, srcurl ? null
-, token
+{ stdenv, requireFile, fetchurl, python, token
 } :
 let
   version = "2018.2.0";
@@ -8,9 +6,9 @@ let
 in stdenv.mkDerivation {
   name = "molpro-${version}";
 
-  src = localFile {
-    website = http://www.molpro.net;
-    srcfile = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
+  src = requireFile {
+    url = http://www.molpro.net;
+    name = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
     sha256 = "1fqia59y26sniiygm2qbwasyxvc5jvnm2kfjvpycpkvfnh604d6r";
   };
 

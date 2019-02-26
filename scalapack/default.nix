@@ -24,14 +24,12 @@ in stdenv.mkDerivation {
 
   doCheck = true;
 
-  #  inherit (openblas) blas64;
-
   CFLAGS = "-O3 -mavx";
   FFLAGS = "-O3 -mavx";
 
   preConfigure = ''
     cmakeFlagsArray+=( -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON
-      -DLAPACK_LIBRARIES=${if blasName == "openblas" then "-lopenblas" 
+      -DLAPACK_LIBRARIES=${if blasName == "openblas" then "-lopenblas"
          else "'-lmkl_gf_lp64 -lmkl_sequential -lmkl_core'"}
       -DBLAS_LIBRARIES=${if blasName == "openblas" then "-lopenblas"
          else "'-lmkl_gf_lp64 -lmkl_sequential -lmkl_core'"}

@@ -1,4 +1,4 @@
-{ stdenv, lib, writeText, localFile, python27, perl, gfortran } :
+{ stdenv, lib, writeText, requireFile, python27, perl, gfortran } :
 
 let
   version = "8.4.17";
@@ -15,9 +15,9 @@ let
 in stdenv.mkDerivation {
   name = "mctdh-${version}";
 
-  src = localFile {
+  src = requireFile {
     website = "";
-    srcfile = "mctdh84.17.tgz";
+    name = "mctdh84.17.tgz";
     sha256 = "0p6dlpf0ikw6g8m3wsvda17ppcqb0nqijnx4ycy81vwdgx1fz8a5";
   };
 

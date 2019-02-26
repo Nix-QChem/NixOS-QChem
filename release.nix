@@ -65,7 +65,7 @@ in {
 
   };
 
-  scalapack=pkgs.openmpiPkgs.scalapackCompat-mkl;
+  scalapack=pkgs.openmpiPkgs.scalapack;
 
   inherit (pkgs)
     cp2k
@@ -86,8 +86,8 @@ in {
   {
     inherit (pkgs)
       qdng
-      gamess
-      gamess-mkl
+      #gamess
+      #gamess-mkl
       mkl
       #impi
       mctdh

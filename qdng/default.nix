@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, localFile, gfortran, fftw, protobuf, liblapack, blas
+{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, liblapack, blas
 , automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
 , srcurl ? null
 }:
@@ -9,8 +9,8 @@ let
 in stdenv.mkDerivation {
   name = "qdng-${version}";
 
-  src = localFile {
-    srcfile = "qdng-${version}.tar.xz";
+  src = requireFile {
+    name = "qdng-${version}.tar.xz";
     sha256 = "16agzp2aqb6yjmdpbnshjh6cw4kliqfvgfrbj76xcrycrbyk8hf9";
   };
 
