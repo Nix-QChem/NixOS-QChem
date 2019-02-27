@@ -86,10 +86,8 @@ in {
   {
     inherit (pkgs)
       qdng
-      #gamess
-      #gamess-mkl
       mkl
-      #impi
+      mesa
       mctdh
       molden;
   }

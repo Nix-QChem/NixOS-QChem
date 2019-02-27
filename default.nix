@@ -92,6 +92,12 @@ in with super;
 
   mctdh = callPackage ./mctdh { };
 
+  # gfortran7 segfaults on one fortran file
+  mesa = callPackage ./mesa {
+    openblas=(openblas.override { gfortran=gfortran6; });
+    gfortran = gfortran6;
+  };
+
   molpro = callPackage ./molpro { token=licMolpro; };
 
   molcas = self.openmpiPkgs.openmolcas;
