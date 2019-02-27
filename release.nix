@@ -87,6 +87,7 @@ in {
     inherit (pkgs)
       qdng
       mkl
+      mesa
       mctdh
       molden;
   }
