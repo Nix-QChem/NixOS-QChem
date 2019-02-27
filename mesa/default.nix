@@ -1,4 +1,4 @@
-{ stdenv, requireFile, gfortran, openblas, makeWrapper } :
+{ stdenv, requireFile, gfortran, openblas } :
 
 let
   # I am guessing here, that's the timestamp of the README
@@ -34,7 +34,7 @@ in stdenv.mkDerivation {
     #!/bin/bash
     cp $out/share/mesa/mesa.dat .
     mkdir -p tmp
-    $out/bin/optmesa $@
+    $out/bin/optmesa \$@
     EOF
 
     chmod +x $out/bin/mesa
