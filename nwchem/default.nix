@@ -1,6 +1,6 @@
 { stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl
 , mpi ? pkgs.openmpi, openblas, python, tcsh, bash
-, automake, autoconf, libtool, makeWrapper 
+, automake, autoconf, libtool, makeWrapper
 } :
 
 let
@@ -33,6 +33,8 @@ in stdenv.mkDerivation {
       cp -r ${ga_src}/ source/src/tools/ga-${versionGA}
       chmod -R u+w source/src/tools/ga-${versionGA}
     '';
+
+    patches = [ ./openmpi4.patch ];
 
     postPatch = ''
 

@@ -14,13 +14,18 @@ let
   makeMpi = pkg: MPI: with super; {
     mpi = pkg;
 
-    ga = callPackage ./ga { mpi=pkg; };
+    globalarrays = super.globalarrays.override { openmpi=pkg; };
 
     osu-benchmark = callPackage ./osu-benchmark { mpi=pkg; };
 
     # scalapack is only valid with ILP32
-    scalapackCompat = callPackage ./scalapack { blas = self.openblasCompat; mpi=pkg; };
-    scalapack = callPackage ./scalapack { blas = self.openblasCompat; mpi=pkg; };
+    scalapack = (super.scalapack.override { mpi=pkg; }).overrideAttrs
+    ( x: {
+      CFLAGS = "-O3 -mavx2" + super.lib.optionalString optAVX " -mavx512f -mavx512cd";
+      FFLAGS = "-O3 -mavx2" + super.lib.optionalString optAVX " -mavx512f -mavx512cd";
+    });
+
+    scalapackCompat = MPI.scalapack;
 
     cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapack; fftw=self.fftwOpt; };
 
@@ -34,18 +39,68 @@ let
 
     nwchem = callPackage ./nwchem { mpi=pkg; };
 
-    openmolcas = callPackage ./openmolcas {
-      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
-      openblas = self.openblas;
-      mpi=pkg;
-      ga=MPI.ga;
-    };
+    openmolcas = (super.openmolcas.override {
+      openmpi=pkg;
+      globalarrays=MPI.globalarrays;
+    }).overrideAttrs (x :
+    let
+      srcLibwfa = fetchFromGitHub {
+        owner = "libwfa";
+        repo = "libwfa";
+        rev = "efd3d5bafd403f945e3ea5bee17d43e150ef78b2";
+        sha256 = "0qzs8s0pjrda7icws3f1a55rklfw7b94468ym5zsgp86ikjf2rlz";
+      };
+    in {
 
-    openmolcas-mkl = callPackage ./openmolcas {
-      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+      patches = [ (fetchpatch {
+        name = "excessive-h5-size"; # Can be removed in the update
+        url = "https://gitlab.com/Molcas/OpenMolcas/commit/73fae685ed8a0c41d5109ce96ade31d4924c3d9a.patch";
+        sha256 = "1wdk1vpc0y455dinbxhc8qz3fh165wpdcrhbxia3g2ppmmpi11sc";
+      }) ];
+
+      prePatch = ''
+        rm -r External/libwfa
+        cp -r ${srcLibwfa} External/libwfa
+        chmod -R u+w External/
+      '';
+
+      doInstallCheck = true;
+
+      installCheckPhase = ''
+         #
+         # Minimal check if installation runs properly
+         #
+
+         export MOLCAS_WORKDIR=./
+         inp=water
+
+         cat << EOF > $inp.xyz
+         3
+         Angstrom
+         O       0.000000  0.000000  0.000000
+         H       0.758602  0.000000  0.504284
+         H       0.758602  0.000000 -0.504284
+         EOF
+
+         cat << EOF > $inp.inp
+         &GATEWAY
+         coord=water.xyz
+         basis=sto-3g
+         &SEWARD
+         &SCF
+         EOF
+
+         $out/bin/pymolcas $inp.inp > $inp.out
+
+         echo "Check for sucessful run:"
+         grep "Happy landing" $inp.status
+         echo "Check for correct energy:"
+         grep "Total SCF energy" $inp.out | grep 74.880174
+      '';
+    });
+
+    openmolcas-mkl = MPI.openmolcas.override {
       openblas = self.mkl;
-      mpi=pkg;
-      ga=MPI.ga;
     };
   };
 
@@ -74,8 +129,8 @@ in with super;
 
   molden = super.molden.overrideDerivation (oa: {
     src = super.fetchurl {
-      url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden${oa.version}.tar.gz";
-      sha256 = "1sfv04zv6z5ga739nf6929442mr4dryprrf1ih1vckqbx2wlv8k5";
+      url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden5.9.3.tar.gz";
+      sha256 = "18fz44g7zkm0xcx3w9hm049jv13af67ww7mb5b3kdhmza333a16q";
     };
   });
 

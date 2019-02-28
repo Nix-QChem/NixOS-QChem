@@ -1,0 +1,24 @@
+diff --git a/src/mpiwrap/message_passing.F b/src/mpiwrap/message_passing.F
+index b42222d..a68fa9d 100644
+--- a/src/mpiwrap/message_passing.F
++++ b/src/mpiwrap/message_passing.F
+@@ -760,8 +760,8 @@ CONTAINS
+ !$       ENDIF
+ !$OMP END MASTER
+ !$    ENDIF
+-      CALL mpi_errhandler_set(MPI_COMM_WORLD, MPI_ERRORS_RETURN, ierr)
+-      IF (ierr /= 0) CALL mp_stop(ierr, "mpi_errhandler_set @ mp_world_init")
++      CALL mpi_comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN, ierr)
++      IF (ierr /= 0) CALL mp_stop(ierr, "mpi_comm_set_errhandler @ mp_world_init")
+       mp_comm = MPI_COMM_WORLD
+       debug_comm_count = 1
+ #else
+@@ -3070,7 +3070,7 @@ CONTAINS
+       INTEGER                                            :: ierr
+ 
+       ierr = 0
+-      
++
+       version = ''
+ 
+ #if defined(__parallel)

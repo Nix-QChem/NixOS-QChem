@@ -34,6 +34,8 @@ in stdenv.mkDerivation rec {
     sha256 = "1c2f1pqa2basv034dds1lnpswxczhk20kx3vh5w84skmc34v6921";
   };
 
+  patches = [ ./openmpi4.patch ];
+
   nativeBuildInputs = [ python openssh makeWrapper ];
   buildInputs = [ gfortran fftw libint libxc openblasCompat mpi scalapack ];
 
