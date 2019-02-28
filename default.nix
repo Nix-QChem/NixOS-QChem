@@ -99,9 +99,9 @@ let
       '';
     });
 
-    openmolcas-mkl = MPI.openmolcas.override {
-      openblas = self.mkl;
-    };
+    #openmolcas-mkl = MPI.openmolcas.override {
+    #  openblas = self.mkl;
+    #};
   };
 
 in with super;
@@ -157,11 +157,11 @@ in with super;
 
   molcas = self.openmpiPkgs.openmolcas;
 
-  molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
+  #molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
 
   qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
-  sharc = callPackage ./sharc { molcas=self.molcas-mkl; fftw=self.fftwOpt; };
+  sharc = callPackage ./sharc { molcas=self.molcas; fftw=self.fftwOpt; };
 
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
