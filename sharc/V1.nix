@@ -1,5 +1,5 @@
-{ stdenv, localFile, makeWrapper, gfortran
-, openblasCompat, fftw, python2, molcas 
+{ stdenv, requireFile, makeWrapper, gfortran
+, openblasCompat, fftw, python2, molcas
 } :
 
 let
@@ -9,8 +9,8 @@ let
 in stdenv.mkDerivation {
   name = "sharc-${version}";
 
-  src = localFile {
-    srcfile = "sharc-V1.tar.xz";
+  src = requireFile {
+    name = "sharc-V1.tar.xz";
     sha256 = "0r01pc7f60ncvp6iw2qzmbd4y0q8x48yhymfhyqxav0q95xax0vl";
   };
 
@@ -29,8 +29,8 @@ in stdenv.mkDerivation {
     # purify output
     substituteInPlace source/Makefile --replace 'shell date' 'shell echo 0' \
                                       --replace 'shell hostname' 'shell echo nixos' \
-                                      --replace 'shell pwd' 'shell echo nixos' 
-    
+                                      --replace 'shell pwd' 'shell echo nixos'
+
 
     # WF overlap
     #sed -i 's:^LALIB.*=.*:LALIB = -lopenblas -fopenmp:' wfoverlap/source/Makefile;
@@ -70,7 +70,7 @@ in stdenv.mkDerivation {
     done
 
     wrapProgram $out/bin/tests.py --set SHARC $out/bin --set MOLCAS ${molcas}
-    wrapProgram $out/bin/sharc.x --set SHARC $out/bin 
+    wrapProgram $out/bin/sharc.x --set SHARC $out/bin
   '';
 
   postFixup = ''

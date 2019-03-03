@@ -108,7 +108,7 @@ in with super;
 
   sharc = callPackage ./sharc { molcas=self.molcas-mkl; fftw=self.fftwOpt; };
 
-  sharc-v1 = callPackage ./sharc/V1.nix { localFile=lF; };
+  sharc-v1 = callPackage ./sharc/V1.nix { };
 
 
   # Unsuported. Scalapack does not work with ILP64
