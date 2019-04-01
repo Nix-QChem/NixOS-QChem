@@ -206,8 +206,6 @@ in with super;
     "--enable-contracted-ints"
   ];};
 
-  mkl = callPackage ./mkl { };
-
   mvapich = callPackage ./mvapich { };
 
   openshmem = callPackage ./openshmem { };
