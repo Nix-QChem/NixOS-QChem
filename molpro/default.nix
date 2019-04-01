@@ -1,7 +1,7 @@
 { stdenv, requireFile, fetchurl, python, token
 } :
 let
-  version = "2018.2.0";
+  version = "2019.1.0";
 
 in stdenv.mkDerivation {
   name = "molpro-${version}";
@@ -9,7 +9,7 @@ in stdenv.mkDerivation {
   src = requireFile {
     url = http://www.molpro.net;
     name = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
-    sha256 = "1fqia59y26sniiygm2qbwasyxvc5jvnm2kfjvpycpkvfnh604d6r";
+    sha256 = "1g2nrr12grdlq4chsg15vhfyar7rgyy84d73pfdxb34vi2r1aw6s";
   };
 
   buildInputs = [ python ];
