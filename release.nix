@@ -77,6 +77,21 @@ in {
     molden
     sharc;
 
+  # Packages depend on optimized libs
+  deps = {
+    python2 = {
+      inherit (pkgs.python2Packages)
+        numpy
+        scipy;
+    };
+
+    python3 = {
+      inherit (pkgs.python2Packages)
+        numpy
+        scipy;
+    };
+  };
+
    tests = {
      bagel = import ./tests/bagel-native.nix { pkgs=pkgs; bagel=pkgs.bagel; };
      bagelParallel = import ./tests/bagel-parallel.nix { pkgs=pkgs; bagel=pkgs.bagel; };
