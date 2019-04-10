@@ -173,19 +173,19 @@ in with super;
   fftwOpt = if optAVX then
     fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
-      ++ [ "--enable-avx" "--enable-avx2" "--enable-avx512" "--enable-fma" ];
+      ++ [ "--enable-avx" "--enable-avx2" "--enable-fma" ];
   })
   else
     super.fftw;
 
   # Causes a lot of rebuilds
   openblasCompat = if optAVX then
-    callPackage ./openblas { blas64 = false; target="SKYLAKEX"; }
+    callPackage ./openblas { blas64 = false; target="HASWELL"; }
   else
     super.openblasCompat;
 
   openblas = if optAVX then
-    callPackage ./openblas { target="SKYLAKEX"; }
+    callPackage ./openblas { target="HASWELL"; }
   else
     super.openblas;
 
