@@ -31,6 +31,7 @@ in {
       cp2k
       bagel-mkl-scl
       bagel
+      hpl
       openmolcas
       openmolcas-mkl
       osu-benchmark
