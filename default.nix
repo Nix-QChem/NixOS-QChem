@@ -37,6 +37,8 @@ let
     bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; };
     bagel = MPI.bagel-mkl;
 
+    hpl = callPackage ./hpl { mpi=pkg; };
+
     nwchem = callPackage ./nwchem { mpi=pkg; };
 
     openmolcas = (super.openmolcas.override {
@@ -192,6 +194,8 @@ in with super;
   ### HPC libs and Tools
 
   ibsim = callPackage ./ibsim { };
+
+  hpl = self.openmpiPkgs.hpl;
 
   libfabric = callPackage ./libfabric { };
 
