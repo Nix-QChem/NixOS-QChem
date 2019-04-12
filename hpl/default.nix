@@ -13,10 +13,17 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ openblasCompat mpi ];
 
+  postInstall = ''
+    # only contains the static lib
+    rm -r $out/lib
+
+    install -D testing/ptest/HPL.dat $out/share/hpl/HPL.dat
+  '';
+
   meta = with stdenv.lib; {
     description = "Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers";
-    homepage = "http://www.netlib.org/benchmark/hpl/";
+    homepage = http://www.netlib.org/benchmark/hpl/;
     platforms = platforms.unix;
-    maintainer = maintainers.markuskowa;
+    maintainers = [ maintainers.markuskowa ];
   };
 }
