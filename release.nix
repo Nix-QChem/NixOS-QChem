@@ -72,7 +72,7 @@ in {
     cp2k
     bagel
     ergoscf
-    fftw
+    fftwOpt
     hpl
     molcas
     nwchem
