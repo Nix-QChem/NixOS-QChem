@@ -176,6 +176,7 @@ in with super;
     fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
       ++ [ "--enable-avx" "--enable-avx2" "--enable-fma" ];
+    buildInputs = [ self.gfortran ];
   })
   else
     super.fftw;
@@ -201,6 +202,9 @@ in with super;
 
   libint = callPackage ./libint { };
 
+  # Needed for CP2K
+  libint1 = callPackage ./libint/1.nix { };
+
   libint-bagel = callPackage ./libint { cfg = [
     "--esuper.nable-eri=1"
     "--enable-eri3=1"
@@ -209,6 +213,8 @@ in with super;
     "--with-cartgauss-ordering=bagel"
     "--enable-contracted-ints"
   ];};
+
+  libxsmm = callPackage ./libxsmm { };
 
   mvapich = callPackage ./mvapich { };
 

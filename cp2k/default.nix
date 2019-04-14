@@ -1,11 +1,13 @@
 { stdenv, pkgs, fetchFromGitHub, python, gfortran, openblasCompat
-, fftw, libint, libxc, mpi, gsl, scalapack, openssh, makeWrapper
+, fftw, libint1, libxc, mpi, gsl, scalapack, openssh, makeWrapper
+, libxsmm
 } :
 
 let
   version = "6.1.0";
 
   cp2kVersion = "psmp";
+  arch = "Linux-x86-64-gfortran";
 
   config = pkgs.writeText "cp2kConfig" ''
     CC         = gcc
@@ -13,15 +15,18 @@ let
     FC         = mpif90
     LD         = mpif90
     AR         = ar -r
-    DFLAGS     = -D__FFTW3 -D__LIBXC -D__parallel -D__SCALAPACK \
-                 -D__MPI_VERSION=3 -D__F2008 \
+    DFLAGS     = -D__FFTW3 -D__LIBXC -D__LIBINT -D__parallel -D__SCALAPACK \
+                 -D__MPI_VERSION=3 -D__F2008 -D__LIBXSMM \
                  -D__LIBINT_MAX_AM=7 -D__LIBDERIV_MAX_AM1=6 -D__MAX_CONTR=4
 
-    FCFLAGS    = $(DFLAGS) -O2 -ffast-math -ffree-form -ffree-line-length-none \
-                 -ftree-vectorize -funroll-loops -mtune=native -std=f2008 \
-                 -I${libxc}/include
-    LIBS       = -lfftw3 -lfftw3_threads -lscalapack -lopenblas \
-                 -lxcf03 -lxc -lint2
+    FCFLAGS    = $(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
+                 -ftree-vectorize -funroll-loops -msse2 -mavx -mavx2 -std=f2008 \
+                 -I${libxc}/include -I${libxsmm}/include \
+                 -fopenmp -ftree-vectorize -funroll-loops
+    LIBS       = -lfftw3 -lfftw3_threads -lfftw3_omp -lscalapack -lopenblas \
+                 -lxcf03 -lxc -lxsmmf -lxsmm \
+                 ${libint1}/lib/libderiv.a ${libint1}/lib/libint.a \
+                 -fopenmp
   '';
 
 in stdenv.mkDerivation rec {
@@ -37,10 +42,10 @@ in stdenv.mkDerivation rec {
   patches = [ ./openmpi4.patch ];
 
   nativeBuildInputs = [ python openssh makeWrapper ];
-  buildInputs = [ gfortran fftw libint libxc openblasCompat mpi scalapack ];
+  buildInputs = [ gfortran fftw gsl libint1 libxc libxsmm openblasCompat mpi scalapack ];
 
   makeFlags = [
-    "ARCH=Linux-x86-64-gfortran"
+    "ARCH=${arch}"
     "VERSION=${cp2kVersion}"
   ];
 
@@ -49,7 +54,7 @@ in stdenv.mkDerivation rec {
   enableParallelBuilding = true;
 
   postPatch = ''
-    cp ${config} arch/Linux-x86-64-gfortran.${cp2kVersion}
+    cp ${config} arch/${arch}.${cp2kVersion}
     patchShebangs tools
   '';
 
@@ -66,10 +71,9 @@ in stdenv.mkDerivation rec {
     export OMPI_MCA_rmaps_base_oversubscribe=1
     export CP2K_DATA_DIR=data
 
-    mpirun -np 2 exe/Linux-x86-64-gfortran/libcp2k_unittest.${cp2kVersion}
-    mpirun -np 2 exe/Linux-x86-64-gfortran/dbcsr_test_csr_conversions.${cp2kVersion}
-    mpirun -np 2 exe/Linux-x86-64-gfortran/dbcsr_unittest.${cp2kVersion}
-    mpirun -np 2 exe/Linux-x86-64-gfortran/dbcsr_tensor_unittest.${cp2kVersion}
+    for i in libcp2k_unittest dbcsr_test_csr_conversions dbcsr_unittest dbcsr_tensor_unittest; do
+      mpirun -np 2 exe/${arch}/$i.${cp2kVersion}
+    done
   '';
 
   installPhase = ''
@@ -82,7 +86,6 @@ in stdenv.mkDerivation rec {
 
     ln -s ${mpi}/bin/mpirun $out/bin/mpirun
     ln -s ${mpi}/bin/mpiexec $out/bin/mpiexec
-
   '';
 
   meta = with stdenv.lib; {

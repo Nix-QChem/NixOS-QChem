@@ -57,7 +57,10 @@ in {
 
   extra = {
     inherit (pkgs)
+      libint
+      libint1
       ibsim
+      libxsmm
       sos
       openshmem
       osss-ucx
