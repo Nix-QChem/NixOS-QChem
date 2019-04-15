@@ -1,5 +1,6 @@
-{ stdenv, requireFile, fetchurl, python, token
+{ stdenv, requireFile, fetchurl, patchelf, python, token
 } :
+
 let
   version = "2019.1.0";
 
@@ -12,6 +13,7 @@ in stdenv.mkDerivation {
     sha256 = "1g2nrr12grdlq4chsg15vhfyar7rgyy84d73pfdxb34vi2r1aw6s";
   };
 
+  nativeBuildInputs = [ patchelf ];
   buildInputs = [ python ];
 
   unpackPhase = ''
@@ -32,7 +34,47 @@ in stdenv.mkDerivation {
     sh install.sh -batch -prefix $out
   '';
 
-  dontStrip = true;
+  postFixup = ''
+    #
+    # Since version 2019.1 the binaris are dyanmically linked
+    for bin in hydra_pmi_proxy molpro.exe mpiexec.hydra; do
+      patchelf \
+        --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/$bin
+    done
+  '';
+
+  doInstallCheck = true;
+
+  installCheckPhase = ''
+     #
+     # Minimal check if installation runs properly
+     #
+
+     export MOLCAS_WORKDIR=./
+     inp=water
+
+     cat << EOF > $inp.inp
+     basis=STO-3G
+     geom = {
+     3
+     Angstrom
+     O       0.000000  0.000000  0.000000
+     H       0.758602  0.000000  0.504284
+     H       0.758602  0.000000 -0.504284
+     }
+     HF
+     EOF
+
+     # pretend this is a writable home dir
+     export HOME=`pwd`
+
+     $out/bin/molpro $inp.inp
+
+     echo "Check for sucessful run:"
+     grep "RHF STATE  1.1 Energy" $inp.out
+     echo "Check for correct energy:"
+     grep "RHF STATE  1.1 Energy" $inp.out | grep 74.880174
+  '';
 
   meta = with stdenv.lib; {
     description = "Quantum chemistry program package";
