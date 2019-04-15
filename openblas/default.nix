@@ -64,7 +64,7 @@ let
     x86_64-linux = {
       BINARY = "64";
       TARGET = setTarget "ATHLON";
-      DYNAMIC_ARCH = "1";
+      DYNAMIC_ARCH = "0";
       CC = "gcc";
       USE_OPENMP = "1";
     };

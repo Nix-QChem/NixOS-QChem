@@ -183,14 +183,18 @@ in with super;
 
   # Causes a lot of rebuilds
   openblasCompat = if optAVX then
-    callPackage ./openblas { blas64 = false; target="HASWELL"; }
+    (super.openblas.override { blas64 = false; target="HASWELL"; }).overrideDerivation ( oa : {
+      makeFlags = map (x: if (x == "DYNAMIC_ARCH=1") then "DYNAMIC_ARCH=0" else x) oa.makeFlags;
+    })
   else
     super.openblasCompat;
 
   openblas = if optAVX then
-    callPackage ./openblas { target="HASWELL"; }
+    (super.openblas.override { target="HASWELL"; }).overrideDerivation ( oa : {
+      makeFlags = map (x: if (x == "DYNAMIC_ARCH=1") then "DYNAMIC_ARCH=0" else x) oa.makeFlags;
+    })
   else
-    super.openblas;
+    super.openblasCompat;
 
   ### HPC libs and Tools
 
