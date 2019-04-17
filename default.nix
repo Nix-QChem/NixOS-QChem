@@ -200,7 +200,7 @@ in with super;
       makeFlags = obMkfCleaner oa.makeFlags;
     })
   else
-    super.openblasCompat;
+    super.openblas;
 
   ### HPC libs and Tools
 
