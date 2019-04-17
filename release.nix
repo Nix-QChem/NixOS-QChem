@@ -74,6 +74,8 @@ in {
       libxsmm
       sos
       openshmem
+      openblas
+      openblasCompat
       osss-ucx
       pmix
       ucx;

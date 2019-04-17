@@ -6,6 +6,12 @@ self: super:
 
 
 let
+  # makeFlags filter for openblas
+  obMkfCleaner = makeFlags:
+    map (x: if (x == "DYNAMIC_ARCH=1") then "DYNAMIC_ARCH=0" else
+      if (x == "TARGET=ATHLON") then "TARGET=HASWELL" else x
+    ) makeFlags;
+
   # build a package with specfific MPI implementation
   withMpi = pkg : mpi :
     super.appendToName mpi.name (pkg.override { mpi = mpi; });
@@ -183,15 +189,15 @@ in with super;
 
   # Causes a lot of rebuilds
   openblasCompat = if optAVX then
-    (super.openblas.override { blas64 = false; target="HASWELL"; }).overrideDerivation ( oa : {
-      makeFlags = map (x: if (x == "DYNAMIC_ARCH=1") then "DYNAMIC_ARCH=0" else x) oa.makeFlags;
+    super.openblasCompat.overrideDerivation ( oa : {
+      makeFlags = obMkfCleaner oa.makeFlags;
     })
   else
     super.openblasCompat;
 
   openblas = if optAVX then
-    (super.openblas.override { target="HASWELL"; }).overrideDerivation ( oa : {
-      makeFlags = map (x: if (x == "DYNAMIC_ARCH=1") then "DYNAMIC_ARCH=0" else x) oa.makeFlags;
+    super.openblas.overrideDerivation ( oa : {
+      makeFlags = obMkfCleaner oa.makeFlags;
     })
   else
     super.openblasCompat;
