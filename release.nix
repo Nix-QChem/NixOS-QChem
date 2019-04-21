@@ -54,6 +54,17 @@ in {
       nwchem;
   };
 
+  # upstream packages
+  # that need recompiling
+  upstream = {
+    inherit (pkgs)
+      octave;
+
+    python27scipy = pkgs.python27Packages.scipy;
+    python37scipy = pkgs.python37Packages.scipy;
+    python37h5py = pkgs.python37Packages.h5py;
+
+  };
 
   extra = {
     inherit (pkgs)
