@@ -39,6 +39,8 @@ let
 
     hpl = callPackage ./hpl { mpi=pkg; };
 
+    mctdh = callPackage ./mctdh { useMPI=true; mpi=pkg; scalapack=MPI.scalapack; };
+
     nwchem = callPackage ./nwchem { mpi=pkg; };
 
     openmolcas = (super.openmolcas.override {
@@ -147,7 +149,9 @@ in with super;
 
   nwchem = self.openmpiPkgs.nwchem;
 
-  mctdh = callPackage ./mctdh { };
+  mctdh = callPackage ./mctdh { mpi=null; };
+
+  mctdh-mpi = self.openmpiPkgs.mctdh;
 
   # gfortran7 segfaults on one fortran file
   mesa = callPackage ./mesa {

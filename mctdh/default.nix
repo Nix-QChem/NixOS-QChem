@@ -1,4 +1,8 @@
-{ stdenv, lib, writeText, requireFile, python27, perl, gfortran } :
+{ stdenv, lib, writeText, requireFile, python27, perl, gfortran
+, openblasCompat, mpi, scalapack
+# compile the MPI version
+, useMPI ? false
+} :
 
 let
   version = "8.4.17";
@@ -6,23 +10,26 @@ let
   platformcnf = writeText "platform.cnf" ''
     MCTDH_VERSION="${with stdenv.lib.versions; major version + minor version}"
     MCTDH_PLATFORM="x86_64"
-    MCTDH_COMPILER="gfortran"
-    MCTDH_GNU_COMPILER="gfortran-64"
-    MCTDH_GFORTRAN=gfortran
+    MCTDH_COMPILER=${if useMPI then "gfortran" else "gfortran-64"}
+    MCTDH_GNU_COMPILER="gfortran"
+    ${lib.optionalString useMPI "MCTDH_SCALAPACK_FLAGS=-DSCALAPACK"}
+    ${lib.optionalString useMPI "MCTDH_SCALAPACK_LIBS=-lscalapack"}
+    MCTDH_GFORTRAN="gfortran"
     MCTDH_GFORTRAN_VERSION="${lib.getVersion gfortran}"
+
   '';
 
 in stdenv.mkDerivation {
   name = "mctdh-${version}";
 
   src = requireFile {
-    website = "";
+    website = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";
     name = "mctdh84.17.tgz";
     sha256 = "0p6dlpf0ikw6g8m3wsvda17ppcqb0nqijnx4ycy81vwdgx1fz8a5";
   };
 
   nativeBuildInputs = [ ];
-  buildInputs = [ gfortran python27 perl ];
+  buildInputs = [ gfortran python27 perl openblasCompat ] ++ lib.optional useMPI [ mpi scalapack ];
 
   postPatch = ''
     patchShebangs ./bin
@@ -45,16 +52,19 @@ in stdenv.mkDerivation {
 
   configurePhase = ''
     cp ${platformcnf} install/platform.cnf.priv
-    cp install/compile.cnf_le install/compile.cnf
-  '';
+    sed -i 's/EXTERNAL_BLAS.*/EXTERNAL_BLAS=-lopenblas/;s/EXTERNAL_LAPACK.*/EXTERNAL_LAPACK=/' \
+         install/compile.cnf_le
 
-
-
-  buildPhase = ''
     mkdir utils
     cp -r bin/* utils/
 
-    echo -e "n\nn\ny\nn\ny\n" | install/install_mctdh
+    echo -e "n\nn\ny\nn\nn\n" | install/install_mctdh
+
+    export MCTDH_DIR=`pwd`/
+  '';
+
+  buildPhase = ''
+    bin/compile -a -x lapack -Q -P ${lib.optionalString useMPI "-S -m"} all
   '';
 
   installPhase = ''
@@ -65,6 +75,11 @@ in stdenv.mkDerivation {
 
     cp -r utils/* $out/bin
     cp bin/binary/x86_64/* $out/bin
+
+    ver=${lib.versions.major version}${lib.versions.minor version}
+    for i in `ls $out/bin/*''${ver}*`; do
+      ln -s "$i" `echo $i | sed "s/\(.*\)''${ver}.*/\1/"`
+    done
   '';
 
   meta = with stdenv.lib; {

@@ -32,6 +32,7 @@ in {
       bagel-mkl-scl
       bagel
       hpl
+      mctdh
       openmolcas
       openmolcas-mkl
       osu-benchmark
