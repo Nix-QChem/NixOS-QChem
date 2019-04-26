@@ -118,6 +118,7 @@ in {
 } // (if builtins.hasAttr "srcurl" cfg then
   {
     inherit (pkgs)
+      gaussview
       qdng
       mkl
       mesa

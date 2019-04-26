@@ -135,6 +135,8 @@ in with super;
 
   bagel = self.openmpiPkgs.bagel;
 
+  gaussview = callPackage ./gaussview { };
+
   molden = super.molden.overrideDerivation (oa: {
     src = super.fetchurl {
       url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden5.9.3.tar.gz";
