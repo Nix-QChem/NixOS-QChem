@@ -188,19 +188,15 @@ in with super;
     super.fftw;
 
   # Causes a lot of rebuilds
-  openblasCompat = if optAVX then
+  openblasCompat =
     super.openblasCompat.overrideDerivation ( oa : {
-      makeFlags = obMkfCleaner oa.makeFlags;
-    })
-  else
-    super.openblasCompat;
+      makeFlags = oa.makeFlags ++ [ "NO_AVX512=1" ];
+    });
 
-  openblas = if optAVX then
+  openblas =
     super.openblas.overrideDerivation ( oa : {
-      makeFlags = obMkfCleaner oa.makeFlags;
-    })
-  else
-    super.openblas;
+      makeFlags = oa.makeFlags ++ [ "NO_AVX512=1" ];
+    });
 
   ### HPC libs and Tools
 
