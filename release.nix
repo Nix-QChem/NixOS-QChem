@@ -123,5 +123,10 @@ in {
       molpro;
   }
   else {}
+  ) // (if builtins.hasAttr "optpath" cfg then
+  {
+    inherit (pkgs) gaussian;
+  }
+  else {}
   )
 
