@@ -1,4 +1,5 @@
 { srcurl ? null  # base url for non-free packages
+, optpath ? null # path to packages that reside outside the nix store
 , licMolpro ?  null # string containing the license token
 , optAVX ? true # turn of AVX optimizations
 } :
@@ -134,6 +135,8 @@ in with super;
   cp2k = self.openmpiPkgs.cp2k;
 
   bagel = self.openmpiPkgs.bagel;
+
+  gaussian = callPackage ./gaussian { inherit optpath; };
 
   gaussview = callPackage ./gaussview { };
 
