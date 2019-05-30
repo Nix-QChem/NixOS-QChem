@@ -61,6 +61,8 @@ let
       };
     in {
 
+      cmakeFlags = x.cmakeFlags ++ [ "-DWFA=ON" ];
+
       patches = [ (fetchpatch {
         name = "excessive-h5-size"; # Can be removed in the update
         url = "https://gitlab.com/Molcas/OpenMolcas/commit/73fae685ed8a0c41d5109ce96ade31d4924c3d9a.patch";
