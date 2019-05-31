@@ -119,7 +119,6 @@ let
     };
   };
 
-
 in with super;
 
 {
@@ -188,6 +187,12 @@ in with super;
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
+  ### Python packages
+
+  python3 = callPackage ./pythonPackages.nix { python=super.python3; };
+  python2 = callPackage ./pythonPackages.nix { python=super.python2; };
+
+
   ### Optmized HPC libs
 
   # Provide an optimized fftw library.
@@ -223,6 +228,8 @@ in with super;
   hpl = self.openmpiPkgs.hpl;
 
   libfabric = callPackage ./libfabric { };
+
+  libcint = callPackage ./libcint { };
 
   libint = callPackage ./libint { };
 
