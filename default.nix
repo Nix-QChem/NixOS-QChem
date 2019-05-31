@@ -117,7 +117,6 @@ let
     };
   };
 
-
 in with super;
 
 {
@@ -224,6 +223,8 @@ in with super;
   hpl = self.openmpiPkgs.hpl;
 
   libfabric = callPackage ./libfabric { };
+
+  libcint = callPackage ./libcint { };
 
   libint = callPackage ./libint { };
 

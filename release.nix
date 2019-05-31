@@ -96,6 +96,8 @@ in {
     molden
     sharc;
 
+  pyscf = pkgs.python3Packages.pyscf;
+
   # Packages depend on optimized libs
   deps = {
     python2 = {
@@ -105,7 +107,7 @@ in {
     };
 
     python3 = {
-      inherit (pkgs.python2Packages)
+      inherit (pkgs.python3Packages)
         numpy
         scipy;
     };
