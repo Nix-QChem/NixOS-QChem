@@ -76,6 +76,7 @@ in {
       openshmem
       openblas
       openblasCompat
+      molcasUnstable
       osss-ucx
       pmix
       ucx;

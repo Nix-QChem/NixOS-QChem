@@ -1,12 +1,12 @@
 { stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
 , openblas, hdf5-cpp, python3, texLive
-, armadillo, mpi ? pkgs.openmpi, ga, openssh
+, armadillo, mpi ? pkgs.openmpi, globalarrays, openssh
 , makeWrapper, fetchFromGitHub
 } :
 
 let
-  version = "18.09";
-  gitLabRev = "v${version}";
+  version = "20190529";
+  gitLabRev = "c159f8842972107d7b959f0f837049df3f27cf12";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
@@ -24,14 +24,8 @@ in stdenv.mkDerivation {
     owner = "Molcas";
     repo = "OpenMolcas";
     rev = gitLabRev;
-    sha256 = "1di1ygifx7ycfpwh25mv76xlv15wqfdmqzjsg5nani2d5z0arri2";
+    sha256 = "1s5px704li6xhxnf5j5q2j2vd32krsp862r7dg6m11b72q41svg4";
   };
-
-  patches = [ (fetchpatch {
-    name = "excessive-h5-size"; # Can be removed in the update
-    url = "https://gitlab.com/Molcas/OpenMolcas/commit/73fae685ed8a0c41d5109ce96ade31d4924c3d9a.patch";
-    sha256 = "1wdk1vpc0y455dinbxhc8qz3fh165wpdcrhbxia3g2ppmmpi11sc";
-  }) ];
 
   prePatch = ''
     rm -r External/libwfa
@@ -41,7 +35,7 @@ in stdenv.mkDerivation {
 
 
   nativeBuildInputs = [ perl cmake texLive makeWrapper ];
-  buildInputs = [ gfortran openblas hdf5-cpp python armadillo mpi ga openssh ];
+  buildInputs = [ gfortran openblas hdf5-cpp python armadillo mpi globalarrays openssh ];
 
   # tests are not running right now.
   doCheck = false;
@@ -62,7 +56,7 @@ in stdenv.mkDerivation {
     "-DCTEST=ON"
   ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas}" ]);
 
-  GAROOT=ga;
+  GAROOT=globalarrays;
 
   postConfigure = ''
     # The Makefile will install pymolcas during the build grrr.

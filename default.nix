@@ -110,10 +110,13 @@ let
       '';
     });
 
-    #openmolcas-mkl = MPI.openmolcas.override {
-    #  openblas = self.mkl;
-    #};
+    openmolcasUnstable = callPackage ./openmolcas {
+      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+      mpi=pkg;
+      globalarrays=MPI.globalarrays;
+    };
   };
+
 
 in with super;
 
@@ -172,7 +175,7 @@ in with super;
 
   molcas = self.openmpiPkgs.openmolcas;
 
-  #molcas-mkl = self.openmpiPkgs.openmolcas-mkl;
+  molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
 
   qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
