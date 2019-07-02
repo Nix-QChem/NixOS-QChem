@@ -113,21 +113,21 @@ in stdenv.mkDerivation {
 
       if [ \$# == 0 ]; then
       echo
-      echo "Usage: `basename \$0` [number of procs] <input file name>"
+      echo "Usage: nwchem [number of procs] <input file name>"
       echo
       exit
       fi
 
       if [ -z "\$NWCHEM_BASIS_LIBRARY" ]; then
-      NWCHEM_BASIS_LIBRARY=$out/share/nwchem/data/libraries/
+      export NWCHEM_BASIS_LIBRARY=$out/share/nwchem/data/libraries/
       fi
 
-      if [ \$# -gt 2 ]; then
+      if [ \$# -gt 1 ]; then
       np=\$1; shift;
       if [ \$np == 0 ]; then
       ${mpi}/bin/mpirun $out/bin/.nwchem-wrapped \$@
       else
-      ${mpi}/bin/mpirun -np \$1 $out/bin/.nwchem-wrapped \$@
+      ${mpi}/bin/mpirun -np \$np $out/bin/.nwchem-wrapped \$@
       fi
       else
       $out/bin/.nwchem-wrapped \$@
