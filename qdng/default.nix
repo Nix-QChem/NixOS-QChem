@@ -1,6 +1,5 @@
-{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, liblapack, blas
+{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, openblas
 , automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
-, srcurl ? null
 }:
 
 let
@@ -16,7 +15,7 @@ in stdenv.mkDerivation {
 
   patches = [ ./multistate.patch ];
 
-  configureFlags = [ "--enable-openmp" ];
+  configureFlags = [ "--enable-openmp" "--with-blas=-lopenblas" ];
 
   enableParallelBuilding = true;
 
@@ -24,9 +23,8 @@ in stdenv.mkDerivation {
     ./genbs
   '';
 
-  buildInputs = [ gfortran fftw protobuf liblapack
-                  blas bzip2 zlib libxml2
-                  flex bison ];
+  buildInputs = [ gfortran fftw protobuf openblas
+                  bzip2 zlib libxml2 flex bison ];
   nativeBuildInputs = [ automake autoconf libtool ];
 
   meta = {
