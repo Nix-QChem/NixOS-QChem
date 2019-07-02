@@ -14,6 +14,8 @@ in stdenv.mkDerivation {
     sha256 = "16agzp2aqb6yjmdpbnshjh6cw4kliqfvgfrbj76xcrycrbyk8hf9";
   };
 
+  patches = [ ./multistate.patch ];
+
   configureFlags = [ "--enable-openmp" ];
 
   enableParallelBuilding = true;
