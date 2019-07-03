@@ -187,6 +187,10 @@ in with super;
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 
+  ## Other scientfic applicatons
+
+  matlab = callPackage ./matlab { inherit optpath; };
+
   ### Python packages
 
   python3 = callPackage ./pythonPackages.nix { python=super.python3; };
