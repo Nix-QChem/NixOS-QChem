@@ -30,14 +30,22 @@ in stdenv.mkDerivation {
     cp binappleAbsoft11.gfi8/* $out/bin
     cp mesa.dat $out/share/mesa
 
+    # wrapper to start mesa
     cat << EOF > $out/bin/mesa
     #!/bin/bash
-    cp $out/share/mesa/mesa.dat .
+    $out/bin/mesa_get_data
     mkdir -p tmp
     $out/bin/optmesa \$@
     EOF
 
-    chmod +x $out/bin/mesa
+    cat << EOF > $out/bin/mesa_get_data
+    #!/bin/bash
+    if [ ! -f mesa.dat ]; then
+      cp $out/share/mesa/mesa.dat .
+    fi
+    EOF
+
+    chmod +x $out/bin/mesa $out/bin/mesa_get_data
   '';
 
   meta = with stdenv.lib; {
