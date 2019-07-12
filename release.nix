@@ -116,7 +116,8 @@ in {
       mkl
       mesa
       mctdh
-      molden;
+      molden
+      orca;
   }
   else {}
   )
