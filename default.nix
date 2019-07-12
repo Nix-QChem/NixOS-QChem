@@ -176,6 +176,8 @@ in with super;
 
   molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
 
+  orca = callPackage ./orca { };
+
   qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
   sharc = callPackage ./sharc { molcas=self.molcas; fftw=self.fftwOpt; };
