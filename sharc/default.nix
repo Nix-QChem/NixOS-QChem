@@ -1,5 +1,6 @@
-{ stdenv, fetchFromGitHub, makeWrapper, gfortran
-, openblasCompat, fftw, python2, molcas 
+{ stdenv, lib, fetchFromGitHub, makeWrapper, gfortran
+, openblasCompat, fftw, python2, molcas, molpro
+, useMolpro ? false
 } :
 
 let
@@ -19,7 +20,12 @@ in stdenv.mkDerivation {
   nativeBuildInputs = [ makeWrapper ];
   buildInputs = [ gfortran openblasCompat fftw python ];
 
-  patches = [ ./testing.patch ];
+  patches = [
+    # tests fail to create directories
+    ./testing.patch
+    # Molpro tests require more memory
+    ./molpro_tests.patch
+  ];
 
   postPatch = ''
     # SHARC make file
@@ -30,8 +36,8 @@ in stdenv.mkDerivation {
     # purify output
     substituteInPlace source/Makefile --replace 'shell date' 'shell echo 0' \
                                       --replace 'shell hostname' 'shell echo nixos' \
-                                      --replace 'shell pwd' 'shell echo nixos' 
-    
+                                      --replace 'shell pwd' 'shell echo nixos'
+
 
     # WF overlap
     sed -i 's:^LALIB.*=.*:LALIB = -lopenblas -fopenmp:' wfoverlap/source/Makefile;
@@ -66,12 +72,24 @@ in stdenv.mkDerivation {
 
     ln -s $out/share/sharc/tests $out/tests
 
+    # Integrate MOLCAS
     for i in `find $out/bin -name '*MOLCAS*'`; do
       wrapProgram $i --set SHARC $out/bin --set MOLCAS ${molcas}
     done
 
-    wrapProgram $out/bin/tests.py --set SHARC $out/bin --set MOLCAS ${molcas}
-    wrapProgram $out/bin/sharc.x --set SHARC $out/bin 
+    # Integrate MOLPRO
+    ${lib.optionalString useMolpro ''
+    for i in `find $out/bin -name '*MOLPRO*'`; do
+      wrapProgram $i --set SHARC $out/bin --set MOLPRO ${molpro}/bin --set HOSTNAME sharc
+    done
+    ''}
+
+    wrapProgram $out/bin/tests.py \
+      --set SHARC $out/bin \
+      --set MOLCAS ${molcas} \
+      ${lib.optionalString useMolpro "--set MOLPRO ${molpro}/bin"}
+
+    wrapProgram $out/bin/sharc.x --set SHARC $out/bin
   '';
 
   postFixup = ''
@@ -84,11 +102,11 @@ in stdenv.mkDerivation {
     done
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Molecular dynamics (MD) program suite for excited states";
     homepage = https://www.sharc-md.org;
     license = licenses.gpl3;
-    maintainers = maintainers.markuskowa;
+    maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
   };
 }
