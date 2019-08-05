@@ -174,9 +174,14 @@ in with super;
     gfortran = gfortran6;
   };
 
-  molpro = callPackage ./molpro { token=licMolpro; };
+  molpro = self.molpro19;
+
+  molpro12 = callPackage ./molpro/2012.nix { token=licMolpro; };
 
   molpro15 = callPackage ./molpro/2015.nix { token=licMolpro; };
+
+  molpro19 = callPackage ./molpro { token=licMolpro; };
+
 
   molcas = self.openmpiPkgs.openmolcas;
 
@@ -186,7 +191,12 @@ in with super;
 
   qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
-  sharc = callPackage ./sharc { molcas=self.molcas; fftw=self.fftwOpt; };
+  sharc = callPackage ./sharc {
+    molcas = self.molcas;
+    molpro = self.molpro12; # V2 only compatible with versions up to 2015
+    useMolpro = if licMolpro != null then true else false;
+    fftw = self.fftwOpt;
+  };
 
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };

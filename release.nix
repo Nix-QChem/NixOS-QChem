@@ -125,6 +125,7 @@ in {
   {
     inherit (pkgs)
       molpro
+      molpro12
       molpro15;
   }
   else {}
