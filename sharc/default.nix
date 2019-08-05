@@ -74,20 +74,22 @@ in stdenv.mkDerivation {
 
     # Integrate MOLCAS
     for i in `find $out/bin -name '*MOLCAS*'`; do
-      wrapProgram $i --set SHARC $out/bin --set MOLCAS ${molcas}
+      wrapProgram $i --set SHARC $out/bin --set-default MOLCAS ${molcas}
     done
 
     # Integrate MOLPRO
     ${lib.optionalString useMolpro ''
     for i in `find $out/bin -name '*MOLPRO*'`; do
-      wrapProgram $i --set SHARC $out/bin --set MOLPRO ${molpro}/bin --set HOSTNAME sharc
+      wrapProgram $i --set SHARC $out/bin \
+                     --set-default MOLPRO ${molpro}/bin \
+                     --set-default HOSTNAME localhost
     done
     ''}
 
     wrapProgram $out/bin/tests.py \
       --set SHARC $out/bin \
-      --set MOLCAS ${molcas} \
-      ${lib.optionalString useMolpro "--set MOLPRO ${molpro}/bin"}
+      --set-default MOLCAS ${molcas} \
+      ${lib.optionalString useMolpro "--set-default MOLPRO ${molpro}/bin"}
 
     wrapProgram $out/bin/sharc.x --set SHARC $out/bin
   '';
