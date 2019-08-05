@@ -134,7 +134,8 @@ in {
   // (if builtins.hasAttr "licMolpro" cfg then
   {
     inherit (pkgs)
-      molpro;
+      molpro
+      molpro15;
   }
   else {}
   ) // (if builtins.hasAttr "optpath" cfg then
