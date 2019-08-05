@@ -176,6 +176,8 @@ in with super;
 
   molpro = callPackage ./molpro { token=licMolpro; };
 
+  molpro15 = callPackage ./molpro/2015.nix { token=licMolpro; };
+
   molcas = self.openmpiPkgs.openmolcas;
 
   molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
