@@ -1,8 +1,7 @@
-{ stdenv, python } :
+{ python } :
 
-let
+python.override {
   packageOverrides = self: super: {
-    pyscf = self.python.pkgs.callPackage ./pyscf { };
+    pyscf = super.callPackage ./pyscf { };
   };
-
-in python.override {inherit packageOverrides;}
+}
