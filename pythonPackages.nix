@@ -1,7 +1,3 @@
-{ python } :
-
-python.override {
-  packageOverrides = self: super: {
+self: super: {
     pyscf = super.callPackage ./pyscf { };
-  };
 }

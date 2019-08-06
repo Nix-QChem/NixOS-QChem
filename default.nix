@@ -117,6 +117,8 @@ let
     };
   };
 
+  pythonOverrides = import ./pythonPackages.nix;
+
 in with super;
 
 {
@@ -202,8 +204,8 @@ in with super;
 
   ### Python packages
 
-  python3 = callPackage ./pythonPackages.nix { python=super.python3; };
-  python2 = callPackage ./pythonPackages.nix { python=super.python2; };
+  python3 = super.python3.override { packageOverrides=pythonOverrides; };
+  python2 = super.python2.override { packageOverrides=pythonOverrides; };
 
 
   ### Optmized HPC libs
