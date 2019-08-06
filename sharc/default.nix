@@ -72,26 +72,12 @@ in stdenv.mkDerivation {
 
     ln -s $out/share/sharc/tests $out/tests
 
-    # Integrate MOLCAS
-    for i in `find $out/bin -name '*MOLCAS*'`; do
-      wrapProgram $i --set SHARC $out/bin --set-default MOLCAS ${molcas}
-    done
-
-    # Integrate MOLPRO
-    ${lib.optionalString useMolpro ''
-    for i in `find $out/bin -name '*MOLPRO*'`; do
+    for i in `find $out/bin -type f`; do
       wrapProgram $i --set SHARC $out/bin \
-                     --set-default MOLPRO ${molpro}/bin \
-                     --set-default HOSTNAME localhost
+                     --set HOSTNAME localhost \
+                     --set-default MOLCAS ${molcas} \
+                     ${lib.optionalString useMolpro "--set-default MOLPRO ${molpro}/bin"}
     done
-    ''}
-
-    wrapProgram $out/bin/tests.py \
-      --set SHARC $out/bin \
-      --set-default MOLCAS ${molcas} \
-      ${lib.optionalString useMolpro "--set-default MOLPRO ${molpro}/bin"}
-
-    wrapProgram $out/bin/sharc.x --set SHARC $out/bin
   '';
 
   postFixup = ''
