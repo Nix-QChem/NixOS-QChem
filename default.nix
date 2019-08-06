@@ -193,9 +193,18 @@ in with super;
 
   qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
-  sharc = callPackage ./sharc {
+  sharc = self.sharcV2;
+
+  sharcV1 = callPackage ./sharc/V1.nix {
     molcas = self.molcas;
-    molpro = self.molpro12; # V2 only compatible with versions up to 2015
+    molpro = self.molpro12; # V1 only compatible with versions up to 2012
+    useMolpro = if licMolpro != null then true else false;
+    fftw = self.fftwOpt;
+  };
+
+  sharcV2 = callPackage ./sharc {
+    molcas = self.molcas;
+    molpro = self.molpro12; # V2 only compatible with versions up to 2012
     useMolpro = if licMolpro != null then true else false;
     fftw = self.fftwOpt;
   };
