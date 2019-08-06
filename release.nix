@@ -94,6 +94,7 @@ in {
     molcas
     nwchem
     molden
+    sharcV1
     sharc;
 
   pyscf = pkgs.python3Packages.pyscf;
