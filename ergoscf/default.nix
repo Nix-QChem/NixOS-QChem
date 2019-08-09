@@ -1,14 +1,14 @@
 { stdenv, fetchurl, openblas } :
 
 let
-  version = "3.7";
+  version = "3.8";
 
 in stdenv.mkDerivation {
   name = "ergoscf-${version}";
 
   src = fetchurl {
-    url = http://www.ergoscf.org/source/tarfiles/ergo-3.7.tar.gz;
-    sha256 = "1vmw8bw996zlds4j5yg08889xngbdpa51l6gilcjsr130sb0dhvv";
+    url = "http://www.ergoscf.org/source/tarfiles/ergo-${version}.tar.gz";
+    sha256 = "1s50k2gfs3y6r5kddifn4p0wmj0yk85wm5vf9v3swm1c0h43riix";
   };
 
   nativeBuildInputs = [ ];
@@ -34,6 +34,26 @@ in stdenv.mkDerivation {
   OMP_NUM_THREADS = 2; # required for check phase
 
   doCheck = true;
+
+  doInstallCheck = true;
+
+  installCheckPhase =  ''
+    cat > ergoscf.inp << EOINPUT
+    set_nthreads(2)
+    molecule_inline Angstrom
+     O       0.000000  0.000000  0.000000
+     H       0.758602  0.000000  0.504284
+     H       0.758602  0.000000 -0.504284
+    EOF
+    basis = "STO-3G"
+    run "HF"
+    EOINPUT
+
+    $out/bin/ergo ergoscf.inp
+
+    # Energy is different from MOLCAS or Molpro
+    grep "74.880174" ergoscf.out
+  '';
 
   meta = with stdenv.lib; {
     description = "Quantum chemistry program for large-scale self-consistent field calculations";
