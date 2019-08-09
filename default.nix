@@ -209,6 +209,8 @@ in with super;
     fftw = self.fftwOpt;
   };
 
+  vmd = callPackage ./vmd {};
+
   # Unsuported. Scalapack does not work with ILP64
   # scalapack = callPackage ./scalapack { mpi=self.openmpi-ilp64; };
 

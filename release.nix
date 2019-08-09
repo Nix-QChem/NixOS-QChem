@@ -118,7 +118,8 @@ in {
       mesa
       mctdh
       molden
-      orca;
+      orca
+      vmd;
   }
   else {}
   )
