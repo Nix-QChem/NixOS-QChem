@@ -83,6 +83,12 @@ in stdenv.mkDerivation {
       #export USE_INTERNALBLAS=y
       #export BLAS_SIZE=4
       #export USE_64TO32=y
+
+      # extra TCE releated options
+      export MRCC_METHODS=y
+      export EACCSD=y
+      export IPCCSD=y
+
       cd src
 
       echo "ROOT: $NWCHEM_TOP"
