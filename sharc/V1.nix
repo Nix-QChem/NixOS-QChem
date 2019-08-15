@@ -11,6 +11,7 @@ in stdenv.mkDerivation {
   name = "sharc-${version}";
 
   src = requireFile {
+    url = "https://www.sharc-md.org";
     name = "sharc-V1.tar.xz";
     sha256 = "0r01pc7f60ncvp6iw2qzmbd4y0q8x48yhymfhyqxav0q95xax0vl";
   };
