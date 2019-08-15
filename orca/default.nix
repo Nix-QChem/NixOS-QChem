@@ -3,14 +3,14 @@
 } :
 
 let
-  version = "4.1.2";
+  version = "4.2.0";
 
 in stdenv.mkDerivation {
   name = "orca-${version}";
 
   src = requireFile {
-    name = "orca_4_1_2_linux_x86-64_shared_openmpi313.tar.xz";
-    sha256 = "0xbyh9n6bi455zi8i2nlwca0bbw818iz7sbfp8ndd0ci0lra888y";
+    name = "orca_4_2_0_linux_x86-64_shared_openmpi314.tar.xz";
+    sha256 = "1qi2irp79lndj256cp8dkx46wan090741xwal7jk4lhswik68281";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
