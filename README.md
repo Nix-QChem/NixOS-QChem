@@ -1,3 +1,5 @@
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
 # NixOS-QChem
 Nix derivations for HPC/Quantum chemistry software packages.
 
