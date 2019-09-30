@@ -172,6 +172,8 @@ in with super;
     gfortran = gfortran6;
   };
 
+  mesa-qc = self.mesa;
+
   molpro = self.molpro19;
 
   molpro12 = callPackage ./molpro/2012.nix { token=licMolpro; };
