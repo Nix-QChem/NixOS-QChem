@@ -31,7 +31,6 @@ in {
       cp2k
       bagel-mkl-scl
       bagel
-      hpl
       mctdh
       openmolcas
       openmolcas-mkl
@@ -41,6 +40,7 @@ in {
 
   mpichPkgs = {
     inherit (pkgs.mpichPkgs)
+      hpl
       bagel
       openmolcas
       osu-benchmark

@@ -221,8 +221,6 @@ in with super;
 
   ibsim = callPackage ./ibsim { };
 
-  hpl = self.openmpiPkgs.hpl;
-
   libfabric = callPackage ./libfabric { };
 
   libcint = callPackage ./libcint { };
