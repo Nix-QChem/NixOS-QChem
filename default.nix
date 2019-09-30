@@ -139,13 +139,6 @@ in with super;
 
   gaussview = callPackage ./gaussview { };
 
-  molden = super.molden.overrideDerivation (oa: {
-    src = super.fetchurl {
-      url = "ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/molden5.9.3.tar.gz";
-      sha256 = "18fz44g7zkm0xcx3w9hm049jv13af67ww7mb5b3kdhmza333a16q";
-    };
-  });
-
   ergoscf = callPackage ./ergoscf { };
 
   # fix a bug in the header file, which causes bagel to fail
