@@ -115,7 +115,7 @@ in {
       gaussview
       qdng
       mkl
-      mesa
+      mesa-qc
       mctdh
       molden
       orca

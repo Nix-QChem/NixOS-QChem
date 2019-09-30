@@ -164,11 +164,7 @@ in with super;
 
   mctdh-mpi = self.openmpiPkgs.mctdh;
 
-  # gfortran7 segfaults on one fortran file
-  mesa = callPackage ./mesa {
-    openblas=(openblas.override { gfortran=gfortran6; });
-    gfortran = gfortran6;
-  };
+  mesa-qc = callPackage ./mesa { };
 
   molpro = self.molpro19;
 
