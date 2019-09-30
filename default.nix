@@ -30,10 +30,7 @@ let
 
     cp2k = callPackage ./cp2k { mpi=pkg; scalapack=MPI.scalapack; fftw=self.fftwOpt; };
 
-    # Relativistic methods are broken with non-MKL libs
-    bagel-openblas = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; };
-
-    # mkl is the default.
+    # MKL is the default. Relativistic methods are broken with non-MKL libs
     bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; };
     bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; };
     bagel = MPI.bagel-mkl;
