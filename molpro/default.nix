@@ -2,7 +2,7 @@
 } :
 
 let
-  version = "2019.2.0";
+  version = "2019.2.2";
 
 in stdenv.mkDerivation {
   name = "molpro-${version}";
@@ -10,7 +10,7 @@ in stdenv.mkDerivation {
   src = requireFile {
     url = http://www.molpro.net;
     name = "molpro-mpp-${version}.linux_x86_64_openmp.sh.gz";
-    sha256 = "1cvqqa1mi4y1d21h6pkb70zw89q9azvjdwjrw8dx92x44hkkjigz";
+    sha256 = "1ab2bxz9fbfgciabbfjh2xaj2368fk2fpx3iwiadwf6pk2cd9idl";
   };
 
   nativeBuildInputs = [ patchelf ];
