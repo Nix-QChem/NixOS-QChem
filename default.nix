@@ -164,8 +164,9 @@ in with super;
 
   molpro15 = callPackage ./molpro/2015.nix { token=cfg.licMolpro; };
 
-  molpro19 = callPackage ./molpro { token=cfg.licMolpro; };
+  molpro18 = callPackage ./molpro/2018.nix { token=cfg.licMolpro; };
 
+  molpro19 = callPackage ./molpro { token=cfg.licMolpro; };
 
   molcas = self.openmpiPkgs.openmolcas;
 
@@ -176,6 +177,8 @@ in with super;
   qdng = callPackage ./qdng { fftw=self.fftwOpt; };
 
   sharc = self.sharcV2;
+
+  sharc21 = self.sharcV21;
 
   sharcV1 = callPackage ./sharc/V1.nix {
     molcas = self.molcas;
@@ -188,6 +191,14 @@ in with super;
     molcas = self.molcas;
     molpro = self.molpro12; # V2 only compatible with versions up to 2012
     useMolpro = if cfg.licMolpro != null then true else false;
+    fftw = self.fftwOpt;
+  };
+
+  sharcV21 = callPackage ./sharc/21.nix {
+    molcas = self.molcas;
+    molpro = self.molpro12; # V2 only compatible with versions up to 2012
+    useMolpro = if cfg.licMolpro != null then true else false;
+    useOrca = if cfg.srcurl != null then true else false;
     fftw = self.fftwOpt;
   };
 

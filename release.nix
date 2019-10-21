@@ -83,7 +83,9 @@ in {
     molcas
     nwchem
     molden
-    sharc;
+    sharcV1
+    sharc
+    sharc21;
 
   #pyscf = pkgs.python3Packages.pyscf;
 
@@ -127,7 +129,8 @@ in {
     inherit (pkgs)
       molpro
       molpro12
-      molpro15;
+      molpro15
+      molpro18;
   }
   else {}
   ) // (if cfg.optpath != null  then
