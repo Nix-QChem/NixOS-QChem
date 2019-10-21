@@ -180,6 +180,8 @@ in with super;
 
   molpro15 = callPackage ./molpro/2015.nix { token=licMolpro; };
 
+  molpro18 = callPackage ./molpro/2018.nix { token=licMolpro; };
+
   molpro19 = callPackage ./molpro { token=licMolpro; };
 
 
@@ -193,6 +195,8 @@ in with super;
 
   sharc = self.sharcV2;
 
+  sharc21 = self.sharcV21;
+
   sharcV1 = callPackage ./sharc/V1.nix {
     molcas = self.molcas;
     molpro = self.molpro12; # V1 only compatible with versions up to 2012
@@ -204,6 +208,14 @@ in with super;
     molcas = self.molcas;
     molpro = self.molpro12; # V2 only compatible with versions up to 2012
     useMolpro = if licMolpro != null then true else false;
+    fftw = self.fftwOpt;
+  };
+
+  sharcV21 = callPackage ./sharc/21.nix {
+    molcas = self.molcas;
+    molpro = self.molpro12; # V2 only compatible with versions up to 2012
+    useMolpro = if licMolpro != null then true else false;
+    useOrca = if srcurl != null then true else false;
     fftw = self.fftwOpt;
   };
 

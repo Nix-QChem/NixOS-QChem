@@ -95,7 +95,8 @@ in {
     nwchem
     molden
     sharcV1
-    sharc;
+    sharc
+    sharc21;
 
   pyscf = pkgs.python3Packages.pyscf;
 
@@ -137,7 +138,8 @@ in {
     inherit (pkgs)
       molpro
       molpro12
-      molpro15;
+      molpro15
+      molpro18;
   }
   else {}
   ) // (if builtins.hasAttr "optpath" cfg then
