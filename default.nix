@@ -22,8 +22,8 @@ let
     # scalapack is only valid with ILP32
     scalapack = (super.scalapack.override { mpi=pkg; }).overrideAttrs
     ( x: {
-      CFLAGS = "-O3 -mavx2 -mavx -msse2";# + super.lib.optionalString optAVX " -mavx512f -mavx512cd";
-      FFLAGS = "-O3 -mavx2 -mavx -msse2";# + super.lib.optionalString optAVX " -mavx512f -mavx512cd";
+      CFLAGS = super.lib.optionalString optAVX  "-O3 -mavx2 -mavx -msse2";
+      FFLAGS = super.lib.optionalString optAVX  "-O3 -mavx2 -mavx -msse2";
     });
 
     scalapackCompat = MPI.scalapack;
