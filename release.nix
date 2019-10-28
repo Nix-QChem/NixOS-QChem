@@ -85,7 +85,6 @@ in {
     molcas
     nwchem
     molden
-    sharcV1
     sharc;
 
   pyscf = pkgs.python3Packages.pyscf;
@@ -120,6 +119,7 @@ in {
       mctdh
       molden
       orca
+      sharcV1
       vmd;
   }
   else {}
