@@ -1,20 +1,18 @@
-{ config ? null, stable ? true } :
+{
+  # If set to false the overlay will be used with
+  # the latest nixpkgs from the master branch
+  stable ? true
+
+  # nixpkgs sources
+, nixpkgs ? (import <nixpkgs>)
+} :
 
 
 let
-
-  qc-cfg = builtins.tryEval (import <qchem-config>);
-
-  cfg = if config == null then
-    if qc-cfg.success then
-      qc-cfg.value
-    else
-     {}
-  else
-    config;
+  cfg = import ./cfg.nix;
 
   input = {
-    overlays = [ ((import ./default.nix) cfg) ];
+    overlays = [ (import ./default.nix) ];
     config.allowUnfree=true;
   };
 
@@ -109,7 +107,7 @@ in {
      bagelParallel = import ./tests/bagel-parallel.nix { pkgs=pkgs; bagel=pkgs.bagel; };
    };
 
-} // (if builtins.hasAttr "srcurl" cfg then
+} // (if cfg.srcurl != null then
   {
     inherit (pkgs)
       gaussview
@@ -124,7 +122,7 @@ in {
   }
   else {}
   )
-  // (if builtins.hasAttr "licMolpro" cfg then
+  // (if cfg.licMolpro != null then
   {
     inherit (pkgs)
       molpro
@@ -132,7 +130,7 @@ in {
       molpro15;
   }
   else {}
-  ) // (if builtins.hasAttr "optpath" cfg then
+  ) // (if cfg.optpath != null  then
   {
     inherit (pkgs) gaussian;
   }

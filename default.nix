@@ -1,12 +1,9 @@
-{ srcurl ? null  # base url for non-free packages
-, optpath ? null # path to packages that reside outside the nix store
-, licMolpro ?  null # string containing the license token
-, optAVX ? true # turn of AVX optimizations
-} :
 self: super:
 
-
 let
+
+  cfg = import ./cfg.nix;
+
   # build a package with specfific MPI implementation
   withMpi = pkg : mpi :
     super.appendToName mpi.name (pkg.override { mpi = mpi; });
@@ -22,8 +19,8 @@ let
     # scalapack is only valid with ILP32
     scalapack = (super.scalapack.override { mpi=pkg; }).overrideAttrs
     ( x: {
-      CFLAGS = super.lib.optionalString optAVX  "-O3 -mavx2 -mavx -msse2";
-      FFLAGS = super.lib.optionalString optAVX  "-O3 -mavx2 -mavx -msse2";
+      CFLAGS = super.lib.optionalString cfg.optAVX  "-O3 -mavx2 -mavx -msse2";
+      FFLAGS = super.lib.optionalString cfg.optAVX  "-O3 -mavx2 -mavx -msse2";
     });
 
     scalapackCompat = MPI.scalapack;
@@ -116,10 +113,10 @@ in with super;
 
 {
   # Allow to provide a local download source for unfree packages
-  requireFile = if srcurl == null then super.requireFile else
+  requireFile = if cfg.srcurl == null then super.requireFile else
     { name, sha256, ... } :
     super.fetchurl {
-      url = srcurl + "/" + name;
+      url = cfg.srcurl + "/" + name;
       sha256 = sha256;
     };
 
@@ -135,7 +132,7 @@ in with super;
 
   bagel = self.openmpiPkgs.bagel;
 
-  gaussian = callPackage ./gaussian { inherit optpath; };
+  gaussian = callPackage ./gaussian { inherit (cfg) optpath; };
 
   gaussview = callPackage ./gaussview { };
 
@@ -158,11 +155,11 @@ in with super;
 
   molpro = self.molpro19;
 
-  molpro12 = callPackage ./molpro/2012.nix { token=licMolpro; };
+  molpro12 = callPackage ./molpro/2012.nix { token=cfg.licMolpro; };
 
-  molpro15 = callPackage ./molpro/2015.nix { token=licMolpro; };
+  molpro15 = callPackage ./molpro/2015.nix { token=cfg.licMolpro; };
 
-  molpro19 = callPackage ./molpro { token=licMolpro; };
+  molpro19 = callPackage ./molpro { token=cfg.licMolpro; };
 
 
   molcas = self.openmpiPkgs.openmolcas;
@@ -178,14 +175,14 @@ in with super;
   sharcV1 = callPackage ./sharc/V1.nix {
     molcas = self.molcas;
     molpro = self.molpro12; # V1 only compatible with versions up to 2012
-    useMolpro = if licMolpro != null then true else false;
+    useMolpro = if cfg.licMolpro != null then true else false;
     fftw = self.fftwOpt;
   };
 
   sharcV2 = callPackage ./sharc {
     molcas = self.molcas;
     molpro = self.molpro12; # V2 only compatible with versions up to 2012
-    useMolpro = if licMolpro != null then true else false;
+    useMolpro = if cfg.licMolpro != null then true else false;
     fftw = self.fftwOpt;
   };
 
@@ -196,7 +193,7 @@ in with super;
 
   ## Other scientfic applicatons
 
-  matlab = callPackage ./matlab { inherit optpath; };
+  matlab = callPackage ./matlab { inherit (cfg) optpath; };
 
   ### Python packages
 
@@ -208,7 +205,7 @@ in with super;
 
   # Provide an optimized fftw library.
   # Overriding fftw completely causes a mass rebuild!
-  fftwOpt = if optAVX then
+  fftwOpt = if cfg.optAVX then
     fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
       ++ [ "--enable-avx" "--enable-avx2" "--enable-fma" ];
