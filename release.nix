@@ -81,6 +81,7 @@ in {
     ergoscf
     fftwOpt
     hpl
+    hwloc-x11
     molcas
     nwchem
     molden

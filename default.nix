@@ -221,6 +221,8 @@ in with super;
 
   ibsim = callPackage ./ibsim { };
 
+  hwloc-x11 = super.hwloc.override { x11Support= true; };
+
   libfabric = callPackage ./libfabric { };
 
   libcint = callPackage ./libcint { };
