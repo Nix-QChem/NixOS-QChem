@@ -1,6 +1,6 @@
 { stdenv, pkgs, fetchFromGitHub, python, gfortran, openblasCompat
 , fftw, libint1, libxc, mpi, gsl, scalapack, openssh, makeWrapper
-, libxsmm
+, libxsmm, optAVX ? true
 } :
 
 let
@@ -20,7 +20,9 @@ let
                  -D__LIBINT_MAX_AM=7 -D__LIBDERIV_MAX_AM1=6 -D__MAX_CONTR=4
 
     FCFLAGS    = $(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
-                 -ftree-vectorize -funroll-loops -msse2 -mavx -mavx2 -std=f2008 \
+                 -ftree-vectorize -funroll-loops -msse2 \
+                 ${stdenv.lib.optionalString optAVX "-mavx -mavx2"} \
+                 -std=f2008 \
                  -I${libxc}/include -I${libxsmm}/include \
                  -fopenmp -ftree-vectorize -funroll-loops
     LIBS       = -lfftw3 -lfftw3_threads -lfftw3_omp -lscalapack -lopenblas \
