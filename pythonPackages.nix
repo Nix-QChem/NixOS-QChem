@@ -1,3 +1,3 @@
 self: super: {
-    pyscf = super.callPackage ./pyscf { };
+#    pyscf = super.callPackage ./pyscf { };
 }
