@@ -1,8 +1,21 @@
-{ stdenv, writeShellScriptBin, buildFHSUserEnv, optpath } :
+{ stdenv, writeShellScriptBin, buildFHSUserEnv, optpath
+, slurmLic ? null, slurmLicenceWrapper
+} :
 
 
 let
   version = "2018a";
+  runPath = if slurmLic == null
+    then
+      "${optpath}/matlab-${version}"
+    else
+      slurmLicenceWrapper {
+        name = "MATLAB";
+        exe = "matlab";
+        license = slurmLic;
+        runProg = "${optpath}/matlab-${version}/bin/matlab";
+      };
+
 
 in buildFHSUserEnv {
   name="matlab";
@@ -51,6 +64,6 @@ in buildFHSUserEnv {
     libXt
     libXxf86vm
     ]);
-  runScript = "${optpath}/matlab-${version}/bin/matlab";
+    runScript = "${runPath}/bin/matlab";
 }
 
