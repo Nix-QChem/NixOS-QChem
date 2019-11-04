@@ -85,7 +85,7 @@ in {
     molden
     sharc;
 
-  pyscf = pkgs.python3Packages.pyscf;
+  #pyscf = pkgs.python3Packages.pyscf;
 
   # Packages depend on optimized libs
   deps = {
