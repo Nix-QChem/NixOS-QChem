@@ -1,3 +1,8 @@
-self: super: {
-#    pyscf = super.callPackage ./pyscf { };
+self: super:
+
+with super;
+
+{
+#    pyscf = callPackage ./pyscf { };
+  pyquante = callPackage ./pyquante { };
 }
