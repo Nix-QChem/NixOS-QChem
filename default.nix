@@ -156,7 +156,9 @@ in with super;
 
   mctdh-mpi = self.openmpiPkgs.mctdh;
 
-  mesa-qc = callPackage ./mesa { };
+  mesa-qc = callPackage ./mesa {
+    gfortran = gfortran6;
+  };
 
   molpro = self.molpro19;
 

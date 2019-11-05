@@ -48,6 +48,24 @@ in stdenv.mkDerivation {
     chmod +x $out/bin/mesa $out/bin/mesa_get_data
   '';
 
+  doInstallCheck = true;
+
+  mesaInp = ./mesa.inp;
+
+  installCheckPhase = ''
+    mkdir test; cd test
+    cp $mesaInp mesa.inp
+
+    export  PATH=$PATH:$out/bin
+    mesa
+
+    echo "SCF Energy:"
+    grep "9        -1.1231191" mesa.out
+
+    echo "Check for job completion"
+    grep summary: mesa.out
+  '';
+
   meta = with stdenv.lib; {
     description = "Electronic structure and scattering program";
     license = licenses.unfree;
