@@ -7,7 +7,7 @@
 
 let
   version = "V2.1.1";
-  python = python2.withPackages(p: with p; [ numpy ]);
+  python = python2.withPackages(p: with p; [ numpy pyquante ]);
 
 in stdenv.mkDerivation {
   name = "sharc-${version}";
