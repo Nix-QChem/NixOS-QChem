@@ -1,9 +1,9 @@
 { stdenv, buildPythonPackage, fetchFromGitHub
-, cmake, numpy, scipy, h5py, libcint, libxc
+, numpy, scipy, h5py, libcint, libxc
 } :
 
 let
-  version = "1.6.1";
+  version = "1.6.4";
 
 in buildPythonPackage {
   pname = "pyscf";
@@ -13,10 +13,9 @@ in buildPythonPackage {
     owner = "pyscf";
     repo = "pyscf";
     rev = "v${version}";
-    sha256 = "12mylvc3s5pc9y6d8phxa1nqkbhjyrpd837k1skqrrv1s9888xnr";
+    sha256 = "0ngbpy4gc7p1wb9vlhbl7k66nsyr28nv7shj71gcwm5vb115lnwy";
   };
 
-  nativeBuildInputs = [ cmake ];
   propagatedBuildInputs = [ numpy scipy h5py ];
   buildInputs = [ libcint libxc ];
 

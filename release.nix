@@ -87,7 +87,7 @@ in {
     sharc
     sharc21;
 
-  #pyscf = pkgs.python3Packages.pyscf;
+  pyscf = pkgs.python3Packages.pyscf;
   pyquante = pkgs.python2Packages.pyquante;
 
   # Packages depend on optimized libs
