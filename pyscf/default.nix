@@ -37,7 +37,7 @@ in buildPythonPackage {
   meta = with stdenv.lib; {
     description = "Python-based simulations of chemistry framework";
     homepage = https://pyscf.github.io/;
-    license = licenses.apl20;
+    license = licenses.asl20;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
   };

@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
   meta = with stdenv.lib; {
     description = "A spin-adapted implementation of DMRG for ab initio quantum chemistry";
     homepage = "http://sebwouters.github.io/CheMPS2";
-    license = license.gpl2;
+    license = licenses.gpl2;
     maintainers = [ maintainers.markuskowa ];
   };
 }

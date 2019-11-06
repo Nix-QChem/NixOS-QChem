@@ -23,7 +23,7 @@ buildPythonPackage rec {
   meta = with lib; {
     description = "Open-source suite of programs for developing quantum chemistry methods";
     homepage = "http://pyquante.sourceforge.net/";
-    license = license.bsd3;
+    license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
   };
 }

@@ -89,7 +89,7 @@ in stdenv.mkDerivation {
   meta = with stdenv.lib; {
     inherit homepage;
     description = "Molecular dynamics visualisation program";
-    license = unfree;
+    license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
   };

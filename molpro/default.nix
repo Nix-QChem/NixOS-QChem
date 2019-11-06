@@ -79,7 +79,7 @@ in stdenv.mkDerivation {
   meta = with stdenv.lib; {
     description = "Quantum chemistry program package";
     homepage = https://www.molpro.net;
-    licenses = licences.unfree;
+    license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
   };
