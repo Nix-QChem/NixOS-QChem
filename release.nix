@@ -74,6 +74,7 @@ in {
   scalapack=pkgs.openmpiPkgs.scalapack;
 
   inherit (pkgs)
+    chemps2
     cp2k
     bagel
     ergoscf
@@ -88,6 +89,7 @@ in {
     sharc21;
 
   pyscf = pkgs.python3Packages.pyscf;
+  pychemps2 = pkgs.python3Packages.pychemps2;
   pyquante = pkgs.python2Packages.pyquante;
 
   # Packages depend on optimized libs

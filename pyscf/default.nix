@@ -23,6 +23,17 @@ in buildPythonPackage {
 
   doCheck = true;
 
+  # setup does not build/install DMRG modules
+#  postPatch = ''
+#    cat <<EOF > pyscf/dmrgscf/settings.py
+#    import os
+#    from pyscf import lib
+#    PYCHEMPS2BIN = '${chemps2}/lib/libchemps2.so'
+#    EOF
+
+#    chmod +x pyscf/dmrgscf/settings.py
+#  '';
+
   meta = with stdenv.lib; {
     description = "Python-based simulations of chemistry framework";
     homepage = https://pyscf.github.io/;

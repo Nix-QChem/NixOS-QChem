@@ -133,6 +133,8 @@ in with super;
   mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;
 
   ### Quantum Chem
+  chemps2 = callPackage ./chemps2 {};
+
   cp2k = self.openmpiPkgs.cp2k;
 
   bagel = self.openmpiPkgs.bagel;
