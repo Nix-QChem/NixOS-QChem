@@ -4,11 +4,12 @@
 } :
 
 let
-  version = "V2.0";
+  version = "2.0";
   python = python2.withPackages(p: with p; [ numpy ]);
 
 in stdenv.mkDerivation {
-  name = "sharc-${version}";
+  pname = "sharc";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "sharc-md";

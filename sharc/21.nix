@@ -6,11 +6,12 @@
 } :
 
 let
-  version = "V2.1.1";
+  version = "2.1.1";
   python = python2.withPackages(p: with p; [ numpy pyquante ]);
 
 in stdenv.mkDerivation {
-  name = "sharc-${version}";
+  pname = "sharc";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "sharc-md";
@@ -95,6 +96,7 @@ in stdenv.mkDerivation {
     license = licenses.gpl3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
+    note = "Untested";
   };
 }
 

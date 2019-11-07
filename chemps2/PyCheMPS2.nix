@@ -4,7 +4,7 @@
 
 buildPythonPackage {
   pname = "PyCheMPS2";
-  inherit (chemps2) version src;
+  inherit (chemps2) version src meta;
 
   nativeBuildInputs = [ cython ];
 

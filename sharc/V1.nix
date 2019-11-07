@@ -4,11 +4,12 @@
 } :
 
 let
-  version = "V1.0";
+  version = "1.0";
   python = python2.withPackages(p: with p; [ numpy ]);
 
 in stdenv.mkDerivation {
-  name = "sharc-${version}";
+  pname = "sharc";
+  inherit version;
 
   src = requireFile {
     url = "https://www.sharc-md.org";

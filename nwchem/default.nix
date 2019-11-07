@@ -177,6 +177,7 @@ in stdenv.mkDerivation {
       license = {
         fullName = "Educational Community License, Version 2.0";
         url = https://github.com/nwchemgit/nwchem/blob/release-6-8/LICENSE.TXT;
+        shortName = "ECL 2.0";
       };
     };
 

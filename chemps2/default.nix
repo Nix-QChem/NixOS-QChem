@@ -1,12 +1,12 @@
 { stdenv, fetchFromGitHub, cmake, openblasCompat, hdf5 } :
 
 stdenv.mkDerivation rec {
-  name = "CheMPS2";
+  pname = "CheMPS2";
   version = "1.8.9";
 
   src = fetchFromGitHub {
     owner = "SebWouters";
-    repo = name;
+    repo = pname;
     rev = "v${version}";
     sha256 = "0813z3myyri11lhh18kfpg5xs7imds9dg4kmab82lpp2isymakic";
   };
