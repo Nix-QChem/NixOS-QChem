@@ -199,14 +199,22 @@ in with super;
   # Needed for CP2K
   libint1 = callPackage ./libint/1.nix { };
 
+
+  # libint configured for bagel
+  # See https://github.com/evaleev/libint/wiki#bagel
   libint-bagel = callPackage ./libint { cfg = [
-    "--esuper.nable-eri=1"
+    "--enable-eri=1"
     "--enable-eri3=1"
     "--enable-eri2=1"
     "--with-max-am=6"
+    "--with-eri3-max-am=6"
+    "--with-eri2-max-am=6"
+    "--disable-unrolling"
+    "--enable-generic-code"
     "--with-cartgauss-ordering=bagel"
     "--enable-contracted-ints"
-  ];};
+  ] ++ lib.optional cfg.optAVX "--enable-fma"
+  ;};
 
   libxsmm = callPackage ./libxsmm { };
 

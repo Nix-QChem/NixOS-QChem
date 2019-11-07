@@ -1,10 +1,11 @@
 { stdenv, fetchFromGitHub, autoconf, automake, libtool
 , doxygen, texlive, python, perl, gmpxx, mpfr, boost
-,  cfg ? []
+, eigen
+, cfg ? []
 } :
 
 let
-  version = "2.4.2";
+  version = "2.6.0";
 
 in stdenv.mkDerivation {
   name = "libint-${version}";
@@ -13,7 +14,7 @@ in stdenv.mkDerivation {
     owner = "evaleev";
     repo = "libint";
     rev = "v${version}";
-    sha256 = "0lpfri0gw0nb9khzm9ppgzlh4z7sl3xrx7hyql0dvz9rc7kh96w7";
+    sha256 = "0pbc2j928jyffhdp4x5bkw68mqmx610qqhnb223vdzr0n2yj5y19";
   };
 
   postPatch = ''
