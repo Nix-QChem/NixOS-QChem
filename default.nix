@@ -34,7 +34,8 @@ let
 
     # MKL is the default. Relativistic methods are broken with non-MKL libs
     bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; };
-    bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; };
+    bagel-openblas = callPackage ./bagel { blas = self.openblas; mpi=pkg; };
+    bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; withScalapack = true; };
     bagel = MPI.bagel-mkl;
 
     hpl = callPackage ./hpl { mpi=pkg; };

@@ -1,6 +1,7 @@
 { stdenv, lib, pkgs, fetchFromGitHub, autoconf, automake, libtool
 , python, boost159, mpi ? pkgs.openmpi, libxc, fetchpatch, blas
-, scalapack ? null, makeWrapper, openssh
+, scalapack, withScalapack ? false
+, makeWrapper, openssh
 } :
 
 let
@@ -26,7 +27,7 @@ in stdenv.mkDerivation {
 
   nativeBuildInputs = [ autoconf automake libtool openssh boost159 ];
   buildInputs = [ python boost159 libxc blas mpi ]
-                ++ lib.optional (scalapack != null) scalapack;
+                ++ lib.optional withScalapack scalapack;
 
   #
   # Furthermore, if relativistic calculations fail without MKL,
@@ -40,7 +41,8 @@ in stdenv.mkDerivation {
   BOOST_ROOT=boost159;
 
   configureFlags = [ "--with-libxc" "--with-mpi=${mpiType}" "--with-boost=${boost159}" ]
-                   ++ lib.optional ( blasName == "mkl" ) "--enable-mkl";
+                   ++ lib.optional ( blasName == "mkl" ) "--enable-mkl"
+                   ++ lib.optional ( !withScalapack ) "--disable-scalapack";
 
 #  outputs = [ "out" ];
 
