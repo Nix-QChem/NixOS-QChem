@@ -27,6 +27,7 @@ in {
   openmpiPkgs = {
     inherit (pkgs.openmpiPkgs)
       cp2k
+      hpl
       bagel-mkl-scl
       bagel
       mctdh
@@ -79,7 +80,6 @@ in {
     bagel
     ergoscf
     fftwOpt
-    hpl
     hwloc-x11
     molcas
     nwchem

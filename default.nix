@@ -38,7 +38,7 @@ let
     bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; withScalapack = true; };
     bagel = MPI.bagel-mkl;
 
-    hpl = callPackage ./hpl { mpi=pkg; };
+    hpl = super.hpl.override { mpi=pkg; };
 
     mctdh = callPackage ./mctdh { useMPI=true; mpi=pkg; scalapack=MPI.scalapack; };
 
