@@ -25,12 +25,25 @@ in (openmolcas.override {
     name = "excessive-h5-size"; # Can be removed in the update
     url = "https://gitlab.com/Molcas/OpenMolcas/commit/73fae685ed8a0c41d5109ce96ade31d4924c3d9a.patch";
     sha256 = "1wdk1vpc0y455dinbxhc8qz3fh165wpdcrhbxia3g2ppmmpi11sc";
-  }) ];
+  }) (fetchpatch {
+    name = "chemps2-1.8.8-compat";
+    url = "https://gitlab.com/Molcas/OpenMolcas/commit/20bc385bd0b4e36f66385e4bfb58134a19b6faa5.patch";
+    sha256 = "1fpnhq7jk34g621k2lx7w9wl8arms12g66485lb6llii1jixpq82";
+  })];
 
   prePatch = ''
     rm -r External/libwfa
     cp -r ${srcLibwfa} External/libwfa
     chmod -R u+w External/
+  '';
+
+  postFixup = ''
+    # Wrong store path in shebang (no Python pkgs), force re-patching
+    sed -i "1s:/.*:/usr/bin/env python:" $out/bin/pymolcas
+    patchShebangs $out/bin
+    wrapProgram $out/bin/pymolcas \
+        --set MOLCAS $out \
+        --prefix PATH : "${chemps2}/bin"
   '';
 
   doInstallCheck = true;
