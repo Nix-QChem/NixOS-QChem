@@ -4,24 +4,28 @@
   stable ? true
 
   # nixpkgs sources
-, nixpkgs ? (import <nixpkgs>)
+  , nixpkgs ? (import <nixpkgs>)
+
+  # Override config from ENV
+  , extraCfg ? {}
 } :
 
 
 let
-  cfg = import ./cfg.nix;
-
+  # options for nixpkgs
   input = {
     overlays = [ (import ./default.nix) ];
-    config.allowUnfree=true;
+    config.allowUnfree = true;
+    config.qchem-config = extraCfg;
   };
 
+  # import package set
   pkgs = if stable then
     (import <nixpkgs>) input
   else
     (import (fetchGit { url="https://github.com/NixOS/nixpkgs"; })) input;
 
-
+  cfg = pkgs.config.qchem-config;
 
 in {
   openmpiPkgs = {

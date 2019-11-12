@@ -2,7 +2,10 @@ self: super:
 
 let
 
-  cfg = import ./cfg.nix;
+  cfg = if (builtins.hasAttr "qchem-config" super.config) then
+       super.config.qchem-config // (import ./cfg.nix)
+     else
+       (import ./cfg.nix);
 
   # build a package with specfific MPI implementation
   withMpi = pkg : mpi :
@@ -60,8 +63,10 @@ let
   pythonOverrides = import ./pythonPackages.nix;
 
 in with super;
-
 {
+  # Place composed config in pkgs
+  config.qchem-config = cfg;
+
   # Allow to provide a local download source for unfree packages
   requireFile = if cfg.srcurl == null then super.requireFile else
     { name, sha256, ... } :
