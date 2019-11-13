@@ -14,7 +14,7 @@ in stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "sharc-md";
     repo = "sharc";
-    rev = "${version}";
+    rev = "V${version}";
     sha256 = "14zsmqpcxjsycfqwdknfl9jqlpdyjxf4kagjh1kyrfq0lyavh6dm";
   };
 
