@@ -4,7 +4,7 @@
   stable ? true
 
   # nixpkgs sources
-  , nixpkgs ? (import <nixpkgs>)
+  , nixpkgs ? <nixpkgs>
 
   # Override config from ENV
   , extraCfg ? {}
@@ -21,7 +21,7 @@ let
 
   # import package set
   pkgs = if stable then
-    (import <nixpkgs>) input
+    (import nixpkgs) input
   else
     (import (fetchGit { url="https://github.com/NixOS/nixpkgs"; })) input;
 
