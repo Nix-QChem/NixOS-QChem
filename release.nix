@@ -92,7 +92,7 @@ in {
     sharc
     sharc21;
 
-  pyscf = pkgs.python3Packages.pyscf;
+  #pyscf = pkgs.python3Packages.pyscf;
   pychemps2 = pkgs.python3Packages.pychemps2;
   pyquante = pkgs.python2Packages.pyquante;
 
