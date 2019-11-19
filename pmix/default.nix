@@ -1,27 +1,28 @@
 { stdenv, fetchFromGitHub, perl, autoconf, automake
-, libtool, flex, libevent, hwloc, munge, zlib
+, libtool, flex, libevent, munge, zlib
 } :
 
 let
-  version = "2.1.4";
+  version = "2.2.3";
 
 in stdenv.mkDerivation {
   name = "pmix-${version}";
 
   src = fetchFromGitHub {
-    repo = "pmix";
-    owner = "pmix";
+    repo = "openpmix";
+    owner = "openpmix";
     rev = "v${version}";
-    sha256 = "1d1srgdjada8x02w3kp5sxxihcppn14jk6bwkb84mcpwxjnsnhqh";
+    sha256 = "0vmikw71hd35h86mzyrfpc6z3mfi503nx834gz596agvcqrd62si";
   };
 
   nativeBuildInputs = [ perl autoconf automake libtool flex ];
 
-  buildInputs = [ libevent hwloc munge zlib ];
+  buildInputs = [ libevent munge zlib ];
 
   configureFlags = [
     "--with-libevent=${libevent.dev}"
     "--with-munge=${munge}"
+    "--enable-pmix-binaries"
   ];
 
   preConfigure = ''
@@ -35,9 +36,10 @@ in stdenv.mkDerivation {
   doCheck = true;
 
   meta = with stdenv.lib; {
-    description = "";
-    homepage = https://;
-    license = with licenses; gpl2;
+    description = "Process management interface for HPC environments";
+    homepage = "https://pmix.org";
+    license = licenses.bsd3;
+    maintainers = [ maintainers.markuskowa ];
     platforms = with platforms; linux ++ darwin;
   };
 }
