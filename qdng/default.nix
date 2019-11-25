@@ -23,7 +23,7 @@ in stdenv.mkDerivation {
     ./genbs
   '';
 
-  buildInputs = [ gfortran fftw protobuf openblas
+  buildInputs = [ gfortran fftw protobuf openblasCompat
                   bzip2 zlib libxml2 flex bison ];
   nativeBuildInputs = [ automake autoconf libtool ];
 
