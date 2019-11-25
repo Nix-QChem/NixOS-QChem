@@ -1,19 +1,17 @@
-{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, openblas
+{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, openblasCompat
 , automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
 }:
 
 let
-  version = "20180527";
+  version = "20191125";
 
 in stdenv.mkDerivation {
   name = "qdng-${version}";
 
   src = requireFile {
     name = "qdng-${version}.tar.xz";
-    sha256 = "16agzp2aqb6yjmdpbnshjh6cw4kliqfvgfrbj76xcrycrbyk8hf9";
+    sha256 = "19269bavjilml3yvbl5q5klxzvsxjjqpkbpgklr9km5j2nhzvrsd";
   };
-
-  patches = [ ./multistate.patch ];
 
   configureFlags = [ "--enable-openmp" "--with-blas=-lopenblas" ];
 
