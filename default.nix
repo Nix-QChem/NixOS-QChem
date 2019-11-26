@@ -89,6 +89,8 @@ in with super;
 
   bagel = self.openmpiPkgs.bagel;
 
+  bagel-serial = callPackage ./bagel { mpi = null; blas = self.mkl; };
+
   gaussian = callPackage ./gaussian { inherit (cfg) optpath; };
 
   gaussview = callPackage ./gaussview { };

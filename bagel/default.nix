@@ -40,9 +40,11 @@ in stdenv.mkDerivation {
 
   BOOST_ROOT=boost159;
 
-  configureFlags = [ "--with-libxc" "--with-mpi=${mpiType}" "--with-boost=${boost159}" ]
-                   ++ lib.optional ( blasName == "mkl" ) "--enable-mkl"
-                   ++ lib.optional ( !withScalapack ) "--disable-scalapack";
+  configureFlags = with lib; [ "--with-libxc" "--with-boost=${boost159}" ]
+                   ++ optional ( mpi != null ) "--with-mpi=${mpiType}"
+                   ++ optional ( mpi == null ) "--disable-smith"
+                   ++ optional ( blasName == "mkl" ) "--enable-mkl"
+                   ++ optional ( !withScalapack ) "--disable-scalapack";
 
 #  outputs = [ "out" ];
 
@@ -57,7 +59,7 @@ in stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  postInstall = ''
+  postInstall = lib.optionalString (mpi != null) ''
     cat << EOF > $out/bin/bagel
     if [ \$# -lt 1 ]; then
     echo
@@ -69,6 +71,8 @@ in stdenv.mkDerivation {
     EOF
     chmod 755 $out/bin/bagel
 
+    '' +
+    ''
     # install test jobs
     mkdir -p $out/share/tests
     cp test/* $out/share/tests
@@ -78,7 +82,10 @@ in stdenv.mkDerivation {
     echo "Running HF test"
     export OMP_NUM_THREADS=1
     export MV2_ENABLE_AFFINITY=0
-    mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log
+
+    ${if (mpi != null) then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
+    else "$out/bin/BAGEL test/hf_svp_hf.json > log"}
+
     echo "Check output"
     grep "SCF iteration converged" log
     grep "99.847790" log

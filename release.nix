@@ -82,6 +82,7 @@ in {
     chemps2
     cp2k
     bagel
+    bagel-serial
     ergoscf
     fftwOpt
     hwloc-x11
