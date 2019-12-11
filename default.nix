@@ -151,6 +151,7 @@ in with super;
   };
 
   sharcV21 = callPackage ./sharc/21.nix {
+    bagel = self.bagel-serial;
     molcas = self.molcas;
     molpro = self.molpro12; # V2 only compatible with versions up to 2012
     useMolpro = if cfg.licMolpro != null then true else false;
