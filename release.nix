@@ -69,7 +69,6 @@ in {
       openshmem
       openblas
       openblasCompat
-      molcasUnstable
       osss-ucx
       pmix
       ucx;
@@ -87,6 +86,7 @@ in {
     fftwOpt
     hwloc-x11
     molcas
+    molcasUnstable
     nwchem
     molden
     sharcV1

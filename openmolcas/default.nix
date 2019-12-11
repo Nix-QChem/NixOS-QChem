@@ -24,7 +24,7 @@ in stdenv.mkDerivation {
     owner = "Molcas";
     repo = "OpenMolcas";
     rev = gitLabRev;
-    sha256 = "1s5px704li6xhxnf5j5q2j2vd32krsp862r7dg6m11b72q41svg4";
+    sha256 = "0qza7z275zgmg5k3yk4gk05wvbxycb72hbcka0qjvmyasgalir3a";
   };
 
   prePatch = ''
