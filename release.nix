@@ -69,7 +69,6 @@ in {
       openshmem
       openblas
       openblasCompat
-      molcasUnstable
       osss-ucx
       pmix
       ucx;
@@ -82,10 +81,13 @@ in {
     chemps2
     cp2k
     bagel
+    bagel-serial
     ergoscf
     fftwOpt
     hwloc-x11
     molcas
+    molcas1911
+    molcasUnstable
     nwchem
     molden
     sharcV1

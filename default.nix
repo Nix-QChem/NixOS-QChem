@@ -53,6 +53,12 @@ let
       globalarrays=MPI.globalarrays;
     };
 
+    openmolcas1911 = callPackage ./openmolcas/19.11.nix {
+      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
+      mpi=pkg;
+      globalarrays=MPI.globalarrays;
+    };
+
     openmolcasUnstable = callPackage ./openmolcas {
       texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
       mpi=pkg;
@@ -89,6 +95,8 @@ in with super;
 
   bagel = self.openmpiPkgs.bagel;
 
+  bagel-serial = callPackage ./bagel { mpi = null; blas = self.mkl; };
+
   gaussian = callPackage ./gaussian { inherit (cfg) optpath; };
 
   gaussview = callPackage ./gaussview { };
@@ -124,6 +132,10 @@ in with super;
 
   molcas = self.openmpiPkgs.openmolcas;
 
+  molcas1809 = self.molcas;
+
+  molcas1911 = self.openmpiPkgs.openmolcas1911;
+
   molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
 
   orca = callPackage ./orca { };
@@ -149,6 +161,7 @@ in with super;
   };
 
   sharcV21 = callPackage ./sharc/21.nix {
+    bagel = self.bagel-serial;
     molcas = self.molcas;
     molpro = self.molpro12; # V2 only compatible with versions up to 2012
     useMolpro = if cfg.licMolpro != null then true else false;
