@@ -81,6 +81,7 @@ in stdenv.mkDerivation {
   installCheckPhase = ''
     echo "Running HF test"
     export OMP_NUM_THREADS=1
+    export OMPI_MCA_rmaps_base_oversubscribe=1
     export MV2_ENABLE_AFFINITY=0
 
     ${if (mpi != null) then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
