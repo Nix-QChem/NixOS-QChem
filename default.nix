@@ -82,6 +82,13 @@ in with super;
 
   mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;
 
+  openmpi = super.openmpi.overrideAttrs (x: {
+    buildInputs = x.buildInputs ++ [ self.ucx ];
+    # Supress compiler error accordig to ucx's instructions
+    # https://github.com/openucx/ucx/wiki/OpenMPI-and-OpenSHMEM-installation-with-UCX#running-open-mpi-with-ucx
+    configureFlags = x.configureFlags ++ [ "--enable-mca-no-build=btl-uct" ];
+  });
+
   ### Quantum Chem
   chemps2 = callPackage ./chemps2 {};
 
