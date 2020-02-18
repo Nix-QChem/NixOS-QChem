@@ -3,14 +3,14 @@
 }:
 
 let
-  version = "20191125";
+  version = "20200218";
 
 in stdenv.mkDerivation {
   name = "qdng-${version}";
 
   src = requireFile {
     name = "qdng-${version}.tar.xz";
-    sha256 = "19269bavjilml3yvbl5q5klxzvsxjjqpkbpgklr9km5j2nhzvrsd";
+    sha256 = "0gdh5mb6wl66qcdmhg5yiz5irs1s3sgwmd12fzhxyfkxzkr7fagz";
   };
 
   configureFlags = [ "--enable-openmp" "--with-blas=-lopenblas" ];
