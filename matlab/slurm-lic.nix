@@ -14,7 +14,7 @@ writeShellScriptBin "matlab" ''
 
   if [ -n "$licsFound" ]; then
     echo "Licenses checked out. Running MATLAB..."
-    ${matlabEnv}/bin/matlab
+    ${matlabEnv}/bin/matlab "$@"
   else
     echo "No MATLAB license checked out. Aborting"
   fi
