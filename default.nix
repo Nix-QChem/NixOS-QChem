@@ -195,9 +195,6 @@ in with super;
     inherit gfortran;
   };
 
-  # Add scalapack to upstream derivation
-  mkl = callPackage ./mkl {};
-
   ### HPC libs and Tools
 
   ibsim = callPackage ./ibsim { };
