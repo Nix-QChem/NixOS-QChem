@@ -36,7 +36,7 @@ let
     meta = with stdenv.lib; {
       inherit homepage;
       description = "Molecular dyanmics visualisation program";
-      license = unfree;
+      license = licenses.unfree;
       maintainers = [ maintainers.markuskowa ];
       platforms = platforms.linux;
     };
