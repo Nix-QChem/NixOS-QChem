@@ -86,7 +86,6 @@ in {
     fftwOpt
     hwloc-x11
     molcas
-    molcas1911
     molcasUnstable
     nwchem
     molden
