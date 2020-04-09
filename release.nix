@@ -71,6 +71,7 @@ in {
       openblasCompat
       osss-ucx
       pmix
+      spglib
       ucx;
 
   };

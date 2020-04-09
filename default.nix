@@ -247,6 +247,8 @@ in with super;
 
   pmix = callPackage ./pmix { };
 
+  spglib = callPackage ./spglib {};
+
   ucx = callPackage ./ucx { enableOpt=true; };
 
   # Utilities
