@@ -227,7 +227,7 @@ in with super;
   ] ++ lib.optional cfg.optAVX "--enable-fma"
   ;};
 
-  libxsmm = callPackage ./libxsmm { };
+  libxsmm = callPackage ./libxsmm { optAVX = cfg.optAVX; };
 
   mvapich = callPackage ./mvapich { };
 

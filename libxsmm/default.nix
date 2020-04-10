@@ -1,9 +1,10 @@
 { stdenv, fetchFromGitHub, which
 , gfortran, python, blas, utillinux
+, optAVX ? false
 } :
 
 let
-  version = "1.10";
+  version = "1.15";
 
 in stdenv.mkDerivation rec {
   name = "libxsmm-${version}";
@@ -12,23 +13,23 @@ in stdenv.mkDerivation rec {
     owner = "hfp";
     repo = "libxsmm";
     rev = version;
-    sha256 = "13rika8f2f975nsgf5si7xippwfd5g0rbxirv3q15nrmhc079iq4";
+    sha256 = "1406qk7k2k4qfqy4psqk55iihsrx91w8kjgsa82jxj50nl9nw5nj";
   };
 
   nativeBuildInputs = [ which python utillinux ];
   buildInputs = [ gfortran ];
 
   postPatch = ''
-    patchShebangs ./scripts
-    patchShebangs ./tests
-    patchShebangs .mktmp.sh
+    for i in ./scripts ./tests .mktmp.sh ./.state.sh; do
+      patchShebangs $i
+    done
   '';
 
   makeFlags = [
     "STATIC=0"
     "FC=gfortran"
-    "AVX=2"
-  ];
+    "OMP=1"
+  ] ++ stdenv.lib.optional (!optAVX) "AVX=2";
 
   preInstall = ''
     mkdir -p $out
