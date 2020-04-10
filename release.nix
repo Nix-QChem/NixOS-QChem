@@ -61,7 +61,7 @@ in {
 
   extra = {
     inherit (pkgs)
-      libint
+      libint2
       libint1
       ibsim
       libxsmm

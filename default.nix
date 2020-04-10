@@ -205,7 +205,7 @@ in with super;
 
   libcint = callPackage ./libcint { };
 
-  libint = callPackage ./libint { };
+  libint2 = callPackage ./libint { optAVX = cfg.optAVX; };
 
   # Needed for CP2K
   libint1 = callPackage ./libint/1.nix { };
