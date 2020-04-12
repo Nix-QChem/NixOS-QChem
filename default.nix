@@ -192,15 +192,18 @@ in with super;
   ### Optmized HPC libs
 
   # Provide an optimized fftw library.
+  # fftw supports instruction autodetect
   # Overriding fftw completely causes a mass rebuild!
-  fftwOpt = if cfg.optAVX then
-    fftw.overrideDerivation ( oldAttrs: {
+  fftwOpt = fftw.overrideDerivation ( oldAttrs: {
     configureFlags = oldAttrs.configureFlags
-      ++ [ "--enable-avx" "--enable-avx2" "--enable-fma" ];
+    ++ [
+      "--enable-avx"
+      "--enable-avx2"
+      "--enable-fma"
+      "--enable-avx-128-fma"
+    ];
     buildInputs = [ self.gfortran ];
-  })
-  else
-    super.fftw;
+  });
 
   # For molcas and chemps2
   hdf5-full = hdf5.override {
