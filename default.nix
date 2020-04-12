@@ -170,6 +170,19 @@ in with super;
 
   matlab = callPackage ./matlab { inherit (cfg) optpath; };
 
+
+  octave = (super.octave.override {
+    inherit (super)
+      hdf5
+      ghostscript
+      glpk
+      jdk
+      suitesparse
+      gnuplot
+      qscintilla;
+      qt = super.qt4;
+  }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
+
   ### Python packages
 
   python3 = super.python3.override { packageOverrides=pythonOverrides; };

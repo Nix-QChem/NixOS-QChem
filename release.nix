@@ -90,6 +90,7 @@ in {
     molcasUnstable
     nwchem
     molden
+    octave
     sharcV1
     sharc
     sharc21;
