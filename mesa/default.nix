@@ -5,7 +5,8 @@ let
   version = "20140610";
 
 in stdenv.mkDerivation {
-  name = "mesa-${version}";
+  pname = "mesa";
+  inherit version;
 
   src = requireFile {
     name = "mesa_lucchese.tar.xz";

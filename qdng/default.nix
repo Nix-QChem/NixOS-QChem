@@ -6,7 +6,8 @@ let
   version = "20200218";
 
 in stdenv.mkDerivation {
-  name = "qdng-${version}";
+  pname = "qdng";
+  inherit version;
 
   src = requireFile {
     name = "qdng-${version}.tar.xz";

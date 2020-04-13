@@ -18,7 +18,8 @@ let
   };
 
 in stdenv.mkDerivation {
-  name = "openmolcas-${version}";
+  pname = "openmolcas";
+  inherit version;
 
   src = fetchFromGitLab {
     owner = "Molcas";

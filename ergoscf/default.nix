@@ -4,7 +4,8 @@ let
   version = "3.8";
 
 in stdenv.mkDerivation {
-  name = "ergoscf-${version}";
+  pname = "ergoscf";
+  inherit version;
 
   src = fetchurl {
     url = "http://www.ergoscf.org/source/tarfiles/ergo-${version}.tar.gz";

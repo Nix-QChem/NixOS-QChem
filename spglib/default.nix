@@ -1,7 +1,7 @@
 { stdenv, fetchFromGitHub, cmake } :
 
 stdenv.mkDerivation rec {
-  name = "spglib";
+  pname = "spglib";
   version = "1.14.1";
 
 

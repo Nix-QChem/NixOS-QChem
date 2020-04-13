@@ -7,7 +7,8 @@ let
   version = "1.15";
 
 in stdenv.mkDerivation rec {
-  name = "libxsmm-${version}";
+  pname = "libxsmm";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "hfp";

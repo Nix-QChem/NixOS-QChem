@@ -15,7 +15,8 @@ let
   };
 
 in stdenv.mkDerivation {
-  name = "nwchem-${version}";
+  pname = "nwchem";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "nwchemgit";

@@ -20,7 +20,8 @@ let
   '';
 
 in stdenv.mkDerivation {
-  name = "mctdh-${version}";
+  pname = "mctdh";
+  inherit version;
 
   src = requireFile {
     website = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";

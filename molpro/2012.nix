@@ -4,7 +4,8 @@ let
   version = "2012.1.12";
 
 in stdenv.mkDerivation {
-  name = "molpro-${version}";
+  pname = "molpro";
+  inherit version;
 
   src = requireFile {
     url = http://www.molpro.net;

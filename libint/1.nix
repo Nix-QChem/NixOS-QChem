@@ -6,7 +6,8 @@ let
   version = "1.1.5";
 
 in stdenv.mkDerivation {
-  name = "libint-${version}";
+  pname = "libint";
+  inherit version;
 
   src = fetchurl {
     url = "mirror://sourceforge/libint/libint-${version}.tar.gz";

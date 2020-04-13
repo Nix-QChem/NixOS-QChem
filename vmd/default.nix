@@ -7,7 +7,8 @@ let
   homepage = "https://www.ks.uiuc.edu/Research/vmd/";
 
   plugins = stdenv.mkDerivation {
-    name = "vmd-plugins-${version}";
+    pname = "vmd-plugins";
+    inherit version;
 
     src = requireFile {
       url = homepage;
@@ -43,7 +44,8 @@ let
   };
 
 in stdenv.mkDerivation {
-  name = "vmd-${version}";
+  pname = "vmd";
+  inherit version;
 
   src = requireFile {
     url = homepage;

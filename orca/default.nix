@@ -6,7 +6,8 @@ let
   version = "4.2.0";
 
 in stdenv.mkDerivation {
-  name = "orca-${version}";
+  pname = "orca";
+  inherit version;
 
   src = requireFile {
     name = "orca_4_2_0_linux_x86-64_shared_openmpi314.tar.xz";

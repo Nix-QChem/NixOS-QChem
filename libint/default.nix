@@ -14,7 +14,7 @@
 } :
 
 stdenv.mkDerivation rec {
-  name = "libint2";
+  pname = "libint2";
   version = "2.6.0";
 
   src = fetchFromGitHub {
