@@ -18,7 +18,12 @@
 , outFile ? []
 # Some commonly required variables
 , OMP_NUM_THREADS ? 1
+# Allow more CPUs than are available
 , OMPI_MCA_rmaps_base_oversubscribe ? 1
+# UCX fails in sandbox
+, OMPI_MCA_btl ? "self,vader"
+, OMPI_MCA_pml ? "ob1,v,cm"
+# Place all inputs (packages here)
 , nativeBuildInputs ? []
 , ...
 }@attrs :
@@ -31,6 +36,8 @@ let
     "nativeBuildInputs"
     "OMP_NUM_THREADS"
     "OMPI_MCA_rmaps_base_oversubscribe"
+    "OMPI_MCA_btl"
+    "OMPI_MCA_pml"
   ];
 
   batsTest = writeTextFile {
@@ -40,7 +47,7 @@ let
       #!${bats}/bin/bats
       setup () {
 
-        # Make sure we TEST_NUM_CPUS defined
+        # Make sure TEST_NUM_CPUS is defined
         # even if we run standalone
         if [ -z "$TEST_NUM_CPUS" ]; then
           TEST_NUM_CPUS=${toString numCpus}
@@ -63,7 +70,7 @@ let
   } ./batsTest.sh;
 
 
-in stdenvNoCC.mkDerivation {
+in stdenvNoCC.mkDerivation ({
   inherit
     name
     auxFiles
@@ -127,5 +134,5 @@ in stdenvNoCC.mkDerivation {
   '';
 
 
-} // rest
+} // rest)
 
