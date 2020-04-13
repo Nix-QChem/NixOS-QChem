@@ -287,6 +287,7 @@ in with super;
     molpro = callPackage ./tests/molpro { };
     cp2k = callPackage ./tests/cp2k { };
     bagel = callPackage ./tests/bagel { };
+    mesa-qc = callPackage ./tests/mesa { };
     molcas = callPackage ./tests/molcas { };
     molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
   };
