@@ -114,22 +114,8 @@ in {
     };
   };
 
-  tests = {
-    bats-basic = pkgs.batsTest {
-      dontRun = false;
-      name = "batsBasic";
-      testScript=''
-        @test "simple test" {
-          true
-        }
-      '';
-    };
-    inherit (pkgs.qc-tests) molpro cp2k;
-
-     bagel = import ./tests/bagel-native.nix { pkgs=pkgs; bagel=pkgs.bagel; };
-     bagelParallel = import ./tests/bagel-parallel.nix { pkgs=pkgs; bagel=pkgs.bagel; };
-   };
-
+  tests = pkgs.qc-tests;
+  testsFiles = pkgs.qc-testFiles;
 } // (if cfg.srcurl != null then
   {
     inherit (pkgs)

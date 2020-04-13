@@ -284,8 +284,11 @@ in with super;
   batsTest = callPackage ./builders/batsTest.nix {};
 
   qc-tests = {
-    molpro = pkgs.callPackage ./tests/molpro { };
-    cp2k = pkgs.callPackage ./tests/cp2k { };
+    molpro = callPackage ./tests/molpro { };
+    cp2k = callPackage ./tests/cp2k { };
+    bagel = callPackage ./tests/bagel { };
+    molcas = callPackage ./tests/molcas { };
+    molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
   };
 
   qc-testFiles = let
