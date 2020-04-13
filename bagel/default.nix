@@ -1,5 +1,5 @@
 { stdenv, lib, pkgs, fetchFromGitHub, autoconf, automake, libtool
-, python, boost159, mpi ? pkgs.openmpi, libxc, fetchpatch, blas
+, python, boost, mpi ? pkgs.openmpi, libxc, fetchpatch, blas
 , scalapack, withScalapack ? false
 , makeWrapper, openssh
 } :
@@ -25,8 +25,8 @@ in stdenv.mkDerivation {
     sha256 = "184p55dkp49s99h5dpf1ysyc9fsarzx295h7x0id8y0b1ggb883d";
   };
 
-  nativeBuildInputs = [ autoconf automake libtool openssh boost159 ];
-  buildInputs = [ python boost159 libxc blas mpi ]
+  nativeBuildInputs = [ autoconf automake libtool openssh boost ];
+  buildInputs = [ python boost libxc blas mpi ]
                 ++ lib.optional withScalapack scalapack;
 
   #
@@ -38,9 +38,9 @@ in stdenv.mkDerivation {
 
   LDFLAGS = lib.optionalString (blasName == "mkl") "-L${blas}/lib/intel64";
 
-  BOOST_ROOT=boost159;
+  BOOST_ROOT=boost;
 
-  configureFlags = with lib; [ "--with-libxc" "--with-boost=${boost159}" ]
+  configureFlags = with lib; [ "--with-libxc" "--with-boost=${boost}" ]
                    ++ optional ( mpi != null ) "--with-mpi=${mpiType}"
                    ++ optional ( mpi == null ) "--disable-smith"
                    ++ optional ( blasName == "mkl" ) "--enable-mkl"
