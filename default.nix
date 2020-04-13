@@ -275,56 +275,23 @@ in with super;
   ucx = callPackage ./ucx { enableOpt=true; };
 
   # Utilities
-  writeScriptSlurm =
-    { name
-    , text
-    , N ? 1     # No. of nodes
-    , n ? null  # No. of task
-    , c ? null  # No. of CPUs per task
-    , J ? null  # Job name
-    # shell to use
-    , shell ? "bash"
-    # if set will use nix-shell as script interpreter
-    , nixShellArgs ? null
-    } :
-    with super.lib; super.writeTextFile {
-      inherit name;
-      executable = true;
-      text = ''
-        #!/usr/bin/env ${if nixShellArgs == null then "${shell}" else "nix-shell"}
-        #${optionalString (nixShellArgs != null) "#!nix-shell -i ${shell} ${nixShellArgs}"}
-        #SBATCH -J ${if (J != null) then J else name}
-        #SBATCH -N ${toString N}
-        #${optionalString (n != null) "SBATCH -n ${toString n}"}
-        #${optionalString (c != null) "SBATCH -c ${toString c}"}
-        ${text}
-      '';
-    };
+  writeScriptSlurm = callPackage ./builders/slurmScript.nix {};
 
-  #
   # A wrapper to enforce license checkouts with slurm
-  #
-  slurmLicenceWrapper = { name, license, exe, runProg } : writeShellScriptBin exe ''
-    if [ -z "$SLURM_JOB_ID" ]; then
-      echo "${name} can only be run in a slurm environment"
-      echo
-      echo "Don't forget to check out a license by adding '-L ${license} to srun/sbatch/etc."
-      exit
-    fi
+  slurmLicenceWrapper = callPackage ./builders/licenseWrapper.nix {};
 
-    licName="${license}"
+  # build bats tests
+  batsTest = callPackage ./builders/batsTest.nix {};
 
-    lics=`scontrol show job $SLURM_JOB_ID | grep Licenses | sed 's/.*Licenses=\(.*\) .*/\1/'`
+  qc-tests = {
+    molpro = pkgs.callPackage ./tests/molpro { };
+    cp2k = pkgs.callPackage ./tests/cp2k { };
+  };
 
-    licsFound=`echo "$lics"x | grep -e "''${licName}x"`
-
-    if [ -n "$licsFound" ]; then
-      echo "Licenses checked out. Running ${name}..."
-      ${runProg}
-    else
-      echo "No ${name} license checked out. Aborting!"
-    fi
-  '';
+  qc-testFiles = let
+    batsDontRun = self.batsTest.override { overrideDontRun = true; };
+  in builtins.mapAttrs (n: v: v.override { batsTest = batsDontRun; })
+    self.qc-tests;
 
 }
 
