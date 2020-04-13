@@ -80,8 +80,8 @@ in stdenv.mkDerivation {
   preBuild = ''
     ln -s ${ga_src} src/tools/ga-${versionGA}.tar.gz
 
-    export LIBMPI=`mpif90 -showme:link`
-    export NWCHEM_TOP="`pwd`"
+    export LIBMPI=$(mpif90 -showme:link)
+    export NWCHEM_TOP="$PWD"
 
 
     cd src

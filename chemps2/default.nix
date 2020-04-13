@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   doCheck = true;
 
   preCheck = ''
-    export LD_LIBRARY_PATH=`pwd`/CheMPS2
+    export LD_LIBRARY_PATH=$PWD/CheMPS2
     export OMP_NUM_THREADS=1
   '';
 

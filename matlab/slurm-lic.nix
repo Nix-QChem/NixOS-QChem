@@ -8,9 +8,9 @@ writeShellScriptBin "matlab" ''
 
   licName="matlab"
 
-  lics=`scontrol show job $SLURM_JOB_ID | grep Licenses | sed 's/.*Licenses=\(.*\) .*/\1/'`
+  lics=$(scontrol show job $SLURM_JOB_ID | grep Licenses | sed 's/.*Licenses=\(.*\) .*/\1/')
 
-  licsFound=`echo "$lics"x | grep -e "''${licName}x"`
+  licsFound=$(echo "$lics"x | grep -e "''${licName}x")
 
   if [ -n "$licsFound" ]; then
     echo "Licenses checked out. Running MATLAB..."

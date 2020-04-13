@@ -61,7 +61,7 @@ in stdenv.mkDerivation {
 
     echo -e "n\nn\ny\nn\nn\n" | install/install_mctdh
 
-    export MCTDH_DIR=`pwd`/
+    export MCTDH_DIR=$PWD/
   '';
 
   buildPhase = ''
@@ -78,8 +78,8 @@ in stdenv.mkDerivation {
     cp bin/binary/x86_64/* $out/bin
 
     ver=${lib.versions.major version}${lib.versions.minor version}
-    for i in `ls $out/bin/*''${ver}*`; do
-      ln -s "$i" `echo $i | sed "s/\(.*\)''${ver}.*/\1/"`
+    for i in $(ls $out/bin/*''${ver}*); do
+      ln -s "$i" $(echo $i | sed "s/\(.*\)''${ver}.*/\1/")
     done
   '';
 

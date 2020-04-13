@@ -65,7 +65,7 @@ in stdenv.mkDerivation {
       --set-rpath $out/lib:$out/lib/MesaGL:${libPathEXE} $out/bin/gview.exe
 
     # Fix the libs
-    for l in `ls $out/lib/libQt*`; do
+    for l in $(ls $out/lib/libQt*); do
         patchelf --set-rpath '$ORIGIN':$out/lib:${libPathQt} $l
     done
 

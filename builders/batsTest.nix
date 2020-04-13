@@ -98,7 +98,7 @@ in stdenvNoCC.mkDerivation ({
   setupPhase = ''
     echo "Copying aux files"
     for f in $auxFiles; do
-      orgName=`echo $f |  sed 's:${builtins.storeDir}/::;s/.\{32\}-//'`
+      orgName=$(echo $f |  sed 's:${builtins.storeDir}/::;s/.\{32\}-//')
       echo " $orgName"
       cp $f $orgName
     done
@@ -127,7 +127,7 @@ in stdenvNoCC.mkDerivation ({
 
     # Copy aux files to output
     for f in $auxFiles; do
-      orgName=`echo $f |  sed 's:${builtins.storeDir}/::;s/.\{32\}-//'`
+      orgName=$(echo $f |  sed 's:${builtins.storeDir}/::;s/.\{32\}-//')
       echo "copy $orgName"
       cp $f $out/$orgName
     done

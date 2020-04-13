@@ -67,7 +67,7 @@ in stdenv.mkDerivation {
      EOF
 
      # pretend this is a writable home dir
-     export HOME=`pwd`
+     export HOME=$PWD
 
      $out/bin/molpro $inp.inp
 

@@ -63,7 +63,7 @@ in stdenv.mkDerivation {
     cat << EOF > $out/bin/bagel
     if [ \$# -lt 1 ]; then
     echo
-    echo "Usage: `basename \\$0` [mpirun parameters] <input file>"
+    echo "Usage: $(basename \\$0) [mpirun parameters] <input file>"
     echo
     exit
     fi

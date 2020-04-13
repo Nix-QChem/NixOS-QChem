@@ -73,7 +73,7 @@ in stdenv.mkDerivation {
 
     ln -s $out/share/sharc/tests $out/tests
 
-    for i in `find $out/bin -type f`; do
+    for i in $(find $out/bin -type f); do
       wrapProgram $i --set SHARC $out/bin \
                      --set HOSTNAME localhost \
                      --set-default MOLCAS ${molcas} \
@@ -82,7 +82,7 @@ in stdenv.mkDerivation {
   '';
 
   postFixup = ''
-    for i in `find $out/share -name run.sh`; do
+    for i in $(find $out/share -name run.sh); do
        # shebang is broken (missing !)
        echo "fixing $i"
        sed -i '1s:.*:#!${stdenv.shell}:' $i
