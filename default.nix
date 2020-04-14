@@ -272,7 +272,7 @@ in with super;
   writeScriptSlurm = callPackage ./builders/slurmScript.nix {};
 
   # A wrapper to enforce license checkouts with slurm
-  slurmLicenceWrapper = callPackage ./builders/licenseWrapper.nix {};
+  slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };
 
   # build bats tests
   batsTest = callPackage ./builders/batsTest.nix {};

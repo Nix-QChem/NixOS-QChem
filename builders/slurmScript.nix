@@ -1,5 +1,6 @@
-{ lib, writeTextFile
-, name
+{ lib, writeTextFile } :
+
+{ name
 , text
 , N ? 1     # No. of nodes
 , n ? null  # No. of task
@@ -25,5 +26,5 @@ writeTextFile {
     #${optionalString (c != null) "SBATCH -c ${toString c}"}
     ${text}
   '';
-};
+}
 

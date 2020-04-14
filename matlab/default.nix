@@ -1,5 +1,5 @@
 { stdenv, writeShellScriptBin, buildFHSUserEnv, optpath
-, slurmLic ? null, slurmLicenceWrapper
+, slurmLic ? null, slurmLicenseWrapper
 } :
 
 

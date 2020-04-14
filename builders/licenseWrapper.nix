@@ -1,4 +1,13 @@
-{ writeShellScriptBin, name, license, exe, runProg } :
+{ writeShellScriptBin } :
+
+{ name
+# slurm license name
+, license
+# name of wrapper executable
+, exe
+# program to run
+, runProg
+} :
 
 writeShellScriptBin exe ''
   if [ -z "$SLURM_JOB_ID" ]; then
@@ -20,5 +29,5 @@ writeShellScriptBin exe ''
   else
     echo "No ${name} license checked out. Aborting!"
   fi
-'';
+''
 
