@@ -46,8 +46,6 @@ in stdenv.mkDerivation {
                    ++ optional ( blasName == "mkl" ) "--enable-mkl"
                    ++ optional ( !withScalapack ) "--disable-scalapack";
 
-#  outputs = [ "out" ];
-
   postPatch = ''
     # Fixed upstream
     sed -i '/using namespace std;/i\#include <string.h>' src/util/math/algo.cc
@@ -96,12 +94,12 @@ in stdenv.mkDerivation {
 
   doCheck = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Brilliantly Advanced General Electronic-structure Library";
-    homepage = http://www.shiozaki.northwestern.edu/bagel.php;
+    homepage = "https://nubakery.org";
     license = licenses.gpl3;
-    maintainers = maintainers.markuskowa;
-    platforms = platforms.linux;
+    maintainers = [ maintainers.markuskowa ];
+    platforms = [ "x86_64-linux" ];
   };
 }
 
