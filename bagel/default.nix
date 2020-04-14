@@ -1,5 +1,5 @@
-{ stdenv, lib, pkgs, fetchFromGitHub, autoconf, automake, libtool
-, python, boost, mpi ? pkgs.openmpi, libxc, fetchpatch, blas
+{ stdenv, lib, fetchFromGitHub, autoconf, automake, libtool
+, python, boost, mpi, libxc, fetchpatch, blas
 , scalapack, withScalapack ? false
 , makeWrapper, openssh
 } :
