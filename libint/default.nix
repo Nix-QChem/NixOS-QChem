@@ -1,6 +1,5 @@
 { stdenv, fetchFromGitHub, fetchpatch, autoconf, automake, libtool
-, doxygen, texlive, python, perl, gmpxx, mpfr, boost
-, eigen, gfortran
+, python, perl, gmpxx, mpfr, boost, eigen, gfortran
 , optAVX ? false
 , cfg ? [
     "--enable-eri=1"
@@ -34,7 +33,7 @@ stdenv.mkDerivation rec {
     find -name Makefile -exec sed -i 's:/bin/rm:rm:' \{} \;
   '';
 
-  nativeBuildInputs = [ autoconf automake libtool doxygen texlive.combined.scheme-small mpfr ];
+  nativeBuildInputs = [ autoconf automake libtool mpfr ];
   buildInputs = [ python perl gmpxx boost gfortran ];
 
   enableParallelBuilding = true;
@@ -58,10 +57,12 @@ stdenv.mkDerivation rec {
   postInstall = ''
     cp export/fortran/libint_f.mod $out/include/
   '';
+
   meta = with stdenv.lib; {
     description = "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions";
     homepage = https://github.com/evaleev/libint;
     license = licenses.lgpl3;
+    maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
   };
 }
