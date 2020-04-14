@@ -47,12 +47,6 @@ let
 
     nwchem = callPackage ./nwchem { mpi=pkg; };
 
-    openmolcas = callPackage ./openmolcas {
-      texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
-      mpi=pkg;
-      globalarrays=MPI.globalarrays;
-    };
-
     openmolcasUnstable = callPackage ./openmolcas/unstable.nix {
       texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
       mpi=pkg;
@@ -131,7 +125,7 @@ in with super;
 
   molpro19 = callPackage ./molpro { token=cfg.licMolpro; };
 
-  molcas = self.openmpiPkgs.openmolcas;
+  molcas = callPackage ./openmolcas { };
 
   molcas1911 = self.molcas;
 

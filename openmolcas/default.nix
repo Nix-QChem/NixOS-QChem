@@ -1,7 +1,6 @@
 { stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
-, openblas, hdf5-cpp, python3, texLive
-, armadillo, mpi ? pkgs.openmpi, globalarrays, openssh
-, makeWrapper, fetchFromGitHub
+, openblas, hdf5-cpp, python3, texlive
+, armadillo, makeWrapper, fetchFromGitHub
 } :
 
 let
@@ -46,8 +45,8 @@ in stdenv.mkDerivation {
   '';
 
 
-  nativeBuildInputs = [ perl cmake texLive makeWrapper ];
-  buildInputs = [ gfortran openblas hdf5-cpp python armadillo mpi globalarrays openssh ];
+  nativeBuildInputs = [ perl cmake texlive.combined.scheme-minimal makeWrapper ];
+  buildInputs = [ gfortran openblas hdf5-cpp python armadillo ];
 
   # tests are not running right now.
   doCheck = false;
@@ -58,8 +57,6 @@ in stdenv.mkDerivation {
 
   cmakeFlags = [
     "-DOPENMP=ON"
-    "-DGA=ON"
-    "-DMPI=ON"
     "-DLINALG=${if (builtins.parseDrvName openblas.name).name == "mkl" then "MKL" else "OpenBLAS"}"
     "-DTOOLS=ON"
     "-DHDF5=ON"
@@ -67,8 +64,6 @@ in stdenv.mkDerivation {
     "-DWFA=ON"
     "-DCTEST=ON"
   ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas}" ]);
-
-  GAROOT=globalarrays;
 
   postConfigure = ''
     # The Makefile will install pymolcas during the build grrr.
