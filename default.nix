@@ -290,6 +290,7 @@ in with super;
     mesa-qc = callPackage ./tests/mesa { };
     molcas = callPackage ./tests/molcas { };
     molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
+    nwchem = callPackage ./tests/nwchem { };
   };
 
   qc-testFiles = let
