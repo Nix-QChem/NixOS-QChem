@@ -1,4 +1,4 @@
-{ stdenv, pkgs, fetchFromGitHub, python, gfortran, openblasCompat
+{ stdenv, fetchFromGitHub, python, gfortran, openblasCompat
 , fftw, libint2, libxc, mpi, gsl, scalapack, openssh, makeWrapper
 , libxsmm, which
 , optAVX ? false
@@ -9,29 +9,6 @@ let
 
   cp2kVersion = "psmp";
   arch = "Linux-x86-64-gfortran";
-
-  config = pkgs.writeText "cp2kConfig" ''
-    CC         = gcc
-    CPP        =
-    FC         = mpif90
-    LD         = mpif90
-    AR         = ar -r
-    DFLAGS     = -D__FFTW3 -D__LIBXC -D__LIBINT -D__parallel -D__SCALAPACK \
-                 -D__MPI_VERSION=3 -D__F2008 -D__LIBXSMM \
-                 -D__MAX_CONTR=4
-
-    FCFLAGS    = $(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
-                 -ftree-vectorize -funroll-loops -msse2 \
-                 ${stdenv.lib.optionalString optAVX "-mavx -mavx2"} \
-                 -std=f2008 \
-                 -I${libxc}/include -I${libxsmm}/include \
-                 -I${libint2}/include \
-                 -fopenmp -ftree-vectorize -funroll-loops
-    LIBS       = -lfftw3 -lfftw3_threads -lfftw3_omp -lscalapack -lopenblas \
-                 -lxcf03 -lxc -lxsmmf -lxsmm \
-                 -lint2 -lstdc++ \
-                 -fopenmp
-  '';
 
 in stdenv.mkDerivation rec {
   name = "cp2k-${version}";
@@ -57,8 +34,32 @@ in stdenv.mkDerivation rec {
   enableParallelBuilding = true;
 
   postPatch = ''
-    cp ${config} arch/${arch}.${cp2kVersion}
     patchShebangs tools exts/dbcsr/tools/build_utils
+  '';
+
+  preConfigure = ''
+    cat > arch/${arch}.${cp2kVersion} << EOF
+    CC         = gcc
+    CPP        =
+    FC         = mpif90
+    LD         = mpif90
+    AR         = ar -r
+    DFLAGS     = -D__FFTW3 -D__LIBXC -D__LIBINT -D__parallel -D__SCALAPACK \
+                 -D__MPI_VERSION=3 -D__F2008 -D__LIBXSMM \
+                 -D__MAX_CONTR=4
+
+    FCFLAGS    = $(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
+                 -ftree-vectorize -funroll-loops -msse2 \
+                 ${stdenv.lib.optionalString optAVX "-mavx -mavx2"} \
+                 -std=f2008 \
+                 -fopenmp -ftree-vectorize -funroll-loops
+    LIBS       = -lfftw3 -lfftw3_threads -lfftw3_omp -lscalapack -lopenblas \
+                 -lxcf03 -lxc -lxsmmf -lxsmm \
+                 -lint2 -lstdc++ \
+                 -fopenmp
+    EOF
+                 #-I${libxc}/include -I${libxsmm}/include \
+                 #-I${libint2}/include \
   '';
 
   checkPhase = ''
@@ -72,7 +73,7 @@ in stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin $out/share/cp2k
 
-    cp exe/Linux-x86-64-gfortran/* $out/bin
+    cp exe/${arch}/* $out/bin
 
     for i in cp2k cp2k_shell graph; do
       makeWrapper $out/bin/$i.${cp2kVersion} $out/bin/$i --set CP2K_DATA_DIR $out/share/cp2k
@@ -86,10 +87,10 @@ in stdenv.mkDerivation rec {
 
   meta = with stdenv.lib; {
     description = "Quantum chemistry and solid state physics program";
-    homepage = https://www.cp2k.org;
+    homepage = "https://www.cp2k.org";
     license = licenses.gpl3;
     maintainers = [ maintainters.markuskowa ];
-    platforms = platforms.linux;
+    platforms = [ "x86_64-linux" ];
   };
 }
 
