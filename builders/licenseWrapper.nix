@@ -25,7 +25,7 @@ writeShellScriptBin exe ''
 
   if [ -n "$licsFound" ]; then
     echo "Licenses checked out. Running ${name}..."
-    ${runProg}
+    ${runProg} $@
   else
     echo "No ${name} license checked out. Aborting!"
   fi
