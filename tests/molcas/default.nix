@@ -15,7 +15,7 @@ batsTest {
   OMP_NUM_THREADS=2;
 
   testScript = ''
-    @test "Run Molcas" {
+    @test "Run-Molcas" {
       # Run on 2 CPUs to test parallelism
       env > env
       ${molcas}/bin/pymolcas -np $TEST_NUM_CPUS molcas.inp > molcas.out

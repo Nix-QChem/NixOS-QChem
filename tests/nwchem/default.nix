@@ -12,7 +12,7 @@ batsTest {
   OMP_NUM_THREADS=2;
 
   testScript = ''
-    @test "Run nwchem" {
+    @test "Run-nwchem" {
       nwchem $TEST_NUM_CPUS nwchem.inp > nwchem.out
     }
 

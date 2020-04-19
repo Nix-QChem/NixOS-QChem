@@ -275,23 +275,33 @@ in with super;
   slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };
 
   # build bats tests
-  batsTest = callPackage ./builders/batsTest.nix {};
+  batsTest = callPackage ./builders/batsTest.nix { };
+
+  # build a benchmark script
+  benchmarkScript = callPackage ./builders/benchmark.nix { };
+
+  # benchmark set builder
+  qc-benchmarks = callPackage ./benchmark/default.nix { };
+
+  qc-benchmarksets = callPackage ./tests/benchmark-sets.nix { };
 
   qc-tests = {
     molpro = callPackage ./tests/molpro { };
     cp2k = callPackage ./tests/cp2k { };
     bagel = callPackage ./tests/bagel { };
+    bagel-bench = callPackage ./tests/bagel/bench-test.nix { };
+    hpl = callPackage ./tests/hpl { };
     mesa-qc = callPackage ./tests/mesa { };
     molcas = callPackage ./tests/molcas { };
     molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
     nwchem = callPackage ./tests/nwchem { };
+    qdng = callPackage ./tests/qdng { };
   };
 
   qc-testFiles = let
     batsDontRun = self.batsTest.override { overrideDontRun = true; };
   in builtins.mapAttrs (n: v: v.override { batsTest = batsDontRun; })
     self.qc-tests;
-
 }
 
 

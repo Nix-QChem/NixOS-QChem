@@ -9,8 +9,7 @@ batsTest {
   nativeBuildInputs = [ molpro ];
 
   testScript = ''
-    @test "Run Molpro" {
-      # Run on 2 CPUs to test parallelism
+    @test "Run-Molpro" {
       ${molpro}/bin/molpro --launcher \
         "${molpro}/bin/mpiexec.hydra -np $TEST_NUM_CPUS ${molpro}/bin/molpro.exe" \
         molpro.inp

@@ -116,6 +116,9 @@ in {
 
   tests = pkgs.qc-tests;
   testsFiles = pkgs.qc-testFiles;
+  benchmarks = pkgs.qc-benchmarks;
+  benchmarkset =  pkgs.qc-benchmarksets;
+
 } // (if cfg.srcurl != null then
   {
     inherit (pkgs)
