@@ -6,6 +6,8 @@
 , n ? null  # No. of task
 , c ? null  # No. of CPUs per task
 , J ? null  # Job name
+# extra sbatch parameters
+, extraSbatch ? []
 # shell to use
 , shell ? "bash"
 # if set will use nix-shell as script interpreter
@@ -24,6 +26,8 @@ writeTextFile {
     #SBATCH -N ${toString N}
     #${optionalString (n != null) "SBATCH -n ${toString n}"}
     #${optionalString (c != null) "SBATCH -c ${toString c}"}
+    ${lib.concatStringsSep "\n" (map (x: "#SBATCH " + x) extraSbatch)}
+
     ${text}
   '';
 }
