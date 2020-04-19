@@ -8,6 +8,8 @@
 , testScript ? ""
 # setup script code, executed at the end of setup phase
 , setupScript ? ""
+# teardown/cleanu code exectuted after each test
+, teardownScript ? ""
 # Files required for the test
 , auxFiles ? []
 # Place the test in the output, do not run the test
@@ -57,7 +59,9 @@ let
       }
 
       teardown () {
-        echo $SECONDS > ''${BATS_TEST_NAME}.timing
+        echo $SECONDS > "''${BATS_TEST_DESCRIPTION}.timing"
+
+        ${teardownScript}
       }
 
       ${testScript}
