@@ -10,6 +10,6 @@ callPackage ../../builders/benchmark.nix {
 
   setupPhase = ''
     export TEST_NUM_CPUS=${toString threads}
-    export OMP_NUM_THREADS=${toString threads}
+    export OMP_NUM_THREADS=1
   '';
 }
