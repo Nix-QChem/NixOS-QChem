@@ -32,6 +32,12 @@ in {
     benchmarks = mkOption {
       type = with types; attrsOf ( submodule ({...} : {
         options = {
+          enable = mkOption {
+            type = types.bool;
+            description = "Enable test";
+            default = true;
+          };
+
           bench = mkOption {
             type = types.attrs;
           };
@@ -77,24 +83,24 @@ in {
               (mapAttrsToList (pName: pValue: pName + (builtins.replaceStrings [" "] ["_"] (toString pValue))) paramSet);
           in {
           name = "${setName}-${runName}";
-            value = if cfg.slurm then # create slurm job
-              pkgs.writeScriptSlurm  {
-                name = "${setName}-${runName}";
-                c = if hasAttr "threads" paramSet then paramSet.threads else 1;
-                n = if hasAttr "tasks" paramSet then paramSet.tasks else 1;
-                J = "${setName}-${runName}";
-                extraSbatch = cfg.slurmParams ++ setValue.slurmParams;
-                text = ''
-                  # make path available for setup phase
-                  runScript=${setValue.bench paramSet}
+          value = if cfg.slurm then # create slurm job
+            pkgs.writeScriptSlurm  {
+              name = "${setName}-${runName}";
+              c = if hasAttr "threads" paramSet then paramSet.threads else 1;
+              n = if hasAttr "tasks" paramSet then paramSet.tasks else 1;
+              J = "${setName}-${runName}";
+              extraSbatch = cfg.slurmParams ++ setValue.slurmParams;
+              text = ''
+                # make path available for setup phase
+                runScript=${setValue.bench paramSet}
 
-                  ${setValue.extraSetup}
+                ${setValue.extraSetup}
 
-                  $runScript
-                '';
-              }
-              else # bare script, no slurm
-                setValue.bench paramSet;
-        }) setValue.params ) cfg.benchmarks )));
+                $runScript
+              '';
+            }
+            else # bare script, no slurm
+              setValue.bench paramSet;
+        }) setValue.params ) (filterAttrs (n: v: v.enable ) cfg.benchmarks) )));
   };
 }
