@@ -88,6 +88,7 @@ in {
     hwloc-x11
     molcas
     molcasUnstable
+    mt-dgemm
     nwchem
     molden
     octave

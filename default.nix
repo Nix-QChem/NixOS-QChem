@@ -218,6 +218,8 @@ in with super;
 
   hwloc-x11 = super.hwloc.override { x11Support= true; };
 
+  mt-dgemm = callPackage ./mt-dgemm { };
+
   libfabric = callPackage ./libfabric { };
 
   libcint = callPackage ./libcint { };
