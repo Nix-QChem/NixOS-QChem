@@ -1,7 +1,7 @@
 { callPackage, lib, qc-tests } :
 
 {
-  tasks ? 8
+  tasks ? 2
 , sizes ? [ 16 16 16 ]
 , runTime ? 30
 } :
@@ -19,6 +19,6 @@ callPackage ../../builders/benchmark.nix {
     bw=$(grep 'GB/s Summary::Raw Total B/W=' $outFile | sed 's/.*=//')
     gflops=$(grep 'HPCG result is VALID with a GFLOP/s rating' $outFile | sed 's/.*=//')
 
-    echo "hpcg ${toString sizes} $bw $gflops" >> gflops
+    echo "hpcg $TEST_NUM_CPUS ${toString sizes} $bw $gflops" >> gflops
   '';
 }
