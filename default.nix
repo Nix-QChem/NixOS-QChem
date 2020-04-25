@@ -303,6 +303,7 @@ in with super;
     molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
     nwchem = callPackage ./tests/nwchem { };
     qdng = callPackage ./tests/qdng { };
+    dgemm = callPackage ./tests/dgemm { };
   };
 
   qc-testFiles = let

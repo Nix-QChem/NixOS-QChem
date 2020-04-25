@@ -2,6 +2,7 @@
 
 {
   cp2k = callPackage ./cp2k/benchmark.nix { };
+  dgemm = callPackage ./dgemm/benchmark.nix { };
   bagel = callPackage ./bagel/benchmark.nix { };
   hpcg = callPackage ./hpcg/benchmark.nix { };
   hpl = callPackage ./hpl/benchmark.nix { };
