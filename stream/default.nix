@@ -1,4 +1,6 @@
 { stdenv, fetchurl
+# parameters are compiled in.
+# Caution: the standard config uses 23GB of memory!
 , params ? "-mavx -DSTREAM_ARRAY_SIZE=1000000000 -DNTIMES=20 -DVERBOSE" } :
 
 stdenv.mkDerivation rec {

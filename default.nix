@@ -304,6 +304,7 @@ in with super;
     nwchem = callPackage ./tests/nwchem { };
     qdng = callPackage ./tests/qdng { };
     dgemm = callPackage ./tests/dgemm { };
+    stream = callPackage ./tests/stream { };
   };
 
   qc-testFiles = let

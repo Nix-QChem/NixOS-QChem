@@ -10,5 +10,6 @@
   molpro = callPackage ./molpro/benchmark.nix { };
   nwchem = callPackage ./nwchem/benchmark.nix { };
   qdng = callPackage ./qdng/benchmark.nix { };
+  stream = callPackage ./stream/benchmark.nix { };
 }
 
