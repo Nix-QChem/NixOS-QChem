@@ -296,6 +296,7 @@ in with super;
     cp2k = callPackage ./tests/cp2k { };
     bagel = callPackage ./tests/bagel { };
     bagel-bench = callPackage ./tests/bagel/bench-test.nix { };
+    hpcg = callPackage ./tests/hpcg { };
     hpl = callPackage ./tests/hpl { };
     mesa-qc = callPackage ./tests/mesa { };
     molcas = callPackage ./tests/molcas { };

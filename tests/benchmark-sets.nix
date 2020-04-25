@@ -3,6 +3,7 @@
 {
   cp2k = callPackage ./cp2k/benchmark.nix { };
   bagel = callPackage ./bagel/benchmark.nix { };
+  hpcg = callPackage ./hpcg/benchmark.nix { };
   hpl = callPackage ./hpl/benchmark.nix { };
   molcas = callPackage ./molcas/benchmark.nix { };
   molpro = callPackage ./molpro/benchmark.nix { };
