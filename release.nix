@@ -95,7 +95,8 @@ in {
     octave
     sharcV1
     sharc
-    sharc21;
+    sharc21
+    stream-benchmark;
 
   #pyscf = pkgs.python3Packages.pyscf;
   pychemps2 = pkgs.python3Packages.pychemps2;

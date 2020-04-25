@@ -270,6 +270,8 @@ in with super;
 
   spglib = callPackage ./spglib {};
 
+  stream-benchmark = callPackage ./stream { };
+
   ucx = callPackage ./ucx { enableOpt=true; };
 
   # Utilities
