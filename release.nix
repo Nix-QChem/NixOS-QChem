@@ -86,6 +86,7 @@ in {
     ergoscf
     fftwOpt
     hwloc-x11
+    hpcg
     molcas
     molcasUnstable
     mt-dgemm
