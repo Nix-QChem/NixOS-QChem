@@ -222,8 +222,6 @@ in with super;
 
   mt-dgemm = callPackage ./mt-dgemm { };
 
-  libfabric = callPackage ./libfabric { };
-
   libcint = callPackage ./libcint { };
 
   libint2 = callPackage ./libint { optAVX = cfg.optAVX; };
