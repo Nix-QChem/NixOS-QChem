@@ -1,5 +1,7 @@
-{ batsTest, mt-dgemm
+{ batsTest, lib, mt-dgemm, numactl
 , size ? 500
+, useNumactl ? false
+, numactlParams ? "--interleave all"
 } :
 
 batsTest {
@@ -7,11 +9,13 @@ batsTest {
 
   outFile = [ "dgemm.out" ];
 
-  nativeBuildInputs = [ mt-dgemm ];
+  nativeBuildInputs = [ mt-dgemm numactl ];
 
   testScript = ''
     @test "DGEMM" {
-      OMP_NUM_THREADS=$TEST_NUM_CPUS ${mt-dgemm}/bin/mt-dgemm ${toString size} > dgemm.out
+      OMP_NUM_THREADS=$TEST_NUM_CPUS \
+        ${lib.optionalString useNumactl "${numactl}/bin/numactl ${numactlParams}"} \
+        ${mt-dgemm}/bin/mt-dgemm ${toString size} > dgemm.out
     }
   '';
 }
