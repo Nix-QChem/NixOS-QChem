@@ -37,3 +37,20 @@ CIRO
 Multistate
 3 1 2 3
 
+&MOTRA
+JobIph
+
+&GUGA
+Electrons= 16; Spin= 1
+Inactive= 6; Active= 3;
+CIAll= 1
+
+&MRCI
+SDCI
+NRRoots
+2
+Root
+1 2
+MAXI
+35
+
