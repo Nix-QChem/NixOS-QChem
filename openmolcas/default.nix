@@ -1,6 +1,6 @@
 { stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
-, openblas, hdf5-cpp, python3, texlive
-, armadillo, makeWrapper, fetchFromGitHub
+, openblas, hdf5-full, python3, texlive
+, armadillo, makeWrapper, fetchFromGitHub, chemps2
 } :
 
 let
@@ -46,7 +46,7 @@ in stdenv.mkDerivation {
 
 
   nativeBuildInputs = [ perl cmake texlive.combined.scheme-minimal makeWrapper ];
-  buildInputs = [ gfortran openblas hdf5-cpp python armadillo ];
+  buildInputs = [ gfortran openblas hdf5-full python armadillo chemps2];
 
   # tests are not running right now.
   doCheck = false;
@@ -63,6 +63,7 @@ in stdenv.mkDerivation {
     "-DFDE=ON"
     "-DWFA=ON"
     "-DCTEST=ON"
+    "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${chemps2}/bin"
   ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas}" ]);
 
   postConfigure = ''
@@ -76,7 +77,9 @@ in stdenv.mkDerivation {
     sed -i "1s:/.*:/usr/bin/env python:" $out/bin/pymolcas
     patchShebangs $out/bin
 
-    wrapProgram $out/bin/pymolcas --set MOLCAS $out
+    wrapProgram $out/bin/pymolcas \
+      --set MOLCAS $out \
+      --prefix PATH : "${chemps2}/bin"
   '';
 
   installCheckPhase = ''

@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, openblasCompat, hdf5 } :
+{ stdenv, fetchFromGitHub, cmake, openblasCompat, hdf5-full } :
 
 stdenv.mkDerivation rec {
   pname = "CheMPS2";
@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ openblasCompat hdf5 ];
+  buildInputs = [ openblasCompat hdf5-full ];
 
   doCheck = true;
 
