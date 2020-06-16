@@ -24,7 +24,7 @@ in stdenv.mkDerivation {
   inherit version;
 
   src = requireFile {
-    website = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";
+    url = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";
     name = "mctdh84.17.tgz";
     sha256 = "0p6dlpf0ikw6g8m3wsvda17ppcqb0nqijnx4ycy81vwdgx1fz8a5";
   };
