@@ -41,7 +41,7 @@ in stdenv.mkDerivation {
   meta = with stdenv.lib; {
     description = "MPI-3.1 implementation optimized for Infiband transport";
     homepage = http://mvapich.cse.ohio-state.edu;
-    license = licenses.bsd;
+    license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
   };
