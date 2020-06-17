@@ -214,8 +214,6 @@ in with super;
 
   ### HPC libs and Tools
 
-  ibsim = callPackage ./ibsim { };
-
   hwloc-x11 = super.hwloc.override { x11Support= true; };
 
   hpcg = callPackage ./hpcg { };

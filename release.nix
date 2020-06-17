@@ -36,7 +36,6 @@ jobs = rec {
       libint2
       libint1
       mkl
-      ibsim
       libxsmm
       openblas
       openblasCompat
