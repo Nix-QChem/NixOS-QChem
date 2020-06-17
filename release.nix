@@ -1,13 +1,9 @@
 {
-  # If set to false the overlay will be used with
-  # the latest nixpkgs from the master branch
-  stable ? true
-
   # nixpkgs sources
-  , nixpkgs ? <nixpkgs>
+    nixpkgs ? <nixpkgs>
 
   # Override config from ENV
-  , extraCfg ? {}
+  , config ? {}
 } :
 
 
@@ -16,67 +12,39 @@ let
   input = {
     overlays = [ (import ./default.nix) ];
     config.allowUnfree = true;
-    config.qchem-config = extraCfg;
+    config.qchem-config = (import ./cfg.nix) config;
   };
 
   # import package set
-  pkgs = if stable then
-    (import nixpkgs) input
-  else
-    (import (fetchGit { url="https://github.com/NixOS/nixpkgs"; })) input;
+  pkgs = (import nixpkgs) input;
 
   cfg = pkgs.config.qchem-config;
 
-in {
+jobs = rec {
   openmpiPkgs = {
     inherit (pkgs.openmpiPkgs)
       cp2k
       hpl
-      bagel-mkl-scl
       bagel
       mctdh
-      openmolcas
-      openmolcas-mkl
       osu-benchmark
       nwchem;
   };
-
-  mpichPkgs = {
-    inherit (pkgs.mpichPkgs)
-      hpl
-      bagel
-      openmolcas
-      osu-benchmark
-      nwchem;
-  };
-
-  mvapichPkgs = {
-    inherit (pkgs.mvapichPkgs)
-      bagel
-      openmolcas
-      osu-benchmark
-      nwchem;
-  };
-
 
   extra = {
     inherit (pkgs)
       libint2
       libint1
+      mkl
       ibsim
       libxsmm
-      sos
-      openshmem
       openblas
       openblasCompat
-      osss-ucx
-      pmix
-      spglib
-      ucx;
+      spglib;
 
   };
 
-  scalapack=pkgs.openmpiPkgs.scalapack;
+  scalapack = pkgs.openmpiPkgs.scalapack;
 
   inherit (pkgs)
     chemps2
@@ -88,10 +56,10 @@ in {
     hwloc-x11
     hpcg
     molcas
+    molden
     molcasUnstable
     mt-dgemm
     nwchem
-    molden
     octave
     sharcV1
     sharc
@@ -102,7 +70,7 @@ in {
   pychemps2 = pkgs.python3Packages.pychemps2;
   pyquante = pkgs.python2Packages.pyquante;
 
-  # Packages depend on optimized libs
+  # Packages depending on optimized libs
   deps = {
     python2 = {
       inherit (pkgs.python2Packages)
@@ -117,20 +85,36 @@ in {
     };
   };
 
-  tests = pkgs.qc-tests;
-  testsFiles = pkgs.qc-testFiles;
-  benchmarks = pkgs.qc-benchmarks;
-  benchmarkset =  pkgs.qc-benchmarksets;
+  tests = {
+    inherit (pkgs.qc-tests)
+      cp2k
+      nwchem
+      molcas
+      molpro
+      mesa-qc
+      qdng;
+  };
+
+  tested = with pkgs; releaseTools.aggregate {
+    name = "tests";
+    constituents = [
+      tests.cp2k
+      tests.nwchem
+      tests.molcas
+      tests.molpro
+    ] ++ lib.optionals (cfg.srcurl != null) [
+      tests.mesa-qc
+      tests.qdng
+    ];
+  };
 
 } // (if cfg.srcurl != null then
   {
     inherit (pkgs)
       gaussview
       qdng
-      mkl
       mesa-qc
       mctdh
-      molden
       orca
       sharcV1
       vmd;
@@ -151,5 +135,8 @@ in {
     inherit (pkgs) gaussian;
   }
   else {}
-  )
+  );
+
+in jobs
+
 

@@ -3,9 +3,9 @@ self: super:
 let
 
   cfg = if (builtins.hasAttr "qchem-config" super.config) then
-       super.config.qchem-config // (import ./cfg.nix)
-     else
-       (import ./cfg.nix);
+    super.config.qchem-config
+  else
+    (import ./cfg.nix) { allowEnv = true; };
 
   # build a package with specfific MPI implementation
   withMpi = pkg : mpi :
@@ -36,7 +36,7 @@ let
     };
 
     # MKL is the default. Relativistic methods are broken with non-MKL libs
-    bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; boost=boost164; scalapack=null; withScalapack=true; };
+    bagel-mkl = callPackage ./bagel { blas = self.mkl; mpi=pkg; boost=boost165; scalapack=null; withScalapack=true; };
     bagel-openblas = callPackage ./bagel { blas = self.openblas; mpi=pkg; };
     bagel-mkl-scl = callPackage ./bagel { blas = self.mkl; mpi=pkg; scalapack=MPI.scalapack; withScalapack = true; };
     bagel = MPI.bagel-mkl;
