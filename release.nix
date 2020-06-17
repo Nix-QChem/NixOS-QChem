@@ -33,6 +33,7 @@ jobs = rec {
 
   extra = {
     inherit (pkgs)
+      libcint
       libint2
       libint1
       mkl
@@ -72,7 +73,7 @@ jobs = rec {
     sharc21
     stream-benchmark;
 
-  #pyscf = pkgs.python3Packages.pyscf;
+  pyscf = pkgs.python3Packages.pyscf;
   pychemps2 = pkgs.python3Packages.pychemps2;
   pyquante = pkgs.python2Packages.pyquante;
 
