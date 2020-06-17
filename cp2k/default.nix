@@ -48,18 +48,20 @@ in stdenv.mkDerivation rec {
                  -D__MPI_VERSION=3 -D__F2008 -D__LIBXSMM \
                  -D__MAX_CONTR=4
 
-    FCFLAGS    = $(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
+    FCFLAGS    = \$(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
                  -ftree-vectorize -funroll-loops -msse2 \
                  ${stdenv.lib.optionalString optAVX "-mavx -mavx2"} \
                  -std=f2008 \
-                 -fopenmp -ftree-vectorize -funroll-loops
-    LIBS       = -lfftw3 -lfftw3_threads -lfftw3_omp -lscalapack -lopenblas \
+                 -fopenmp -ftree-vectorize -funroll-loops \
+                 -I${libxc}/include -I${libxsmm}/include \
+                 -I${libint2}/include
+    LIBS       = -lfftw3 -lfftw3_threads -lscalapack -lopenblas \
                  -lxcf03 -lxc -lxsmmf -lxsmm \
                  -lint2 -lstdc++ \
                  -fopenmp
+    LDFLAGS    = \$(FCFLAGS) \$(LIBS)
     EOF
-                 #-I${libxc}/include -I${libxsmm}/include \
-                 #-I${libint2}/include \
+    cat arch/${arch}.${cp2kVersion}
   '';
 
   checkPhase = ''
