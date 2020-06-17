@@ -1,6 +1,8 @@
 { stdenv, requireFile, fetchurl, patchelf, python, token
 } :
 
+assert token != null;
+
 let
   version = "2019.2.3";
 
