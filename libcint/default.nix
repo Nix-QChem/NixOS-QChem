@@ -5,7 +5,7 @@ let
   version = "3.0.15";
 
 in stdenv.mkDerivation {
-  pame = "libcint";
+  pname = "libcint";
   inherit version;
 
   src = fetchFromGitHub {
