@@ -1,19 +1,16 @@
-{ stdenv, buildPythonPackage, fetchFromGitHub
+{ lib, buildPythonPackage, fetchFromGitHub
 , numpy, scipy, h5py, libcint, libxc
 } :
 
-let
-  version = "1.6.4";
-
-in buildPythonPackage {
+buildPythonPackage rec {
   pname = "pyscf";
-  version = version;
+  version = "1.7.3";
 
   src = fetchFromGitHub {
     owner = "pyscf";
     repo = "pyscf";
     rev = "v${version}";
-    sha256 = "0ngbpy4gc7p1wb9vlhbl7k66nsyr28nv7shj71gcwm5vb115lnwy";
+    sha256 = "1gmx75kqyjb8n3jgnlnzamw7f6cibc6wqsfy4vad6crz58lffjjj";
   };
 
   propagatedBuildInputs = [ numpy scipy h5py ];
@@ -34,7 +31,7 @@ in buildPythonPackage {
 #    chmod +x pyscf/dmrgscf/settings.py
 #  '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Python-based simulations of chemistry framework";
     homepage = https://pyscf.github.io/;
     license = licenses.asl20;
