@@ -94,6 +94,7 @@ jobs = rec {
 
   tests = {
     inherit (pkgs.qc-tests)
+      bagel
       cp2k
       nwchem
       molcas
