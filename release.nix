@@ -113,11 +113,6 @@ in {
     };
   };
 
-   tests = {
-     bagel = import ./tests/bagel-native.nix { pkgs=pkgs; bagel=pkgs.bagel; };
-     bagelParallel = import ./tests/bagel-parallel.nix { pkgs=pkgs; bagel=pkgs.bagel; };
-   };
-
 } // (if cfg.srcurl != null then
   {
     inherit (pkgs)
