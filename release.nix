@@ -36,6 +36,13 @@ jobs = rec {
       libint2
       libint1
       mkl
+      quantum-espresso
+      quantum-espresso-mpi
+      siesta-mpi
+      siesta
+      octopus
+      gromacsDoubleMpi
+      gromacsDouble
       libxsmm
       openblas
       openblasCompat
