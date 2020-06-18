@@ -1,9 +1,10 @@
 {
   # nixpkgs sources
-    nixpkgs ? <nixpkgs>
+    nixpkgs ? { outPath = <nixpkgs>; shortRev = "0000000"; }
 
   # Override config from ENV
   , config ? {}
+  , NixOS-QChem ? { shortRev = "0000000"; }
 } :
 
 
@@ -97,7 +98,9 @@ jobs = rec {
       bagel
       cp2k
       nwchem
-      molcas
+      molcas;
+  } // pkgs.lib.optionalAttrs (cfg.srcurl != null) {
+    inherit (pkgs.qc-tests)
       molpro
       mesa-qc
       qdng;
@@ -109,11 +112,36 @@ jobs = rec {
       tests.cp2k
       tests.nwchem
       tests.molcas
-      tests.molpro
     ] ++ lib.optionals (cfg.srcurl != null) [
+      tests.molpro
       tests.mesa-qc
       tests.qdng
     ];
+  };
+
+  nixexprs = with pkgs; runCommand "nixexprs" {}
+    ''
+      mkdir -p $out/nixpkgs $out/NixOS-QChem
+
+      cp -r ${nixpkgs}/* $out/nixpkgs
+      cp -r ${./.}/* $out/NixOS-QChem
+
+      cp ${./channel.nix} $out/default.nix
+
+      # nixpkgs version
+      cp ${nixpkgs}/.version $out/.version
+      cp ${nixpkgs}/.version $out/nixpkgs/.version
+
+      cat <<EOF > $out/.revision
+      nixpkgs ${nixpkgs.shortRev}
+      NixOS-QChem ${NixOS-QChem.shortRev}
+      EOF
+    '';
+
+  channel = pkgs.releaseTools.channel {
+    name = "NixOS-QChem-channel";
+    src = nixexprs;
+    constituents = [ tested ];
   };
 
 } // (if cfg.srcurl != null then
