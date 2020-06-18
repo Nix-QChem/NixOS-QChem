@@ -1,13 +1,13 @@
 { stdenv, fetchurl, mpi } :
 let
-  version = "5.4.3";
+  version = "5.6.3";
 
 in stdenv.mkDerivation {
   name = "osu-benchmark-${version}";
 
   src = fetchurl {
     url = "http://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-${version}.tar.gz";
-    sha256 = "03a9j14sdr4npcj1qf98v0pjj5q7mfsqlg9q6mbnz3idd4vk24is";
+    sha256 = "1f5fc252c0k4rd26xh1v5017wfbbsr2w7jm49x8yigc6n32sisn5";
   };
 
   buildInputs = [ mpi ];
@@ -30,7 +30,8 @@ in stdenv.mkDerivation {
 
   meta = with stdenv.lib; {
     description = "MPI micro benchmark suite";
-    homepage = http://mvapich.cse.ohio-state.edu/benchmarksi;
+    homepage = "http://mvapich.cse.ohio-state.edu/benchmarks";
+    maintainers = [ maintainers.markuskowa ];
     license = licenses.bsd3;
     platforms = platforms.linux;
   };
