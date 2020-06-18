@@ -6,5 +6,5 @@ let
 in {
   pyscf = callPackage ./pyscf { };
   pyquante = callPackage ./pyquante { };
-  pychemps2 = callPackage ./chemps2/PyCheMPS2.nix { };
+  pychemps2 = callPackage ./chemps2/PyChemMPS2.nix { };
 }
