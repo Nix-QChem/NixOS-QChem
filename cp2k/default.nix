@@ -1,6 +1,6 @@
 { stdenv, fetchFromGitHub, python, gfortran, openblasCompat
 , fftw, libint2, libxc, mpi, gsl, scalapack, openssh, makeWrapper
-, libxsmm, which
+, libxsmm, spglib, which
 , optAVX ? false
 } :
 
@@ -22,7 +22,7 @@ in stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ python which openssh makeWrapper ];
-  buildInputs = [ gfortran fftw gsl libint2 libxc libxsmm openblasCompat mpi scalapack ];
+  buildInputs = [ gfortran fftw gsl libint2 libxc libxsmm  spglib openblasCompat mpi scalapack ];
 
   makeFlags = [
     "ARCH=${arch}"
@@ -45,7 +45,7 @@ in stdenv.mkDerivation rec {
     LD         = mpif90
     AR         = ar -r
     DFLAGS     = -D__FFTW3 -D__LIBXC -D__LIBINT -D__parallel -D__SCALAPACK \
-                 -D__MPI_VERSION=3 -D__F2008 -D__LIBXSMM \
+                 -D__MPI_VERSION=3 -D__F2008 -D__LIBXSMM -D__SPGLIB \
                  -D__MAX_CONTR=4
 
     FCFLAGS    = \$(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
@@ -56,12 +56,11 @@ in stdenv.mkDerivation rec {
                  -I${libxc}/include -I${libxsmm}/include \
                  -I${libint2}/include
     LIBS       = -lfftw3 -lfftw3_threads -lscalapack -lopenblas \
-                 -lxcf03 -lxc -lxsmmf -lxsmm \
+                 -lxcf03 -lxc -lxsmmf -lxsmm -lsymspg \
                  -lint2 -lstdc++ \
                  -fopenmp
     LDFLAGS    = \$(FCFLAGS) \$(LIBS)
     EOF
-    cat arch/${arch}.${cp2kVersion}
   '';
 
   checkPhase = ''
