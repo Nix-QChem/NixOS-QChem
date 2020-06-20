@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation rec {
   pname = "spglib";
-  version = "1.14.1";
+  version = "1.15.1";
 
 
   src = fetchFromGitHub {
     owner = "atztogo";
     repo = "spglib";
     rev = "v${version}";
-    sha256 = "16h4yaap188p00fkmpapv6ws19h9rjch4xwd70w6wbdpiy582wsw";
+    sha256 = "1f5i0xnxjdhaxqklg1z232z6ra1yv0knfixvbd519k6fildwnr3z";
   };
 
   nativeBuildInputs = [ cmake ];
