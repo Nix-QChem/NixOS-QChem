@@ -173,15 +173,22 @@ in with super;
 
 
   octave = (super.octave.override {
+    enableQt = true;
+    enableJava = true;
     inherit (super)
       hdf5
       ghostscript
       glpk
       jdk
       suitesparse
-      gnuplot
+      gnuplot;
+    inherit (super.libsForQt5)
       qscintilla;
-      qt = super.qt4;
+    inherit (super.qt5)
+      qtbase
+      qttools
+      qtscript
+      qtsvg;
   }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
 
   ### Python packages
