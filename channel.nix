@@ -1,13 +1,12 @@
 #
-# Template for a channel's default.nix
+# This is the channel's default.nix
 #
-{
-  system ? builtins.currentSystem
-, overlays ? []
-, config ? {}
-} :
+{ overlays ? [], ... }@args :
 
-import ./nixpkgs {
-  inherit system config;
-  overlays = [ (import ./NixOS-QChem) ] ++  overlays;
-}
+let
+  lib = import ./nixpkgs/lib;
+  args' = lib.filterAttrs (n: v: n != "overlays") args;
+
+in import ./nixpkgs ({
+  overlays = overlays ++ [ (import ./NixOS-QChem) ];
+} // args' )
