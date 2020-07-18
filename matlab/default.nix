@@ -9,7 +9,7 @@ let
     then
       "${optpath}/matlab-${version}"
     else
-      slurmLicenceWrapper {
+      slurmLicenseWrapper {
         name = "MATLAB";
         exe = "matlab";
         license = slurmLic;
