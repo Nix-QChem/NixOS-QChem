@@ -133,7 +133,7 @@ in with super;
 
   orca = callPackage ./orca { };
 
-  qdng = callPackage ./qdng { fftw=self.fftwOpt; };
+  qdng = callPackage ./qdng { fftw=self.fftwOpt; protobuf=protobuf3_11; };
 
   sharc = self.sharcV2;
 
