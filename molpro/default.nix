@@ -46,16 +46,12 @@ in stdenv.mkDerivation {
     done
   '';
 
-  # fails at them moment with: "MPID_nem_tcp_init(373) gethostbyname failed"
-  # We need to rely on the full scale test
-  doInstallCheck = false;
+  doInstallCheck = true;
 
   installCheckPhase = ''
      #
      # Minimal check if installation runs properly
      #
-
-     export MOLCAS_WORKDIR=./
      inp=water
 
      cat << EOF > $inp.inp
@@ -73,7 +69,9 @@ in stdenv.mkDerivation {
      # pretend this is a writable home dir
      export HOME=$PWD
 
-     $out/bin/molpro $inp.inp
+     # need to specify interface or: "MPID_nem_tcp_init(373) gethostbyname failed"
+     $out/bin/molpro --launcher \
+       "$out/bin/mpiexec.hydra -iface lo $out/bin/molpro.exe" $inp.inp
 
      echo "Check for sucessful run:"
      grep "RHF STATE  1.1 Energy" $inp.out
