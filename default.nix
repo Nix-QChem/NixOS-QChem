@@ -120,7 +120,7 @@ in with super;
     gfortran = gfortran6;
   };
 
-  molpro = self.molpro19;
+  molpro = self.molpro20;
 
   molpro12 = callPackage ./molpro/2012.nix { token=cfg.licMolpro; };
 
@@ -128,7 +128,9 @@ in with super;
 
   molpro18 = callPackage ./molpro/2018.nix { token=cfg.licMolpro; };
 
-  molpro19 = callPackage ./molpro { token=cfg.licMolpro; };
+  molpro19 = callPackage ./molpro/2019.nix { token=cfg.licMolpro; };
+
+  molpro20 = callPackage ./molpro { token=cfg.licMolpro; };
 
   molcas = callPackage ./openmolcas { };
 

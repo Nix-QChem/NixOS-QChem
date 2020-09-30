@@ -163,7 +163,8 @@ jobs = rec {
       molpro
       molpro12
       molpro15
-      molpro18;
+      molpro18
+      molpro19;
   }
   else {}
   ) // (if cfg.optpath != null  then
