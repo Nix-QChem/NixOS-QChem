@@ -72,6 +72,11 @@ in with super;
   # MPI packages sets
   openmpiPkgs = makeMpi self.openmpi self.openmpiPkgs;
 
+  # OSU benchmark fails with C++ binddings enabled
+  openmpiPkgsNoCpp = makeMpi (self.openmpi.overrideAttrs (x: {
+    configureFlags = super.lib.remove "--enable-mpi-cxx" x.configureFlags;
+  })) self.openmpiPkgs;
+
   mpichPkgs = makeMpi self.mpich2 self.mpichPkgs;
 
   mvapichPkgs = makeMpi self.mvapich self.mvapichPkgs;

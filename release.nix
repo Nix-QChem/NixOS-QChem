@@ -32,6 +32,7 @@ jobs = rec {
       nwchem;
   };
 
+  osu-benchmark = pkgs.openmpiPkgsNoCpp.osu-benchmark;
   extra = {
     inherit (pkgs)
       libcint
