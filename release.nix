@@ -112,6 +112,7 @@ jobs = rec {
       tests.cp2k
       tests.nwchem
       tests.molcas
+      molden
     ] ++ lib.optionals (cfg.srcurl != null) [
       tests.molpro
       tests.mesa-qc
