@@ -28,7 +28,6 @@ jobs = rec {
       hpl
       bagel
       mctdh
-      osu-benchmark
       nwchem;
   };
 
