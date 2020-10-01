@@ -175,11 +175,11 @@ in with super;
   octave = (super.octave.override {
     enableQt = true;
     enableJava = true;
+    jdk = super.jdk8;
     inherit (super)
       hdf5
       ghostscript
       glpk
-      jdk
       suitesparse
       gnuplot;
     inherit (super.libsForQt5)
