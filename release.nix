@@ -28,10 +28,10 @@ jobs = rec {
       hpl
       bagel
       mctdh
-      osu-benchmark
       nwchem;
   };
 
+  osu-benchmark = pkgs.openmpiPkgsNoCpp.osu-benchmark;
   extra = {
     inherit (pkgs)
       libcint
@@ -112,6 +112,7 @@ jobs = rec {
       tests.cp2k
       tests.nwchem
       tests.molcas
+      molden
     ] ++ lib.optionals (cfg.srcurl != null) [
       tests.molpro
       tests.mesa-qc
@@ -163,7 +164,8 @@ jobs = rec {
       molpro
       molpro12
       molpro15
-      molpro18;
+      molpro18
+      molpro19;
   }
   else {}
   ) // (if cfg.optpath != null  then
