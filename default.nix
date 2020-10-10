@@ -125,6 +125,8 @@ in with super;
 
   molpro19 = callPackage ./molpro { token=cfg.licMolpro; };
 
+  molpro20 = callPackage ./molpro/2020.nix { token=cfg.licMolpro; };
+
   molcas = callPackage ./openmolcas { };
 
   molcas1911 = self.molcas;
