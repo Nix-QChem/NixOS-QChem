@@ -27,7 +27,13 @@ in stdenv.mkDerivation {
     sha256 = "1wwqhkyyi7pw5x1ghnp83ir17zl5jsj7phhqxapybyi3bmg0i00q";
   };
 
-  patches = [ (fetchpatch {
+  patches = [
+  (fetchpatch {
+    name = "openblas-multiple-output"; # upstream patch
+    url = "https://raw.githubusercontent.com/NixOS/nixpkgs/8b02ff6b8eeb4896276c8777003736598a78d30d/pkgs/applications/science/chemistry/openmolcas/openblasPath.patch";
+    sha256 = "0kk67924fp9243jh33h9c1d3hagn3s936w5b1s9hyih6nqygb3mc";
+  })
+  (fetchpatch {
     name = "Fix-MPI-INT-size"; # upstream patch
     url = "https://gitlab.com/Molcas/OpenMolcas/commit/860e3350523f05ab18e49a428febac8a4297b6e4.patch";
     sha256 = "0h96h5ikbi5l6ky41nkxmxfhjiykkiifq7vc2s3fdy1r1siv09sb";
@@ -64,7 +70,7 @@ in stdenv.mkDerivation {
     "-DWFA=ON"
     "-DCTEST=ON"
     "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${chemps2}/bin"
-  ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas}" ]);
+  ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas.dev}" ]);
 
   postConfigure = ''
     # The Makefile will install pymolcas during the build grrr.
