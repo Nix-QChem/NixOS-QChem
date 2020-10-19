@@ -27,7 +27,11 @@ in stdenv.mkDerivation {
     sha256 = "1w8av44dx5r9yp2xhf9ypdrhappvk984wrd5pa1ww0qv6j2446ic";
   };
 
-  patches = [
+  patches = [ (fetchpatch {
+    name = "openblas-multiple-output"; # upstream patch
+    url = "https://raw.githubusercontent.com/NixOS/nixpkgs/2eee4e4eac851a2846515dcfa3274c4ab92ecbe5/pkgs/applications/science/chemistry/openmolcas/openblasPath.patch";
+    sha256 = "0l6z5zhfbfpbp9x58228nhhwwp1fzmi8cmmasvzddp84h31f0b8h";
+  })
   ];
 
   prePatch = ''
