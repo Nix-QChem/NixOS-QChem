@@ -64,6 +64,7 @@ jobs = rec {
     hwloc-x11
     hpcg
     molcas
+    molcas2010
     molden
     molcasUnstable
     mt-dgemm

@@ -136,6 +136,8 @@ in with super;
 
   molcas1911 = self.molcas;
 
+  molcas2010 = callPackage ./openmolcas/v20.10.nix { };
+
   molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
 
   orca = callPackage ./orca { };
