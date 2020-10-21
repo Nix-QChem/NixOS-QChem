@@ -138,7 +138,9 @@ in with super;
 
   molcas2010 = callPackage ./openmolcas/v20.10.nix { };
 
-  molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
+  # deactivate for now, does not build out of the box
+  #molcasUnstable = self.openmpiPkgs.openmolcasUnstable;
+  molcasUnstable = self.molcas2010;
 
   orca = callPackage ./orca { };
 

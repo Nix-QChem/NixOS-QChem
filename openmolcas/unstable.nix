@@ -5,8 +5,8 @@
 } :
 
 let
-  version = "20200401";
-  gitLabRev = "00e9b4303a85324e224975d6cc198745ce364c44";
+  version = "20201020";
+  gitLabRev = "a1c588d43c218d807e8356276dafd947698c156b";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
@@ -25,7 +25,7 @@ in stdenv.mkDerivation {
     owner = "Molcas";
     repo = "OpenMolcas";
     rev = gitLabRev;
-    sha256 = "00nb24w8gp57mghyqyscqwf26z328qwnq5b73mcnnrwph8j65dc1";
+    sha256 = "08h7akv2rn6a2vq3as83mc495bkyswzgshwpx25cvy9gvqbzrr4p";
   };
 
   prePatch = ''
@@ -34,6 +34,9 @@ in stdenv.mkDerivation {
     chmod -R u+w External/
   '';
 
+
+  patches = [
+  ];
 
   nativeBuildInputs = [ perl cmake texLive makeWrapper ];
   buildInputs = [ gfortran openblas hdf5-cpp python armadillo mpi globalarrays openssh ];
