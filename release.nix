@@ -73,6 +73,7 @@ jobs = rec {
     sharcV1
     sharc
     sharc21
+    slurm-tools
     stream-benchmark;
 
   pyscf = pkgs.python3Packages.pyscf;

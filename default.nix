@@ -291,6 +291,8 @@ in with super;
   # Utilities
   writeScriptSlurm = callPackage ./builders/slurmScript.nix {};
 
+  slurm-tools = callPackage ./slurm-tools {};
+
   # A wrapper to enforce license checkouts with slurm
   slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };
 
