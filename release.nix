@@ -95,56 +95,58 @@ jobs = rec {
     };
   };
 
-  tests = {
-    inherit (pkgs.qc-tests)
-      bagel
-      cp2k
-      nwchem
-      molcas;
-  } // pkgs.lib.optionalAttrs (cfg.srcurl != null) {
-    inherit (pkgs.qc-tests)
-      molpro
-      mesa-qc
-      qdng;
-  };
+  release = {
+    tests = {
+      inherit (pkgs.qc-tests)
+        bagel
+        cp2k
+        nwchem
+        molcas;
+    } // pkgs.lib.optionalAttrs (cfg.srcurl != null) {
+      inherit (pkgs.qc-tests)
+        molpro
+        mesa-qc
+        qdng;
+    };
 
-  tested = with pkgs; releaseTools.aggregate {
-    name = "tests";
-    constituents = [
-      tests.cp2k
-      tests.nwchem
-      tests.molcas
-      molden
-    ] ++ lib.optionals (cfg.srcurl != null) [
-      tests.molpro
-      tests.mesa-qc
-      tests.qdng
-    ];
-  };
+    tested = with pkgs; releaseTools.aggregate {
+      name = "tests";
+      constituents = with release; [
+        tests.cp2k
+        tests.nwchem
+        tests.molcas
+        molden
+      ] ++ lib.optionals (cfg.srcurl != null) [
+        tests.molpro
+        tests.mesa-qc
+        tests.qdng
+      ];
+    };
 
-  nixexprs = with pkgs; runCommand "nixexprs" {}
-    ''
-      mkdir -p $out/nixpkgs $out/NixOS-QChem
+    nixexprs = with pkgs; runCommand "nixexprs" {}
+      ''
+        mkdir -p $out/nixpkgs $out/NixOS-QChem
 
-      cp -r ${nixpkgs}/* $out/nixpkgs
-      cp -r ${./.}/* $out/NixOS-QChem
+        cp -r ${nixpkgs}/* $out/nixpkgs
+        cp -r ${./.}/* $out/NixOS-QChem
 
-      cp ${./channel.nix} $out/default.nix
+        cp ${./channel.nix} $out/default.nix
 
-      # nixpkgs version
-      cp ${nixpkgs}/.version $out/.version
-      cp ${nixpkgs}/.version $out/nixpkgs/.version
+        # nixpkgs version
+        cp ${nixpkgs}/.version $out/.version
+        cp ${nixpkgs}/.version $out/nixpkgs/.version
 
-      cat <<EOF > $out/.revision
-      nixpkgs ${nixpkgs.shortRev}
-      NixOS-QChem ${NixOS-QChem.shortRev}
-      EOF
-    '';
+        cat <<EOF > $out/.revision
+        nixpkgs ${nixpkgs.shortRev}
+        NixOS-QChem ${NixOS-QChem.shortRev}
+        EOF
+      '';
 
-  channel = pkgs.releaseTools.channel {
-    name = "NixOS-QChem-channel";
-    src = nixexprs;
-    constituents = [ tested ];
+    channel = pkgs.releaseTools.channel {
+      name = "NixOS-QChem-channel";
+      src = release.nixexprs;
+      constituents = [ release.tested ];
+    };
   };
 
 } // (if cfg.srcurl != null then
