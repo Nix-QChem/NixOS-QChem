@@ -111,7 +111,7 @@ jobs = rec {
 
     tested = with pkgs; releaseTools.aggregate {
       name = "tests";
-      constituents = [
+      constituents = with release; [
         tests.cp2k
         tests.nwchem
         tests.molcas
