@@ -278,8 +278,6 @@ in with super;
 
   sos = callPackage ./sos { };
 
-  pmix = callPackage ./pmix { };
-
   spglib = callPackage ./spglib {};
 
   stream-benchmark = callPackage ./stream { };
