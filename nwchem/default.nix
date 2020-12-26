@@ -4,14 +4,14 @@
 } :
 
 let
-  version = "7.0.0";
-  versionGA = "5.7.1"; # Fixed by nwchem
+  version = "7.0.2";
+  versionGA = "5.7.2"; # Fixed by nwchem
 
   ga_src = fetchFromGitHub {
     owner = "GlobalArrays";
     repo = "ga";
     rev = "v${versionGA}";
-    sha256 = "1b2vqklfwqhkfy1zrdnc40aiakpnm1hnlwbllm8a5v9wv3qav08d";
+    sha256 = "0c1y9a5jpdw9nafzfmvjcln1xc2gklskaly0r1alm18ng9zng33i";
   };
 
 in stdenv.mkDerivation {
@@ -22,7 +22,7 @@ in stdenv.mkDerivation {
     owner = "nwchemgit";
     repo = "nwchem";
     rev = "v${version}-release";
-    sha256 = "1hfvk8cdn93cfnw88gyswp2dbw3cfx23660zy9cgvqjnhr5qkbrq";
+    sha256 = "1ckhcjaw1hzdsmm1x2fva27c4rs3r0h82qivg72v53idz880hbp3";
   };
 
   nativeBuildInputs = [ perl automake autoconf libtool makeWrapper ];
