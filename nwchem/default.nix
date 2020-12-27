@@ -1,7 +1,9 @@
 { stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl
-, mpi ? pkgs.openmpi, openblas, python, tcsh, bash
+, mpi, blas, lapack, python, tcsh, bash
 , automake, autoconf, libtool, makeWrapper
 } :
+
+assert blas.isILP64 == blas.isILP64;
 
 let
   version = "7.0.2";
@@ -26,7 +28,7 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ perl automake autoconf libtool makeWrapper ];
-  buildInputs = [ tcsh openssh which gfortran mpi openblas which python ];
+  buildInputs = [ tcsh openssh which gfortran mpi blas lapack which python ];
   propagatedUserEnvPkgs = [ mpi ];
 
   postUnpack = ''
@@ -67,10 +69,10 @@ in stdenv.mkDerivation {
   PYTHONHOME="${python}";
   PYTHONVERSION="2.7";
 
-  BLASOPT="-L${openblas}/lib -lopenblas";
-  LAPACK_LIB="-lopenblas";
+  BLASOPT="-L${blas}/lib -lblas";
+  LAPACK_LIB="-L${lapack}/lib -lapack";
 
-  BLAS_SIZE="8";
+  BLAS_SIZE=if blas.isILP64 then "8" else "4";
 
   # extra TCE releated options
   MRCC_METHODS="y";
@@ -88,7 +90,7 @@ in stdenv.mkDerivation {
 
     echo "ROOT: $NWCHEM_TOP"
     make nwchem_config
-    #make 64_to_32
+    ${stdenv.lib.optionalString (!blas.isILP64) "make 64_to_32"}
   '';
 
   postBuild = ''

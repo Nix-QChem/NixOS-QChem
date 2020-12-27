@@ -59,7 +59,7 @@ let
 
     mctdh = callPackage ./mctdh { useMPI=true; mpi=pkg; scalapack=MPI.scalapack; };
 
-    nwchem = callPackage ./nwchem { mpi=pkg; };
+    nwchem = callPackage ./nwchem { mpi=pkg; blas=self.blas-i8; lapack=self.lapack-i8; };
 
     openmolcasUnstable = callPackage ./openmolcas/unstable.nix {
       texLive = texlive.combine { inherit (texlive) scheme-basic epsf cm-super; };
