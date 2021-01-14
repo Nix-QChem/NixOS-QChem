@@ -25,6 +25,8 @@
 # UCX fails in sandbox
 , OMPI_MCA_btl ? "self,vader"
 , OMPI_MCA_pml ? "ob1,v,cm"
+# Needed to run MPICH in a sandbox
+, HYDRA_IFACE ? "lo"
 # Place all inputs (packages here)
 , nativeBuildInputs ? []
 , ...
