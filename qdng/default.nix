@@ -12,6 +12,7 @@ in stdenv.mkDerivation {
   src = requireFile {
     name = "qdng-${version}.tar.xz";
     sha256 = "0gdh5mb6wl66qcdmhg5yiz5irs1s3sgwmd12fzhxyfkxzkr7fagz";
+    message = "Get a copy of the QDng tarball from Markus...";
   };
 
   configureFlags = [ "--enable-openmp" "--with-blas=-lopenblas" ];

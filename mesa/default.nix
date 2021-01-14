@@ -11,6 +11,7 @@ in stdenv.mkDerivation {
   src = requireFile {
     name = "mesa_lucchese.tar.xz";
     sha256 = "0xp287r53xfvgcfv1c2kpl68wsvmfkh1vb0f3l941jb0ry4wh5w0";
+    message = "The tarball for mesa needs to be in nix store";
   };
 
   buildInputs = [ gfortran openblas ];
