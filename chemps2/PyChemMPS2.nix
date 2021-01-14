@@ -1,14 +1,14 @@
 { stdenv, buildPythonPackage, cython, numpy
-, chemps2, hdf5
+, qchem, hdf5
 } :
 
 buildPythonPackage {
   pname = "PyCheMPS2";
-  inherit (chemps2) version src meta;
+  inherit (qchem.chemps2) version src meta;
 
   nativeBuildInputs = [ cython ];
 
-  buildInputs = [ chemps2 hdf5 ];
+  buildInputs = [ qchem.chemps2 hdf5 ];
 
   propagatedBuildInputs = [ numpy ];
 
