@@ -1,3 +1,5 @@
+{ callPackage, tests } :
+
 {
   threads ? 1
 , mpiTasks ? 1

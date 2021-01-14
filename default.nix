@@ -37,6 +37,10 @@ let
         scalapack;
 
       pkgs = self_;
+
+
+      inherit callPackage;
+
       #
       # Upstream overrides
       #
@@ -228,10 +232,9 @@ let
       # benchmark set builder
       benchmarks = callPackage ./benchmark/default.nix { };
 
-      benchmarksets = callPackage ./tests/benchmark-sets.nix { };
+      benchmarksets = callPackage ./tests/benchmark-sets.nix { inherit callPackage; };
 
       tests = {
-        molpro = callPackage ./tests/molpro { };
         cp2k = callPackage ./tests/cp2k { };
         bagel = callPackage ./tests/bagel { };
         bagel-bench = callPackage ./tests/bagel/bench-test.nix { };
@@ -244,9 +247,11 @@ let
         qdng = callPackage ./tests/qdng { };
         dgemm = callPackage ./tests/dgemm { };
         stream = callPackage ./tests/stream { };
+      }  // lib.optionalAttrs (cfg.licMolpro != null) {
+        molpro = callPackage ./tests/molpro { };
       };
 
-      qc-testFiles = let
+      testFiles = let
         batsDontRun = self.batsTest.override { overrideDontRun = true; };
       in builtins.mapAttrs (n: v: v.override { batsTest = batsDontRun; })
         self.tests;
