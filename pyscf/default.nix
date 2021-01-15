@@ -1,5 +1,5 @@
 { lib, buildPythonPackage, fetchFromGitHub
-, numpy, scipy, h5py, qchem, libxc
+, numpy, scipy, h5py, libcint3, libxc
 } :
 
 buildPythonPackage rec {
@@ -14,9 +14,9 @@ buildPythonPackage rec {
   };
 
   propagatedBuildInputs = [ numpy scipy h5py ];
-  buildInputs = [ qchem.libcint3 libxc ];
+  buildInputs = [ libcint3 libxc ];
 
-  PYSCF_INC_DIR="${qchem.libcint3}:${libxc}";
+  PYSCF_INC_DIR="${libcint3}:${libxc}";
 
   doCheck = true;
 

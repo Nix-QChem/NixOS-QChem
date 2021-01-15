@@ -11,7 +11,6 @@ let
 
   optAVX = cfg.optAVX;
 
-  pythonOverrides = import ./pythonPackages.nix;
 
   #
   # Our package set
@@ -19,6 +18,7 @@ let
   overlay = subset: extra: let
     self = self_."${subset}";
     callPackage = super.lib.callPackageWith (self_ // self);
+    pythonOverrides = (import ./pythonPackages.nix) subset;
 
   in {
     "${subset}" = {
