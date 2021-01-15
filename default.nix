@@ -223,6 +223,10 @@ in with super;
       qtsvg;
   }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
 
+  dkh = callPackage ./dkh {};
+
+  dftd3 = callPackage ./dft-d3 {};
+
   ### Python packages
 
   python3 = super.python3.override { packageOverrides=pythonOverrides; };
