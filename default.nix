@@ -177,8 +177,8 @@ let
       vmd = callPackage ./vmd {};
 
       ### Python packages
-      python3 = super.python3.override { packageOverrides=pythonOverrides; };
-      python2 = super.python2.override { packageOverrides=pythonOverrides; };
+      python3 = super.python3.override { packageOverrides=pythonOverrides self super; };
+      python2 = super.python2.override { packageOverrides=pythonOverrides self super; };
 
       #
       # Libraries
