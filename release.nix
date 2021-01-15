@@ -27,7 +27,7 @@ let
 
     # Make sure we only build the overlay's content
     pkgsClean = with pkgSet.lib;
-      filterAttrs (n: v: isDerivation v)
+      filterAttrs (n: v: isDerivation v || isAttrs v)
       (builtins.removeAttrs pkgSet."${cfg.prefix}" [
         "pkgs"
         "python2"
