@@ -24,16 +24,14 @@ let
       pkgSet.lib.foldr (a: b: a // b) {}
       (map (x: { "${x}" = pkgSet."${cfg.prefix}"."${x}".pkgs."${cfg.prefix}"; }) plist);
 
+    # Filter out derivations
+    hydraJobs = with pkgSet.lib; filterAttrs (n: v: isDerivation v);
 
     # Make sure we only build the overlay's content
-    pkgsClean = with pkgSet.lib;
-      filterAttrs (n: v: isDerivation v || isAttrs v)
-      (builtins.removeAttrs pkgSet."${cfg.prefix}" [
-        "pkgs"
-        "python2"
-        "python3"
-        "benchmarksets"
-      ]) # release set for python packages
+    pkgsClean = hydraJobs pkgSet."${cfg.prefix}"
+      # Pick the test set
+      // { tests = hydraJobs pkgSet."${cfg.prefix}".tests; }
+      # release set for python packages
       // makeForPython [ "python2" "python3" ];
 
   in pkgsClean;
