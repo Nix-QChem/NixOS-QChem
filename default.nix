@@ -34,6 +34,8 @@ let
         mpi
         mkl
         libxsmm
+        quantum-espresso
+        quantum-espresso-mpi
         scalapack;
 
       pkgs = self_;
