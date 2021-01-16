@@ -47,8 +47,10 @@ let
 
       # Define an ILP64 blas/lapack
       # This is still missing upstream
-      blas-i8 = self_.blas.override { isILP64 = true; };
-      lapack-i8 = self_.lapack.override { isILP64 = true; };
+      blas-i8 = if self_.blas.implementation != "amd-blis" then self_.blas.override { isILP64 = true; }
+                else super.blas.override { isILP64 = true; blasProvider = super.openblas; };
+      lapack-i8 = if self_.lapack.implementation != "amd-libflame" then self_.lapack.override { isILP64 = true; }
+                else super.lapack.override { isILP64 = true; lapackProvider = super.openblas; };
 
       fftw = self_.fftw.overrideDerivation ( oldAttrs: {
         buildInputs = [ self_.gfortran ];
