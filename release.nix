@@ -5,6 +5,8 @@
   # Override config from ENV
   , config ? {}
   , NixOS-QChem ? { shortRev = "0000000"; }
+  # build more variants
+  , buildVariants ? false
 } :
 
 
@@ -37,7 +39,19 @@ let
   in pkgsClean;
 
 in {
-  qchem = pkgs (config // { optAVX = true;}) (self: super: {});
-  qchem-mpich = pkgs (config // { optAVX = true;}) (self: super: { mpi = super.mpich; });
-  qchem-noavx = pkgs (config // { optAVX = false;}) (self: super: {});
+  qchem = pkgs (config // { optAVX = true; }) (self: super: {});
+  qchem-noavx = pkgs (config // { optAVX = false; }) (self: super: {});
+} // (if buildVariants then {
+  qchem-mpich = pkgs (config // { optAVX = true; }) (self: super: { mpi = super.mpich; });
+
+  qchem-mkl = pkgs (config // { optAVX = true; }) (self: super: {
+    blas = super.blas.override { blasProvider = super.mkl; };
+    lapack = super.lapack.override { lapackProvider = super.mkl; };
+  });
+
+  qchem-amd = pkgs (config // { optAVX = true; }) (self: super: {
+    blas = super.blas.override { blasProvider = super.amd-blis; };
+    lapack = super.lapack.override { lapackProvider = super.amd-libflame; };
+  });
 }
+else {})
