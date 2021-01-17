@@ -33,15 +33,60 @@ let
     pkgsClean = hydraJobs pkgSet."${cfg.prefix}"
       # Pick the test set
       // { tests = hydraJobs pkgSet."${cfg.prefix}".tests; }
+
       # release set for python packages
-      // makeForPython [ "python2" "python3" ];
+      // makeForPython [ "python2" "python3" ]
+
+      # Have a manadatory test set and a channel
+      // rec {
+        tested = pkgSet.releaseTools.aggregate {
+          name = "tested-programs";
+          constituents = with pkgSet."${cfg.prefix}"; [
+            tests.cp2k
+            tests.nwchem
+            tests.molcas
+            molden
+          ] ++ pkgSet.lib.optionals (cfg.srcurl != null) [
+            tests.molpro
+            tests.mesa-qc
+            tests.qdng
+          ];
+        };
+
+        nixexprs = pkgSet.runCommand "nixexprs" {}
+          ''
+            mkdir -p $out/NixOS-QChem
+
+            cp -r ${nixpkgs}/* $out/
+            mv $out/default.nix $out/nixpkgs-default.nix
+
+            cp -r ${./.}/* $out/NixOS-QChem
+            cp ${./channel.nix} $out/default.nix
+
+            # nixpkgs version
+            cp ${nixpkgs}/.version $out/.version
+
+            cat <<EOF > $out/.qchem-revision
+            nixpkgs ${nixpkgs.shortRev}
+            NixOS-QChem ${NixOS-QChem.shortRev}
+            EOF
+          '';
+
+        channel = pkgSet.releaseTools.channel {
+          name = "NixOS-QChem-channel";
+          src = nixexprs;
+          constituents = [ tested ];
+        };
+      };
 
   in pkgsClean;
 
 in {
   qchem = pkgs (config // { optAVX = true; }) (self: super: {});
   qchem-noavx = pkgs (config // { optAVX = false; }) (self: super: {});
-} // (if buildVariants then {
+
+} # Extra variants for testing purposes
+// (if buildVariants then {
   qchem-mpich = pkgs (config // { optAVX = true; }) (self: super: { mpi = super.mpich; });
 
   qchem-mkl = pkgs (config // { optAVX = true; }) (self: super: {
