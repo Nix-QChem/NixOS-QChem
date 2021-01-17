@@ -23,6 +23,7 @@ let
   in {
     "${subset}" = {
       # For consistency: every package that is in nixpgs-opt.nix
+      # + extra builds that should be exposed
       inherit (self_)
         fftwSinglePrec
         hpl
@@ -33,10 +34,14 @@ let
         gromacsDoubleMpi
         mpi
         mkl
+        molden
         libxsmm
+        octopus
         quantum-espresso
         quantum-espresso-mpi
-        scalapack;
+        scalapack
+        siesta
+        siesta-mpi;
 
       pkgs = self_;
 
