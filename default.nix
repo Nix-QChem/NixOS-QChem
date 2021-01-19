@@ -229,6 +229,8 @@ in with super;
 
   libefp = callPackage ./libefp {};
 
+  pcmsolver = callPackage ./pcmsolver {};
+
   ### Python packages
 
   python3 = super.python3.override { packageOverrides=pythonOverrides; };
