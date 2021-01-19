@@ -348,5 +348,3 @@ in with super;
   in builtins.mapAttrs (n: v: v.override { batsTest = batsDontRun; })
     self.qc-tests;
 }
-
-
