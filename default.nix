@@ -227,6 +227,8 @@ in with super;
 
   dftd3 = callPackage ./dft-d3 {};
 
+  libefp = callPackage ./libefp {};
+
   ### Python packages
 
   python3 = super.python3.override { packageOverrides=pythonOverrides; };
