@@ -1,4 +1,4 @@
-self: super:
+selfPkgs: superPkgs: self: super:
 
 let
   callPackage = self.callPackage;
@@ -13,4 +13,17 @@ in {
   gau2grid-2_0_4 = callPackage ./gau2grid { version = "2.0.4"; sha256 = "0qypq8iax0n6yfi4223zya468v24b60nr0x43ypmsafj0104zqa6"; };
   gau2grid = callPackage ./gau2grid { };
   pylibefp = callPackage ./pylibefp { };
+  psi4 = callPackage ./psi4 {
+    blas = superPkgs.blas.override { blasProvider = superPkgs.mkl; };
+    lapack = superPkgs.lapack.override { lapackProvider = superPkgs.mkl; };
+    gau2grid = self.gau2grid-1_3_1;
+  };
+  psi4Unstable = callPackage ./psi4 {
+    blas = superPkgs.blas.override { blasProvider = superPkgs.mkl; };
+    lapack = superPkgs.lapack.override { lapackProvider = superPkgs.mkl; };
+    gau2grid = self.gau2grid-2_0_4;
+    version = "01.11.2020";
+    rev = "9b60184c5d161e4871c91ce29a44e3ac2c2a438e";
+    sha256 = "1vh8dp3nw4fk1mnfv0w8ici1lzxyfn5han7hipqzsfxl75w76r18";
+  };
 }
