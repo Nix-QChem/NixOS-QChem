@@ -9,13 +9,12 @@ nix-env -f release.nix -qa --arg config '{ allowEnv=true; }' --json -A qchem | \
 	version : .value.version,
 	description: .value.meta.description,
 	homepage: .value.meta.homepage,
-	license: .value.meta.license.shortName,
        }]' > package_list.json
 
 
 
 
-jq -r '(.[0] | "| name | attribute | description | license |" ),
-       (.[0] | "|------|-----------|-------------|---------|"),
-       (.[] | "| \(.name) | \(.attribute) | \(.description) | \(.license) |")' < package_list.json
+jq -r '(.[0] | "| name | attribute | description |" ),
+       (.[0] | "|------|-----------|-------------|"),
+       (.[] | "| \(.name) | \(.attribute) | \(.description) |")' < package_list.json
 
