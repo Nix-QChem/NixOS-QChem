@@ -12,6 +12,9 @@ let
   overlay = {
     pychemps2 = callPackage ./chemps2/PyChemMPS2.nix { };
 
+  } // lib.optionalAttrs super.isPy3k {
+    pyscf = callPackage ./pyscf { };
+
     qcelemental = callPackage ./qcelemental { };
 
     qcengine = callPackage ./qcengine { };
@@ -36,8 +39,6 @@ let
       rev = "9b60184c5d161e4871c91ce29a44e3ac2c2a438e";
       sha256 = "1vh8dp3nw4fk1mnfv0w8ici1lzxyfn5han7hipqzsfxl75w76r18";
     };
-  } // lib.optionalAttrs super.isPy3k {
-    pyscf = callPackage ./pyscf { };
   } // lib.optionalAttrs super.isPy27 {
     pyquante = callPackage ./pyquante { };
   };
