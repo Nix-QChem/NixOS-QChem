@@ -3,7 +3,7 @@ self_: super:
 let
 
   cfg = if (builtins.hasAttr "qchem-config" super.config) then
-    super.config.qchem-config
+    (import ./cfg.nix) super.config.qchem-config
   else
   (import ./cfg.nix) { allowEnv = true; }; # if no config is given allow env
 
