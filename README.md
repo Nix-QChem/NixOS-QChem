@@ -4,7 +4,7 @@
 Nix derivations for HPC/Quantum chemistry software packages.
 
 The goal of this project is to integrate software packages
-into nixos to make it suitable for running it on a HPC cluster. 
+into nixos to make it suitable for running it on a HPC cluster.
 
 # Usage
 
@@ -16,6 +16,7 @@ There is a branch for every stable version of nixpkgs.
 
 The overlay will check for environment variables to configure some features:
 
+* `NIXQC_PREFIX`: The packages of the overlay will be placed in subset specified by `prefix`
 * `NIXQC_SRCURL`: URL for non-free packages. This will override `requireFile` function of nixpkgs to pull all non-free packages from the specified URL
 * `NIXQC_OPTPATH`: path to packages that reside outside the nix store. This is mainly relevant for Gaussian and Matlab.
 * `NIXQC_LICMOLPRO`: Molpro license token strings required to run molpro

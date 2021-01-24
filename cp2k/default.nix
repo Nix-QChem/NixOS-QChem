@@ -67,6 +67,8 @@ in stdenv.mkDerivation rec {
 
   checkPhase = ''
     export OMP_NUM_THREADS=1
+    # Fix to make mpich run in a sandbox
+    export HYDRA_IFACE=lo
     export OMPI_MCA_rmaps_base_oversubscribe=1
     export CP2K_DATA_DIR=data
 

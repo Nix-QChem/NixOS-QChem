@@ -1,0 +1,488 @@
+[
+  {
+    "attribute": "qchem.bagel-serial",
+    "name": "bagel-1.2.2-mkl",
+    "pname": "bagel",
+    "version": "1.2.2-mkl",
+    "description": "Brilliantly Advanced General Electronic-structure Library",
+    "homepage": "https://nubakery.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.bagel",
+    "name": "bagel-1.2.2-mkl",
+    "pname": "bagel",
+    "version": "1.2.2-mkl",
+    "description": "Brilliantly Advanced General Electronic-structure Library",
+    "homepage": "https://nubakery.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.blas-i8",
+    "name": "blas-3",
+    "pname": "blas",
+    "version": "3",
+    "description": "openblas with just the BLAS C and FORTRAN ABI",
+    "homepage": "https://github.com/xianyi/OpenBLAS",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.chemps2",
+    "name": "CheMPS2-1.8.9",
+    "pname": "CheMPS2",
+    "version": "1.8.9",
+    "description": "A spin-adapted implementation of DMRG for ab initio quantum chemistry",
+    "homepage": "http://sebwouters.github.io/CheMPS2",
+    "license": null
+  },
+  {
+    "attribute": "qchem.cp2k",
+    "name": "cp2k-7.1.0",
+    "pname": "cp2k",
+    "version": "7.1.0",
+    "description": "Quantum chemistry and solid state physics program",
+    "homepage": "https://www.cp2k.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.ergoscf",
+    "name": "ergoscf-3.8",
+    "pname": "ergoscf",
+    "version": "3.8",
+    "description": "Quantum chemistry program for large-scale self-consistent field calculations",
+    "homepage": "http://http://www.ergoscf.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.fftw",
+    "name": "fftw-double-3.3.8",
+    "pname": "fftw-double",
+    "version": "3.3.8",
+    "description": "Fastest Fourier Transform in the West library",
+    "homepage": "http://www.fftw.org/",
+    "license": "gpl2Plus"
+  },
+  {
+    "attribute": "qchem.fftwSinglePrec",
+    "name": "fftw-single-3.3.8",
+    "pname": "fftw-single",
+    "version": "3.3.8",
+    "description": "Fastest Fourier Transform in the West library",
+    "homepage": "http://www.fftw.org/",
+    "license": "gpl2Plus"
+  },
+  {
+    "attribute": "qchem.slurm-tools",
+    "name": "fugu-tools-1.2.2",
+    "pname": "fugu-tools",
+    "version": "1.2.2",
+    "description": null,
+    "homepage": null,
+    "license": null
+  },
+  {
+    "attribute": "qchem.gaussian",
+    "name": "gaussian-16b01",
+    "pname": "gaussian",
+    "version": "16b01",
+    "description": "Quantum chemistry programm package",
+    "homepage": null,
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.gaussview",
+    "name": "gaussview-6.0.16",
+    "pname": "gaussview",
+    "version": "6.0.16",
+    "description": "GUI for the Gaussian quantum chemistry software package",
+    "homepage": "http://gaussian.com/gaussian16/",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.gromacsDouble",
+    "name": "gromacs-2020.4",
+    "pname": "gromacs",
+    "version": "2020.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.gromacsMpi",
+    "name": "gromacs-2020.4",
+    "pname": "gromacs",
+    "version": "2020.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.gromacsDoubleMpi",
+    "name": "gromacs-2020.4",
+    "pname": "gromacs",
+    "version": "2020.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.gromacs",
+    "name": "gromacs-2020.4",
+    "pname": "gromacs",
+    "version": "2020.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.hdf5-full",
+    "name": "hdf5-1.10.6",
+    "pname": "hdf5",
+    "version": "1.10.6",
+    "description": "Data model, library, and file format for storing and managing data",
+    "homepage": "https://www.hdfgroup.org/HDF5/",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.hpcg",
+    "name": "hpcg-3.1",
+    "pname": "hpcg",
+    "version": "3.1",
+    "description": "HPC conjugate gradient benchmark",
+    "homepage": "https://www.hpcg-benchmark.org",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.hpl",
+    "name": "hpl-2.3",
+    "pname": "hpl",
+    "version": "2.3",
+    "description": "Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers",
+    "homepage": "http://www.netlib.org/benchmark/hpl/",
+    "license": "bsdOriginal"
+  },
+  {
+    "attribute": "qchem.lapack-i8",
+    "name": "lapack-3",
+    "pname": "lapack",
+    "version": "3",
+    "description": "openblas with just the LAPACK C and FORTRAN ABI",
+    "homepage": "https://github.com/xianyi/OpenBLAS",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.libcint3",
+    "name": "libcint-3.0.15",
+    "pname": "libcint",
+    "version": "3.0.15",
+    "description": "Open source library for analytical Gaussian integrals",
+    "homepage": "https://github.com/sunqm/libcint",
+    "license": "bsd2"
+  },
+  {
+    "attribute": "qchem.libint-bagel",
+    "name": "libint2-2.6.0",
+    "pname": "libint2",
+    "version": "2.6.0",
+    "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
+    "homepage": "https://github.com/evaleev/libint",
+    "license": null
+  },
+  {
+    "attribute": "qchem.libint2",
+    "name": "libint2-2.6.0",
+    "pname": "libint2",
+    "version": "2.6.0",
+    "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
+    "homepage": "https://github.com/evaleev/libint",
+    "license": null
+  },
+  {
+    "attribute": "qchem.libxc",
+    "name": "libxc-4.3.4",
+    "pname": "libxc",
+    "version": "4.3.4",
+    "description": "Library of exchange-correlation functionals for density-functional theory",
+    "homepage": "https://octopus-code.org/wiki/Libxc",
+    "license": null
+  },
+  {
+    "attribute": "qchem.libxsmm",
+    "name": "libxsmm-1.16.1",
+    "pname": "libxsmm",
+    "version": "1.16.1",
+    "description": "Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives",
+    "homepage": "https://github.com/hfp/libxsmm",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.matlab",
+    "name": "matlab",
+    "pname": "matlab",
+    "version": "",
+    "description": null,
+    "homepage": null,
+    "license": null
+  },
+  {
+    "attribute": "qchem.mctdh",
+    "name": "mctdh-8.4.17",
+    "pname": "mctdh",
+    "version": "8.4.17",
+    "description": "Multi configuration time dependent hartree dynamics package",
+    "homepage": "https://www.pci.uni-heidelberg.de/cms/mctdh.html",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.mesa-qc",
+    "name": "mesa-20140610",
+    "pname": "mesa",
+    "version": "20140610",
+    "description": "Electronic structure and scattering program",
+    "homepage": null,
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.mkl",
+    "name": "mkl-2020.4.304",
+    "pname": "mkl",
+    "version": "2020.4.304",
+    "description": "Intel Math Kernel Library",
+    "homepage": "https://software.intel.com/en-us/mkl",
+    "license": "issl"
+  },
+  {
+    "attribute": "qchem.molpro12",
+    "name": "molpro-2012.1.12",
+    "pname": "molpro",
+    "version": "2012.1.12",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.molpro15",
+    "name": "molpro-2015.1.44",
+    "pname": "molpro",
+    "version": "2015.1.44",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.molpro18",
+    "name": "molpro-2018.2.0",
+    "pname": "molpro",
+    "version": "2018.2.0",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.molpro19",
+    "name": "molpro-2019.2.3",
+    "pname": "molpro",
+    "version": "2019.2.3",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.molpro",
+    "name": "molpro-2020.1.2",
+    "pname": "molpro",
+    "version": "2020.1.2",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.mt-dgemm",
+    "name": "mt-dgeem-20160114",
+    "pname": "mt-dgeem",
+    "version": "20160114",
+    "description": "Simple matrix multiplication performance test",
+    "homepage": "https://portal.nersc.gov/project/m888/apex/",
+    "license": null
+  },
+  {
+    "attribute": "qchem.mvapich",
+    "name": "mvapich-2.3.5",
+    "pname": "mvapich",
+    "version": "2.3.5",
+    "description": "MPI-3.1 implementation optimized for Infiband transport",
+    "homepage": "http://mvapich.cse.ohio-state.edu",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.nwchem",
+    "name": "nwchem-7.0.2",
+    "pname": "nwchem",
+    "version": "7.0.2",
+    "description": "Open Source High-Performance Computational Chemistry",
+    "homepage": "http://www.nwchem-sw.org",
+    "license": "ECL 2.0"
+  },
+  {
+    "attribute": "qchem.octave",
+    "name": "octave-6.1.0",
+    "pname": "octave",
+    "version": "6.1.0",
+    "description": "Scientific Pragramming Language",
+    "homepage": "https://www.gnu.org/software/octave/",
+    "license": "gpl3Plus"
+  },
+  {
+    "attribute": "qchem.molcas",
+    "name": "openmolcas-19.11",
+    "pname": "openmolcas",
+    "version": "19.11",
+    "description": "Quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas",
+    "license": null
+  },
+  {
+    "attribute": "qchem.molcas2010",
+    "name": "openmolcas-20.10",
+    "pname": "openmolcas",
+    "version": "20.10",
+    "description": "Quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas",
+    "license": null
+  },
+  {
+    "attribute": "qchem.mpi",
+    "name": "openmpi-4.0.5",
+    "pname": "openmpi",
+    "version": "4.0.5",
+    "description": "Open source MPI-3 implementation",
+    "homepage": "https://www.open-mpi.org/",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.orca",
+    "name": "orca-4.2.0",
+    "pname": "orca",
+    "version": "4.2.0",
+    "description": "Ab initio quantum chemistry program package",
+    "homepage": "https://orcaforum.kofo.mpg.de/",
+    "license": "unfree"
+  },
+  {
+    "attribute": "qchem.osss-ucx",
+    "name": "osss-ucx-1.0.2",
+    "pname": "osss-ucx",
+    "version": "1.0.2",
+    "description": "",
+    "homepage": "http://www.openshmem.org",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.osu-benchmark",
+    "name": "osu-benchmark-5.6.3",
+    "pname": "osu-benchmark",
+    "version": "5.6.3",
+    "description": "MPI micro benchmark suite",
+    "homepage": "http://mvapich.cse.ohio-state.edu/benchmarks",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.qdng",
+    "name": "qdng-20200218",
+    "pname": "qdng",
+    "version": "20200218",
+    "description": "Quantum dynamics program package",
+    "homepage": null,
+    "license": null
+  },
+  {
+    "attribute": "qchem.quantum-espresso",
+    "name": "quantum-espresso-6.6",
+    "pname": "quantum-espresso",
+    "version": "6.6",
+    "description": "Electronic-structure calculations and materials modeling at the nanoscale",
+    "homepage": "https://www.quantum-espresso.org/",
+    "license": null
+  },
+  {
+    "attribute": "qchem.quantum-espresso-mpi",
+    "name": "quantum-espresso-6.6",
+    "pname": "quantum-espresso",
+    "version": "6.6",
+    "description": "Electronic-structure calculations and materials modeling at the nanoscale",
+    "homepage": "https://www.quantum-espresso.org/",
+    "license": null
+  },
+  {
+    "attribute": "qchem.scalapack",
+    "name": "scalapack-2.1.0",
+    "pname": "scalapack",
+    "version": "2.1.0",
+    "description": "Library of high-performance linear algebra routines for parallel distributed memory machines",
+    "homepage": "http://www.netlib.org/scalapack/",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.sharcV1",
+    "name": "sharc-1.0",
+    "pname": "sharc",
+    "version": "1.0",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.sharc",
+    "name": "sharc-2.0",
+    "pname": "sharc",
+    "version": "2.0",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.sharc21",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org",
+    "license": null
+  },
+  {
+    "attribute": "qchem.sos",
+    "name": "sos-1.5.0",
+    "pname": "sos",
+    "version": "1.5.0",
+    "description": "Sandia open SHMEM implementation",
+    "homepage": "https://github.com/Sandia-OpenSHMEM/SOS/releases",
+    "license": null
+  },
+  {
+    "attribute": "qchem.spglib",
+    "name": "spglib-1.15.1",
+    "pname": "spglib",
+    "version": "1.15.1",
+    "description": "C library for finding and handling crystal symmetries",
+    "homepage": "https://atztogo.github.io/spglib/",
+    "license": "bsd3"
+  },
+  {
+    "attribute": "qchem.stream-benchmark",
+    "name": "stream-benchmark-2013",
+    "pname": "stream-benchmark",
+    "version": "2013",
+    "description": null,
+    "homepage": null,
+    "license": null
+  },
+  {
+    "attribute": "qchem.vmd",
+    "name": "vmd-1.9.3",
+    "pname": "vmd",
+    "version": "1.9.3",
+    "description": "Molecular dynamics visualisation program",
+    "homepage": "https://www.ks.uiuc.edu/Research/vmd/",
+    "license": "unfree"
+  }
+]
