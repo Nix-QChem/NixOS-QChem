@@ -70,7 +70,7 @@ let
       };
 
       # fix a bug in the header file, which causes bagel to fail
-      libxc = self_.libxc.overrideDerivation (oa: {
+      libxc = self_.libxc.overrideAttrs (oa: {
         postFixup = ''
           sed -i '/#include "config.h"/d' $out/include/xc.h
         '';
@@ -161,8 +161,8 @@ let
 
       pcmsolver = callPackage ./pcmsolver {};
 
-      psi4 = super.python3Packages.toPythonApplication self.python3Packages.psi4;
-      psi4Unstable = super.python3Packages.toPythonApplication self.python3Packages.psi4Unstable;
+      psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
+      psi4Unstable = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4Unstable;
 
       qdng = callPackage ./qdng { protobuf=super.protobuf3_11; };
 
@@ -207,6 +207,8 @@ let
       libcint3 = callPackage ./libcint { };
 
       libefp = callPackage ./libefp {};
+
+      libint1 = callPackage ./libint/1.nix { };
 
       libint2 = callPackage ./libint { inherit optAVX; };
 
