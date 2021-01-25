@@ -268,6 +268,7 @@ let
         molcas = callPackage ./tests/molcas { };
         #molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
         nwchem = callPackage ./tests/nwchem { };
+        psi4 = callPackage ./tests/psi4 { };
         qdng = callPackage ./tests/qdng { };
         dgemm = callPackage ./tests/dgemm { };
         stream = callPackage ./tests/stream { };
