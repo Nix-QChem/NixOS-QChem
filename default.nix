@@ -233,9 +233,6 @@ let
       osss-ucx = callPackage ./osss-ucx { };
 
       sos = callPackage ./sos { };
-
-      spglib = callPackage ./spglib {};
-
       #
       # Utilities
       #
