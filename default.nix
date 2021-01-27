@@ -69,13 +69,6 @@ let
         inherit (self_) gfortran;
       };
 
-      # fix a bug in the header file, which causes bagel to fail
-      libxc = self_.libxc.overrideAttrs (oa: {
-        postFixup = ''
-          sed -i '/#include "config.h"/d' $out/include/xc.h
-        '';
-      });
-
       octave = (super.octave.override {
         enableQt = true;
         enableJava = true;
@@ -227,6 +220,9 @@ let
         "--enable-contracted-ints"
       ] ++ lib.optional optAVX "--enable-fma"
       ;};
+
+      # legacy version
+      libxc4 = callPackage ./libxc { };
 
       mvapich = callPackage ./mvapich { };
 
