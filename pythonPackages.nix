@@ -28,12 +28,14 @@ let
     psi4 = callPackage ./psi4 {
       blas = superPkgs.blas.override { blasProvider = superPkgs.mkl; };
       lapack = superPkgs.lapack.override { lapackProvider = superPkgs.mkl; };
+      libxc = selfPkgs.libxc4;
       gau2grid = self.gau2grid-1_3_1;
     };
 
     psi4Unstable = callPackage ./psi4 {
       blas = superPkgs.blas.override { blasProvider = superPkgs.mkl; };
       lapack = superPkgs.lapack.override { lapackProvider = superPkgs.mkl; };
+      libxc = selfPkgs.libxc4;
       gau2grid = self.gau2grid-2_0_4;
       version = "01.11.2020";
       rev = "9b60184c5d161e4871c91ce29a44e3ac2c2a438e";
