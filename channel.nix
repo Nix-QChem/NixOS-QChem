@@ -15,5 +15,5 @@ let
     createPkgs src overlays //
     { qchem = (createPkgs src (overlays ++ [ (import ./NixOS-QChem) ])).qchem; };
 
-in composePkgs ./.
+in composePkgs ./nixpkgs-default.nix
 
