@@ -252,6 +252,8 @@ let
 
       benchmarksets = callPackage ./tests/benchmark-sets.nix { inherit callPackage; };
 
+      f2c = callPackage ./f2c { };
+
       tests = {
         cp2k = callPackage ./tests/cp2k { };
         bagel = callPackage ./tests/bagel { };
