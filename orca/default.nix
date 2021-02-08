@@ -1,4 +1,4 @@
-{ stdenv, requireFile, autoPatchelfHook, makeWrapper
+{ lib, stdenv, requireFile, autoPatchelfHook, makeWrapper
 , openmpi, openssh
 } :
 
@@ -62,7 +62,7 @@ in stdenv.mkDerivation {
     grep "FINAL SINGLE POINT ENERGY" log | grep 74.880174
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Ab initio quantum chemistry program package";
     homepage = "https://orcaforum.kofo.mpg.de/";
     license = licenses.unfree;

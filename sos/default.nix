@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, autoconf, automake, libtool
+{ lib, stdenv, fetchFromGitHub, autoconf, automake, libtool
 , rdma-core, libfabric, libnl, perl, mpi, openssh
 } :
 
@@ -38,15 +38,15 @@ in stdenv.mkDerivation {
 
   checkPhase = ''
     fi_info
-#export SHMEM_OFI_PROVIDER=sockets
-#export SHMEM_OFI_FABRIC="127.0.0.1/8"
+    #export SHMEM_OFI_PROVIDER=sockets
+    #export SHMEM_OFI_FABRIC="127.0.0.1/8"
     export OMPI_MCA_rmaps_base_oversubscribe=1
     export HYDRA_IFACE=lo
     export SHMEM_OFI_DOMAIN=lo
     make check TEST_RUNNER="mpiexec -n 2"
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Sandia open SHMEM implementation";
     homepage = https://github.com/Sandia-OpenSHMEM/SOS/releases;
     license = with licenses; gpl2;

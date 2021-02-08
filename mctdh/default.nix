@@ -10,7 +10,7 @@ let
   version = "8.4.17";
 
   platformcnf = writeText "platform.cnf" ''
-    MCTDH_VERSION="${with stdenv.lib.versions; major version + minor version}"
+    MCTDH_VERSION="${with lib.versions; major version + minor version}"
     MCTDH_PLATFORM="x86_64"
     MCTDH_COMPILER=${if useMPI then "gfortran" else "gfortran-64"}
     MCTDH_GNU_COMPILER="gfortran"
@@ -85,7 +85,7 @@ in stdenv.mkDerivation {
     done
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Multi configuration time dependent hartree dynamics package";
     homepage = https://www.pci.uni-heidelberg.de/cms/mctdh.html;
     license = licenses.unfree;

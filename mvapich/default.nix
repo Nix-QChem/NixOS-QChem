@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, pkgconfig, bison, numactl, libxml2
+{ lib, stdenv, fetchurl, pkgconfig, bison, numactl, libxml2
 , perl, gfortran, slurm, openssh, hwloc, rdma-core
 , infiniband-diags, opensm, zlib
 # Compile with slurm as a process manager
@@ -30,7 +30,7 @@ in stdenv.mkDerivation {
                   hwloc rdma-core
                   infiniband-diags opensm ];
 
-  configureFlags = stdenv.lib.optionals useSlurm [ "--with-pmi=pmi1" "--with-pm=slurm" ];
+  configureFlags = lib.optionals useSlurm [ "--with-pmi=pmi1" "--with-pm=slurm" ];
 
   doCheck = true;
 
@@ -44,7 +44,7 @@ in stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "MPI-3.1 implementation optimized for Infiband transport";
     homepage = http://mvapich.cse.ohio-state.edu;
     license = licenses.bsd3;

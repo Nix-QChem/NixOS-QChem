@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, python3, gfortran, blas, lapack
+{ lib, stdenv, fetchFromGitHub, python3, gfortran, blas, lapack
 , fftw, libint2, libxc, mpi, gsl, scalapack, openssh, makeWrapper
 , libxsmm, spglib, which
 , optAVX ? false
@@ -54,7 +54,7 @@ in stdenv.mkDerivation rec {
     CFLAGS    = -fopenmp
     FCFLAGS    = \$(DFLAGS) -O2 -ffree-form -ffree-line-length-none \
                  -ftree-vectorize -funroll-loops -msse2 \
-                 ${stdenv.lib.optionalString optAVX "-mavx -mavx2"} \
+                 ${lib.optionalString optAVX "-mavx -mavx2"} \
                  -std=f2008 \
                  -fopenmp -ftree-vectorize -funroll-loops \
                  -I${libxc}/include -I${libxsmm}/include \
@@ -92,7 +92,7 @@ in stdenv.mkDerivation rec {
     ln -s ${mpi}/bin/mpiexec $out/bin/mpiexec
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Quantum chemistry and solid state physics program";
     homepage = "https://www.cp2k.org";
     license = licenses.gpl3;

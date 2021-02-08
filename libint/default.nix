@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, fetchpatch, autoconf, automake, libtool
+{ lib, stdenv, fetchFromGitHub, fetchpatch, autoconf, automake, libtool
 , python, perl, gmpxx, mpfr, boost, eigen, gfortran
 , optAVX ? false
 , cfg ? [
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
   doCheck = true;
 
   configureFlags = cfg
-    ++ stdenv.lib.optional optAVX "--enable-fma";
+    ++ lib.optional optAVX "--enable-fma";
 
   preConfigure = ''
     ./autogen.sh
@@ -58,7 +58,7 @@ stdenv.mkDerivation rec {
     cp export/fortran/libint_f.mod $out/include/
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions";
     homepage = https://github.com/evaleev/libint;
     license = licenses.lgpl3;

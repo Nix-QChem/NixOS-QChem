@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, autoconf, automake, libtool
+{ lib, stdenv, fetchFromGitHub, autoconf, automake, libtool
 , pkgconfig, pmix, ucx, numactl, libbfd, libiberty, perl } :
 
 let
@@ -32,7 +32,7 @@ in stdenv.mkDerivation {
     sed -i 's:g++:${stdenv.cc}/bin/g++:' $out/bin/oshc++
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "";
     homepage = "http://www.openshmem.org";
     license = licenses.bsd3;

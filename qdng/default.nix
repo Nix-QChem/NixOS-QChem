@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, openblasCompat
+{ lib, stdenv, fetchurl, requireFile, gfortran, fftw, protobuf, openblasCompat
 , automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
 }:
 
@@ -29,7 +29,7 @@ in stdenv.mkDerivation {
 
   meta = {
     description = "Quantum dynamics program package";
-    platforms = stdenv.lib.platforms.linux;
+    platforms = lib.platforms.linux;
     maintainer = "markus.kowalewski@gmail.com";
   };
 

@@ -1,4 +1,4 @@
-{ stdenv, requireFile, gfortran, openblas } :
+{ lib, stdenv, requireFile, gfortran, openblas } :
 
 let
   # I am guessing here, that's the timestamp of the README
@@ -68,7 +68,7 @@ in stdenv.mkDerivation {
     grep summary: mesa.out
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Electronic structure and scattering program";
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
