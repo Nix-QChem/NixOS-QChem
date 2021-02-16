@@ -2,7 +2,7 @@
 let
   # Pin nixpkgs to unstable version that contains the
   # mpi attribute mod. Remove it later.
-  rev = "2f34b4b883932f0ee2c1787e704f3915786e8cca";
+  rev = "5852a21819542e6809f68ba5a798600e69874e76";
   nixpkgs = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
 
   # Only expose top level derivations
