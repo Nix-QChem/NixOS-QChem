@@ -13,6 +13,8 @@ let
     pychemps2 = callPackage ./chemps2/PyChemMPS2.nix { };
 
   } // lib.optionalAttrs super.isPy3k {
+    pyqdng = callPackage ./pyQDng { };
+
     pyscf = callPackage ./pyscf { };
 
     qcelemental = callPackage ./qcelemental { };
