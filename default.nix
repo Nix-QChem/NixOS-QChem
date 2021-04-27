@@ -138,6 +138,8 @@ let
 
       mt-dgemm = callPackage ./mt-dgemm { };
 
+      multiwfn = callPackage ./multiwfn { };
+
       orca = callPackage ./orca { };
 
       osu-benchmark = callPackage ./osu-benchmark {
@@ -180,10 +182,10 @@ let
 
       stream-benchmark = callPackage ./stream { };
 
+      turbomole = callPackage ./turbomole {};
+
       vmd = callPackage ./vmd {};
 
-      multiwfn = callPackage ./multiwfn {};
-      turbomole = callPackage ./turbomole {};
 
 
 
