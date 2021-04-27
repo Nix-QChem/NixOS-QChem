@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   # Original server is misconfigured and messes up the file compression.
   src = fetchurl {
     url = "https://www.cp2k.org/static/downloads/${pname}-${version}.tar.gz";
-    sha256 = "0j5f4v380qxaf55zq8ksk9d5xzhiklcwp5fanx9apxs3qhzdlk9z";
+    sha256 = "01ncvqikiabwn1w8995q7h48dzazs69bdl5zmqmdxy4l5hlzn2ns";
   };
 
   meta = with lib; {
