@@ -203,6 +203,8 @@ let
 
       libint2 = callPackage ./libint { inherit optAVX; };
 
+      libvdwxc = callPackage ./libvdwxc { };
+
       # libint configured for bagel
       # See https://github.com/evaleev/libint/wiki#bagel
       libint-bagel = callPackage ./libint { cfg = [
