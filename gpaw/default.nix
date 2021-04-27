@@ -1,5 +1,5 @@
 { fetchFromGitLab, buildPythonPackage, lib, writeTextFile, makeWrapper, fetchurl, blas, lapack,
-  scalapack, mpi, fftw, libxc, libvdwxc, which, ase, numpy, scipy
+  scalapack, mpi, fftw-mpi, libxc, libvdwxc, which, ase, numpy, scipy
 }:
 assert
   lib.asserts.assertMsg
@@ -72,7 +72,7 @@ in
     buildInputs = [
       blas
       scalapack
-      fftw
+      fftw-mpi
       libxc
       libvdwxc
     ];

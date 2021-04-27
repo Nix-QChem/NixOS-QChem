@@ -63,6 +63,19 @@ let
         buildInputs = [ self_.gfortran ];
       });
 
+      fftw-mpi = self.fftw.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [
+          self.mpi
+        ];
+
+        configureFlags = with lib.lists; oldAttrs.configureFlags ++ [
+          "--enable-mpi"
+          "MPICC=${self_.mpi}/bin/mpicc"
+          "MPIFC=${self_.mpi}/bin/mpif90"
+          "MPIF90=${self_.mpi}/bin/mpif90"
+        ];
+      });
+
       # For molcas and chemps2
       hdf5-full = self_.hdf5.override {
         cpp = true;
@@ -113,6 +126,8 @@ let
       ergoscf = callPackage ./ergoscf { };
 
       gaussview = callPackage ./gaussview { };
+
+      gpaw = super.python3.pkgs.toPythonApplication self.python3.pkgs.gpaw;
 
       nwchem = callPackage ./nwchem { blas=self.blas-i8; lapack=self.lapack-i8; };
 
