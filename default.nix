@@ -203,6 +203,11 @@ let
 
       vmd = callPackage ./vmd {};
 
+      xtb = callPackage ./xtb {
+        turbomole = null;
+        cefine = null;
+        orca = self.orca;
+      };
 
 
 
@@ -287,6 +292,7 @@ let
         dgemm = callPackage ./tests/dgemm { };
         stream = callPackage ./tests/stream { };
         turbomole = callPackage ./tests/turbomole { };
+        xtb = callPackage ./tests/xtb { };
       }  // lib.optionalAttrs (cfg.licMolpro != null) {
         molpro = callPackage ./tests/molpro { };
       };
