@@ -129,7 +129,10 @@ let
 
       gpaw = super.python3.pkgs.toPythonApplication self.python3.pkgs.gpaw;
 
-      nwchem = callPackage ./nwchem { blas=self.blas-i8; lapack=self.lapack-i8; };
+      nwchem = callPackage ./nwchem {
+        blas=self.blas-i8;
+        lapack=self.lapack-i8;
+      };
 
       mctdh = callPackage ./mctdh { };
 
