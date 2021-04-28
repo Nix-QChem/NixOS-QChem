@@ -154,6 +154,8 @@ let
 
       molcas2102 = callPackage ./openmolcas/v21.02.nix { };
 
+      mrcc = callPackage ./mrcc { };
+
       mt-dgemm = callPackage ./mt-dgemm { };
 
       multiwfn = callPackage ./multiwfn { };
@@ -289,6 +291,7 @@ let
         mesa-qc = callPackage ./tests/mesa { };
         molcas = callPackage ./tests/molcas { };
         #molcasUnstable = callPackage ./tests/molcas { molcas=self.molcasUnstable; };
+        mrcc = callPackage ./tests/mrcc { };
         nwchem = callPackage ./tests/nwchem { };
         psi4 = callPackage ./tests/psi4 { };
         qdng = callPackage ./tests/qdng { };
