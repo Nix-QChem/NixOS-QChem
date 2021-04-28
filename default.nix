@@ -139,17 +139,13 @@ let
         gfortran = self_.gfortran6;
       };
 
-      molcas = callPackage ./openmolcas { };
+      molcas = self.molcas2102;
 
-      molcas1911 = self.molcas;
+      molcas1911 = callPackage ./openmolcas/v19.11.nix { };
 
       molcas2010 = callPackage ./openmolcas/v20.10.nix { };
 
       molcas2102 = callPackage ./openmolcas/v21.02.nix { };
-
-      #molcasUnstable = callPackage ./openmolcas/unstable.nix {
-      #  texLive = self_.texlive.combine { inherit (self_.texlive) scheme-basic epsf cm-super; };
-      #};
 
       mt-dgemm = callPackage ./mt-dgemm { };
 
