@@ -112,12 +112,16 @@ let
 
       bagel-serial = callPackage ./bagel { mpi = null; blas = self.mkl; };
 
+      cefine = callPackage ./cefine { };
+
       chemps2 = callPackage ./chemps2 {};
 
       cp2k = callPackage ./cp2k {
         libxc = self.libxc4;  # patches are are required for libxc5
         inherit optAVX;
       };
+
+      crest = callPackage ./crest { };
 
       dkh = callPackage ./dkh {};
 
@@ -197,6 +201,11 @@ let
 
       vmd = callPackage ./vmd {};
 
+      xtb = callPackage ./xtb {
+        turbomole = null;
+        cefine = null;
+        orca = self.orca;
+      };
 
 
 
@@ -283,6 +292,7 @@ let
         dgemm = callPackage ./tests/dgemm { };
         stream = callPackage ./tests/stream { };
         turbomole = callPackage ./tests/turbomole { };
+        xtb = callPackage ./tests/xtb { };
       }  // lib.optionalAttrs (cfg.licMolpro != null) {
         molpro = callPackage ./tests/molpro { };
       };
