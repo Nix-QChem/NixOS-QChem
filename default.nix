@@ -121,6 +121,8 @@ let
         inherit optAVX;
       };
 
+      crest = callPackage ./crest { };
+
       dkh = callPackage ./dkh {};
 
       dftd3 = callPackage ./dft-d3 {};
