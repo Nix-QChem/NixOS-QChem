@@ -112,6 +112,8 @@ let
 
       bagel-serial = callPackage ./bagel { mpi = null; blas = self.mkl; };
 
+      cefine = callPackage ./cefine { };
+
       chemps2 = callPackage ./chemps2 {};
 
       cp2k = callPackage ./cp2k {
