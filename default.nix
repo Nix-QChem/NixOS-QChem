@@ -206,6 +206,8 @@ let
 
       stream-benchmark = callPackage ./stream { };
 
+      tinker = callPackage ./tinker { };
+
       travis-analyzer = callPackage ./travis-analyzer { };
 
       turbomole = callPackage ./turbomole {};
