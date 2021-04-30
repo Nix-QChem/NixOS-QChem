@@ -173,6 +173,8 @@ let
         });
       };
 
+      packmol = callPackage ./packmol { };
+
       pcmsolver = callPackage ./pcmsolver {};
 
       psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
