@@ -135,6 +135,8 @@ let
 
       gpaw = super.python3.pkgs.toPythonApplication self.python3.pkgs.gpaw;
 
+      i-pi = super.python3.pkgs.toPythonApplication self.python3.pkgs.i-pi;
+
       nwchem = callPackage ./nwchem {
         blas=self.blas-i8;
         lapack=self.lapack-i8;
