@@ -133,6 +133,8 @@ let
 
       gaussview = callPackage ./gaussview { };
 
+      gdma = callPackage ./gdma { };
+
       gpaw = super.python3.pkgs.toPythonApplication self.python3.pkgs.gpaw;
 
       i-pi = super.python3.pkgs.toPythonApplication self.python3.pkgs.i-pi;
