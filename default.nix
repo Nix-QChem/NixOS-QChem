@@ -193,6 +193,8 @@ let
 
       stream-benchmark = callPackage ./stream { };
 
+      travis-analyzer = callPackage ./travis-analyzer { };
+
       turbomole = callPackage ./turbomole {};
 
       vmd = callPackage ./vmd {};
