@@ -1,8 +1,8 @@
 { lib, stdenv, fetchFromGitHub, cmake
-, openblas, python
+, blas, python
 } :
 let
-  version = "3.0.15";
+  version = "4.1.3";
 
 in stdenv.mkDerivation {
   pname = "libcint";
@@ -12,11 +12,11 @@ in stdenv.mkDerivation {
     owner = "sunqm";
     repo = "libcint";
     rev = "v${version}";
-    sha256 = "18nq6nyprng2dblg37cjbp2jnvqfvn9rrsaaj1jxjgvww49ziv6w";
+    sha256 = "0dk0100r0nw25xkslvnbn52jdqz9j27v93gjj4fmxsz67kykmc74";
   };
 
   nativeBuildInputs = [ cmake python python.pkgs.numpy ];
-  buildInputs = [ openblas ];
+  buildInputs = [ blas ];
 
   doCheck = true;
 
@@ -36,4 +36,3 @@ in stdenv.mkDerivation {
     platforms = platforms.linux;
   };
 }
-
