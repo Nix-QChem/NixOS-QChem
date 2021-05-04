@@ -70,10 +70,12 @@ let
 
         configureFlags = with lib.lists; oldAttrs.configureFlags ++ [
           "--enable-mpi"
-          "MPICC=${self_.mpi}/bin/mpicc"
-          "MPIFC=${self_.mpi}/bin/mpif90"
-          "MPIF90=${self_.mpi}/bin/mpif90"
+          "MPICC=${self.mpi}/bin/mpicc"
+          "MPIFC=${self.mpi}/bin/mpif90"
+          "MPIF90=${self.mpi}/bin/mpif90"
         ];
+
+        propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [self.mpi];
       });
 
       # For molcas and chemps2
@@ -221,7 +223,7 @@ let
       vmd = callPackage ./vmd {};
 
       wfoverlap = callPackage ./wfoverlap {};
-        
+
       xtb = callPackage ./xtb {
         turbomole = null;
         cefine = null;
