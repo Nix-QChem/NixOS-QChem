@@ -68,14 +68,14 @@ let
           self.mpi
         ];
 
-        configureFlags = with lib.lists; oldAttrs.configureFlags ++ [
+        configureFlags = oldAttrs.configureFlags ++ [
           "--enable-mpi"
           "MPICC=${self.mpi}/bin/mpicc"
           "MPIFC=${self.mpi}/bin/mpif90"
           "MPIF90=${self.mpi}/bin/mpif90"
         ];
 
-        propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [self.mpi];
+        propagatedBuildInputs = [ self.mpi ];
       });
 
       # For molcas and chemps2
