@@ -1,9 +1,28 @@
 { lib, stdenv, fetchurl, pkgconfig, bison, numactl, libxml2
-, perl, gfortran, slurm, openssh, hwloc, rdma-core
-, infiniband-diags, opensm, zlib
+, perl, gfortran, slurm, openssh, hwloc, zlib, makeWrapper
+# InfiniBand dependencies
+, infiniband-diags, opensm, rdma-core
+# OmniPath dependencies
+, libpsm2, libfabric
 # Compile with slurm as a process manager
 , useSlurm ? false
+# Network type for MVAPICH2
+, network ? "ethernet"
 } :
+
+assert builtins.elem network [ "ethernet" "infiniband" "omnipath" ];
+
+assert
+  (if network == "infiniband"
+     then (lib.lists.all (x: x != null) [ infiniband-diags opensm rdma-core ])
+     else true
+  );
+
+assert
+  (if network == "omnipath"
+     then (lib.lists.all (x: x != null) [ libpsm2 libfabric ])
+     else true
+  );
 
 let
 
@@ -23,15 +42,35 @@ in stdenv.mkDerivation rec {
   ];
 
 
-  nativeBuildInputs = [ pkgconfig bison ];
+  nativeBuildInputs = [ pkgconfig bison makeWrapper ];
   propagatedBuildInputs = [ numactl rdma-core zlib infiniband-diags opensm ];
-  buildInputs = [ numactl libxml2
-                  perl gfortran
-                  slurm openssh
-                  hwloc rdma-core
-                  infiniband-diags opensm ];
+  buildInputs = [
+    numactl
+    libxml2
+    perl
+    gfortran
+    slurm
+    openssh
+    hwloc
+    rdma-core
+    infiniband-diags
+    opensm
+    libpsm2
+    libfabric
+  ];
 
-  configureFlags = lib.optionals useSlurm [ "--with-pmi=pmi1" "--with-pm=slurm" ];
+  configureFlags = [
+    "--with-pm=hydra"
+    "--enable-fortran=all"
+    "--enable-cxx"
+    "--enable-threads=multiple"
+    "--enable-hybrid"
+    "--enable-shared"
+  ] ++ lib.optionals useSlurm [ "--with-pmi=pmi1" "--with-pm=slurm" ]
+    ++ lib.optional (network == "ethernet") "--with-device=ch3:sock"
+    ++ lib.optionals (network == "infiniband") [ "--with-device=ch3:mrail" "--with-rdma=gen2" ]
+    ++ lib.optionals (network == "omnipath") ["--with-device=ch3:psm" "--with-psm2=${libpsm2}"]
+  ;
 
   doCheck = true;
 
@@ -40,6 +79,16 @@ in stdenv.mkDerivation rec {
     for entry in $out/bin/mpichversion $out/bin/mpivars; do
       echo "fix rpath: $entry"
       patchelf --set-rpath "$out/lib" $entry
+    done
+  '';
+
+  # Make OpenSSH available, which is required for mpirun_rsh.
+  # Enables hybrid parallelisation scheme by default.
+  postFixup = ''
+    for exe in $out/bin/*; do
+      wrapProgram $exe\
+        --prefix PATH : "${openssh}/bin" \
+        --set-default MV2_ENABLE_AFFINITY "0"
     done
   '';
 
