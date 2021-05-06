@@ -305,7 +305,7 @@ let
       f2c = callPackage ./f2c { };
 
       tests = with self; {
-        cfour = callPackage ./tests/cfour { };
+        cfour = nullable cfour (callPackage ./tests/cfour { });
         cp2k = callPackage ./tests/cp2k { };
         bagel = callPackage ./tests/bagel { };
         bagel-bench = callPackage ./tests/bagel/bench-test.nix { };
