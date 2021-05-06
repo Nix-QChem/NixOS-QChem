@@ -12,18 +12,6 @@
 
 assert builtins.elem network [ "ethernet" "infiniband" "omnipath" ];
 
-assert
-  (if network == "infiniband"
-     then (lib.lists.all (x: x != null) [ infiniband-diags opensm rdma-core ])
-     else true
-  );
-
-assert
-  (if network == "omnipath"
-     then (lib.lists.all (x: x != null) [ libpsm2 libfabric ])
-     else true
-  );
-
 let
 
 
@@ -44,7 +32,7 @@ in stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ pkgconfig bison makeWrapper ];
   propagatedBuildInputs = [ numactl rdma-core zlib infiniband-diags opensm ];
-  buildInputs = [
+  buildInputs = with lib; [
     numactl
     libxml2
     perl
@@ -52,12 +40,9 @@ in stdenv.mkDerivation rec {
     slurm
     openssh
     hwloc
-    rdma-core
-    infiniband-diags
-    opensm
-    libpsm2
-    libfabric
-  ];
+  ] ++ lists.optionals (network == "infiniband") [ rdma-core infiniband-diags opensm ]
+    ++ lists.optionals (network == "omnipath") [ libpsm2 libfabric ]
+  ;
 
   configureFlags = [
     "--with-pm=hydra"
@@ -66,7 +51,7 @@ in stdenv.mkDerivation rec {
     "--enable-threads=multiple"
     "--enable-hybrid"
     "--enable-shared"
-  ] ++ lib.optionals useSlurm [ "--with-pmi=pmi1" "--with-pm=slurm" ]
+  ] ++ lib.optionals useSlurm [ "--with-pmi=pmi2" "--with-pm=slurm" ]
     ++ lib.optional (network == "ethernet") "--with-device=ch3:sock"
     ++ lib.optionals (network == "infiniband") [ "--with-device=ch3:mrail" "--with-rdma=gen2" ]
     ++ lib.optionals (network == "omnipath") ["--with-device=ch3:psm" "--with-psm2=${libpsm2}"]
