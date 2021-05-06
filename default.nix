@@ -118,7 +118,7 @@ let
 
       chemps2 = callPackage ./chemps2 {};
 
-      cp2k = callPackage ./cp2k {
+      cp2k = callPackage ./cp2k rec {
         libxc = self.libxc4;  # patches are are required for libxc5
         inherit optAVX;
       };
@@ -221,7 +221,7 @@ let
       vmd = callPackage ./vmd {};
 
       wfoverlap = callPackage ./wfoverlap {};
-        
+
       xtb = callPackage ./xtb {
         turbomole = null;
         cefine = null;
