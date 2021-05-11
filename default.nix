@@ -224,6 +224,8 @@ let
 
       wfoverlap = callPackage ./pkgs/apps/wfoverlap {};
 
+      xcfun = callPackage ./pkgs/lib/xcfun {};
+
       xtb = callPackage ./pkgs/apps/xtb {
         turbomole = null;
         cefine = null;
