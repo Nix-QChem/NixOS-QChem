@@ -29,7 +29,7 @@ buildPythonPackage rec {
 
   PYSCF_INC_DIR="${libcint}:${libxc}";
 
-  doCheck = false;
+  doCheck = true;
 
   meta = with lib; {
     description = "Python-based simulations of chemistry framework";
