@@ -53,11 +53,10 @@ let
             tests.molcas
           ] ++ pkgSet.lib.optionals allowUnfree [
             molden
-          ] ++ pkgSet.lib.optionals (cfg.srcurl != null && allowUnfree) [
-            tests.molpro
-            tests.mesa-qc
-            tests.qdng
-          ];
+          ] ++ pkgSet.lib.optional (cfg.srcurl != null && allowUnfree && molpro != null) tests.molpro
+            ++ pkgSet.lib.optional (cfg.srcurl != null && allowUnfree && mesa-qc != null) tests.mesa-qc
+            ++ pkgSet.lib.optional (cfg.srcurl != null && allowUnfree && qdng != null) tests.qdng
+          ;
         };
 
         nixexprs = pkgSet.runCommand "nixexprs" {}
