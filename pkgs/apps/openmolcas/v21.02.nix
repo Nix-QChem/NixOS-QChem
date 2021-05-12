@@ -1,11 +1,20 @@
 { lib, stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
-, openblas, hdf5-full, python3, texlive
+, blas-i8, hdf5-full, python3, texlive
 , armadillo, makeWrapper, fetchFromGitHub, chemps2
 } :
 
+assert
+  lib.asserts.assertMsg
+  (blas-i8.isILP64 || blas-i8.passthru.implementation == "mkl")
+  "A 64 bint integer BLAS implementation is required.";
+
+assert
+  lib.asserts.assertMsg
+  (builtins.elem blas-i8.passthru.implementation [ "openblas" "mkl" ])
+  "OpenMolcas requires OpenBLAS or MKL.";
+
 let
   version = "21.02";
-  gitLabRev = "v${version}";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
@@ -23,7 +32,7 @@ in stdenv.mkDerivation {
   src = fetchFromGitLab {
     owner = "Molcas";
     repo = "OpenMolcas";
-    rev = gitLabRev;
+    rev = "41cee871945ac712e86ee971425a49a8fc60a936";
     sha256 = "0cap53gy1wds2qaxbijw09fqhvfxphfkr93nhp9xdq84yxh4wzv6";
   };
 
@@ -40,9 +49,22 @@ in stdenv.mkDerivation {
     chmod -R u+w External/
   '';
 
+  postPatch = ''
+    substituteInPlace CMakeLists.txt \
+      --replace 'set (libpath "''${MKLROOT}/lib/intel64")' 'set (libpath "''${MKLROOT}/lib")' \
+      --replace 'find_library (LIBMKL_BLACS NAMES "mkl_blacs_ilp64"' 'find_library (LIBMKL_BLACS NAMES "mkl_blacs_intelmpi_ilp64"'
+  '';
+
 
   nativeBuildInputs = [ perl cmake texlive.combined.scheme-minimal makeWrapper ];
-  buildInputs = [ gfortran openblas hdf5-full python armadillo chemps2];
+  buildInputs = [
+    gfortran
+    (blas-i8.passthru.provider)
+    hdf5-full
+    python
+    armadillo
+    chemps2
+  ];
 
   # tests are not running right now.
   doCheck = false;
@@ -55,14 +77,15 @@ in stdenv.mkDerivation {
 
   cmakeFlags = [
     "-DOPENMP=ON"
-    "-DLINALG=${if (builtins.parseDrvName openblas.name).name == "mkl" then "MKL" else "OpenBLAS"}"
     "-DTOOLS=ON"
     "-DHDF5=ON"
     "-DFDE=ON"
     "-DWFA=ON"
     "-DCTEST=ON"
     "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${chemps2}/bin"
-  ] ++ (if (builtins.parseDrvName openblas.name).name == "mkl" then [ "-DMKLROOT=${openblas}" ] else  [ "-DOPENBLASROOT=${openblas.dev}" ]);
+  ] ++ lib.lists.optionals (blas-i8.passthru.implementation == "openblas") [ "-DOPENBLASROOT=${blas-i8.passthru.provider.dev}" "-DLINALG=OpenBLAS" ]
+    ++ lib.lists.optionals (blas-i8.passthru.implementation == "mkl") [ "-DMKLROOT=${blas-i8.passthru.provider}" "-DLINALG=MKL"]
+  ;
 
   postConfigure = ''
     # The Makefile will install pymolcas during the build grrr.
@@ -130,4 +153,3 @@ in stdenv.mkDerivation {
     platforms = platforms.linux;
   };
 }
-
