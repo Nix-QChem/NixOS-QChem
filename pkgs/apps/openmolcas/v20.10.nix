@@ -23,8 +23,8 @@ in stdenv.mkDerivation {
   src = fetchFromGitLab {
     owner = "Molcas";
     repo = "OpenMolcas";
-    rev = gitLabRev;
-    sha256 = "1w8av44dx5r9yp2xhf9ypdrhappvk984wrd5pa1ww0qv6j2446ic";
+    rev = "01fe7a2bdca51c51d183f3061b0ee9c631bf9bec";
+    sha256 = "0xr9plgb0cfmxxqmd3wrhvl0hv2jqqfqzxwzs1jysq2m9cxl314v";
   };
 
   patches = [ (fetchpatch {
@@ -126,4 +126,3 @@ in stdenv.mkDerivation {
     platforms = platforms.linux;
   };
 }
-
