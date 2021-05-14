@@ -37,7 +37,7 @@ let
 
     makeForPython = plist:
       pkgSet.lib.foldr (a: b: a // b) {}
-      (map (x: { "${x}" = pkgSet."${cfg.prefix}"."${x}".pkgs."${cfg.prefix}"; }) plist);
+      (map (x: { "${x}" = hydraJobs pkgSet."${cfg.prefix}"."${x}".pkgs."${cfg.prefix}"; }) plist);
 
     # Filter out valid derivations
     hydraJobs = with pkgSet.lib; filterAttrs (n: v:
