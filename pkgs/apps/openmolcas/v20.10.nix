@@ -4,7 +4,7 @@
 } :
 
 let
-  version = "20.10";
+  version = "20.10-14.10.2020";
   gitLabRev = "v${version}";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
@@ -32,6 +32,7 @@ in stdenv.mkDerivation {
     url = "https://raw.githubusercontent.com/NixOS/nixpkgs/2eee4e4eac851a2846515dcfa3274c4ab92ecbe5/pkgs/applications/science/chemistry/openmolcas/openblasPath.patch";
     sha256 = "0l6z5zhfbfpbp9x58228nhhwwp1fzmi8cmmasvzddp84h31f0b8h";
   })
+    ./MKL-MPICH.patch
   ];
 
   prePatch = ''
