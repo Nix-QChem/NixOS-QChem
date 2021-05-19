@@ -222,7 +222,7 @@ let
 
       vmd = callPackage ./pkgs/apps/vmd {};
 
-      wfoverlap = callPackage ./wfoverlap {};
+      wfoverlap = callPackage ./pkgs/apps/wfoverlap {};
 
       xtb = callPackage ./pkgs/apps/xtb {
         turbomole = null;
