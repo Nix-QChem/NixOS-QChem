@@ -243,8 +243,6 @@ let
       # Libraries
       #
 
-      libcint3 = callPackage ./pkgs/lib/libcint { };
-
       libefp = callPackage ./pkgs/lib/libefp {};
 
       libint1 = callPackage ./pkgs/lib/libint/1.nix { };
