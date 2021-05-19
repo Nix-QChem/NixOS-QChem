@@ -1,6 +1,5 @@
 { stdenv, lib, fetchFromGitHub, makeWrapper, gfortran
-, openblasCompat, fftw, python2, molcas, molpro
-, useMolpro ? false
+, openblasCompat, fftw, python2, molcas, molpro ? null
 } :
 
 let
@@ -77,7 +76,7 @@ in stdenv.mkDerivation {
       wrapProgram $i --set SHARC $out/bin \
                      --set HOSTNAME localhost \
                      --set-default MOLCAS ${molcas} \
-                     ${lib.optionalString useMolpro "--set-default MOLPRO ${molpro}/bin"}
+                     ${lib.optionalString (molpro != null) "--set-default MOLPRO ${molpro}/bin"}
     done
   '';
 
@@ -99,4 +98,3 @@ in stdenv.mkDerivation {
     platforms = platforms.linux;
   };
 }
-
