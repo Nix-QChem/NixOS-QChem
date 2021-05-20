@@ -333,9 +333,6 @@ let
       # provide null molpro attrs in case there is no license
       molpro = null;
       molpro12 = null;
-      molpro15 = null;
-      molpro18 = null;
-      molpro19 = null;
       molpro20 = null;
       molpro-ext = null;
     }  // lib.optionalAttrs (cfg.licMolpro != null) {
@@ -346,12 +343,6 @@ let
       molpro = self.molpro20;
 
       molpro12 = callPackage ./pkgs/apps/molpro/2012.nix { token=cfg.licMolpro; };
-
-      molpro15 = callPackage ./pkgs/apps/molpro/2015.nix { token=cfg.licMolpro; };
-
-      molpro18 = callPackage ./pkgs/apps/molpro/2018.nix { token=cfg.licMolpro; };
-
-      molpro19 = callPackage ./pkgs/apps/molpro/2019.nix { token=cfg.licMolpro; };
 
       molpro20 = callPackage ./pkgs/apps/molpro { token=cfg.licMolpro; };
 
