@@ -161,6 +161,8 @@ let
 
       molcas = self.molcas2102;
 
+      molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix { };
+
       molcas2010 = callPackage ./pkgs/apps/openmolcas/v20.10.nix { };
 
       molcas2102 = callPackage ./pkgs/apps/openmolcas/v21.02.nix { };
