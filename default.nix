@@ -1,13 +1,13 @@
-self_: super:
+final: prev:
 
 let
 
-  cfg = if (builtins.hasAttr "qchem-config" super.config) then
-    (import ./cfg.nix) super.config.qchem-config
+  cfg = if (builtins.hasAttr "qchem-config" prev.config) then
+    (import ./cfg.nix) prev.config.qchem-config
   else
     (import ./cfg.nix) { allowEnv = true; }; # if no config is given allow env
 
-  lib = super.lib;
+  lib = prev.lib;
 
   optAVX = cfg.optAVX;
 
@@ -15,15 +15,16 @@ let
   # Our package set
   #
   overlay = subset: extra: let
-    self = self_."${subset}";
-    callPackage = super.lib.callPackageWith (self_ // self);
+    super = prev;
+    self = final."${subset}";
+    callPackage = super.lib.callPackageWith (final // self);
     pythonOverrides = (import ./pythonPackages.nix) subset;
 
   in {
     "${subset}" = {
       # For consistency: every package that is in nixpgs-opt.nix
       # + extra builds that should be exposed
-      inherit (self_)
+      inherit (final)
         fftwSinglePrec
         hpl
         hpcg
@@ -42,7 +43,7 @@ let
         siesta
         siesta-mpi;
 
-      pkgs = self_;
+      pkgs = final;
 
 
       inherit callPackage;
@@ -53,14 +54,14 @@ let
 
       # Define an ILP64 blas/lapack
       # This is still missing upstream
-      blas-i8 = if self_.blas.implementation != "amd-blis" then self_.blas.override { isILP64 = true; }
+      blas-i8 = if final.blas.implementation != "amd-blis" then prev.blas.override { isILP64 = true; }
         else super.blas.override { isILP64 = true; blasProvider = super.openblas; };
 
-      lapack-i8 = if self_.lapack.implementation != "amd-libflame" then self_.lapack.override { isILP64 = true; }
+      lapack-i8 = if final.lapack.implementation != "amd-libflame" then prev.lapack.override { isILP64 = true; }
         else super.lapack.override { isILP64 = true; lapackProvider = super.openblas; };
 
-      fftw = self_.fftw.overrideAttrs ( oldAttrs: {
-        buildInputs = [ self_.gfortran ];
+      fftw = final.fftw.overrideAttrs ( oldAttrs: {
+        buildInputs = [ final.gfortran ];
       });
 
       fftw-mpi = self.fftw.overrideAttrs (oldAttrs: {
@@ -77,9 +78,9 @@ let
       });
 
       # For molcas and chemps2
-      hdf5-full = self_.hdf5.override {
+      hdf5-full = final.hdf5.override {
         cpp = true;
-        inherit (self_) gfortran;
+        inherit (final) gfortran;
       };
 
       octave = (super.octaveFull.override {
@@ -109,7 +110,7 @@ let
       #
       bagel = callPackage ./pkgs/apps/bagel {
         blas = self.mkl; # bagel is not stable with openblas
-        boost = self_.boost165;
+        boost = final.boost165;
         scalapack=null; withScalapack=true;
       };
 
@@ -154,7 +155,7 @@ let
       mctdh = callPackage ./pkgs/apps/mctdh { };
 
       mesa-qc = callPackage ./pkgs/apps/mesa {
-        gfortran = self_.gfortran6;
+        gfortran = final.gfortran6;
       };
 
       molcas = self.molcas2102;
@@ -356,7 +357,7 @@ let
 
     } // extra;
   } // lib.optionalAttrs optAVX (
-    import ./nixpkgs-opt.nix self_ super
+    import ./nixpkgs-opt.nix final super
     );
 
 in
