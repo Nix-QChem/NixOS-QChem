@@ -52,6 +52,13 @@ let
       # Upstream overrides
       #
 
+      # FIXME: workaround, remove when upstream openblas is fixed
+      # see https://github.com/markuskowa/NixOS-QChem/issues/52
+      # openblas known broken versions: 0.3.13
+      openblas = super.openblas.overrideAttrs (x: {
+        makeFlags = x.makeFlags ++ [ "NO_AVX512=1" ];
+      });
+
       # Define an ILP64 blas/lapack
       # This is still missing upstream
       blas-i8 = if final.blas.implementation != "amd-blis" then prev.blas.override { isILP64 = true; }
@@ -120,9 +127,7 @@ let
 
       cfour = callPackage ./pkgs/apps/cfour { };
 
-      chemps2 = callPackage ./pkgs/apps/chemps2 {
-        inherit (cfg) optAVX;
-      };
+      chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
       cp2k = callPackage ./pkgs/apps/cp2k {
         libxc = self.libxc4;  # patches are are required for libxc5
