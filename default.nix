@@ -21,6 +21,14 @@ let
     pythonOverrides = (import ./pythonPackages.nix) subset;
 
   in {
+    # FIXME: workaround, remove when upstream openblas is fixed
+    # see https://github.com/markuskowa/NixOS-QChem/issues/52
+    # This cause a mass re-build
+    # openblas known broken versions: 0.3.13
+    openblas = super.openblas.overrideAttrs (x: {
+      makeFlags = x.makeFlags ++ [ "NO_AVX512=1" ];
+    });
+
     "${subset}" = {
       # For consistency: every package that is in nixpgs-opt.nix
       # + extra builds that should be exposed
@@ -51,13 +59,6 @@ let
       #
       # Upstream overrides
       #
-
-      # FIXME: workaround, remove when upstream openblas is fixed
-      # see https://github.com/markuskowa/NixOS-QChem/issues/52
-      # openblas known broken versions: 0.3.13
-      openblas = super.openblas.overrideAttrs (x: {
-        makeFlags = x.makeFlags ++ [ "NO_AVX512=1" ];
-      });
 
       # Define an ILP64 blas/lapack
       # This is still missing upstream
