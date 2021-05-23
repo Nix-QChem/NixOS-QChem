@@ -21,6 +21,9 @@ let
     pythonOverrides = (import ./pythonPackages.nix) subset;
 
   in {
+    openblas = super.openblas.overrideAttrs (x: {
+      makeFlags = x.makeFlags ++ [ "NO_AVX512=1" ];
+    });
     "${subset}" = {
       # For consistency: every package that is in nixpgs-opt.nix
       # + extra builds that should be exposed
