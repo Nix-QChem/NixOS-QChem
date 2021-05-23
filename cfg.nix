@@ -37,9 +37,5 @@
   licMolpro = getValue licMolpro null "NIXQC_LICMOLPRO";
 
   # turn of AVX optimizations in selected packages
-  optAVX = if optAVX != null then optAVX
-    else if allowEnv then
-    if (getEnv "NIXQC_AVX") != null then
-      (if (getEnv "NIXQC_AVX") == "1" then true else false)
-     else true else true;
+  optAVX = false;
 }

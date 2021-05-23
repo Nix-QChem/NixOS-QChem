@@ -23,9 +23,6 @@ stdenv.mkDerivation rec {
   preCheck = ''
     export LD_LIBRARY_PATH=$PWD/CheMPS2
     export OMP_NUM_THREADS=2
-
-    # some of the tests
-    export OPENBLAS_CORETYPE=${if optAVX then "HASWELL" else "ATHLON"}
   '';
 
   meta = with lib; {
