@@ -3,11 +3,9 @@
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-  outputs = { self, nixpkgs } : {
+  outputs = { self, nixpkgs } : let
+      lib = import "${nixpkgs}/lib";
 
-    overlay = import ./.;
-
-    packages."x86_64-linux" = let
       pkgs = (import nixpkgs) {
         system = "x86_64-linux";
         overlays = [ (import ./default.nix) ];
@@ -17,8 +15,14 @@
           optAVX = true;
         };
       };
-    in pkgs.qchem;
 
-    inherit nixpkgs;
+      pkgsClean = with lib; filterAttrs (n: v: isDerivation v) pkgs.qchem;
+  in {
+
+    overlay = import ./.;
+
+    packages."x86_64-linux" = pkgsClean;
+    hydraJobs."x86_64-linux" = pkgsClean;
+    checks."x86_64-linux" = with lib; filterAttrs (n: v: isDerivation v) pkgs.qchem.tests;
   };
 }
