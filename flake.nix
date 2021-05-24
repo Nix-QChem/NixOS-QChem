@@ -1,7 +1,7 @@
 {
   description = "NixOS-QChem flake";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/master";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs = { self, nixpkgs } : {
 
