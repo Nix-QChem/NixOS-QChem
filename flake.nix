@@ -8,7 +8,20 @@
 
       pkgs = (import nixpkgs) {
         system = "x86_64-linux";
-        overlays = [ (import ./default.nix) ];
+        overlays = [
+          (import ./default.nix)
+          (self: super: { qchem = super.qchem // {
+            turbomole = null;
+            cefine = null;
+            cfour = null;
+            mrcc = null;
+            orca = null;
+            qdng = null;
+            vmd = null;
+            mesa-qc = null;
+            mcdth = null;
+          };})
+        ];
         config.allowUnfree = true;
         config.qchem-config = (import ./cfg.nix) {
           allowEnv = false;
