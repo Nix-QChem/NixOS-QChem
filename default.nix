@@ -194,11 +194,6 @@ let
 
       sharc21 = self.sharcV21;
 
-      sharcV1 = callPackage ./pkgs/apps/sharc/V1.nix {
-        molcas = self.molcas;
-        molpro = self.molpro12; # V1 only compatible with versions up to 2012
-      };
-
       sharcV2 = callPackage ./pkgs/apps/sharc {
         molcas = self.molcas;
         molpro = self.molpro12; # V2 only compatible with versions up to 2012
