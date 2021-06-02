@@ -36,6 +36,6 @@ buildPythonPackage rec {
     license = licenses.gpl3Only;
     homepage = "http://ipi-code.org/";
     platforms = platforms.linux;
-    maintainers = [ maintainers.sheepforce ];
+    maintainers = [  ];
   };
 }

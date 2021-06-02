@@ -41,6 +41,6 @@ stdenv.mkDerivation rec {
     homepage = "https://www.chemie.uni-bonn.de/pctc/mulliken-center/grimme/software/xtb";
     license = licenses.lgpl3Only;
     platforms = platforms.linux;
-    maintainers = [ maintainers.sheepforce ];
+    maintainers = [  ];
   };
 }

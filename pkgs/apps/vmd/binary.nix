@@ -87,7 +87,7 @@ in stdenv.mkDerivation rec {
     inherit homepage;
     description = "Molecular dynamics visualisation program";
     license = licenses.unfree;
-    maintainers = [ maintainers.sheepforce ];
+    maintainers = [  ];
     platforms = [ "x86_64-linux" ];
   };
 }
