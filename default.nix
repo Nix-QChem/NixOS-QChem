@@ -47,6 +47,7 @@ let
         octopus
         quantum-espresso
         quantum-espresso-mpi
+        pcmsolver
         scalapack
         siesta
         siesta-mpi;
@@ -182,8 +183,6 @@ let
       };
 
       packmol = callPackage ./pkgs/apps/packmol { };
-
-      pcmsolver = callPackage ./pkgs/apps/pcmsolver {};
 
       psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
       psi4Unstable = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4Unstable;

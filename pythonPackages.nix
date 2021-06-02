@@ -19,10 +19,6 @@ let
 
     pyscf = callPackage ./pkgs/apps/pyscf { };
 
-    qcelemental = callPackage ./pkgs/apps/qcelemental { };
-
-    qcengine = callPackage ./pkgs/apps/qcengine { };
-
     gpaw = callPackage ./pkgs/apps/gpaw { };
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
