@@ -17,6 +17,6 @@ stdenv.mkDerivation rec {
     homepage = "https://brehm-research.de/libvori.php";
     license = with licenses; [ lgpl3Only ];
     platforms = platforms.unix;
-    maintainers = [ maintainers.sheepforce ];
+    maintainers = [  ];
   };
 }

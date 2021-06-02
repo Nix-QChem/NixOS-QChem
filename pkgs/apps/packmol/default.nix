@@ -29,6 +29,6 @@ stdenv.mkDerivation rec {
     homepage = "http://m3g.iqm.unicamp.br/packmol/home.shtml";
     license = licenses.mit;
     platforms = platforms.linux;
-    maintainers = [ maintainers.sheepforce ];
+    maintainers = [  ];
   };
 }
