@@ -36,6 +36,5 @@ buildPythonPackage rec {
     homepage = "http://docs.qcarchive.molssi.org/projects/qcelemental/en/latest/";
     license = licenses.bsd3;
     platforms = platforms.linux;
-    maintainers = [ maintainers.sheepforce ];
   };
 }
