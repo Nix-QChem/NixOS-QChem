@@ -336,6 +336,9 @@ let
       molpro12 = null;
       molpro20 = null;
       molpro-ext = null;
+
+      # Provide null gaussian attrs in case optpath is not set
+      gaussian = null;
     }  // lib.optionalAttrs (cfg.licMolpro != null) {
 
       #

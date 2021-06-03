@@ -52,7 +52,7 @@ let
       orca = selfPkgs.orca;
       turbomole = selfPkgs.turbomole;
       cfour = selfPkgs.cfour;
-      #gaussian = selfPkgs.gaussian;
+      gaussian = selfPkgs.gaussian;
       molpro = selfPkgs.molpro;
     };
 
