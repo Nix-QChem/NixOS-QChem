@@ -297,8 +297,6 @@ let
         inherit callPackage;
       };
 
-      f2c = callPackage ./pkgs/apps/f2c { };
-
       tests = with self; {
         cfour = nullable cfour (callPackage ./tests/cfour { });
         cp2k = callPackage ./tests/cp2k { };
