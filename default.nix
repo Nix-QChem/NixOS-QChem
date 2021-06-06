@@ -269,8 +269,6 @@ let
       # libxc legacy version
       libxc4 = callPackage ./pkgs/lib/libxc { };
 
-      mvapich = callPackage ./pkgs/lib/mvapich { };
-
       osss-ucx = callPackage ./pkgs/lib/osss-ucx { };
 
       sos = callPackage ./pkgs/lib/sos { };
