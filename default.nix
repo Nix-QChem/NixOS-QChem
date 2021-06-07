@@ -40,6 +40,7 @@ let
         gromacsMpi
         gromacsDouble
         gromacsDoubleMpi
+        i-pi
         mpi
         mkl
         molden
