@@ -243,6 +243,8 @@ let
       # Libraries
       #
 
+      libctl = callPackage ./pkgs/lib/libctl {};
+
       libefp = callPackage ./pkgs/lib/libefp {};
 
       libint1 = callPackage ./pkgs/lib/libint/1.nix { };
