@@ -247,6 +247,8 @@ let
 
       libefp = callPackage ./pkgs/lib/libefp {};
 
+      libGDSII = callPackage ./pkgs/lib/libGDSII {};
+
       libint1 = callPackage ./pkgs/lib/libint/1.nix { };
 
       libint2 = callPackage ./pkgs/lib/libint { inherit optAVX; };
