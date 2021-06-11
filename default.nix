@@ -158,6 +158,8 @@ let
 
       mctdh = callPackage ./pkgs/apps/mctdh { };
 
+      meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
+
       mesa-qc = callPackage ./pkgs/apps/mesa {
         gfortran = final.gfortran6;
       };
