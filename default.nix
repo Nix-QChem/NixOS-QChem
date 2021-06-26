@@ -277,8 +277,6 @@ let
       ] ++ lib.optional optAVX "--enable-fma"
       ;};
 
-      libvori = callPackage ./pkgs/lib/libvori { };
-
       # libxc legacy version
       libxc4 = callPackage ./pkgs/lib/libxc { };
 
