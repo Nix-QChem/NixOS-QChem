@@ -258,23 +258,6 @@ let
 
       libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
 
-      # libint configured for bagel
-      # See https://github.com/evaleev/libint/wiki#bagel
-      libint-bagel = super.libint.overrideAttrs (_: {
-        configureFlags = [
-          "--enable-eri=1"
-          "--enable-eri3=1"
-          "--enable-eri2=1"
-          "--with-max-am=6"
-          "--with-eri3-max-am=6"
-          "--with-eri2-max-am=6"
-          "--disable-unrolling"
-          "--enable-generic-code"
-          "--with-cartgauss-ordering=bagel"
-          "--enable-contracted-ints"
-        ] ++ lib.optional optAVX "--enable-fma";
-      });
-
       # libxc legacy version
       libxc4 = callPackage ./pkgs/lib/libxc { };
 
