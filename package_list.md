@@ -1,12 +1,12 @@
 | name | attribute | description |
 |------|-----------|-------------|
-| bagel-1.2.2-mkl | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
-| bagel-1.2.2-mkl | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
+| bagel-1.2.2 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
+| bagel-1.2.2 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | blas-3 | qchem.blas-i8 | openblas with just the BLAS C and FORTRAN ABI |
 | cefine-2.23 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.9 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
-| cp2k-8.1.0 | qchem.cp2k | Quantum chemistry and solid state physics program |
+| cp2k-8.2.0 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | crest-2021-04-24 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.0 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dft-d3-3.2rev0 | qchem.dftd3 | Dispersion correction for DFT |
@@ -34,7 +34,7 @@
 | libint2-2.6.0 | qchem.libint-bagel | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libint2-2.6.0 | qchem.libint2 | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libvdwxc-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
-| libvori-201229 | qchem.libvori | Library for Voronoi intergration of electron densities |
+| libvori-210412 | qchem.libvori | Library for Voronoi intergration of electron densities |
 | libxc-4.3.4 | qchem.libxc4 | Library of exchange-correlation functionals for density-functional theory |
 | libxsmm-1.16.1 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | matlab | qchem.matlab | null |
@@ -48,7 +48,7 @@
 | mrcc-2020.02.22 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
 | multiwfn-3.7 | qchem.multiwfn | Multifunctional wave function analyser. |
-| mvapich-2.3.5 | qchem.mvapich | MPI-3.1 implementation optimized for Infiband transport |
+| mvapich-2.3.6 | qchem.mvapich | MPI-3.1 implementation optimized for Infiband transport |
 | nixexprs | qchem.nixexprs | null |
 | NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
@@ -60,15 +60,15 @@
 | orca-4.2.1 | qchem.orca | Ab initio quantum chemistry program package |
 | osss-ucx-1.0.2 | qchem.osss-ucx | OpenSHM reference implementation |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
-| packmol-20.2.2 | qchem.packmol | Generating initial configurations for molecular dynamics |
+| packmol-20.2.3 | qchem.packmol | Generating initial configurations for molecular dynamics |
 | pcmsolver-1.3.0 | qchem.pcmsolver | An API for the Polarizable Continuum Model |
 | psi4-01.11.2020 | qchem.psi4Unstable | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | psi4-1.3.2 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
+| pysisyphus-0.7.post1 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
 | qdng-20200218 | qchem.qdng | Quantum dynamics program package |
 | quantum-espresso-6.6 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | quantum-espresso-6.6 | qchem.quantum-espresso-mpi | Electronic-structure calculations and materials modeling at the nanoscale |
 | scalapack-2.1.0 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
-| sharc-1.0 | qchem.sharcV1 | Molecular dynamics (MD) program suite for excited states |
 | sharc-2.0 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
 | sharc-2.1.1 | qchem.sharc21 | Molecular dynamics (MD) program suite for excited states |
 | siesta-4.1-b3 | qchem.siesta | A first-principles materials simulation code using DFT |
@@ -83,4 +83,4 @@
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | xcfun-2.1.1 | qchem.xcfun | A library of exchange-correlation functionals with arbitrary-order derivatives. |
-| xtb-6.4.0 | qchem.xtb | Semiempirical Extended Tight-Binding Program Package |
+| xtb-6.4.1 | qchem.xtb | Semiempirical extended tight-binding program package |
