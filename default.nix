@@ -247,6 +247,8 @@ let
 
       libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
 
+      libwfa = callPackage ./pkgs/lib/libwfa { };
+
       # libxc legacy version
       libxc4 = callPackage ./pkgs/lib/libxc { };
 
