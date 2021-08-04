@@ -221,6 +221,8 @@ let
         else callPackage ./pkgs/apps/vmd { }
       ;
 
+      wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
+
       wfoverlap = callPackage ./pkgs/apps/wfoverlap { };
 
       xtb = callPackage ./pkgs/apps/xtb {

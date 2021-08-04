@@ -38,7 +38,7 @@ in stdenv.mkDerivation rec {
     install -m 644 ./libwfa/${libName} $out/lib
   '' + lib.optionalString buildMolcasExe ''
     mkdir -p $out/bin
-    install -m 644 ./libwfa/molcas/wfa_molcas.x $out/bin
+    install -m 755 ./libwfa/molcas/wfa_molcas.x $out/bin
   '';
 
   meta = with lib; {
