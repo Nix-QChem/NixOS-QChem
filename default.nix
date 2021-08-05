@@ -136,6 +136,10 @@ let
 
       ergoscf = callPackage ./pkgs/apps/ergoscf { };
 
+      exatensor = callPackage ./pkgs/apps/exatensor rec {
+        mpi = super.mpi.override { gfortran = super.gfortran8; };
+      };
+
       gaussview = callPackage ./pkgs/apps/gaussview { };
 
       gdma = callPackage ./pkgs/apps/gdma { };
