@@ -9,9 +9,6 @@ let
 
   lib = prev.lib;
 
-  optAVX = cfg.optAVX;
-
-
   # Create a stdenv with CPU optimizations
   makeOptStdenv = stdenv: arch: if arch == null then stdenv else
   stdenv.override (old: {
@@ -95,7 +92,6 @@ let
       # Applications
       #
       bagel = callPackage ./pkgs/apps/bagel {
-        inherit optAVX;
         boost = final.boost165;
       };
 
