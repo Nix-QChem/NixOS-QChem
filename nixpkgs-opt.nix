@@ -16,11 +16,14 @@ let
   set = {
     stdenv = optStdenv;
     cp2k = recallPackage cp2k {};
+    dkh = recallPackage dkh {};
     ergoscf = recallPackage ergoscf {};
     hpl = recallPackage hpl {};
     hpcg = recallPackage hpcg {};
     i-pi = recallPackage i-pi {};
     gsl = recallPackage gsl {};
+    libvori = recallPackage libvori {};
+    libxc = recallPackage libxc {};
     mkl = recallPackage mkl {};
     molden = recallPackage molden {};
     mpi = recallPackage mpi {};
@@ -31,6 +34,7 @@ let
     scalapack = recallPackage scalapack {};
     siesta = recallPackage siesta {};
     siesta-mpi = recallPackage siesta-mpi {};
+    spglib = recallPackage spglib {};
 
     fftw = (recallPackage fftw {}).overrideAttrs ( oldAttrs: {
       configureFlags = with lib; oldAttrs.configureFlags
