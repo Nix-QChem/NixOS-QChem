@@ -251,8 +251,6 @@ let
 
       libGDSII = callPackage ./pkgs/lib/libGDSII {};
 
-      libint1 = callPackage ./pkgs/lib/libint/1.nix { };
-
       libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
 
       libwfa = callPackage ./pkgs/lib/libwfa { };
