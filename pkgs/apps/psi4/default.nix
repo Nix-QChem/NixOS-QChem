@@ -1,33 +1,8 @@
-{ lib, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, pkg-config, writeTextFile
-# Build time dependencies
-, cmake
-, perl
-, gfortran
-# Runtime dependencies
-, python
-, pybind11
-, qcelemental
-, qcengine
-, numpy
-, pylibefp
-, deepdiff
-, blas
-, lapack
-, gau2grid
-, libint1
-, libxc
-, dkh
-, dftd3
-, pcmsolver
-, libefp
-, chemps2
-, hdf5
-, hdf5-cpp
-, pytest
-, version ? "1.3.2"
-, rev ? "v${version}"
-, sha256 ? "07jyg67hv9qaj1wsjhkczpx6h5lq2ffw84n0x17vf6zzmpcgc4l9"
-}:
+{ lib, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
+, writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
+, deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
+, pytest, mpfr, gmpxx, eigen, boost
+} :
 assert
   lib.asserts.assertMsg
   (blas.passthru.implementation == "mkl")
@@ -52,40 +27,6 @@ let
     "-DCMAKE_SKIP_BUILD_RPATH=ON"
   ];
 
-  # Only builds with specific commit and special CMakeFlags..
-  libint1_ = libint1.overrideAttrs (oldAttrs: rec {
-    version = "1.2.1-psi4";
-    src = fetchFromGitHub {
-      owner = "evaleev";
-      repo = oldAttrs.pname;
-      rev = "b13e71d3cf9960460c4019e5ecf2546a5f361c71";
-      sha256 = "1k05b3q14hppsc4n50jx19ikp8rbhwkrkhmp0wjic2z7g7ydra37";
-    };
-
-    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ cmake ];
-    cmakeFlags = [
-      "-DBUILD_FPIC=ON"
-      "-DENABLE_XHOST=OFF"
-      "-DMAX_AM_ERI=7"
-      "-DBUILD_SHARED_LIBS=ON"
-      "-DCMAKE_BUILD_TYPE=RELEASE"
-      "-DENABLE_GENERIC=ON"
-      "-DMERGE_LIBDERIV_INCLUDEDIR=OFF"
-      "-DCMAKE_INSTALL_PREFIX=$out"
-    ];
-
-    configurePhase = ''
-      cmake -Bbuild ${toString (cmakeFlags ++ specialInstallCmakeFlags)}
-      cd build
-    '';
-
-    # Psi4 expects the headers in a different location.
-    postInstall = ''
-      cp $out/include/libderiv/libderiv.h $out/include/libint/.
-    '';
-  });
-
-  # Require special CMake flags to be found by Psi4.
   chemps2_ = chemps2.overrideAttrs (oldAttrs: rec {
     configurePhase = ''
       cmake -Bbuild ${toString specialInstallCmakeFlags}
@@ -95,10 +36,8 @@ let
 
   dkh_ = dkh.overrideAttrs (oldAttrs: rec {
     enableParallelBuilding = true;
-    configurePhase = ''
-      cmake -Bbuild ${toString (oldAttrs.cmakeFlags ++ specialInstallCmakeFlags)}
-      cd build
-    '';
+    configurePhase = "cmake -Bbuild ${toString (oldAttrs.cmakeFlags ++ specialInstallCmakeFlags)}";
+    preBuild = "cd build";
   });
 
   pcmsolver_ = pcmsolver.overrideAttrs (oldAttrs: rec {
@@ -109,16 +48,10 @@ let
     '';
   });
 
-  libxc_ = libxc.overrideAttrs (oldAttrs: rec {
-    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ cmake ];
-
-    enableParallelBuilding = true;
-
-    configurePhase = ''
-      cmake -Bbuild ${toString specialInstallCmakeFlags}
-      cd build
-    '';
-  });
+  libintSrc = fetchurl {
+    url = "https://github.com/loriab/libint/releases/download/v0.1/Libint2-export-7-7-4-7-7-5_1.tgz";
+    sha256 = "16vgnjpspairzm72ffjc8qb1qz0vwbx1cq237mc3c79qvqlw2zmn";
+  };
 
   testInputs = {
     h2o_omp25_opt = writeTextFile {
@@ -147,7 +80,7 @@ let
 
 in buildPythonPackage rec {
     pname = "psi4";
-    inherit version;
+    version = "1.4";
 
     nativeBuildInputs = [
       cmake
@@ -160,16 +93,19 @@ in buildPythonPackage rec {
 
     buildInputs = [
       gau2grid
-      libint1_
       libxc
-      blas_
-      lapack_
+      blas
+      lapack
       dkh_
       pcmsolver_
       libefp
       chemps2_
       hdf5
       hdf5-cpp
+      eigen
+      mpfr
+      gmpxx
+      boost
     ];
 
     propagatedBuildInputs = [
@@ -189,11 +125,19 @@ in buildPythonPackage rec {
       pytest
     ];
 
-    src = fetchFromGitHub  {
-      inherit rev sha256;
-      owner = "psi4";
+    src = fetchFromGitHub {
       repo = pname;
+      owner = "psi4";
+      rev = "v${version}";
+      sha256 = "WmK5EndhUQlHMPBdU/Y5iWgMpc8ZeoEhKU4SLdqwvxM=";
     };
+
+    patches = [ ./LibintCmake.patch ];
+
+    # Must be done after configuration unfortunately. Directories are overridden otherwise.
+    postConfigure = ''
+      cp ${libintSrc} external/upstream/libint2/libint2_external-prefix/src/Libint2-export-7-7-4-7-7-5_1.tgz
+    '';
 
     cmakeFlags = [
       "-DDCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"
@@ -206,12 +150,14 @@ in buildPythonPackage rec {
       # gau2grid
       "-DCMAKE_INSIST_FIND_PACKAGE_gau2grid=ON"
       "-Dgau2grid_DIR=${gau2grid}/share/cmake/gau2grid"
-      # libint
-      "-DCMAKE_INSIST_FIND_PACKAGE_Libint=ON"
-      "-DLibint_DIR=${libint1_}/share/cmake/Libint"
+      # libint. Force to build within Psi4's own CMake system. It requires that many tunings
+      # compared to the upstream version, that everything else is just wasting time.
+      "-DMAX_AM_ERI=7"
+      "-DBUILD_SHARED_LIBS=ON"
+      "-DCMAKE_DISABLE_FIND_PACKAGE_Libint=ON"
       # libxc
       "-DCMAKE_INSIST_FIND_PACKAGE_Libxc=ON"
-      "-DLibxc_DIR=${libxc_}/share/cmake/Libxc"
+      "-DLibxc_DIR=${libxc}/share/cmake/Libxc"
       # pcmsolver
       "-DCMAKE_INSIST_FIND_PACKAGE_PCMSolver=ON"
       "-DENABLE_PCMSolver=ON"
@@ -225,15 +171,19 @@ in buildPythonPackage rec {
       # CheMPS2
       "-DENABLE_CheMPS2=ON"
       # Prefix path for all external packages
-      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libint1_};${libxc_};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_}\""
+      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_}\""
     ];
 
     format = "other";
     enableParallelBuilding = true;
 
     configurePhase = ''
+      runHook preConfigure
+
       cmake -Bbuild ${toString cmakeFlags} -DCMAKE_INSTALL_PREFIX=$out
       cd build
+
+      runHook postConfigure
     '';
 
     postFixup = let
@@ -273,5 +223,6 @@ in buildPythonPackage rec {
       homepage = "http://www.psicode.org/";
       license = licenses.lgpl3;
       platforms = platforms.linux;
+      maintainers = [ maintainers.sheepforce ];
     };
   }

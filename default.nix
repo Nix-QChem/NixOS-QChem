@@ -189,7 +189,6 @@ let
       packmol = callPackage ./pkgs/apps/packmol { };
 
       psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
-      psi4Unstable = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4Unstable;
 
       pysisyphus = super.python3.pkgs.toPythonApplication self.python3.pkgs.pysisyphus;
 
