@@ -10,7 +10,7 @@ let
   lib = prev.lib;
 
   # Create a stdenv with CPU optimizations
-  makeOptStdenv = stdenv: arch: if arch == null then stdenv else
+  makeOptStdenv = stdenv: arch: extraCflags: if arch == null then stdenv else
   stdenv.override (old: {
     name = old.name + "-${arch}";
 
@@ -21,13 +21,17 @@ let
     # Add additional compiler flags
     extraAttrs = {
       mkDerivation = args: stdenv.mkDerivation ( args // {
-        NIX_CFLAGS_COMPILE = toString (args.NIX_CFLAGS_COMPILE or "") + " -march=${arch} -mtune=${arch}";
+        NIX_CFLAGS_COMPILE = toString (args.NIX_CFLAGS_COMPILE or "")
+          + " -march=${arch} -mtune=${arch} " + extraCflags;
       });
     };
   });
 
-  optStdenv = makeOptStdenv final.stdenv cfg.optArch;
+  # stdenv with CPU flags
+  optStdenv = makeOptStdenv final.stdenv cfg.optArch "";
 
+  # stdenv with extra optmization flags, use selectively
+  aggressiveStdenv = makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
 
 
   #
@@ -173,6 +177,7 @@ let
       pysisyphus = super.python3.pkgs.toPythonApplication self.python3.pkgs.pysisyphus;
 
       qdng = callPackage ./pkgs/apps/qdng {
+        stdenv = aggressiveStdenv;
         protobuf=super.protobuf3_11;
       };
 
