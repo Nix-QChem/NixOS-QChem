@@ -134,6 +134,11 @@ in buildPythonPackage rec {
 
     patches = [ ./LibintCmake.patch ];
 
+    # Required for Libint compilation. g++ will otherwise not be able to link the large amount of files.
+    preConfigure = ''
+      ulimit -s 65536
+    '';
+
     # Must be done after configuration unfortunately. Directories are overridden otherwise.
     postConfigure = ''
       cp ${libintSrc} external/upstream/libint2/libint2_external-prefix/src/Libint2-export-7-7-4-7-7-5_1.tgz
