@@ -1,22 +1,10 @@
 { lib, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
 , writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
-, deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
+, deepdiff, mkl, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
 , pytest, mpfr, gmpxx, eigen, boost
 } :
-assert
-  lib.asserts.assertMsg
-  (blas.passthru.implementation == "mkl")
-  "MKL must be used as BLAS provider.";
-
-assert
-  lib.asserts.assertMsg
-  (lapack.passthru.implementation == "mkl")
-  "MKL must be used as LAPACK provider";
 
 let
-  blas_ = blas.passthru.provider;
-  lapack_ = lapack.passthru.provider;
-
   # Psi4 requires some special cmake flags. Using Nix's defaults usually does not work.
   specialInstallCmakeFlags = [
     "-DCMAKE_INSTALL_PREFIX=$out"
@@ -94,8 +82,7 @@ in buildPythonPackage rec {
     buildInputs = [
       gau2grid
       libxc
-      blas
-      lapack
+      mkl
       dkh_
       pcmsolver_
       libefp

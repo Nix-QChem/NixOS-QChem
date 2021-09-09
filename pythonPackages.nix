@@ -30,10 +30,7 @@ let
 
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
-    psi4 = callPackage ./pkgs/apps/psi4 {
-      blas = superPkgs.blas.override { blasProvider = superPkgs.mkl; };
-      lapack = superPkgs.lapack.override { lapackProvider = superPkgs.mkl; };
-    };
+    psi4 = callPackage ./pkgs/apps/psi4 { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
       orca = selfPkgs.orca;
