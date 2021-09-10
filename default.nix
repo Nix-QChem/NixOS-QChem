@@ -229,6 +229,8 @@ let
 
       amd-fftw = callPackage ./pkgs/lib/amd-fftw {};
 
+      amd-scalapack = callPackage ./pkgs/lib/amd-scalapack {};
+
       libctl = callPackage ./pkgs/lib/libctl {};
 
       libefp = callPackage ./pkgs/lib/libefp {};
