@@ -105,6 +105,8 @@ in
       sha256 = "wO/D7ySH0g/qN2aqzOF2Be3aw3U248dvuIEaTAkFYC4=";
     };
 
+    patches = [ ./scikit-learn.patch ];
+
     # Requires at least PySCF
     doCheck = pyscf != null;
 
