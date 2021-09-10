@@ -170,7 +170,6 @@ let
       packmol = callPackage ./pkgs/apps/packmol { };
 
       psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
-      psi4Unstable = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4Unstable;
 
       pysisyphus = super.python3.pkgs.toPythonApplication self.python3.pkgs.pysisyphus;
 
@@ -235,8 +234,6 @@ let
       libefp = callPackage ./pkgs/lib/libefp {};
 
       libGDSII = callPackage ./pkgs/lib/libGDSII {};
-
-      libint1 = callPackage ./pkgs/lib/libint/1.nix { };
 
       libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
 
