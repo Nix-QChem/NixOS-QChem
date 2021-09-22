@@ -38,3 +38,7 @@ niv add markuskowa/NixOS-QChem
 # To get an overview about the current sources you can also use
 # niv.
 niv show
+
+# Updates in the tracking branches of the sources can be done
+# with a simple:
+niv update
