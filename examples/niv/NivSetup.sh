@@ -1,4 +1,5 @@
-#! /usr/bin/env nix-shell -p niv -i bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p niv
 
 # EXECUTE THIS SCRIPT BEFORE USING THE NIX EXPRESSIONS!
 
