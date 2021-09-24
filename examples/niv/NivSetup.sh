@@ -22,16 +22,15 @@ niv init
 # itself.
 niv drop niv
 
-# Modify the 'nixpkgs' sourcesm which point by default to
+# Modify the 'nixpkgs' sources, which point by default to
 # some old nixos channel. We would like to use
 # nixpkgs-unstable instead. 'niv -b' allows to switch
 # the branch of a git repository, that niv follows.
 niv modify nixpkgs -b nixpkgs-unstable
 
-# To add another source from GitHub as a source, we can
-# use niv shortcuts: owner/repo-name
-# By default, the repo-name will be importable from sources.nix
-# then.
+# To add another source from GitHub, we can use niv
+# shortcuts: owner/repo-name
+# By default, the repo-name will be importable from sources.nix.
 # In this case 'NixOS-QChem' would be another import from
 # 'sources.nix'.
 niv add markuskowa/NixOS-QChem
