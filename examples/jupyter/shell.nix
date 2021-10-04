@@ -48,7 +48,7 @@ let
 
   # Haskell environment with interpreter, compiler, and bundled packages.
   # Provides the Haskell iHaskell kernel for Jupyter.
-  haskellWithPackages = pkgs.haskellPackages.ghcWithPackages (p: with p; [ihaskell] ++ [
+  haskellWithPackages = pkgs.haskellPackages.ghcWithPackages (p: with p; [
     ihaskell
     ConClusion
     attoparsec
