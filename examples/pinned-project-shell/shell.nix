@@ -29,7 +29,6 @@ let
     config = {
       allowUnfree = true; # For proprietary packages
       qchem-config = {
-        allowEnv = true;
         # Enables performance tunings for Haswell
         # CPUs and upwards such as AVX2
         optArch = "haswell";
