@@ -44,6 +44,8 @@ let
     ipympl
     pandas
     psi4
+    gpaw
+    ase
   ]);
 
   # Haskell environment with interpreter, compiler, and bundled packages.
