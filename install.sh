@@ -3,7 +3,7 @@
 set -e
 
 error() {
-  printf "$0: $@" >&2
+  printf "$0: $@\n" >&2
   exit 1
 }
 
@@ -120,13 +120,14 @@ else
 fi
 
 
-printf "\n\n"
-printf "The Nix and the NixOS-QChem overlay are now\n"
-printf "installed in you system. Before you can use it\n"
-printf "you need refresh your by launching a fresh shell or doing re-login'\n"
-printf "\n"
-printf "For future upgrade please run:\n"
-printf "nix-channel --update\n"
-printf "and 'git pull' in $overlay_path\n\n"
+cat <<EOF
 
-exit 0
+The Nix and the NixOS-QChem overlay are now installed in you system.
+Before you can use it you need refresh your environment by doing a re-login.
+
+For future upgrades please run:
+nix-channel --update
+and 'git pull' in $overlay_path
+
+EOF
+
