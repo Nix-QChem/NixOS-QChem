@@ -162,6 +162,8 @@ let
 
       orca = callPackage ./pkgs/apps/orca { };
 
+      orient = callPackage ./pkgs/apps/orient { };
+
       osu-benchmark = callPackage ./pkgs/apps/osu-benchmark {
         # OSU benchmark fails with C++ binddings enabled
         mpi = self.mpi.overrideAttrs (x: {
