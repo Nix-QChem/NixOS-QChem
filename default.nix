@@ -173,6 +173,8 @@ let
 
       packmol = callPackage ./pkgs/apps/packmol { };
 
+      pegamoid = self.python3.pkgs.callPackage ./pkgs/apps/pegamoid { };
+
       psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
 
       pysisyphus = super.python3.pkgs.toPythonApplication self.python3.pkgs.pysisyphus;
