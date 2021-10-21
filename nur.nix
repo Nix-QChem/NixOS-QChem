@@ -10,7 +10,7 @@ let
 
 in {
   overlays = {
-    NixOS-QChem = import ./default.nix;
+    NixOS-QChem = import ./overlay.nix;
   };
 } // filterDerivations pkgsUnstable.qchem
 

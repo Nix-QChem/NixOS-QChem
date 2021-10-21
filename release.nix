@@ -23,7 +23,7 @@ let
   # Customized package set
   pkgs = config: overlay: let
     pkgSet = (import nixpkgs) {
-      overlays = [ overlay ] ++ preOverlays ++ [ (import ./default.nix) ] ++ postOverlays;
+      overlays = [ overlay ] ++ preOverlays ++ [ (import ./overlay.nix) ] ++ postOverlays;
       config.allowUnfree = allowUnfree;
       config.qchem-config = cfg;
       # Provide a handler to sort out unfree Packages
