@@ -43,7 +43,7 @@ has_nix=0
 command -v nix --version > /dev/null && has_nix=1
 
 if  [ $has_nix == 0 ]; then
-  yesno "\nDo you want to install Nix package manager?"
+  yesno "\nDo you want to install the Nix package manager?"
 
   if [ $ret == 0 ]; then
     error "Exiting...\n"
@@ -53,20 +53,6 @@ if  [ $has_nix == 0 ]; then
   curl -L https://nixos.org/nix/install | sh -s -- --daemon
 
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-
-  printf "\nAdd channel in user environment ...\n"
-  nix-channel --add \
-    https://nixos.org/channels/nixpkgs-unstable \
-    nixpkgs
-
-  nix-channel --update
-
-  # Make user channels available
-  yesno "\nWe are going to write the NIX_PATH in your ~/.bashrc"
-
-  if [ $ret == 1 ]; then
-    echo export 'NIX_PATH=nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels' >> ~/.bashrc
-  fi
 fi
 
 #
