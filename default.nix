@@ -66,8 +66,8 @@ let
 
       # For molcas and chemps2
       hdf5-full = final.hdf5.override {
-        cpp = true;
-        inherit (final) gfortran;
+        cppSupport = true;
+        fortranSupport = true;
       };
 
       fftw-mpi = self.fftw.override { enableMpi = true; };
