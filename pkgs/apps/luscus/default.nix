@@ -1,6 +1,13 @@
-{ stdenv, lib, fetchurl, cmake, pkg-config
-, libGLU, libGL, gtk2, gnome2
-} :
+{ stdenv
+, lib
+, fetchurl
+, cmake
+, pkg-config
+, libGLU
+, libGL
+, gtk2
+, gnome2
+}:
 
 stdenv.mkDerivation rec {
   pname = "luscus";
@@ -22,7 +29,7 @@ stdenv.mkDerivation rec {
   '';
 
   # This is missing for some reason:
-  LDFLAGS="-lGLU";
+  LDFLAGS = "-lGLU";
 
   nativeBuildInputs = [ cmake pkg-config ];
   buildInputs = [ libGLU libGL gtk2 gnome2.gtkglext ];
