@@ -40,6 +40,8 @@ let
       molpro = selfPkgs.molpro;
     };
 
+    qutip = callPackage ./pkgs/apps/qutip { };
+
     rmsd = callPackage ./pkgs/lib/rmsd { };
 
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
