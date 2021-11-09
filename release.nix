@@ -76,17 +76,10 @@ let
           ''
             mkdir -p $out/NixOS-QChem
 
-            cp -r ${nixpkgs}/* $out/
-            mv $out/default.nix $out/nixpkgs-default.nix
-
             cp -r ${./.}/* $out/NixOS-QChem
             cp ${./channel.nix} $out/default.nix
 
-            # nixpkgs version
-            cp ${nixpkgs}/.version $out/.version
-
             cat <<EOF > $out/.qchem-revision
-            nixpkgs ${nixpkgs.shortRev}
             NixOS-QChem ${NixOS-QChem.shortRev}
             EOF
           '';
