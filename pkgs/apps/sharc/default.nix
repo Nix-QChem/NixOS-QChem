@@ -1,7 +1,17 @@
 { stdenv, lib, fetchFromGitHub, makeWrapper, which, gfortran
-, blas, liblapack, fftw, python2, molcas, bagel, gnuplot, wfoverlap
-# May all be null
-, orca ? null, gaussian ? null, turbomole ? null, molpro ? null
+, blas, liblapack, fftw, python2, gnuplot, wfoverlap
+, enableMolcas ? false
+, molcas
+, enableBagel ? false
+, bagel
+, enableOrca ? false
+, orca ? null
+, enableGaussian ? false
+, gaussian ? null
+, enableTurbomole ? false
+, turbomole ? null
+, enableMolpro ? false
+, molpro ? null
 } :
 
 let
@@ -69,12 +79,12 @@ in stdenv.mkDerivation {
       wrapProgram $i --set SHARC $out/bin \
                      --set LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
                      --set HOSTNAME localhost \
-                     --set-default MOLCAS ${molcas} \
-                     --set-default BAGEL ${bagel} \
-                     ${lib.optionalString (molpro != null) "--set-default MOLPRO ${molpro}/bin"} \
-                     ${lib.optionalString (orca != null) "--set-default ORCADIR ${orca}/bin"} \
-                     ${lib.optionalString (turbomole != null) "--set-default TURBOMOLE ${turbomole}/bin"} \
-                     ${lib.optionalString (gaussian != null) "--set-default GAUSSIAN ${gaussian}/bin"}
+                     ${lib.optionalString enableMolcas "--set-default MOLCAS ${molcas}"} \
+                     ${lib.optionalString enableBagel "--set-default BAGEL ${bagel}"} \
+                     ${lib.optionalString enableMolpro "--set-default MOLPRO ${molpro}/bin"} \
+                     ${lib.optionalString enableOrca "--set-default ORCADIR ${orca}/bin"} \
+                     ${lib.optionalString enableTurbomole "--set-default TURBOMOLE ${turbomole}/bin"} \
+                     ${lib.optionalString enableGaussian "--set-default GAUSSIAN ${gaussian}/bin"}
     done
 
     runHook preInstall
