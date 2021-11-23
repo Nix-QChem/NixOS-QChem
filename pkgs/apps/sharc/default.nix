@@ -19,8 +19,8 @@ in stdenv.mkDerivation {
     sha256 = "09a5a0zbkganvx9g70vcjbr0i77a9kh095vgh0k0rm0lmkay1cd2";
   };
 
-  nativeBuildInputs = [ makeWrapper which ];
-  buildInputs = [ gfortran blas liblapack fftw python ];
+  nativeBuildInputs = [ makeWrapper which gfortran ];
+  buildInputs = [ blas liblapack fftw python ];
 
   patches = [
     # tests fail to create directories
@@ -45,14 +45,9 @@ in stdenv.mkDerivation {
     patchShebangs wfoverlap/scripts
   '';
 
-  binSearchPath = with lib; strings.makeSearchPath "bin" ([ molcas bagel gnuplot ]
-    ++ lists.optional (orca != null) orca
-    ++ lists.optional (gaussian != null) gaussian
-    ++ lists.optional (turbomole != null) turbomole
-    ++ lists.optional (molpro != null) molpro
-  );
-
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin $out/share/sharc/tests
 
     cd source
@@ -81,6 +76,8 @@ in stdenv.mkDerivation {
                      ${lib.optionalString (turbomole != null) "--set-default TURBOMOLE ${turbomole}/bin"} \
                      ${lib.optionalString (gaussian != null) "--set-default GAUSSIAN ${gaussian}/bin"}
     done
+
+    runHook preInstall
   '';
 
   postFixup = ''
@@ -103,6 +100,5 @@ in stdenv.mkDerivation {
     license = licenses.gpl3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
-    note = "Untested";
   };
 }
