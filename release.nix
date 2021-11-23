@@ -13,6 +13,8 @@
   , NixOS-QChem ? { shortRev = "0000000"; }
   # build more variants
   , buildVariants ? false
+  # Build with pinned nixpkgs
+  , pin ? false
 } :
 
 
@@ -23,7 +25,10 @@ let
   # Customized package set
   pkgs = config: overlay: let
     pkgSet = (import nixpkgs) {
-      overlays = [ overlay ] ++ preOverlays ++ [ (import ./default.nix) ] ++ postOverlays;
+      overlays = [ overlay ] ++ preOverlays ++ [
+        (if pin then (import ./default.nix) else (import ./overlay.nix))
+      ] ++ postOverlays;
+
       config.allowUnfree = allowUnfree;
       config.qchem-config = cfg;
       # Provide a handler to sort out unfree Packages
@@ -76,17 +81,10 @@ let
           ''
             mkdir -p $out/NixOS-QChem
 
-            cp -r ${nixpkgs}/* $out/
-            mv $out/default.nix $out/nixpkgs-default.nix
-
             cp -r ${./.}/* $out/NixOS-QChem
             cp ${./channel.nix} $out/default.nix
 
-            # nixpkgs version
-            cp ${nixpkgs}/.version $out/.version
-
             cat <<EOF > $out/.qchem-revision
-            nixpkgs ${nixpkgs.shortRev}
             NixOS-QChem ${NixOS-QChem.shortRev}
             EOF
           '';
@@ -101,20 +99,20 @@ let
   in pkgsClean;
 
 in {
-  qchem = pkgs config (self: super: {});
+  "${cfg.prefix}" = pkgs config (self: super: {});
 
 } # Extra variants for testing purposes
 // (if buildVariants then {
-  qchem-mpich = pkgs config (self: super: { mpi = super.mpich; });
+  "${cfg.prefix}-mpich" = pkgs config (self: super: { mpi = super.mpich; });
 
-  qchem-mvapich = pkgs config (self: super: { mpi = self.mvapich; });
+  "${cfg.prefix}-mvapich" = pkgs config (self: super: { mpi = self.mvapich; });
 
-  qchem-mkl = pkgs config (self: super: {
+  "${cfg.prefix}-mkl" = pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.mkl; };
     lapack = super.lapack.override { lapackProvider = super.mkl; };
   });
 
-  qchem-amd = pkgs config (self: super: {
+  "${cfg.prefix}-amd" = pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.amd-blis; };
     fftw = self.qchem.amd-fftw;
     scalapack = self.qchem.amd-scalapack;

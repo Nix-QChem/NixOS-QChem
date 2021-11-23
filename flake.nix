@@ -9,7 +9,7 @@
       pkgs = (import nixpkgs) {
         system = "x86_64-linux";
         overlays = [
-          (import ./default.nix)
+          (import ./overlay.nix)
           (self: super: { qchem = super.qchem // {
             turbomole = null;
             cefine = null;
@@ -32,7 +32,7 @@
       pkgsClean = with lib; filterAttrs (n: v: isDerivation v) pkgs.qchem;
   in {
 
-    overlay = import ./.;
+    overlay = import ./overlay.nix;
 
     packages."x86_64-linux" = pkgsClean;
     hydraJobs."x86_64-linux" = pkgsClean;
