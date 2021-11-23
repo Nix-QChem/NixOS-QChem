@@ -2,11 +2,12 @@ final: prev:
 
 let
   # tested nixpgks-unstable version
-  version = with builtins; (fromJSON (readFile ./flake.lock)).nodes.nixpkgs.locked.rev;
+  nixpkgsGH = with builtins; (fromJSON (readFile ./flake.lock)).nodes.nixpkgs.locked;
 
-  nixpkgs = import (builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/${version}.tar.gz"
-  );
+  nixpkgs = import (prev.fetchFromGitHub {
+    inherit (nixpkgsGH) owner repo rev;
+    sha256 = nixpkgsGH.narHash;
+  });
 
   cfg =
     if (builtins.hasAttr "qchem-config" prev.config) then
