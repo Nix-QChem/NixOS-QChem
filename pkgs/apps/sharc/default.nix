@@ -37,8 +37,10 @@ in stdenv.mkDerivation {
     ./testing.patch
     # Molpro tests require more memory
     ./molpro_tests.patch
-    # Allows for newer molcas versions
-    ./molcas_version.patch
+    # Enable MC-PDFT with Molcas
+    # Generated from modified interface from SI of:
+    # https://chemrxiv.org/engage/chemrxiv/article-details/616de8350ad1ffa9699a35a5
+    ./mc-pdft.patch
   ];
 
   postPatch = ''
