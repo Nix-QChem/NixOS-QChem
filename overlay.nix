@@ -191,16 +191,7 @@ let
           protobuf = super.protobuf3_11;
         };
 
-        sharc = self.sharcV2;
-
-        sharc21 = self.sharcV21;
-
-        sharcV2 = callPackage ./pkgs/apps/sharc {
-          inherit (self) molcas;
-          molpro = self.molpro12; # V2 only compatible with versions up to 2012
-        };
-
-        sharcV21 = callPackage ./pkgs/apps/sharc/21.nix {
+        sharc = callPackage ./pkgs/apps/sharc/default.nix {
           bagel = self.bagel-serial;
           molpro = self.molpro12; # V2 only compatible with versions up to 2012
           gaussian = if cfg.optpath != null then self.gaussian else null;

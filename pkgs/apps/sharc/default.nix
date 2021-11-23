@@ -1,10 +1,12 @@
-{ stdenv, lib, fetchFromGitHub, makeWrapper, gfortran
-, blas, fftw, python2, molcas, molpro ? null
+{ stdenv, lib, fetchFromGitHub, makeWrapper, which, gfortran
+, blas, liblapack, fftw, python2, molcas, bagel, gnuplot, wfoverlap
+# May all be null
+, orca ? null, gaussian ? null, turbomole ? null, molpro ? null
 } :
 
 let
-  version = "2.0";
-  python = python2.withPackages(p: with p; [ numpy ]);
+  version = "2.1.1";
+  python = python2.withPackages(p: with p; [ numpy pyquante ]);
 
 in stdenv.mkDerivation {
   pname = "sharc";
@@ -13,47 +15,42 @@ in stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "sharc-md";
     repo = "sharc";
-    rev = "V${version}";
-    sha256 = "14zsmqpcxjsycfqwdknfl9jqlpdyjxf4kagjh1kyrfq0lyavh6dm";
+    rev = "v${version}";
+    sha256 = "09a5a0zbkganvx9g70vcjbr0i77a9kh095vgh0k0rm0lmkay1cd2";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ gfortran blas fftw python ];
+  nativeBuildInputs = [ makeWrapper which ];
+  buildInputs = [ gfortran blas liblapack fftw python ];
 
   patches = [
     # tests fail to create directories
     ./testing.patch
     # Molpro tests require more memory
     ./molpro_tests.patch
+    # Allows for newer molcas versions
+    ./molcas_version.patch
   ];
 
   postPatch = ''
-    # SHARC make file
-    sed -i 's/^F90.*=.*/F90 = gfortran/' source/Makefile;
-    sed -i 's/^LD.*=.*/LD = -lblas -lfftw3/' source/Makefile;
+    # SHARC make file (dynamics fixes)
     sed -i 's:^EXEDIR.*=.*:EXEDIR = ''${out}/bin:' source/Makefile;
 
     # purify output
-    substituteInPlace source/Makefile --replace 'shell date' 'shell echo 0' \
+    substituteInPlace source/Makefile --replace 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
                                       --replace 'shell hostname' 'shell echo nixos' \
                                       --replace 'shell pwd' 'shell echo nixos'
-
-
-    # WF overlap
-    sed -i 's:^LALIB.*=.*:LALIB = -lblas -fopenmp:' wfoverlap/source/Makefile;
 
     rm bin/*.x
 
     patchShebangs wfoverlap/scripts
   '';
 
-  buildPhase = ''
-    cd wfoverlap/source
-    make wfoverlap_ascii.x
-    cd ../../source
-    make
-    cd ..
-  '';
+  binSearchPath = with lib; strings.makeSearchPath "bin" ([ molcas bagel gnuplot ]
+    ++ lists.optional (orca != null) orca
+    ++ lists.optional (gaussian != null) gaussian
+    ++ lists.optional (turbomole != null) turbomole
+    ++ lists.optional (molpro != null) molpro
+  );
 
   installPhase = ''
     mkdir -p $out/bin $out/share/sharc/tests
@@ -64,6 +61,7 @@ in stdenv.mkDerivation {
 
     cp -u bin/* $out/bin
     cp wfoverlap/scripts/* $out/bin
+    cp ${wfoverlap}/bin/wfoverlap.x $out/bin/wfoverlap_ascii.x
 
     cp doc/* $out/share/sharc
     cp -r tests/* $out/share/sharc/tests
@@ -74,9 +72,14 @@ in stdenv.mkDerivation {
 
     for i in $(find $out/bin -type f); do
       wrapProgram $i --set SHARC $out/bin \
+                     --set LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
                      --set HOSTNAME localhost \
                      --set-default MOLCAS ${molcas} \
-                     ${lib.optionalString (molpro != null) "--set-default MOLPRO ${molpro}/bin"}
+                     --set-default BAGEL ${bagel} \
+                     ${lib.optionalString (molpro != null) "--set-default MOLPRO ${molpro}/bin"} \
+                     ${lib.optionalString (orca != null) "--set-default ORCADIR ${orca}/bin"} \
+                     ${lib.optionalString (turbomole != null) "--set-default TURBOMOLE ${turbomole}/bin"} \
+                     ${lib.optionalString (gaussian != null) "--set-default GAUSSIAN ${gaussian}/bin"}
     done
   '';
 
@@ -90,11 +93,16 @@ in stdenv.mkDerivation {
     done
   '';
 
+  setupHooks = [
+    ./sharcHook.sh
+  ];
+
   meta = with lib; {
     description = "Molecular dynamics (MD) program suite for excited states";
     homepage = https://www.sharc-md.org;
     license = licenses.gpl3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
+    note = "Untested";
   };
 }
