@@ -198,6 +198,15 @@ let
           gaussian = if cfg.optpath != null then self.gaussian else null;
         };
 
+        sharc-full = self.sharc.override {
+          enableBagel = true;
+          enableMolcas = true;
+          enableMolpro = if self.molpro12 != null then true else false;
+          enableOrca = if self.orca != null then true else false;
+          enableTurbomole = if self.turbomole != null then true else false;
+          enableGaussian = if self.gaussian != null then true else false;
+        };
+
         sharc-bagel = self.sharc.override { enableBagel = true; };
 
         sharc-gaussian = with self; nullable gaussian (sharc.override { enableGaussian = true; });
