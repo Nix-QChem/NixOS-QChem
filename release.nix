@@ -14,7 +14,7 @@
   # build more variants
   , buildVariants ? false
   # Build with pinned nixpkgs
-  , pin ? false
+  , pin ? true
 } :
 
 
@@ -22,11 +22,15 @@ let
 
   cfg = (import ./cfg.nix) config;
 
+  nixpkgs-final = if pin then
+    import ./nixpkgs-pin.nix (import nixpkgs {})
+    else import nixpkgs;
+
   # Customized package set
   pkgs = config: overlay: let
-    pkgSet = (import nixpkgs) {
+    pkgSet = nixpkgs-final {
       overlays = [ overlay ] ++ preOverlays ++ [
-        (if pin then (import ./default.nix) else (import ./overlay.nix))
+        (import ./overlay.nix)
       ] ++ postOverlays;
 
       config.allowUnfree = allowUnfree;
