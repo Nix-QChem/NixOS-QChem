@@ -26,10 +26,10 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-21.6.0 | qchem.gpaw | DFT and beyond within the projector-augmented wave method |
-| gromacs-2020.4 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2020.4 | qchem.gromacsMpi | Molecular dynamics software package |
-| gromacs-2020.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2020.4 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2021.4 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2021.4 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2021.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2021.4 | qchem.gromacsDouble | Molecular dynamics software package |
 | gsl-2.7 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.1 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-1.12.1 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
@@ -40,14 +40,14 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | libctl-4.5.0 | qchem.libctl | Guile-based library implementing flexible control files for scientific simulations |
 | libefp-1.5.0-psi4 | qchem.libefp | Parallel implementation of the Effective Fragment Potential Method |
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
-| libint-2.6.0 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
+| libint-2.7.1 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libvdwxc-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
 | libvori-210412 | qchem.libvori | Library for Voronoi intergration of electron densities |
 | libwfa-2020-02-19 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | libwfa-2020-02-19 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
 | libxc-4.3.4 | qchem.libxc4 | Library of exchange-correlation functionals for density-functional theory |
-| libxc-5.1.6 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
-| libxsmm-1.16.2 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
+| libxc-5.1.7 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
+| libxsmm-1.16.3 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | matlab | qchem.matlab | null |
 | mctdh-8.4.17 | qchem.mctdh | Multi configuration time dependent hartree dynamics package |
@@ -65,11 +65,11 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | nixexprs | qchem.nixexprs | null |
 | NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-6.3.0 | qchem.octave | Scientific Pragramming Language |
-| octopus-10.5 | qchem.octopus | Real-space time dependent density-functional theory code |
+| octave-6.4.0 | qchem.octave | Scientific Pragramming Language |
+| octopus-11.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-7.5.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | openmolcas-18.09-20180902 | qchem.molcas1809 | Quantum chemistry software package |
-| openmolcas-21.06-2021-06-09 | qchem.molcas | Quantum chemistry software package |
+| openmolcas-21.10-2021-10-11 | qchem.molcas | Quantum chemistry software package |
 | openmpi-4.1.1 | qchem.mpi | Open source MPI-3 implementation |
 | orca-5.0.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
