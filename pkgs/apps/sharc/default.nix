@@ -1,10 +1,22 @@
-{ stdenv, lib, fetchFromGitHub, makeWrapper, gfortran
-, blas, fftw, python2, molcas, molpro ? null
+{ stdenv, lib, fetchFromGitHub, makeWrapper, which, gfortran
+, blas, liblapack, fftw, python2, gnuplot, wfoverlap
+, enableMolcas ? false
+, molcas
+, enableBagel ? false
+, bagel
+, enableOrca ? false
+, orca
+, enableGaussian ? false
+, gaussian
+, enableTurbomole ? false
+, turbomole
+, enableMolpro ? false
+, molpro
 } :
 
 let
-  version = "2.0";
-  python = python2.withPackages(p: with p; [ numpy ]);
+  version = "2.1.1";
+  python = python2.withPackages(p: with p; [ numpy pyquante ]);
 
 in stdenv.mkDerivation {
   pname = "sharc";
@@ -13,49 +25,41 @@ in stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "sharc-md";
     repo = "sharc";
-    rev = "V${version}";
-    sha256 = "14zsmqpcxjsycfqwdknfl9jqlpdyjxf4kagjh1kyrfq0lyavh6dm";
+    rev = "v${version}";
+    sha256 = "09a5a0zbkganvx9g70vcjbr0i77a9kh095vgh0k0rm0lmkay1cd2";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ gfortran blas fftw python ];
+  nativeBuildInputs = [ makeWrapper which gfortran ];
+  buildInputs = [ blas liblapack fftw python ];
 
   patches = [
     # tests fail to create directories
     ./testing.patch
     # Molpro tests require more memory
     ./molpro_tests.patch
+    # Enable MC-PDFT with Molcas
+    # Generated from modified interface from SI of:
+    # https://chemrxiv.org/engage/chemrxiv/article-details/616de8350ad1ffa9699a35a5
+    ./mc-pdft.patch
   ];
 
   postPatch = ''
-    # SHARC make file
-    sed -i 's/^F90.*=.*/F90 = gfortran/' source/Makefile;
-    sed -i 's/^LD.*=.*/LD = -lblas -lfftw3/' source/Makefile;
+    # SHARC make file (dynamics fixes)
     sed -i 's:^EXEDIR.*=.*:EXEDIR = ''${out}/bin:' source/Makefile;
 
     # purify output
-    substituteInPlace source/Makefile --replace 'shell date' 'shell echo 0' \
+    substituteInPlace source/Makefile --replace 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
                                       --replace 'shell hostname' 'shell echo nixos' \
                                       --replace 'shell pwd' 'shell echo nixos'
-
-
-    # WF overlap
-    sed -i 's:^LALIB.*=.*:LALIB = -lblas -fopenmp:' wfoverlap/source/Makefile;
 
     rm bin/*.x
 
     patchShebangs wfoverlap/scripts
   '';
 
-  buildPhase = ''
-    cd wfoverlap/source
-    make wfoverlap_ascii.x
-    cd ../../source
-    make
-    cd ..
-  '';
-
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin $out/share/sharc/tests
 
     cd source
@@ -64,6 +68,7 @@ in stdenv.mkDerivation {
 
     cp -u bin/* $out/bin
     cp wfoverlap/scripts/* $out/bin
+    cp ${wfoverlap}/bin/wfoverlap.x $out/bin/wfoverlap_ascii.x
 
     cp doc/* $out/share/sharc
     cp -r tests/* $out/share/sharc/tests
@@ -74,10 +79,17 @@ in stdenv.mkDerivation {
 
     for i in $(find $out/bin -type f); do
       wrapProgram $i --set SHARC $out/bin \
+                     --set LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
                      --set HOSTNAME localhost \
-                     --set-default MOLCAS ${molcas} \
-                     ${lib.optionalString (molpro != null) "--set-default MOLPRO ${molpro}/bin"}
+                     ${lib.optionalString enableMolcas "--set-default MOLCAS ${molcas}"} \
+                     ${lib.optionalString enableBagel "--set-default BAGEL ${bagel}"} \
+                     ${lib.optionalString enableMolpro "--set-default MOLPRO ${molpro}/bin"} \
+                     ${lib.optionalString enableOrca "--set-default ORCADIR ${orca}/bin"} \
+                     ${lib.optionalString enableTurbomole "--set-default TURBOMOLE ${turbomole}/bin"} \
+                     ${lib.optionalString enableGaussian "--set-default GAUSSIAN ${gaussian}/bin"}
     done
+
+    runHook preInstall
   '';
 
   postFixup = ''
@@ -89,6 +101,10 @@ in stdenv.mkDerivation {
        sed -i 's/cd \$COPY_DIR/cd $COPY_DIR\;chmod -R +w \*/' $i
     done
   '';
+
+  setupHooks = [
+    ./sharcHook.sh
+  ];
 
   meta = with lib; {
     description = "Molecular dynamics (MD) program suite for excited states";

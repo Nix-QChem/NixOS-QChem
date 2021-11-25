@@ -69,7 +69,10 @@ let
       // rec {
         tested = pkgSet.releaseTools.aggregate {
           name = "tested-programs";
-          constituents = selectList [ "molden" ] ( hydraJobs pkgSet."${cfg.prefix}" )
+          constituents = selectList [
+            "molden"
+            "sharc"
+          ] ( hydraJobs pkgSet."${cfg.prefix}" )
             ++
             selectList [
               "cp2k"
