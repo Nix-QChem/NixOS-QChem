@@ -5,13 +5,13 @@
 , enableBagel ? false
 , bagel
 , enableOrca ? false
-, orca ? null
+, orca
 , enableGaussian ? false
-, gaussian ? null
+, gaussian
 , enableTurbomole ? false
-, turbomole ? null
+, turbomole
 , enableMolpro ? false
-, molpro ? null
+, molpro
 } :
 
 let

@@ -196,20 +196,19 @@ let
           bagel = self.bagel-serial;
           molpro = self.molpro12; # V2 only compatible with versions up to 2012
           gaussian = if cfg.optpath != null then self.gaussian else null;
-          inherit (self) molcas orca turbomole;
         };
 
         sharc-bagel = self.sharc.override { enableBagel = true; };
 
-        sharc-gaussian = with self; nullable gaussian sharc.override { enableGaussian = true; };
+        sharc-gaussian = with self; nullable gaussian (sharc.override { enableGaussian = true; });
 
         sharc-molcas = self.sharc.override { enableMolcas = true; };
 
-        sharc-molpro = with self; nullable molpro12 sharc.override { enableMolpro = true; };
+        sharc-molpro = with self; nullable molpro12 (sharc.override { enableMolpro = true; });
 
-        sharc-orca = with self; nullable orca sharc.override { enableOrca = true; };
+        sharc-orca = with self; nullable orca (sharc.override { enableOrca = true; });
 
-        sharc-turbomole = with self; nullable turbomole sharc.override { enableTurbomole = true; };
+        sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
 
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
