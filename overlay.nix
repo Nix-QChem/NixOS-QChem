@@ -191,21 +191,34 @@ let
           protobuf = super.protobuf3_11;
         };
 
-        sharc = self.sharcV2;
-
-        sharc21 = self.sharcV21;
-
-        sharcV2 = callPackage ./pkgs/apps/sharc {
-          inherit (self) molcas;
-          molpro = self.molpro12; # V2 only compatible with versions up to 2012
-        };
-
-        sharcV21 = callPackage ./pkgs/apps/sharc/21.nix {
+        # blank version
+        sharc = callPackage ./pkgs/apps/sharc/default.nix {
           bagel = self.bagel-serial;
           molpro = self.molpro12; # V2 only compatible with versions up to 2012
           gaussian = if cfg.optpath != null then self.gaussian else null;
-          inherit (self) molcas orca turbomole;
         };
+
+        sharc-full = self.sharc.override {
+          enableBagel = true;
+          enableMolcas = true;
+          enableMolpro = if self.molpro12 != null then true else false;
+          enableOrca = if self.orca != null then true else false;
+          enableTurbomole = if self.turbomole != null then true else false;
+          enableGaussian = if self.gaussian != null then true else false;
+        };
+
+        sharc-bagel = self.sharc.override { enableBagel = true; };
+
+        sharc-gaussian = with self; nullable gaussian (sharc.override { enableGaussian = true; });
+
+        sharc-molcas = self.sharc.override { enableMolcas = true; };
+
+        sharc-molpro = with self; nullable molpro12 (sharc.override { enableMolpro = true; });
+
+        sharc-orca = with self; nullable orca (sharc.override { enableOrca = true; });
+
+        sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
+
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
 
