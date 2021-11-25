@@ -200,14 +200,6 @@
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
-    "attribute": "qchem.gromacs",
-    "name": "gromacs-2021.4",
-    "pname": "gromacs",
-    "version": "2021.4",
-    "description": "Molecular dynamics software package",
-    "homepage": "http://www.gromacs.org"
-  },
-  {
     "attribute": "qchem.gromacsMpi",
     "name": "gromacs-2021.4",
     "pname": "gromacs",
@@ -225,6 +217,14 @@
   },
   {
     "attribute": "qchem.gromacsDouble",
+    "name": "gromacs-2021.4",
+    "pname": "gromacs",
+    "version": "2021.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org"
+  },
+  {
+    "attribute": "qchem.gromacs",
     "name": "gromacs-2021.4",
     "pname": "gromacs",
     "version": "2021.4",
@@ -665,14 +665,62 @@
   },
   {
     "attribute": "qchem.sharc",
-    "name": "sharc-2.0",
+    "name": "sharc-2.1.1",
     "pname": "sharc",
-    "version": "2.0",
+    "version": "2.1.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
-    "attribute": "qchem.sharc21",
+    "attribute": "qchem.sharc-bagel",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-full",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-gaussian",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-molcas",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-molpro",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-orca",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-turbomole",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",

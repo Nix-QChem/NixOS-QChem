@@ -26,10 +26,10 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-21.6.0 | qchem.gpaw | DFT and beyond within the projector-augmented wave method |
-| gromacs-2021.4 | qchem.gromacs | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsMpi | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2021.4 | qchem.gromacs | Molecular dynamics software package |
 | gsl-2.7 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.1 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-1.12.1 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
@@ -84,8 +84,14 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | quantum-espresso-6.6 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | quantum-espresso-6.6 | qchem.quantum-espresso-mpi | Electronic-structure calculations and materials modeling at the nanoscale |
 | scalapack-2.1.0 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
-| sharc-2.0 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
-| sharc-2.1.1 | qchem.sharc21 | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-full | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-gaussian | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-molcas | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-molpro | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
 | siesta-4.1.5 | qchem.siesta | A first-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | A first-principles materials simulation code using DFT |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
