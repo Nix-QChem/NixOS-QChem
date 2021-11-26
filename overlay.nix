@@ -277,6 +277,8 @@ let
         # Utilities
         #
 
+        nixGL = callPackage ./pkgs/apps/nixgl { };
+
         writeScriptSlurm = callPackage ./builders/slurmScript.nix { };
 
         slurm-tools = callPackage ./pkgs/apps/slurm-tools { };
