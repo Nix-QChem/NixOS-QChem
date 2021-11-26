@@ -59,6 +59,11 @@ let
       cpuAcceleration = if hp.avx2Support then "AVX2_256" else null;
     };
 
+    gromacsCudaMpi = recallPackage gromacsCudaMpi {
+      fftw = self.fftwSinglePrec;
+      cpuAcceleration = if hp.avx2Support then "AVX2_256" else null;
+    };
+
     libxsmm = (recallPackage libxsmm {}).overrideAttrs ( x: {
       makeFlags = x.makeFlags or [] ++ [ "OPT=3" ]
         ++ lib.optional hp.avx2Support ["AVX=2" ];
