@@ -11,7 +11,7 @@ batsTest {
   testScript = ''
     @test "Run-Molpro" {
       ${molpro}/bin/molpro --launcher \
-        "${molpro}/bin/mpiexec.hydra -iface lo
+        "${molpro}/bin/mpiexec.hydra -iface lo -launcher fork
         -np $TEST_NUM_CPUS ${molpro}/bin/molpro.exe" \
         molpro.inp
     }
