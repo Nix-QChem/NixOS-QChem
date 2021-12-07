@@ -7,7 +7,7 @@ assert token != null;
 assert (comm == "sockets") || (comm == "mpipr");
 
 let
-  version = "2021.2.1";
+  version = "2021.3.1";
   url = http://www.molpro.net;
 
 in stdenv.mkDerivation {
@@ -17,11 +17,11 @@ in stdenv.mkDerivation {
   src = requireFile (if comm == "sockets" then {
     inherit url;
     name = "molpro-mpp-${version}.linux_x86_64_sockets.sh.gz";
-    sha256 = "05ngn0inffng12i3nn820f4cz9g28lz71mi8v5jzvwxbqim0dhds";
+    sha256 = "0k0dmwb1i3g59fnw8k0308p3z8hy57aixdf63vdwkv6h6hzwpcfg";
   } else {
     inherit url;
     name = "molpro-mpp-${version}.linux_x86_64_mpipr.sh.gz";
-    sha256 = "1hragygrqr3zwimc7c1vv2nkpzgrnjx32xrlsn21r1xgxcp66zni";
+    sha256 = "1ylmslhbcwwyklb20xbcncgnky93kqvvd0n8r8250p3gvypwy2h2";
   });
 
   nativeBuildInputs = [ patchelf ];
