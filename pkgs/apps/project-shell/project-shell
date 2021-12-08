@@ -1,0 +1,155 @@
+#!/usr/bin/env bash
+
+
+if [ "$1" == "-h" ]; then
+  cat << EOF
+
+  Create a template shell.nix file with pinned packages.
+
+  Usage: $(basename $0) [options] [package attributes]
+
+  Options:
+    --niv         Use Niv for dependency management
+    --python      Create a python friendly shell.nix file
+    --version     Pick a specfic nixpkgs/NixOS-QChem release (XX.YY)
+    --name        Name of the environment. Will be displayed on the prompt.
+    --nopin       Skip pinning and import <nixpkgs> instead.
+    --fix-config  Use a fixed config for nixpkgs/qchem config.
+                  Otherwise the config will be picked from system sources.
+EOF
+  exit 0
+fi
+
+# defaults
+name="shell.nix"
+qchemBranch="master"
+nixpkgsBranch="nixpkgs-unstable"
+python=0
+nopin=0
+useNiv=0
+fixConfig=0
+pkgs=""
+
+if [ -e shell.nix ]; then
+  echo "shell.nix already exits!"
+  exit 1
+fi
+
+while [ "$#" -gt 0 ]; do
+  i="$1"; shift 1
+  case "$i" in
+    "--niv")
+      useNiv=1
+    ;;
+    "--nopin")
+      nopin=1
+    ;;
+    "--python")
+      python=1
+    ;;
+    "--fix-config")
+      fixConfig=1
+    ;;
+    "--name")
+      name="$1"
+      shift 1
+    ;;
+    "--version")
+      qchemBranch="release-$1"
+      nixpkgsBranch="nixos-$1"
+      shift 1
+    ;;
+    *)
+      if [[ "$i" =~ ^-- ]]; then
+	echo "$0: unknown option $i"
+	exit 1
+      else
+	pkgs="$pkgs $i"
+      fi
+    ;;
+  esac
+done
+
+
+if [[ $fixConfig == 1 ]]; then
+cat > shell.nix << EOF
+let
+  config =  {
+    allowUnfree = true;
+    qchem-config = {
+      optAVX = true;
+      srcurl = "$NIXQC_SRCURL";
+      optpath = "$NIXQC_OPTPATH";
+    };
+  };
+EOF
+else
+  echo "let" > shell.nix
+fi
+
+if [[ $nopin == 1 ]]; then
+  cat >> shell.nix << EOF
+  pkgs = import <nixpkgs> {$(if [[ $fixConfig == 1 ]]; then echo "inherit config;"; fi)};
+
+EOF
+elif [[ $useNiv == 1 ]]; then
+  @niv@ init
+  @niv@ modify nixpkgs -b nixpkgs-unstable
+  @niv@ add markuskowa/NixOS-QChem
+  @niv@ drop niv
+  @niv@ update
+
+  pkgs="niv $pkgs"
+  cat >> shell.nix << EOF
+  sources = import ./nix/sources.nix;
+  overlay = sources.NixOS-QChem;
+  nixpkgs = sources.nixpkgs;
+
+  pkgs = import nixpkgs {
+    overlays = [ (import overlay) ];
+    $(if [[ $fixConfig == 1 ]]; then echo "inherit config;"; fi)
+  };
+
+EOF
+else
+  shaOverlay=$(curl -s -H "Accept: application/vnd.github.VERSION.sha" https://api.github.com/repos/markuskowa/NixOS-QChem/commits/${qchemBranch})
+  shaNixpkgs=$(curl -s https://raw.githubusercontent.com/markuskowa/NixOS-QChem/${qchemBranch}/flake.lock | @jq@ -r '.nodes.nixpkgs.locked.rev')
+
+  cat >> shell.nix << EOF
+  nixpkgs = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/${shaNixpkgs}.tar.gz";
+  overlay = builtins.fetchTarball "https://github.com/markuskowa/NixOS-QChem/archive/${shaOverlay}.tar.gz";
+
+  pkgs = import nixpkgs {
+    overlays = [ (import overlay) ];
+    $(if [[ $fixConfig == 1 ]]; then echo "inherit config;"; fi)
+  };
+
+EOF
+fi
+
+# Pick a prefix
+if [[ $python == 0 ]]; then
+  pkgBase="pkgs"
+else
+  pkgBase="pkgs.qchem.python3.pkgs"
+fi
+
+cat >> shell.nix << EOF
+in pkgs.mkShell rec {
+  name = "$name";
+  buildInputs = with $pkgBase; [
+    # place you package list here
+    $pkgs
+  ];
+
+  shellHook = ''
+    export PS1='\n\[\033[1;34m\][${name}:\w]$\[\033[0m\] '
+    # place any shell init code here
+  '';
+}
+EOF
+
+cat << EOF
+A shell.nix file has been created.
+Edit shell.nix to customize it for your project.
+EOF

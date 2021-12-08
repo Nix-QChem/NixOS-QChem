@@ -283,6 +283,8 @@ let
 
         slurm-tools = callPackage ./pkgs/apps/slurm-tools { };
 
+        project-shell = callPackage ./pkgs/apps/project-shell { };
+
         # A wrapper to enforce license checkouts with slurm
         slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };
 
