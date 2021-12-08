@@ -3,15 +3,15 @@
 } :
 
 let
-  version = "5.0.1";
+  version = "5.0.2";
 
 in stdenv.mkDerivation {
   pname = "orca";
   inherit version;
 
   src = requireFile {
-    name = "orca_5_0_1_linux_x86-64_shared_openmpi411.tar.xz";
-    sha256 = "84199af6931de9be261685f7f1d6d63b47eed8512ce1f2f93ca5356fed1cbae8";
+    name = "orca_5_0_2_linux_x86-64_shared_openmpi411.tar.xz";
+    sha256 = "3a26a1a5fbc69e7dca0192237b5e16b69886df31751ae59f7396461428aeee96";
     message = "Please get a copy of orca-${version} from https://orcaforum.kofo.mpg.de (it's free).";
   };
 
