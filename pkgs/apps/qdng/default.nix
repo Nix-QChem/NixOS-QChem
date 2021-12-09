@@ -6,7 +6,7 @@
 assert (!blas.isILP64 && !lapack.isILP64);
 
 let
-  version = "20200218";
+  version = "20211209";
 
 in stdenv.mkDerivation {
   pname = "qdng";
@@ -14,7 +14,7 @@ in stdenv.mkDerivation {
 
   src = requireFile {
     name = "qdng-${version}.tar.xz";
-    sha256 = "0gdh5mb6wl66qcdmhg5yiz5irs1s3sgwmd12fzhxyfkxzkr7fagz";
+    sha256 = "0y3kl5qkzzh0nkjz4ljm0iinhxdw04d6bs7i623bah2g93b9fy5y";
     message = "Get a copy of the QDng tarball from Markus...";
   };
 
