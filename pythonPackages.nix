@@ -33,11 +33,11 @@ let
     psi4 = callPackage ./pkgs/apps/psi4 { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
-      orca = selfPkgs.orca;
-      turbomole = selfPkgs.turbomole;
-      cfour = selfPkgs.cfour;
-      gaussian = selfPkgs.gaussian;
-      molpro = selfPkgs.molpro;
+      enableXtb = true;
+      enableNwchem = true;
+      enableJmol = true;
+      enableWfoverlap = true;
+      enableOpenmolcas = true;
     };
 
     rmsd = callPackage ./pkgs/lib/rmsd { };
