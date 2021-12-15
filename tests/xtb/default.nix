@@ -1,10 +1,10 @@
-{ batsTest, lib, xtb, orca ? null } :
+{ batsTest, lib, xtb } :
 
 batsTest rec {
   name = "xtb";
 
   auxFiles = [ ./RuCO_6.xyz ];
-  outFile = [ "xtb.out" ] ++ lib.lists.optional (orca != null) "xtb_orca.out";
+  outFile = [ "xtb.out" ] ++ lib.optional xtb.passthru.enableOrca "xtb_orca.out";
 
   nativeBuildInputs = [ xtb ];
 
@@ -14,7 +14,7 @@ batsTest rec {
       ${xtb}/bin/xtb RuCO_6.xyz --gfn 2 -u 2 --grad > xtb.out
       grep "GRADIENT NORM               0.2506" xtb.out
     }
-  '' + lib.strings.optionalString (orca != null) ''
+  '' + lib.strings.optionalString xtb.passthru.enableOrca ''
     @test "XTB-ORCA" {
       ${xtb}/bin/xtb RuCO_6.xyz --orca -u 2 --grad > xtb_orca.out
       grep "gradient norm              0.1155" xtb_orca.out

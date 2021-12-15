@@ -19,8 +19,6 @@ let
     gpaw = callPackage ./pkgs/apps/gpaw { };
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
-    gau2grid-1_3_1 = callPackage ./pkgs/apps/gau2grid { version = "1.3.1"; sha256 = "0zkfil7cxjip79wqvhljk1ifjq0cwxzx6wlxgp63b6wbagma0i12"; };
-    gau2grid-2_0_4 = callPackage ./pkgs/apps/gau2grid { version = "2.0.4"; sha256 = "0qypq8iax0n6yfi4223zya468v24b60nr0x43ypmsafj0104zqa6"; };
 
     meep = callPackage ./pkgs/apps/meep { };
 
@@ -33,11 +31,11 @@ let
     psi4 = callPackage ./pkgs/apps/psi4 { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
-      orca = selfPkgs.orca;
-      turbomole = selfPkgs.turbomole;
-      cfour = selfPkgs.cfour;
-      gaussian = selfPkgs.gaussian;
-      molpro = selfPkgs.molpro;
+      enableXtb = true;
+      enableNwchem = true;
+      enableJmol = true;
+      enableWfoverlap = true;
+      enableOpenmolcas = true;
     };
 
     rmsd = callPackage ./pkgs/lib/rmsd { };
