@@ -68,7 +68,7 @@ let
 in
   buildPythonPackage rec {
     pname = "pysisyphus";
-    version = "0.7.2";
+    version = "0.7.4";
 
     nativeBuildInputs = [ makeWrapper ];
 
@@ -104,20 +104,15 @@ in
       ++ lib.optional enableTurbomole turbomole
       ++ lib.optional enableGaussian gaussian
       ++ lib.optional enableCfour cfour
-      ++ lists.optional (cfour != null) cfour
+      ++ lib.optional enableMolpro molpro
     ;
 
     src = fetchFromGitHub {
       owner = "eljost";
       repo = pname;
       rev = version;
-      sha256 = "wO/D7ySH0g/qN2aqzOF2Be3aw3U248dvuIEaTAkFYC4=";
+      hash = "sha256-AvJ/9+63yxfeCvL2gRmdZMt/GbvRzMbwlGgOwS2Rrek=";
     };
-
-    patches = [
-      ./scikit-learn.patch
-      ./h5py.patch
-    ];
 
     checkInputs = [ openssh pytestCheckHook ];
 
@@ -132,19 +127,6 @@ in
       else [ "-v --pyargs pysisyphus.tests"]
     ;
 
-    /*
-    checkPhase = ''
-      export PYSISRC=${pysisrc}
-      export PATH=$PATH:${binSearchPath}
-      export OMPI_MCA_rmaps_base_oversubscribe=1
-      echo $PYSISRC
-      ${if fullTest
-          then "pytest -v tests --disable-warnings"
-          else "pytest -v --pyargs pysisyphus.tests --disable-warnings"
-      }
-    '';
-    */
-
     postInstall = ''
       mkdir -p $out/share/pysisyphus
       cp ${pysisrc} $out/share/pysisyphus/pysisrc
@@ -154,6 +136,21 @@ in
           --set-default "PYSISRC" "$out/share/pysisyphus/pysisrc"
       done
     '';
+
+    passthru = { inherit
+      enableXtb
+      enableJmol
+      enableMultiwfn
+      enableOpenmolcas
+      enablePsi4
+      enableWfoverlap
+      enableNwchem
+      enableOrca
+      enableTurbomole
+      enableGaussian
+      enableCfour
+      enableMolpro;
+    };
 
     meta = with lib; {
       description = "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths";
