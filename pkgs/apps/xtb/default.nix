@@ -1,14 +1,16 @@
 { stdenv, lib, gfortran, fetchFromGitHub, cmake, makeWrapper, blas, lapack, writeTextFile
-, turbomole ? null, orca ? null, cefine ? null
+, turbomole, enableTurbomole ? false
+, orca, enableOrca ? false
+, cefine
 } :
 
 let
   description = "Semiempirical extended tight-binding program package";
 
-  binSearchPath = with lib; strings.makeSearchPath "bin" ([ ]
-    ++ lists.optional (turbomole != null) turbomole
-    ++ lists.optional (orca != null) orca
-    ++ lists.optional (turbomole != null) cefine
+  binSearchPath = lib.strings.makeSearchPath "bin" ([ ]
+    ++ lib.optional enableTurbomole turbomole
+    ++ lib.optional enableOrca orca
+    ++ lib.optional enableTurbomole cefine
   );
 
 in stdenv.mkDerivation rec {
@@ -54,6 +56,8 @@ in stdenv.mkDerivation rec {
   '';
 
   setupHooks = [ ./xtbHook.sh ];
+
+  passthru = { inherit enableOrca enableTurbomole; };
 
   meta = with lib; {
     inherit description;

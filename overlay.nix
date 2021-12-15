@@ -238,11 +238,7 @@ let
 
         wfoverlap = callPackage ./pkgs/apps/wfoverlap { };
 
-        xtb = callPackage ./pkgs/apps/xtb {
-          turbomole = null;
-          cefine = null;
-          orca = self.orca;
-        };
+        xtb = callPackage ./pkgs/apps/xtb { };
 
         ### Python packages
         python3 = super.python3.override { packageOverrides = pythonOverrides cfg self super; };
