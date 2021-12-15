@@ -25,7 +25,7 @@ let
     meep = callPackage ./pkgs/apps/meep { };
 
     openmm = callPackage ./pkgs/apps/openmm {
-      cudatoolkit = if cfg.useCuda then superPkgs.cudaPackages.cudatoolkit_11 else null;
+      enableCuda = cfg.useCuda;
     };
 
     pylibefp = callPackage ./pkgs/lib/pylibefp { };

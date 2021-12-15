@@ -1,17 +1,17 @@
 { buildPythonPackage, lib, fetchFromGitHub, cmake, clang, gfortran, fftwSinglePrec
 , doxygen, ocl-icd, opencl-headers, swig, python, cython, numpy
-, cudatoolkit ? cudatoolkit
+, cudatoolkit, enableCuda ? false
 } :
 
 buildPythonPackage rec {
   pname = "openmm";
-  version = "7.5.1";
+  version = "7.6.0";
 
   src = fetchFromGitHub {
     owner = "openmm";
     repo = pname;
     rev = version;
-    sha256= "0klxb8apwf6m92jjndsnjdq8wp8xj3717y5z16h1d0b7bxp7jjxx";
+    hash = "sha256-fUV6xCr6vDbvpVIlHeeXppO5dMh0bUPEk1fMwMOXP2o=";
   };
 
   nativeBuildInputs = [
