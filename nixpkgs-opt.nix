@@ -19,7 +19,6 @@ let
     cp2k = recallPackage cp2k {};
     fftw = recallPackage fftw {};
     dkh = recallPackage dkh {};
-    elpa = recallPackage elpa {};
     ergoscf = recallPackage ergoscf {};
     hpl = recallPackage hpl {};
     hpcg = recallPackage hpcg {};
