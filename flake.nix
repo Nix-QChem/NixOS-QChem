@@ -1,7 +1,7 @@
 {
   description = "NixOS-QChem flake";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11-small";
 
   outputs = { self, nixpkgs } : let
       lib = import "${nixpkgs}/lib";
