@@ -26,7 +26,7 @@ buildPythonPackage rec {
     fftwSinglePrec
     ocl-icd
     opencl-headers
-  ] ++ lib.lists.optional (cudatoolkit != null) cudatoolkit
+  ] ++ lib.optional enableCuda cudatoolkit
   ;
 
   propagatedBuildInputs = [
@@ -54,7 +54,7 @@ buildPythonPackage rec {
     "-DOPENMM_BUILD_OPENCL_LIB=ON"
     "-DOPENMM_BUILD_DRUDE_OPENCL_LIB=ON"
     "-DOPENMM_BUILD_RPMD_OPENCL_LIB=ON"
-  ] ++ lib.lists.optionals (cudatoolkit != null) [
+  ] ++ lib.optionals enableCuda [
     "-DCUDA_SDK_ROOT_DIR=${cudatoolkit}"
     "-DOPENMM_BUILD_AMOEBA_CUDA_LIB=ON"
     "-DOPENMM_BUILD_CUDA_LIB=ON"
