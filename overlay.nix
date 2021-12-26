@@ -106,7 +106,10 @@ let
           boost = final.boost165;
         };
 
-        bagel-serial = callPackage ./pkgs/apps/bagel { mpi = null; };
+        bagel-serial = callPackage ./pkgs/apps/bagel {
+          enableMpi = false;
+          boost = final.boost165;
+        };
 
         cefine = self.nullable self.turbomole (callPackage ./pkgs/apps/cefine { });
 

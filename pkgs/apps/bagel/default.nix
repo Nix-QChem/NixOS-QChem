@@ -1,7 +1,10 @@
 { stdenv, lib, fetchFromGitHub, autoconf, automake, libtool
 , makeWrapper, openssh
-, python3, boost, mpi, blas, lapack
-, scalapack ? null
+, python3, boost, blas, lapack
+, enableMpi ? true
+, mpi
+, enableScalapack ? enableMpi
+, scalapack
 } :
 
 let
@@ -28,12 +31,12 @@ in stdenv.mkDerivation rec {
   buildInputs = [
     python3
     boost
-    mpi
   ] ++ (if useMKL then [ blas.passthru.provider ] else [ blas lapack ])
-    ++ lib.optional (scalapack != null) scalapack;
+    ++ lib.optional enableMpi mpi
+    ++ lib.optional enableScalapack scalapack;
 
-  propagatedBuildInputs = [ mpi ];
-  propagatedUserEnvPkgs = [ mpi ];
+  propagatedBuildInputs = lib.optional enableMpi [ mpi ];
+  propagatedUserEnvPkgs = lib.optional enableMpi [ mpi ];
 
   #
   # Furthermore, if relativistic calculations fail without MKL,
@@ -49,9 +52,9 @@ in stdenv.mkDerivation rec {
   BOOST_ROOT=boost;
 
   configureFlags = with lib; [ "--with-boost=${boost}" ]
-                   ++ optional ( mpi != null ) "--with-mpi=${mpiType}"
-                   ++ optional ( mpi == null ) "--disable-smith"
-                   ++ optional ( scalapack == null ) "--disable-scalapack"
+                   ++ optional enableMpi "--with-mpi=${mpiType}"
+                   ++ optional ( !enableMpi ) "--disable-smith"
+                   ++ optional ( !enableScalapack ) "--disable-scalapack"
                    ++ optional ( useMKL ) "--enable-mkl";
 
   postPatch = ''
@@ -79,7 +82,7 @@ in stdenv.mkDerivation rec {
     # Fix to make mpich run in a sandbox
     export HYDRA_IFACE=lo
 
-    ${if (mpi != null) then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
+    ${if (enableMpi) then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
     else "$out/bin/BAGEL test/hf_svp_hf.json > log"}
 
     echo "Check output"
@@ -91,7 +94,7 @@ in stdenv.mkDerivation rec {
 
   doCheck = true;
 
-  passthru = { inherit mpi; };
+  passthru = lib.optionalAttrs enableMpi { inherit mpi; };
 
   meta = with lib; {
     description = "Brilliantly Advanced General Electronic-structure Library";
