@@ -5,13 +5,13 @@
 
 buildPythonPackage rec {
   pname = "openmm";
-  version = "7.6.0";
+  version = "7.7.0";
 
   src = fetchFromGitHub {
     owner = "openmm";
     repo = pname;
     rev = version;
-    hash = "sha256-fUV6xCr6vDbvpVIlHeeXppO5dMh0bUPEk1fMwMOXP2o=";
+    hash = "sha256-2PYUGTMVQ5qVDeeABrwR45U3JIgo2xMXKlD6da7y3Dw=";
   };
 
   nativeBuildInputs = [
