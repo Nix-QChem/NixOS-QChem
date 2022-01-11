@@ -123,7 +123,7 @@ stdenv.mkDerivation rec {
     cp gamess.${version}.x rungms $out/bin/.
 
     # Copy the file definitions to share
-    cp gms-files.csh $out/share/gamess
+    cp gms-files.csh $out/share/gamess/.
 
     # Copy auxdata, which contains parameters and basis sets
     cp -r auxdata $out/share/gamess/.
@@ -143,6 +143,15 @@ stdenv.mkDerivation rec {
         --set-default OMP_NUM_THREADS 1 \
         --prefix PATH : ${binSearchPath}
     '';
+
+  doInstallCheck = true;
+  installCheckPhase = ''
+    # MPI fixes in sandbox
+    export HYDRA_IFACE=lo
+    export OMPI_MCA_rmaps_base_oversubscribe=1
+    
+    $out/bin/rungms $out/share/gamess/tests/mcscf/mrpt/parallel/mc-detpt-bic-short.inp ${version} 2 2
+  '';
 
   hardeningDisable = [ "format" ];
 
