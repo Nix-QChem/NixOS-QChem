@@ -1,0 +1,13 @@
+diff --git a/gms-files.csh b/gms-files.csh
+index 92d809b..1e8835f 100755
+--- a/gms-files.csh
++++ b/gms-files.csh
+@@ -29,7 +29,7 @@
+ #
+ set echo
+ setenv NO_STOP_MESSAGE 1
+-setenv AUXDATA $GMSPATH/auxdata
++setenv AUXDATA $GMSPATH/../share/gamess/auxdata
+ setenv  EXTBAS /dev/null
+ setenv  NUCBAS /dev/null
+ setenv  EXTCAB $AUXDATA/AUXBAS/auxdef21

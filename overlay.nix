@@ -133,6 +133,10 @@ let
           mpi = super.mpi.override { gfortran = super.gfortran8; };
         };
 
+        gamess-us = callPackage ./pkgs/apps/gamess-us {
+          blas = self.blas-i8;
+        };
+
         gaussview = callPackage ./pkgs/apps/gaussview { };
 
         gdma = callPackage ./pkgs/apps/gdma { };

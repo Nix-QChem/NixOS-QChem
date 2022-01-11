@@ -1,0 +1,82 @@
+diff --git a/rungms b/rungms
+index d4cd542..be65ff0 100755
+--- a/rungms
++++ b/rungms
+@@ -80,10 +80,10 @@
+ #       both Sun Grid Engine (SGE), and Portable Batch System (PBS).
+ #       See also a very old LoadLeveler "ll-gms" for some IBM systems.
+ #
+-set TARGET=sockets
+-set SCR=~/gamess/restart
+-set USERSCR=~/gamess/restart
+-set GMSPATH=~/gamess
++set TARGET=mpi
++set SCR=$SCRATCH
++set USERSCR=$SCRATCH
++set GMSPATH=@out@/bin
+ #
+ # Get any MDI-related options and remove them from the argument list
+ #
+@@ -149,7 +149,7 @@ set NCPUS=$3    # number of compute processes to be run
+ set LOGN=$5    # number of cores per logical node
+ #
+ # provide defaults if last two arguments are not given to this script
+-if (null$VERNO == null) set VERNO=00
++if (null$VERNO == null) set VERNO=@version@
+ if (null$NCPUS == null) set NCPUS=1
+ if (null$LOGN == null) set LOGN=0
+ #
+@@ -226,7 +226,7 @@ endif
+ #    define many environment variables setting up file names.
+ #    anything can be overridden by a user's own choice, read 2nd.
+ #
+-source $GMSPATH/gms-files.csh
++source $GMSPATH/../share/gamess/gms-files.csh
+ if (-e $HOME/.gmsrc) then
+    echo "reading your own $HOME/.gmsrc"
+    source $HOME/.gmsrc
+@@ -656,7 +656,7 @@ if ($TARGET == mpi) then
+    #          this will have directories like include/lib/bin below it.
+    #       3. a bit lower, perhaps specify your ifort path information.
+    #
+-   set DDI_MPI_CHOICE=impi
++   set DDI_MPI_CHOICE=@mpiname@
+    #
+    #        ISU's various clusters have various iMPI paths, in this order:
+    #              dynamo/chemphys2011/exalted/bolt/CyEnce/CJ
+@@ -665,7 +665,7 @@ if ($TARGET == mpi) then
+       #-- DDI_MPI_ROOT=/share/apps/intel/impi/4.0.1.007/intel64
+       #-- DDI_MPI_ROOT=/share/apps/intel/impi/4.0.2.003/intel64
+       #-- DDI_MPI_ROOT=/share/apps/mpi/impi/intel64
+-      set DDI_MPI_ROOT=/shared/intel/impi/4.1.0.024/intel64
++      set DDI_MPI_ROOT=@mpiroot@
+       #-- DDI_MPI_ROOT=/share/apps/mpi/impi/intel64
+    endif
+    #
+@@ -676,22 +676,22 @@ if ($TARGET == mpi) then
+       #-- DDI_MPI_ROOT=/share/apps/mpi/mvapich2-1.9a2-qlc
+       #-- DDI_MPI_ROOT=/share/apps/mpi/mvapich2-1.9-generic-gnu
+       #-- DDI_MPI_ROOT=/share/apps/mpi/mvapich2-2.0a-generic
+-      set DDI_MPI_ROOT=/share/apps/mpi/mvapich2-2.1a-mlnx
++      set DDI_MPI_ROOT=@mpiroot@
+    endif
+    #
+    #        ISU's various clusters have various openMPI paths
+    #          examples are our bolt/CyEnce clusters
+    if ($DDI_MPI_CHOICE == openmpi) then
+       #-- DDI_MPI_ROOT=/share/apps/mpi/openmpi-1.6.4-generic
+-      set DDI_MPI_ROOT=/shared/openmpi-1.6.4/intel-13.0.1
++      set DDI_MPI_ROOT=@mpiroot@
+    endif
+    #
+    #   MPICH/MPICH2
+    if ($DDI_MPI_CHOICE == mpich) then
+-      set DDI_MPI_ROOT=/share/apps/share/mpi/mpich-3.1.3-generic-gnu
++      set DDI_MPI_ROOT=@mpiroot@
+    endif
+    if ($DDI_MPI_CHOICE == mpich2) then
+-      set DDI_MPI_ROOT=/share/apps/share/mpi/mpich-3.1.3-generic-gnu
++      set DDI_MPI_ROOT=@mpiroot@
+    endif
+    #
+    #        pre-pend our MPI choice to the library and execution paths.
