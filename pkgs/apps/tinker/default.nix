@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "tinker";
-  version = "8.8.3";
+  version = "8.10.1";
 
   src = fetchurl  {
     url = "https://dasher.wustl.edu/tinker/downloads/tinker-${version}.tar.gz";
-    sha256= "1m2pb6g9fqqdv2fml5b72zhm40yyb63ya7pf8h5nx69vipy4z1wz";
+    hash = "sha256-RofWDMRMg0YqFWOZIMSn/lUa7GtB8pXJOWLYO/TvTys=";
   };
 
   preConfigure = ''
@@ -36,5 +36,6 @@ stdenv.mkDerivation rec {
     homepage = "https://dasher.wustl.edu/tinker/";
     license = licenses.unfree;
     platforms = platforms.linux;
+    maintainers = [ maintainers.sheepforce ];
   };
 }
