@@ -153,7 +153,7 @@ in stdenv.mkDerivation {
     description = "Open Source High-Performance Computational Chemistry";
     platforms = [ "x86_64-linux" ];
     maintainers = [ maintainers.markuskowa ];
-    homepage = "http://www.nwchem-sw.org";
+    homepage = "https://nwchemgit.github.io";
     license = {
       fullName = "Educational Community License, Version 2.0";
       url = "https://opensource.org/licenses/ECL-2.0";
