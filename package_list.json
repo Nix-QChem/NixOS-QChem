@@ -1,9 +1,9 @@
 [
   {
     "attribute": "qchem.amd-fftw",
-    "name": "amd-fftw-3.0.1",
+    "name": "amd-fftw-3.1",
     "pname": "amd-fftw",
-    "version": "3.0.1",
+    "version": "3.1",
     "description": "Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs",
     "homepage": "http://www.fftw.org/"
   },
@@ -73,17 +73,17 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-8.2.0",
+    "name": "cp2k-9.1.0",
     "pname": "cp2k",
-    "version": "8.2.0",
+    "version": "9.1.0",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
   {
     "attribute": "qchem.crest",
-    "name": "crest-2.11.1",
+    "name": "crest-2.11.2",
     "pname": "crest",
-    "version": "2.11.1",
+    "version": "2.11.2",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -120,6 +120,14 @@
     "homepage": "https://github.com/psi4/dkh"
   },
   {
+    "attribute": "qchem.elpa",
+    "name": "elpa-2021.11.001",
+    "pname": "elpa",
+    "version": "2021.11.001",
+    "description": "Eigenvalue Solvers for Petaflop-Applications",
+    "homepage": "https://elpa.mpcdf.mpg.de/"
+  },
+  {
     "attribute": "qchem.ergoscf",
     "name": "ergoscf-3.8",
     "pname": "ergoscf",
@@ -137,27 +145,35 @@
   },
   {
     "attribute": "qchem.fftw",
-    "name": "fftw-double-3.3.9",
+    "name": "fftw-double-3.3.10",
     "pname": "fftw-double",
-    "version": "3.3.9",
+    "version": "3.3.10",
     "description": "Fastest Fourier Transform in the West library",
     "homepage": "http://www.fftw.org/"
   },
   {
     "attribute": "qchem.fftw-mpi",
-    "name": "fftw-double-3.3.9",
+    "name": "fftw-double-3.3.10",
     "pname": "fftw-double",
-    "version": "3.3.9",
+    "version": "3.3.10",
     "description": "Fastest Fourier Transform in the West library",
     "homepage": "http://www.fftw.org/"
   },
   {
     "attribute": "qchem.fftwSinglePrec",
-    "name": "fftw-single-3.3.9",
+    "name": "fftw-single-3.3.10",
     "pname": "fftw-single",
-    "version": "3.3.9",
+    "version": "3.3.10",
     "description": "Fastest Fourier Transform in the West library",
     "homepage": "http://www.fftw.org/"
+  },
+  {
+    "attribute": "qchem.gamess-us",
+    "name": "gamess-us-2021R2P1",
+    "pname": "gamess-us",
+    "version": "2021R2P1",
+    "description": "GAMESS is a program for ab initio molecular quantum chemistry",
+    "homepage": "https://www.msg.chem.iastate.edu/gamess/index.html"
   },
   {
     "attribute": "qchem.gaussian",
@@ -216,7 +232,7 @@
     "homepage": "http://www.gromacs.org"
   },
   {
-    "attribute": "qchem.gromacsDouble",
+    "attribute": "qchem.gromacsCudaMpi",
     "name": "gromacs-2021.4",
     "pname": "gromacs",
     "version": "2021.4",
@@ -232,10 +248,18 @@
     "homepage": "http://www.gromacs.org"
   },
   {
+    "attribute": "qchem.gromacsDouble",
+    "name": "gromacs-2021.4",
+    "pname": "gromacs",
+    "version": "2021.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org"
+  },
+  {
     "attribute": "qchem.gsl",
-    "name": "gsl-2.7",
+    "name": "gsl-2.7.1",
     "pname": "gsl",
-    "version": "2.7",
+    "version": "2.7.1",
     "description": "The GNU Scientific Library, a large numerical library",
     "homepage": "https://www.gnu.org/software/gsl/"
   },
@@ -401,9 +425,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.20.0",
+    "name": "meep-1.21.0",
     "pname": "meep",
-    "version": "1.20.0",
+    "version": "1.21.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -509,29 +533,29 @@
     "pname": "nwchem",
     "version": "7.0.2",
     "description": "Open Source High-Performance Computational Chemistry",
-    "homepage": "http://www.nwchem-sw.org"
+    "homepage": "https://nwchemgit.github.io"
   },
   {
     "attribute": "qchem.octave",
     "name": "octave-6.4.0",
     "pname": "octave",
     "version": "6.4.0",
-    "description": "Scientific Pragramming Language",
+    "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-11.2",
+    "name": "octopus-11.3",
     "pname": "octopus",
-    "version": "11.2",
+    "version": "11.3",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-7.5.1",
+    "name": "openmm-7.7.0",
     "pname": "openmm",
-    "version": "7.5.1",
+    "version": "7.7.0",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
@@ -553,17 +577,17 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-4.1.1",
+    "name": "openmpi-4.1.2",
     "pname": "openmpi",
-    "version": "4.1.1",
+    "version": "4.1.2",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
   {
     "attribute": "qchem.orca",
-    "name": "orca-5.0.1",
+    "name": "orca-5.0.2",
     "pname": "orca",
-    "version": "5.0.1",
+    "version": "5.0.2",
     "description": "Ab initio quantum chemistry program package",
     "homepage": "https://orcaforum.kofo.mpg.de/"
   },
@@ -593,9 +617,9 @@
   },
   {
     "attribute": "qchem.packmol",
-    "name": "packmol-20.2.3",
+    "name": "packmol-20.3.3",
     "pname": "packmol",
-    "version": "20.2.3",
+    "version": "20.3.3",
     "description": "Generating initial configurations for molecular dynamics",
     "homepage": "http://m3g.iqm.unicamp.br/packmol/home.shtml"
   },
@@ -616,26 +640,34 @@
     "homepage": "https://pypi.org/project/Pegamoid"
   },
   {
+    "attribute": "qchem.project-shell",
+    "name": "project-shell-0.9",
+    "pname": "project-shell",
+    "version": "0.9",
+    "description": "shell.nix generator",
+    "homepage": null
+  },
+  {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.4.1",
+    "name": "psi4-1.5",
     "pname": "psi4",
-    "version": "1.4.1",
+    "version": "1.5",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
   {
     "attribute": "qchem.pysisyphus",
-    "name": "pysisyphus-0.7.2",
+    "name": "pysisyphus-0.7.4",
     "pname": "pysisyphus",
-    "version": "0.7.2",
+    "version": "0.7.4",
     "description": "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths",
     "homepage": "https://github.com/eljost/pysisyphus"
   },
   {
     "attribute": "qchem.qdng",
-    "name": "qdng-20200218",
+    "name": "qdng-20211209",
     "pname": "qdng",
-    "version": "20200218",
+    "version": "20211209",
     "description": "Quantum dynamics program package",
     "homepage": null
   },
@@ -761,9 +793,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-1.16.2",
+    "name": "spglib-1.16.3",
     "pname": "spglib",
-    "version": "1.16.2",
+    "version": "1.16.3",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://atztogo.github.io/spglib/"
   },
@@ -793,9 +825,9 @@
   },
   {
     "attribute": "qchem.tinker",
-    "name": "tinker-8.8.3",
+    "name": "tinker-8.10.1",
     "pname": "tinker",
-    "version": "8.8.3",
+    "version": "8.10.1",
     "description": "Software Tools for Molecular Design",
     "homepage": "https://dasher.wustl.edu/tinker/"
   },
@@ -814,6 +846,14 @@
     "version": "7.5.1",
     "description": "General purpose quantum chemistry program. Tools, not Toys!",
     "homepage": "https://www.turbomole.org/"
+  },
+  {
+    "attribute": "qchem.veloxchem",
+    "name": "veloxchem-2022-01-07",
+    "pname": "veloxchem",
+    "version": "2022-01-07",
+    "description": "Quantum chemistry software for the calculation of molecular properties and spectroscopies",
+    "homepage": "https://veloxchem.org"
   },
   {
     "attribute": "qchem.vmd",
