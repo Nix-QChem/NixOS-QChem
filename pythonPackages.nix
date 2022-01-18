@@ -16,6 +16,8 @@ let
   } // lib.optionalAttrs super.isPy3k {
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
 
+    geometric = callPackage ./pkgs/lib/geometric { };
+
     gpaw = callPackage ./pkgs/apps/gpaw { };
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
