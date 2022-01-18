@@ -42,6 +42,8 @@ let
 
     rmsd = callPackage ./pkgs/lib/rmsd { };
 
+    veloxchem = callPackage ./pkgs/apps/veloxchem { };
+
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
   } // lib.optionalAttrs super.isPy27 {
     pyquante = callPackage ./pkgs/apps/pyquante { };
