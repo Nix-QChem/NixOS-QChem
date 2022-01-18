@@ -235,6 +235,8 @@ let
 
         turbomole = callPackage ./pkgs/apps/turbomole { };
 
+        veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
+
         vmd =
           if cfg.useCuda
           then callPackage ./pkgs/apps/vmd/binary.nix { }
