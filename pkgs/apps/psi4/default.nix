@@ -1,6 +1,6 @@
 { lib, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
 , writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
-, deepdiff, mkl, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
+, deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
 , pytest, mpfr, gmpxx, eigen, boost
 } :
 
@@ -82,7 +82,8 @@ in buildPythonPackage rec {
     buildInputs = [
       gau2grid
       libxc
-      mkl
+      blas
+      lapack
       dkh_
       pcmsolver_
       libefp
@@ -118,8 +119,6 @@ in buildPythonPackage rec {
       rev = "v${version}";
       sha256 = "sha256-NVpE5fAVWYlkymTrvptZ7xqu68eVy71YJ+dRdBMMU9c=";
     };
-
-    patches = [ ./LibintCmake.patch ];
 
     # Required for Libint compilation. g++ will otherwise not be able to link the large amount of files.
     preConfigure = ''
@@ -196,12 +195,6 @@ in buildPythonPackage rec {
         --replace 'elif "CMAKE_INSTALL_DATADIR" in data_dir:' 'else:' \
         --replace 'data_dir = os.path.sep.join([os.path.abspath(os.path.dirname(__file__)), "share", "psi4"])' 'data_dir = "@out@/share/psi4"' \
         --subst-var out
-    '';
-
-    doCheck = false;
-    checkPhase = ''
-      runHook preCheck
-      ctest -j $NIX_BUILD_CORES
     '';
 
     doInstallCheck = true;
