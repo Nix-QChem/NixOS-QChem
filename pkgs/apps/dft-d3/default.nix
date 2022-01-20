@@ -1,41 +1,29 @@
-{ lib, stdenv, fetchurl, gfortran } :
+{ lib, stdenv, fetchFromGitHub, gfortran } :
 
 stdenv.mkDerivation rec {
-  pname = "dft-d3";
-  version = "3.2rev0";
+  pname = "dftd3-lib";
+  version = "0.10"; # Equivalent to 3.2rev0 of the original
 
   nativeBuildInputs = [ gfortran ];
 
-  src = fetchurl {
-    url = "https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/dft-d3/dftd3.tgz";
-    sha256 = "0n8gi0raz8rik1rkd4ifq43wxs56ykxlhm22hpyq3ak1ixszjz6r";
+  src = fetchFromGitHub {
+    owner = "dftbplus";
+    repo = pname;
+    rev = version;
+    hash = "sha256-lda0eEb/QoMG2Sb1/VhJSr+fJcu2wvy1hqw+rVDhe2w=";
   };
-
-  unpackPhase = ''
-    tar -xvf $src
-  '';
-
-  # Using gfortran for linking instead of ifort
-  patches = [
-    ./Linking.patch
-  ];
-
-  dontConfigure = true;
-
 
   installPhase = ''
     mkdir -p $out/bin
-    cp -p dftd3 $out/bin
+    cp prg/dftd3 $out/bin/.
   '';
 
-  hardeningDisable = [
-    "format"
-  ];
+  hardeningDisable = [ "format" ];
 
   meta = with lib; {
     description = "Dispersion correction for DFT";
-    homepage = "https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/dft-d3/get-the-current-version-of-dft-d3";
+    homepage = "https://github.com/dftbplus/dftd3-lib";
     platforms = platforms.unix;
-    license = licenses.unfree;
+    license = licenses.gpl1;
   };
 }

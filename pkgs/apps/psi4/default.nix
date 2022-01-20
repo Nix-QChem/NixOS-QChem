@@ -1,6 +1,6 @@
-{ lib, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
+{ lib, stdenv, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
 , writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
-, deepdiff, mkl, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
+, deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
 , pytest, mpfr, gmpxx, eigen, boost
 } :
 
@@ -36,9 +36,34 @@ let
     '';
   });
 
-  libintSrc = fetchurl {
-    url = "https://github.com/loriab/libint/releases/download/v0.1/Libint2-export-7-7-4-7-7-5_1.tgz";
-    sha256 = "16vgnjpspairzm72ffjc8qb1qz0vwbx1cq237mc3c79qvqlw2zmn";
+  libint = stdenv.mkDerivation rec {
+    pname = "libint";
+    version = "0.1";
+
+    src = fetchurl {
+      url = "https://github.com/loriab/${pname}/releases/download/v${version}/Libint2-export-7-7-4-7-7-5_1.tgz";
+      hash = "sha256-tn7BKd44HTZYPUNgFvriG3wcFkZMOidO/Tmqq6+0b5s=";
+    };
+
+    nativeBuildInputs = [ cmake ];
+    propagatedBuildInputs = [ eigen boost mpfr ];
+
+    preConfigure = ''
+      ulimit -s 65536
+      cmakeFlagsArray+=(
+        ${builtins.toString specialInstallCmakeFlags}
+        -DLIBINT2_SHGAUSS_ORDERING=gaussian
+        -DCMAKE_BUILD_TYPE=Release
+        -DBUILD_SHARED=ON
+        -DBUILD_STATIC=ON
+        -DMERGE_LIBDERIV_INCLUDEDIR=OFF
+        -DBUILD_FPIC=ON
+        -DENABLE_GENERIC=ON
+        -DCMAKE_CXX_FLAGS=-fPIC
+        -DENABLE_CXX11API=ON
+        -DCMAKECONFIG_INSTALL_DIR=$out/share/cmake/Libint2
+      )
+    '';
   };
 
   testInputs = {
@@ -65,7 +90,6 @@ let
     };
   };
 
-
 in buildPythonPackage rec {
     pname = "psi4";
     version = "1.5";
@@ -82,17 +106,16 @@ in buildPythonPackage rec {
     buildInputs = [
       gau2grid
       libxc
-      mkl
+      blas
+      lapack
       dkh_
       pcmsolver_
       libefp
       chemps2_
       hdf5
       hdf5-cpp
-      eigen
-      mpfr
       gmpxx
-      boost
+      libint
     ];
 
     propagatedBuildInputs = [
@@ -119,18 +142,6 @@ in buildPythonPackage rec {
       sha256 = "sha256-NVpE5fAVWYlkymTrvptZ7xqu68eVy71YJ+dRdBMMU9c=";
     };
 
-    patches = [ ./LibintCmake.patch ];
-
-    # Required for Libint compilation. g++ will otherwise not be able to link the large amount of files.
-    preConfigure = ''
-      ulimit -s 65536
-    '';
-
-    # Must be done after configuration unfortunately. Directories are overridden otherwise.
-    postConfigure = ''
-      cp ${libintSrc} external/upstream/libint2/libint2_external-prefix/src/Libint2-export-7-7-4-7-7-5_1.tgz
-    '';
-
     cmakeFlags = [
       "-DDCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"
       "-DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF"
@@ -142,11 +153,11 @@ in buildPythonPackage rec {
       # gau2grid
       "-DCMAKE_INSIST_FIND_PACKAGE_gau2grid=ON"
       "-Dgau2grid_DIR=${gau2grid}/share/cmake/gau2grid"
-      # libint. Force to build within Psi4's own CMake system. It requires that many tunings
-      # compared to the upstream version, that everything else is just wasting time.
+      # libint
       "-DMAX_AM_ERI=7"
       "-DBUILD_SHARED_LIBS=ON"
-      "-DCMAKE_DISABLE_FIND_PACKAGE_Libint=ON"
+      "-DCMAKE_INSIST_FIND_PACKAGE_Libint=ON"
+      "-DLibint2_DIR=${libint}/share/cmake/Libint2"
       # libxc
       "-DCMAKE_INSIST_FIND_PACKAGE_Libxc=ON"
       "-DLibxc_DIR=${libxc}/share/cmake/Libxc"
@@ -163,7 +174,7 @@ in buildPythonPackage rec {
       # CheMPS2
       "-DENABLE_CheMPS2=ON"
       # Prefix path for all external packages
-      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_}\""
+      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint}\""
     ];
 
     format = "other";
@@ -196,12 +207,6 @@ in buildPythonPackage rec {
         --replace 'elif "CMAKE_INSTALL_DATADIR" in data_dir:' 'else:' \
         --replace 'data_dir = os.path.sep.join([os.path.abspath(os.path.dirname(__file__)), "share", "psi4"])' 'data_dir = "@out@/share/psi4"' \
         --subst-var out
-    '';
-
-    doCheck = false;
-    checkPhase = ''
-      runHook preCheck
-      ctest -j $NIX_BUILD_CORES
     '';
 
     doInstallCheck = true;
