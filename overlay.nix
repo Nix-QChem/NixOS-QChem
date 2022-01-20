@@ -247,6 +247,8 @@ let
 
         wfoverlap = callPackage ./pkgs/apps/wfoverlap { };
 
+        wxmacmolplt = callPackage ./pkgs/apps/wxmacmolplt { };
+
         xtb = callPackage ./pkgs/apps/xtb { };
 
         ### Python packages
