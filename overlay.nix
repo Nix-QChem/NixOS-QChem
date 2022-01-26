@@ -198,6 +198,8 @@ let
           protobuf = super.protobuf3_11;
         };
 
+        qmcpack = callPackage ./pkgs/apps/qmcpack { };
+
         # blank version
         sharc = callPackage ./pkgs/apps/sharc/default.nix {
           bagel = self.bagel-serial;
