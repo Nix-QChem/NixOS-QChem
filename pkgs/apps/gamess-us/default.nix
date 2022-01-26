@@ -1,5 +1,6 @@
 { stdenv, lib, makeWrapper, fetchFromGitLab, requireFile, gfortran, writeTextFile, cmake, perl
 , tcsh, mpi, blas, hostname, openssh, gnused, libxc, ncurses
+, enableMpi ? true
 }:
 assert
   lib.asserts.assertMsg
@@ -11,7 +12,8 @@ assert
   (blas.isILP64)
   "A 64 bit integer implementation of BLAS is required.";
 
-stdenv.mkDerivation rec {
+let target = if enableMpi then "mpi" else "sockets";
+in stdenv.mkDerivation rec {
   pname = "gamess-us";
   version = "2021R2P1";
 
@@ -68,7 +70,10 @@ stdenv.mkDerivation rec {
       # Prepare the rungms script -> replace references to @version@ and @out@
       export mpiname=${mpiname}
       export mpiroot=${mpiroot}
+      export target=${target}
       substituteAllInPlace rungms
+
+      head -n 200 rungms
 
       # Make config accept dynamic OpenBLAS
       substituteInPlace config --replace "libopenblas.a" "libopenblas.so"
@@ -94,9 +99,7 @@ stdenv.mkDerivation rec {
        else "${blas.passthru.provider}/lib"
     }
 
-    mpi
-    ${mpi.pname}
-    ${mpi}
+    ${if enableMpi then "${target}\n${mpi.pname}\n${mpi}" else target}
     no
     no
     no
@@ -121,6 +124,7 @@ stdenv.mkDerivation rec {
 
     # Copy the interesting scripts and executables
     cp gamess.${version}.x rungms $out/bin/.
+    cp $(find -name ddikick.x) $out/bin/.
 
     # Copy the file definitions to share
     cp gms-files.csh $out/share/gamess/.
@@ -149,7 +153,7 @@ stdenv.mkDerivation rec {
     # MPI fixes in sandbox
     export HYDRA_IFACE=lo
     export OMPI_MCA_rmaps_base_oversubscribe=1
-    
+
     $out/bin/rungms $out/share/gamess/tests/mcscf/mrpt/parallel/mc-detpt-bic-short.inp ${version} 2 2
   '';
 

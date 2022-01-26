@@ -10,7 +10,7 @@ index d4cd542..be65ff0 100755
 -set SCR=~/gamess/restart
 -set USERSCR=~/gamess/restart
 -set GMSPATH=~/gamess
-+set TARGET=mpi
++set TARGET=@target@
 +set SCR=$SCRATCH
 +set USERSCR=$SCRATCH
 +set GMSPATH=@out@/bin
@@ -22,7 +22,7 @@ index d4cd542..be65ff0 100755
  #
  # provide defaults if last two arguments are not given to this script
 -if (null$VERNO == null) set VERNO=00
-+if (null$VERNO == null) set VERNO=@version@
++if (null$VERNO == null || $VERNO == "00") set VERNO=@version@
  if (null$NCPUS == null) set NCPUS=1
  if (null$LOGN == null) set LOGN=0
  #
