@@ -1,3 +1,4 @@
+| name | attribute | description |
 |------|-----------|-------------|
 | amd-fftw-3.1 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
 | amd-scalapack-3.0 | qchem.amd-scalapack | Linear algebra routines for parallel distributed memory machines optmized for AMD processors |
@@ -13,11 +14,11 @@
 | dalton-2020.0 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dftd3-lib-0.10 | qchem.dftd3 | Dispersion correction for DFT |
 | dirac-21.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
-distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2021.11.001 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library for
+distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | fftw-double-3.3.10 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.10 | qchem.fftw-mpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.10 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
@@ -27,10 +28,10 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-21.6.0 | qchem.gpaw | DFT and beyond within the projector-augmented wave method |
+| gromacs-2021.4 | qchem.gromacs | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsCudaMpi | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsDouble | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2021.4 | qchem.gromacs | Molecular dynamics software package |
 | gromacs-2021.4 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.1 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
@@ -59,12 +60,11 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molpro-2012.1.12 | qchem.molpro12 | Quantum chemistry program package |
 | molpro-2020.2 | qchem.molpro-ext | Quantum chemistry program package |
-| molpro-2021.2.1 | qchem.molpro-pr | Quantum chemistry program package |
 | molpro-2021.2.1 | qchem.molpro | Quantum chemistry program package |
+| molpro-2021.2.1 | qchem.molpro-pr | Quantum chemistry program package |
 | mrcc-2020.02.22 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
 | multiwfn-3.7 | qchem.multiwfn | Multifunctional wave function analyser. |
-| name | attribute | description |
 | nixexprs | qchem.nixexprs | null |
 | NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
@@ -89,14 +89,14 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | quantum-espresso-6.6 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | quantum-espresso-6.6 | qchem.quantum-espresso-mpi | Electronic-structure calculations and materials modeling at the nanoscale |
 | scalapack-2.1.0 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
-| sharc-2.1.1 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
-| sharc-2.1.1 | qchem.sharc-full | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-molpro | Molecular dynamics (MD) program suite for excited states |
 | sharc-2.1.1 | qchem.sharc-gaussian | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-full | Molecular dynamics (MD) program suite for excited states |
+| sharc-2.1.1 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
 | sharc-2.1.1 | qchem.sharc-molcas | Molecular dynamics (MD) program suite for excited states |
 | sharc-2.1.1 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
-| sharc-2.1.1 | qchem.sharc-molpro | Molecular dynamics (MD) program suite for excited states |
-| sharc-2.1.1 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
-| sharc-2.1.1 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
 | siesta-4.1.5 | qchem.siesta | A first-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | A first-principles materials simulation code using DFT |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
