@@ -97,11 +97,11 @@
   },
   {
     "attribute": "qchem.dftd3",
-    "name": "dft-d3-3.2rev0",
-    "pname": "dft-d3",
-    "version": "3.2rev0",
+    "name": "dftd3-lib-0.10",
+    "pname": "dftd3-lib",
+    "version": "0.10",
     "description": "Dispersion correction for DFT",
-    "homepage": "https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/dft-d3/get-the-current-version-of-dft-d3"
+    "homepage": "https://github.com/dftbplus/dftd3-lib"
   },
   {
     "attribute": "qchem.dirac",
@@ -216,15 +216,7 @@
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
-    "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2021.4",
-    "pname": "gromacs",
-    "version": "2021.4",
-    "description": "Molecular dynamics software package",
-    "homepage": "http://www.gromacs.org"
-  },
-  {
-    "attribute": "qchem.gromacsDoubleMpi",
+    "attribute": "qchem.gromacs",
     "name": "gromacs-2021.4",
     "pname": "gromacs",
     "version": "2021.4",
@@ -240,7 +232,7 @@
     "homepage": "http://www.gromacs.org"
   },
   {
-    "attribute": "qchem.gromacs",
+    "attribute": "qchem.gromacsDouble",
     "name": "gromacs-2021.4",
     "pname": "gromacs",
     "version": "2021.4",
@@ -248,7 +240,15 @@
     "homepage": "http://www.gromacs.org"
   },
   {
-    "attribute": "qchem.gromacsDouble",
+    "attribute": "qchem.gromacsDoubleMpi",
+    "name": "gromacs-2021.4",
+    "pname": "gromacs",
+    "version": "2021.4",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org"
+  },
+  {
+    "attribute": "qchem.gromacsMpi",
     "name": "gromacs-2021.4",
     "pname": "gromacs",
     "version": "2021.4",
@@ -360,7 +360,7 @@
     "homepage": "https://brehm-research.de/libvori.php"
   },
   {
-    "attribute": "qchem.wfaMolcas",
+    "attribute": "qchem.libwfa",
     "name": "libwfa-2020-02-19",
     "pname": "libwfa",
     "version": "2020-02-19",
@@ -368,7 +368,7 @@
     "homepage": "https://github.com/libwfa/libwfa"
   },
   {
-    "attribute": "qchem.libwfa",
+    "attribute": "qchem.wfaMolcas",
     "name": "libwfa-2020-02-19",
     "pname": "libwfa",
     "version": "2020-02-19",
@@ -672,6 +672,14 @@
     "homepage": null
   },
   {
+    "attribute": "qchem.qmcpack",
+    "name": "qmcpack-3.12.0",
+    "pname": "qmcpack",
+    "version": "3.12.0",
+    "description": "Many-body ab initio Quantum Monte Carlo code for electronic structure calculations",
+    "homepage": "https://www.qmcpack.org"
+  },
+  {
     "attribute": "qchem.quantum-espresso",
     "name": "quantum-espresso-6.6",
     "pname": "quantum-espresso",
@@ -696,47 +704,7 @@
     "homepage": "http://www.netlib.org/scalapack/"
   },
   {
-    "attribute": "qchem.sharc",
-    "name": "sharc-2.1.1",
-    "pname": "sharc",
-    "version": "2.1.1",
-    "description": "Molecular dynamics (MD) program suite for excited states",
-    "homepage": "https://www.sharc-md.org"
-  },
-  {
-    "attribute": "qchem.sharc-bagel",
-    "name": "sharc-2.1.1",
-    "pname": "sharc",
-    "version": "2.1.1",
-    "description": "Molecular dynamics (MD) program suite for excited states",
-    "homepage": "https://www.sharc-md.org"
-  },
-  {
-    "attribute": "qchem.sharc-full",
-    "name": "sharc-2.1.1",
-    "pname": "sharc",
-    "version": "2.1.1",
-    "description": "Molecular dynamics (MD) program suite for excited states",
-    "homepage": "https://www.sharc-md.org"
-  },
-  {
-    "attribute": "qchem.sharc-gaussian",
-    "name": "sharc-2.1.1",
-    "pname": "sharc",
-    "version": "2.1.1",
-    "description": "Molecular dynamics (MD) program suite for excited states",
-    "homepage": "https://www.sharc-md.org"
-  },
-  {
-    "attribute": "qchem.sharc-molcas",
-    "name": "sharc-2.1.1",
-    "pname": "sharc",
-    "version": "2.1.1",
-    "description": "Molecular dynamics (MD) program suite for excited states",
-    "homepage": "https://www.sharc-md.org"
-  },
-  {
-    "attribute": "qchem.sharc-molpro",
+    "attribute": "qchem.sharc-turbomole",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -752,7 +720,47 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
-    "attribute": "qchem.sharc-turbomole",
+    "attribute": "qchem.sharc-molpro",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-gaussian",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-full",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-bagel",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-molcas",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -870,6 +878,14 @@
     "version": "24.08.2020",
     "description": "Efficient calculation of wavefunction overlaps",
     "homepage": "https://sharc-md.org/?page_id=309"
+  },
+  {
+    "attribute": "qchem.wxmacmolplt",
+    "name": "wxmacmolplt-7.7.2",
+    "pname": "wxmacmolplt",
+    "version": "7.7.2",
+    "description": "Graphical user inteface for GAMESS-US",
+    "homepage": "https://brettbode.github.io/wxmacmolplt/"
   },
   {
     "attribute": "qchem.xtb",
