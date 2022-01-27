@@ -1,12 +1,12 @@
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+[![DOI:10.1002/qua.26872](http://img.shields.io/badge/DOI-10.1002/qua.26872-5075bf.svg)](https://doi.org/10.1002/qua.26872)
 
 # NixOS-QChem
 Nix derivations for HPC/Quantum chemistry software packages.
 
 The goal of this project is to integrate software packages
 into nixos to make it suitable for running it on a HPC cluster.
-It provides popular quantum chemsitry packages and performance
-optionization to upstream nixpkgs.
+It provides popular quantum chemistry packages and performance optimization to upstream nixpkgs.
 
 [Package list](./package_list.md)
 
@@ -17,6 +17,8 @@ The repository comes as a nixpkgs overlay (see [Nixpkgs manual](https://nixos.or
 The contents of the overlay will be placed in an attribute set under nixpkgs (default `qchem`). The original, but overriden nixpkgs will be placed in `qchem.pkgs`. This allows for composition of the overlay with different variants.
 
 There is a branch (release-XX.XX) for every stable version of nixpkgs (nixos-XX.XX).
+
+`examples/pinned-project-shell/shell.nix` and `examples/jupyter/shell.nix` also contain examples how to compose a package set and define an environment with packages from the overlay.
 
 ### Channel
 Via `release.nix` a nix channels compatible nixexprs tarball can be generated:
@@ -31,6 +33,8 @@ Access via e.g.: `nix-shell -p nur.repos.qchem.<package name>`.
 The latest builds for the master branch and stable version are stored on [Cachix](https://app.cachix.org/):
 * Cache URL: https://nix-qchem.cachix.org
 * Public key: nix-qchem.cachix.org-1:ZjRh1PosWRj7qf3eukj4IxjhyXx6ZwJbXvvFk3o3Eos=
+
+If you are allowed to add binary substituters (as trusted user), you may simply add it as `nix-shell -p cachix --run "cachix use nix-qchem"`.
 
 ## Configuration
 
