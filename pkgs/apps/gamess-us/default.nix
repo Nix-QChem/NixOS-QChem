@@ -121,7 +121,7 @@ in stdenv.mkDerivation rec {
     mkdir -p $out/bin $out/share $out/share/gamess
 
     # Copy the interesting scripts and executables
-    cp gamess.${version}.x rungms ${lib.strings.optionalString (!enableMpi) "ddi/ddikick.x"} $out/bin/.
+    cp gamess.${version}.x rungms ${lib.strings.optionalString (!enableMpi) "$(find -name ddikick.x -type f -executable)"} $out/bin/.
 
     # Copy the file definitions to share
     cp gms-files.csh $out/share/gamess/.
