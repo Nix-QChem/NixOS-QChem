@@ -1,18 +1,15 @@
 { lib, stdenv, requireFile, autoPatchelfHook, makeWrapper
-, openmpi, openssh
+, openmpi, openssh, xtb
 } :
 
-let
-  version = "5.0.2";
-
-in stdenv.mkDerivation {
+stdenv.mkDerivation {
   pname = "orca";
-  inherit version;
+  version = "5.0.2";
 
   src = requireFile {
     name = "orca_5_0_2_linux_x86-64_shared_openmpi411.tar.xz";
     sha256 = "3a26a1a5fbc69e7dca0192237b5e16b69886df31751ae59f7396461428aeee96";
-    message = "Please get a copy of orca-${version} from https://orcaforum.kofo.mpg.de (it's free).";
+    url = "https://orcaforum.kofo.mpg.de/app.php/portal";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
@@ -33,6 +30,8 @@ in stdenv.mkDerivation {
     cp *.pdf $out/share/doc/orca
 
     wrapProgram $out/bin/orca --prefix PATH : '${openmpi}/bin:${openssh}/bin'
+
+    ln -s ${xtb}/bin/xtb $out/bin/otool_xtb
   '';
 
   doInstallCheck = true;
