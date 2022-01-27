@@ -73,8 +73,6 @@ in stdenv.mkDerivation rec {
       export target=${target}
       substituteAllInPlace rungms
 
-      head -n 200 rungms
-
       # Make config accept dynamic OpenBLAS
       substituteInPlace config --replace "libopenblas.a" "libopenblas.so"
       substituteInPlace lked --replace "libopenblas.a" "libopenblas.so"
@@ -123,8 +121,7 @@ in stdenv.mkDerivation rec {
     mkdir -p $out/bin $out/share $out/share/gamess
 
     # Copy the interesting scripts and executables
-    cp gamess.${version}.x rungms $out/bin/.
-    cp $(find -name ddikick.x) $out/bin/.
+    cp gamess.${version}.x rungms ${lib.strings.optionalString (!enableMpi) "ddi/ddikick.x"} $out/bin/.
 
     # Copy the file definitions to share
     cp gms-files.csh $out/share/gamess/.
