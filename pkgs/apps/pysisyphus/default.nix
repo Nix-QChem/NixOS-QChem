@@ -1,26 +1,27 @@
 { fetchPypi, fetchFromGitHub, buildPythonPackage, lib, writeTextFile, writeScript, makeWrapper
 , pytestCheckHook
- # Python dependencies
+# Python dependencies
 , autograd, dask, distributed, h5py, jinja2, matplotlib, numpy, natsort, pytest, pyyaml, rmsd, scipy
 , sympy, scikit-learn, qcengine, ase, xtb-python, openbabel-bindings, pyscf
- # Runtime dependencies
+# Runtime dependencies
 , runtimeShell
-, jmol, enableJmol ? false
+, jmol, enableJmol ? true
 , multiwfn, enableMultiwfn ? false
-, xtb, enableXtb ? false
-, openmolcas, enableOpenmolcas ? false
-, psi4, enablePsi4 ? false
-, wfoverlap, enableWfoverlap ? false
-, nwchem, enableNwchem ? false
+, xtb, enableXtb ? true
+, openmolcas, enableOpenmolcas ? true
+, psi4, enablePsi4 ? true
+, wfoverlap, enableWfoverlap ? true
+, nwchem, enableNwchem ? true
 , orca, enableOrca ? false
 , turbomole, enableTurbomole ? false
 , gaussian, enableGaussian ? false
 , cfour, enableCfour ? false
-, molpro, enableMolpro ? false,
- # Test dependencies
- openssh,
- # Configuration
- fullTest ? false
+, molpro, enableMolpro ? false
+, gamess-us, enableGamess ? false
+# Test dependencies
+, openssh
+# Configuration
+, fullTest ? false
 }:
 let
   psi4Wrapper = writeScript "psi4.sh" ''
@@ -43,6 +44,7 @@ let
         ++ lib.optional enableXtb { name = "xtb"; value.cmd = "${xtb}/bin/xtb"; }
         ++ lib.optional enableGaussian { name = "gaussian16"; value = gaussian16Conf; }
         ++ lib.optional enableOrca { name = "orca"; value.cmd = "${orca}/bin/orca"; }
+        ++ lib.optional enableGamess { name = "gamess"; value.cmd = "${gamess-us}/bin/rungms"; }
       ));
     in
       writeTextFile {
@@ -63,6 +65,7 @@ let
     ++ lib.optional enableGaussian gaussian
     ++ lib.optional enableCfour cfour
     ++ lib.optional enableMolpro molpro
+    ++ lib.optional enableGamess gamess-us
   );
 
 in
@@ -105,6 +108,7 @@ in
       ++ lib.optional enableGaussian gaussian
       ++ lib.optional enableCfour cfour
       ++ lib.optional enableMolpro molpro
+      ++ lib.optional enableGamess gamess-us
     ;
 
     src = fetchFromGitHub {
@@ -113,6 +117,8 @@ in
       rev = version;
       hash = "sha256-AvJ/9+63yxfeCvL2gRmdZMt/GbvRzMbwlGgOwS2Rrek=";
     };
+
+    format = "pyproject";
 
     checkInputs = [ openssh pytestCheckHook ];
 
@@ -132,8 +138,9 @@ in
       cp ${pysisrc} $out/share/pysisyphus/pysisrc
       for exe in $out/bin/*; do
         wrapProgram $exe \
-          --prefix PATH : ${binSearchPath} \
-          --set-default "PYSISRC" "$out/share/pysisyphus/pysisrc"
+          ${if binSearchPath == "" then "" else "--prefix PATH : ${binSearchPath}"} \
+          --set-default PYSISRC $out/share/pysisyphus/pysisrc \
+          --set SCRATCH "./"
       done
     '';
 
@@ -149,13 +156,15 @@ in
       enableTurbomole
       enableGaussian
       enableCfour
-      enableMolpro;
+      enableMolpro
+      enableGamess
+      ;
     };
 
     meta = with lib; {
       description = "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths";
       homepage = "https://github.com/eljost/pysisyphus";
-      license = licenses.gpl3;
+      license = licenses.gpl3Plus;
       platforms = platforms.linux;
       maintainers = [ maintainers.sheepforce ];
     };

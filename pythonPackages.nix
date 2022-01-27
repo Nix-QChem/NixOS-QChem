@@ -33,11 +33,9 @@ let
     psi4 = callPackage ./pkgs/apps/psi4 { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
-      enableXtb = true;
-      enableNwchem = true;
-      enableJmol = true;
-      enableWfoverlap = true;
-      enableOpenmolcas = true;
+      gamess-us = selfPkgs.gamess-us.override {
+        enableMpi = false;
+      };
     };
 
     rmsd = callPackage ./pkgs/lib/rmsd { };
