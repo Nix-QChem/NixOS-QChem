@@ -2,13 +2,18 @@
 [![DOI:10.1002/qua.26872](http://img.shields.io/badge/DOI-10.1002/qua.26872-5075bf.svg)](https://doi.org/10.1002/qua.26872)
 
 # NixOS-QChem
-Nix derivations for HPC/Quantum chemistry software packages.
+Nix expressions for HPC/Quantum chemistry software packages.
 
 The goal of this project is to integrate software packages
 into nixos to make it suitable for running it on a HPC cluster.
 It provides popular quantum chemistry packages and performance optimization to upstream nixpkgs.
 
-[Package list](./package_list.md)
+### Available Packages
+A list packages can be found here: [Package list](./package_list.md)
+
+### Publication
+The design and packaging approach of the overlay are published here:
+[M.Kowalewski, P. Seeber, Int. J. Quantum. Chem., e26872 (2022)](https://doi.org/10.1002/qua.26872)
 
 ## Usage
 
@@ -34,7 +39,8 @@ The latest builds for the master branch and stable version are stored on [Cachix
 * Cache URL: https://nix-qchem.cachix.org
 * Public key: nix-qchem.cachix.org-1:ZjRh1PosWRj7qf3eukj4IxjhyXx6ZwJbXvvFk3o3Eos=
 
-If you are allowed to add binary substituters (as trusted user), you may simply add it as `nix-shell -p cachix --run "cachix use nix-qchem"`.
+If you are allowed to add binary substituters (as trusted user), 
+you may simply add it with `nix-shell -p cachix --run "cachix use nix-qchem"`.
 
 ## Configuration
 
