@@ -275,8 +275,6 @@ let
 
         libwfa = callPackage ./pkgs/lib/libwfa { };
 
-        sos = callPackage ./pkgs/lib/sos { };
-
         #
         # Utilities
         #
