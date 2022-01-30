@@ -158,11 +158,9 @@ let
 
         mesa-qc = callPackage ./pkgs/apps/mesa { };
 
-        molcas = self.molcas2106;
-
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix { };
 
-        molcas2106 = callPackage ./pkgs/apps/openmolcas/default.nix { };
+        molcas = callPackage ./pkgs/apps/openmolcas/default.nix { };
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
