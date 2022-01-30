@@ -275,9 +275,6 @@ let
 
         libwfa = callPackage ./pkgs/lib/libwfa { };
 
-        # libxc legacy version
-        libxc4 = callPackage ./pkgs/lib/libxc { };
-
         sos = callPackage ./pkgs/lib/sos { };
 
         #
