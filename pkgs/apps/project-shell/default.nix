@@ -1,8 +1,8 @@
 { lib, stdenvNoCC, jq, niv } :
 
 stdenvNoCC.mkDerivation rec {
-  pname="project-shell";
-  version="0.9";
+  pname = "project-shell";
+  version = "0.9";
 
   src = ./project-shell;
 
