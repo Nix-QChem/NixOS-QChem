@@ -278,10 +278,6 @@ let
         # libxc legacy version
         libxc4 = callPackage ./pkgs/lib/libxc { };
 
-        osss-ucx = callPackage ./pkgs/lib/osss-ucx {
-          automake = final.automake115x;
-        };
-
         sos = callPackage ./pkgs/lib/sos { };
 
         #
