@@ -1,5 +1,5 @@
 { buildPythonPackage, lib, fetchFromGitHub, cffi, numpy, ase, qcelemental, meson, ninja, pkg-config,
-  xtb, pytest
+  xtb, pytestCheckHook, python
 }:
 
 buildPythonPackage rec {
@@ -33,13 +33,14 @@ buildPythonPackage rec {
 
   # Build a C module to interface XTB.
   preBuild = ''
-    meson setup build --prefix=$PWD --default-library=shared
+    meson setup build --prefix=$(pwd) --default-library=shared
     ninja -C build install
+    cp ./${python.passthru.sitePackages}/_libxtb.*.so ./xtb/.
   '';
 
-  checkInputs = [ pytest ];
-  checkPhase = "pytest";
-  doCheck = false;
+  checkInputs = [ pytestCheckHook ];
+  pytestFlagsArray = [ "-k 'not qcschema'" ]; # Numerically soooo slightly off
+  pythonImportsCheck = [ "xtb.interface" "xtb.libxtb" ];
 
   meta = with lib; {
     description = "Python wrapper for the semiempirical XTB package";
