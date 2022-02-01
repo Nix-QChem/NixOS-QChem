@@ -273,7 +273,7 @@ let
 
         libwfa = callPackage ./pkgs/lib/libwfa { };
 
-        ucc = callPackage ./pkgs/lib/ucc { };
+        ucc = callPackage ./pkgs/lib/ucc { enableCuda = cfg.useCuda; };
         #
         # Utilities
         #
