@@ -273,6 +273,7 @@ let
 
         libwfa = callPackage ./pkgs/lib/libwfa { };
 
+        ucc = callPackage ./pkgs/lib/ucc { };
         #
         # Utilities
         #
