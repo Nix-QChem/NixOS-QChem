@@ -115,7 +115,7 @@ in
       owner = "eljost";
       repo = pname;
       rev = version;
-      hash = "sha256-AvJ/9+63yxfeCvL2gRmdZMt/GbvRzMbwlGgOwS2Rrek=";
+      hash = "sha256-CGV/vqeFiG5DYb6w6rQ7rwTPeE9DL8891fXraSWn2Rs=";
     };
 
     format = "pyproject";
