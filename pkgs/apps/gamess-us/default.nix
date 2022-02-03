@@ -80,36 +80,44 @@ in stdenv.mkDerivation rec {
 
   # The interactive config script of gamess. Pretty standard build with MPI parallelism, but
   # without additional interfaces (such as libxc, qcengine, tinker, ...)
-  configurePhase = ''
-    ./config << EOF
-
-    linux64
-
-
-    ${version}
-    gfortran
-    ${lib.versions.majorMinor gfortran.version}
-
-    ${blas.passthru.implementation}
-    ${blas.passthru.provider}
-    ${if blas.implementation == "mkl"
-       then "proceed"
-       else "${blas.passthru.provider}/lib"
-    }
-
-    ${if enableMpi then "${target}\n${mpi.pname}\n${mpi}" else target}
-    no
-    no
-    no
-    no
-    no
-    no
-    no
-    no
-    no
-    no
-    no
-    EOF
+  configurePhase =
+    let configAnswers = lib.strings.concatStringsSep "\n" ([
+          ""                                         # Skip informative prompt
+          "linux64"                                  # Target machine is a amd64 linux. Actually I don't see why this wouldn't fit other architectures as well.
+          ""                                         # Skip two more prompts
+          ""
+          version                                    # A version string, which will determine the name of the gamess executable.
+          "gfortran"                                 # The fortran compiler we are using.
+          (lib.versions.majorMinor gfortran.version) # Version of gfortran. GAMESS uses different optimisation flags for different versions and becomes numerically wrong if we lie here
+          ""                                         # Skip another prompt
+          blas.passthru.implementation               # BLAS implementation that we are using as a name
+          blas.passthru.provider                     # Path to the BLAS installation
+          (if blas.implementation == "mkl"           # If MKL was selected, it will try to figure out what directory structure is being used.
+             then "proceed"
+             else "${blas.passthru.provider}/lib"
+          )
+          ""                                         # Skip another prompt and proceed to network setup
+          target                                     # The target is either sockets or MPI.
+        ] ++ lib.optionals enableMpi [               # If MPI was selected it ask for the MPI installation details
+          mpi.pname                                  # The MPI implementation
+          mpi                                        # Path to the MPI installation
+        ] ++ [                                       # Activation of optional plugins, such as active space CC, LibXC, ...
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+          "no"
+        ]);
+    in ''
+      ./config << EOF
+      ${configAnswers}
+      EOF
   '';
 
   makeFlags = [ "ddi" "modules" "gamess" ];
