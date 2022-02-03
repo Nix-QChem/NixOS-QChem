@@ -8,6 +8,7 @@
 , optAVX ? null
 , optArch ? null
 , useCuda ? null
+, licQChem ? null
 } :
 
 let
@@ -60,4 +61,7 @@ in {
 
   # Enable CUDA on selected packages
   useCuda = getBoolValue useCuda false "NIXQC_CUDA";
+
+  # QChem license information
+  licQChem = getValue licQChem null "NIXQC_LICQCHEM";
 }
