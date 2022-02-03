@@ -191,6 +191,8 @@ let
 
         pysisyphus = super.python3.pkgs.toPythonApplication self.python3.pkgs.pysisyphus;
 
+        q-chem-installer = callPackage ./pkgs/apps/q-chem/installer.nix { };
+
         qdng = callPackage ./pkgs/apps/qdng {
           stdenv = aggressiveStdenv;
           protobuf = super.protobuf3_11;
@@ -337,6 +339,8 @@ let
         molpro20 = null;
         molpro-ext = null;
 
+        q-chem = null;
+
         # Provide null gaussian attrs in case optpath is not set
         gaussian = null;
       } // lib.optionalAttrs (cfg.licMolpro != null) {
@@ -354,6 +358,10 @@ let
 
         molpro-ext = callPackage ./pkgs/apps/molpro/custom.nix { token = cfg.licMolpro; };
 
+      } // lib.optionalAttrs (cfg.licQChem != null) {
+        q-chem = callPackage ./pkgs/apps/q-chem/default.nix {
+          qchemLicensePath = cfg.licQChem;
+        };
       } // lib.optionalAttrs (cfg.optpath != null) {
         #
         # Quirky packages that need to reside outside the nix store
