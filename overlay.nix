@@ -54,6 +54,7 @@ let
         pkgs = final;
 
         inherit callPackage;
+        inherit aggressiveStdenv;
 
         #
         # Upstream overrides
