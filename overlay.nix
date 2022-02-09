@@ -266,6 +266,8 @@ let
 
         amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
 
+        intelmpi = callPackage ./pkgs/lib/intelmpi { };
+
         libctl = callPackage ./pkgs/lib/libctl { };
 
         libefp = callPackage ./pkgs/lib/libefp { };
