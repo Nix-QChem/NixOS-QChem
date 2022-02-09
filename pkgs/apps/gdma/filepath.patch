@@ -1,0 +1,13 @@
+diff --git a/src/gdma.f90 b/src/gdma.f90
+index ae1d545..88438f3 100644
+--- a/src/gdma.f90
++++ b/src/gdma.f90
+@@ -28,7 +28,7 @@ IMPLICIT NONE
+ 
+ INTEGER, PARAMETER :: dp=kind(1d0)
+ 
+-CHARACTER(LEN=100) :: file
++CHARACTER(LEN=1000) :: file
+ CHARACTER(LEN=80) :: buffer
+ CHARACTER(LEN=20) :: key
+ CHARACTER(LEN=8) :: whichd="SCF"

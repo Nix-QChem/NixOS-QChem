@@ -19,6 +19,7 @@ stdenv.mkDerivation rec {
     leaveDotGit = true;
   };
 
+  patches = [ ./filepath.patch ];
   postPatch = "patchShebangs src/version.py";
 
   installPhase = ''
