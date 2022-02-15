@@ -7,8 +7,8 @@ stdenv.mkDerivation {
   version = "5.0.2";
 
   src = requireFile {
-    name = "orca_5_0_2_linux_x86-64_shared_openmpi411.tar.xz";
-    sha256 = "3a26a1a5fbc69e7dca0192237b5e16b69886df31751ae59f7396461428aeee96";
+    name = "orca_5_0_3_linux_x86-64_shared_openmpi411.tar.xz";
+    sha256 = "0hsh23pzlfck9d0di1jsgj2gm0i7isqk1sxkdinhl58i2xnhgfdq";
     url = "https://orcaforum.kofo.mpg.de/app.php/portal";
   };
 
