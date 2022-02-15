@@ -9,7 +9,7 @@ assert
 
 stdenv.mkDerivation rec {
   pname = "dalton";
-  version = "2020.0";
+  version = "2020.1";
 
   nativeBuildInputs = [
     gfortran
@@ -31,8 +31,8 @@ stdenv.mkDerivation rec {
   # Many submodules are required and they are not fetched by fetchFromGitLab.
   src = fetchgit  {
     url = "https://gitlab.com/dalton/dalton.git";
-    rev = "66052b3af5ea7225e31178bf9a8b031913c72190"; # Git hash of 2020.0 as of 25.05.2021.
-    sha256 = "1n32f6rxk80i6lsx2j08bf2kmzj9cgx8fh4q7kkgnn2agimhv2v6";
+    rev = "9d7c5e435b75a9695d5ac8714121d12e6486149f"; # Git hash of 2020.1 as of 15.02.2022.
+    sha256 = "0fk5xfnj1mrrwmwdil4qgbd1a68wrwzwqr398mz015hj2679czfd";
     deepClone = true;
   };
 
