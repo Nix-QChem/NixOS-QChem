@@ -31,7 +31,7 @@ let
   # stdenv with CPU flags
   optStdenv = makeOptStdenv final.stdenv cfg.optArch "";
 
-  # stdenv with extra optmization flags, use selectively
+  # stdenv with extra optimization flags, use selectively
   aggressiveStdenv = makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
 
 
