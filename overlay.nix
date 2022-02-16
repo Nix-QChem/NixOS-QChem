@@ -2,6 +2,7 @@ final: prev:
 
 let
   # baad commments
+  # moore tipos
   cfg =
     if (builtins.hasAttr "qchem-config" prev.config) then
       (import ./cfg.nix) prev.config.qchem-config
