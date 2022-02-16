@@ -15,8 +15,7 @@ jobs:
       id: changed_files
       run: |
         echo "::set-output name=all::\"$(echo "${{ steps.files.outputs.all }}" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' ')\""
-
-
+        echo "${{ steps.files.outputs.all }}" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' '
     - name: typos-action
       uses: crate-ci/typos@v1.0.4
       with:
