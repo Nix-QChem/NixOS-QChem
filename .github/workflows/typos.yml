@@ -3,20 +3,19 @@ on: [pull_request]
 
 jobs:
   run:
-    name: Spell check changes
+    name: Spell check
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Actions Repository
-      uses: actions/checkout@v2
-    - name: Changed files
-      id: files
+    - uses: actions/checkout@v2
+    - id: files
       uses: jitterbit/get-changed-files@v1
-    - name: fix files
-      id: changed_files
-      run: |
-        echo "::set-output name=all::\"$(echo "a b c" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' ')\""
-    - name: typos-action
-      uses: crate-ci/typos@v1.0.4
+    - uses: cachix/install-nix-action@v16
       with:
-        files: ${{ steps.changed_files.all }}
+        nix_path: nixpkgs=channel:nixos-unstable
+    - name: check for typos
+      uses: workflow/nix-shell-action@v3
+      with:
+        packages: typos
+        script: |
+          typos $(echo "${{ steps.files.outputs.all }}" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' ')
 
