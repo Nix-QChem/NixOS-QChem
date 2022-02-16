@@ -1,7 +1,7 @@
 final: prev:
 
 let
-
+  # baad commments
   cfg =
     if (builtins.hasAttr "qchem-config" prev.config) then
       (import ./cfg.nix) prev.config.qchem-config
