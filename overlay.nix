@@ -79,6 +79,7 @@ let
         fftw-mpi = self.fftw.override { enableMpi = true; };
 
         octave = (super.octaveFull.override {
+          stdenv = self.aggressiveStdenv;
           enableJava = true;
           jdk = super.jdk8;
           inherit (super)
@@ -161,7 +162,9 @@ let
 
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix { };
 
-        molcas = callPackage ./pkgs/apps/openmolcas/default.nix { };
+        molcas = callPackage ./pkgs/apps/openmolcas/default.nix {
+          stdenv = aggressiveStdenv;
+        };
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
