@@ -11,8 +11,12 @@ jobs:
     - name: Changed files
       id: files
       uses: jitterbit/get-changed-files@v1
+    - name: fix files
+      id: changed_files
+      run: |
+        echo "::set-output name=all::\"$(echo "a b c" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' ')\""
     - name: typos-action
       uses: crate-ci/typos@v1.0.4
       with:
-        files: ${{ steps.files.outputs.all }}
+        files: ${{ steps.changed_files.all }}
 
