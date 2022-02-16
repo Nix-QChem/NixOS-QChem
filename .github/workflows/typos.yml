@@ -14,9 +14,11 @@ jobs:
     - name: fix files
       id: changed_files
       run: |
-        echo "::set-output name=all::\"$(echo "a b c" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' ')\""
+        echo "::set-output name=all::\"$(echo "${{ steps.files.outputs.all }}" | tr ' ' '\n' | sed 's:\(.*\):./\1:' | tr '\n' ' ')\""
+
+
     - name: typos-action
       uses: crate-ci/typos@v1.0.4
       with:
-        files: ${{ steps.changed_files.all }}
+        files: ${{ steps.changed_files.outputs.all }}
 
