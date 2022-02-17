@@ -4,7 +4,7 @@
 
 stdenv.mkDerivation {
   pname = "orca";
-  version = "5.0.2";
+  version = "5.0.3";
 
   src = requireFile {
     name = "orca_5_0_3_linux_x86-64_shared_openmpi411.tar.xz";
@@ -57,7 +57,7 @@ stdenv.mkDerivation {
     export OMPI_MCA_rmaps_base_oversubscribe=1
     $out/bin/orca inp > log
 
-    echo "Check for sucessful run:"
+    echo "Check for successful run:"
     grep "ORCA TERMINATED NORMALLY" log
     echo "Check for correct energy:"
     grep "FINAL SINGLE POINT ENERGY" log | grep 74.880174
