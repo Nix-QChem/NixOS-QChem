@@ -53,7 +53,7 @@ in stdenv.mkDerivation {
   ];
 
   buildInputs = [
-    (blas-i8.passthru.provider)
+    blas-i8.passthru.provider
     hdf5-full
     python
     armadillo
@@ -133,7 +133,7 @@ in stdenv.mkDerivation {
 
      $out/bin/pymolcas $inp.inp > $inp.out
 
-     echo "Check for sucessful run:"
+     echo "Check for successful run:"
      grep "Happy landing" $inp.status
      echo "Check for correct energy:"
      grep "Total SCF energy" $inp.out | grep 74.880174
@@ -145,7 +145,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Quantum chemistry software package";
-    homepage = https://gitlab.com/Molcas/OpenMolcas;
+    homepage = "https://gitlab.com/Molcas/OpenMolcas";
     maintainers = [ maintainers.markuskowa ];
     license = licenses.lgpl21;
     platforms = platforms.linux;
