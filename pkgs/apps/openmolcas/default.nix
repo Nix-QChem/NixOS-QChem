@@ -1,6 +1,6 @@
 { lib, stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
 , blas-i8, hdf5-full, python3, texlive
-, armadillo, makeWrapper, fetchFromGitHub, chemps2, libwfa
+, armadillo, makeWrapper, fetchFromGitHub, chemps2, libwfa, libxc
 } :
 
 assert
@@ -14,8 +14,8 @@ assert
   "OpenMolcas requires OpenBLAS or MKL.";
 
 let
-  version = "21.10-2021-10-11";
-  gitLabRev = "117305462bac932106e8e3a0347238b768bcb058";
+  version = "22.02-2022-02-10";
+  gitLabRev = "f8df69cf87b241a15ebc82d72a8f9a031a385dd4";
 
   python = python3.withPackages (ps : with ps; [ six pyparsing ]);
 
@@ -27,7 +27,7 @@ in stdenv.mkDerivation {
     owner = "Molcas";
     repo = "OpenMolcas";
     rev = gitLabRev;
-    sha256 = "sha256-GMi2dsNBog+TmpmP6fhQcp6Z5Bh2LelV//MqLnvRP5c=";
+    sha256 = "0p2xj8kgqdk5kb1jv5k77acbiqkbl2sh971jnz9p00cmbh556r6a";
   };
 
   patches = [ (fetchpatch {
@@ -58,6 +58,7 @@ in stdenv.mkDerivation {
     python
     armadillo
     chemps2
+    libxc
   ];
 
   # tests are not running right now.
@@ -77,6 +78,7 @@ in stdenv.mkDerivation {
     "-DWFA=ON"
     "-DCTEST=ON"
     "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${chemps2}/bin"
+    "-DEXTERNAL_LIBXC=${libxc}"
   ] ++ lib.lists.optionals (blas-i8.passthru.implementation == "openblas") [
     "-DOPENBLASROOT=${blas-i8.passthru.provider.dev}" "-DLINALG=OpenBLAS"
   ] ++ lib.lists.optionals (blas-i8.passthru.implementation == "mkl") [
