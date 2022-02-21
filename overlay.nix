@@ -78,11 +78,24 @@ let
 
         fftw-mpi = self.fftw.override { enableMpi = true; };
 
-        octave = (super.octaveFull.override {
-          stdenv = self.aggressiveStdenv;
+        # Non-GUI version
+        octave-opt = (final.octave.override {
+          inherit (self.aggressiveStdenv) mkDerivation;
           enableJava = true;
           jdk = super.jdk8;
-          inherit (super)
+          inherit (final)
+            hdf5
+            ghostscript
+            glpk
+            suitesparse
+            gnuplot;
+        }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
+
+        # GUI version
+        octave = (final.octaveFull.override {
+          enableJava = true;
+          jdk = super.jdk8;
+          inherit (final)
             hdf5
             ghostscript
             glpk
