@@ -31,7 +31,7 @@ let
   # stdenv with CPU flags
   optStdenv = makeOptStdenv final.stdenv cfg.optArch "";
 
-  # stdenv with extra optmization flags, use selectively
+  # stdenv with extra optimization flags, use selectively
   aggressiveStdenv = makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
 
 
@@ -78,10 +78,24 @@ let
 
         fftw-mpi = self.fftw.override { enableMpi = true; };
 
-        octave = (super.octaveFull.override {
+        # Non-GUI version
+        octave-opt = (final.octave.override {
+          inherit (self.aggressiveStdenv) mkDerivation;
           enableJava = true;
           jdk = super.jdk8;
-          inherit (super)
+          inherit (final)
+            hdf5
+            ghostscript
+            glpk
+            suitesparse
+            gnuplot;
+        }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
+
+        # GUI version
+        octave = (final.octaveFull.override {
+          enableJava = true;
+          jdk = super.jdk8;
+          inherit (final)
             hdf5
             ghostscript
             glpk
@@ -161,7 +175,9 @@ let
 
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix { };
 
-        molcas = callPackage ./pkgs/apps/openmolcas/default.nix { };
+        molcas = callPackage ./pkgs/apps/openmolcas/default.nix {
+          stdenv = aggressiveStdenv;
+        };
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
