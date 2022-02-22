@@ -6,12 +6,12 @@ if [ "$1" == "-h" ]; then
 
   Create a template shell.nix file with pinned packages.
 
-  Usage: $(basename $0) [options] [package attributes]
+  Usage: $(basename "$0") [options] [package attributes]
 
   Options:
     --niv         Use Niv for dependency management
     --python      Create a python friendly shell.nix file
-    --version     Pick a specfic nixpkgs/NixOS-QChem release (XX.YY)
+    --version     Pick a specific nixpkgs/NixOS-QChem release (XX.YY)
     --name        Name of the environment. Will be displayed on the prompt.
     --nopin       Skip pinning and import <nixpkgs> instead.
     --fix-config  Use a fixed config for nixpkgs/qchem config.
@@ -23,7 +23,6 @@ fi
 # defaults
 name="shell.nix"
 qchemBranch="master"
-nixpkgsBranch="nixpkgs-unstable"
 python=0
 nopin=0
 useNiv=0
@@ -56,7 +55,6 @@ while [ "$#" -gt 0 ]; do
     ;;
     "--version")
       qchemBranch="release-$1"
-      nixpkgsBranch="nixos-$1"
       shift 1
     ;;
     *)
@@ -70,6 +68,7 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
+echo "Creating shell.nix for NixOS-QChem branch $qchemBranch"
 
 if [[ $fixConfig == 1 ]]; then
 cat > shell.nix << EOF
@@ -112,10 +111,11 @@ elif [[ $useNiv == 1 ]]; then
 
 EOF
 else
-  shaOverlay=$(curl -s -H "Accept: application/vnd.github.VERSION.sha" https://api.github.com/repos/markuskowa/NixOS-QChem/commits/${qchemBranch})
-  shaNixpkgs=$(curl -s https://raw.githubusercontent.com/markuskowa/NixOS-QChem/${qchemBranch}/flake.lock | @jq@ -r '.nodes.nixpkgs.locked.rev')
+  shaOverlay=$(curl -s -H "Accept: application/vnd.github.VERSION.sha" "https://api.github.com/repos/markuskowa/NixOS-QChem/commits/${qchemBranch}")
+  shaNixpkgs=$(curl -s "https://raw.githubusercontent.com/markuskowa/NixOS-QChem/${qchemBranch}/flake.lock" | @jq@ -r '.nodes.nixpkgs.locked.rev')
 
   cat >> shell.nix << EOF
+  # Created $(date -I) for branch ${qchemBranch}
   nixpkgs = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/${shaNixpkgs}.tar.gz";
   overlay = builtins.fetchTarball "https://github.com/markuskowa/NixOS-QChem/archive/${shaOverlay}.tar.gz";
 
