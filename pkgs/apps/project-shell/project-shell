@@ -11,7 +11,7 @@ if [ "$1" == "-h" ]; then
   Options:
     --niv         Use Niv for dependency management
     --python      Create a python friendly shell.nix file
-    --version     Pick a specfic nixpkgs/NixOS-QChem release (XX.YY)
+    --version     Pick a specific nixpkgs/NixOS-QChem release (XX.YY)
     --name        Name of the environment. Will be displayed on the prompt.
     --nopin       Skip pinning and import <nixpkgs> instead.
     --fix-config  Use a fixed config for nixpkgs/qchem config.
