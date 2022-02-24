@@ -1,14 +1,14 @@
 { stdenvNoCC, lib, fetchFromGitHub } :
 
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation rec {
   pname = "slurm-tools";
-  version = "1.2.2";
+  version = "1.3.1";
 
   src = fetchFromGitHub {
     owner = "markuskowa";
     repo = "slurm-tools";
-    rev = "v1.3";
-    sha256 = "0f3krxka4g8mrahy2215hndqzbvakxqc9sypn41fwp2imcr9ffms";
+    rev = version;
+    sha256 = "1lhbf2x5arr60jshd78ld6wqfj7xyk920c7csww0285ljr0l89wa";
   };
 
   installPhase = ''
