@@ -1,5 +1,5 @@
 { lib, stdenv, requireFile, perl, tcl-8_5, tk-8_5, netcdf
-, libGL_driver, libGLU, xorg, fltk, vrpn, flex, bison
+, mesa, libGLU, xorg, fltk, vrpn, flex, bison
 } :
 
 let
@@ -51,7 +51,7 @@ in stdenv.mkDerivation {
 
   nativeBuildInputs = [ perl ];
   buildInputs = [
-    plugins libGL_driver libGLU xorg.libX11
+    plugins mesa.drivers libGLU xorg.libX11
     xorg.libXinerama xorg.libXi tcl-8_5 tk-8_5 netcdf
     fltk vrpn flex bison
   ];
