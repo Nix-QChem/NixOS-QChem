@@ -32,7 +32,7 @@ let
 
     meta = with lib; {
       inherit homepage;
-      description = "Molecular dyanmics visualisation program";
+      description = "Plugins for the VMD visualisation program";
       license = licenses.unfree;
       maintainers = [ maintainers.markuskowa ];
       platforms = platforms.linux;
