@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "packmol";
-  version = "20.3.3";
+  version = "20.3.5";
 
   buildInputs = [ gfortran ];
 
@@ -10,12 +10,15 @@ stdenv.mkDerivation rec {
     owner = "m3g";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-AVDaFkkFHYnMsuH2Xax4CaIOrS01SIPMfGuSzlMGiuY=";
+    hash = "sha256-b3MfVc0Ke5P3qXSzn3xBGfOy3HbwWpDhNMgpnHsA5to=";
   };
 
   dontConfigure = true;
 
-  patches = [ ./MakeFortran.patch ];
+  postPatch = ''
+    substituteInPlace Makefile \
+      --replace "/usr/bin/gfortran" "gfortran"
+  '';
 
   installPhase = ''
     mkdir -p $out/bin
