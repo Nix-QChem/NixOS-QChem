@@ -14,6 +14,8 @@ let
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
   } // lib.optionalAttrs super.isPy3k {
+    adcc = callPackage ./pkgs/apps/adcc { };
+
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
 
     gpaw = callPackage ./pkgs/apps/gpaw { };

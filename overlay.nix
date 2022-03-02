@@ -117,6 +117,8 @@ let
         #
         # Applications
         #
+        #adcc = c
+
         bagel = callPackage ./pkgs/apps/bagel {
           boost = final.boost165;
         };
@@ -287,6 +289,8 @@ let
         libefp = callPackage ./pkgs/lib/libefp { };
 
         libGDSII = callPackage ./pkgs/lib/libGDSII { };
+
+        libtensor = callPackage ./pkgs/lib/libtensor { };
 
         libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
 
