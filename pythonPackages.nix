@@ -7,7 +7,7 @@ let
     self //           # python
     overlay );
 
-  lib = selfPkgs.pkgs.lib;
+  inherit (selfPkgs.pkgs) lib;
 
   overlay = {
 
