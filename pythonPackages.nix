@@ -18,6 +18,8 @@ let
 
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
 
+    gator = callPackage ./pkgs/apps/gator { };
+
     gpaw = callPackage ./pkgs/apps/gpaw { };
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };

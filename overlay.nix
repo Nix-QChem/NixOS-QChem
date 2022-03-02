@@ -154,6 +154,8 @@ let
           blas = self.blas-i8;
         };
 
+        gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
+
         gaussview = callPackage ./pkgs/apps/gaussview { };
 
         gdma = callPackage ./pkgs/apps/gdma { };
