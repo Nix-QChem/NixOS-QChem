@@ -36,7 +36,7 @@ in stdenv.mkDerivation rec {
     vrpn
     flex
     bison
-    mesa.driver
+    mesa.drivers
     cudatoolkit.out
     cudatoolkit.lib
     # nvidia_x11
