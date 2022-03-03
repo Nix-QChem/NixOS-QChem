@@ -1,5 +1,5 @@
 { stdenv, lib, requireFile, makeWrapper, writeScriptBin, bash, perl, tcl-8_5, tk-8_5
-, netcdf, libGLU, xorg, fltk, vrpn, flex, bison, libGL_driver, cudatoolkit, autoPatchelfHook
+, netcdf, libGLU, xorg, fltk, vrpn, flex, bison, mesa, cudatoolkit, autoPatchelfHook
 }:
 assert
   lib.asserts.assertMsg
@@ -36,7 +36,7 @@ in stdenv.mkDerivation rec {
     vrpn
     flex
     bison
-    libGL_driver
+    mesa.driver
     cudatoolkit.out
     cudatoolkit.lib
     # nvidia_x11
