@@ -8,13 +8,13 @@ assert !blas.isILP64;
 
 buildPythonPackage rec {
   pname = "veloxchem";
-  version = "2022-01-07";
+  version = "2022-02-24";
 
   src = fetchFromGitLab {
     owner = pname;
     repo = pname;
-    rev = "17bbbb43972baafeef517bee7ff147e2c04fa28e";
-    sha256 = "1piqm9hsbgm0rf8xakf4c5jhggl7n362mvq0zn8a1x1x00k0bg1i";
+    rev = "401d1c367931e72e0ca634892887c67d8237189e";
+    sha256 = "0xd8xlx5z319fqvi3kqfj7dlm9axa8sviqgyrlk6sbz3lmngg2px";
   };
 
   preBuild = ''
