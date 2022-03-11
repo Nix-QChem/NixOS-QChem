@@ -1,14 +1,14 @@
-{ fetchPypi, fetchFromGitHub, buildPythonPackage, lib, writeTextFile, writeScript, makeWrapper
-, pytestCheckHook
+{ buildPythonPackage, lib, writeTextFile, writeScript, makeWrapper
+, pytestCheckHook, fetchFromGitHub
 # Python dependencies
-, autograd, dask, distributed, h5py, jinja2, matplotlib, numpy, natsort, pytest, pyyaml, rmsd, scipy
-, sympy, scikit-learn, qcengine, ase, xtb-python, openbabel-bindings, pyscf
+, setuptools-scm, autograd, dask, distributed, h5py, jinja2, matplotlib, numpy, natsort, pyyaml, rmsd, scipy
+, sympy, scikit-learn, Fabric, psutils, qcengine, ase, xtb-python, openbabel-bindings, pyscf
 # Runtime dependencies
 , runtimeShell
 , jmol, enableJmol ? true
 , multiwfn, enableMultiwfn ? false
 , xtb, enableXtb ? true
-, openmolcas, enableOpenmolcas ? true
+, molcas, enableMolcas ? true
 , psi4, enablePsi4 ? true
 , wfoverlap, enableWfoverlap ? true
 , nwchem, enableNwchem ? true
@@ -20,8 +20,6 @@
 , gamess-us, enableGamess ? false
 # Test dependencies
 , openssh
-# Configuration
-, fullTest ? false
 }:
 let
   psi4Wrapper = writeScript "psi4.sh" ''
@@ -32,14 +30,15 @@ let
     let
       gaussian16Conf = {
         cmd = "${gaussian}/bin/g16";
-        formchk_cmd = "${gaussian}/bin/formchk";
-        unfchk_cmd = "${gaussian}/bin/unfchk";
+        formchk = "${gaussian}/bin/formchk";
+        unfchk = "${gaussian}/bin/unfchk";
+        rwfdump = "${gaussian}/bin/rwfdump";
       };
       text = lib.generators.toINI {} (builtins.listToAttrs ([ ]
-        ++ lib.optional enableOpenmolcas { name = "openmolcas"; value.cmd = "${openmolcas}/bin/pymolcas"; }
+        ++ lib.optional enableMolcas { name = "openmolcas"; value.cmd = "${molcas}/bin/pymolcas"; }
         ++ lib.optional enablePsi4 { name = "psi4"; value.cmd = "${psi4Wrapper}"; }
         ++ lib.optional enableWfoverlap { name = "wfoverlap"; value.cmd = "${wfoverlap}/bin/wfoverlap.x"; }
-        ++ lib.optional enableMultiwfn { name = "multiwfn"; value.cmd = "${multiwfn}/bin/Multiwfn"; }
+        ++ lib.optional enableMultiwfn { name = "mwfn"; value.cmd = "${multiwfn}/bin/Multiwfn"; }
         ++ lib.optional enableJmol { name = "jmol"; value.cmd = "${jmol}/bin/jmol"; }
         ++ lib.optional enableXtb { name = "xtb"; value.cmd = "${xtb}/bin/xtb"; }
         ++ lib.optional enableGaussian { name = "gaussian16"; value = gaussian16Conf; }
@@ -56,7 +55,7 @@ let
     ++ lib.optional enableJmol jmol
     ++ lib.optional enableMultiwfn multiwfn
     ++ lib.optional enableXtb xtb
-    ++ lib.optional enableOpenmolcas openmolcas
+    ++ lib.optional enableMolcas molcas
     ++ lib.optional enablePsi4 psi4
     ++ lib.optional enableWfoverlap wfoverlap
     ++ lib.optional enableNwchem nwchem
@@ -71,9 +70,9 @@ let
 in
   buildPythonPackage rec {
     pname = "pysisyphus";
-    version = "0.7.4";
+    version = "0.7.5.post1";
 
-    nativeBuildInputs = [ makeWrapper ];
+    nativeBuildInputs = [ makeWrapper setuptools-scm ];
 
     propagatedBuildInputs = [
       autograd
@@ -89,6 +88,8 @@ in
       scipy
       sympy
       scikit-learn
+      Fabric
+      psutils
       qcengine
       ase
       openbabel-bindings
@@ -99,7 +100,7 @@ in
       ++ lib.optional enableXtb xtb
       ++ lib.optional enableJmol jmol
       ++ lib.optional enableMultiwfn multiwfn
-      ++ lib.optional enableOpenmolcas openmolcas
+      ++ lib.optional enableMolcas molcas
       ++ lib.optional enablePsi4 psi4
       ++ lib.optional enableWfoverlap wfoverlap
       ++ lib.optional enableNwchem nwchem
@@ -115,23 +116,31 @@ in
       owner = "eljost";
       repo = pname;
       rev = version;
-      hash = "sha256-CGV/vqeFiG5DYb6w6rQ7rwTPeE9DL8891fXraSWn2Rs=";
+      hash = "sha256-800Pm14eEq3Zc3f2xWy99w6eFKXa+/rorqZvC0F08Kc=";
     };
 
     format = "pyproject";
+
+    preBuild = "export SETUPTOOLS_SCM_PRETEND_VERSION=${version}";
 
     checkInputs = [ openssh pytestCheckHook ];
 
     preCheck = ''
       export PYSISRC=${pysisrc}
+      cat ${pysisrc}
       export PATH=$PATH:${binSearchPath}
       export OMPI_MCA_rmaps_base_oversubscribe=1
     '';
 
-    pytestFlagsArray = if fullTest
-      then [ "-v tests" ]
-      else [ "-v --pyargs pysisyphus.tests"]
-    ;
+    pytestFlagsArray = [
+      "-v"
+      "--show-capture=no"
+      " --durations=0"
+      "-m 'not benchmark and not skip_ci'"
+      "tests"
+    ];
+
+    pythonImportsCheck = [ "pysisyphus" ];
 
     postInstall = ''
       mkdir -p $out/share/pysisyphus
@@ -148,7 +157,7 @@ in
       enableXtb
       enableJmol
       enableMultiwfn
-      enableOpenmolcas
+      enableMolcas
       enablePsi4
       enableWfoverlap
       enableNwchem
