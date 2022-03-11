@@ -19,14 +19,14 @@ let
     '';
   };
 
-  executables = [ "g16" "formchk" "freqchk" "cubegen" "trajgen" ];
+  executables = [ "g16" "formchk" "freqchk" "cubegen" "trajgen" "unfchk" "rwfdump" ];
 
 
 in symlinkJoin {
   name = "gaussian-${version}";
-  paths = map (x: buildEnv x) executables;
+  paths = map buildEnv executables;
   meta = with lib; {
-    description = "Quantum chemistry programm package";
+    description = "Quantum chemistry program package";
     license = licenses.unfree;
   };
 }
