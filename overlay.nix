@@ -185,6 +185,8 @@ let
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
+        mrchem = callPackage ./pkgs/apps/mrchem { };
+
         mt-dgemm = callPackage ./pkgs/apps/mt-dgemm { };
 
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
@@ -297,6 +299,8 @@ let
         libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
 
         libwfa = callPackage ./pkgs/lib/libwfa { };
+
+        mrcpp = callPackage ./pkgs/lib/mrcpp { };
 
         ucc = callPackage ./pkgs/lib/ucc { enableCuda = cfg.useCuda; };
         #
