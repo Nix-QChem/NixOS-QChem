@@ -89,9 +89,9 @@
   },
   {
     "attribute": "qchem.dalton",
-    "name": "dalton-2020.0",
+    "name": "dalton-2020.1",
     "pname": "dalton",
-    "version": "2020.0",
+    "version": "2020.1",
     "description": "Quantum chemistry code specialised on exotic properties.",
     "homepage": "https://daltonprogram.org/"
   },
@@ -176,11 +176,19 @@
     "homepage": "https://www.msg.chem.iastate.edu/gamess/index.html"
   },
   {
+    "attribute": "qchem.gator",
+    "name": "gator-0.2.0",
+    "pname": "gator",
+    "version": "0.2.0",
+    "description": "Program for computational spectroscopy and calculations of molecular properties",
+    "homepage": "https://github.com/gator-program/gator"
+  },
+  {
     "attribute": "qchem.gaussian",
     "name": "gaussian-16b01",
     "pname": "gaussian",
     "version": "16b01",
-    "description": "Quantum chemistry programm package",
+    "description": "Quantum chemistry program package",
     "homepage": null
   },
   {
@@ -216,42 +224,42 @@
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
-    "attribute": "qchem.gromacs",
-    "name": "gromacs-2021.4",
+    "attribute": "qchem.gromacsMpi",
+    "name": "gromacs-2022",
     "pname": "gromacs",
-    "version": "2021.4",
-    "description": "Molecular dynamics software package",
-    "homepage": "http://www.gromacs.org"
-  },
-  {
-    "attribute": "qchem.gromacsCudaMpi",
-    "name": "gromacs-2021.4",
-    "pname": "gromacs",
-    "version": "2021.4",
-    "description": "Molecular dynamics software package",
-    "homepage": "http://www.gromacs.org"
-  },
-  {
-    "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2021.4",
-    "pname": "gromacs",
-    "version": "2021.4",
+    "version": "2022",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2021.4",
+    "name": "gromacs-2022",
     "pname": "gromacs",
-    "version": "2021.4",
+    "version": "2022",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
-    "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2021.4",
+    "attribute": "qchem.gromacsDouble",
+    "name": "gromacs-2022",
     "pname": "gromacs",
-    "version": "2021.4",
+    "version": "2022",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org"
+  },
+  {
+    "attribute": "qchem.gromacsCudaMpi",
+    "name": "gromacs-2022",
+    "pname": "gromacs",
+    "version": "2022",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org"
+  },
+  {
+    "attribute": "qchem.gromacs",
+    "name": "gromacs-2022",
+    "pname": "gromacs",
+    "version": "2022",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
@@ -273,8 +281,8 @@
   },
   {
     "attribute": "qchem.hdf5-full",
-    "name": "hdf5-1.12.1",
-    "pname": "hdf5",
+    "name": "hdf5-cpp-fortran-1.12.1",
+    "pname": "hdf5-cpp-fortran",
     "version": "1.12.1",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
@@ -297,9 +305,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi",
+    "name": "i-pi-2.4.0",
     "pname": "i-pi",
-    "version": "",
+    "version": "2.4.0",
     "description": "A universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "http://ipi-code.org/"
   },
@@ -344,6 +352,14 @@
     "homepage": "https://github.com/evaleev/libint"
   },
   {
+    "attribute": "qchem.libtensor",
+    "name": "libtensor-3.0.1",
+    "pname": "libtensor",
+    "version": "3.0.1",
+    "description": "C++ library for tensor computations",
+    "homepage": null
+  },
+  {
     "attribute": "qchem.libvdwxc",
     "name": "libvdwxc-24.02.2020",
     "pname": "libvdwxc",
@@ -360,14 +376,6 @@
     "homepage": "https://brehm-research.de/libvori.php"
   },
   {
-    "attribute": "qchem.libwfa",
-    "name": "libwfa-2020-02-19",
-    "pname": "libwfa",
-    "version": "2020-02-19",
-    "description": "Wave-function analysis tool library for quantum chemical applications",
-    "homepage": "https://github.com/libwfa/libwfa"
-  },
-  {
     "attribute": "qchem.wfaMolcas",
     "name": "libwfa-2020-02-19",
     "pname": "libwfa",
@@ -376,18 +384,18 @@
     "homepage": "https://github.com/libwfa/libwfa"
   },
   {
-    "attribute": "qchem.libxc4",
-    "name": "libxc-4.3.4",
-    "pname": "libxc",
-    "version": "4.3.4",
-    "description": "Library of exchange-correlation functionals for density-functional theory",
-    "homepage": "https://octopus-code.org/wiki/Libxc"
+    "attribute": "qchem.libwfa",
+    "name": "libwfa-2020-02-19",
+    "pname": "libwfa",
+    "version": "2020-02-19",
+    "description": "Wave-function analysis tool library for quantum chemical applications",
+    "homepage": "https://github.com/libwfa/libwfa"
   },
   {
     "attribute": "qchem.libxc",
-    "name": "libxc-5.1.7",
+    "name": "libxc-5.2.2",
     "pname": "libxc",
-    "version": "5.1.7",
+    "version": "5.2.2",
     "description": "Library of exchange-correlation functionals for density-functional theory",
     "homepage": "https://www.tddft.org/programs/Libxc/"
   },
@@ -496,6 +504,22 @@
     "homepage": "https://www.mrcc.hu/"
   },
   {
+    "attribute": "qchem.mrchem",
+    "name": "mrchem-1.0.2",
+    "pname": "mrchem",
+    "version": "1.0.2",
+    "description": "Numerical real-space code for molecular electronic structure calculations",
+    "homepage": "https://mrchem.readthedocs.io"
+  },
+  {
+    "attribute": "qchem.mrcpp",
+    "name": "mrcpp-1.4.1",
+    "pname": "mrcpp",
+    "version": "1.4.1",
+    "description": "General purpose numerical mathematics library based on multiresolution analysis",
+    "homepage": "https://mrcpp.readthedocs.io"
+  },
+  {
     "attribute": "qchem.mt-dgemm",
     "name": "mt-dgeem-20160114",
     "pname": "mt-dgeem",
@@ -544,6 +568,14 @@
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
+    "attribute": "qchem.octave-opt",
+    "name": "octave-6.4.0",
+    "pname": "octave",
+    "version": "6.4.0",
+    "description": "Scientific Programming Language",
+    "homepage": "https://www.gnu.org/software/octave/"
+  },
+  {
     "attribute": "qchem.octopus",
     "name": "octopus-11.3",
     "pname": "octopus",
@@ -569,9 +601,9 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-21.10-2021-10-11",
+    "name": "openmolcas-22.02-2022-02-10",
     "pname": "openmolcas",
-    "version": "21.10-2021-10-11",
+    "version": "22.02-2022-02-10",
     "description": "Quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -585,9 +617,9 @@
   },
   {
     "attribute": "qchem.orca",
-    "name": "orca-5.0.2",
+    "name": "orca-5.0.3",
     "pname": "orca",
-    "version": "5.0.2",
+    "version": "5.0.3",
     "description": "Ab initio quantum chemistry program package",
     "homepage": "https://orcaforum.kofo.mpg.de/"
   },
@@ -600,14 +632,6 @@
     "homepage": "https://gitlab.com/anthonyjs/orient"
   },
   {
-    "attribute": "qchem.osss-ucx",
-    "name": "osss-ucx-1.0.2",
-    "pname": "osss-ucx",
-    "version": "1.0.2",
-    "description": "OpenSHM reference implementation",
-    "homepage": "http://www.openshmem.org"
-  },
-  {
     "attribute": "qchem.osu-benchmark",
     "name": "osu-benchmark-5.6.3",
     "pname": "osu-benchmark",
@@ -617,9 +641,9 @@
   },
   {
     "attribute": "qchem.packmol",
-    "name": "packmol-20.3.3",
+    "name": "packmol-20.3.5",
     "pname": "packmol",
-    "version": "20.3.3",
+    "version": "20.3.5",
     "description": "Generating initial configurations for molecular dynamics",
     "homepage": "http://m3g.iqm.unicamp.br/packmol/home.shtml"
   },
@@ -657,17 +681,17 @@
   },
   {
     "attribute": "qchem.pysisyphus",
-    "name": "pysisyphus-0.7.4",
+    "name": "pysisyphus-0.7.5.post1",
     "pname": "pysisyphus",
-    "version": "0.7.4",
+    "version": "0.7.5.post1",
     "description": "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths",
     "homepage": "https://github.com/eljost/pysisyphus"
   },
   {
     "attribute": "qchem.qdng",
-    "name": "qdng-20211209",
+    "name": "qdng-20220208",
     "pname": "qdng",
-    "version": "20211209",
+    "version": "20220208",
     "description": "Quantum dynamics program package",
     "homepage": null
   },
@@ -697,9 +721,9 @@
   },
   {
     "attribute": "qchem.scalapack",
-    "name": "scalapack-2.1.0",
+    "name": "scalapack-2.2.0",
     "pname": "scalapack",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "description": "Library of high-performance linear algebra routines for parallel distributed memory machines",
     "homepage": "http://www.netlib.org/scalapack/"
   },
@@ -728,7 +752,7 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
-    "attribute": "qchem.sharc-gaussian",
+    "attribute": "qchem.sharc-molcas",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -752,7 +776,7 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
-    "attribute": "qchem.sharc-molcas",
+    "attribute": "qchem.sharc",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -760,7 +784,7 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
-    "attribute": "qchem.sharc",
+    "attribute": "qchem.sharc-gaussian",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -792,14 +816,6 @@
     "homepage": "https://github.com/markuskowa/slurm-tools"
   },
   {
-    "attribute": "qchem.sos",
-    "name": "sos-1.5.0",
-    "pname": "sos",
-    "version": "1.5.0",
-    "description": "Sandia open SHMEM implementation",
-    "homepage": "https://github.com/Sandia-OpenSHMEM/SOS/releases"
-  },
-  {
     "attribute": "qchem.spglib",
     "name": "spglib-1.16.3",
     "pname": "spglib",
@@ -809,6 +825,14 @@
   },
   {
     "attribute": "qchem.stdenv",
+    "name": "stdenv-linux-haswell",
+    "pname": "stdenv-linux-haswell",
+    "version": "",
+    "description": "The default build environment for Unix packages in Nixpkgs",
+    "homepage": null
+  },
+  {
+    "attribute": "qchem.aggressiveStdenv",
     "name": "stdenv-linux-haswell",
     "pname": "stdenv-linux-haswell",
     "version": "",
@@ -856,10 +880,18 @@
     "homepage": "https://www.turbomole.org/"
   },
   {
+    "attribute": "qchem.ucc",
+    "name": "ucc-1.0.0-rc2",
+    "pname": "ucc",
+    "version": "1.0.0-rc2",
+    "description": "Collective communication operations API",
+    "homepage": null
+  },
+  {
     "attribute": "qchem.veloxchem",
-    "name": "veloxchem-2022-01-07",
+    "name": "veloxchem-2022-02-24",
     "pname": "veloxchem",
-    "version": "2022-01-07",
+    "version": "2022-02-24",
     "description": "Quantum chemistry software for the calculation of molecular properties and spectroscopies",
     "homepage": "https://veloxchem.org"
   },
