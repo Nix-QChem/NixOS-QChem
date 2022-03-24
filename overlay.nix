@@ -60,16 +60,6 @@ let
         # Upstream overrides
         #
 
-        # Define an ILP64 blas/lapack
-        # This is still missing upstream
-        blas-i8 =
-          if final.blas.implementation != "amd-blis" then prev.blas.override { isILP64 = true; }
-          else super.blas.override { isILP64 = true; blasProvider = super.openblas; };
-
-        lapack-i8 =
-          if final.lapack.implementation != "amd-libflame" then prev.lapack.override { isILP64 = true; }
-          else super.lapack.override { isILP64 = true; lapackProvider = super.openblas; };
-
         # For molcas and chemps2
         hdf5-full = final.hdf5.override {
           cppSupport = true;
@@ -130,7 +120,10 @@ let
 
         cefine = self.nullable self.turbomole (callPackage ./pkgs/apps/cefine { });
 
-        cfour = callPackage ./pkgs/apps/cfour { };
+        cfour = callPackage ./pkgs/apps/cfour {
+          blas = final.blas-ilp64;
+          lapack = final.lapack-ilp64;
+        };
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
@@ -151,7 +144,7 @@ let
         };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
-          blas = self.blas-i8;
+          blas = final.blas-ilp64;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
@@ -167,8 +160,8 @@ let
         luscus = callPackage ./pkgs/apps/luscus { };
 
         nwchem = callPackage ./pkgs/apps/nwchem {
-          blas = self.blas-i8;
-          lapack = self.lapack-i8;
+          blas = final.blas-ilp64;
+          lapack = final.lapack-ilp64;
         };
 
         mctdh = callPackage ./pkgs/apps/mctdh { };
@@ -177,10 +170,13 @@ let
 
         mesa-qc = callPackage ./pkgs/apps/mesa { };
 
-        molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix { };
+        molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix {
+          blas = final.blas-ilp64;
+        };
 
         molcas = callPackage ./pkgs/apps/openmolcas/default.nix {
           stdenv = aggressiveStdenv;
+          blas = final.blas-ilp64;
         };
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
@@ -270,7 +266,10 @@ let
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
-        wfoverlap = callPackage ./pkgs/apps/wfoverlap { };
+        wfoverlap = callPackage ./pkgs/apps/wfoverlap {
+          blas = final.blas-ilp64;
+          lapack = final.lapack-ilp64;
+        };
 
         wxmacmolplt = callPackage ./pkgs/apps/wxmacmolplt { };
 
@@ -287,8 +286,6 @@ let
         amd-fftw = callPackage ./pkgs/lib/amd-fftw { };
 
         amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
-
-        libctl = callPackage ./pkgs/lib/libctl { };
 
         libefp = callPackage ./pkgs/lib/libefp { };
 

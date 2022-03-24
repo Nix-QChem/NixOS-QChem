@@ -119,6 +119,11 @@ in {
     lapack = super.lapack.override { lapackProvider = super.mkl; };
   });
 
+  "${cfg.prefix}-netlib" = pkgs config (self: super: {
+    blas = super.blas.override { blasProvider = super.lapack-reference; };
+    lapack = super.lapack.override { lapackProvider = super.lapack-reference; };
+  });
+
   "${cfg.prefix}-amd" = pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.amd-blis; };
     fftw = self.qchem.amd-fftw;
