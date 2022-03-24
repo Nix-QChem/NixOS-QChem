@@ -14,6 +14,8 @@ stdenv.mkDerivation rec {
     sha256 = "0i45y7gl8r61sj9psa4yq298p0yxn4qsc884w7jdvbi84y4hbqjs";
   };
 
+  passthru.isILP64 = false;
+
   patches = [
     # -cpp flag leaks into the CFLAGS, which leads to gcc failure
     ./fc-cpp.patch
