@@ -132,7 +132,7 @@ in stdenv.mkDerivation {
 
      $out/bin/pymolcas $inp.inp > $inp.out
 
-     echo "Check for sucessful run:"
+     echo "Check for successful run:"
      grep "Happy landing" $inp.status
      echo "Check for correct energy:"
      grep "Total SCF energy" $inp.out | grep 74.880174

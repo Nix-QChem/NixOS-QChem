@@ -10,8 +10,7 @@ assert
   "A 64 bit integer implementation of BLAS is required.";
 
 assert
-  lib.asserts.assertMsg
-  (lapack.isILP64)
+  lib.asserts.assertMsg lapack.isILP64
   "A 64 bit integer implementation of LAPACK is required.";
 
 let
