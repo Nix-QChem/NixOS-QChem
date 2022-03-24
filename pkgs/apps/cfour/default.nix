@@ -1,17 +1,17 @@
 { stdenv, lib, which, makeWrapper, gfortran, requireFile
-, python3, blas-i8, lapack-i8
+, python3, blas, lapack
 ,  mpi ? null
 } :
 
 # Make sure to have a correct version of BLAS.
 assert
   lib.asserts.assertMsg
-  (blas-i8.isILP64 || blas-i8.passthru.implementation == "mkl")
+  (blas.isILP64 || blas.passthru.implementation == "mkl")
   "A 64 bit integer implementation of BLAS is required.";
 
 assert
   lib.asserts.assertMsg
-  (lapack-i8.isILP64)
+  (lapack.isILP64)
   "A 64 bit integer implementation of LAPACK is required.";
 
 let
@@ -26,8 +26,8 @@ in stdenv.mkDerivation rec {
 
   buildInputs = [
     gfortran
-    blas-i8
-    lapack-i8
+    blas
+    lapack
   ];
 
   propagatedBuildInputs = lib.optional useMPI mpi;

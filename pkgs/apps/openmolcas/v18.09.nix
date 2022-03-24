@@ -1,16 +1,16 @@
 { lib, stdenv, pkgs, fetchFromGitLab, fetchpatch, cmake, gfortran, perl
-, blas-i8, hdf5-full, python3, texlive, symlinkJoin
+, blas, hdf5-full, python3, texlive, symlinkJoin
 , armadillo, makeWrapper, fetchFromGitHub, chemps2
 } :
 
 assert
   lib.asserts.assertMsg
-  (blas-i8.isILP64 || blas-i8.passthru.implementation == "mkl")
+  (blas.isILP64 || blas.passthru.implementation == "mkl")
   "A 64 int integer BLAS implementation is required.";
 
 assert
   lib.asserts.assertMsg
-  (builtins.elem blas-i8.passthru.implementation [ "openblas" "mkl" ])
+  (builtins.elem blas.passthru.implementation [ "openblas" "mkl" ])
   "OpenMolcas requires OpenBLAS or MKL.";
 
 let
@@ -50,7 +50,7 @@ in stdenv.mkDerivation {
   nativeBuildInputs = [ perl cmake texlive.combined.scheme-minimal makeWrapper ];
   buildInputs = [
     gfortran
-    (blas-i8.passthru.provider)
+    (blas.passthru.provider)
     hdf5-full
     python
     armadillo
@@ -74,17 +74,17 @@ in stdenv.mkDerivation {
     "-DWFA=ON"
     "-DCTEST=ON"
     "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${chemps2}/bin"
-  ] ++ lib.lists.optionals (blas-i8.passthru.implementation == "openblas") [
+  ] ++ lib.lists.optionals (blas.passthru.implementation == "openblas") [
          "-DOPENBLASROOT=${symlinkJoin {
              name = "openblas";
-             paths = [ blas-i8.passthru.provider.all ];
+             paths = [ blas.passthru.provider.all ];
            }}"
          "-DLINALG=OpenBLAS" ]
-    ++ lib.lists.optionals (blas-i8.passthru.implementation == "mkl") [
-         "-DMKLROOT=${blas-i8.passthru.provider}"
+    ++ lib.lists.optionals (blas.passthru.implementation == "mkl") [
+         "-DMKLROOT=${blas.passthru.provider}"
          "-DLINALG=MKL"
-         "-DMKL_LIBRARY_PATH=${blas-i8.passthru.provider}/lib"
-         "-DLIBMKL_CORE=${blas-i8.passthru.provider}/lib/libmkl_core.so"
+         "-DMKL_LIBRARY_PATH=${blas.passthru.provider}/lib"
+         "-DLIBMKL_CORE=${blas.passthru.provider}/lib/libmkl_core.so"
        ]
   ;
 

@@ -1,13 +1,13 @@
-{ stdenv, lib, fetchFromGitHub, gfortran, blas-i8, lapack-i8 } :
+{ stdenv, lib, fetchFromGitHub, gfortran, blas, lapack } :
 
 assert
   lib.asserts.assertMsg
-  (blas-i8.isILP64 || blas-i8.passthru.implementation == "mkl")
+  (blas.isILP64 || blas.passthru.implementation == "mkl")
   "64 bit integer BLAS implementation required.";
 
 assert
   lib.asserts.assertMsg
-  (lapack-i8.isILP64)
+  (lapack.isILP64)
   "64 bit integer LAPACK implementation required.";
 
 stdenv.mkDerivation rec {
@@ -27,8 +27,8 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     gfortran
-    blas-i8
-    lapack-i8
+    blas
+    lapack
   ];
 
   patches = [ ./Makefile.patch ];
