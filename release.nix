@@ -26,6 +26,9 @@ let
     import ./nixpkgs-pin.nix (import nixpkgs {})
     else import nixpkgs;
 
+  # use unmodified lib
+  lib = (nixpkgs-final {}).lib;
+
   # Customized package set
   pkgs = config: overlay: let
     pkgSet = nixpkgs-final {
@@ -49,12 +52,12 @@ let
       (map (x: { "${x}" = hydraJobs pkgSet."${cfg.prefix}"."${x}".pkgs."${cfg.prefix}"; }) plist);
 
     # Filter out valid derivations
-    hydraJobs = with pkgSet.lib; filterAttrs (n: v:
-      isDerivation v && (if allowUnfree then true else (builtins.tryEval v.drvPath).success)
+    hydraJobs = with lib; filterAttrs (n: v:
+      (builtins.tryEval (isDerivation v)).value && (if allowUnfree then true else (builtins.tryEval v.drvPath).success)
     );
 
     # Filter Attributes from set by name and put them in a list
-    selectList = attributes: pkgs: with pkgSet.lib; mapAttrsToList (n: v: v)
+    selectList = attributes: pkgs: with lib; mapAttrsToList (n: v: v)
       (filterAttrs (attr: val: (foldr (a: b: a == attr || b) false attributes)) pkgs);
 
     # Make sure we only build the overlay's content
