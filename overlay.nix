@@ -287,8 +287,6 @@ let
 
         amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
 
-        libctl = callPackage ./pkgs/lib/libctl { };
-
         libefp = callPackage ./pkgs/lib/libefp { };
 
         libGDSII = callPackage ./pkgs/lib/libGDSII { };
