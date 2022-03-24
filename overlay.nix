@@ -133,13 +133,13 @@ let
 
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
-        dirac = callPackage ./pkgs/apps/dirac rec {
+        dirac = callPackage ./pkgs/apps/dirac {
           inherit (self) exatensor;
         };
 
         dkh = callPackage ./pkgs/apps/dkh { };
 
-        exatensor = callPackage ./pkgs/apps/exatensor rec {
+        exatensor = callPackage ./pkgs/apps/exatensor {
           mpi = super.mpi.override { gfortran = super.gfortran8; };
         };
 
