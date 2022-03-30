@@ -45,6 +45,8 @@ stdenv.mkDerivation rec {
     description = "Multifunctional wave function analyser.";
     license = licenses.bsd3;
     homepage = "http://sobereva.com/multiwfn/index.html";
+    mainProgram = "Multiwfn";
     platforms = [ "x86_64-linux" ];
+    maintainers = [ maintainers.sheepforce ];
   };
 }
