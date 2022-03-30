@@ -157,6 +157,8 @@ let
 
         harminv = callPackage ./pkgs/apps/harminv { };
 
+        iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
+
         luscus = callPackage ./pkgs/apps/luscus { };
 
         nwchem = callPackage ./pkgs/apps/nwchem {
