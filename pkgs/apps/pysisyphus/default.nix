@@ -176,5 +176,6 @@ in
       license = licenses.gpl3Plus;
       platforms = platforms.linux;
       maintainers = [ maintainers.sheepforce ];
+      mainProgram = "pysis";
     };
   }
