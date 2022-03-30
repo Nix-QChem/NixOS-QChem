@@ -70,6 +70,7 @@ in stdenv.mkDerivation rec {
     description = "Specialist coupled cluster software.";
     homepage = "http://slater.chemie.uni-mainz.de/cfour/index.php";
     license = licenses.unfree;
+    mainProgram = "xcfour";
     platforms = platforms.linux;
   };
 }

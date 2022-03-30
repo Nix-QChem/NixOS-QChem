@@ -32,5 +32,6 @@ buildPythonApplication rec {
     license = licenses.asl20;
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
+    mainProgram = "pegamoid.py";
   };
 }

@@ -74,7 +74,7 @@ in stdenv.mkDerivation rec {
     sha256 = "e7b4944c66b1b127f9e7b47ca973eee189a6085d4bbc8b2e46b082e57e49ad0b";
     url = "https://www.mrcc.hu/index.php/download-mrcc/mrcc-binary/send/4-mrcc-binary/31-mrcc-${dashVersion}-binary-tar";
     message = ''
-      The MRCC source code and binaries are not publically available. Obtain your own license at
+      The MRCC source code and binaries are not publicly available. Obtain your own license at
       https://www.mrcc.hu and download the binaries at ${url}. Add the archive ${name} to the nix
       store by:
         nix-store --add-fixed sha256 ${name}
@@ -157,6 +157,7 @@ in stdenv.mkDerivation rec {
     description = "MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations.";
     homepage = "https://www.mrcc.hu/";
     license = licenses.unfree;
+    mainProgram = "dmrcc";
     platforms = [ "x86_64-linux" ];
   };
 }

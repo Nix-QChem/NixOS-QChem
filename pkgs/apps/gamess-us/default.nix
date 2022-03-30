@@ -9,7 +9,7 @@ assert
 
 assert
   lib.asserts.assertMsg
-  (blas.isILP64)
+  blas.isILP64
   "A 64 bit integer implementation of BLAS is required.";
 
 let target = if enableMpi then "mpi" else "sockets";
@@ -171,6 +171,7 @@ in stdenv.mkDerivation rec {
     homepage = "https://www.msg.chem.iastate.edu/gamess/index.html";
     license = licenses.unfree;
     platforms = [ "x86_64-linux" ];
+    mainProgram = "rungms";
     maintainers = [ maintainers.sheepforce ];
   };
 }

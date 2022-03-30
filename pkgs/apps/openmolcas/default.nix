@@ -149,5 +149,6 @@ in stdenv.mkDerivation {
     maintainers = [ maintainers.markuskowa ];
     license = licenses.lgpl21;
     platforms = platforms.linux;
+    mainProgram = "pymolcas";
   };
 }
