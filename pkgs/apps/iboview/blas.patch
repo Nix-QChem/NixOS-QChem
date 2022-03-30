@@ -1,0 +1,62 @@
+diff --git a/main.pro b/main.pro
+index 806209c..8718c79 100644
+--- a/main.pro
++++ b/main.pro
+@@ -14,55 +14,8 @@
+ #
+ # to force internal LAPACK emulation
+ 
+-
+-BLASLIB=$$(BLASLIB)
+-# ^-- pick up environment variable BLASLIB if present. See: https://doc.qt.io/archives/qt-4.8/qmake-advanced-usage.html
+-!isEmpty($$BLASLIB) {
+-   message(using BLAS linker line from environment variable BLASLIB: $$BLASLIB)
+-}
+-# no BLAS/LAPACK linker line explicitly specified as environment variable?
+-isEmpty(BLASLIB) {
+-   # try to pick up MKL from the (default) MKLROOT environment variable.
+-   # You may need to "load module mkl" before doing that.
+-   # If the MKLROOT environment variable is not set, you can also override
+-   # the path manually (e.g., setting MKLDIR = /opt/intel/composerxe/mkl)
+-   MKLDIR = $$(MKLROOT)
+-#    message(MKLROOT environment variable: $$MKLDIR)
+-   !isEmpty(MKLDIR) {
+-      exists($$MKLDIR) {
+-         message(Using MKL from MKLROOT: $$MKLDIR)
+-         BLASLIB = -L$$MKLDIR/lib/intel64 -lmkl_intel_ilp64 -lmkl_gnu_thread -lmkl_core -fopenmp -lpthread -Wl,-rpath,$$MKLDIR/lib/intel64
+-      }
+-      !exists($$MKLDIR) {
+-         message(Directory $$MKLDIR specified in MKLROOT environment variable does not exist)
+-      }
+-   }
+-   # To set up some other sort of BLAS/LAPACK manually: set the required linker
+-   # line to BLASLIB. E.g.:
+-   #
+-   # BLASLIB = -LC:\Users\cgk\Develop\Libraries\OpenBLAS\bin -lopenblas
+-   #
+-   # Notes: 
+-   # - Header or include files are not needed, and will not be used if
+-   #   provided.
+-   # - Make sure that is a BLAS with 64bit integer interface!
+-   #   (e.g., -lmkl_intel_ilp64, NOT -lmkl_intel_lp64).
+-}
+-
+-# message(final BLASLIB:$$BLASLIB)
+-!isEmpty(BLASLIB) {
+-   message(Using external BLAS/LAPACK: $$BLASLIB)
+-   LIBS += $$BLASLIB
+-   HAVE_EXTERNAL_BLAS = 1
+-}
+-isEmpty(BLASLIB) {
+-   message(Using internal BLAS/LAPACK emulation.)
+-   # set HAVE_EXTERNAL_BLAS to 0. In this case, we will include compilation of
+-   # our hacked f2c LAPACK and a eigen BLAS wrapper. This is normally good
+-   # enough for IboView analysis applications (MicroScf might suffer a bit,
+-   # though)
+-   HAVE_EXTERNAL_BLAS = 0
+-}
++LIBS += -L@BLAS@/lib -L@LAPACK@/lib -lblas -llapack
++HAVE_EXTERNAL_BLAS = 1
+ 
+ 
+ ###! START_DIRS
