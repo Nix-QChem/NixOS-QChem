@@ -21,5 +21,6 @@ stdenv.mkDerivation rec {
     license = with licenses; [ gpl2Only ];
     maintainers = [ maintainers.sheepforce ];
     platforms = platforms.linux;
+    mainProgram = "Multiwfn";
   };
 }
