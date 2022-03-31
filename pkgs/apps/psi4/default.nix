@@ -1,7 +1,7 @@
 { lib, stdenv, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
 , writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
 , deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
-, pytest, mpfr, gmpxx, eigen, boost
+, pytest, mpfr, gmpxx, eigen, boost, adcc
 } :
 
 let
@@ -119,6 +119,7 @@ in buildPythonPackage rec {
     ];
 
     propagatedBuildInputs = [
+      adcc
       pybind11
       qcelemental
       qcengine
@@ -175,6 +176,8 @@ in buildPythonPackage rec {
       "-DENABLE_CheMPS2=ON"
       # Prefix path for all external packages
       "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint}\""
+      # ADCC
+      "-DENABLE_adcc=ON"
     ];
 
     format = "other";
