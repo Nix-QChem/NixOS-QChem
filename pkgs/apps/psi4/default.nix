@@ -1,7 +1,7 @@
 { lib, stdenv, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
 , writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
 , deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
-, pytest, mpfr, gmpxx, eigen, boost, adcc
+, pytest, mpfr, gmpxx, eigen, boost, adcc, fetchpatch
 } :
 
 let
@@ -142,6 +142,13 @@ in buildPythonPackage rec {
       rev = "v${version}";
       sha256 = "sha256-NVpE5fAVWYlkymTrvptZ7xqu68eVy71YJ+dRdBMMU9c=";
     };
+
+    patches = [(fetchpatch {
+      # upstream patch, can be removed in the next upgrade
+      name = "adcc-exceptions";
+      url = "https://github.com/psi4/psi4/commit/09fec3e58f460749e7d877c5c0b762329ff4ca48.patch";
+      sha256 = "11n8ra7kqg709q8p8ibhwzcvlavnnqj26mlgv8af0yxflf7j0rcg";
+    })];
 
     cmakeFlags = [
       "-DDCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"
