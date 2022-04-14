@@ -1,0 +1,407 @@
+diff --git a/moltemplate/scripts/moltemplate.sh b/moltemplate/scripts/moltemplate.sh
+index 07dc537..b2c5e9d 100755
+--- a/moltemplate/scripts/moltemplate.sh
++++ b/moltemplate/scripts/moltemplate.sh
+@@ -12,40 +12,6 @@ G_DATE="2022-4-06"
+ echo "${G_PROGRAM_NAME} v${G_VERSION} ${G_DATE}" >&2
+ echo "" >&2
+ 
+-# Check for python:
+-
+-if which python3 > /dev/null; then
+-    PYTHON_COMMAND='python3'
+-elif which python > /dev/null; then
+-    PYTHON_COMMAND='python'
+-    if [ `python --version | awk '{print substr($2,0,2)}'` -lt 3 ]; then
+-        echo "############################################################" >&2
+-        echo "############################################################" >&2
+-        echo "############################################################" >&2
+-        echo "  WARNING: Support for python2.7 has been depreciated." >&2
+-        echo "           Please install python version 3.4 or later." >&2
+-        echo "           Use older versions of python at your own risk." >&2
+-        echo "############################################################" >&2
+-        echo "############################################################" >&2
+-        echo "############################################################" >&2
+-    fi
+-elif which python2 > /dev/null; then
+-    PYTHON_COMMAND='python2'
+-    echo "############################################################" >&2
+-    echo "############################################################" >&2
+-    echo "############################################################" >&2
+-    echo "  WARNING: Support for python2.7 has been depreciated." >&2
+-    echo "           Please install python version 3.4 or later." >&2
+-    echo "           Use older versions of python at your own risk." >&2
+-    echo "############################################################" >&2
+-    echo "############################################################" >&2
+-    echo "############################################################" >&2
+-else
+-    echo "Error:  $G_PROGRAM_NAME requires python, python3, or python2." >&2
+-    exit 1
+-fi
+-
+-
+ # First, determine the directory in which the python scripts are located.
+ # (such as ttree.py).  It could either be the directory where the script
+ # file is located, OR it could be the parent of this directory.
+@@ -125,13 +91,13 @@ done
+ IFS=$OIFS
+ 
+ # command that invokes lttree.py
+-LTTREE_COMMAND="$PYTHON_COMMAND \"${PY_SCR_DIR}/lttree.py\""
++LTTREE_COMMAND="${PY_SCR_DIR}/lttree.py"
+ 
+ # command that invokes lttree_check.py
+-LTTREE_CHECK_COMMAND="$PYTHON_COMMAND \"${PY_SCR_DIR}/lttree_check.py\""
++LTTREE_CHECK_COMMAND="${PY_SCR_DIR}/lttree_check.py"
+ 
+ # command that invokes lttree_postprocess.py
+-LTTREE_POSTPROCESS_COMMAND="$PYTHON_COMMAND \"${PY_SCR_DIR}/lttree_postprocess.py\""
++LTTREE_POSTPROCESS_COMMAND="${PY_SCR_DIR}/lttree_postprocess.py"
+ 
+ 
+ # -----------------------------------------------------------
+@@ -960,20 +926,20 @@ IFS=$OIFS
+ 
+ 
+ if [ -s "${data_atoms}" ]; then
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicate_atoms.py" \
++    if ! "${PY_SCR_DIR}/remove_duplicate_atoms.py" \
+                                    < "${data_atoms}" \
+                                    > "${data_atoms}.tmp"; then
+         ERR_INTERNAL
+     fi
+     mv -f "${data_atoms}.tmp" "${data_atoms}"
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicate_atoms.py" \
++    if ! "${PY_SCR_DIR}/remove_duplicate_atoms.py" \
+                                    < "${data_atoms}.template" \
+                                    > "${data_atoms}.tmp"; then
+         ERR_INTERNAL
+     fi
+     mv -f "${data_atoms}.tmp" "${data_atoms}.template"
+ 
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
++    if ! "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
+                                        < "${data_atoms}" \
+                                        > "${data_atoms}.tmp"; then
+         ERR_INTERNAL
+@@ -1032,7 +998,7 @@ if [ -s "${data_bond_list}.template" ]; then
+     fi
+     echo "Looking up bond types according to atom type" >&2
+     #-- Generate a file containing bondid bondtype atomid1 atomid2 --
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/bonds_by_type.py" \
++    if ! "${PY_SCR_DIR}/bonds_by_type.py" \
+             -atom-style "$ATOM_STYLE" \
+             -atoms "${data_atoms}.template" \
+             -bond-list "${data_bond_list}.template" \
+@@ -1067,7 +1033,7 @@ if [ -s "${data_bond_list}.template" ]; then
+     ## The next 2 lines extract the variable names from data_new.template.tmp
+     ## and instert them into the appropriate place in ttree_assignments.txt
+     ## (renumbering the relevant variable-assignments to avoid clashes).
+-    #if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
++    #if ! "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
+     #      '/bond' gen_bonds.template.tmp \
+     #      < ttree_assignments.txt \
+     #      > ttree_assignments.tmp; then
+@@ -1085,7 +1051,7 @@ if [ -s "${data_bond_list}.template" ]; then
+     # names present in the .template file.  (We want to convert the file from
+     # a .template format into an ordinary (numeric) LAMMPS data-section format.)
+ 
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++    if ! "${PY_SCR_DIR}/ttree_render.py" \
+            ttree_assignments.txt \
+            < "${data_bonds}.template" \
+            > "$data_bonds"; then
+@@ -1148,7 +1114,7 @@ for FILE in `ls -v "$data_angles_by_type"*.template 2> /dev/null`; do
+     FILE_angles_by_type1="$FILE"
+ 
+     #-- Generate a file containing the list of interactions on separate lines --
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_by_type.py" \
++    if ! "${PY_SCR_DIR}/nbody_by_type.py" \
+             -subgraph "${SUBGRAPH_SCRIPT}" \
+             -section "Angles" \
+             -sectionbytype "Angles By Type" \
+@@ -1180,7 +1146,7 @@ for FILE in `ls -v "$data_angles_by_type"*.template 2> /dev/null`; do
+     # The next 2 lines extract the variable names from data_new.template.tmp
+     # and instert them into the appropriate place in ttree_assignments.txt
+     # (renumbering the relevant variable-assignments to avoid clashes).
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
++    if ! "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
+           '/angle' gen_angles.template.tmp \
+           < ttree_assignments.txt \
+           > ttree_assignments.tmp; then
+@@ -1193,7 +1159,7 @@ for FILE in `ls -v "$data_angles_by_type"*.template 2> /dev/null`; do
+     # Now substitute these variable values (assignments) into the variable
+     # names present in the .template file.  (We want to convert the file from
+     # a .template format into an ordinary (numeric) LAMMPS data-section format.)
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++    if ! "${PY_SCR_DIR}/ttree_render.py" \
+            ttree_assignments.tmp \
+            < "${data_angles}.template" \
+            > "$data_angles"; then
+@@ -1250,7 +1216,7 @@ for FILE in `ls -v "$data_dihedrals_by_type"*.template 2> /dev/null`; do
+     FILE_dihedrals_by_type1="$FILE"
+ 
+     #-- Generate a file containing the list of interactions on separate lines --
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_by_type.py" \
++    if ! "${PY_SCR_DIR}/nbody_by_type.py" \
+             -subgraph "${SUBGRAPH_SCRIPT}" \
+             -section "Dihedrals" \
+             -sectionbytype "Dihedrals By Type" \
+@@ -1282,7 +1248,7 @@ for FILE in `ls -v "$data_dihedrals_by_type"*.template 2> /dev/null`; do
+     # The next 2 lines extract the variable names from data_new.template.tmp
+     # and instert them into the appropriate place in ttree_assignments.txt
+     # (renumbering the relevant variable-assignments to avoid clashes).
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
++    if ! "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
+           '/dihedral' gen_dihedrals.template.tmp \
+           < ttree_assignments.txt \
+           > ttree_assignments.tmp; then
+@@ -1295,7 +1261,7 @@ for FILE in `ls -v "$data_dihedrals_by_type"*.template 2> /dev/null`; do
+     # Now substitute these variable values (assignments) into the variable
+     # names present in the .template file.  (We want to convert the file from
+     # a .template format into an ordinary (numeric) LAMMPS data-section format.)
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++    if ! "${PY_SCR_DIR}/ttree_render.py" \
+            ttree_assignments.tmp \
+            < "${data_dihedrals}.template" \
+            > "$data_dihedrals"; then
+@@ -1354,7 +1320,7 @@ for FILE in `ls -v "$data_impropers_by_type"*.template 2> /dev/null`; do
+     FILE_impropers_by_type1="$FILE"
+ 
+     #-- Generate a file containing the list of interactions on separate lines --
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_by_type.py" \
++    if ! "${PY_SCR_DIR}/nbody_by_type.py" \
+             -subgraph "${SUBGRAPH_SCRIPT}" \
+             -section "Impropers" \
+             -sectionbytype "Impropers By Type" \
+@@ -1385,7 +1351,7 @@ for FILE in `ls -v "$data_impropers_by_type"*.template 2> /dev/null`; do
+     # The next 2 lines extract the variable names from data_new.template.tmp
+     # and instert them into the appropriate place in ttree_assignments.txt
+     # (renumbering the relevant variable-assignments to avoid clashes).
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
++    if ! "${PY_SCR_DIR}/nbody_fix_ttree_assignments.py" \
+           '/improper' gen_impropers.template.tmp \
+           < ttree_assignments.txt \
+           > ttree_assignments.tmp; then
+@@ -1398,7 +1364,7 @@ for FILE in `ls -v "$data_impropers_by_type"*.template 2> /dev/null`; do
+     # Now substitute these variable values (assignments) into the variable
+     # names present in the .template file.  (We want to convert the file from
+     # a .template format into an ordinary (numeric) LAMMPS data-section format.)
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++    if ! "${PY_SCR_DIR}/ttree_render.py" \
+            ttree_assignments.tmp \
+            < "${data_impropers}.template" \
+            > "$data_impropers"; then
+@@ -1443,7 +1409,7 @@ for file_name in $OUT_FILES_WITH_COEFF_COMMANDS; do
+     if ! awk '{if (match($1,/'_coeff/') && match($0,/'[*,?]/')) exit 1}' < "$file_name"; then
+ 
+         echo "  expanding wildcards in \"_coeff\" commands in \"$file_name\"">&2
+-        if ! eval $PYTHON_COMMAND "${PY_SCR_DIR}/postprocess_coeffs.py" ttree_assignments_static.txt < "$file_name" > "${file_name}.tmp"; then
++        if ! eval "${PY_SCR_DIR}/postprocess_coeffs.py" ttree_assignments_static.txt < "$file_name" > "${file_name}.tmp"; then
+             ERR_INTERNAL
+         fi
+ 
+@@ -1457,7 +1423,7 @@ for file_name in $OUT_FILES_WITH_COEFF_COMMANDS; do
+             # "ttree_assignments.txt" file, when substituting numbers for
+             # variables.  This is a very big file and can take a while to read
+             # so we don't do it unless it's necessary.
+-            if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++            if ! "${PY_SCR_DIR}/ttree_render.py" \
+                  ttree_assignments.txt \
+                  < "$file_name" \
+                  > "$bn"; then
+@@ -1469,7 +1435,7 @@ for file_name in $OUT_FILES_WITH_COEFF_COMMANDS; do
+             # file, which will save a lot of time.  In that case we can use
+             # "ttree_assignments_static.txt" instead which omits those lines
+             # of text and is much faster to parse as a result.
+-            if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++            if ! "${PY_SCR_DIR}/ttree_render.py" \
+                  ttree_assignments_static.txt \
+                  < "$file_name" \
+                  > "$bn"; then
+@@ -1497,7 +1463,7 @@ fi
+ 
+ 
+ if [ -s "${data_masses}" ]; then
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicate_atoms.py" \
++    if ! "${PY_SCR_DIR}/remove_duplicate_atoms.py" \
+                                    < "${data_masses}" \
+                                    > "${data_masses}.tmp"; then
+         ERR_INTERNAL
+@@ -1512,7 +1478,7 @@ if [ -s "${data_bonds}" ]; then
+         SUBGRAPH_SCRIPT="$SUBGRAPH_SCRIPT_BONDS"
+     fi
+     if [ ! -z $REMOVE_DUPLICATE_BONDS ]; then
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
++        if ! "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
+                              Bonds \
+                              "$SUBGRAPH_SCRIPT" \
+                              < "${data_bonds}" \
+@@ -1520,20 +1486,20 @@ if [ -s "${data_bonds}" ]; then
+             ERR_INTERNAL
+         fi
+         cp -f "${data_bonds}.tmp" "${data_bonds}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 2 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 2 \
+                              < "${data_bonds}" \
+                              > "${data_bonds}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_bonds}.tmp" "${data_bonds}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 2 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 2 \
+                              < "${data_bonds}.template" \
+                              > "${data_bonds}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_bonds}.tmp" "${data_bonds}.template"
+     fi
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
++    if ! "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
+                          < "${data_bonds}" \
+                          > "${data_bonds}.tmp"; then
+         ERR_INTERNAL
+@@ -1550,7 +1516,7 @@ if [ -s "${data_angles}" ]; then
+         SUBGRAPH_SCRIPT="$SUBGRAPH_SCRIPT_ANGLES"
+     fi
+     if [ ! -z $REMOVE_DUPLICATE_ANGLES ]; then
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
++        if ! "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
+                              Angles \
+                              "$SUBGRAPH_SCRIPT" \
+                              < "${data_angles}" \
+@@ -1558,20 +1524,20 @@ if [ -s "${data_angles}" ]; then
+             ERR_INTERNAL
+         fi
+         cp -f "${data_angles}.tmp" "${data_angles}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 3 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 3 \
+                              < "${data_angles}" \
+                              > "${data_angles}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_angles}.tmp" "${data_angles}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 3 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 3 \
+                              < "${data_angles}.template" \
+                              > "${data_angles}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_angles}.tmp" "${data_angles}".template
+     fi
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
++    if ! "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
+                          < "${data_angles}" \
+                          > "${data_angles}.tmp"; then
+         ERR_INTERNAL
+@@ -1611,7 +1577,7 @@ if [ -s "${data_dihedrals}" ]; then
+         SUBGRAPH_SCRIPT="$SUBGRAPH_SCRIPT_DIHEDRALS"
+     fi
+     if [ ! -z $REMOVE_DUPLICATE_DIHEDRALS ]; then
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
++        if ! "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
+                              Dihedrals \
+                              "$SUBGRAPH_SCRIPT" \
+                              < "${data_dihedrals}" \
+@@ -1619,20 +1585,20 @@ if [ -s "${data_dihedrals}" ]; then
+             ERR_INTERNAL
+         fi
+         cp -f "${data_dihedrals}.tmp" "${data_dihedrals}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
+                              < "${data_dihedrals}" \
+                              > "${data_dihedrals}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_dihedrals}.tmp" "${data_dihedrals}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
+                              < "${data_dihedrals}.template" \
+                              > "${data_dihedrals}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_dihedrals}.tmp" "${data_dihedrals}.template"
+     fi
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
++    if ! "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
+                          < "${data_dihedrals}" \
+                          > "${data_dihedrals}.tmp"; then
+         ERR_INTERNAL
+@@ -1670,7 +1636,7 @@ if [ -s "${data_impropers}" ]; then
+         SUBGRAPH_SCRIPT="$SUBGRAPH_SCRIPT_IMPROPERS"
+     fi
+     if [ ! -z $REMOVE_DUPLICATE_IMPROPERS ]; then
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
++        if ! "${PY_SCR_DIR}/nbody_reorder_atoms.py" \
+                              Impropers \
+                              "$SUBGRAPH_SCRIPT" \
+                              < "${data_impropers}" \
+@@ -1678,20 +1644,20 @@ if [ -s "${data_impropers}" ]; then
+             ERR_INTERNAL
+         fi
+         cp -f "${data_impropers}.tmp" "${data_impropers}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
+                              < "${data_impropers}" \
+                              > "${data_impropers}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_impropers}.tmp" "${data_impropers}"
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
++        if ! "${PY_SCR_DIR}/remove_duplicates_nbody.py" 4 \
+                              < "${data_impropers}.template" \
+                              > "${data_impropers}.tmp"; then
+             ERR_INTERNAL
+         fi
+         mv "${data_impropers}.tmp" "${data_impropers}.template"
+     fi
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
++    if ! "${PY_SCR_DIR}/renumber_DATA_first_column.py" \
+                          < "${data_impropers}" \
+                          > "${data_impropers}.tmp"; then
+         ERR_INTERNAL
+@@ -1732,7 +1698,7 @@ fi
+ 
+ if [ -s "$data_charge_by_bond" ]; then
+     echo "Looking up partial charge contributions from bonds" >&2
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/charge_by_bond.py" \
++    if ! "${PY_SCR_DIR}/charge_by_bond.py" \
+          -atom-style "$ATOM_STYLE" \
+          -atoms "${data_atoms}.template" \
+          -bonds "${data_bonds}.template" \
+@@ -1759,7 +1725,7 @@ if [ -s "$data_charge_by_bond" ]; then
+     # Now substitute these variable values (assignments) into the variable
+     # names present in the .template file.  (We want to convert the file from
+     # a .template format into an ordinary (numeric) LAMMPS data-section format.)
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/ttree_render.py" \
++    if ! "${PY_SCR_DIR}/ttree_render.py" \
+          ttree_assignments.txt \
+          < "${in_charges}.template" \
+          >> "${in_charges}"; then
+@@ -2323,7 +2289,7 @@ if [ -s "$tmp_atom_coords" ]; then
+ 
+     # Copy the coordinates in $tmp_atom_coords into $OUT_FILE_DATA
+     rm -f "$OUT_FILE_COORDS"
+-    if ! eval $PYTHON_COMMAND "${PY_SCR_DIR}/raw2data.py -ignore-atom-id " $ATOM_STYLE_ARG "$OUT_FILE_DATA" < "$tmp_atom_coords" > "$OUT_FILE_COORDS"; then
++    if ! eval "${PY_SCR_DIR}/raw2data.py -ignore-atom-id " $ATOM_STYLE_ARG "$OUT_FILE_DATA" < "$tmp_atom_coords" > "$OUT_FILE_COORDS"; then
+         ERR_INTERNAL
+     fi
+     mv -f "$OUT_FILE_COORDS" "$OUT_FILE_DATA"
+@@ -2579,7 +2545,7 @@ IFS=$CR
+ for file_name in $RENDERED_FILES_WITH_COEFF_COMMANDS; do
+     if [ -s "$file_name" ]; then
+         echo "postprocessing file \"$file_name\"" >&2
+-        if ! $PYTHON_COMMAND "${PY_SCR_DIR}/postprocess_input_script.py" input_scripts_so_far.tmp < "$file_name" > "$file_name.tmp"; then
++        if ! "${PY_SCR_DIR}/postprocess_input_script.py" input_scripts_so_far.tmp < "$file_name" > "$file_name.tmp"; then
+             ERR_INTERNAL
+         fi
+         echo "" >&2
+@@ -2635,7 +2601,7 @@ for file_name in "${OUT_FILE_INPUT_SCRIPT}."*; do
+         continue
+     fi
+     echo "postprocessing file \"$file_name\"" >&2
+-    if ! $PYTHON_COMMAND "${PY_SCR_DIR}/postprocess_input_script.py" input_scripts_so_far.tmp < "$file_name" > "$file_name.tmp"; then
++    if ! "${PY_SCR_DIR}/postprocess_input_script.py" input_scripts_so_far.tmp < "$file_name" > "$file_name.tmp"; then
+         ERR_INTERNAL
+     fi
+     echo "" >&2
