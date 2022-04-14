@@ -26,6 +26,8 @@ let
 
     meep = callPackage ./pkgs/apps/meep { };
 
+    moltemplate = callPackage ./pkgs/apps/moltemplate { };
+
     openmm = callPackage ./pkgs/apps/openmm {
       enableCuda = cfg.useCuda;
     };
