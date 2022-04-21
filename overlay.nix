@@ -268,6 +268,8 @@ let
           else callPackage ./pkgs/apps/vmd { }
         ;
 
+        vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
+
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
         wfoverlap = callPackage ./pkgs/apps/wfoverlap {
