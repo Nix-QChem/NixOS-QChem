@@ -32,6 +32,8 @@ let
       enableCuda = cfg.useCuda;
     };
 
+    pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
+
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
     psi4 = callPackage ./pkgs/apps/psi4 { };
