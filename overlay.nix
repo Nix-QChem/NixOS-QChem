@@ -281,8 +281,13 @@ let
         xtb = callPackage ./pkgs/apps/xtb { };
 
         ### Python packages
-        python3 = super.python3.override { packageOverrides = pythonOverrides cfg self super; };
-        python2 = super.python2.override { packageOverrides = pythonOverrides cfg self super; };
+        python3 = super.python3.override (old: {
+          packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
+        });
+
+        python2 = super.python2.override (old: {
+          packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
+        });
 
         #
         # Libraries
