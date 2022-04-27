@@ -31,17 +31,17 @@
         };
       };
 
-      pkgsClean = with lib; filterAttrs (n: v: isDerivation v) pkgs.qchem;
+      pkgsClean = with lib; filterAttrs (n: isDerivation) pkgs.qchem;
   in {
 
     overlays = {
       qchem = import ./overlay.nix;
-      pythonQchem = import ./pythonPackages.nix (pkgs.config.qchem-config.prefix) (pkgs.config.qchem-config) pkgs nixpkgs;
+      pythonQchem = import ./pythonPackages.nix pkgs.config.qchem-config.prefix pkgs.config.qchem-config pkgs nixpkgs;
       default = self.overlays.qchem;
     };
 
     packages."x86_64-linux" = pkgsClean;
     hydraJobs."x86_64-linux" = pkgsClean;
-    checks."x86_64-linux" = with lib; filterAttrs (n: v: isDerivation v) pkgs.qchem.tests;
+    checks."x86_64-linux" = with lib; filterAttrs (n: isDerivation) pkgs.qchem.tests;
   };
 }
