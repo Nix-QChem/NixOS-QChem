@@ -3,6 +3,8 @@
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+  nixConfig.extra-substituters = [ "https://nix-qchem.cachix.org" ];
+
   outputs = { self, nixpkgs } : let
       lib = import "${nixpkgs}/lib";
 
@@ -32,7 +34,11 @@
       pkgsClean = with lib; filterAttrs (n: v: isDerivation v) pkgs.qchem;
   in {
 
-    overlay = import ./overlay.nix;
+    overlays = {
+      qchem = import ./overlay.nix;
+      pythonQchem = import ./pythonPackages.nix (pkgs.config.qchem-config.prefix) (pkgs.config.qchem-config) pkgs nixpkgs;
+      default = self.overlays.qchem;
+    };
 
     packages."x86_64-linux" = pkgsClean;
     hydraJobs."x86_64-linux" = pkgsClean;
