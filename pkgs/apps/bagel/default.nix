@@ -1,5 +1,5 @@
 { stdenv, lib, fetchFromGitHub, autoconf, automake, libtool
-, makeWrapper, openssh
+, makeWrapper, openssh, fetchpatch
 , python3, boost, blas, lapack
 , enableMpi ? true
 , mpi
@@ -26,6 +26,13 @@ in stdenv.mkDerivation rec {
     rev = "v${version}";
     sha256 = "184p55dkp49s99h5dpf1ysyc9fsarzx295h7x0id8y0b1ggb883d";
   };
+
+  # Required for gcc >= 10
+  patches = [ (fetchpatch {
+    name = "gcc-11";
+    url = "https://salsa.debian.org/debichem-team/bagel/-/raw/629c8b4869c707cae76503706806f09c132c6883/debian/patches/fix_gcc_11_build_failure.patch";
+    sha256 = "0kvnlzs5ili4l728z8rirhn5xf4c30cabiijzzivcjxqbvxdb8b0";
+  })];
 
   nativeBuildInputs = [ autoconf automake libtool openssh boost ];
   buildInputs = [
@@ -55,7 +62,7 @@ in stdenv.mkDerivation rec {
                    ++ optional enableMpi "--with-mpi=${mpiType}"
                    ++ optional ( !enableMpi ) "--disable-smith"
                    ++ optional ( !enableScalapack ) "--disable-scalapack"
-                   ++ optional ( useMKL ) "--enable-mkl";
+                   ++ optional useMKL"--enable-mkl";
 
   postPatch = ''
     # Fixed upstream
@@ -82,7 +89,7 @@ in stdenv.mkDerivation rec {
     # Fix to make mpich run in a sandbox
     export HYDRA_IFACE=lo
 
-    ${if (enableMpi) then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
+    ${if enableMpi then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
     else "$out/bin/BAGEL test/hf_svp_hf.json > log"}
 
     echo "Check output"
