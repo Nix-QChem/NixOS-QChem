@@ -62,7 +62,7 @@ in stdenv.mkDerivation rec {
                    ++ optional enableMpi "--with-mpi=${mpiType}"
                    ++ optional ( !enableMpi ) "--disable-smith"
                    ++ optional ( !enableScalapack ) "--disable-scalapack"
-                   ++ optional ( useMKL ) "--enable-mkl";
+                   ++ optional useMKL"--enable-mkl";
 
   postPatch = ''
     # Fixed upstream
@@ -89,7 +89,7 @@ in stdenv.mkDerivation rec {
     # Fix to make mpich run in a sandbox
     export HYDRA_IFACE=lo
 
-    ${if (enableMpi) then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
+    ${if enableMpi then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
     else "$out/bin/BAGEL test/hf_svp_hf.json > log"}
 
     echo "Check output"
