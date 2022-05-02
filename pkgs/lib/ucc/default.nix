@@ -8,13 +8,13 @@
 
 stdenv.mkDerivation rec {
   pname = "ucc";
-  version = "1.0.0-rc2";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "openucx";
     repo = "ucc";
     rev = "v${version}";
-    sha256 = "0kzxhs6pnhbcqq976dw800ai1f6f9jpd18x9ixng5mmx3d7lcvaj";
+    sha256 = "006nv1b1gwh8hpjmghirsx8138800z4ll7xwwz89ddaazmq2mdx8";
   };
 
   postPatch = ''
