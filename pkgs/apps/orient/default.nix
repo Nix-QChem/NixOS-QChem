@@ -44,8 +44,8 @@ in stdenv.mkDerivation rec {
   # to keep the git directory.
   src = fetchgit {
     url = "https://gitlab.com/anthonyjs/${pname}.git";
-    rev = "e31e41e907d6b680a9cef2c97238b59d649f565a";
-    sha256 = "Fupi/6Yrp+tM2YVgjGMmuYKI200NMeFUbzcomKvVDCA=";
+    rev = "64cab885b460239d195c2cf239ad892fea005f22";
+    sha256 = "sha256-lJ4FyhjobJc7V9doyb6gowheKVCc27XcP36BX1Du1po=";
     leaveDotGit = true;
   };
 
