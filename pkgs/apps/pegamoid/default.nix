@@ -4,18 +4,20 @@
 
 buildPythonApplication rec {
   pname = "Pegamoid";
-  version = "2.6.1";
+  version = "2.6.2";
 
   src = fetchFromGitLab {
     owner = "jellby";
     repo = pname;
     rev = "v${version}";
-    sha256 = "10kv8gsn69p3lgg8s9ayl3v2088zladf3pabd1pqnm81cizgf5yj";
+    hash = "sha256-36ZZK2cACvrwn5EVuv+zu6oBsh3vPCZDxQGzKe4PPlg=";
   };
 
-  patches = [
-    ./pipVTK.patch
-  ];
+
+  # The samples and screenshots directories confuse setuptools and they
+  # refuse to build as long as these directories are present.
+  prePatch = "rm -rf samples screenshots";
+  patches = [ ./pipVTK.patch ];
 
   propagatedBuildInputs = [
     numpy

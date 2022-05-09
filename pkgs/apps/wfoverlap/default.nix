@@ -7,21 +7,19 @@ assert
 
 assert
   lib.asserts.assertMsg
-  (lapack.isILP64)
+  lapack.isILP64
   "64 bit integer LAPACK implementation required.";
 
 stdenv.mkDerivation rec {
   pname = "wfoverlap";
   version = "24.08.2020";
 
-  src = let
-    repo = fetchFromGitHub {
-      owner = "sharc-md";
-      repo = "sharc";
-      rev = "d943ec7aff0fb6c81f61d3c057b0921d053e9e20";
-      sha256 = "1a9frnxvm1jg4cv3jd4lm3q8m7igyc7fsp3baydfjkvk0b4ss9bc";
-    };
-  in "${repo}/wfoverlap/source";
+  src = fetchFromGitHub {
+    owner = "felixplasser";
+    repo = "wfoverlap";
+    rev = "76b51533770aaf32732e942cd81e6aa12770900e";
+    hash = "sha256-bA8XRYGyCDDJ0dzCw5BDSJf+wcRj9A9mTfm+ukrbrlg=";
+  };
 
   nativeBuildInputs = [ gfortran ];
 
@@ -34,6 +32,8 @@ stdenv.mkDerivation rec {
   patches = [ ./Makefile.patch ];
 
   dontConfigure = true;
+
+  preBuild = "cd wfoverlap/source";
 
   hardeningDisable = [ "format" ];
 
