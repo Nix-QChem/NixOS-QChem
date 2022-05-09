@@ -1,37 +1,58 @@
-diff --git a/Makefile b/Makefile
-index 27b0e9a..eb95272 100644
---- a/Makefile
-+++ b/Makefile
-
+diff --git a/wfoverlap/source/Makefile b/wfoverlap/source/Makefile
+index a2f179a..17f8d90 100644
+--- a/wfoverlap/source/Makefile
++++ b/wfoverlap/source/Makefile
+@@ -33,15 +33,15 @@
+ 
+ #STATIC = -static-intel -qopenmp-link=static
+ #PROFILE = # -pg
+-OMP = -qopenmp
+-FC = ifort
++#OMP = -qopenmp
++#FC = ifort
+ #DEBUG = #-g #-warn all # -traceback -check bounds
+-OPT = -O3 -ipo
+-FCFLAGS = $(OPT) $(OMP) $(PROFILE) $(DEBUG) -fpp -i8 -DEXTBLAS
+-LINKFLAGS = $(STATIC) $(PROFILE) -z muldefs # use -z muldefs for COLUMBUS
++#OPT = -O3 -ipo
++#FCFLAGS = $(OPT) $(OMP) $(PROFILE) $(DEBUG) -fpp -i8 -DEXTBLAS
++#LINKFLAGS = $(STATIC) $(PROFILE) -z muldefs # use -z muldefs for COLUMBUS
+ 
+ # openmp (multithreaded) compilation
+-LALIB =  -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_ilp64.a ${MKLROOT}/lib/intel64/libmkl_core.a ${MKLROOT}/lib/intel64/libmkl_intel_thread.a -Wl,--end-group -lpthread -lm -ldl
++#LALIB =  -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_ilp64.a ${MKLROOT}/lib/intel64/libmkl_core.a ${MKLROOT}/lib/intel64/libmkl_intel_thread.a -Wl,--end-group -lpthread -lm -ldl
+ #LALIB  = -Wl,--start-group  $(MKLROOT)/lib/intel64/libmkl_intel_ilp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -lm
+ 
+ 
+@@ -49,10 +49,10 @@ LALIB =  -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_ilp64.a ${MKLROOT
+ 
+ # **** gfortran ****
+ 
+-#FC = gfortran
+-#FCFLAGS = -O0 -cpp -g3 -fdefault-integer-8 -Wall -fbacktrace -DEXTBLAS
+-#LINKFLAGS = 
+-#LALIB = -lblas -llapack -fopenmp
++FC = gfortran
++FCFLAGS = -O0 -cpp -g3 -fdefault-integer-8 -Wall -fbacktrace -DEXTBLAS -fallow-argument-mismatch
++LINKFLAGS = 
++LALIB = -lblas -llapack -fopenmp
+ 
  ############## Main objects and libraries #######
-
+ 
 @@ -62,12 +62,12 @@ DUMMYOBS=read_dalton_dummy.o read_molcas_dummy.o
-
+ 
  ############## Dalton and SEWARD ################
  # no Dalton and SEWARD support
 -#LIBS = $(LALIB)
 -#OPTOBS = $(DUMMYOBS)
 +LIBS = $(LALIB)
 +OPTOBS = $(DUMMYOBS)
-
+ 
  # activate direct reading of Dalton and Seward files
- #LIBS = $(COLUMBUS)/libmolcas_col.a $(COLUMBUS)/colib.a $(COLUMBUS)/blaswrapper.a  $(LALIB)
+-LIBS = $(MOLCAS)/lib/libmolcas.a $(COLUMBUS)/colib.a $(COLUMBUS)/blaswrapper.a  $(LALIB)
 -OPTOBS = read_dalton.o read_molcas.o
++#LIBS = $(MOLCAS)/lib/libmolcas.a $(COLUMBUS)/colib.a $(COLUMBUS)/blaswrapper.a  $(LALIB)
 +#OPTOBS = read_dalton.o read_molcas.o
-
- ############## Compilation routines #############
-
-@@ -80,13 +80,10 @@ OPTOBS = read_dalton.o read_molcas.o
-
- wfoverlap.x : main.f90 $(MAINOBS) $(OPTOBS) iomod.o
- 	$(FC) $(FCFLAGS) $(LINKFLAGS) $(PROFILE) $^ -o $@ $(LIBS)
--	cp $@ ../../bin
-
- # executable that is linked to dummy I/O interfaces and that reads only ASCII files
- wfoverlap_ascii.x : main.f90 $(MAINOBS) $(DUMMYOBS) iomod.o
- 	$(FC) $(FCFLAGS) $(LINKFLAGS) $(PROFILE) $^ -o $@ $(LALIB)
--	cp $@ ../../bin
--	ln -fs $@ ../../bin/wfoverlap.x
-
- alloc:
- 	./write_allocmod.pl > my_alloc.f90
+ 
+ # activate direct reading of only Seward files
+ # LIBS = $(MOLCAS)/lib/libmolcas.a $(LALIB)
