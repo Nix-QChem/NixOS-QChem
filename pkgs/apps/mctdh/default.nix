@@ -39,7 +39,7 @@ in stdenv.mkDerivation {
     patchShebangs ./bin
     patchShebangs ./install
 
-    # fix absoulte paths names
+    # fix absolute paths names
     find bin/ -type f -exec sed -i 's:/bin/mv:mv:' \{} \;
     find bin/ -type f -exec sed -i 's:/bin/rm:rm:' \{} \;
     find bin/ -type f -exec sed -i 's:/bin/mkdir:mkdir:' \{} \;
@@ -59,6 +59,9 @@ in stdenv.mkDerivation {
     sed -i 's/EXTERNAL_BLAS.*/EXTERNAL_BLAS=-lblas/;s/EXTERNAL_LAPACK.*/EXTERNAL_LAPACK=-llapack/' \
          install/compile.cnf_le
 
+    # required for gfortran-10
+    sed -i 's/MCTDH_FFLAGS_OPT="/MCTDH_FFLAGS_OPT="-fallow-argument-mismatch /' install/compile.cnf_le
+
     mkdir utils
     cp -r bin/* utils/
 
@@ -68,7 +71,7 @@ in stdenv.mkDerivation {
   '';
 
   buildPhase = ''
-    bin/compile -a -x lapack -Q -P ${lib.optionalString useMPI "-S -m"} all
+    bin/compile -a -x lapack -P ${lib.optionalString useMPI "-S -m"} all
   '';
 
   installPhase = ''
@@ -88,7 +91,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Multi configuration time dependent hartree dynamics package";
-    homepage = https://www.pci.uni-heidelberg.de/cms/mctdh.html;
+    homepage = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];

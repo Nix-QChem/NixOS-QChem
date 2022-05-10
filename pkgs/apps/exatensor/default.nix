@@ -14,6 +14,12 @@ in stdenv.mkDerivation rec {
     sha256 = "0zlqwpdqfycwvys39lvvj94cprhaxmyaxxs1c66f10dazjbafp49";
   };
 
+  postPatch = ''
+    substituteInPlace DDSS/Makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch';
+    substituteInPlace INTRAVIRT/Makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch';
+    substituteInPlace INTERVIRT/Makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch';
+  '';
+
   buildInputs = [ blas.passthru.provider ];
 
   MPILIB = if (mpi.pname == "openmpi") then "OPENMPI"
@@ -43,7 +49,7 @@ in stdenv.mkDerivation rec {
   meta = with lib; {
     description = "ExaTENSOR is a basic numerical tensor algebra library for
 distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU.";
-    homepage = https://gitlab.com/DmitryLyakh/ExaTensor;
+    homepage = "https://gitlab.com/DmitryLyakh/ExaTensor";
     license = licenses.lgpl3Only;
     platforms = platforms.linux;
   };

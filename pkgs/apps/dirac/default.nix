@@ -32,6 +32,7 @@ stdenv.mkDerivation rec {
     mpi
   ];
 
+  enableParallelBuilding = false;
   src = fetchurl {
     url = "https://zenodo.org/record/4836496/files/DIRAC-${version}-Source.tar.gz";
     sha256 = "0vqmin24xqkcp3rvml0dimc4kjmb3m37c3l6bkjy4y6d3xyb41yg";
@@ -48,7 +49,10 @@ stdenv.mkDerivation rec {
     patchShebangs .
   '';
 
+  cmakeFlags = [ "-DEXTRA_FCFLAGS=-fallow-argument-mismatch" ];
+
   FC = "mpif90";
+  FFLAGS = "-fallow-argument-mismatch";
   CC = "mpicc";
   CXX = "mpicxx";
   MATH_ROOT = blas;
