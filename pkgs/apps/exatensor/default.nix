@@ -49,7 +49,7 @@ in stdenv.mkDerivation rec {
   meta = with lib; {
     description = "ExaTENSOR is a basic numerical tensor algebra library for
 distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU.";
-    homepage = https://gitlab.com/DmitryLyakh/ExaTensor;
+    homepage = "https://gitlab.com/DmitryLyakh/ExaTensor";
     license = licenses.lgpl3Only;
     platforms = platforms.linux;
   };
