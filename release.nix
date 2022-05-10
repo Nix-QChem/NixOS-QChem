@@ -27,7 +27,7 @@ let
     else import nixpkgs;
 
   # use unmodified lib
-  lib = (nixpkgs-final {}).lib;
+  inherit (nixpkgs-final {}) lib;
 
   # Customized package set
   pkgs = config: overlay: let
