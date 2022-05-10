@@ -139,9 +139,7 @@ let
 
         dkh = callPackage ./pkgs/apps/dkh { };
 
-        exatensor = callPackage ./pkgs/apps/exatensor {
-          mpi = super.mpi.override { gfortran = super.gfortran8; };
-        };
+        exatensor = callPackage ./pkgs/apps/exatensor { };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           blas = final.blas-ilp64;

@@ -14,6 +14,12 @@ in stdenv.mkDerivation rec {
     sha256 = "0zlqwpdqfycwvys39lvvj94cprhaxmyaxxs1c66f10dazjbafp49";
   };
 
+  postPatch = ''
+    substituteInPlace DDSS/Makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch';
+    substituteInPlace INTRAVIRT/Makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch';
+    substituteInPlace INTERVIRT/Makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch';
+  '';
+
   buildInputs = [ blas.passthru.provider ];
 
   MPILIB = if (mpi.pname == "openmpi") then "OPENMPI"
