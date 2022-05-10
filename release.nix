@@ -82,7 +82,6 @@ let
               "nwchem"
               "molcas"
               "molpro"
-              "mesa-qc"
               "qdng"
             ] ( hydraJobs pkgSet."${cfg.prefix}".tests );
         };

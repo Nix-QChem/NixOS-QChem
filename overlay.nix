@@ -170,8 +170,6 @@ let
 
         meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
 
-        mesa-qc = callPackage ./pkgs/apps/mesa { };
-
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix {
           blas = final.blas-ilp64;
           gfortran = final.gfortran9;
@@ -345,7 +343,6 @@ let
           dalton = callPackage ./tests/dalton { };
           hpcg = callPackage ./tests/hpcg { };
           hpl = callPackage ./tests/hpl { };
-          mesa-qc = nullable mesa-qc (callPackage ./tests/mesa { });
           molcas = callPackage ./tests/molcas { };
           molpro = nullable molpro (callPackage ./tests/molpro { });
           mrcc = nullable mrcc (callPackage ./tests/mrcc { });
