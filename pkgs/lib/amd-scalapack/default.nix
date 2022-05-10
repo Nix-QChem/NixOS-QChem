@@ -56,7 +56,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     homepage = "https://developer.amd.com/amd-aocl/scalapack/";
-    description = "Linear algebra routines for parallel distributed memory machines optmized for AMD processors";
+    description = "Linear algebra routines for parallel distributed memory machines optimized for AMD processors";
     license = licenses.bsd3;
     platforms = [ "x86_64-linux" ];
     maintainers = with maintainers; [ markuskowa ];

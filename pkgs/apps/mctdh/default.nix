@@ -39,7 +39,7 @@ in stdenv.mkDerivation {
     patchShebangs ./bin
     patchShebangs ./install
 
-    # fix absoulte paths names
+    # fix absolute paths names
     find bin/ -type f -exec sed -i 's:/bin/mv:mv:' \{} \;
     find bin/ -type f -exec sed -i 's:/bin/rm:rm:' \{} \;
     find bin/ -type f -exec sed -i 's:/bin/mkdir:mkdir:' \{} \;
