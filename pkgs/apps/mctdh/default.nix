@@ -91,7 +91,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Multi configuration time dependent hartree dynamics package";
-    homepage = https://www.pci.uni-heidelberg.de/cms/mctdh.html;
+    homepage = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
