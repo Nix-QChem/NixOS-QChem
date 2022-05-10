@@ -31,8 +31,11 @@ stdenv.mkDerivation rec {
     "-DBUILD_STATIC_LIBS=OFF"
     "-DUSE_F2C=ON"
     "-DUSE_DOTC_WRAPPER=ON"
-    "-DCMAKE_Fortran_FLAGS=-cpp"
   ];
+
+  preConfigure = ''
+    cmakeFlagsArray+=( "-DCMAKE_Fortran_FLAGS=-cpp -fallow-argument-mismatch" )
+  '';
 
   # Increase individual test timeout from 1500s to 10000s because hydra's builds
   # sometimes fail due to this
