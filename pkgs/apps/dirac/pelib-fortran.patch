@@ -1,0 +1,13 @@
+diff --git a/external/pelib/CMakeLists.txt b/external/pelib/CMakeLists.txt
+index 498065d..3635f81 100644
+--- a/external/pelib/CMakeLists.txt
++++ b/external/pelib/CMakeLists.txt
+@@ -109,6 +109,9 @@ set(SOURCES
+     ${PROJECT_SOURCE_DIR}/src/polarizable_embedding.F90
+     )
+
++set(FFLAGS -fallow-argument-mismatch)
++set(CMAKE_Fortran_FLAGS -fallow-argument-mismatch)
++
+ #add_library(pelib SHARED ${SOURCES})
+ #install(TARGETS pelib LIBRARY DESTINATION lib)
