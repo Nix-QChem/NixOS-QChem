@@ -1,7 +1,10 @@
-{ stdenv, lib, fetchurl, gfortran, cmake, makeWrapper
-, which, openssh, blas, lapack, mpi, boost, exatensor, python3
+{ stdenv, lib, fetchgit, gfortran, cmake, makeWrapper
+, which, openssh, blas, lapack, mpi, boost, exatensor
+, python3, hdf5
 } :
 
+# A 64bit int build would be possible without MPI and Exatensor,
+# although I couldn't figure out how exactly ...
 assert
   lib.asserts.assertMsg
   (!blas.isILP64)
@@ -9,37 +12,44 @@ assert
 
 stdenv.mkDerivation rec {
   pname = "dirac";
-  version = "21.0";
+  version = "22.0";
 
   nativeBuildInputs = [
     which
     gfortran
     cmake
-    python3
     makeWrapper
     openssh
   ];
 
-  # For now, DIRAC is built without the PCMSolver optional dependency.
   buildInputs = [
     blas
     lapack
     boost
     exatensor
+    hdf5
   ];
 
-  propagatedBuildInputs = [
-    mpi
-  ];
+  propagatedBuildInputs = [ mpi python3 ];
 
-  enableParallelBuilding = false;
-  src = fetchurl {
-    url = "https://zenodo.org/record/4836496/files/DIRAC-${version}-Source.tar.gz";
-    sha256 = "0vqmin24xqkcp3rvml0dimc4kjmb3m37c3l6bkjy4y6d3xyb41yg";
+  # Dirac requires a multitude of submodules, which all need to be present.
+  src = fetchgit {
+    url = "https://gitlab.com/dirac/dirac/";
+    rev = "37b755410d9fdcd9b5e7bba6e43ceb7d5c7b9dae"; # v22.0, fetchgit does not handle the tag on gitlab correctly
+    hash = "sha256-sRlP5WlIWm/4oWwXArQk6DWMHU+JJuG1JkPoVtwnM/k=";
+    deepClone = true;
+    fetchSubmodules = true;
   };
 
+
   patches = [
-    ./0001-exatensor-cmake.patch
+    # Exatensor is downloaded and built on the fly by CMake. We instead link to the Exatensor
+    # from the package set to avoid download an build.
+    ./exatensor-cmake.patch
+
+    # Pass -fallow-argument-mismatch also to the pelib build. The Cmake build system will
+    # override the environment variable already set.
+    ./pelib-fortran.patch
   ];
 
   postPatch = ''
@@ -49,35 +59,35 @@ stdenv.mkDerivation rec {
     patchShebangs .
   '';
 
-  cmakeFlags = [ "-DEXTRA_FCFLAGS=-fallow-argument-mismatch" ];
+  preConfigure = ''
+    export FC=mpif90
+    export CC=mpicc
+    export CXX=mpicxx
+    export FCFLAGS=-fallow-argument-mismatch
+    export FFLAGS=-fallow-argument-mismatch
+    export MATHROOT=${blas}
 
-  FC = "mpif90";
-  FFLAGS = "-fallow-argument-mismatch";
-  CC = "mpicc";
-  CXX = "mpicxx";
-  MATH_ROOT = blas;
-  ENABLE_EXATENSOR = "ON";
-
-  /*
-  Cmake is required to build but adding it to the buildinputs then ignores the
-  setup script. Therefore i call the script here manually but cmake is invoked
-  by setup.
-  */
-
-  configurePhase = ''
-    ./setup --prefix=$out --mpi
+    cmakeFlagsArray+=(
+      "-DENABLE_MPI=ON"
+      "-DMATH_LIB_SEARCH_ORDER=SYSTEM_NATIVE"
+      "-DBLAS_LANG=Fortran"
+      "-DLAPACK_LANG=Fortran"
+      "-DENABLE_OPENMP=ON"
+      "-DENABLE_PROFILING=OFF"
+      "-DENABLE_64BIT_INTEGERS=OFF"
+      "-DENABLE_EXATENSOR=ON"
+      "-DCMAKE_BUILD_TYPE=release"
+      "-DENABLE_PCMSOLVER=OFF"
+      "-DENABLE_BLAS=ON"
+      "-DENABLE_LAPACK=ON"
+      "-DEXPLICIT_LIBS=-lblas -llapack"
+      "-DMKL_FLAG=off"
+    )
   '';
-
-  preBuild = ''
-    cd build
-  '';
-
-  # Parallel building of the DIRAC package introduces all kinds of unpredictable
-  # bugs when modules within a single folder depend on each other.
-  # enableParallelBuilding = true;
 
   hardeningDisable = [ "format" ];
   doInstallCheck = true;
+  enableParallelBuilding = true;
 
   /*
   Make the MPI stuff available to the DIRAC script by hard-coding the MPI path.
@@ -126,7 +136,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "The DIRAC program computes molecular properties using relativistic quantum chemical methods.";
-    license = licenses.unfree;
+    license = licenses.lgpl2;
     homepage = "https://diracprogram.org/";
     platforms = platforms.linux;
   };

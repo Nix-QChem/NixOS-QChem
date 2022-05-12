@@ -1,65 +1,56 @@
 diff --git a/cmake/custom/exatensor.cmake b/cmake/custom/exatensor.cmake
-index d203dff..40ca09e 100644
+index 1a7cd6fab..de0fc9e04 100644
 --- a/cmake/custom/exatensor.cmake
 +++ b/cmake/custom/exatensor.cmake
-@@ -1,140 +1,44 @@
-+# Patched CMAKE file that does not download any exatensor.
-+
+@@ -1,182 +1,23 @@
  #Check whether ExaTensor can be used
+-option(ENABLE_EXATENSOR "Enable ExaTENSOR library" ON)
+-option(TALSH_ONLY "Enable only TALSH component of ExaTENSOR library" OFF)
+ 
 -if(ENABLE_EXATENSOR)
+-
+-	if ($ENV{TALSH_ONLY} MATCHES "YES") 
+-      message(STATUS "Enabling only the TALSH (serial) component of the ExaTENSOR library")
+-      set(EXATENSOR_TALSH EXA_TALSH_ONLY=YES)
+-   # The following weird construction is needed because these cmake variables are otherwise not active inside the environment and make that is called below
+-      set(TALSH_COMPILERS "CMAKE_Fortran_COMPILER=${CMAKE_Fortran_COMPILER} CMAKE_C_COMPILER=${CMAKE_C_COMPILER} CMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}")
+-   endif()
+-
 -   if(NOT ENABLE_MPI)
--       message(STATUS "Using only the TALSH (serial) component of the ExaTensor library")
+-       message(STATUS "Enabling only the TALSH (serial) component of the ExaTENSOR library")
 -       set(EXATENSOR_TALSH EXA_TALSH_ONLY=YES)
 -       # The following weird construction is needed because these cmake variables are otherwise not active inside the environment and make that is called below
 -       set(TALSH_COMPILERS "CMAKE_Fortran_COMPILER=${CMAKE_Fortran_COMPILER} CMAKE_C_COMPILER=${CMAKE_C_COMPILER} CMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}")
 -   else()
--       if (NOT (${MPI_Fortran_COMPILER} MATCHES "mpif90" OR ${MPI_Fortran_COMPILER} MATCHES "mpifort"))
--          message(STATUS "This MPI compiler is not supported by ExaTENSOR, ExaCorr is switched off")
--          set(ENABLE_EXATENSOR OFF)
+-       if (DEFINED ENV{MPILIB})
+-         set(EXATENSOR_MPIENV MPILIB=$ENV{MPILIB})
+-       elseif (NOT (${MPI_Fortran_COMPILER} MATCHES "mpif90" OR ${MPI_Fortran_COMPILER} MATCHES "mpifort"))
+-          message(STATUS "This MPI compiler is not supported by ExaTENSOR, using only the TALSH (serial) component of the ExaTensor library")
+-          message(STATUS "Only MPICH (3.2.1+) and OpenMPI (4.1.1+) are currently supported by ExaTENSOR for employing MPI parallelism")
+-          set(EXATENSOR_TALSH EXA_TALSH_ONLY=YES)
+-       else()
+-         # get MPI TYPE from Python script
+-         execute_process(COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/cmake/custom/IdentifyMPI.py
+-                                 ${MPIEXEC} OUTPUT_VARIABLE PYTHON_OUTPUT)
+-         get_filename_component(MPIDIR ${MPIEXEC} DIRECTORY)
+-         get_filename_component(PATH_MPI ${MPIDIR} DIRECTORY)
+-         string(STRIP "${PYTHON_OUTPUT}" PYTHON_OUTPUT)
+-         if (${PYTHON_OUTPUT} MATCHES "MPICH")
+-           set(EXATENSOR_MPIENV "MPILIB=MPICH PATH_MPICH=${PATH_MPI}")
+-         elseif (${PYTHON_OUTPUT} MATCHES "OPENMPI")
+-           set(EXATENSOR_MPIENV "MPILIB=OPENMPI PATH_OPENMPI=${PATH_MPI}")
+-         else()
+-           message(STATUS "The MPI compiler ${PYTHON_OUTPUT} is not supported by ExaTENSOR")
+-           message(STATUS "Only MPICH (3.2.1+) and OpenMPI (4.1.1+) are currently supported by ExaTENSOR")
+-           set(EXATENSOR_TALSH EXA_TALSH_ONLY=YES)
+-         endif()
 -       endif()
 -   endif()
 -   if(ENABLE_64BIT_INTEGERS)
 -       message(STATUS "ExaTensor library can not work with 64 bit integers, switched off")
 -       set(ENABLE_EXATENSOR OFF)
 -   endif()
-+set(ENABLE_EXATENSOR ENABLED)
-+
-+# ExternalProject_Add seems required as later in the build process,
-+# DIRAC includes exatensor via the CMAKE dependency system. It's not 100%
-+# clear to me, so I'll just have that as a dummy here.
-+ExternalProject_Add(exatensor
-+    PREFIX exatensor-tmp
-+    INSTALL_DIR @exatensor@
-+    STAMP_DIR exatensor-tmp
-+    SOURCE_DIR exatensor-tmp/src
-+    CONFIGURE_COMMAND true
-+    BUILD_COMMAND true
-+    INSTALL_COMMAND true
-+)
-+
-+set(EXTERNAL_LIBS ${EXTERNAL_LIBS} @exatensor@/lib/libtalsh.so)
-+set(EXTERNAL_LIBS ${EXTERNAL_LIBS} @exatensor@/lib/libexatensor.so)
-+
-+include_directories(@exatensor@/include)
-+
-+# Add also the tests (weird to do this here, but this whole test set up needs an overhaul).
-+dirac_test(exacorr_talsh_debug "cc;talsh;short" "")
-+dirac_test(exacorr_talsh_standalone "cc;talsh;short" "")
-+dirac_test(exacorr_talsh_lambda "cc;talsh" "")
-+dirac_test(exacorr_talsh_fock "cc;talsh" "")
-+dirac_test(exacorr_talsh_open "cc;talsh;short" "")
-+dirac_test(exacorr_talsh_cc2 "cc;talsh" "")
-+dirac_test(exacorr_talsh_spinfree "cc;talsh" "")
-+dirac_test(exacorr_talsh_respect "cc;talsh;respect" "")
-+dirac_test(exacorr_talsh_memory "cc;talsh;short" "")
-+if (ENABLE_MPI AND NOT EXATENSOR_TALSH)
-+    dirac_test(exacorr_exatensor_debug "cc;exatensor" "")
-+    dirac_test(exacorr_exatensor_fock "cc;exatensor" "")
-+    dirac_test(exacorr_exatensor_open "cc;exatensor" "")
-+    dirac_test(exacorr_exatensor_lambda "cc;exatensor" "")
-+    dirac_test(exacorr_exatensor_cc2 "cc;exatensor" "")
-+    dirac_test(exacorr_exatensor_memory "cc;exatensor;short" "")
- endif()
+-endif()
 -
 -if(ENABLE_EXATENSOR)
 -
@@ -69,7 +60,7 @@ index d203dff..40ca09e 100644
 -    # in which case EXATENSOR_GIT_REPO_LOCATION can be set to point to a path on the hard disk
 -    # ./setup --cmake-options="-DEXATENSOR_GIT_REPO_LOCATION='/path/to/exatensor/'"
 -    set (EXATENSOR_GIT_REPO_LOCATION "https://gitlab.com/DmitryLyakh/ExaTensor.git" CACHE STRING "ExaTENSOR Git repository location")
--    set (EXATENSOR_GIT_HASH d304c03b7289525f250245ece1b4a13a5973fef4 CACHE STRING "ExaTENSOR Git repository hash in use")
+-    set (EXATENSOR_GIT_HASH e8e6f6351fabad514be9dd07d3c0a3a9e81c3f52 CACHE STRING "ExaTENSOR Git repository hash in use")
 -    set (EXATENSOR_INSTALL_DIR ${PROJECT_BINARY_DIR}/exatensor/src/exatensor/lib)
 -
 -    # The build of ExaTensor is controlled by environment variables, set these using information provided by cmake.
@@ -90,7 +81,9 @@ index d203dff..40ca09e 100644
 -    endif()
 -    
 -    # Find out which compiler family we are using (this can be tricky, tweak after the configure step if necessary)
--    if (CMAKE_Fortran_COMPILER_ID MATCHES GNU) 
+-    if (DEFINED ENV{TOOLKIT})
+-       set(EXATENSOR_TOOLKIT TOOLKIT=$ENV{TOOLKIT})
+-    elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU) 
 -       set (EXATENSOR_TOOLKIT TOOLKIT=GNU)
 -       if (   "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_LESS "8"
 -           OR "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_EQUAL "9"
@@ -108,12 +101,41 @@ index d203dff..40ca09e 100644
 -       set (EXATENSOR_TOOLKIT TOOLKIT=IBM)
 -    elseif(CMAKE_Fortran_COMPILER_ID MATCHES PGI)
 -       set (EXATENSOR_TOOLKIT TOOLKIT=PGI)
--     else()
+-    else()
+-       message(STATUS "ExaTensor TOOLKIT not found, setting to GNU")
 -       set (EXATENSOR_TOOLKIT TOOLKIT=GNU)
 -       if (   "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_LESS "8"
 -           OR "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_EQUAL "9"
 -           OR "${CMAKE_Fortran_COMPILER_VERSION}" VERSION_EQUAL "10" )
 -          set(EXATENSOR_TALSH EXA_TALSH_ONLY=YES)
+-       endif()
+-    endif()
+-
+-    # We need linking to the math library for cholesky
+-    if (DEFINED ENV{BLASLIB})
+-	 set(EXATENSOR_BLAS BLASLIB=$ENV{BLASLIB})
+-    else()
+-       if ( BLAS_TYPE MATCHES ATLAS )
+-	  set(EXATENSOR_BLAS BLASLIB=ATLAS)
+-	  string(REPLACE "." ";" EXATENSOR_BLAS_PATH ${BLAS_LIBRARIES})
+-	  list (GET EXATENSOR_BLAS_PATH 0 EXATENSOR_TEMP)
+-	  get_filename_component(EXATENSOR_BLAS_PATH ${EXATENSOR_TEMP} PATH)
+-	  set(EXATENSOR_BLAS "${EXATENSOR_BLAS} PATH_BLAS_ATLAS=${EXATENSOR_BLAS_PATH}")
+-       elseif( BLAS_TYPE MATCHES OPENBLAS )
+-          set(EXATENSOR_BLAS BLASLIB=OPENBLAS)
+-	  string(REPLACE "." ";" EXATENSOR_BLAS_PATH ${BLAS_LIBRARIES})
+-	  list (GET EXATENSOR_BLAS_PATH 0 EXATENSOR_TEMP)
+-	  get_filename_component(EXATENSOR_BLAS_PATH ${EXATENSOR_TEMP} PATH)
+-	  set(EXATENSOR_BLAS "${EXATENSOR_BLAS} PATH_BLAS_OPENBLAS=${EXATENSOR_BLAS_PATH}")
+-       elseif( BLAS_TYPE MATCHES MKL )
+-	  set(EXATENSOR_BLAS BLASLIB=MKL)
+-       elseif( BLAS_TYPE MATCHES ESSL )
+-	  set(EXATENSOR_BLAS BLASLIB=ESSL)
+-       elseif( BLAS_TYPE MATCHES ACML )
+-          set(EXATENSOR_BLAS BLASLIB=ACML)
+-       else()
+-          set(EXATENSOR_BLAS BLASLIB=NONE)
+-	  message(STATUS "WARNING: No BLAS library for TALSH / EXATENSOR - certain functionalties will not work (cholesky) ")
 -       endif()
 -    endif()
 -
@@ -137,7 +159,7 @@ index d203dff..40ca09e 100644
 -    endif()
 -
 -    # Collect everything in one string (also including the hardwires ones that need not be changed) and store this in a file (direct passing appears to be impossible within cmake)
--    set(EXATENSOR_ENV "WRAP=NOWRAP BUILD_TYPE=OPT ${EXATENSOR_TALSH} ${TALSH_COMPILERS} ${EXATENSOR_TOOLKIT} ${EXATENSOR_OS} ${EXATENSOR_GPUENV} ${EXATENSOR_MPIENV}")
+-    set(EXATENSOR_ENV "WRAP=NOWRAP BUILD_TYPE=OPT ${EXATENSOR_TALSH} ${TALSH_COMPILERS} ${EXATENSOR_TOOLKIT} ${EXATENSOR_OS} ${EXATENSOR_GPUENV} ${EXATENSOR_MPIENV} ${EXATENSOR_BLAS}")
 -    message(STATUS "The environment variables used to build ExaTensor are collected in the file ExaTensor_ENV (can be inspected/changed if necessary)")
 -    file(WRITE ${PROJECT_BINARY_DIR}/ExaTensor_ENV ${EXATENSOR_ENV})
 -
@@ -160,33 +182,41 @@ index d203dff..40ca09e 100644
 -    #set(EXTERNAL_LIBS ${EXTERNAL_LIBS} -L/sw/summit/essl/6.1.0-2/essl/6.1/lib64 -L/sw/summit/xl/16.1.1-5/xlC/16.1.1/lib -L/sw/summit/xl/16.1.1-5/xlf/16.1.1/lib -lessl -lxlf90_r -lxlfmath -L/sw/summit/cuda/10.1.243/lib64 -lcublas -lcudart -lnvToolsExt -lstdc++ -lgomp)
 -
 -    include_directories(${PROJECT_BINARY_DIR}/exatensor/src/exatensor/include)
--
--    #Add also the tests (weird to do this here, but this whole test set up needs an overhaul).
--    dirac_test(exacorr_talsh_debug "cc;talsh;short" "")
--    dirac_test(exacorr_talsh_standalone "cc;talsh;short" "")
--    dirac_test(exacorr_talsh_lambda "cc;talsh" "")
--    dirac_test(exacorr_talsh_fock "cc;talsh" "")
--    dirac_test(exacorr_talsh_open "cc;talsh;short" "")
--    dirac_test(exacorr_talsh_cc2 "cc;talsh" "")
--    dirac_test(exacorr_talsh_spinfree "cc;talsh" "")
--    dirac_test(exacorr_talsh_respect "cc;talsh;respect" "")
--    dirac_test(exacorr_talsh_memory "cc;talsh;short" "")
--    if (ENABLE_MPI AND NOT EXATENSOR_TALSH)
--        dirac_test(exacorr_exatensor_debug "cc;exatensor" "")
--        dirac_test(exacorr_exatensor_fock "cc;exatensor" "")
--        dirac_test(exacorr_exatensor_open "cc;exatensor" "")
--        dirac_test(exacorr_exatensor_lambda "cc;exatensor" "")
--        dirac_test(exacorr_exatensor_cc2 "cc;exatensor" "")
--	dirac_test(exacorr_exatensor_memory "cc;exatensor;short" "")
--    endif()
- #   disabled some tests waiting for code verification/efficiency improvement
- #   dirac_test(exacorr_talsh_cholesky "cc;talsh" "")
- #   dirac_test(exacorr_exatensor_cholesky "cc;exatensor" "")
-@@ -142,7 +46,4 @@ if(ENABLE_EXATENSOR)
- #   dirac_test(exacorr_exatensor_ao2mo "cc;exatensor" "")
- #   dirac_test(exacorr_exatensor_spinfree "cc;exatensor" "")
++set(ENABLE_EXATENSOR ENABLED)
++
++# ExternalProject_Add seems required as later in the build process,
++# DIRAC includes exatensor via the CMAKE dependency system. It's not 100%
++# clear to me, so I'll just have that as a dummy here.
++ExternalProject_Add(exatensor
++  PREFIX "exatensor"
++  INSTALL_DIR @exatensor@
++	STAMP_DIR "exatensor"
++	SOURCE_DIR "exatensor/src"
++	CONFIGURE_COMMAND true
++	BUILD_COMMAND true
++  INSTALL_COMMAND true
++)
++
++set(EXTERNAL_LIBS ${EXTERNAL_LIBS} @exatensor@/lib/libtalsh.so)
++set(EXTERNAL_LIBS ${EXTERNAL_LIBS} @exatensor@/lib/libexatensor.so)
++include_directories(@exatensor@/include)
  
+     #Add also the tests (weird to do this here, but this whole test set up needs an overhaul).
+     #disabled some tests waiting for code verification/efficiency improvement
+@@ -197,7 +38,6 @@ if(ENABLE_EXATENSOR)
+     dirac_test(exacorr_talsh_mp2lap "mp2lap;talsh" "")
+     dirac_test(exacorr_talsh_tripl_lap "cc;talsh" "")
+ 
+-    if (ENABLE_MPI AND NOT EXATENSOR_TALSH)
+ 	dirac_test(exacorr_exatensor_memory "cc;exatensor;short" "")
+         dirac_test(exacorr_exatensor_debug "cc;exatensor" "")
+         dirac_test(exacorr_exatensor_fock "cc;exatensor" "")
+@@ -211,8 +51,5 @@ if(ENABLE_EXATENSOR)
+ 	#dirac_test(exacorr_exatensor_cholesky "cc;exatensor;long" "")
+         dirac_test(exacorr_exatensor_mp2no "mp2no;exatensor" "")
+         dirac_test(exacorr_exatensor_mp2no_restart "mp2no_re;exatensor" "")
+-    endif()
 -
 -endif()
--
+ 
  message(STATUS "Enable ExaTENSOR library: ${ENABLE_EXATENSOR}")
