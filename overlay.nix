@@ -173,10 +173,23 @@ let
           gfortran = final.gfortran9;
         };
 
-        molcas = callPackage ./pkgs/apps/openmolcas/default.nix {
-          stdenv = aggressiveStdenv;
-          blas = final.blas-ilp64;
-        };
+        molcas = let
+          molcasOpt = prev.openmolcas.override {
+            stdenv = aggressiveStdenv;
+            hdf5-cpp = self.hdf5-full;
+          };
+        in molcasOpt.overrideAttrs (oldAttrs: {
+          buildInputs = oldAttrs.buildInputs ++ [ self.chemps2 ];
+          cmakeFlags = oldAttrs.cmakeFlags ++ [
+            "-DWFA=ON"
+            "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${self.chemps2}/bin"
+          ];
+          prePatch = ''
+            rm -r External/libwfa
+            cp -r ${self.libwfa.src} External/libwfa
+            chmod -R u+w External/
+          '';
+        });
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
