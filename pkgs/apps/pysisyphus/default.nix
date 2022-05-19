@@ -6,7 +6,7 @@
 # Runtime dependencies
 , runtimeShell
 , jmol, enableJmol ? true
-, multiwfn, enableMultiwfn ? false
+, multiwfn, enableMultiwfn ? true
 , xtb, enableXtb ? true
 , molcas, enableMolcas ? true
 , psi4, enablePsi4 ? true
@@ -70,7 +70,7 @@ let
 in
   buildPythonPackage rec {
     pname = "pysisyphus";
-    version = "0.7.5.post1";
+    version = "0.7.6.post1";
 
     nativeBuildInputs = [ makeWrapper setuptools-scm ];
 
@@ -116,7 +116,7 @@ in
       owner = "eljost";
       repo = pname;
       rev = version;
-      hash = "sha256-800Pm14eEq3Zc3f2xWy99w6eFKXa+/rorqZvC0F08Kc=";
+      hash = "sha256-lgowUMa7lBXEp5ztwNa1MRAqDehCNTFMFugqZLHsdXc=";
     };
 
     format = "pyproject";
@@ -126,6 +126,7 @@ in
     checkInputs = [ openssh pytestCheckHook ];
 
     preCheck = ''
+      export OMP_NUM_THREADS=1
       export PYSISRC=${pysisrc}
       cat ${pysisrc}
       export PATH=$PATH:${binSearchPath}
@@ -154,6 +155,7 @@ in
     '';
 
     passthru = { inherit
+      pysisrc
       enableXtb
       enableJmol
       enableMultiwfn
