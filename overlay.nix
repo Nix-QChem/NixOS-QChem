@@ -107,7 +107,7 @@ let
         #
         # Applications
         #
-        #adcc = c
+        autoint = super.python3.pkgs.toPythonApplication self.python3.pkgs.pyphspu;
 
         bagel = callPackage ./pkgs/apps/bagel {
           boost = final.boost165;
