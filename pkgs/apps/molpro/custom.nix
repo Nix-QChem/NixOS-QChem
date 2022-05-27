@@ -113,5 +113,6 @@ in stdenv.mkDerivation {
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
+    broken = true;
   };
 }
