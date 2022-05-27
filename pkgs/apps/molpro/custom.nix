@@ -1,5 +1,5 @@
 { lib, stdenv, token, fetchgit, requireFile, python3, perl, gfortran
-, eigen, globalarrays, libxml2, blas, lapack, openmpi, openssh
+, eigen, globalarrays, libxml2, blas, lapack, mpi, openssh
 } :
 
 assert token != null;
@@ -33,7 +33,7 @@ in stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  nativeBuildInputs = [ perl gfortran openssh ];
+  nativeBuildInputs = [ perl openssh ];
 
   buildInputs = [
     blas
@@ -41,14 +41,18 @@ in stdenv.mkDerivation {
     globalarrays
     lapack
     libxml2
-    openmpi
     python3
   ];
 
+
+  propagatedBuildInputs = [ mpi ];
+
+  passthru = { inherit mpi; };
+
   configureFlags = [
-    "--enable-integer8"
     "--enable-aims"
-  ] ++ lib.optional blas.isILP64 "--with-lapack-int64";
+  ] ++ lib.optional blas.isILP64 "--enable-integer8"
+    ++ lib.optional lapack.isILP64 "--with-lapack-int64";
 
   prePatch = ''
     tar xf ${deps}
