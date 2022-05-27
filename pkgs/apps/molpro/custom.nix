@@ -14,7 +14,7 @@ let
   # content from private Gitlab repose, only accessible
   # to licensees
   deps = requireFile {
-    url = http://www.molpro.net;
+    url = "http://www.molpro.net";
     name = "molpro-deps-${version}-${rev}.tar.gz";
     sha256 = "14bjk7jl9593i3j7v44xxfpdszc5xg74b5phkf2lqx937niscg8s";
   };
@@ -24,7 +24,7 @@ in stdenv.mkDerivation {
   inherit version;
 
   src = requireFile {
-    url = http://www.molpro.net;
+    url = "http://www.molpro.net";
     name = "molpro-src-${version}-${rev}.tgz";
     sha256 = "117g7fzs9qxxam5g3dfxpavb61fm2v1n6x6cq5rq0lfc0c34b6mc";
   };
@@ -101,7 +101,7 @@ in stdenv.mkDerivation {
      # need to specify interface or: "MPID_nem_tcp_init(373) gethostbyname failed"
      $out/bin/molpro $inp.inp
 
-     echo "Check for sucessful run:"
+     echo "Check for successful run:"
      grep "RHF STATE  1.1 Energy" $inp.out
      echo "Check for correct energy:"
      grep "RHF STATE  1.1 Energy" $inp.out | grep 74.880174
@@ -109,7 +109,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Quantum chemistry program package";
-    homepage = https://www.molpro.net;
+    homepage = "https://www.molpro.net";
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
