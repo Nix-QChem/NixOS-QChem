@@ -37,7 +37,7 @@ let
       ] ++ postOverlays;
 
       config = {
-        allowUnfree = allowUnfree;
+        inherit allowUnfree;
         qchem-config = cfg;
 
         inHydra = true;
