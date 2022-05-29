@@ -44,5 +44,6 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
     mainProgram = "iboview";
     maintainers = [ maintainers.sheepforce ];
+    broken = true;  # requires an update/patch for gcc-10/11
   };
 }
