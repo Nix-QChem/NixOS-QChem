@@ -36,24 +36,36 @@ let
         (import ./overlay.nix)
       ] ++ postOverlays;
 
-      config.allowUnfree = allowUnfree;
-      config.qchem-config = cfg;
-      # Provide a handler to sort out unfree Packages
-      # This creates a hard fail, which we can test with tryEval v.drvPath
-      config.handleEvalIssue = reason: message:
-        if reason == "unfree" then false
-        else throw message;
-      config.checkMetaRecursively = true;
-      config.inHydra = true;
+      config = {
+        allowUnfree = allowUnfree;
+        qchem-config = cfg;
+
+        inHydra = true;
+
+        # Provide a handler to sort out unfree Packages
+        # This creates a hard fail, which we can test with tryEval v.drvPath
+        handleEvalIssue = reason: message:
+          if reason == "unfree" then false
+          else throw message;
+
+        checkMetaRecursively = true;
+      };
     };
+
+    isBroken = pkg:
+      if (pkg ? meta && pkg.meta ? broken) then pkg.meta.broken
+      else false;
 
     makeForPython = plist:
       pkgSet.lib.foldr (a: b: a // b) {}
       (map (x: { "${x}" = hydraJobs pkgSet."${cfg.prefix}"."${x}".pkgs."${cfg.prefix}"; }) plist);
 
     # Filter out valid derivations
+    # Remove broken and unfree if not permitted
     hydraJobs = with lib; filterAttrs (n: v:
-      (builtins.tryEval (isDerivation v)).value && (if allowUnfree then true else (builtins.tryEval v.drvPath).success)
+      (builtins.tryEval (isDerivation v)).value
+      && (if allowUnfree then true else (builtins.tryEval v.drvPath).success)
+      && (if isBroken v then (builtins.trace "Warning: ${n} is marked broken." false) else true)
     );
 
     # Filter Attributes from set by name and put them in a list
