@@ -39,12 +39,12 @@ in buildFHSUserEnv {
       ncurses
       jdk11
       pam
-      dbus_glib
+      dbus-glib
       dbus
       pango
       gtk2-x11
       atk
-      gdk_pixbuf
+      gdk-pixbuf
       cairo
     ]) ++ (with pkgs.xorg;
     [ libX11
