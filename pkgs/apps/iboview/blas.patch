@@ -1,15 +1,14 @@
 diff --git a/main.pro b/main.pro
-index 806209c..8718c79 100644
+index 1027e0a..233c95b 100644
 --- a/main.pro
 +++ b/main.pro
-@@ -14,55 +14,8 @@
- #
- # to force internal LAPACK emulation
+@@ -23,52 +23,8 @@ win32 {
+ ############################### CONFIG: Check for availability of MKL or other
+ ############################### external BLAS/LAPACK
  
--
 -BLASLIB=$$(BLASLIB)
 -# ^-- pick up environment variable BLASLIB if present. See: https://doc.qt.io/archives/qt-4.8/qmake-advanced-usage.html
--!isEmpty($$BLASLIB) {
+-!isEmpty(BLASLIB) {
 -   message(using BLAS linker line from environment variable BLASLIB: $$BLASLIB)
 -}
 -# no BLAS/LAPACK linker line explicitly specified as environment variable?
@@ -19,7 +18,6 @@ index 806209c..8718c79 100644
 -   # If the MKLROOT environment variable is not set, you can also override
 -   # the path manually (e.g., setting MKLDIR = /opt/intel/composerxe/mkl)
 -   MKLDIR = $$(MKLROOT)
--#    message(MKLROOT environment variable: $$MKLDIR)
 -   !isEmpty(MKLDIR) {
 -      exists($$MKLDIR) {
 -         message(Using MKL from MKLROOT: $$MKLDIR)
@@ -41,7 +39,6 @@ index 806209c..8718c79 100644
 -   #   (e.g., -lmkl_intel_ilp64, NOT -lmkl_intel_lp64).
 -}
 -
--# message(final BLASLIB:$$BLASLIB)
 -!isEmpty(BLASLIB) {
 -   message(Using external BLAS/LAPACK: $$BLASLIB)
 -   LIBS += $$BLASLIB
@@ -58,5 +55,5 @@ index 806209c..8718c79 100644
 +LIBS += -L@BLAS@/lib -L@LAPACK@/lib -lblas -llapack
 +HAVE_EXTERNAL_BLAS = 1
  
- 
- ###! START_DIRS
+ ############################### CONFIG: Check for C++ boost libraries
+ ############################### (we only use header-only sub-libraries)

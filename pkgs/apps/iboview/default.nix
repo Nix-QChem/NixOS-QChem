@@ -1,17 +1,27 @@
 { lib, stdenv, fetchurl, wrapQtAppsHook, qmake, qtscript, qtsvg, blas-ilp64, lapack-ilp64
-, glew, boost, eigen, libGLU }:
+, glew, boost, eigen, libGLU, unzip }:
 
 stdenv.mkDerivation rec {
   pname = "IboView";
-  version = "20211019";
+  version = "20211019-RevA";
 
   src = fetchurl {
-    url = "http://www.iboview.org/bin/ibo-view.${version}.tar.bz2";
-    sha256 = "0mrspsdl30n2v5ymrig7yqq6xmpad9r3zr0da5hp7b8gzyzkg61f";
+    url = "http://www.iboview.org/bin/ibo-view.${version}.zip";
+    sha256 = "sha256-SK6jb4mZZjG2IcVx7FanPvG5vXABjxE2hb1GHrHHkQU=";
   };
 
-  # Getting multiple arguments from the environment variable as by documentation does not work.
-  patches = [ ./blas.patch ];
+  unpackPhase = ''
+    ${unzip}/bin/unzip ${src}
+    cd ibo-view.${version}
+  '';
+
+  patches = [
+    # Ensure correct BLAS linking. The involved setup in main.pro does not work here
+    ./blas.patch
+
+    # Fix compatibility with GCC >= 11
+    ./gcc.patch
+  ];
   postPatch = ''
     substituteInPlace main.pro \
       --subst-var-by BLAS ${blas-ilp64} \
@@ -44,6 +54,5 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
     mainProgram = "iboview";
     maintainers = [ maintainers.sheepforce ];
-    broken = true;  # requires an update/patch for gcc-10/11
   };
 }
