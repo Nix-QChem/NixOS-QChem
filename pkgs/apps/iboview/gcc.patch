@@ -1,0 +1,28 @@
+diff --git a/src/Common/CxIntrusivePtr.h b/src/Common/CxIntrusivePtr.h
+index 710c048..7a28bf4 100644
+--- a/src/Common/CxIntrusivePtr.h
++++ b/src/Common/CxIntrusivePtr.h
+@@ -49,6 +49,7 @@
+ 
+ #include <algorithm> // for std::swap.
+ #include <functional> // for std::less
++#include <cstddef> // for ptrdiff_t
+ 
+ namespace ct {
+    struct FIntrusivePtrDest1;
+diff --git a/src/IboView/IvOrbitalFile.cpp b/src/IboView/IvOrbitalFile.cpp
+index 73e6be7..b048bb0 100644
+--- a/src/IboView/IvOrbitalFile.cpp
++++ b/src/IboView/IvOrbitalFile.cpp
+@@ -1942,7 +1942,7 @@ int CmpArrays(FSequence const &A, FSequence const &B)
+ // compare two IR gauss shell objects, in order to find equivalent ones on different atoms.
+ struct FGaussFnCmp
+ {
+-   bool operator () (ct::FAtomShellPtr const &pA, ct::FAtomShellPtr const &pB) {
++   bool operator () (ct::FAtomShellPtr const &pA, ct::FAtomShellPtr const &pB) const {
+       if (pA->AngMom < pB->AngMom) return true;
+       if (pB->AngMom < pA->AngMom) return false;
+       int iCmp;
+-- 
+2.36.1
+
