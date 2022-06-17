@@ -310,6 +310,8 @@ let
 
         amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
 
+        libecpint = callPackage ./pkgs/lib/libecpint { };
+
         libefp = callPackage ./pkgs/lib/libefp { };
 
         libGDSII = callPackage ./pkgs/lib/libGDSII { };
