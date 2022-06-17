@@ -70,7 +70,7 @@ let
 in
   buildPythonPackage rec {
     pname = "pysisyphus";
-    version = "0.7.6.post1";
+    version = "0.7.6.post2";
 
     nativeBuildInputs = [ makeWrapper setuptools-scm ];
 
@@ -116,7 +116,7 @@ in
       owner = "eljost";
       repo = pname;
       rev = version;
-      hash = "sha256-lgowUMa7lBXEp5ztwNa1MRAqDehCNTFMFugqZLHsdXc=";
+      hash = "sha256-QAzsoVExSmG3CKyHMkCk+JbtAUvRqCa26VnvOD65Kfs=";
     };
 
     format = "pyproject";
