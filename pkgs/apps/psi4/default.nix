@@ -1,7 +1,7 @@
 { lib, stdenv, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
-, writeTextFile, cmake, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
-, deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, chemps2, hdf5, hdf5-cpp
-, pytest, mpfr, gmpxx, eigen, boost, adcc, fetchpatch
+, writeTextFile, cmake, ninja, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
+, deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, libecpint, cppe
+, chemps2, hdf5, hdf5-cpp, pytest, mpfr, gmpxx, eigen, boost, adcc
 } :
 
 let
@@ -36,32 +36,80 @@ let
     '';
   });
 
+  /* This is libint built with high maximum angular momentum. The code generator
+     first runs to generate libint itself and then builds. Will take forever ...
   libint = stdenv.mkDerivation rec {
     pname = "libint";
-    version = "0.1";
+    version = "2.7.1";
 
+    # This is the current state of loriab/libint/new-cmake-harness-lab-rb1 at Psi4 1.6 release
     src = fetchurl {
-      url = "https://github.com/loriab/${pname}/releases/download/v${version}/Libint2-export-7-7-4-7-7-5_1.tgz";
-      hash = "sha256-tn7BKd44HTZYPUNgFvriG3wcFkZMOidO/Tmqq6+0b5s=";
+      url = "https://github.com/loriab/${pname}/archive/9f12ee61e1ce52420fe3020712c3584cb3e9a1b4.tar.gz";
+      hash = "sha256-xlsVLCjBlP3Xf7qrTqZO9Y8Oo7eIieRKBz2jxphSGM0=";
     };
 
-    nativeBuildInputs = [ cmake ];
+    nativeBuildInputs = [ cmake ninja ];
     propagatedBuildInputs = [ eigen boost mpfr ];
 
     preConfigure = ''
       ulimit -s 65536
       cmakeFlagsArray+=(
         ${builtins.toString specialInstallCmakeFlags}
-        -DLIBINT2_SHGAUSS_ORDERING=gaussian
+        -GNinja
         -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_SHARED=ON
-        -DBUILD_STATIC=ON
-        -DMERGE_LIBDERIV_INCLUDEDIR=OFF
+        -DENABLE_ONEBODY=2
+        -DENABLE_ERI=2
+        -DENABLE_ERI3=2
+        -DENABLE_ERI2=2
+        -DERI3_PURE_SH=OFF
+        -DERI2_PURE_SH=OFF
+        -DLIBINT2_SHGAUSS_ORDERING=gaussian
+        -DLIBINT2_CARTGAUSS_ORDERING=standard
+        -DLIBINT2_SHELL_SET=standard
+        -DBUILD_SHARED_LIBS=ON
+        -DLIBINT2_BUILD_SHARED_AND_STATIC_LIBS=ON
+        -DREQUIRE_CXX_API=ON
+        -DREQUIRE_CXX_API_COMPILED=OFF
+        -DENABLE_FORTRAN=OFF
+        -DENABLE_XHOST=ON
         -DBUILD_FPIC=ON
-        -DENABLE_GENERIC=ON
-        -DCMAKE_CXX_FLAGS=-fPIC
-        -DENABLE_CXX11API=ON
-        -DCMAKECONFIG_INSTALL_DIR=$out/share/cmake/Libint2
+        -DWITH_MAX_AM=7
+        #-DCMAKECONFIG_INSTALL_DIR=$out/share/cmake/Libint2
+      )
+    '';
+  };
+  */
+
+  libint = stdenv.mkDerivation rec {
+    pname = "libint";
+    version = "2.7.1";
+
+    src = fetchurl {
+      url = "https://github.com/loriab/libint/releases/download/v0.1/Libint2-export-5-4-3-6-5-4_mm4f12ob2.tgz";
+      hash = "sha256-Lh5FYJkhhawPvHTFO8gEdhFe+dCvYMmtZMUQ6+YjVYQ=";
+    };
+
+    nativeBuildInputs = [ cmake ninja ];
+    propagatedBuildInputs = [ eigen boost mpfr ];
+
+    preConfigure = ''
+      ulimit -s 65536
+      cmakeFlagsArray+=(
+        ${builtins.toString specialInstallCmakeFlags}
+        -GNinja
+        -DCMAKE_BUILD_TYPE=Release
+        -DENABLE_ONEBODY=2
+        -DENABLE_ERI=2
+        -DENABLE_ERI3=2
+        -DENABLE_ERI2=2
+        -DERI3_PURE_SH=OFF
+        -DERI2_PURE_SH=OFF
+        -DLIBINT2_SHGAUSS_ORDERING=gaussian
+        -DBUILD_SHARED_LIBS=ON
+        -DLIBINT2_BUILD_SHARED_AND_STATIC_LIBS=ON
+        -DREQUIRE_CXX_API=ON
+        -DREQUIRE_CXX_API_COMPILED=OFF
+        -DBUILD_FPIC=ON
       )
     '';
   };
@@ -92,7 +140,7 @@ let
 
 in buildPythonPackage rec {
     pname = "psi4";
-    version = "1.5";
+    version = "1.6";
 
     nativeBuildInputs = [
       cmake
@@ -111,6 +159,8 @@ in buildPythonPackage rec {
       dkh_
       pcmsolver_
       libefp
+      libecpint
+      cppe
       chemps2_
       hdf5
       hdf5-cpp
@@ -140,15 +190,8 @@ in buildPythonPackage rec {
       repo = pname;
       owner = "psi4";
       rev = "v${version}";
-      sha256 = "sha256-NVpE5fAVWYlkymTrvptZ7xqu68eVy71YJ+dRdBMMU9c=";
+      sha256 = "sha256-x+Nqpxe3TBx9NUET0MdfwwE/YQ+B7BirIlYXXFhNopI=";
     };
-
-    patches = [(fetchpatch {
-      # upstream patch, can be removed in the next upgrade
-      name = "adcc-exceptions";
-      url = "https://github.com/psi4/psi4/commit/09fec3e58f460749e7d877c5c0b762329ff4ca48.patch";
-      sha256 = "11n8ra7kqg709q8p8ibhwzcvlavnnqj26mlgv8af0yxflf7j0rcg";
-    })];
 
     cmakeFlags = [
       "-DDCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"
@@ -162,7 +205,7 @@ in buildPythonPackage rec {
       "-DCMAKE_INSIST_FIND_PACKAGE_gau2grid=ON"
       "-Dgau2grid_DIR=${gau2grid}/share/cmake/gau2grid"
       # libint
-      "-DMAX_AM_ERI=7"
+      "-DMAX_AM_ERI=5"
       "-DBUILD_SHARED_LIBS=ON"
       "-DCMAKE_INSIST_FIND_PACKAGE_Libint=ON"
       "-DLibint2_DIR=${libint}/share/cmake/Libint2"
@@ -177,12 +220,18 @@ in buildPythonPackage rec {
       "-DENABLE_dkh=ON"
       "-DCMAKE_INSIST_FIND_PACKAGE_dkh=ON"
       "-Ddkh_DIR=${dkh_}/share/cmake/dkh"
+      # CPPE
+      "-DENABLE_cppe=ON"
+      "-Dcppe_DIR=${cppe}"
+      # LibEcpInt
+      "-DENABLE_ecpint=ON"
+      "-Decpint_DIR=${libecpint}"
       # LibEFP
       "-DENABLE_libefp=ON"
       # CheMPS2
       "-DENABLE_CheMPS2=ON"
       # Prefix path for all external packages
-      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint}\""
+      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint};${libecpint};${cppe}\""
       # ADCC
       "-DENABLE_adcc=ON"
     ];
