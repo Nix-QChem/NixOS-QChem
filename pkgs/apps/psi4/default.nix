@@ -140,7 +140,7 @@ let
 
 in buildPythonPackage rec {
     pname = "psi4";
-    version = "1.6";
+    version = "1.6.1";
 
     nativeBuildInputs = [
       cmake
@@ -190,7 +190,7 @@ in buildPythonPackage rec {
       repo = pname;
       owner = "psi4";
       rev = "v${version}";
-      sha256 = "sha256-x+Nqpxe3TBx9NUET0MdfwwE/YQ+B7BirIlYXXFhNopI=";
+      hash = "sha256-5Nb5cL660wyQpKlrfaSPMFtF2fDPrqVbQErW0tqo5s0=";
     };
 
     cmakeFlags = [
