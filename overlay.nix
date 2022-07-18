@@ -161,6 +161,8 @@ let
 
         janpa = callPackage ./pkgs/apps/janpa { };
 
+        json-fortran = callPackage ./pkgs/lib/json-fortran { };
+
         luscus = callPackage ./pkgs/apps/luscus { };
 
         nwchem = callPackage ./pkgs/apps/nwchem {
