@@ -157,6 +157,8 @@ let
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
+        janpa = callPackage ./pkgs/apps/janpa { };
+
         luscus = callPackage ./pkgs/apps/luscus { };
 
         nwchem = callPackage ./pkgs/apps/nwchem {
