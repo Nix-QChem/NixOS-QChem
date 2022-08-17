@@ -1,3 +1,4 @@
+
 { stdenv, lib, fetchgit, gfortran, cmake, makeWrapper
 , which, openssh, blas, lapack, mpi, python3
 } :
@@ -32,7 +33,7 @@ stdenv.mkDerivation rec {
   src = fetchgit  {
     url = "https://gitlab.com/dalton/dalton.git";
     rev = "9d7c5e435b75a9695d5ac8714121d12e6486149f"; # Git hash of 2020.1 as of 15.02.2022.
-    sha256 = "0fk5xfnj1mrrwmwdil4qgbd1a68wrwzwqr398mz015hj2679czfd";
+    sha256 = "sha256-WTKouo+JfeZf1w5kflMO8X5uhgHnsO/3RXi44QzIdHk=";
     deepClone = true;
   };
 
