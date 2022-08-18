@@ -6,7 +6,7 @@
 assert (!blas.isILP64 && !lapack.isILP64);
 
 let
-  version = "20220318";
+  version = "20220818";
 
 in stdenv.mkDerivation {
   pname = "qdng";
@@ -14,7 +14,7 @@ in stdenv.mkDerivation {
 
   src = requireFile {
     name = "qdng-${version}.tar.xz";
-    sha256 = "187xzl361gigmqxl4vb8d816s99x80gkab6qddzk91n2vx6q9g8h";
+    sha256 = "sha256-rw1XBITBr4ZP3/qVr3wh+NPHdAS5Th5nCIhIk6K1xG4=";
     message = "Get a copy of the QDng tarball from Markus...";
   };
 
@@ -22,6 +22,7 @@ in stdenv.mkDerivation {
     "--enable-openmp"
     "--with-blas=-lblas"
     "--with-lapack=-llapack"
+    "--disable-gccopt"
   ];
 
   enableParallelBuilding = true;
