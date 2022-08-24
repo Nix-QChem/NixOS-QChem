@@ -4,22 +4,14 @@
 
 stdenv.mkDerivation rec {
   pname = "crest";
-  version = "2.11.2";
+  version = "2.12";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-IdGo8VdUdw2GtWUaQywiJwhR20XNSEsZbGsGCmzsRlg=";
+    hash = "sha256-pTOcwKvAX9N2TQhfV9jJhik+0vLQB3MhHzR2fU4+oV0=";
   };
-
-  patches = [
-    # gfortran compilation issues due to non-standard use of .eq. instead of .eqv.
-    (fetchpatch {
-      url = "https://patch-diff.githubusercontent.com/raw/grimme-lab/crest/pull/92.diff";
-      sha256 = "0sdd7lpnhrrfagidfg438gv011mrmvdlpnnispcvjcbs7zxzzk2a";
-    })
-  ];
 
   nativeBuildInputs = [
     cmake
