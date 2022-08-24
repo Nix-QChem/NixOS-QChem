@@ -1,0 +1,42 @@
+diff --git a/Makefile b/Makefile
+index 5c0132a..65cb595 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,12 +1,12 @@
+ SIMD = -msse3
+-OPT = -O2 -qopenmp -qopenmp-link=static -threads -qopt-matmul $(SIMD) -diag-disable 8290,8291,6371,10316 -fpp -mkl -static-intel -DINTEL_MKL
+-OPT1 = -O1 -qopenmp -qopenmp-link=static -threads $(SIMD) -diag-disable 8290,8291,6371,10316 -fpp -mkl -static-intel -DINTEL_MKL
++OPT = -O2 -fopenmp -cpp -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl -ffree-line-length-none
++OPT1 = -O1 -fopenmp -cpp -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl -ffree-line-length-none
+ #Options in the next line is for debugging purpose
+ #OPTDBG = -O0 -qopenmp -diag-disable 8290,8291,6371 -threads -qopenmp-link=static -debug all -g -traceback -check all -fstack-protector -fpp -mkl -static-intel
+ 
+ LIB_GUI = ./dislin_d-11.0.a -lXm -lXt -lX11 -lGL   #At least works for CentOS 7.x
+ LIB_noGUI =
+-FC = ifort
++FC = gfortran
+ EXE = Multiwfn
+ EXE_noGUI = Multiwfn_noGUI
+ LIBRETAPATH = ./libreta_hybrid
+@@ -204,7 +204,7 @@ deloc_aromat.o : deloc_aromat.f90 $(modules)
+ 
+ 
+ noGUI/dislin_d_empty.o : noGUI/dislin_d_empty.f90
+-	$(FC) $(OPT) -c noGUI/dislin_d_empty.f90 -o noGUI/dislin_d_empty.o -diag-disable 6178,6843
++	$(FC) $(OPT) -c noGUI/dislin_d_empty.f90 -o noGUI/dislin_d_empty.o
+ 
+ 
+ # Interfaces of libreta-ESP to Multiwfn
+@@ -215,10 +215,10 @@ libreta.o: ${LIBRETAPATH}/libreta.f90 hrr_012345.o blockhrr_012345.o ean.o eanvr
+ # Pure libreta files for ESP
+ 
+ hrr_012345.o: ${LIBRETAPATH}/hrr_012345.f90
+-	$(FC) $(OPT) -diag-disable 6843 $(SIMD) -c ${LIBRETAPATH}/hrr_012345.f90
++	$(FC) $(OPT) $(SIMD) -c ${LIBRETAPATH}/hrr_012345.f90
+ 
+ blockhrr_012345.o: ${LIBRETAPATH}/blockhrr_012345.f90
+-	$(FC) -O1 -diag-disable 6843 $(SIMD) -c ${LIBRETAPATH}/blockhrr_012345.f90
++	$(FC) -O1 $(SIMD) -c ${LIBRETAPATH}/blockhrr_012345.f90
+ 
+ ean.o: ${LIBRETAPATH}/ean.f90 hrr_012345.o eanvrr_012345.o boysfunc.o ${LIBRETAPATH}/ean_data1.h ${LIBRETAPATH}/ean_data2.h
+ 	$(FC) $(OPT) -c ${LIBRETAPATH}/ean.f90

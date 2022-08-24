@@ -1,44 +1,36 @@
-{ stdenv, lib, makeWrapper, autoPatchelfHook, unzip,
-  writeScriptBin, fetchurl, glibc, xorg, libGL, motif
-} :
+{ stdenv, lib, makeWrapper, gfortran, unzip, fetchurl, xorg, libGL, motif, mkl }:
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.7";
+  version = "3.8-2022-08-24";
 
-  # Only builds with Intel tooling. ifort is not available in Nix, therefore the binary package.
   src = fetchurl {
-    url = "http://sobereva.com/multiwfn/misc/Multiwfn_${version}_bin_Linux.zip";
-    sha256 = "1xv8kicc34c5fx1mddmm9a94j5nm7nr6yrsvfm5v59a0wgk76rbs";
+    url = "http://sobereva.com/multiwfn/misc/Multiwfn_3.8_dev_src_Linux.zip";
+    hash = "sha256-2BvUiGz4WjQra2q6m8nU3OLIA6hNbOhpQJ5GKdyWj98=";
   };
 
+  patches = [
+    ./gfortran.patch
+  ];
+
   nativeBuildInputs = [
+    gfortran
     makeWrapper
-    autoPatchelfHook
     unzip
   ];
 
   buildInputs = [
     xorg.libX11
+    xorg.libXt
     libGL
     motif
+    mkl
   ];
-
-  dontConfigure = true;
-  dontBuild = true;
-
+  
   installPhase = ''
     mkdir -p $out/bin $out/share/multiwfn
-
-    # Copy binary to $out
-    chmod +x Multiwfn
-    cp Multiwfn $out/bin/.
-
-    # Copy examples and settings
-    cp -r examples settings.ini $out/share/multiwfn/.
-
-    # Symlink the settings.
-    ln -s $out/share/multiwfn/settings.ini $out/bin/.
+    chmod +x Multiwfn Multiwfn_noGUI
+    cp Multiwfn Multiwfn_noGUI $out/bin/.
   '';
 
   meta = with lib; {
