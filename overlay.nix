@@ -186,6 +186,10 @@ let
             "-DWFA=ON"
             "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${self.chemps2}/bin"
           ];
+
+          # Needed by libwfa
+          CXXFLAGS = [ "-DH5_USE_110_API" ];
+
           prePatch = ''
             rm -r External/libwfa
             cp -r ${self.libwfa.src} External/libwfa
