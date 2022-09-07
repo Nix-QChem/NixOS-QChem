@@ -31,6 +31,8 @@ stdenv.mkDerivation rec {
   # This is missing for some reason:
   LDFLAGS = "-lGLU";
 
+  NIX_CFLAGS_COMPILE = "-fcommon";
+
   nativeBuildInputs = [ cmake pkg-config ];
   buildInputs = [ libGLU libGL gtk2 gnome2.gtkglext ];
 
