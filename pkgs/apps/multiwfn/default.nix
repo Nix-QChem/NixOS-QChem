@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.8-2022-08-24";
+  version = "3.8-2022-09-08";
 
   src = fetchurl {
     url = "http://sobereva.com/multiwfn/misc/Multiwfn_3.8_dev_src_Linux.zip";
-    hash = "sha256-2BvUiGz4WjQra2q6m8nU3OLIA6hNbOhpQJ5GKdyWj98=";
+    hash = "sha256-W4gAuDPJatp89hgOBfUa9tyKD9UZu98oiPPeXVfdNKo=";
   };
 
   patches = [
@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
     motif
     mkl
   ];
-  
+
   installPhase = ''
     mkdir -p $out/bin $out/share/multiwfn
     chmod +x Multiwfn Multiwfn_noGUI
