@@ -17,7 +17,7 @@ buildPythonApplication rec {
   # The samples and screenshots directories confuse setuptools and they
   # refuse to build as long as these directories are present.
   prePatch = "rm -rf samples screenshots";
-  patches = [ ./pipVTK.patch ];
+  patches = [ ./pipVTK.patch ./Compat.patch ];
 
   propagatedBuildInputs = [
     numpy

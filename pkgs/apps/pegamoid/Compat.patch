@@ -1,0 +1,13 @@
+diff --git a/pegamoid.py b/pegamoid.py
+index bc44be5..a20af5c 100755
+--- a/pegamoid.py
++++ b/pegamoid.py
+@@ -2584,7 +2584,7 @@ class LineEditWithButton(QLineEdit):
+   def resizeEvent(self, event):
+     sz = self.button.sizeHint()
+     frameWidth = self.style().pixelMetric(QStyle.PM_DefaultFrameWidth)
+-    self.button.move(self.rect().right() - frameWidth - sz.width(), (self.rect().bottom() + 1 - sz.height())/2)
++    self.button.move(self.rect().right() - frameWidth - sz.width(), (self.rect().bottom() + 1 - sz.height())//2)
+   def setButton(self, text):
+     self.button.setText(text)
+     self.button.setVisible(bool(text))
