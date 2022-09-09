@@ -166,6 +166,8 @@ let
           lapack = final.lapack-ilp64;
         };
 
+        macroqc = callPackage ./pkgs/apps/macroqc { };
+        
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
         meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
