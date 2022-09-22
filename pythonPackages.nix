@@ -50,6 +50,8 @@ let
 
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
 
+    vermouth = callPackage ./pkgs/apps/vermouth { };
+
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
   } // lib.optionalAttrs super.isPy27 {
     pyquante = callPackage ./pkgs/apps/pyquante { };
