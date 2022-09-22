@@ -34,6 +34,8 @@ let
 
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
 
+    polyply = callPackage ./pkgs/apps/polyply { };
+
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
     psi4 = callPackage ./pkgs/apps/psi4 { };
@@ -49,6 +51,8 @@ let
     rmsd = callPackage ./pkgs/lib/rmsd { };
 
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
+
+    vermouth = callPackage ./pkgs/apps/vermouth { };
 
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
   } // lib.optionalAttrs super.isPy27 {
