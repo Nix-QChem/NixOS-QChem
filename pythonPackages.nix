@@ -34,6 +34,8 @@ let
 
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
 
+    polyply = callPackage ./pkgs/apps/polyply { };
+
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
     psi4 = callPackage ./pkgs/apps/psi4 { };
