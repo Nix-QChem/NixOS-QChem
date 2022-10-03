@@ -48,7 +48,8 @@ let
           if reason == "unfree" then false
           else throw message;
 
-        checkMetaRecursively = true;
+        checkMetaRecursively = false;
+        checkMeta = true;
       };
     };
 

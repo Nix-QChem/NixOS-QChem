@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, gfortran, cmake, fftw, pkgconfig } :
+{ stdenv, lib, fetchurl, gfortran, cmake, fftw, pkg-config } :
 
 stdenv.mkDerivation rec {
   pname = "tinker";
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     gfortran
-    pkgconfig
+    pkg-config
   ];
 
   buildInputs = [ fftw ];

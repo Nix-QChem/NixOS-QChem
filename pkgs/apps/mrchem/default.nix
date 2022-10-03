@@ -44,6 +44,6 @@ stdenv.mkDerivation rec {
     description = "Numerical real-space code for molecular electronic structure calculations";
     homepage = "https://mrchem.readthedocs.io";
     license = licenses.lgpl3Only;
-    maintainer = [ maintainers.markuskowa ];
+    maintainers = [ maintainers.markuskowa ];
   };
 }

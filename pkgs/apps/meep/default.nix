@@ -16,6 +16,8 @@ buildPythonPackage rec {
     hash = "sha256-dwoCWT2u67Yw2FrmIeBwt24V9YOu3spKLr71f3A70M0=";
   };
 
+  format = "other";
+
   nativeBuildInputs = [
     autoreconfHook
     gfortran
