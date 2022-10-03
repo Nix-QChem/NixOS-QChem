@@ -7,6 +7,9 @@ buildPythonPackage rec {
   pname = "openmm";
   version = "7.7.0";
 
+
+  format = "other";
+
   src = fetchFromGitHub {
     owner = "openmm";
     repo = pname;
