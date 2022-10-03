@@ -38,7 +38,7 @@ in stdenv.mkDerivation {
   meta = with lib; {
     description = "Quantum dynamics program package";
     platforms = platforms.linux;
-    maintainer = [ maintainers.markuskowa ];
+    maintainers = [ maintainers.markuskowa ];
     license = licenses.unfree;
   };
 }

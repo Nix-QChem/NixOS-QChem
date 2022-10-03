@@ -40,6 +40,6 @@ stdenv.mkDerivation rec {
     description = "General purpose numerical mathematics library based on multiresolution analysis";
     homepage = "https://mrcpp.readthedocs.io";
     license = licenses.lgpl3Only;
-    maintainer = [ maintainers.markuskowa ];
+    maintainers = [ maintainers.markuskowa ];
   };
 }
