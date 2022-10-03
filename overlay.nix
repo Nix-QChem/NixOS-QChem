@@ -167,7 +167,7 @@ let
         };
 
         macroqc = callPackage ./pkgs/apps/macroqc { };
-        
+
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
         meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
@@ -240,7 +240,7 @@ let
 
         qdng = callPackage ./pkgs/apps/qdng {
           stdenv = aggressiveStdenv;
-          protobuf = super.protobuf3_11;
+          protobuf = super.protobuf3_8;
         };
 
         qmcpack = callPackage ./pkgs/apps/qmcpack { };
