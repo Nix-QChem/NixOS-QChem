@@ -141,6 +141,8 @@ let
 
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
+        gabedit = callPackage ./pkgs/apps/gabedit { };
+
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           blas = final.blas-ilp64;
         };
