@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.8-2022-09-08";
+  version = "3.8-2022-10-05";
 
   src = fetchurl {
     url = "http://sobereva.com/multiwfn/misc/Multiwfn_3.8_dev_src_Linux.zip";
-    hash = "sha256-W4gAuDPJatp89hgOBfUa9tyKD9UZu98oiPPeXVfdNKo=";
+    hash = "sha256-FrO6GgXcXQogUgzZP0OWlvU/IYMFr0v/emeVRYi146s=";
   };
 
   patches = [
