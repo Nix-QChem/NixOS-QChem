@@ -3,13 +3,13 @@
 
 buildPythonPackage rec {
   pname = "polyply";
-  version = "1.3.1";
+  version = "1.4.0";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "polyply_1.0";
     rev = "v${version}";
-    hash = "sha256-q3S/frhVcoNlhBPwTISdJ7RZDjQcDqFlbSkVy5e4ZD8=";
+    hash = "sha256-JJDIsWCmjf6FxJqzHZC6scPr7iaFgOJYHfZaBnD3xUk=";
   };
 
   nativeBuildInputs = [ pbr ];
