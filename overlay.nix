@@ -280,6 +280,8 @@ let
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
 
+        test-drive = callPackage ./pkgs/lib/test-drive { };
+
         tinker = callPackage ./pkgs/apps/tinker { };
 
         travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
