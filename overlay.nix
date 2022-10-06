@@ -172,6 +172,8 @@ let
 
         macroqc = callPackage ./pkgs/apps/macroqc { };
 
+        mctc-lib = callPackage ./pkgs/lib/mctc-lib { };
+
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
         meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
