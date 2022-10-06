@@ -203,6 +203,8 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
+        mopac = callPackage ./pkgs/apps/mopac { };
+
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
         mrchem = callPackage ./pkgs/apps/mrchem { };
