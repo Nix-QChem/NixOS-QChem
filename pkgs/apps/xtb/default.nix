@@ -1,4 +1,5 @@
 { stdenv, lib, gfortran, fetchFromGitHub, cmake, makeWrapper, blas, lapack, writeTextFile
+, mctc-lib, test-drive
 , turbomole, enableTurbomole ? false
 , orca, enableOrca ? false
 , cefine
@@ -15,22 +16,23 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "xtb";
-  version = "6.4.1";
+  version = "6.5.1";
 
   src = fetchFromGitHub  {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    sha256= "1cakkysjj5qm3dhia0f3frp68rysc1p6p4hm8z36j20j02vmks0i";
+    hash = "sha256-9DTaHsK1NgcNbPKsjrVNvoWTyLdaqilZ59sAjAudS2M=";
   };
 
   nativeBuildInputs = [
     gfortran
     cmake
     makeWrapper
+    test-drive
   ];
 
-  buildInputs = [ blas lapack ];
+  buildInputs = [ blas lapack mctc-lib ];
 
   hardeningDisable = [ "format" ];
 

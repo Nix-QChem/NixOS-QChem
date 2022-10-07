@@ -161,6 +161,8 @@ let
 
         janpa = callPackage ./pkgs/apps/janpa { };
 
+        json-fortran = callPackage ./pkgs/lib/json-fortran { };
+
         luscus = callPackage ./pkgs/apps/luscus { };
 
         nwchem = callPackage ./pkgs/apps/nwchem {
@@ -169,6 +171,8 @@ let
         };
 
         macroqc = callPackage ./pkgs/apps/macroqc { };
+
+        mctc-lib = callPackage ./pkgs/lib/mctc-lib { };
 
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
@@ -279,6 +283,8 @@ let
 
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
+
+        test-drive = callPackage ./pkgs/lib/test-drive { };
 
         tinker = callPackage ./pkgs/apps/tinker { };
 
