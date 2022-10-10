@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, autoreconfHook, ucx
+{ stdenv, lib, fetchFromGitHub, libtool, automake, autoconf, ucx
 , enableCuda ? false
 , cudatoolkit
 , enableAvx ? stdenv.hostPlatform.avxSupport
@@ -8,21 +8,30 @@
 
 stdenv.mkDerivation rec {
   pname = "ucc";
-  version = "1.0.0";
+  version = "1.1.0";
 
   src = fetchFromGitHub {
     owner = "openucx";
     repo = "ucc";
     rev = "v${version}";
-    sha256 = "006nv1b1gwh8hpjmghirsx8138800z4ll7xwwz89ddaazmq2mdx8";
+    sha256 = "sha256-5rf08SXy+vCfnz4zLJ0cMnxwso4WpZOt0jRRAUviVFU=";
   };
 
+  enableParallelBuilding = true;
+
   postPatch = ''
-    substituteInPlace src/components/mc/cuda/kernel/Makefile.am \
-      --replace "/bin/bash" "${stdenv.shell}"
+
+    for comp in $(find src/components -name Makefile.am); do
+      substituteInPlace $comp \
+        --replace "/bin/bash" "${stdenv.shell}"
+    done
   '';
 
-  nativeBuildInputs = [ autoreconfHook ];
+  preConfigure = ''
+    ./autogen.sh
+  '';
+
+  nativeBuildInputs = [ libtool automake autoconf ];
   buildInputs = [ ucx ]
     ++ lib.optional enableCuda cudatoolkit;
 
