@@ -20,8 +20,6 @@ let
 
     gator = callPackage ./pkgs/apps/gator { };
 
-    gpaw = callPackage ./pkgs/apps/gpaw { };
-
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
 
     meep = callPackage ./pkgs/apps/meep { };

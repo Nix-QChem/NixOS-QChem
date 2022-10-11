@@ -153,8 +153,6 @@ let
 
         gdma = callPackage ./pkgs/apps/gdma { };
 
-        gpaw = super.python3.pkgs.toPythonApplication self.python3.pkgs.gpaw;
-
         harminv = callPackage ./pkgs/apps/harminv { };
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
