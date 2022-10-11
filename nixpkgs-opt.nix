@@ -25,6 +25,7 @@ let
     hpcg = recallPackage hpcg {};
     i-pi = recallPackage i-pi {};
     gsl = recallPackage gsl {};
+    gpaw = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.gpaw {});
     libint = recallPackage libint {};
     libvori = recallPackage libvori {};
     libxc = recallPackage libxc {};
