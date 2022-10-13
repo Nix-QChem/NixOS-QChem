@@ -71,6 +71,8 @@ let
         ++ lib.optional hp.avx2Support ["AVX=2" ];
     });
 
+    ucc = recallPackage ucc {};
+
     hostPlatform = hp;
   };
 

@@ -342,7 +342,6 @@ let
 
         mrcpp = callPackage ./pkgs/lib/mrcpp { };
 
-        ucc = callPackage ./pkgs/lib/ucc { enableCuda = cfg.useCuda; };
         #
         # Utilities
         #

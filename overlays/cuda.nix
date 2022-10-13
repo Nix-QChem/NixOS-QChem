@@ -17,4 +17,8 @@ final: prev:
   ucx = prev.ucx.override {
     enableCuda = true;
   };
+
+  ucc = prev.ucc.override {
+    enableCuda = true;
+  };
 }
