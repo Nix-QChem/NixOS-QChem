@@ -24,6 +24,6 @@ stdenv.mkDerivation rec {
     description = "Dispersion correction for DFT";
     homepage = "https://github.com/dftbplus/dftd3-lib";
     platforms = platforms.unix;
-    license = licenses.gpl1Only;
+    license = licenses.gpl2Only;
   };
 }
