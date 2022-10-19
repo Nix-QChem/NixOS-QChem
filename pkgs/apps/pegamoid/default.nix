@@ -1,5 +1,5 @@
-{ buildPythonApplication, fetchFromGitLab, lib
-, numpy, h5py, pyqt5, qtpy, future, vtk
+{ buildPythonApplication, python3, fetchFromGitLab, lib
+, numpy, h5py, pyqt5, qtpy, future, vtk, qt5
 } :
 
 buildPythonApplication rec {
@@ -19,6 +19,10 @@ buildPythonApplication rec {
   prePatch = "rm -rf samples screenshots";
   patches = [ ./pipVTK.patch ./Compat.patch ];
 
+  preConfigure = ''
+    export PYTHONPATH=$PYTHONPATH:${vtk}/${python3.sitePackages}
+  '';
+
   propagatedBuildInputs = [
     numpy
     h5py
@@ -27,6 +31,12 @@ buildPythonApplication rec {
     vtk
     future
   ];
+
+  nativeBuildInputs = [ qt5.wrapQtAppsHook ];
+
+  preFixup = ''
+    wrapQtApp "$out/bin/pegamoid.py"
+  '';
 
   meta = with lib; {
     description = "Python GUI for OpenMolcas";
