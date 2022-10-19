@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "http://sobereva.com/multiwfn/misc/Multiwfn_3.8_dev_src_Linux.zip";
-    hash = "sha256-FrO6GgXcXQogUgzZP0OWlvU/IYMFr0v/emeVRYi146s=";
+    hash = "sha256-ON96OD61RNFPuTxs0pwF1/jlVC2l45OIdTmxsPx9cKM=";
   };
 
   patches = [
