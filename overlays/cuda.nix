@@ -10,10 +10,6 @@ final: prev:
     ch4backend = final.ucx;
   };
 
-  openmpi = prev.openmpi.override {
-    cudaSupport = true;
-  };
-
   ucx = prev.ucx.override {
     enableCuda = true;
   };
