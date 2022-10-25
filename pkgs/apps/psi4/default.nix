@@ -1,4 +1,4 @@
-{ lib, stdenv, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchurl, pkg-config
+{ lib, stdenv, buildPythonPackage, buildPackages, makeWrapper, fetchFromGitHub, fetchFromGitLab, fetchurl, pkg-config
 , writeTextFile, cmake, ninja, perl, gfortran, python, pybind11, qcelemental, qcengine, numpy, pylibefp
 , deepdiff, blas, lapack, gau2grid, libxc, dkh, dftd3, pcmsolver, libefp, libecpint, cppe
 , chemps2, hdf5, hdf5-cpp, pytest, mpfr, gmpxx, eigen, boost, adcc
@@ -35,6 +35,16 @@ let
       cd build
     '';
   });
+
+  libxc_ = libxc.overrideAttrs (x: {
+    src = fetchFromGitLab {
+      owner = "libxc";
+      repo = "libxc";
+      rev = "5.2.3";
+      hash = "sha256-PuLpwhyyht+kkPUTrJTH+VTY5WuOhi2mIUDrFqubF+w=";
+    };
+  });
+
 
   /* This is libint built with high maximum angular momentum. The code generator
      first runs to generate libint itself and then builds. Will take forever ...
@@ -153,7 +163,7 @@ in buildPythonPackage rec {
 
     buildInputs = [
       gau2grid
-      libxc
+      libxc_
       blas
       lapack
       dkh_
@@ -211,7 +221,7 @@ in buildPythonPackage rec {
       "-DLibint2_DIR=${libint}/share/cmake/Libint2"
       # libxc
       "-DCMAKE_INSIST_FIND_PACKAGE_Libxc=ON"
-      "-DLibxc_DIR=${libxc}/share/cmake/Libxc"
+      "-DLibxc_DIR=${libxc_}/share/cmake/Libxc"
       # pcmsolver
       "-DCMAKE_INSIST_FIND_PACKAGE_PCMSolver=ON"
       "-DENABLE_PCMSolver=ON"
@@ -231,7 +241,7 @@ in buildPythonPackage rec {
       # CheMPS2
       "-DENABLE_CheMPS2=ON"
       # Prefix path for all external packages
-      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint};${libecpint};${cppe}\""
+      "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc_};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint};${libecpint};${cppe}\""
       # ADCC
       "-DENABLE_adcc=ON"
     ];
