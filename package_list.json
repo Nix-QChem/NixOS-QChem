@@ -224,14 +224,6 @@
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
-    "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2022.3",
-    "pname": "gromacs",
-    "version": "2022.3",
-    "description": "Molecular dynamics software package",
-    "homepage": "http://www.gromacs.org"
-  },
-  {
     "attribute": "qchem.gromacsDouble",
     "name": "gromacs-2022.3",
     "pname": "gromacs",
@@ -249,6 +241,14 @@
   },
   {
     "attribute": "qchem.gromacs",
+    "name": "gromacs-2022.3",
+    "pname": "gromacs",
+    "version": "2022.3",
+    "description": "Molecular dynamics software package",
+    "homepage": "http://www.gromacs.org"
+  },
+  {
+    "attribute": "qchem.gromacsDoubleMpi",
     "name": "gromacs-2022.3",
     "pname": "gromacs",
     "version": "2022.3",
@@ -592,7 +592,7 @@
     "homepage": "https://nwchemgit.github.io"
   },
   {
-    "attribute": "qchem.octave",
+    "attribute": "qchem.octave-opt",
     "name": "octave-7.1.0",
     "pname": "octave",
     "version": "7.1.0",
@@ -600,7 +600,7 @@
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
-    "attribute": "qchem.octave-opt",
+    "attribute": "qchem.octave",
     "name": "octave-7.1.0",
     "pname": "octave",
     "version": "7.1.0",
@@ -974,6 +974,14 @@
     "version": "21.11.2021",
     "description": "Volume voxelator and calculator for PDBs",
     "homepage": "https://github.com/vosslab/vossvolvox"
+  },
+  {
+    "attribute": "qchem.wannier90",
+    "name": "wannier90-3.1.0",
+    "pname": "wannier90",
+    "version": "3.1.0",
+    "description": "Calculation of maximally localised Wannier functions",
+    "homepage": "http://www.wannier.org"
   },
   {
     "attribute": "qchem.wfoverlap",

@@ -29,10 +29,10 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-22.8.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
-| gromacs-2022.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
 | gromacs-2022.3 | qchem.gromacsDouble | Molecular dynamics software package |
 | gromacs-2022.3 | qchem.gromacsCudaMpi | Molecular dynamics software package |
 | gromacs-2022.3 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2022.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
 | gromacs-2022.3 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.1 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
@@ -75,8 +75,8 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | nixexprs | qchem.nixexprs | null |
 | NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-7.1.0 | qchem.octave | Scientific Programming Language |
 | octave-7.1.0 | qchem.octave-opt | Scientific Programming Language |
+| octave-7.1.0 | qchem.octave | Scientific Programming Language |
 | octopus-12.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-7.7.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | openmolcas-18.09-20180902 | qchem.molcas1809 | Quantum chemistry software package |
@@ -123,6 +123,7 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
+| wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.2 | qchem.wxmacmolplt | Graphical user inteface for GAMESS-US |
 | xtb-6.5.1 | qchem.xtb | Semiempirical extended tight-binding program package |
