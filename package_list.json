@@ -17,9 +17,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.95.1",
+    "name": "avogadro2-1.97.0",
     "pname": "avogadro2",
-    "version": "1.95.1",
+    "version": "1.97.0",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
@@ -65,17 +65,17 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-9.1.0",
+    "name": "cp2k-2022.2",
     "pname": "cp2k",
-    "version": "9.1.0",
+    "version": "2022.2",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
   {
     "attribute": "qchem.crest",
-    "name": "crest-2.11.2",
+    "name": "crest-2.12",
     "pname": "crest",
-    "version": "2.11.2",
+    "version": "2.12",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -113,9 +113,9 @@
   },
   {
     "attribute": "qchem.elpa",
-    "name": "elpa-2021.11.002",
+    "name": "elpa-2022.05.001",
     "pname": "elpa",
-    "version": "2021.11.002",
+    "version": "2022.05.001",
     "description": "Eigenvalue Solvers for Petaflop-Applications",
     "homepage": "https://elpa.mpcdf.mpg.de/"
   },
@@ -160,6 +160,14 @@
     "homepage": "http://www.fftw.org/"
   },
   {
+    "attribute": "qchem.gabedit",
+    "name": "gabedit-2.5.1",
+    "pname": "gabedit",
+    "version": "2.5.1",
+    "description": "Graphical User Interface for FireFly (PC-Gamess), Gamess-US, Gaussian, Molcas, Molpro, MPQC, NWChem, OpenMopac, Orca, PSI4 and Q-Chem computational chemistry packages",
+    "homepage": "https://gabedit.sourceforge.net/"
+  },
+  {
     "attribute": "qchem.gamess-us",
     "name": "gamess-us-2021R2P1",
     "pname": "gamess-us",
@@ -174,6 +182,14 @@
     "version": "0.2.0",
     "description": "Program for computational spectroscopy and calculations of molecular properties",
     "homepage": "https://github.com/gator-program/gator"
+  },
+  {
+    "attribute": "qchem.gaussian",
+    "name": "gaussian-16b01",
+    "pname": "gaussian",
+    "version": "16b01",
+    "description": "Quantum chemistry program package",
+    "homepage": null
   },
   {
     "attribute": "qchem.gaussview",
@@ -201,49 +217,49 @@
   },
   {
     "attribute": "qchem.gpaw",
-    "name": "gpaw-21.6.0",
+    "name": "gpaw-22.8.0",
     "pname": "gpaw",
-    "version": "21.6.0",
-    "description": "DFT and beyond within the projector-augmented wave method",
+    "version": "22.8.0",
+    "description": "Density functional theory and beyond within the projector-augmented wave method",
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
-    "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2022.2",
+    "attribute": "qchem.gromacsDoubleMpi",
+    "name": "gromacs-2022.3",
     "pname": "gromacs",
-    "version": "2022.2",
+    "version": "2022.3",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
-    "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2022.2",
+    "attribute": "qchem.gromacsDouble",
+    "name": "gromacs-2022.3",
     "pname": "gromacs",
-    "version": "2022.2",
+    "version": "2022.3",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsCudaMpi",
-    "name": "gromacs-2022.2",
+    "name": "gromacs-2022.3",
     "pname": "gromacs",
-    "version": "2022.2",
+    "version": "2022.3",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2022.2",
+    "name": "gromacs-2022.3",
     "pname": "gromacs",
-    "version": "2022.2",
+    "version": "2022.3",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2022.2",
+    "name": "gromacs-2022.3",
     "pname": "gromacs",
-    "version": "2022.2",
+    "version": "2022.3",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
@@ -265,9 +281,9 @@
   },
   {
     "attribute": "qchem.hdf5-full",
-    "name": "hdf5-cpp-fortran-1.12.1",
+    "name": "hdf5-cpp-fortran-1.12.2",
     "pname": "hdf5-cpp-fortran",
-    "version": "1.12.1",
+    "version": "1.12.2",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
@@ -302,6 +318,22 @@
     "version": "20211019-RevA",
     "description": "Calculator and visualiser for Intrinsic Bond Orbitals",
     "homepage": "http://www.iboview.org/index.html"
+  },
+  {
+    "attribute": "qchem.janpa",
+    "name": "janpa-2.02",
+    "pname": "janpa",
+    "version": "2.02",
+    "description": "Natural atomic orbital population analysis",
+    "homepage": "http://janpa.sourceforge.net/"
+  },
+  {
+    "attribute": "qchem.json-fortran",
+    "name": "json-fortran-8.3.0",
+    "pname": "json-fortran",
+    "version": "8.3.0",
+    "description": "Modern Fortran JSON API",
+    "homepage": "https://github.com/jacobwilliams/json-fortran"
   },
   {
     "attribute": "qchem.libecpint",
@@ -353,19 +385,11 @@
   },
   {
     "attribute": "qchem.libvori",
-    "name": "libvori-210412",
+    "name": "libvori-220621",
     "pname": "libvori",
-    "version": "210412",
+    "version": "220621",
     "description": "Library for Voronoi intergration of electron densities",
     "homepage": "https://brehm-research.de/libvori.php"
-  },
-  {
-    "attribute": "qchem.libwfa",
-    "name": "libwfa-2020-02-19",
-    "pname": "libwfa",
-    "version": "2020-02-19",
-    "description": "Wave-function analysis tool library for quantum chemical applications",
-    "homepage": "https://github.com/libwfa/libwfa"
   },
   {
     "attribute": "qchem.wfaMolcas",
@@ -376,10 +400,18 @@
     "homepage": "https://github.com/libwfa/libwfa"
   },
   {
+    "attribute": "qchem.libwfa",
+    "name": "libwfa-2020-02-19",
+    "pname": "libwfa",
+    "version": "2020-02-19",
+    "description": "Wave-function analysis tool library for quantum chemical applications",
+    "homepage": "https://github.com/libwfa/libwfa"
+  },
+  {
     "attribute": "qchem.libxc",
-    "name": "libxc-5.2.2",
+    "name": "libxc-6.0.0",
     "pname": "libxc",
-    "version": "5.2.2",
+    "version": "6.0.0",
     "description": "Library of exchange-correlation functionals for density-functional theory",
     "homepage": "https://www.tddft.org/programs/Libxc/"
   },
@@ -398,6 +430,30 @@
     "version": "0.8.6",
     "description": "Portable GUI for MOLCAS and other quantum chemical software",
     "homepage": "http://luscus.sourceforge.net"
+  },
+  {
+    "attribute": "qchem.macroqc",
+    "name": "MacroQC-1.0.6-2022-09-09",
+    "pname": "MacroQC",
+    "version": "1.0.6-2022-09-09",
+    "description": "An electronic structure theory software for large-scale applications",
+    "homepage": "https://macroqc.hacettepe.edu.tr/index.html"
+  },
+  {
+    "attribute": "qchem.matlab",
+    "name": "matlab",
+    "pname": "matlab",
+    "version": "",
+    "description": null,
+    "homepage": null
+  },
+  {
+    "attribute": "qchem.mctc-lib",
+    "name": "mctc-lib-0.3.0",
+    "pname": "mctc-lib",
+    "version": "0.3.0",
+    "description": "Modular computation tool chain library",
+    "homepage": "https://github.com/grimme-lab/mctc-lib"
   },
   {
     "attribute": "qchem.mctdh",
@@ -432,12 +488,44 @@
     "homepage": "http://www3.cmbi.umcn.nl/molden/"
   },
   {
+    "attribute": "qchem.molpro12",
+    "name": "molpro-2012.1.12",
+    "pname": "molpro",
+    "version": "2012.1.12",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net"
+  },
+  {
+    "attribute": "qchem.molpro",
+    "name": "molpro-2021.2.1",
+    "pname": "molpro",
+    "version": "2021.2.1",
+    "description": "Quantum chemistry program package",
+    "homepage": "http://www.molpro.net"
+  },
+  {
+    "attribute": "qchem.molpro-pr",
+    "name": "molpro-2021.2.1",
+    "pname": "molpro",
+    "version": "2021.2.1",
+    "description": "Quantum chemistry program package",
+    "homepage": "http://www.molpro.net"
+  },
+  {
     "attribute": "qchem.moltemplate",
     "name": "moltemplate-2.20.5",
     "pname": "moltemplate",
     "version": "2.20.5",
     "description": "A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies",
     "homepage": "https://www.moltemplate.org/"
+  },
+  {
+    "attribute": "qchem.mopac",
+    "name": "mopac-22.0.4",
+    "pname": "mopac",
+    "version": "22.0.4",
+    "description": "Semiempirical quantum chemistry",
+    "homepage": "https://github.com/openmopac/mopac"
   },
   {
     "attribute": "qchem.mrcc",
@@ -473,9 +561,9 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.7",
+    "name": "multiwfn-3.8-2022-10-05",
     "pname": "multiwfn",
-    "version": "3.7",
+    "version": "3.8-2022-10-05",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
@@ -504,14 +592,6 @@
     "homepage": "https://nwchemgit.github.io"
   },
   {
-    "attribute": "qchem.octave-opt",
-    "name": "octave-7.1.0",
-    "pname": "octave",
-    "version": "7.1.0",
-    "description": "Scientific Programming Language",
-    "homepage": "https://www.gnu.org/software/octave/"
-  },
-  {
     "attribute": "qchem.octave",
     "name": "octave-7.1.0",
     "pname": "octave",
@@ -520,10 +600,18 @@
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
+    "attribute": "qchem.octave-opt",
+    "name": "octave-7.1.0",
+    "pname": "octave",
+    "version": "7.1.0",
+    "description": "Scientific Programming Language",
+    "homepage": "https://www.gnu.org/software/octave/"
+  },
+  {
     "attribute": "qchem.octopus",
-    "name": "octopus-11.4",
+    "name": "octopus-12.1",
     "pname": "octopus",
-    "version": "11.4",
+    "version": "12.1",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
@@ -545,9 +633,9 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-22.06",
+    "name": "openmolcas-22.10",
     "pname": "openmolcas",
-    "version": "22.06",
+    "version": "22.10",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -616,6 +704,14 @@
     "homepage": "https://pypi.org/project/Pegamoid"
   },
   {
+    "attribute": "qchem.polyply",
+    "name": "polyply-1.4.0",
+    "pname": "polyply",
+    "version": "1.4.0",
+    "description": "Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates",
+    "homepage": "https://github.com/marrink-lab/polyply_1.0"
+  },
+  {
     "attribute": "qchem.project-shell",
     "name": "project-shell-0.9",
     "pname": "project-shell",
@@ -625,9 +721,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.6",
+    "name": "psi4-1.6.1",
     "pname": "psi4",
-    "version": "1.6",
+    "version": "1.6.1",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
@@ -641,17 +737,17 @@
   },
   {
     "attribute": "qchem.pysisyphus",
-    "name": "pysisyphus-0.7.6.post2",
+    "name": "pysisyphus-0.7.6.post3",
     "pname": "pysisyphus",
-    "version": "0.7.6.post2",
+    "version": "0.7.6.post3",
     "description": "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths",
     "homepage": "https://github.com/eljost/pysisyphus"
   },
   {
     "attribute": "qchem.qdng",
-    "name": "qdng-20220318",
+    "name": "qdng-20220818",
     "pname": "qdng",
-    "version": "20220318",
+    "version": "20220818",
     "description": "Quantum dynamics program package",
     "homepage": null
   },
@@ -688,7 +784,7 @@
     "homepage": "http://www.netlib.org/scalapack/"
   },
   {
-    "attribute": "qchem.sharc-full",
+    "attribute": "qchem.sharc-gaussian",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -712,7 +808,23 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
+    "attribute": "qchem.sharc-molpro",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
     "attribute": "qchem.sharc-molcas",
+    "name": "sharc-2.1.1",
+    "pname": "sharc",
+    "version": "2.1.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-full",
     "name": "sharc-2.1.1",
     "pname": "sharc",
     "version": "2.1.1",
@@ -761,9 +873,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-1.16.5",
+    "name": "spglib-2.0.1",
     "pname": "spglib",
-    "version": "1.16.5",
+    "version": "2.0.1",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },
@@ -790,6 +902,14 @@
     "version": "2013",
     "description": "Measure memory transfer rates in MB/s for simple computational kernels",
     "homepage": "http://www.cs.virginia.edu/stream/ref.html"
+  },
+  {
+    "attribute": "qchem.test-drive",
+    "name": "test-drive-0.4.0",
+    "pname": "test-drive",
+    "version": "0.4.0",
+    "description": "Procedural Fortran testing framework",
+    "homepage": "https://github.com/fortran-lang/test-drive"
   },
   {
     "attribute": "qchem.tested",
@@ -825,9 +945,9 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.0.0",
+    "name": "ucc-1.1.0",
     "pname": "ucc",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Collective communication operations API",
     "homepage": null
   },
@@ -873,9 +993,9 @@
   },
   {
     "attribute": "qchem.xtb",
-    "name": "xtb-6.4.1",
+    "name": "xtb-6.5.1",
     "pname": "xtb",
-    "version": "6.4.1",
+    "version": "6.5.1",
     "description": "Semiempirical extended tight-binding program package",
     "homepage": "https://www.chemie.uni-bonn.de/pctc/mulliken-center/grimme/software/xtb"
   }

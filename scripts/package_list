@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash -p jq
 
-nix-env -f release.nix -qa --arg config '{ allowEnv=true; }' --json -A qchem | \
+nix-env -f release.nix -qa --arg config '{ allowEnv=true; }' --meta --json -A qchem | \
   jq -r '[. |to_entries | .[] |
       { attribute : .key,
 	name: .value.name,
