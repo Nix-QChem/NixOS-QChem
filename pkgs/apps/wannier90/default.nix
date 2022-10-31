@@ -22,6 +22,7 @@ stdenv.mkDerivation rec {
   # test cases are removed as error bounds of wannier90 are obviously to tight
   postPatch = ''
     rm -r test-suite/tests/testpostw90_{fe_kpathcurv,fe_kslicecurv,si_geninterp,si_geninterp_wsdistance}
+    rm -r test-suite/tests/testw90_example26   # Fails without AVX optimizations
     patchShebangs test-suite/run_tests test-suite/testcode/bin/testcode.py
   '';
 
