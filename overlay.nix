@@ -79,6 +79,9 @@ let
             glpk
             suitesparse
             gnuplot;
+          inherit (self)
+            fftw
+            arpack;
         }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
 
         # GUI version
@@ -91,6 +94,9 @@ let
             glpk
             suitesparse
             gnuplot;
+          inherit (self)
+            fftw
+            arpack;
         }).overrideAttrs (x: { preCheck = "export OMP_NUM_THREADS=4"; });
 
         # Allow to provide a local download source for unfree packages

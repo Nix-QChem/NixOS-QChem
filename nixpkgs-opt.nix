@@ -16,6 +16,7 @@ let
   set = {
     stdenv = optStdenv;
     avogadro2 = recallPackage avogadro2 {};
+    arpack = recallPackage arpack {};
     cp2k = recallPackage cp2k {};
     fftw = recallPackage fftw {};
     dkh = recallPackage dkh {};
