@@ -16,6 +16,22 @@
     "homepage": "https://developer.amd.com/amd-aocl/scalapack/"
   },
   {
+    "attribute": "qchem.arpack",
+    "name": "arpack-3.8.0",
+    "pname": "arpack",
+    "version": "3.8.0",
+    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalue\nproblems.\n",
+    "homepage": "https://github.com/opencollab/arpack-ng"
+  },
+  {
+    "attribute": "qchem.arpack-mpi",
+    "name": "arpack-3.8.0",
+    "pname": "arpack",
+    "version": "3.8.0",
+    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalue\nproblems.\n",
+    "homepage": "https://github.com/opencollab/arpack-ng"
+  },
+  {
     "attribute": "qchem.avogadro2",
     "name": "avogadro2-1.97.0",
     "pname": "avogadro2",
@@ -24,7 +40,7 @@
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
   {
-    "attribute": "qchem.bagel",
+    "attribute": "qchem.bagel-serial",
     "name": "bagel-1.2.2",
     "pname": "bagel",
     "version": "1.2.2",
@@ -32,7 +48,7 @@
     "homepage": "https://nubakery.org"
   },
   {
-    "attribute": "qchem.bagel-serial",
+    "attribute": "qchem.bagel",
     "name": "bagel-1.2.2",
     "pname": "bagel",
     "version": "1.2.2",
@@ -592,18 +608,18 @@
     "homepage": "https://nwchemgit.github.io"
   },
   {
-    "attribute": "qchem.octave-opt",
-    "name": "octave-7.1.0",
+    "attribute": "qchem.octave",
+    "name": "octave-7.3.0",
     "pname": "octave",
-    "version": "7.1.0",
+    "version": "7.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
-    "attribute": "qchem.octave",
-    "name": "octave-7.1.0",
+    "attribute": "qchem.octave-opt",
+    "name": "octave-7.3.0",
     "pname": "octave",
-    "version": "7.1.0",
+    "version": "7.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },

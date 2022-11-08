@@ -2,9 +2,15 @@
 |------|-----------|-------------|
 | amd-fftw-3.1 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
 | amd-scalapack-3.0 | qchem.amd-scalapack | Linear algebra routines for parallel distributed memory machines optimized for AMD processors |
+| arpack-3.8.0 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalue
+problems.
+ |
+| arpack-3.8.0 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalue
+problems.
+ |
 | avogadro2-1.97.0 | qchem.avogadro2 | Molecule editor and visualizer |
-| bagel-1.2.2 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
+| bagel-1.2.2 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | cefine-2.23 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.9 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
@@ -75,8 +81,8 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | nixexprs | qchem.nixexprs | null |
 | NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-7.1.0 | qchem.octave-opt | Scientific Programming Language |
-| octave-7.1.0 | qchem.octave | Scientific Programming Language |
+| octave-7.3.0 | qchem.octave | Scientific Programming Language |
+| octave-7.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-12.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-7.7.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | openmolcas-18.09-20180902 | qchem.molcas1809 | Quantum chemistry software package |
