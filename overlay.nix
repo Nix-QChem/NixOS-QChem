@@ -315,7 +315,9 @@ let
           lapack = final.lapack-ilp64;
         };
 
-        wxmacmolplt = callPackage ./pkgs/apps/wxmacmolplt { };
+        wxmacmolplt = callPackage ./pkgs/apps/wxmacmolplt {
+          wxGTK = super.wxGTK32;
+        };
 
         xtb = callPackage ./pkgs/apps/xtb { };
 
