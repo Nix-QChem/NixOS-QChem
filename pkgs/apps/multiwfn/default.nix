@@ -1,16 +1,18 @@
-{ stdenv, lib, makeWrapper, gfortran, unzip, fetchurl, xorg, libGL, motif, mkl }:
+{ stdenv, lib, makeWrapper, gfortran, unzip, fetchurl, xorg, libGL, motif, mkl
+, arb, flint }:
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.8-2022-10-05";
+  version = "3.8-2022-11-14";
 
   src = fetchurl {
     url = "http://sobereva.com/multiwfn/misc/Multiwfn_3.8_dev_src_Linux.zip";
-    hash = "sha256-ON96OD61RNFPuTxs0pwF1/jlVC2l45OIdTmxsPx9cKM=";
+    hash = "sha256-5nncT+qj8vGRLVsXh8DIFBPYs3U3CwFedaqP0u3C/kU=";
   };
 
   patches = [
     ./gfortran.patch
+    ./cp2k.patch
   ];
 
   nativeBuildInputs = [
@@ -25,7 +27,11 @@ stdenv.mkDerivation rec {
     libGL
     motif
     mkl
+    arb
+    flint
   ];
+
+  enableParallelBuilding = true;
 
   installPhase = ''
     mkdir -p $out/bin $out/share/multiwfn
