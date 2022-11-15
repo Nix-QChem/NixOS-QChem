@@ -2,12 +2,8 @@
 |------|-----------|-------------|
 | amd-fftw-3.1 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
 | amd-scalapack-3.0 | qchem.amd-scalapack | Linear algebra routines for parallel distributed memory machines optimized for AMD processors |
-| arpack-3.8.0 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalue
-problems.
- |
-| arpack-3.8.0 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalue
-problems.
- |
+| arpack-3.8.0 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalue problems. |
+| arpack-3.8.0 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalue problems. |
 | avogadro2-1.97.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
