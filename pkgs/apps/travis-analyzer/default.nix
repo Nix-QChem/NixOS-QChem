@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "travis-analyzer";
-  version = "03Jun2020";
+  version = "29Jul2022";
 
   src = fetchurl  {
-    url = "http://www.travis-analyzer.de/files/travis-src-200504-hf2.tar.gz";
-    sha256= "01c5jpaa1mvh0fk0h3ch0hdxd5bqnpf3i68nnql26qjf5q7s5a51";
+    url = "http://www.travis-analyzer.de/files/travis-src-220729.tar.gz";
+    sha256= "sha256-vcHkBi53ZuPitsJyPtOhp0VDoPkVbBKhOeSgOpc2Ej8=";
   };
 
   dontConfigure = true;
