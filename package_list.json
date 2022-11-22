@@ -241,41 +241,41 @@
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2022.3",
+    "name": "gromacs-2022.4",
     "pname": "gromacs",
-    "version": "2022.3",
+    "version": "2022.4",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsCudaMpi",
-    "name": "gromacs-2022.3",
+    "name": "gromacs-2022.4",
     "pname": "gromacs",
-    "version": "2022.3",
+    "version": "2022.4",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2022.3",
+    "name": "gromacs-2022.4",
     "pname": "gromacs",
-    "version": "2022.3",
+    "version": "2022.4",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2022.3",
+    "name": "gromacs-2022.4",
     "pname": "gromacs",
-    "version": "2022.3",
+    "version": "2022.4",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2022.3",
+    "name": "gromacs-2022.4",
     "pname": "gromacs",
-    "version": "2022.3",
+    "version": "2022.4",
     "description": "Molecular dynamics software package",
     "homepage": "http://www.gromacs.org"
   },
@@ -577,9 +577,9 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.8-2022-10-05",
+    "name": "multiwfn-3.8-2022-11-14",
     "pname": "multiwfn",
-    "version": "3.8-2022-10-05",
+    "version": "3.8-2022-11-14",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
@@ -889,9 +889,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.0.1",
+    "name": "spglib-2.0.2",
     "pname": "spglib",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },

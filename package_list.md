@@ -31,11 +31,11 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-22.8.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
-| gromacs-2022.3 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2022.3 | qchem.gromacsCudaMpi | Molecular dynamics software package |
-| gromacs-2022.3 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2022.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2022.3 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2022.4 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2022.4 | qchem.gromacsCudaMpi | Molecular dynamics software package |
+| gromacs-2022.4 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2022.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2022.4 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.1 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-fortran-1.12.2 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
@@ -73,7 +73,7 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | mrchem-1.0.2 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
 | mrcpp-1.4.1 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
-| multiwfn-3.8-2022-10-05 | qchem.multiwfn | Multifunctional wave function analyser. |
+| multiwfn-3.8-2022-11-14 | qchem.multiwfn | Multifunctional wave function analyser. |
 | nixexprs | qchem.nixexprs | null |
 | NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
@@ -112,7 +112,7 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | siesta-4.1.5 | qchem.siesta | A first-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | A first-principles materials simulation code using DFT |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
-| spglib-2.0.1 | qchem.spglib | C library for finding and handling crystal symmetries |
+| spglib-2.0.2 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.aggressiveStdenv | The default build environment for Unix packages in Nixpkgs |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
