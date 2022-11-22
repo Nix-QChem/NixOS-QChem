@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "packmol";
-  version = "20.3.5";
+  version = "20.11.0";
 
   buildInputs = [ gfortran ];
 
@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     owner = "m3g";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-b3MfVc0Ke5P3qXSzn3xBGfOy3HbwWpDhNMgpnHsA5to=";
+    hash = "sha256-ABjXdqXO3Id14c/zDvS79GsAJXQeHRPxeXZh9lITiBU=";
   };
 
   dontConfigure = true;
