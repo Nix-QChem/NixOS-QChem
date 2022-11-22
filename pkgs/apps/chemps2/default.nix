@@ -6,13 +6,13 @@ assert
 
 stdenv.mkDerivation rec {
   pname = "CheMPS2";
-  version = "1.8.9";
+  version = "1.8.12";
 
   src = fetchFromGitHub {
     owner = "SebWouters";
     repo = pname;
     rev = "v${version}";
-    sha256 = "0813z3myyri11lhh18kfpg5xs7imds9dg4kmab82lpp2isymakic";
+    hash = "sha256-us7EzPzLrWJxLwInFVWsn1g2/OJo5rAZgIUnUpo/wXQ=";
   };
 
   nativeBuildInputs = [ cmake ];
