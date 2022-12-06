@@ -7,7 +7,7 @@ nix-env -f release.nix -qa --arg config '{ allowEnv=true; }' --meta --json -A qc
 	name: .value.name,
 	pname : .value.pname,
 	version : .value.version,
-	description: .value.meta.description,
+	description: (.value.meta.description // empty) | gsub("[\\n\\t]"; ""),
 	homepage: .value.meta.homepage,
        }]' > package_list.json
 
