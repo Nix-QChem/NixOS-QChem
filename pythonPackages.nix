@@ -30,6 +30,8 @@ let
       enableCuda = cfg.useCuda;
     };
 
+    optking = callPackage ./pkgs/lib/optking { };
+
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
 
     polyply = callPackage ./pkgs/apps/polyply { };
