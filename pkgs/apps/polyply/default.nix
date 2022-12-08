@@ -12,8 +12,6 @@ buildPythonPackage rec {
     hash = "sha256-JJDIsWCmjf6FxJqzHZC6scPr7iaFgOJYHfZaBnD3xUk=";
   };
 
-  nativeBuildInputs = [ pbr ];
-
   postPatch = ''
     substituteInPlace setup.cfg \
       --replace "decorator == 4.4.2" ""
@@ -25,12 +23,13 @@ buildPythonPackage rec {
     vermouth
     tqdm
     numba
+    pbr
   ];
 
   preConfigure = "export PBR_VERSION=${version}";
   format = "pyproject";
 
-  checkInputs = [ pytestCheckHook pbr ];
+  checkInputs = [ pytestCheckHook ];
   disabledTests = [ "test_integration_protein" ];
   pythonImportsCheck = [ "polyply" ];
 
