@@ -20,7 +20,7 @@
     "name": "arpack-3.8.0",
     "pname": "arpack",
     "version": "3.8.0",
-    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalue\nproblems.\n",
+    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
     "homepage": "https://github.com/opencollab/arpack-ng"
   },
   {
@@ -28,7 +28,7 @@
     "name": "arpack-3.8.0",
     "pname": "arpack",
     "version": "3.8.0",
-    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalue\nproblems.\n",
+    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
     "homepage": "https://github.com/opencollab/arpack-ng"
   },
   {
@@ -73,9 +73,9 @@
   },
   {
     "attribute": "qchem.chemps2",
-    "name": "CheMPS2-1.8.9",
+    "name": "CheMPS2-1.8.12",
     "pname": "CheMPS2",
-    "version": "1.8.9",
+    "version": "1.8.12",
     "description": "A spin-adapted implementation of DMRG for ab initio quantum chemistry",
     "homepage": "http://sebwouters.github.io/CheMPS2"
   },
@@ -148,7 +148,7 @@
     "name": "exatensor-2020-07-15",
     "pname": "exatensor",
     "version": "2020-07-15",
-    "description": "ExaTENSOR is a basic numerical tensor algebra library for\ndistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU.",
+    "description": "ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU.",
     "homepage": "https://gitlab.com/DmitryLyakh/ExaTensor"
   },
   {
@@ -456,14 +456,6 @@
     "homepage": "https://macroqc.hacettepe.edu.tr/index.html"
   },
   {
-    "attribute": "qchem.matlab",
-    "name": "matlab",
-    "pname": "matlab",
-    "version": "",
-    "description": null,
-    "homepage": null
-  },
-  {
     "attribute": "qchem.mctc-lib",
     "name": "mctc-lib-0.3.0",
     "pname": "mctc-lib",
@@ -584,22 +576,6 @@
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
   {
-    "attribute": "qchem.nixexprs",
-    "name": "nixexprs",
-    "pname": "nixexprs",
-    "version": "",
-    "description": null,
-    "homepage": null
-  },
-  {
-    "attribute": "qchem.channel",
-    "name": "NixOS-QChem-channel",
-    "pname": "NixOS-QChem-channel",
-    "version": "",
-    "description": null,
-    "homepage": null
-  },
-  {
     "attribute": "qchem.nwchem",
     "name": "nwchem-7.0.2",
     "pname": "nwchem",
@@ -689,9 +665,9 @@
   },
   {
     "attribute": "qchem.packmol",
-    "name": "packmol-20.3.5",
+    "name": "packmol-20.11.0",
     "pname": "packmol",
-    "version": "20.3.5",
+    "version": "20.11.0",
     "description": "Generating initial configurations for molecular dynamics",
     "homepage": "http://m3g.iqm.unicamp.br/packmol/home.shtml"
   },
@@ -928,14 +904,6 @@
     "homepage": "https://github.com/fortran-lang/test-drive"
   },
   {
-    "attribute": "qchem.tested",
-    "name": "tested-programs",
-    "pname": "tested-programs",
-    "version": "",
-    "description": null,
-    "homepage": null
-  },
-  {
     "attribute": "qchem.tinker",
     "name": "tinker-8.10.1",
     "pname": "tinker",
@@ -945,9 +913,9 @@
   },
   {
     "attribute": "qchem.travis-analyzer",
-    "name": "travis-analyzer-03Jun2020",
+    "name": "travis-analyzer-29Jul2022",
     "pname": "travis-analyzer",
-    "version": "03Jun2020",
+    "version": "29Jul2022",
     "description": "Molecular dynamics trajectory analyzer and visualizer",
     "homepage": "http://www.travis-analyzer.de/"
   },

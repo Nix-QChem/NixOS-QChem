@@ -2,14 +2,14 @@
 |------|-----------|-------------|
 | amd-fftw-3.1 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
 | amd-scalapack-3.0 | qchem.amd-scalapack | Linear algebra routines for parallel distributed memory machines optimized for AMD processors |
-| arpack-3.8.0 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalue problems. |
-| arpack-3.8.0 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalue problems. |
+| arpack-3.8.0 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
+| arpack-3.8.0 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
 | avogadro2-1.97.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | cefine-2.23 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
-| CheMPS2-1.8.9 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
+| CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
 | cp2k-2022.2 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | crest-2.12 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
@@ -18,8 +18,7 @@
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2022.05.001 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library for
-distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
+| exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | fftw-double-3.3.10 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.10 | qchem.fftw-mpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.10 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
@@ -58,7 +57,6 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | libxsmm-1.16.3 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
-| matlab | qchem.matlab | null |
 | mctc-lib-0.3.0 | qchem.mctc-lib | Modular computation tool chain library |
 | mctdh-8.4.17 | qchem.mctdh | Multi configuration time dependent hartree dynamics package |
 | meep-1.21.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
@@ -74,8 +72,6 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | mrcpp-1.4.1 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
 | multiwfn-3.8-2022-11-14 | qchem.multiwfn | Multifunctional wave function analyser. |
-| nixexprs | qchem.nixexprs | null |
-| NixOS-QChem-channel | qchem.channel | null |
 | nwchem-7.0.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-7.3.0 | qchem.octave | Scientific Programming Language |
 | octave-7.3.0 | qchem.octave-opt | Scientific Programming Language |
@@ -87,7 +83,7 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | orca-5.0.3 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
-| packmol-20.3.5 | qchem.packmol | Generating initial configurations for molecular dynamics |
+| packmol-20.11.0 | qchem.packmol | Generating initial configurations for molecular dynamics |
 | pcmsolver-1.3.0 | qchem.pcmsolver | An API for the Polarizable Continuum Model |
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
 | Pegamoid-2.6.2 | qchem.pegamoid | Python GUI for OpenMolcas |
@@ -117,9 +113,8 @@ distributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
 | test-drive-0.4.0 | qchem.test-drive | Procedural Fortran testing framework |
-| tested-programs | qchem.tested | null |
 | tinker-8.10.1 | qchem.tinker | Software Tools for Molecular Design |
-| travis-analyzer-03Jun2020 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
+| travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.5.1 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.1.0 | qchem.ucc | Collective communication operations API |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
