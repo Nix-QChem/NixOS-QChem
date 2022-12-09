@@ -38,7 +38,9 @@ let
 
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
-    psi4 = callPackage ./pkgs/apps/psi4 { };
+    psi4 = callPackage ./pkgs/apps/psi4 {
+      libint = superPkgs.libintPsi4;
+    };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
       gamess-us = selfPkgs.gamess-us.override {
