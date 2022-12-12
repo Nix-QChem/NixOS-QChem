@@ -112,5 +112,6 @@ in stdenv.mkDerivation {
     license = licenses.gpl3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
+    broken = true; # numpy does not support python-2.7 anymore
   };
 }
