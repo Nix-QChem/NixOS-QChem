@@ -1,4 +1,4 @@
-final: prev: self: optStdenv:
+cfg: final: prev: self: optStdenv:
 
 #
 # Package set with upstream libraries
@@ -35,6 +35,7 @@ let
     molden = recallPackage molden {};
     mpi = recallPackage mpi {};
     octopus = recallPackage octopus {};
+    openmm = recallPackage openmm { enableCuda = cfg.useCuda; };
     quantum-espresso = recallPackage quantum-espresso {};
     quantum-espresso-mpi = recallPackage quantum-espresso-mpi {};
     pcmsolver = recallPackage pcmsolver {};

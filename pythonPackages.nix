@@ -24,7 +24,8 @@ let
 
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
 
-    openmm = callPackage ./pkgs/apps/openmm {
+    openmm = superPkgs.openmm.override {
+      enablePython = true;
       enableCuda = cfg.useCuda;
     };
 

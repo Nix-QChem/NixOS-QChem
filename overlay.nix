@@ -45,7 +45,7 @@ let
       callPackage = super.lib.callPackageWith (final // self);
       pythonOverrides = (import ./pythonPackages.nix) subset;
 
-      optUpstream = import ./nixpkgs-opt.nix final prev self optStdenv;
+      optUpstream = import ./nixpkgs-opt.nix cfg final prev self optStdenv;
 
     in
     {
@@ -222,8 +222,6 @@ let
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
         gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
-
-        openmm = super.python3.pkgs.toPythonApplication self.python3.pkgs.openmm;
 
         orca = callPackage ./pkgs/apps/orca { };
 
