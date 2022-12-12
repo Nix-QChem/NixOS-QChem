@@ -11,8 +11,6 @@ let
 
   overlay = {
 
-    pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
-
   } // lib.optionalAttrs super.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
@@ -41,6 +39,8 @@ let
     psi4 = callPackage ./pkgs/apps/psi4 {
       libint = superPkgs.libintPsi4;
     };
+
+    pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
       gamess-us = selfPkgs.gamess-us.override {
