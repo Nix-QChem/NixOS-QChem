@@ -25,5 +25,6 @@ buildPythonPackage rec {
     homepage = "http://pyquante.sourceforge.net/";
     license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
+    broken = true;
   };
 }

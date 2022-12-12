@@ -392,7 +392,6 @@ let
           molpro = nullable molpro (callPackage ./tests/molpro { });
           mrcc = nullable mrcc (callPackage ./tests/mrcc { });
           nwchem = callPackage ./tests/nwchem { };
-          psi4 = callPackage ./tests/psi4 { };
           pyscf = callPackage ./tests/pyscf { };
           qdng = nullable qdng (callPackage ./tests/qdng { });
           dgemm = callPackage ./tests/dgemm { };
