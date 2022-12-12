@@ -108,7 +108,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Molecular dynamics (MD) program suite for excited states";
-    homepage = https://www.sharc-md.org;
+    homepage = "https://www.sharc-md.org";
     license = licenses.gpl3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
