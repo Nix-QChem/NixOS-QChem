@@ -4,8 +4,6 @@
 final: prev:
 
 {
-  cudatoolkit = prev.cudatoolkit_11;
-
   mpich = prev.mpich.override {
     ch4backend = final.ucx;
   };
