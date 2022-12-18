@@ -35,7 +35,10 @@ let
     molden = recallPackage molden {};
     mpi = recallPackage mpi {};
     octopus = recallPackage octopus {};
-    openmm = recallPackage openmm { enableCuda = cfg.useCuda; };
+    openmm = recallPackage openmm {
+      enableCuda = cfg.useCuda;
+      stdenv = final.clangStdenv;
+    };
     quantum-espresso = recallPackage quantum-espresso {};
     quantum-espresso-mpi = recallPackage quantum-espresso-mpi {};
     pcmsolver = recallPackage pcmsolver {};
