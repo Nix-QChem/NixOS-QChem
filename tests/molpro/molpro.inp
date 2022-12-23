@@ -22,11 +22,18 @@ HF
  state,3;
 }
 
-{rs2;noexc;}
+optg,variable=energy(1)
 
-optg
+{mcscf;
+ closed,6;
+ occ,9;
+ wf,16,1,0;
+ state,3;
+}
 
 freq
+variable=energy(1)
+
 
 {rs2}
 
