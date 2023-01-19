@@ -93,6 +93,7 @@ in stdenv.mkDerivation {
     description = "Multi configuration time dependent hartree dynamics package";
     homepage = "https://www.pci.uni-heidelberg.de/cms/mctdh.html";
     license = licenses.unfree;
+    broken = true; # Relies on python-2.7
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
   };
