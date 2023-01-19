@@ -1,5 +1,6 @@
-{ lib, stdenv, pkgs, fetchFromGitHub, which, openssh, gcc, gfortran, perl
-, mpi, blas, lapack, python, tcsh, bash
+{ lib, stdenv, pkgs, fetchFromGitHub, fetchpatch
+, which, openssh, gcc, gfortran, perl
+, mpi, blas, lapack, python3, tcsh, bash
 , automake, autoconf, libtool, makeWrapper
 } :
 
@@ -27,8 +28,16 @@ in stdenv.mkDerivation {
     sha256 = "1ckhcjaw1hzdsmm1x2fva27c4rs3r0h82qivg72v53idz880hbp3";
   };
 
+  patches = [
+    (fetchpatch {
+      name = "python3.10";
+      url = "https://github.com/nwchemgit/nwchem/commit/638401361c6f294164a4f820ff867a62ac836fd5.patch";
+      sha256 = "sha256-yUZb3wWYZm1dX0HwvffksFwhVdb7ix1p8ooJnqiSgEg=";
+    })
+  ];
+
   nativeBuildInputs = [ perl automake autoconf libtool makeWrapper gfortran ];
-  buildInputs = [ tcsh openssh which blas lapack which python ];
+  buildInputs = [ tcsh openssh which blas lapack which python3 ];
   propagatedBuildInputs = [ mpi ];
   propagatedUserEnvPkgs = [ mpi ];
 
@@ -67,8 +76,8 @@ in stdenv.mkDerivation {
   USE_PYTHONCONFIG="y";
   USE_PYTHON64="n";
   PYTHONLIBTYPE="so";
-  PYTHONHOME="${python}";
-  PYTHONVERSION=lib.versions.majorMinor python.version;
+  PYTHONHOME="${python3}";
+  PYTHONVERSION=lib.versions.majorMinor python3.version;
 
   BLASOPT="-L${blas}/lib -lblas";
   LAPACK_LIB="-L${lapack}/lib -llapack";
