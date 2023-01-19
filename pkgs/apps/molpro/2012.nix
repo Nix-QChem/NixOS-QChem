@@ -1,4 +1,4 @@
-{ lib, stdenv, requireFile, python, token } :
+{ lib, stdenv, requireFile, python3, token } :
 
 let
   version = "2012.1.12";
@@ -13,7 +13,7 @@ in stdenv.mkDerivation {
     sha256 = "014j260dcpn8bgyl6gs9n5px4p3kimy6x6d2yh3w2hj1bm06n3ai";
   };
 
-  buildInputs = [ python ];
+  buildInputs = [ python3 ];
 
   unpackPhase = ''
     mkdir -p source

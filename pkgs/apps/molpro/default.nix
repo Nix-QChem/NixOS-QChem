@@ -1,4 +1,4 @@
-{ lib, stdenv, requireFile, fetchurl, patchelf, python
+{ lib, stdenv, requireFile, fetchurl, patchelf, python3
 , token
 , comm ? "sockets"
 } :
@@ -25,7 +25,7 @@ in stdenv.mkDerivation {
   });
 
   nativeBuildInputs = [ patchelf ];
-  buildInputs = [ python ];
+  buildInputs = [ python3 ];
 
   unpackPhase = ''
     mkdir -p source

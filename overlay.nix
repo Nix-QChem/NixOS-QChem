@@ -410,7 +410,6 @@ let
         # provide null molpro attrs in case there is no license
         molpro = null;
         molpro12 = null;
-        molpro20 = null;
         molpro-ext = null;
 
         q-chem = null;
@@ -422,13 +421,11 @@ let
         #
         # Molpro packages
         #
-        molpro = self.molpro20;
+        molpro = callPackage ./pkgs/apps/molpro { token = cfg.licMolpro; };
 
         molpro-pr = self.molpro.override { comm = "mpipr"; };
 
         molpro12 = callPackage ./pkgs/apps/molpro/2012.nix { token = cfg.licMolpro; };
-
-        molpro20 = callPackage ./pkgs/apps/molpro { token = cfg.licMolpro; };
 
         molpro-ext = callPackage ./pkgs/apps/molpro/custom.nix { token = cfg.licMolpro; };
 
