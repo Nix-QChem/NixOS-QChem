@@ -8,7 +8,7 @@ assert (comm == "sockets") || (comm == "mpipr");
 
 let
   version = "2021.2.1";
-  url = http://www.molpro.net;
+  url = "http://www.molpro.net";
 
 in stdenv.mkDerivation {
   pname = "molpro";
