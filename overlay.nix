@@ -147,6 +147,8 @@ let
 
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
+        exciting = callPackage ./pkgs/apps/exciting { };
+
         gabedit = callPackage ./pkgs/apps/gabedit { };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
