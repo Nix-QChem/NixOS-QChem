@@ -84,7 +84,7 @@ in stdenv.mkDerivation {
 
   BLAS_SIZE=if blas.isILP64 then "8" else "4";
 
-  # extra TCE releated options
+  # extra TCE related options
   MRCC_METHODS="y";
   EACCSD="y";
   IPCCSD="y";
