@@ -1,4 +1,4 @@
-{ lib, stdenv, requireFile, fetchurl, patchelf, python
+{ lib, stdenv, requireFile, fetchurl, patchelf, python3
 , token
 , comm ? "sockets"
 } :
@@ -8,7 +8,7 @@ assert (comm == "sockets") || (comm == "mpipr");
 
 let
   version = "2021.2.1";
-  url = http://www.molpro.net;
+  url = "http://www.molpro.net";
 
 in stdenv.mkDerivation {
   pname = "molpro";
@@ -25,7 +25,7 @@ in stdenv.mkDerivation {
   });
 
   nativeBuildInputs = [ patchelf ];
-  buildInputs = [ python ];
+  buildInputs = [ python3 ];
 
   unpackPhase = ''
     mkdir -p source

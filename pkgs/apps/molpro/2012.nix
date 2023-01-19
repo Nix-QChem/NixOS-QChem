@@ -1,4 +1,4 @@
-{ lib, stdenv, requireFile, python, token } :
+{ lib, stdenv, requireFile, python3, token } :
 
 let
   version = "2012.1.12";
@@ -8,12 +8,12 @@ in stdenv.mkDerivation {
   inherit version;
 
   src = requireFile {
-    url = http://www.molpro.net;
+    url = "http://www.molpro.net";
     name = "molpro-mpp-${version}.Linux_x86_64.sh.gz";
     sha256 = "014j260dcpn8bgyl6gs9n5px4p3kimy6x6d2yh3w2hj1bm06n3ai";
   };
 
-  buildInputs = [ python ];
+  buildInputs = [ python3 ];
 
   unpackPhase = ''
     mkdir -p source
@@ -74,7 +74,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Quantum chemistry program package";
-    homepage = https://www.molpro.net;
+    homepage = "https://www.molpro.net";
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
