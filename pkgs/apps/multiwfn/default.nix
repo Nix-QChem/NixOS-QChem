@@ -1,23 +1,31 @@
-{ stdenv, lib, makeWrapper, gfortran, unzip, fetchurl, xorg, libGL, motif, mkl
-, arb, flint }:
+{ stdenv
+, lib
+, fetchFromGitLab
+, gfortran
+, unzip
+, xorg
+, libGL
+, motif
+, mkl
+, arb
+, flint
+}:
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.8-2022-11-14";
+  version = "3.8-2023-01-24";
 
-  src = fetchurl {
-    url = "http://sobereva.com/multiwfn/misc/Multiwfn_3.8_dev_src_Linux.zip";
-    hash = "sha256-5nncT+qj8vGRLVsXh8DIFBPYs3U3CwFedaqP0u3C/kU=";
+  src = fetchFromGitLab {
+    owner = "theoretical-chemistry-jena/quantum-chemistry";
+    repo = pname;
+    rev = "16cdd7a9a5bf4701e69b16c818bf8ccb2476ce5a";
+    hash = "sha256-frmAHQdoic84Ekwd7IrBUVql6PMzyN8YD/PZuiDGCuo=";
   };
 
-  patches = [
-    ./gfortran.patch
-    ./cp2k.patch
-  ];
+  preConfigure = "cd src";
 
   nativeBuildInputs = [
     gfortran
-    makeWrapper
     unzip
   ];
 
