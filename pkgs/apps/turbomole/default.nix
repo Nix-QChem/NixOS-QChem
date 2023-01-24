@@ -9,7 +9,7 @@ let
     else "x86_64-unknown-linux-gnu";
 
 in stdenv.mkDerivation rec {
-  version = "7.5.1";
+  version = "7.7";
   pname = "turbomole";
 
   nativeBuildInputs = [
@@ -30,8 +30,8 @@ in stdenv.mkDerivation rec {
   ];
 
   src = requireFile {
-    sha256 = "6826d47429bc2a64081f40944e4d48c8f951676e097935ea533a1a25a4e35af0";
-    name = "turbolinux${lib.replaceStrings ["."] [""] version}.tar.gz";
+    sha256 = "b903ffb4fb9d1a1dbca81187f039df99c9fc22a4eefce5566db852da4991795d";
+    name = "turbolinux${lib.replaceStrings ["."] [""] version}_TMG.tar.gz";
     url = "https://www.turbomole.org/";
   };
 
