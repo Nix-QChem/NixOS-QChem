@@ -15,7 +15,7 @@ buildPythonPackage rec {
     owner = "psi-rking";
     repo = "optking";
     rev = version;
-    hash = "sha256-d/C7h6cwL2bQUGggpGeu9yPkJnD37U1KWoOZNvI0W4k=";
+    hash = "sha256-mXLBsc4PQjeTjUg0nzf9PI0FF81y77yCJ5l+g47uoD8=";
   };
 
   propagatedBuildInputs = [
