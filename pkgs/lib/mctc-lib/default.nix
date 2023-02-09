@@ -1,30 +1,33 @@
-{ stdenv, lib, fetchFromGitHub, meson, ninja, gfortran, pkg-config, json-fortran, cmake }:
+{ stdenv
+, lib
+, fetchFromGitHub
+, gfortran
+, pkg-config
+, json-fortran
+, cmake
+}:
 
 stdenv.mkDerivation rec {
   pname = "mctc-lib";
-  version = "0.3.0";
+  version = "0.3.1";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-3e89g0WkZU/HTBtGaLKzhsv2RTlFk/QK0OT24BGfcKQ=";
+    hash = "sha256-AXjg/ZsitdDf9fNoGVmVal1iZ4/sxjJb7A9W4yye/rg=";
   };
 
-  postPatch = ''
-    substituteInPlace config/template.pc \
-      --replace 'libdir=''${prefix}/@CMAKE_INSTALL_LIBDIR@' "libdir=@CMAKE_INSTALL_LIBDIR@" \
-      --replace 'includedir=''${prefix}/@CMAKE_INSTALL_INCLUDEDIR@' "includedir=@CMAKE_INSTALL_INCLUDEDIR@"
-  '';
-
-  nativeBuildInputs = [
-    ninja
-    gfortran
-    pkg-config
-    cmake
-  ];
+  nativeBuildInputs = [ gfortran pkg-config cmake ];
 
   buildInputs = [ json-fortran ];
+
+  postInstall = ''
+    substituteInPlace $out/lib/pkgconfig/${pname}.pc \
+      --replace "''${prefix}" ""
+  '';
+
+  doCheck = true;
 
   meta = with lib; {
     description = "Modular computation tool chain library";
