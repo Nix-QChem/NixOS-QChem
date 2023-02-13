@@ -35,6 +35,7 @@ let
     meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
     mkl = recallPackage mkl {};
     molden = recallPackage molden {};
+    mopac = recallPackage mopac {};
     mpi = recallPackage mpi {};
     nwchem = recallPackage nwchem {
       blas = final.blas-ilp64;
