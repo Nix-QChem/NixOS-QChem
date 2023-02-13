@@ -169,11 +169,6 @@ let
 
         luscus = callPackage ./pkgs/apps/luscus { };
 
-        nwchem = callPackage ./pkgs/apps/nwchem {
-          blas = final.blas-ilp64;
-          lapack = final.lapack-ilp64;
-        };
-
         macroqc = callPackage ./pkgs/apps/macroqc { };
 
         mctc-lib = callPackage ./pkgs/lib/mctc-lib { };

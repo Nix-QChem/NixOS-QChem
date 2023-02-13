@@ -36,6 +36,10 @@ let
     mkl = recallPackage mkl {};
     molden = recallPackage molden {};
     mpi = recallPackage mpi {};
+    nwchem = recallPackage nwchem {
+      blas = final.blas-ilp64;
+      lapack = final.lapack-ilp64;
+    };
     octopus = recallPackage octopus {};
     openmm = recallPackage openmm {
       enableCuda = cfg.useCuda;
