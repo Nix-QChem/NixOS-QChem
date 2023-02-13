@@ -161,8 +161,6 @@ let
 
         gdma = callPackage ./pkgs/apps/gdma { };
 
-        harminv = callPackage ./pkgs/apps/harminv { };
-
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         janpa = callPackage ./pkgs/apps/janpa { };
@@ -171,18 +169,11 @@ let
 
         luscus = callPackage ./pkgs/apps/luscus { };
 
-        nwchem = callPackage ./pkgs/apps/nwchem {
-          blas = final.blas-ilp64;
-          lapack = final.lapack-ilp64;
-        };
-
         macroqc = callPackage ./pkgs/apps/macroqc { };
 
         mctc-lib = callPackage ./pkgs/lib/mctc-lib { };
 
         mctdh = callPackage ./pkgs/apps/mctdh { };
-
-        meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
 
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix {
           blas = final.blas-ilp64;
@@ -212,8 +203,6 @@ let
         });
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
-
-        mopac = callPackage ./pkgs/apps/mopac { };
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
@@ -313,10 +302,6 @@ let
         wfoverlap = callPackage ./pkgs/apps/wfoverlap {
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
-        };
-
-        wxmacmolplt = callPackage ./pkgs/apps/wxmacmolplt {
-          wxGTK = super.wxGTK32;
         };
 
         xtb = callPackage ./pkgs/apps/xtb { };

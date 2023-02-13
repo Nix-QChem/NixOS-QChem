@@ -23,6 +23,7 @@ let
     dkh = recallPackage dkh {};
     elpa = recallPackage elpa {};
     ergoscf = recallPackage ergoscf {};
+    harminv = recallPackage harminv {};
     hpl = recallPackage hpl {};
     hpcg = recallPackage hpcg {};
     i-pi = recallPackage i-pi {};
@@ -31,9 +32,15 @@ let
     libint = recallPackage libint {};
     libvori = recallPackage libvori {};
     libxc = recallPackage libxc {};
+    meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
     mkl = recallPackage mkl {};
     molden = recallPackage molden {};
+    mopac = recallPackage mopac {};
     mpi = recallPackage mpi {};
+    nwchem = recallPackage nwchem {
+      blas = final.blas-ilp64;
+      lapack = final.lapack-ilp64;
+    };
     octopus = recallPackage octopus {};
     openmm = recallPackage openmm {
       enableCuda = cfg.useCuda;
@@ -78,6 +85,7 @@ let
     });
 
     ucc = recallPackage ucc {};
+    wxmacmolplt = recallPackage wxmacmolplt {};
 
     hostPlatform = hp;
   };
