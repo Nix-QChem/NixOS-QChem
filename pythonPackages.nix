@@ -49,8 +49,6 @@ let
 
     pyphspu = callPackage ./pkgs/lib/pyphspu { };
 
-    rmsd = callPackage ./pkgs/lib/rmsd { };
-
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
 
     vermouth = callPackage ./pkgs/apps/vermouth { };
