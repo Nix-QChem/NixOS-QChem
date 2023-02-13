@@ -84,6 +84,7 @@ let
     });
 
     ucc = recallPackage ucc {};
+    wxmacmolplt = recallPackage wxmacmolplt {};
 
     hostPlatform = hp;
   };
