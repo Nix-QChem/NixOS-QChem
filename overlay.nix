@@ -12,21 +12,21 @@ let
 
   # Create a stdenv with CPU optimizations
   makeOptStdenv = stdenv: arch: extraCflags: if arch == null then stdenv else
-  stdenv.override (old: {
-    name = old.name + "-${arch}";
+    stdenv.override {
+      name = stdenv.name + "-${arch}";
 
-    # Make sure respective CPU features are set
-    hostPlatform = old.hostPlatform //
-      lib.mapAttrs (p: a: a arch) lib.systems.architectures.predicates;
+      # Make sure respective CPU features are set
+      hostPlatform = stdenv.hostPlatform //
+        lib.mapAttrs (p: a: a arch) lib.systems.architectures.predicates;
 
-    # Add additional compiler flags
-    extraAttrs = {
-      mkDerivation = args: stdenv.mkDerivation (args // {
-        NIX_CFLAGS_COMPILE = toString (args.NIX_CFLAGS_COMPILE or "")
-          + " -march=${arch} -mtune=${arch} " + extraCflags;
-      });
+      # Add additional compiler flags
+      extraAttrs = {
+        mkDerivation = args: (stdenv.mkDerivation args).overrideAttrs (old: {
+          NIX_CFLAGS_COMPILE = toString (old.NIX_CFLAGS_COMPILE or "")
+            + " -march=${arch} -mtune=${arch} " + extraCflags;
+        });
+      };
     };
-  });
 
   # stdenv with CPU flags
   optStdenv = makeOptStdenv final.stdenv cfg.optArch "";
