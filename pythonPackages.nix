@@ -20,8 +20,6 @@ let
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
 
-    meep = callPackage ./pkgs/apps/meep { };
-
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
 
     openmm = superPkgs.openmm.override {

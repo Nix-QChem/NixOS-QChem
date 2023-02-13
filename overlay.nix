@@ -161,8 +161,6 @@ let
 
         gdma = callPackage ./pkgs/apps/gdma { };
 
-        harminv = callPackage ./pkgs/apps/harminv { };
-
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         janpa = callPackage ./pkgs/apps/janpa { };
@@ -181,8 +179,6 @@ let
         mctc-lib = callPackage ./pkgs/lib/mctc-lib { };
 
         mctdh = callPackage ./pkgs/apps/mctdh { };
-
-        meep = super.python3.pkgs.toPythonApplication self.python3.pkgs.meep;
 
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix {
           blas = final.blas-ilp64;
