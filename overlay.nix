@@ -285,6 +285,8 @@ let
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
 
+        tblite = callPackage ./pkgs/lib/tblite { };
+
         test-drive = callPackage ./pkgs/lib/test-drive { };
 
         tinker = callPackage ./pkgs/apps/tinker { };
