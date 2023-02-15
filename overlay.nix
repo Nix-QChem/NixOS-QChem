@@ -209,6 +209,8 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
+        mpifx = callPackage ./pkgs/lib/mpifx { };
+
         mstore = callPackage ./pkgs/lib/mstore { };
 
         mrcc = callPackage ./pkgs/apps/mrcc { };
