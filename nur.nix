@@ -3,15 +3,17 @@
 } :
 
 let
-  # Only expose top level derivations
-  filterDerivations = pkgSet: with pkgs.lib; filterAttrs (name: value: isDerivation value) pkgSet;
+  nixpkgs = import ./nixpkgs-pin.nix pkgs;
 
-  pkgsUnstable = lib.fix' (lib.extends (import ./default.nix) (self: pkgs));
+  pkgsNur = nixpkgs {
+    overlays = [ (import ./default.nix) ];
+    inherit (pkgs) config;
+  };
 
 in {
   overlays = {
     NixOS-QChem = import ./overlay.nix;
   };
-} // filterDerivations pkgsUnstable.qchem
+} // pkgsNur.qchem
 
 
