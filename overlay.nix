@@ -307,7 +307,9 @@ let
           lapack = final.lapack-ilp64;
         };
 
-        xtb = callPackage ./pkgs/apps/xtb { };
+        xtb = callPackage ./pkgs/apps/xtb {
+          gfortran = final.gfortran11;
+        };
 
         ### Python packages
         python3 = super.python3.override (old: {
