@@ -296,7 +296,9 @@ let
 
         vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
 
-        wannier90 = callPackage ./pkgs/apps/wannier90 {};
+        wannier90 = callPackage ./pkgs/apps/wannier90 {
+          gfortran = final.gfortran11;
+        };
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
