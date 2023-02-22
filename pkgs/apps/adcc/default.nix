@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, pkg-config
+{ lib, fetchFromGitHub, pkg-config
 , buildPythonPackage, blas, libtensor, pybind11
 , numpy, scipy, opt-einsum, h5py, tqdm, pandas, pyyaml
 , setuptools
@@ -31,6 +31,8 @@ buildPythonPackage rec {
     pyyaml
     setuptools
   ];
+
+  NIX_CFLAGS_COMPILE = "-Wno-error=array-bounds";
 
   checkInputs = [ pytest pytest-cov ];
 
