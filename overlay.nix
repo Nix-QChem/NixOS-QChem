@@ -153,6 +153,7 @@ let
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           blas = final.blas-ilp64;
+          gfortran = final.gfortran11;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
