@@ -2,6 +2,7 @@
 , lib
 , gfortran
 , fetchFromGitHub
+, fetchpatch
 , cmake
 , makeWrapper
 , blas
@@ -43,6 +44,15 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     hash = "sha256-RjSxuRAddTtSXOBEBiad916w312v3PWNHDLBzRdAjJM=";
   };
+
+  patches = [
+    (# Fixes numerical hessian computation
+      fetchpatch {
+        url = "https://github.com/grimme-lab/xtb/commit/83090be673e2468c27fcd74d519548d8d51bd8df.diff";
+        hash = "sha256-EniJFAuCa58gNoyvcY2zaUcDFXtJR1/TZUNzHhuWUDA=";
+      }
+    )
+  ];
 
   nativeBuildInputs = [
     gfortran
