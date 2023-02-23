@@ -153,6 +153,7 @@ let
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           blas = final.blas-ilp64;
+          gfortran = final.gfortran11;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
@@ -295,7 +296,9 @@ let
 
         vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
 
-        wannier90 = callPackage ./pkgs/apps/wannier90 {};
+        wannier90 = callPackage ./pkgs/apps/wannier90 {
+          gfortran = final.gfortran11;
+        };
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
@@ -304,7 +307,9 @@ let
           lapack = final.lapack-ilp64;
         };
 
-        xtb = callPackage ./pkgs/apps/xtb { };
+        xtb = callPackage ./pkgs/apps/xtb {
+          gfortran = final.gfortran11;
+        };
 
         ### Python packages
         python3 = super.python3.override (old: {

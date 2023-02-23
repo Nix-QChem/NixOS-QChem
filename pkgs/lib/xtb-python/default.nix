@@ -41,6 +41,7 @@ buildPythonPackage rec {
   checkInputs = [ pytestCheckHook ];
   pytestFlagsArray = [ "-k 'not (qcschema or gfn2xtb_orbitals)'" ]; # Numerically soooo slightly off
   pythonImportsCheck = [ "xtb.interface" "xtb.libxtb" ];
+  preCheck = "export OMP_NUM_THREADS=4";
 
   meta = with lib; {
     description = "Python wrapper for the semiempirical XTB package";

@@ -6,13 +6,13 @@
 
 stdenv.mkDerivation rec {
   pname = "mrcpp";
-  version = "1.4.1";
+  version = "1.4.2";
 
   src = fetchFromGitHub {
     owner = "MRChemSoft";
     repo = "mrcpp";
     rev = "v${version}";
-    sha256 = "1fchxvvkkcs0mskcln12mgs9n2hf8lmxgk4x8wfz4dczyga3sd9q";
+    sha256 = "sha256-zWcUHaJ76IXei+8KS32RpdZ39dmRJGkp/Ozlx9eEn3Q=";
   };
 
   nativeBuildInputs = [
