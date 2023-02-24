@@ -14,6 +14,10 @@ let
   } // lib.optionalAttrs super.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
+    dftbplus = callPackage ./pkgs/apps/dftbplus {
+      inherit (selfPkgs) tblite;
+    };
+
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
 
     gator = callPackage ./pkgs/apps/gator { };
