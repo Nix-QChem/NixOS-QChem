@@ -13,6 +13,8 @@
 , simple-dftd3
 }:
 
+assert !blas.isILP64 && !lapack.isILP64;
+
 stdenv.mkDerivation rec {
   pname = "tblite";
   version = "0.3.0";
