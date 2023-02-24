@@ -257,6 +257,8 @@ let
 
         qmcpack = callPackage ./pkgs/apps/qmcpack { };
 
+        scalapackfx = callPackage ./pkgs/lib/scalapackfx { };
+
         # blank version
         sharc = callPackage ./pkgs/apps/sharc/default.nix {
           bagel = self.bagel-serial;
