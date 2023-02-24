@@ -5,24 +5,29 @@
 
   nixConfig.extra-substituters = [ "https://nix-qchem.cachix.org" ];
 
-  outputs = { self, nixpkgs } : let
-      lib = import "${nixpkgs}/lib";
+  outputs = { self, nixpkgs, ... }:
+    let
+      qchemOvl = import ./overlay.nix;
+
+      system = "x86_64-linux";
 
       pkgs = (import nixpkgs) {
-        system = "x86_64-linux";
+        inherit system;
         overlays = [
-          (import ./overlay.nix)
-          (self: super: { qchem = super.qchem // {
-            turbomole = null;
-            cefine = null;
-            cfour = null;
-            mrcc = null;
-            orca = null;
-            qdng = null;
-            vmd = null;
-            mesa-qc = null;
-            mcdth = null;
-          };})
+          qchemOvl
+          (final: prev: {
+            qchem = prev.qchem // {
+              turbomole = null;
+              cefine = null;
+              cfour = null;
+              mrcc = null;
+              orca = null;
+              qdng = null;
+              vmd = null;
+              mesa-qc = null;
+              mcdth = null;
+            };
+          })
         ];
         config.allowUnfree = true;
         config.qchem-config = (import ./cfg.nix) {
@@ -31,17 +36,37 @@
         };
       };
 
-      pkgsClean = with lib; filterAttrs (n: isDerivation) pkgs.qchem;
-  in {
+      lib = pkgs.lib;
 
-    overlays = {
-      qchem = import ./overlay.nix;
-      pythonQchem = import ./pythonPackages.nix pkgs.config.qchem-config.prefix pkgs.config.qchem-config pkgs nixpkgs;
-      default = self.overlays.qchem;
+      # Cleaned package set, i.e. packages that
+      #  * build correctly
+      #  * are not insecure (thus, remove all python2 packages)
+      pkgsClean = with lib;
+        let
+          buildingPkgs = filterAttrs
+            (k: v:
+              if (v ? meta.broken)
+              then !(v.meta.broken) && isDerivation v
+              else isDerivation v
+            )
+            pkgs.qchem;
+          securePackages = builtins.removeAttrs buildingPkgs [ "python2" ];
+        in
+        securePackages;
+
+    in
+    {
+      packages."${system}" = pkgsClean;
+
+      hydraJobs."${system}" = pkgsClean;
+
+      checks."${system}" = with lib; filterAttrs (n: isDerivation) pkgs.qchem.tests;
+
+
+      overlays = {
+        qchem = qchemOvl;
+        pythonQchem = import ./pythonPackages.nix pkgs.config.qchem-config.prefix pkgs.config.qchem-config pkgs nixpkgs;
+        default = self.overlays.qchem;
+      };
     };
-
-    packages."x86_64-linux" = pkgsClean;
-    hydraJobs."x86_64-linux" = pkgsClean;
-    checks."x86_64-linux" = with lib; filterAttrs (n: isDerivation) pkgs.qchem.tests;
-  };
 }
