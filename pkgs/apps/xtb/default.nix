@@ -1,9 +1,28 @@
-{ stdenv, lib, gfortran, fetchFromGitHub, cmake, makeWrapper, blas, lapack, writeTextFile
-, mctc-lib, test-drive
-, turbomole, enableTurbomole ? false
-, orca, enableOrca ? false
+{ stdenv
+, lib
+, gfortran
+, fetchFromGitHub
+, fetchpatch
+, cmake
+, makeWrapper
+, blas
+, lapack
+, writeTextFile
+, mctc-lib
+, test-drive
+, tblite
+, toml-f
+, simple-dftd3
+, dftd4
+, multicharge
+, enableTurbomole ? false
+, turbomole
+, enableOrca ? false
+, orca
 , cefine
-} :
+}:
+
+assert !blas.isILP64 && !lapack.isILP64;
 
 let
   description = "Semiempirical extended tight-binding program package";
@@ -14,25 +33,44 @@ let
     ++ lib.optional enableTurbomole cefine
   );
 
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "xtb";
-  version = "6.5.1";
+  version = "6.6.0";
 
-  src = fetchFromGitHub  {
+  src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-9DTaHsK1NgcNbPKsjrVNvoWTyLdaqilZ59sAjAudS2M=";
+    hash = "sha256-RjSxuRAddTtSXOBEBiad916w312v3PWNHDLBzRdAjJM=";
   };
+
+  patches = [
+    (# Fixes numerical hessian computation
+      fetchpatch {
+        url = "https://github.com/grimme-lab/xtb/commit/83090be673e2468c27fcd74d519548d8d51bd8df.diff";
+        hash = "sha256-EniJFAuCa58gNoyvcY2zaUcDFXtJR1/TZUNzHhuWUDA=";
+      }
+    )
+  ];
 
   nativeBuildInputs = [
     gfortran
     cmake
     makeWrapper
-    test-drive
   ];
 
-  buildInputs = [ blas lapack mctc-lib ];
+  buildInputs = [
+    blas
+    lapack
+    mctc-lib
+    tblite
+    test-drive
+    toml-f
+    simple-dftd3
+    dftd4
+    multicharge
+  ];
 
   hardeningDisable = [ "format" ];
 
@@ -57,13 +95,18 @@ in stdenv.mkDerivation rec {
       --prefix PATH : "${binSearchPath}"
   '';
 
+  doCheck = true;
+  preCheck = ''
+    export OMP_NUM_THREADS=2
+  '';
+
   setupHooks = [ ./xtbHook.sh ];
 
   passthru = { inherit enableOrca enableTurbomole; };
 
   meta = with lib; {
     inherit description;
-    homepage = "https://www.chemie.uni-bonn.de/pctc/mulliken-center/grimme/software/xtb";
+    homepage = "https://github.com/grimme-lab/xtb";
     license = licenses.lgpl3Only;
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];

@@ -1,27 +1,30 @@
-{ buildPythonPackage, lib, fetchFromGitHub, cffi, numpy, ase, qcelemental, meson, ninja, pkg-config,
-  xtb, pytestCheckHook, python
+{ buildPythonPackage
+, lib
+, fetchFromGitHub
+, cffi
+, numpy
+, ase
+, qcelemental
+, meson
+, meson-python
+, ninja
+, cmake
+, pkg-config
+, xtb
 }:
 
 buildPythonPackage rec {
   pname = "xtb-python";
-  version = "20.2";
+  version = "22.1";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    sha256  = "0ra4d4hi34clckxy9nv0k3ignjcfa7vv1w33y854zqk9qr45z4bg";
+    hash = "sha256-TTVtPVhb7FJnvu/C2yJhxOE/KzuLxe0N4HbpbkE/MTM=";
   };
 
-  postPatch = ''
-    cp -r ${xtb.src} subprojects/.
-  '';
-
-  nativeBuildInputs = [
-    meson
-    ninja
-    pkg-config
-  ];
+  nativeBuildInputs = [ meson ninja pkg-config meson-python ];
 
   propagatedBuildInputs = [
     cffi
@@ -31,15 +34,14 @@ buildPythonPackage rec {
     xtb
   ];
 
+  format = "pyproject";
+
   # Build a C module to interface XTB.
   preBuild = ''
     meson setup build --prefix=$(pwd) --default-library=shared
     ninja -C build install
-    cp ./${python.passthru.sitePackages}/_libxtb.*.so ./xtb/.
   '';
 
-  checkInputs = [ pytestCheckHook ];
-  pytestFlagsArray = [ "-k 'not (qcschema or gfn2xtb_orbitals)'" ]; # Numerically soooo slightly off
   pythonImportsCheck = [ "xtb.interface" "xtb.libxtb" ];
   preCheck = "export OMP_NUM_THREADS=4";
 

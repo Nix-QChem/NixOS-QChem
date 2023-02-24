@@ -1,38 +1,35 @@
 { stdenv
 , lib
 , fetchFromGitHub
-, gfortran
-, pkg-config
-, json-fortran
 , cmake
+, gfortran
+, mctc-lib
 }:
 
 stdenv.mkDerivation rec {
-  pname = "mctc-lib";
-  version = "0.3.1";
+  pname = "mstore";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-AXjg/ZsitdDf9fNoGVmVal1iZ4/sxjJb7A9W4yye/rg=";
+    hash = "sha256-dN2BulLS/ENRFVdJIrZRxgBV8S4d5+7BjTCGnhBbf4I=";
   };
 
-  nativeBuildInputs = [ gfortran pkg-config cmake ];
+  nativeBuildInputs = [ cmake gfortran ];
 
-  buildInputs = [ json-fortran ];
+  buildInputs = [ mctc-lib ];
 
   postInstall = ''
     substituteInPlace $out/lib/pkgconfig/${pname}.pc \
       --replace "''${prefix}" ""
   '';
 
-  doCheck = true;
-
   meta = with lib; {
-    description = "Modular computation tool chain library";
-    homepage = "https://github.com/grimme-lab/mctc-lib";
+    description = "Molecular structure store for testing";
     license = licenses.asl20;
+    homepage = "https://github.com/grimme-lab/mstore";
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
   };

@@ -139,6 +139,10 @@ let
 
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
+        dftd4 = callPackage ./pkgs/lib/dftd4 { };
+
+        dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
+
         dirac = callPackage ./pkgs/apps/dirac {
           inherit (self) exatensor;
         };
@@ -148,6 +152,8 @@ let
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
         exciting = callPackage ./pkgs/apps/exciting { };
+
+        fypp = prev.python3.pkgs.callPackage ./pkgs/apps/fypp { };
 
         gabedit = callPackage ./pkgs/apps/gabedit { };
 
@@ -205,11 +211,17 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
+        mpifx = callPackage ./pkgs/lib/mpifx { };
+
+        mstore = callPackage ./pkgs/lib/mstore { };
+
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
         mrchem = callPackage ./pkgs/apps/mrchem { };
 
         mt-dgemm = callPackage ./pkgs/apps/mt-dgemm { };
+
+        multicharge = callPackage ./pkgs/lib/multicharge { };
 
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
@@ -247,6 +259,8 @@ let
 
         qmcpack = callPackage ./pkgs/apps/qmcpack { };
 
+        scalapackfx = callPackage ./pkgs/lib/scalapackfx { };
+
         # blank version
         sharc = callPackage ./pkgs/apps/sharc/default.nix {
           bagel = self.bagel-serial;
@@ -275,12 +289,17 @@ let
 
         sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
 
+        simple-dftd3 = callPackage ./pkgs/lib/simple-dftd3 { };
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
+
+        tblite = callPackage ./pkgs/lib/tblite { };
 
         test-drive = callPackage ./pkgs/lib/test-drive { };
 
         tinker = callPackage ./pkgs/apps/tinker { };
+
+        toml-f = callPackage ./pkgs/lib/toml-f { };
 
         travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
 
