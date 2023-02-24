@@ -139,6 +139,8 @@ let
 
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
+        dftd4 = callPackage ./pkgs/lib/dftd4 { };
+
         dirac = callPackage ./pkgs/apps/dirac {
           inherit (self) exatensor;
         };
