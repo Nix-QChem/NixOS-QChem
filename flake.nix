@@ -62,6 +62,14 @@
 
       checks."${system}" = with lib; filterAttrs (n: isDerivation) pkgs.qchem.tests;
 
+      formatter."${system}" = pkgs.nixpkgs-fmt;
+
+      devShells."${system}".default = with pkgs; mkShell {
+        buildInputs = [
+          self.formatter."${system}"
+          statix
+        ];
+      };
 
       overlays = {
         qchem = qchemOvl;
