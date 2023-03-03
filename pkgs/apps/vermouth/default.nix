@@ -2,13 +2,13 @@
 
 buildPythonPackage rec {
   pname = "vermouth";
-  version = "0.7.3";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "vermouth-martinize";
     rev = "v${version}";
-    hash = "sha256-bUUp6fD6Fo20PQjXlyTcWN0AvpAumc4ZAHp4FmA4ljM=";
+    hash = "sha256-Ix17LRY8f9z9UBDELbpaIO7Tt2SvxKtIXr0kgCV24cE=";
   };
 
   nativeBuildInputs = [ pbr ];
@@ -26,7 +26,7 @@ buildPythonPackage rec {
   meta = with lib; {
     description = "Describe and apply transformation on molecular structures and topologies";
     homepage = "https://github.com/marrink-lab/vermouth-martinize";
-    maintainers =  [ maintainers.sheepforce ];
+    maintainers = [ maintainers.sheepforce ];
     license = [ licenses.asl20 ];
   };
 }
