@@ -77,6 +77,7 @@
 
       overlays = {
         qchem = qchemOvl;
+        qchem' = import ./default.nix;
         pythonQchem = import ./pythonPackages.nix pkgs.config.qchem-config.prefix pkgs.config.qchem-config pkgs nixpkgs;
         default = self.overlays.qchem;
       };
