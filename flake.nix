@@ -3,7 +3,11 @@
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-  nixConfig.extra-substituters = [ "https://nix-qchem.cachix.org" ];
+  nixConfig = {
+    extra-substituters = [ "https://nix-qchem.cachix.org" ];
+
+    allow-import-from-derivation = "true";
+  };
 
   outputs = { self, nixpkgs, ... }:
     let
