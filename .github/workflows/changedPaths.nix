@@ -20,12 +20,12 @@ let
 
   # Recursive, flattened difference of attribute sets.
   recAttrSetDiff = l: r: lib.attrsets.filterAttrsRecursive
-       (lK: lV: !(builtins.elem lK auxIgnore) && (if lib.hasAttr lK r
-         then lV != r."${lK}"
-         else true)
-       )
-       l
-      ;
+    (lK: lV: !(builtins.elem lK auxIgnore) && (if lib.hasAttr lK r
+    then lV != r."${lK}"
+    else true)
+    )
+    l
+  ;
 
   # Simplify package set
   simplify = as: with lib.attrsets; mapAttrs (_: v: v.drvPath) (filterAttrs (_: v: isDerivation v) as);
@@ -48,7 +48,9 @@ let
   changedPyDerivs = recAttrSetDiff updPyDerivs basPyDerivs;
 
   # For CI purposes we only require the changed attribute keys.
-in { topLevel = builtins.attrNames changedDerivs;
-     python3 = builtins.attrNames changedPyDerivs;
-   }
+in
+{
+  topLevel = builtins.attrNames changedDerivs;
+  python3 = builtins.attrNames changedPyDerivs;
+}
 
