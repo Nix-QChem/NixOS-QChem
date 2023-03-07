@@ -15,8 +15,4 @@ jobs:
     - uses: workflow/nix-shell-action@v3
       with:
         packages: editorconfig-checker
-        script: |
-          editorconfig-checker -disable-indent-size ${{ steps.files.outputs.all }}
-    - if: ${{ failure() }}
-      run: |
-        echo "::error :: Hey! It looks like your changes don't follow our editorconfig settings."
+        script: editorconfig-checker -disable-indent-size ${{ steps.files.outputs.all }}
