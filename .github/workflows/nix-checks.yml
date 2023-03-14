@@ -2,6 +2,14 @@ name: basic nix checks
 on: [pull_request]
 
 jobs:
+  instantiate:
+    name: nix-instantiate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v20
+      - uses: actions/checkout@v3
+      - run: nix-instantiate release.nix -A qchem
+
   # Check if the flake is sane
   check:
     name: nix flake check
