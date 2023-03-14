@@ -7,12 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - id: files
-      uses: jitterbit/get-changed-files@v1
+    - name: get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v35
     - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-    - uses: workflow/nix-shell-action@v3
-      with:
-        packages: editorconfig-checker
-        script: editorconfig-checker -disable-indent-size ${{ steps.files.outputs.all }}
+    - run: |
+      for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          nix run nixpkgs#editorconfig-checker -- $file
+        done
