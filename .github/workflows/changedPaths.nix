@@ -10,7 +10,9 @@ let
     pin = true;
   };
 
-  lib = (import "${basePath}/nixpkgs-pin.nix" (import <nixpkgs> {})).lib;
+  pkgs = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-22.11.tar.gz") { };
+
+  lib = pkgs.lib;
 
   # Ignored outputs, to be removed additionally from the attribute set.
   auxIgnore = [
