@@ -57,9 +57,15 @@ jobs:
         with:
           name: Changed-Derivations
       # Rebuild all changed python3 packages
-      - run: nix build --accept-flake-config $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+      - run: |
+          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+          fi
       # Rebuild all changed top-level packages
-      - run: nix build --accept-flake-config $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+      - run: |
+          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+          fi
 
   # Rebuild changed derivations for nixpkgs-unstable
   rebuild-unstable:
@@ -80,9 +86,15 @@ jobs:
         with:
           name: Changed-Derivations
       # Rebuild all changed python3 packages
-      - run: nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+      - run: |
+          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+          fi
       # Rebuild all changed top-level packages
-      - run: nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+      - run: |
+          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+          fi
 
   # Rebuild changed derivations for nixpkgs/master
   rebuild-master:
@@ -103,6 +115,12 @@ jobs:
         with:
           name: Changed-Derivations
       # Rebuild all changed python3 packages
-      - run: nix build --accept-flake-config --override-input nixpkgs nixpkgs/master $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+      - run: |
+          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/master $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+          fi
       # Rebuild all changed top-level packages
-      - run: nix build --accept-flake-config --override-input nixpkgs nixpkgs/master $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+      - run: |
+          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/master $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+          fi
