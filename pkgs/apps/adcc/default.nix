@@ -32,7 +32,7 @@ buildPythonPackage rec {
     setuptools
   ];
 
-  NIX_CFLAGS_COMPILE = "-Wno-error=array-bounds";
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=array-bounds";
 
   checkInputs = [ pytest pytest-cov ];
 
