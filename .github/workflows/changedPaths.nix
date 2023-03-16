@@ -10,7 +10,7 @@ let
     pin = true;
   };
 
-  lib = (import "${basePath}/nixpkgs-pin.nix" { }).lib;
+  lib = (import "${basePath}/nixpkgs-pin.nix" (import <nixpkgs> {})).lib;
 
   # Ignored outputs, to be removed additionally from the attribute set.
   auxIgnore = [
