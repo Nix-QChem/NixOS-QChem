@@ -12,6 +12,6 @@ jobs:
       uses: tj-actions/changed-files@v35
     - uses: cachix/install-nix-action@v20
     - run: |
-      for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           nix run nixpkgs#editorconfig-checker -- $file
         done
