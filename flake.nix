@@ -30,6 +30,7 @@
               vmd = null;
               mesa-qc = null;
               mcdth = null;
+              nixGL = null;
             };
           })
         ];
