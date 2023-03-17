@@ -1,6 +1,6 @@
 # Example for an overlay file that adds previous versions
 # of NixOS-QChem/nixpkgs to the package set. This provides
-# easy access to prevoius versions of packages.
+# easy access to previous versions of packages.
 #
 #
 # Named subsets for previous releases.

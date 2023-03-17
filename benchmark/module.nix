@@ -10,7 +10,7 @@ let
 in {
   options = {
     #
-    # Defintions of tests
+    # Definitions of tests
     #
     slurmParams = mkOption {
       description = "Options for sbatch";
@@ -43,7 +43,7 @@ in {
           };
 
           extraSetup = mkOption {
-            description = "Shell code insterted at the beginning of the script";
+            description = "Shell code inserted at the beginning of the script";
             type = types.lines;
             default = "";
           };
@@ -64,7 +64,7 @@ in {
     };
 
     #
-    # Definitons of output
+    # Definitions of output
     #
 
     # set of all generated benchmark scripts

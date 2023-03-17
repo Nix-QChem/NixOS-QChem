@@ -73,7 +73,7 @@ let
             "y"                        # Agree to license
             ""                         # Skip countdown
             "3000"                     # Order number, that works for all Q-Chem versions 5.{1..4}
-            "someone@example.com"      # Fake mail adress substituted later. Needs to be a well formed, though
+            "someone@example.com"      # Fake mail address substituted later. Needs to be a well formed, though
             "y"                        # Confirm that the answers are "correct". Of course they are not, but the activation script solves this later
           ] ++ lib.optional (minorVersion >= 2) "1" # Use a license file instead of setting up a separate license server
           );

@@ -1,8 +1,8 @@
 { batsTest, mpi, openssh, hpcg
 # Local sizes
 , sizes ? [ 16 16 16 ]
-# Minumum runtime in seconds
-# The offically published
+# Minimum runtime in seconds
+# The officially published
 # results require at least 1800 s
 , runTime ? 120
 } :

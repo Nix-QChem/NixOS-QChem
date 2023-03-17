@@ -72,7 +72,7 @@ in stdenv.mkDerivation rec {
   '';
 
   # libnvcuvid.so depends on the linuxPackages.nvidia_x11.
-  # This might be overriden in configuration.nix and should be detected at runtime at
+  # This might be overridden in configuration.nix and should be detected at runtime at
   # /var/run/opengl-driver/lib
   autoPatchelfIgnoreMissingDeps = true;
 
