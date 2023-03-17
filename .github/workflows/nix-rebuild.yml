@@ -1,47 +1,126 @@
-name: nix rebuilds
+name: rebuilds
 on: [pull_request]
 
 jobs:
-  run:
-    name: Calculate changed outputs
+  # Calculate changed derivations
+  get-changed-derivs:
+    name: Get changed derivations
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        path: pr
-    - uses: actions/checkout@v2
-      with:
-        path: master
-        ref: master
-    - uses: cachix/install-nix-action@v16
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-    - name: Changed paths
-      run: |
-        cat /etc/nix/nix.conf
-        id
-        echo $NIX_PATH
-        nix-channel --add https://nixos.org/channels/nixos-21.11 nixpkgs
-        nix-channel --update
-        nix-instantiate ./pr/release.nix -A qchem
-        nix-env -f ./pr/release.nix -qaP --no-name --out-path --show-trace \
-          --option binary-caches 'https://cache.nixos.org/ https://nix-qchem.cachix.org/' \
-          --option trusted-public-keys '
-            nix-qchem.cachix.org-1:ZjRh1PosWRj7qf3eukj4IxjhyXx6ZwJbXvvFk3o3Eos=
-            cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-          ' --arg allowUnfree false -A qchem | sort > paths-pr
-        nix-instantiate ./master/release.nix -A qchem
-        nix-env -f ./master/release.nix -qaP --no-name --out-path --show-trace \
-          --option binary-caches 'https://cache.nixos.org/ https://nix-qchem.cachix.org/' \
-          --option trusted-public-keys '
-            nix-qchem.cachix.org-1:ZjRh1PosWRj7qf3eukj4IxjhyXx6ZwJbXvvFk3o3Eos=
-            cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-          ' --arg allowUnfree false -A qchem | sort > paths-master
-        diff -u paths-master paths-pr | grep -E "^\+" | sed '/^+++/d; s/^+//' | tee > changed_outputs
-        echo "The following outputs need to be rebuild:" > changed_outputs.md
-        awk '{ print $1 }' changed_outputs | sed 's/\(.*\)/- \1/' >> changed_outputs.md
-    - uses: machine-learning-apps/pr-comment@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        path: changed_outputs.md
+      # Install Nix on the runner
+      - uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      # Pull from the cachix cache
+      - uses: cachix/cachix-action@v12
+        with:
+          name: nix-qchem
+      # Checkout of the current head in the working dir
+      - uses: actions/checkout@v3
+      # Get PR target branch checkout
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          repository: ${{ github.event.pull_request.base.repo.full_name }}
+          path: pr_base
+      # Get a checkout of this PR
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          path: pr_head
+      # Calculate changed derivations and upload as artifacts
+      - run: nix eval --impure --expr 'import ./.github/workflows/changedPaths.nix ./pr_head ./pr_base' --json | tee chDerivs.json
+      # Upload JSON of the changed derivations
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Changed-Derivations
+          path: chDerivs.json
+          retention-days: 1
+
+  # Rebuild changed derivations for the pinned snapshot
+  rebuild-pin:
+    name: Pinned
+    needs: get-changed-derivs
+    runs-on: ubuntu-latest
+    steps:
+      # Install Nix on the runner
+      - uses: cachix/install-nix-action@v20
+      # Pull from the cachix cache
+      - uses: cachix/cachix-action@v12
+        with:
+          name: nix-qchem
+      # Checkout of the current head in the working dir
+      - uses: actions/checkout@v3
+      # Get changed derivations as artifact from previous step
+      - uses: actions/download-artifact@v3
+        with:
+          name: Changed-Derivations
+      # Rebuild all changed python3 packages
+      - run: |
+          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+          fi
+      # Rebuild all changed top-level packages
+      - run: |
+          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+          fi
+
+  # Rebuild changed derivations for nixpkgs-unstable
+  rebuild-unstable:
+    name: Unstable
+    needs: get-changed-derivs
+    runs-on: ubuntu-latest
+    steps:
+      # Install Nix on the runner
+      - uses: cachix/install-nix-action@v20
+      # Pull from the cachix cache
+      - uses: cachix/cachix-action@v12
+        with:
+          name: nix-qchem
+      # Checkout of the current head in the working dir
+      - uses: actions/checkout@v3
+      # Get changed derivations as artifact from previous step
+      - uses: actions/download-artifact@v3
+        with:
+          name: Changed-Derivations
+      # Rebuild all changed python3 packages
+      - run: |
+          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+          fi
+      # Rebuild all changed top-level packages
+      - run: |
+          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+          fi
+
+  # Rebuild changed derivations for nixpkgs/master
+  rebuild-master:
+    name: Master
+    needs: get-changed-derivs
+    runs-on: ubuntu-latest
+    steps:
+      # Install Nix on the runner
+      - uses: cachix/install-nix-action@v20
+      # Pull from the cachix cache
+      - uses: cachix/cachix-action@v12
+        with:
+          name: nix-qchem
+      # Checkout of the current head in the working dir
+      - uses: actions/checkout@v3
+      # Get changed derivations as artifact from previous step
+      - uses: actions/download-artifact@v3
+        with:
+          name: Changed-Derivations
+      # Rebuild all changed python3 packages
+      - run: |
+          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/master --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+          fi
+      # Rebuild all changed top-level packages
+      - run: |
+          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
+            nix build --accept-flake-config --override-input nixpkgs nixpkgs/master --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+          fi
