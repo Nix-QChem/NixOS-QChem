@@ -61,7 +61,7 @@ let
         #
 
         # For molcas and chemps2
-        hdf5-full = final.hdf5.override {
+        hdf5-full = self.hdf5.override {
           cppSupport = true;
           fortranSupport = true;
         };
