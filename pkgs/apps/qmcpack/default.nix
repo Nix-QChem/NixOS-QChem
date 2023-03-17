@@ -4,13 +4,13 @@
 
 stdenv.mkDerivation rec {
   pname = "qmcpack";
-  version = "3.12.0";
+  version = "3.16.0";
 
   src = fetchFromGitHub {
     owner = "QMCPACK";
     repo = "qmcpack";
     rev = "v${version}";
-    sha256 = "1x6q6a2krik50gsxv4xhpwbrgkac14nv7i4ax30g14hc7xjx3dka";
+    sha256 = "sha256-/1bWnE6mbKYSuApwHK92ia5aXKfq7n4KTca5rn0rixI=";
   };
 
   nativeBuildInputs = [ cmake ];
