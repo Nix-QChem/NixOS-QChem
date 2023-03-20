@@ -1,5 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, cmake
-, python
+{ lib, buildPythonPackage, fetchFromGitHub, cmake
 , numpy
 , setuptools
 , version ? "2.0.7"
@@ -8,7 +7,7 @@
 , maxAm ? 7
 } :
 
-stdenv.mkDerivation rec {
+buildPythonPackage rec {
   pname = "gau2grid";
   inherit version;
 
@@ -17,10 +16,11 @@ stdenv.mkDerivation rec {
   ];
 
   propagatedBuildInputs = [
-    python
     numpy
     setuptools
   ];
+
+  format = "other";
 
   cmakeFlags = [
    "-DMAX_AM=${toString maxAm}"
