@@ -213,8 +213,6 @@ let
 
         mt-dgemm = callPackage ./pkgs/apps/mt-dgemm { };
 
-        multicharge = callPackage ./pkgs/lib/multicharge { };
-
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
         gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
