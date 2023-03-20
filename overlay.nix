@@ -172,8 +172,6 @@ let
 
         janpa = callPackage ./pkgs/apps/janpa { };
 
-        json-fortran = callPackage ./pkgs/lib/json-fortran { };
-
         luscus = callPackage ./pkgs/apps/luscus { };
 
         macroqc = callPackage ./pkgs/apps/macroqc { };
