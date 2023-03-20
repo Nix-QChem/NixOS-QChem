@@ -283,8 +283,6 @@ let
 
         tinker = callPackage ./pkgs/apps/tinker { };
 
-        toml-f = callPackage ./pkgs/lib/toml-f { };
-
         travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
 
         turbomole = callPackage ./pkgs/apps/turbomole { };
