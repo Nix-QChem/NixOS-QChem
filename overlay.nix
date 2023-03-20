@@ -207,8 +207,6 @@ let
 
         mpifx = callPackage ./pkgs/lib/mpifx { };
 
-        mstore = callPackage ./pkgs/lib/mstore { };
-
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
         mrchem = callPackage ./pkgs/apps/mrchem { };
