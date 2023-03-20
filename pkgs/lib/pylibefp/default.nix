@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, cmake
+{ buildPythonPackage, lib, fetchFromGitHub, cmake
 # Dependencies
 , libefp
 , blas
@@ -8,7 +8,7 @@
 , qcelemental
 } :
 
-stdenv.mkDerivation rec {
+buildPythonPackage rec {
   pname = "pylibefp";
   version = "0.6.1";
 
@@ -31,6 +31,8 @@ stdenv.mkDerivation rec {
     pybind11
     qcelemental
   ];
+
+  format = "other";
 
   cmakeFlags = [
     "-DCMAKE_PREFIX_PATH=${libefp}"
