@@ -278,8 +278,6 @@ let
 
         sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
 
-        simple-dftd3 = callPackage ./pkgs/lib/simple-dftd3 { };
-
         stream-benchmark = callPackage ./pkgs/apps/stream { };
 
         tblite = callPackage ./pkgs/lib/tblite { };
