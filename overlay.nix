@@ -139,8 +139,6 @@ let
 
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
-        dftd4 = callPackage ./pkgs/lib/dftd4 { };
-
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
         dirac = callPackage ./pkgs/apps/dirac {
