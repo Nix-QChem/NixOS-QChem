@@ -48,11 +48,6 @@ let
 
     pyphspu = callPackage ./pkgs/lib/pyphspu { };
 
-    tblite = callPackage ./pkgs/lib/tblite/python.nix {
-      inherit (finalPkgs) tblite;
-      inherit (prevPkgs) meson;
-    };
-
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
 
     vermouth = callPackage ./pkgs/apps/vermouth { };
