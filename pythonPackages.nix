@@ -26,11 +26,6 @@ let
 
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
 
-    openmm = prevPkgs.openmm.override {
-      enablePython = true;
-      enableCuda = cfg.useCuda;
-    };
-
     optking = callPackage ./pkgs/lib/optking { };
 
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
