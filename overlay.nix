@@ -174,8 +174,6 @@ let
 
         macroqc = callPackage ./pkgs/apps/macroqc { };
 
-        mctc-lib = callPackage ./pkgs/lib/mctc-lib { };
-
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
         molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix {
