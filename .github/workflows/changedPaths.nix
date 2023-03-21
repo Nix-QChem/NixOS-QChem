@@ -32,6 +32,7 @@ let
   auxIgnore = [
     "channel"
     "nixexprs"
+    "tested"
   ];
 
   # Recursive, flattened difference of attribute sets.
