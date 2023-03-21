@@ -3,9 +3,23 @@ updPath: basePath:
 let
   releaseOpts = {
     config = { };
-    allowUnfree = true;
+    allowUnfree = false;
     preOverlays = [ ];
-    postOverlays = [ ];
+    postOverlays = [
+      (final: prev: {
+        turbomole = null;
+        cefine = null;
+        cfour = null;
+        gamess-us = null;
+        mrcc = null;
+        orca = null;
+        qdng = null;
+        vmd = null;
+        mesa-qc = null;
+        mcdth = null;
+        nixGL = null;
+      })
+    ];
     buildVariants = false;
     pin = true;
   };
