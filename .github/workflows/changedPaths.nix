@@ -5,7 +5,20 @@ let
     config = { };
     allowUnfree = true;
     preOverlays = [ ];
-    postOverlays = [ ];
+    postOverlays = [
+      (final: prev: {
+        turbomole = null;
+        cefine = null;
+        cfour = null;
+        mrcc = null;
+        orca = null;
+        qdng = null;
+        vmd = null;
+        mesa-qc = null;
+        mcdth = null;
+        nixGL = null;
+      })
+    ];
     buildVariants = false;
     pin = true;
   };

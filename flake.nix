@@ -24,6 +24,7 @@
               turbomole = null;
               cefine = null;
               cfour = null;
+              gamess-us = null;
               mrcc = null;
               orca = null;
               qdng = null;
