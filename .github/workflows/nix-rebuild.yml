@@ -96,7 +96,7 @@ jobs:
             nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
           fi
 
-  # Rebuild changed derivations for nixpkgs/master
+  # Rebuild changed derivations as if merged
   rebuild-master:
     name: Master
     needs: get-changed-derivs
@@ -108,8 +108,11 @@ jobs:
       - uses: cachix/cachix-action@v12
         with:
           name: nix-qchem
-      # Checkout of the current head in the working dir
+      # Checkout merge commit as if PR would already be merged
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.sha }}
+          repository: ${{ github.event.pull_request.base.repo.full_name }}
       # Get changed derivations as artifact from previous step
       - uses: actions/download-artifact@v3
         with:
@@ -117,10 +120,10 @@ jobs:
       # Rebuild all changed python3 packages
       - run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --override-input nixpkgs nixpkgs/master --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
           fi
       # Rebuild all changed top-level packages
       - run: |
           if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --override-input nixpkgs nixpkgs/master --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
           fi
