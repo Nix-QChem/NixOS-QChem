@@ -47,7 +47,7 @@ in stdenv.mkDerivation {
 
   postFixup = ''
     #
-    # Since version 2019.1 the binaris are dyanmically linked
+    # Since version 2019.1 the binaris are dynamically linked
     for bin in hydra_pmi_proxy molpro.exe mpiexec.hydra; do
       patchelf \
         --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/$bin
@@ -80,7 +80,7 @@ in stdenv.mkDerivation {
      $out/bin/molpro --launcher \
        "$out/bin/mpiexec.hydra -iface lo $out/bin/molpro.exe" $inp.inp
 
-     echo "Check for sucessful run:"
+     echo "Check for successful run:"
      grep "RHF STATE 1.1 Energy" $inp.out
      echo "Check for correct energy:"
      grep "RHF STATE 1.1 Energy" $inp.out | grep 74.880174

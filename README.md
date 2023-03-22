@@ -19,7 +19,7 @@ The design and packaging approach of the overlay are published here:
 
 ### Overlay
 The repository comes as a nixpkgs overlay (see [Nixpkgs manual](https://nixos.org/nixpkgs/manual/#chap-overlays) for how to install an overlay).
-The contents of the overlay will be placed in an attribute set under nixpkgs (default `qchem`). The original, but overriden nixpkgs will be placed in `qchem.pkgs`. This allows for composition of the overlay with different variants.
+The contents of the overlay will be placed in an attribute set under nixpkgs (default `qchem`). The original, but overridden nixpkgs will be placed in `qchem.pkgs`. This allows for composition of the overlay with different variants.
 
 There is a branch (release-XX.XX) for every stable version of nixpkgs (nixos-XX.XX).
 
@@ -76,12 +76,12 @@ Configuration options can be set directly via `config.qchem-config` alongside ot
 * `srcurl`: URL for non-free packages. If set this will override the `requireFile` function of nixpkgs to pull all non-free packages from the specified URL
 * `optpath`: Path to packages that reside outside the nix store. This is mainly relevant for Gaussian and Matlab.
 * `licMolpro`: Molpro license token string required to run molpro.
-* `optArch`: Set gcc compiler flags (`mtune` and `march`) to optimize for a specific architecture. Some upstream packages will be overriden to use make use of AVX (see `nixpkgs-opt.nix`). Note, that this also overrides the stdenv
+* `optArch`: Set gcc compiler flags (`mtune` and `march`) to optimize for a specific architecture. Some upstream packages will be overridden to use make use of AVX (see `nixpkgs-opt.nix`). Note, that this also overrides the stdenv
 * `useCuda`: Uses Cuda features in selected packages.
 * `licQChem`: Path to a Q-Chem license file as obtained via mail.
 
 
-### Configuation via environment variables
+### Configuration via environment variables
 The overlay will check for environment variables to configure some features:
 
 * `NIXQC_PREFIX`

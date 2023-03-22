@@ -22,7 +22,7 @@ let
       # Add additional compiler flags
       extraAttrs = {
         mkDerivation = args: (stdenv.mkDerivation args).overrideAttrs (old: {
-          NIX_CFLAGS_COMPILE = toString (old.NIX_CFLAGS_COMPILE or "")
+          env.NIX_CFLAGS_COMPILE = toString (old.env.NIX_CFLAGS_COMPILE or "")
             + " -march=${arch} -mtune=${arch} " + extraCflags;
         });
       };
@@ -61,7 +61,7 @@ let
         #
 
         # For molcas and chemps2
-        hdf5-full = final.hdf5.override {
+        hdf5-full = self.hdf5.override {
           cppSupport = true;
           fortranSupport = true;
         };

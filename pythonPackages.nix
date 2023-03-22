@@ -1,21 +1,21 @@
-subset: cfg: selfPkgs: superPkgs: self: super:
+subset: cfg: finalPkgs: prevPkgs: final: prev:
 
 let
   callPackage = lib.callPackageWith (
-    selfPkgs.pkgs //  # nixpkgs
-    selfPkgs //       # overlay
-    self //           # python
+    finalPkgs.pkgs //  # nixpkgs
+    finalPkgs //       # overlay
+    final //           # python
     overlay );
 
-  inherit (selfPkgs.pkgs) lib;
+  inherit (finalPkgs.pkgs) lib;
 
   overlay = {
 
-  } // lib.optionalAttrs super.isPy3k {
+  } // lib.optionalAttrs prev.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
     dftbplus = callPackage ./pkgs/apps/dftbplus {
-      inherit (selfPkgs) tblite;
+      inherit (finalPkgs) tblite;
     };
 
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
@@ -26,11 +26,6 @@ let
 
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
 
-    openmm = superPkgs.openmm.override {
-      enablePython = true;
-      enableCuda = cfg.useCuda;
-    };
-
     optking = callPackage ./pkgs/lib/optking { };
 
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
@@ -40,13 +35,13 @@ let
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
     psi4 = callPackage ./pkgs/apps/psi4 {
-      libint = superPkgs.libintPsi4;
+      libint = prevPkgs.libintPsi4;
     };
 
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
-      gamess-us = selfPkgs.gamess-us.override {
+      gamess-us = finalPkgs.gamess-us.override {
         enableMpi = false;
       };
     };
@@ -54,8 +49,8 @@ let
     pyphspu = callPackage ./pkgs/lib/pyphspu { };
 
     tblite = callPackage ./pkgs/lib/tblite/python.nix {
-      inherit (selfPkgs) tblite;
-      inherit (superPkgs) meson;
+      inherit (finalPkgs) tblite;
+      inherit (prevPkgs) meson;
     };
 
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
@@ -63,7 +58,7 @@ let
     vermouth = callPackage ./pkgs/apps/vermouth { };
 
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
-  } // lib.optionalAttrs super.isPy27 {
+  } // lib.optionalAttrs prev.isPy27 {
     pyquante = callPackage ./pkgs/apps/pyquante { };
   };
 

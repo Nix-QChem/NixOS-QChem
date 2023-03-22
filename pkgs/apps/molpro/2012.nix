@@ -66,7 +66,7 @@ in stdenv.mkDerivation {
 
      $out/bin/molpro $inp.inp
 
-     echo "Check for sucessful run:"
+     echo "Check for successful run:"
      grep "RHF STATE  1.1 Energy" $inp.out
      echo "Check for correct energy:"
      grep "RHF STATE  1.1 Energy" $inp.out | grep 74.880174

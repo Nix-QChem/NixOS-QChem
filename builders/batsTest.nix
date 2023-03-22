@@ -8,7 +8,7 @@
 , testScript ? ""
 # setup script code, executed at the end of setup phase
 , setupScript ? ""
-# teardown/cleanu code exectuted after each test
+# teardown/cleanu code executed after each test
 , teardownScript ? ""
 # Files required for the test
 , auxFiles ? []

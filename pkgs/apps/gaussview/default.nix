@@ -12,7 +12,7 @@ in stdenv.mkDerivation {
   src = requireFile {
     name = "gv-6016-Linux-x86_64.tbz";
     sha256 = "0f4ngf3d2qz58g7qsqp9jwsmv0iv5n6s3cq8ld1kwxl1ikgsimjx";
-    message = "Please aquire a licensed copy of Gaussview ${version} and it to the nix store";
+    message = "Please acquire a licensed copy of Gaussview ${version} and it to the nix store";
   };
 
   nativeBuildInputs = [ makeWrapper ];

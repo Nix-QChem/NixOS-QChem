@@ -64,7 +64,7 @@ in stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  NIX_CFLAGS_COMPILE = "-DH5_USE_110_API";
+  env.NIX_CFLAGS_COMPILE = "-DH5_USE_110_API";
 
   cmakeFlags = [
     "-DOPENMP=ON"
