@@ -3,7 +3,7 @@ Example of a pinned project shell. 'fetchGit' is used to reproducibility fetch t
 nixpkgs-unstable package set and the NixOS-QChem overlay. Both are therefore exactly fixed
 at a non-moving commit, thus ensuring reproducibility of the packages.
 'mkShell' is used to define an environment, where a set of project-associated packages is projected
-into the user's environemt. Additional packages can be added to this environment, should they become
+into the user's environment. Additional packages can be added to this environment, should they become
 necessary later, without modifying any other package pin.
 */
 
