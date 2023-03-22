@@ -29,8 +29,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           path: pr_head
-      # Calculate changed derivations and upload as artifacts
-      - run: nix eval --impure --expr 'import ./.github/workflows/changedPaths.nix ./pr_head ./pr_base' --json | tee chDerivs.json
+      - name: Calculate changed derivations and upload as artifacts
+        run: nix eval --impure --expr 'import ./.github/workflows/changedPaths.nix ./pr_head ./pr_base' --json | tee chDerivs.json
       # Upload JSON of the changed derivations
       - uses: actions/upload-artifact@v3
         with:
@@ -39,8 +39,8 @@ jobs:
           retention-days: 1
 
   # Rebuild changed derivations for the pinned snapshot
-  rebuild-pin:
-    name: Pinned
+  rebuild-head:
+    name: Changed derivations HEAD (pinned nixpkgs)
     needs: get-changed-derivs
     runs-on: ubuntu-latest
     steps:
@@ -56,13 +56,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Changed-Derivations
-      # Rebuild all changed python3 packages
-      - run: |
+      - name: Rebuild python3 packages
+        run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
             nix build --accept-flake-config --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
           fi
-      # Rebuild all changed top-level packages
-      - run: |
+      - name: Rebuild all top-level packages
+        run: |
           if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
             nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
           fi
@@ -97,8 +97,8 @@ jobs:
           fi
 
   # Rebuild changed derivations as if merged
-  rebuild-master:
-    name: Master
+  rebuild-merge:
+    name: Changed Derivations Merge (pinned nixpkgs)
     needs: get-changed-derivs
     runs-on: ubuntu-latest
     steps:
@@ -117,13 +117,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Changed-Derivations
-      # Rebuild all changed python3 packages
-      - run: |
+      - name: Rebuild all changed python3 packages
+        run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
             nix build --accept-flake-config --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
           fi
-      # Rebuild all changed top-level packages
-      - run: |
+      - name: Rebuild all changed top-level packages
+        run: |
           if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
             nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
           fi
