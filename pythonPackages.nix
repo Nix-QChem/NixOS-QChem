@@ -14,9 +14,7 @@ let
   } // lib.optionalAttrs prev.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
-    dftbplus = callPackage ./pkgs/apps/dftbplus {
-      inherit (finalPkgs) tblite;
-    };
+    dftbplus = callPackage ./pkgs/apps/dftbplus { };
 
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
 
