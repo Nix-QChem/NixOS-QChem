@@ -11,6 +11,10 @@ buildPythonPackage rec {
     hash = "sha256-Ix17LRY8f9z9UBDELbpaIO7Tt2SvxKtIXr0kgCV24cE=";
   };
 
+  postPatch = ''
+    substituteInPlace ./setup.cfg --replace 'networkx ~= 2.0' 'networkx'
+  '';
+
   nativeBuildInputs = [ pbr ];
   propagatedBuildInputs = [
     numpy
