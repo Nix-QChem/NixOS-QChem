@@ -52,6 +52,8 @@ jobs:
           name: nix-qchem
       # Checkout of the current head in the working dir
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       # Get changed derivations as artifact from previous step
       - uses: actions/download-artifact@v3
         with:
@@ -110,9 +112,6 @@ jobs:
           name: nix-qchem
       # Checkout merge commit as if PR would already be merged
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.sha }}
-          repository: ${{ github.event.pull_request.base.repo.full_name }}
       # Get changed derivations as artifact from previous step
       - uses: actions/download-artifact@v3
         with:
