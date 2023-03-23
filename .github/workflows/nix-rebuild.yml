@@ -69,35 +69,6 @@ jobs:
             nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
           fi
 
-  # Rebuild changed derivations for nixpkgs-unstable
-  rebuild-unstable:
-    name: Unstable
-    needs: get-changed-derivs
-    runs-on: ubuntu-latest
-    steps:
-      # Install Nix on the runner
-      - uses: cachix/install-nix-action@v20
-      # Pull from the cachix cache
-      - uses: cachix/cachix-action@v12
-        with:
-          name: nix-qchem
-      # Checkout of the current head in the working dir
-      - uses: actions/checkout@v3
-      # Get changed derivations as artifact from previous step
-      - uses: actions/download-artifact@v3
-        with:
-          name: Changed-Derivations
-      # Rebuild all changed python3 packages
-      - run: |
-          if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
-          fi
-      # Rebuild all changed top-level packages
-      - run: |
-          if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --override-input nixpkgs nixpkgs/nixpkgs-unstable --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
-          fi
-
   # Rebuild changed derivations as if merged
   rebuild-merge:
     name: Changed Derivations Merge (pinned nixpkgs)
