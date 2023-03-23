@@ -21,6 +21,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin
     install -m755 stream $out/bin
+
   '';
 
   meta = with lib; {
