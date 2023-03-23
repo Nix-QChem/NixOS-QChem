@@ -13,6 +13,6 @@ jobs:
     - uses: cachix/install-nix-action@v20
     - run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          nix run nixpkgs#typos -- $(echo "${{ steps.files.outputs.all }}" | tr ' ' '\n' | sed 's:\(.*\):./\1:;/\.patch$/d' | tr '\n' ' ')
+          nix run nixpkgs#typos -- $(echo "$file" | sed 's:\(.*\):./\1:' | sed '/\.patch$/d;/\.inp/d')
         done
 
