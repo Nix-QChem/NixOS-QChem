@@ -23,7 +23,8 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace setup.cfg \
-      --replace "decorator == 4.4.2" ""
+      --replace "decorator == 4.4.2" "" \
+      --replace 'networkx ~= 2.0' 'networkx'
   '';
 
   propagatedBuildInputs = [
