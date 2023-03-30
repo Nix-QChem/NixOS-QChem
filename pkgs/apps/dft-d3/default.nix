@@ -1,28 +1,23 @@
-{ lib, stdenv, fetchFromGitHub, gfortran } :
+{ lib, stdenv, fetchFromGitHub, cmake, gfortran } :
 
 stdenv.mkDerivation rec {
-  pname = "dftd3-lib";
-  version = "0.10"; # Equivalent to 3.2rev0 of the original
+  pname = "dftd3";
+  version = "3.2.1"; # Equivalent to 3.2rev0 of the original
 
-  nativeBuildInputs = [ gfortran ];
+  nativeBuildInputs = [ gfortran cmake ];
 
   src = fetchFromGitHub {
-    owner = "dftbplus";
+    owner = "loriab";
     repo = pname;
-    rev = version;
-    hash = "sha256-lda0eEb/QoMG2Sb1/VhJSr+fJcu2wvy1hqw+rVDhe2w=";
+    rev = "8e5463eafbaa0130a1aa26b8ee8ed57b1c3ffef0";
+    hash = "sha256-rC8JORAxlYjURfocCY4LRQmONeRaRAy876++mHx9xAM=";
   };
-
-  installPhase = ''
-    mkdir -p $out/bin
-    cp prg/dftd3 $out/bin/.
-  '';
 
   hardeningDisable = [ "format" ];
 
   meta = with lib; {
     description = "Dispersion correction for DFT";
-    homepage = "https://github.com/dftbplus/dftd3-lib";
+    homepage = "https://github.com/loriab/dftd3";
     platforms = platforms.unix;
     license = licenses.gpl1Only;
   };
