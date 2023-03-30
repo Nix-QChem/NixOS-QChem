@@ -254,7 +254,6 @@ let
 
         qdng = callPackage ./pkgs/apps/qdng {
           stdenv = aggressiveStdenv;
-          protobuf = super.protobuf3_8;
         };
 
         qmcpack = callPackage ./pkgs/apps/qmcpack { };

@@ -6,7 +6,7 @@
 assert (!blas.isILP64 && !lapack.isILP64);
 
 let
-  version = "20220818";
+  version = "20230330";
 
 in stdenv.mkDerivation {
   pname = "qdng";
@@ -14,9 +14,13 @@ in stdenv.mkDerivation {
 
   src = requireFile {
     name = "qdng-${version}.tar.xz";
-    sha256 = "sha256-rw1XBITBr4ZP3/qVr3wh+NPHdAS5Th5nCIhIk6K1xG4=";
+    sha256 = "sha256-LO3oep4Sh1Lhkxr6qk4h7i/m7I6YyEov5ljDD6wa+pU=";
     message = "Get a copy of the QDng tarball from Markus...";
   };
+
+  postPatch = ''
+    patchShebangs tests/checktests.sh
+  '';
 
   configureFlags = [
     "--enable-openmp"
@@ -25,11 +29,13 @@ in stdenv.mkDerivation {
     "--disable-gccopt"
   ];
 
-  enableParallelBuilding = true;
+  enableParallelBuilding = false;
 
   preConfigure = ''
     ./genbs
   '';
+
+  doCheck = true;
 
   buildInputs = [ fftw protobuf blas lapack
                   bzip2 zlib libxml2 flex bison ];
