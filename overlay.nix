@@ -139,8 +139,6 @@ let
 
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
-        dftd4 = callPackage ./pkgs/lib/dftd4 { };
-
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
         dirac = callPackage ./pkgs/apps/dirac {
@@ -172,13 +170,9 @@ let
 
         janpa = callPackage ./pkgs/apps/janpa { };
 
-        json-fortran = callPackage ./pkgs/lib/json-fortran { };
-
         luscus = callPackage ./pkgs/apps/luscus { };
 
         macroqc = callPackage ./pkgs/apps/macroqc { };
-
-        mctc-lib = callPackage ./pkgs/lib/mctc-lib { };
 
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
@@ -213,15 +207,11 @@ let
 
         mpifx = callPackage ./pkgs/lib/mpifx { };
 
-        mstore = callPackage ./pkgs/lib/mstore { };
-
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
         mrchem = callPackage ./pkgs/apps/mrchem { };
 
         mt-dgemm = callPackage ./pkgs/apps/mt-dgemm { };
-
-        multicharge = callPackage ./pkgs/lib/multicharge { };
 
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
@@ -288,17 +278,9 @@ let
 
         sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
 
-        simple-dftd3 = callPackage ./pkgs/lib/simple-dftd3 { };
-
         stream-benchmark = callPackage ./pkgs/apps/stream { };
 
-        tblite = callPackage ./pkgs/lib/tblite { };
-
-        test-drive = callPackage ./pkgs/lib/test-drive { };
-
         tinker = callPackage ./pkgs/apps/tinker { };
-
-        toml-f = callPackage ./pkgs/lib/toml-f { };
 
         travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
 
