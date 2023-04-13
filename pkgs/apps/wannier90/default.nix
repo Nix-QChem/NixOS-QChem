@@ -30,9 +30,13 @@ stdenv.mkDerivation rec {
     cp config/make.inc.gfort make.inc
   '';
 
+  buildPhase = ''
+    make w90chk2chk w90pov w90spn2spn w90vdw wannier post
+  '';
+
   installPhase = ''
     mkdir -p $out/bin
-    cp -p wannier90.x postw90.x $out/bin
+    cp -p wannier90.x postw90.x w90chk2chk.x w90spn2spn.x utility/w90vdw/w90vdw.x utility/w90pov/w90pov $out/bin
   '';
 
   doCheck = true;
