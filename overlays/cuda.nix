@@ -15,4 +15,8 @@ final: prev:
   ucc = prev.ucc.override {
     enableCuda = true;
   };
+
+  hwloc = prev.hwloc.override {
+    enableCuda = true;
+  };
 }
