@@ -24,6 +24,7 @@ let
     elpa = recallPackage elpa {};
     ergoscf = recallPackage ergoscf {};
     harminv = recallPackage harminv {};
+    inherit (final) hdf5;
     hpl = recallPackage hpl {};
     hpcg = recallPackage hpcg {};
     i-pi = recallPackage i-pi {};
@@ -88,22 +89,6 @@ let
     wxmacmolplt = recallPackage wxmacmolplt {};
 
     hostPlatform = hp;
-  } // (final.lib.genAttrs [ "hdf5" "hdf5-cpp" "hdf5-mpi" ]
-    (x: ((recallPackage final."${x}" {}).overrideAttrs (old: {
-     # FIXME: remove once patch has reached nixpkgs-unstable
-     # Remove reference to /build, which get introduced
-     # into AM_CPPFLAGS since hdf5-1.14.0. Cmake of various
-     # packages using HDF5 gets confused trying access the non-existent path.
-     postFixup = ''
-       for i in h5cc h5pcc h5c++; do
-         if [ -f $dev/bin/$i ]; then
-           substituteInPlace $dev/bin/$i --replace \
-             '-I/build/hdf5-${old.version}/src/H5FDsubfiling' ""
-         fi
-       done
-     '';
-
-     enableParallelBuilding = true;
-    }))));
+  };
 
 in set
