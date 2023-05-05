@@ -1,5 +1,20 @@
-{ stdenv, lib, fetchFromGitHub, makeWrapper, which, gfortran
-, blas, liblapack, fftw, python2, gnuplot, wfoverlap
+{ stdenv
+, lib
+, fetchFromGitHub
+, makeWrapper
+, which
+, gfortran
+, blas
+, lapack
+, fftw
+, python3
+, gnuplot
+, wfoverlap
+, enablePysharc ? false
+, hdf5
+, hdf4 # HDF4 would need Fortran support in nixpkgs
+, netcdf
+, libjpeg
 , enableMolcas ? false
 , molcas
 , enableBagel ? false
@@ -12,13 +27,14 @@
 , turbomole
 , enableMolpro ? false
 , molpro
-} :
+}:
 
 let
-  version = "2.1.1";
-  python = python2.withPackages(p: with p; [ numpy pyquante ]);
+  version = "3.0.1";
+  python = python3.withPackages (p: with p; [ numpy ]);
 
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   pname = "sharc";
   inherit version;
 
@@ -26,21 +42,17 @@ in stdenv.mkDerivation {
     owner = "sharc-md";
     repo = "sharc";
     rev = "v${version}";
-    sha256 = "09a5a0zbkganvx9g70vcjbr0i77a9kh095vgh0k0rm0lmkay1cd2";
+    hash = "sha256-aTFrLrp2PTZXvMI4UkXw/hAv225rADwo9W+k09td52U=";
   };
 
-  nativeBuildInputs = [ makeWrapper which gfortran ];
-  buildInputs = [ blas liblapack fftw python ];
+  nativeBuildInputs = [ makeWrapper which gfortran ]
+    ++ lib.lists.optionals enablePysharc [ hdf5 hdf4 libjpeg netcdf ];
+  buildInputs = [ blas lapack fftw python ]
+    ++ lib.optional enablePysharc libjpeg;
 
   patches = [
-    # tests fail to create directories
-    ./testing.patch
     # Molpro tests require more memory
     ./molpro_tests.patch
-    # Enable MC-PDFT with Molcas
-    # Generated from modified interface from SI of:
-    # https://chemrxiv.org/engage/chemrxiv/article-details/616de8350ad1ffa9699a35a5
-    ./mc-pdft.patch
   ];
 
   postPatch = ''
@@ -57,10 +69,26 @@ in stdenv.mkDerivation {
     patchShebangs wfoverlap/scripts
   '';
 
+  configurePhase = lib.optionalString enablePysharc ''
+    runHook preConfigure
+
+    substituteInPlace source/Makefile --replace 'USE_PYSHARC := false' 'USE_PYSHARC := true'
+
+    runHook postConfigure
+  '';
+
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/bin $out/share/sharc/tests
+
+    ${lib.optionalString enablePysharc ''
+      cd pysharc
+      make
+      make install
+      cd ..
+    ''
+    }
 
     cd source
     make install
@@ -78,15 +106,16 @@ in stdenv.mkDerivation {
     ln -s $out/share/sharc/tests $out/tests
 
     for i in $(find $out/bin -type f); do
-      wrapProgram $i --set SHARC $out/bin \
-                     --set LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
-                     --set HOSTNAME localhost \
-                     ${lib.optionalString enableMolcas "--set-default MOLCAS ${molcas}"} \
-                     ${lib.optionalString enableBagel "--set-default BAGEL ${bagel}"} \
-                     ${lib.optionalString enableMolpro "--set-default MOLPRO ${molpro}/bin"} \
-                     ${lib.optionalString enableOrca "--set-default ORCADIR ${orca}/bin"} \
-                     ${lib.optionalString enableTurbomole "--set-default TURBOMOLE ${turbomole}/bin"} \
-                     ${lib.optionalString enableGaussian "--set-default GAUSSIAN ${gaussian}/bin"}
+      wrapProgram $i \
+        --set SHARC $out/bin \
+        --set LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
+        --set HOSTNAME localhost \
+        ${lib.optionalString enableMolcas "--set-default MOLCAS ${molcas}"} \
+        ${lib.optionalString enableBagel "--set-default BAGEL ${bagel}"} \
+        ${lib.optionalString enableMolpro "--set-default MOLPRO ${molpro}/bin"} \
+        ${lib.optionalString enableOrca "--set-default ORCADIR ${orca}/bin"} \
+        ${lib.optionalString enableTurbomole "--set-default TURBOMOLE ${turbomole}/bin"} \
+        ${lib.optionalString enableGaussian "--set-default GAUSSIAN ${gaussian}/bin"}
     done
 
     runHook preInstall
@@ -94,11 +123,11 @@ in stdenv.mkDerivation {
 
   postFixup = ''
     for i in $(find $out/share -name run.sh); do
-       # shebang is broken (missing !)
-       echo "fixing $i"
-       sed -i '1s:.*:#!${stdenv.shell}:' $i
-       sed -i "s:\$SHARC:$out/bin:" $i
-       sed -i 's/cd \$COPY_DIR/cd $COPY_DIR\;chmod -R +w \*/' $i
+      # shebang is broken (missing !)
+      echo "fixing $i"
+      sed -i '1s:.*:#!${stdenv.shell}:' $i
+      sed -i "s:\$SHARC:$out/bin:" $i
+      sed -i 's/cd \$COPY_DIR/cd $COPY_DIR\;chmod -R +w \*/' $i
     done
   '';
 
@@ -112,6 +141,5 @@ in stdenv.mkDerivation {
     license = licenses.gpl3;
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
-    broken = true; # numpy does not support python-2.7 anymore
   };
 }
