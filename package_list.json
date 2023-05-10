@@ -1,9 +1,9 @@
 [
   {
     "attribute": "qchem.amd-fftw",
-    "name": "amd-fftw-3.1",
+    "name": "amd-fftw-4.0",
     "pname": "amd-fftw",
-    "version": "3.1",
+    "version": "4.0",
     "description": "Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs",
     "homepage": "http://www.fftw.org/"
   },
@@ -40,7 +40,7 @@
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
   {
-    "attribute": "qchem.bagel",
+    "attribute": "qchem.bagel-serial",
     "name": "bagel-1.2.2",
     "pname": "bagel",
     "version": "1.2.2",
@@ -48,7 +48,7 @@
     "homepage": "https://nubakery.org"
   },
   {
-    "attribute": "qchem.bagel-serial",
+    "attribute": "qchem.bagel",
     "name": "bagel-1.2.2",
     "pname": "bagel",
     "version": "1.2.2",
@@ -113,19 +113,11 @@
   },
   {
     "attribute": "qchem.dftd3",
-    "name": "dftd3-lib-0.10",
-    "pname": "dftd3-lib",
-    "version": "0.10",
+    "name": "dftd3-3.2.1",
+    "pname": "dftd3",
+    "version": "3.2.1",
     "description": "Dispersion correction for DFT",
-    "homepage": "https://github.com/dftbplus/dftd3-lib"
-  },
-  {
-    "attribute": "qchem.dftd4",
-    "name": "dftd4-3.5.0",
-    "pname": "dftd4",
-    "version": "3.5.0",
-    "description": "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
-    "homepage": "https://github.com/grimme-lab/dftd4"
+    "homepage": "https://github.com/loriab/dftd3"
   },
   {
     "attribute": "qchem.dirac",
@@ -272,42 +264,42 @@
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
-    "attribute": "qchem.gromacs",
-    "name": "gromacs-2023",
+    "attribute": "qchem.gromacsDoubleMpi",
+    "name": "gromacs-2023.1",
     "pname": "gromacs",
-    "version": "2023",
+    "version": "2023.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsCudaMpi",
-    "name": "gromacs-2023",
+    "name": "gromacs-2023.1",
     "pname": "gromacs",
-    "version": "2023",
+    "version": "2023.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2023",
+    "name": "gromacs-2023.1",
     "pname": "gromacs",
-    "version": "2023",
-    "description": "Molecular dynamics software package",
-    "homepage": "https://www.gromacs.org"
-  },
-  {
-    "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2023",
-    "pname": "gromacs",
-    "version": "2023",
+    "version": "2023.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2023",
+    "name": "gromacs-2023.1",
     "pname": "gromacs",
-    "version": "2023",
+    "version": "2023.1",
+    "description": "Molecular dynamics software package",
+    "homepage": "https://www.gromacs.org"
+  },
+  {
+    "attribute": "qchem.gromacs",
+    "name": "gromacs-2023.1",
+    "pname": "gromacs",
+    "version": "2023.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -336,25 +328,9 @@
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
   {
-    "attribute": "qchem.hdf5-cpp",
-    "name": "hdf5-cpp-1.14.0",
-    "pname": "hdf5-cpp",
-    "version": "1.14.0",
-    "description": "Data model, library, and file format for storing and managing data",
-    "homepage": "https://www.hdfgroup.org/HDF5/"
-  },
-  {
     "attribute": "qchem.hdf5-full",
     "name": "hdf5-cpp-fortran-1.14.0",
     "pname": "hdf5-cpp-fortran",
-    "version": "1.14.0",
-    "description": "Data model, library, and file format for storing and managing data",
-    "homepage": "https://www.hdfgroup.org/HDF5/"
-  },
-  {
-    "attribute": "qchem.hdf5-mpi",
-    "name": "hdf5-mpi-1.14.0",
-    "pname": "hdf5-mpi",
     "version": "1.14.0",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
@@ -398,14 +374,6 @@
     "version": "2.02",
     "description": "Natural atomic orbital population analysis",
     "homepage": "http://janpa.sourceforge.net/"
-  },
-  {
-    "attribute": "qchem.json-fortran",
-    "name": "json-fortran-8.3.0",
-    "pname": "json-fortran",
-    "version": "8.3.0",
-    "description": "Modern Fortran JSON API",
-    "homepage": "https://github.com/jacobwilliams/json-fortran"
   },
   {
     "attribute": "qchem.libecpint",
@@ -464,7 +432,7 @@
     "homepage": "https://brehm-research.de/libvori.php"
   },
   {
-    "attribute": "qchem.libwfa",
+    "attribute": "qchem.wfaMolcas",
     "name": "libwfa-2020-02-19",
     "pname": "libwfa",
     "version": "2020-02-19",
@@ -472,7 +440,7 @@
     "homepage": "https://github.com/libwfa/libwfa"
   },
   {
-    "attribute": "qchem.wfaMolcas",
+    "attribute": "qchem.libwfa",
     "name": "libwfa-2020-02-19",
     "pname": "libwfa",
     "version": "2020-02-19",
@@ -512,14 +480,6 @@
     "homepage": "https://macroqc.hacettepe.edu.tr/index.html"
   },
   {
-    "attribute": "qchem.mctc-lib",
-    "name": "mctc-lib-0.3.1",
-    "pname": "mctc-lib",
-    "version": "0.3.1",
-    "description": "Modular computation tool chain library",
-    "homepage": "https://github.com/grimme-lab/mctc-lib"
-  },
-  {
     "attribute": "qchem.meep",
     "name": "meep-1.25.0",
     "pname": "meep",
@@ -529,9 +489,9 @@
   },
   {
     "attribute": "qchem.mkl",
-    "name": "mkl-2023.0.0.25398",
+    "name": "mkl-2023.1.0.46342",
     "pname": "mkl",
-    "version": "2023.0.0.25398",
+    "version": "2023.1.0.46342",
     "description": "Intel OneAPI Math Kernel Library",
     "homepage": "https://software.intel.com/en-us/mkl"
   },
@@ -616,28 +576,12 @@
     "homepage": "https://mrcpp.readthedocs.io"
   },
   {
-    "attribute": "qchem.mstore",
-    "name": "mstore-0.2.0",
-    "pname": "mstore",
-    "version": "0.2.0",
-    "description": "Molecular structure store for testing",
-    "homepage": "https://github.com/grimme-lab/mstore"
-  },
-  {
     "attribute": "qchem.mt-dgemm",
     "name": "mt-dgeem-20160114",
     "pname": "mt-dgeem",
     "version": "20160114",
     "description": "Simple matrix multiplication performance test",
     "homepage": "https://portal.nersc.gov/project/m888/apex/"
-  },
-  {
-    "attribute": "qchem.multicharge",
-    "name": "multicharge-0.2.0",
-    "pname": "multicharge",
-    "version": "0.2.0",
-    "description": "Electronegativity equilibration model for atomic partial charges",
-    "homepage": "https://github.com/grimme-lab/multicharge"
   },
   {
     "attribute": "qchem.multiwfn",
@@ -649,33 +593,33 @@
   },
   {
     "attribute": "qchem.nwchem",
-    "name": "nwchem-7.0.2",
+    "name": "nwchem-7.2.0",
     "pname": "nwchem",
-    "version": "7.0.2",
+    "version": "7.2.0",
     "description": "Open Source High-Performance Computational Chemistry",
     "homepage": "https://nwchemgit.github.io"
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-7.3.0",
+    "name": "octave-8.2.0",
     "pname": "octave",
-    "version": "7.3.0",
+    "version": "8.2.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-7.3.0",
+    "name": "octave-8.2.0",
     "pname": "octave",
-    "version": "7.3.0",
+    "version": "8.2.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-12.1",
+    "name": "octopus-12.2",
     "pname": "octopus",
-    "version": "12.1",
+    "version": "12.2",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
@@ -697,17 +641,17 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-22.10",
+    "name": "openmolcas-23.02",
     "pname": "openmolcas",
-    "version": "22.10",
+    "version": "23.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-4.1.4",
+    "name": "openmpi-4.1.5",
     "pname": "openmpi",
-    "version": "4.1.4",
+    "version": "4.1.5",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
@@ -809,9 +753,9 @@
   },
   {
     "attribute": "qchem.qdng",
-    "name": "qdng-20220818",
+    "name": "qdng-20230330",
     "pname": "qdng",
-    "version": "20220818",
+    "version": "20230330",
     "description": "Quantum dynamics program package",
     "homepage": null
   },
@@ -856,6 +800,70 @@
     "homepage": "https://github.com/dftbplus/scalapackfx"
   },
   {
+    "attribute": "qchem.sharc-gaussian",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-turbomole",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-orca",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-molpro",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-molcas",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-full",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc-bagel",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
+    "attribute": "qchem.sharc",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
     "attribute": "qchem.siesta",
     "name": "siesta-4.1.5",
     "pname": "siesta",
@@ -870,14 +878,6 @@
     "version": "4.1.5",
     "description": "A first-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
-  },
-  {
-    "attribute": "qchem.simple-dftd3",
-    "name": "simple-dftd3-0.7.0",
-    "pname": "simple-dftd3",
-    "version": "0.7.0",
-    "description": "Reimplementation of the DFT-D3 program",
-    "homepage": "https://github.com/dftd3/simple-dftd3"
   },
   {
     "attribute": "qchem.slurm-tools",
@@ -920,36 +920,12 @@
     "homepage": "http://www.cs.virginia.edu/stream/ref.html"
   },
   {
-    "attribute": "qchem.tblite",
-    "name": "tblite-0.3.0",
-    "pname": "tblite",
-    "version": "0.3.0",
-    "description": "Light-weight tight-binding framework",
-    "homepage": "https://github.com/tblite/tblite"
-  },
-  {
-    "attribute": "qchem.test-drive",
-    "name": "test-drive-0.4.0",
-    "pname": "test-drive",
-    "version": "0.4.0",
-    "description": "Procedural Fortran testing framework",
-    "homepage": "https://github.com/fortran-lang/test-drive"
-  },
-  {
     "attribute": "qchem.tinker",
     "name": "tinker-8.10.1",
     "pname": "tinker",
     "version": "8.10.1",
     "description": "Software Tools for Molecular Design",
     "homepage": "https://dasher.wustl.edu/tinker/"
-  },
-  {
-    "attribute": "qchem.toml-f",
-    "name": "toml-f-0.3.1",
-    "pname": "toml-f",
-    "version": "0.3.1",
-    "description": "TOML parser implementation for data serialization and deserialization in Fortran",
-    "homepage": "https://github.com/toml-f/toml-f"
   },
   {
     "attribute": "qchem.travis-analyzer",
