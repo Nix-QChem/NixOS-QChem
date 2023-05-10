@@ -14,6 +14,8 @@ let
   } // lib.optionalAttrs prev.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
+    cclib = callPackage ./pkgs/lib/cclib { };
+
     dftbplus = callPackage ./pkgs/apps/dftbplus { };
 
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
