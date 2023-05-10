@@ -30,6 +30,8 @@ let
 
     optking = callPackage ./pkgs/lib/optking { };
 
+    orbkit = callPackage ./pkgs/lib/orbkit { };
+
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
 
     polyply = callPackage ./pkgs/apps/polyply { };
