@@ -32,6 +32,8 @@ let
 
     orbkit = callPackage ./pkgs/lib/orbkit { };
 
+    theodore = callPackage ./pkgs/apps/theodore { };
+
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
 
     polyply = callPackage ./pkgs/apps/polyply { };

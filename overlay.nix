@@ -280,6 +280,8 @@ let
 
         stream-benchmark = callPackage ./pkgs/apps/stream { };
 
+        theodore = super.python3.pkgs.toPythonApplication self.python3.pkgs.theodore;
+
         tinker = callPackage ./pkgs/apps/tinker { };
 
         travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
