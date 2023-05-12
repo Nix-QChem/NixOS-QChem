@@ -13,6 +13,9 @@ jobs:
     - uses: cachix/install-nix-action@v20
     - run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          nix run nixpkgs#typos -- $(echo "$file" | sed 's:\(.*\):./\1:' | sed '/\.patch$/d;/\.inp/d')
+          # exclude patches and input files
+          if [[ ! "$file" =~ .patch$ && ! "$file" =~ .inp$ ]]; then
+            nix run nixpkgs#typos -- "$file"
+          fi
         done
 
