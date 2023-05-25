@@ -13,13 +13,13 @@
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.8-2023-02-06";
+  version = "3.8-2023-05-23";
 
   src = fetchFromGitLab {
     owner = "theoretical-chemistry-jena/quantum-chemistry";
     repo = pname;
-    rev = "e5ce5e98acf0625d653901828c8e6210a85fde22";
-    hash = "sha256-Ki4r0qVLoJv1jxndCi8YIwt4w/wBOAjO+0n+g6PrRSM=";
+    rev = "9d5d25a952658c452bc432b9b9344419ed6096f1";
+    hash = "sha256-wPbccDMuR6eo4NUlQQqf6q0iA+JVYY2PwHmvmRCLxkk=";
   };
 
   preConfigure = "cd src";
