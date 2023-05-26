@@ -40,9 +40,7 @@ let
 
     pylibefp = callPackage ./pkgs/lib/pylibefp { };
 
-    psi4 = callPackage ./pkgs/apps/psi4 {
-      libint = prevPkgs.libintPsi4;
-    };
+    psi4 = callPackage ./pkgs/apps/psi4 { };
 
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
