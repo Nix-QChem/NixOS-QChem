@@ -37,7 +37,6 @@
 , eigen
 , boost
 , adcc
-, libint
 , optking
 , pytest
 , mrcc
@@ -77,6 +76,12 @@ let
       cd build
     '';
   });
+
+  libIntSrvVersion = "new-cmake-2023-take2-b";
+  libintSrc = fetchurl {
+    url = "https://github.com/loriab/libint/archive/${libIntSrvVersion}.zip";
+    hash = "sha256-4M7/xGWD5VnVUqS9eV8wwEbEXhsOSHiqMYlEo092pjM=";
+  };
 
   testInputs = {
     h2o_omp25_opt = writeTextFile {
@@ -125,7 +130,7 @@ let
 in
 buildPythonPackage rec {
   pname = "psi4";
-  version = "1.7";
+  version = "1.8";
 
   nativeBuildInputs = [
     cmake
@@ -136,6 +141,7 @@ buildPythonPackage rec {
   ];
 
   buildInputs = [
+    boost
     gau2grid
     libxc
     blas
@@ -149,7 +155,7 @@ buildPythonPackage rec {
     hdf5
     hdf5-cpp
     gmpxx
-    libint
+    eigen
   ];
 
   propagatedBuildInputs = [
@@ -175,8 +181,17 @@ buildPythonPackage rec {
     repo = pname;
     owner = "psi4";
     rev = "v${version}";
-    hash = "sha256-SA5h7CSqS7yxa/tpBG0d3fW2YQZZeF6rNIIR6cKCkIs=";
+    hash = "sha256-OShBnRr6k2+Xm+vz4OLellnbtQds2X8Giz3BhkzfWi4=";
   };
+
+  preConfigure = ''
+    substituteInPlace ./*external/upstream/libint2/CMakeLists.txt \
+      --replace "https://github.com/loriab/libint/archive/${libIntSrvVersion}.zip" "file://${libintSrc}" \
+      --replace "-DWITH_ERI_MAX_AM:STRING=3;2;2" "-DWITH_ERI_MAX_AM:STRING=6;5;4" \
+      --replace "-DWITH_ERI3_MAX_AM:STRING=4;3;3" "-DWITH_ERI3_MAX_AM:STRING=6;5;4" \
+      --replace "-DWITH_ERI2_MAX_AM:STRING=4;3;3" "-DWITH_ERI2_MAX_AM:STRING=6;5;4" \
+      --replace "-DWITH_MAX_AM:STRING=4;3;3" "-DWITH_MAX_AM:STRING=6;5;4"
+  '';
 
   cmakeFlags = [
     "-DDCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"
@@ -192,7 +207,7 @@ buildPythonPackage rec {
     "-Dgau2grid_DIR=${gau2grid}/share/cmake/gau2grid"
     # libint
     "-DMAX_AM_ERI=6"
-    "-DCMAKE_INSIST_FIND_PACKAGE_Libint=ON"
+    "-DBUILD_Libint2_GENERATOR=ON"
     # libxc
     "-DCMAKE_INSIST_FIND_PACKAGE_Libxc=ON"
     "-DLibxc_DIR=${libxc}/share/cmake/Libxc"
@@ -215,9 +230,9 @@ buildPythonPackage rec {
     # CheMPS2
     "-DENABLE_CheMPS2=ON"
     # Prefix path for all external packages
-    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libint};${libecpint};${cppe}\""
+    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libecpint};${cppe}\""
     # ADCC
-    "-DENABLE_adcc=ON"
+    #"-DENABLE_adcc=ON"
   ];
 
   format = "other";
