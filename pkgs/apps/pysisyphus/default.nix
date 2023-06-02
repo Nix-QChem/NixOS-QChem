@@ -182,6 +182,7 @@ buildPythonPackage rec {
         "hcn_iso_gs2"
         "water_fd_hessian"
         "gradient"
+        "hcn_neb_dimer_irc"
       ];
     in
     [
