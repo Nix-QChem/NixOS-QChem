@@ -192,14 +192,6 @@
     "homepage": "http://www.fftw.org/"
   },
   {
-    "attribute": "qchem.fypp",
-    "name": "fypp-3.1",
-    "pname": "fypp",
-    "version": "3.1",
-    "description": " Python powered Fortran preprocessor ",
-    "homepage": "https://github.com/gator-program/gator"
-  },
-  {
     "attribute": "qchem.gabedit",
     "name": "gabedit-2.5.1",
     "pname": "gabedit",
@@ -428,7 +420,7 @@
     "name": "libvori-220621",
     "pname": "libvori",
     "version": "220621",
-    "description": "Library for Voronoi intergration of electron densities",
+    "description": "Library for Voronoi integration of electron densities",
     "homepage": "https://brehm-research.de/libvori.php"
   },
   {
@@ -585,9 +577,9 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.8-2023-02-06",
+    "name": "multiwfn-3.8-2023-05-23",
     "pname": "multiwfn",
-    "version": "3.8-2023-02-06",
+    "version": "3.8-2023-05-23",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
@@ -600,7 +592,7 @@
     "homepage": "https://nwchemgit.github.io"
   },
   {
-    "attribute": "qchem.octave",
+    "attribute": "qchem.octave-opt",
     "name": "octave-8.2.0",
     "pname": "octave",
     "version": "8.2.0",
@@ -608,7 +600,7 @@
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
-    "attribute": "qchem.octave-opt",
+    "attribute": "qchem.octave",
     "name": "octave-8.2.0",
     "pname": "octave",
     "version": "8.2.0",
@@ -729,9 +721,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.7",
+    "name": "psi4-1.8",
     "pname": "psi4",
-    "version": "1.7",
+    "version": "1.8",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
@@ -920,6 +912,14 @@
     "homepage": "http://www.cs.virginia.edu/stream/ref.html"
   },
   {
+    "attribute": "qchem.theodore",
+    "name": "theodore-3.0",
+    "pname": "theodore",
+    "version": "3.0",
+    "description": "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs",
+    "homepage": "http://orbkit.github.io/"
+  },
+  {
     "attribute": "qchem.tinker",
     "name": "tinker-8.10.1",
     "pname": "tinker",
@@ -996,7 +996,7 @@
     "name": "wxmacmolplt-7.7.2",
     "pname": "wxmacmolplt",
     "version": "7.7.2",
-    "description": "Graphical user inteface for GAMESS-US",
+    "description": "Graphical user interface for GAMESS-US",
     "homepage": "https://brettbode.github.io/wxmacmolplt/"
   },
   {
