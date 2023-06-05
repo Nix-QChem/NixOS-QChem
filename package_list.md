@@ -24,7 +24,6 @@
 | fftw-double-3.3.10 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.10 | qchem.fftw-mpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.10 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
-| fypp-3.1 | qchem.fypp |  Python powered Fortran preprocessor  |
 | gabedit-2.5.1 | qchem.gabedit | Graphical User Interface for FireFly (PC-Gamess), Gamess-US, Gaussian, Molcas, Molpro, MPQC, NWChem, OpenMopac, Orca, PSI4 and Q-Chem computational chemistry packages |
 | gamess-us-2021R2P1 | qchem.gamess-us | GAMESS is a program for ab initio molecular quantum chemistry |
 | gator-0.2.0 | qchem.gator | Program for computational spectroscopy and calculations of molecular properties |
@@ -53,7 +52,7 @@
 | libint-2.7.2 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
-| libvori-220621 | qchem.libvori | Library for Voronoi intergration of electron densities |
+| libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
 | libwfa-2020-02-19 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | libwfa-2020-02-19 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
 | libxc-6.1.0 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
@@ -73,10 +72,10 @@
 | mrchem-1.0.2 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
 | mrcpp-1.4.2 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
-| multiwfn-3.8-2023-02-06 | qchem.multiwfn | Multifunctional wave function analyser. |
+| multiwfn-3.8-2023-05-23 | qchem.multiwfn | Multifunctional wave function analyser. |
 | nwchem-7.2.0 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-8.2.0 | qchem.octave | Scientific Programming Language |
 | octave-8.2.0 | qchem.octave-opt | Scientific Programming Language |
+| octave-8.2.0 | qchem.octave | Scientific Programming Language |
 | octopus-12.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.0.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | openmolcas-18.09-20180902 | qchem.molcas1809 | Quantum chemistry software package |
@@ -91,7 +90,7 @@
 | Pegamoid-2.6.2 | qchem.pegamoid | Python GUI for OpenMolcas |
 | polyply-1.5.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
-| psi4-1.7 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
+| psi4-1.8 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | pyPHSPU-2022-05-23 | qchem.autoint | Poly harmonic spline and partition of unity interpolation |
 | pysisyphus-0.8.0a0 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
 | qdng-20230330 | qchem.qdng | Quantum dynamics program package |
@@ -115,6 +114,7 @@
 | stdenv-linux-haswell | qchem.aggressiveStdenv | The default build environment for Unix packages in Nixpkgs |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
+| theodore-3.0 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
 | tinker-8.10.1 | qchem.tinker | Software Tools for Molecular Design |
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.7 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
@@ -124,5 +124,5 @@
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
 | wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
-| wxmacmolplt-7.7.2 | qchem.wxmacmolplt | Graphical user inteface for GAMESS-US |
+| wxmacmolplt-7.7.2 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
 | xtb-6.6.0 | qchem.xtb | Semiempirical extended tight-binding program package |

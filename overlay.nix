@@ -151,8 +151,6 @@ let
 
         exciting = callPackage ./pkgs/apps/exciting { };
 
-        fypp = prev.python3.pkgs.callPackage ./pkgs/apps/fypp { };
-
         gabedit = callPackage ./pkgs/apps/gabedit { };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
