@@ -1,0 +1,38 @@
+diff --git a/build/python/setup.py b/build/python/setup.py
+index 938732e..d823861 100644
+--- a/build/python/setup.py
++++ b/build/python/setup.py
+@@ -239,14 +239,8 @@ class CustomBuildExt(build_ext):
+         build_ext.finalize_options(self)
+ 
+         # Boost
+-        self.boost_include_dir, self.boost_library_dir = locate_boost()
+-
+-        if self.boost_include_dir is None and self.boost_library_dir is None:
+-            error_msg = 'Boost library location was not found!\n'
+-            error_msg += 'Directories searched: conda env, /usr/local/include and /usr/include.'
+-            raise ValueError(error_msg)
+-        else:
+-            print('Boost library location was automatically guessed at %s.' % self.boost_include_dir)
++        self.boost_include_dir = "@boost@/include"
++        self.boost_library_dir = "@boost@/lib"
+ 
+         self.include_dirs.append(self.boost_include_dir)
+         self.library_dirs.append(self.boost_library_dir)
+@@ -258,6 +252,7 @@ class CustomBuildExt(build_ext):
+ 
+         # Vina
+         self.include_dirs.append('src/lib')
++        self.include_dirs.append('../../src/lib')
+         # SWIG
+         # shadow, creates a pythonic wrapper around vina
+         # castmode
+@@ -358,7 +353,7 @@ setup(
+     packages=['vina'],
+     package_dir=package_dir,
+     install_requires=['numpy>=1.18'],
+-    python_requires='>=3.5.*',
++    python_requires='>=3.5',
+     ext_modules=[obextension],
+     #entry_points={"console_scripts": ["vina = vina.vina_cli:main"]},
+     classifiers=[
