@@ -14,6 +14,10 @@ let
   } // lib.optionalAttrs prev.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
+    autodock-vina = callPackage ./pkgs/apps/autodock-vina/python.nix {
+      inherit (finalPkgs) autodock-vina;
+    };
+
     pycolt = callPackage ./pkgs/lib/pycolt { };
 
     cclib = callPackage ./pkgs/lib/cclib { };
