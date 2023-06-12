@@ -10,9 +10,9 @@
 let
   mpiName = mpi.pname;
   mpiType = if mpiName == "openmpi" then mpiName
-       else if mpiName == "mpich"  then "mvapich"
-       else if mpiName == "mvapich"  then mpiName
-       else throw "mpi type ${mpiName} not supported";
+    else if mpiName == "mpich"  then "mvapich"
+    else if mpiName == "mvapich"  then mpiName
+    else throw "mpi type ${mpiName} not supported";
 
   useMKL = blas.passthru.implementation == "mkl" && lapack.passthru.implementation == "mkl";
 
@@ -54,10 +54,10 @@ in stdenv.mkDerivation rec {
   BOOST_ROOT=boost;
 
   configureFlags = with lib; [ "--with-boost=${boost}" ]
-                   ++ optional enableMpi "--with-mpi=${mpiType}"
-                   ++ optional ( !enableMpi ) "--disable-smith"
-                   ++ optional ( !enableScalapack ) "--disable-scalapack"
-                   ++ optional useMKL"--enable-mkl";
+    ++ optional enableMpi "--with-mpi=${mpiType}"
+    ++ optional ( !enableMpi ) "--disable-smith"
+    ++ optional ( !enableScalapack ) "--disable-scalapack"
+    ++ optional useMKL"--enable-mkl";
 
   preConfigure = ''
     ./autogen.sh
