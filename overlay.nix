@@ -118,12 +118,10 @@ let
         autoint = super.python3.pkgs.toPythonApplication self.python3.pkgs.pyphspu;
 
         bagel = callPackage ./pkgs/apps/bagel {
-          boost = final.boost16x;
         };
 
         bagel-serial = callPackage ./pkgs/apps/bagel {
           enableMpi = false;
-          boost = final.boost16x;
         };
 
         cefine = self.nullable self.turbomole (callPackage ./pkgs/apps/cefine { });
