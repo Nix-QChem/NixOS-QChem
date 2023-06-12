@@ -1,5 +1,5 @@
 { stdenv, lib, fetchFromGitHub, autoconf, automake, libtool
-, makeWrapper, openssh, fetchpatch
+, makeWrapper, openssh
 , python3, boost, blas, lapack
 , enableMpi ? true
 , mpi
@@ -18,23 +18,18 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "bagel";
-  version = "1.2.2";
+  version = "1.2.2-2022-06-03";
 
   src = fetchFromGitHub {
     owner = "nubakery";
     repo = "bagel";
-    rev = "v${version}";
-    sha256 = "184p55dkp49s99h5dpf1ysyc9fsarzx295h7x0id8y0b1ggb883d";
+    rev = "2955e4d1a17b2855c028f828ce48fc10d76e3cf5";
+    sha256 = "sha256-mRfG2FP9ZHniZO2MBJqi7Bl5kAjD8WQ5W6nD33kjp+Y=";
   };
 
-  # Required for gcc >= 10
-  patches = [ (fetchpatch {
-    name = "gcc-11";
-    url = "https://salsa.debian.org/debichem-team/bagel/-/raw/629c8b4869c707cae76503706806f09c132c6883/debian/patches/fix_gcc_11_build_failure.patch";
-    sha256 = "0kvnlzs5ili4l728z8rirhn5xf4c30cabiijzzivcjxqbvxdb8b0";
-  })];
+  nativeBuildInputs = [ autoconf automake libtool ];
+  checkInputs = [ openssh ];
 
-  nativeBuildInputs = [ autoconf automake libtool openssh boost ];
   buildInputs = [
     python3
     boost
@@ -63,11 +58,6 @@ in stdenv.mkDerivation rec {
                    ++ optional ( !enableMpi ) "--disable-smith"
                    ++ optional ( !enableScalapack ) "--disable-scalapack"
                    ++ optional useMKL"--enable-mkl";
-
-  postPatch = ''
-    # Fixed upstream
-    sed -i '/using namespace std;/i\#include <string.h>' src/util/math/algo.cc
-  '';
 
   preConfigure = ''
     ./autogen.sh
