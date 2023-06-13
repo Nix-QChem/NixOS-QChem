@@ -252,6 +252,10 @@ let
 
         # blank version
         sharc = callPackage ./pkgs/apps/sharc/default.nix {
+          hdf4 = super.hdf4.override {
+            fortranSupport = true;
+            szipSupport = true;
+          };
           bagel = self.bagel-serial;
           molpro = self.molpro12; # V2 only compatible with versions up to 2012
           gaussian = if cfg.optpath != null then self.gaussian else null;

@@ -10,7 +10,7 @@
 , python3
 , gnuplot
 , wfoverlap
-, enablePysharc ? false
+, enablePysharc ? true
 , hdf5
 , hdf4 # HDF4 would need Fortran support in nixpkgs
 , netcdf
@@ -31,7 +31,11 @@
 
 let
   version = "3.0.1";
-  python = python3.withPackages (p: with p; [ numpy openbabel-bindings ]);
+  python = python3.withPackages (p: with p; [
+    numpy
+    openbabel-bindings
+    setuptools
+  ]);
 
 in
 stdenv.mkDerivation {
@@ -45,10 +49,9 @@ stdenv.mkDerivation {
     hash = "sha256-aTFrLrp2PTZXvMI4UkXw/hAv225rADwo9W+k09td52U=";
   };
 
-  nativeBuildInputs = [ makeWrapper which gfortran ]
-    ++ lib.lists.optionals enablePysharc [ hdf5 hdf4 libjpeg netcdf ];
+  nativeBuildInputs = [ makeWrapper which gfortran ];
   buildInputs = [ blas lapack fftw python ]
-    ++ lib.optional enablePysharc libjpeg;
+    ++ lib.optionals enablePysharc ([ libjpeg hdf5 libjpeg netcdf ] ++ hdf4.all);
 
   patches = [
     # Molpro tests require more memory
@@ -62,7 +65,8 @@ stdenv.mkDerivation {
     # purify output
     substituteInPlace source/Makefile --replace 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
                                       --replace 'shell hostname' 'shell echo nixos' \
-                                      --replace 'shell pwd' 'shell echo nixos'
+                                      --replace 'shell pwd' 'shell echo nixos' \
+                                      --replace '-ldf' '-lhdf'
 
     rm bin/*.x
 
@@ -76,6 +80,8 @@ stdenv.mkDerivation {
 
     runHook postConfigure
   '';
+
+  enableParallelBuilding = true;
 
   installPhase = ''
     runHook preInstall
