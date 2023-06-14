@@ -31,7 +31,7 @@
 
 let
   version = "3.0.1";
-  python = python3.withPackages (p: with p; [ numpy ]);
+  python = python3.withPackages (p: with p; [ numpy openbabel-bindings ]);
 
 in
 stdenv.mkDerivation {
@@ -98,6 +98,9 @@ stdenv.mkDerivation {
     cp wfoverlap/scripts/* $out/bin
     cp ${wfoverlap}/bin/wfoverlap.x $out/bin/wfoverlap_ascii.x
 
+    mkdir -p $out/${python3.sitePackages}
+    cp -r lib/* $out/${python3.sitePackages}/.
+
     cp doc/* $out/share/sharc
     cp -r tests/* $out/share/sharc/tests
 
@@ -110,6 +113,7 @@ stdenv.mkDerivation {
         --set SHARC $out/bin \
         --set LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
         --set HOSTNAME localhost \
+        --prefix PYTHONPATH : "$out/${python3.sitePackages}" \
         ${lib.optionalString enableMolcas "--set-default MOLCAS ${molcas}"} \
         ${lib.optionalString enableBagel "--set-default BAGEL ${bagel}"} \
         ${lib.optionalString enableMolpro "--set-default MOLPRO ${molpro}/bin"} \
