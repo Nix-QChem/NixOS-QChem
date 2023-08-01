@@ -36,23 +36,14 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "xtb";
-  version = "6.6.0";
+  version = "6.6.1";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-RjSxuRAddTtSXOBEBiad916w312v3PWNHDLBzRdAjJM=";
+    hash = "sha256-I2K87W/b/Nh2VCkINhmCwe4HwBZ7ZIYM5cUYc/8Hkws=";
   };
-
-  patches = [
-    (# Fixes numerical hessian computation
-      fetchpatch {
-        url = "https://github.com/grimme-lab/xtb/commit/83090be673e2468c27fcd74d519548d8d51bd8df.diff";
-        hash = "sha256-EniJFAuCa58gNoyvcY2zaUcDFXtJR1/TZUNzHhuWUDA=";
-      }
-    )
-  ];
 
   nativeBuildInputs = [
     gfortran
