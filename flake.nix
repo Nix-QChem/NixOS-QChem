@@ -25,6 +25,7 @@
               cefine = null;
               cfour = null;
               gamess-us = null;
+              gaussview = null;
               mrcc = null;
               orca = null;
               qdng = null;
