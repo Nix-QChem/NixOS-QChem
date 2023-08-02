@@ -9,13 +9,13 @@ assert !blas.isILP64;
 
 buildPythonPackage rec {
   pname = "adcc";
-  version = "0.15.14";
+  version = "0.15.16";
 
   src = fetchFromGitHub {
     owner = "adc-connect";
     repo = "adcc";
     rev = "v${version}";
-    sha256 = "sha256-yEk4DcZXK+T2cdwoWnc4xZO8tG5moVAlTvv5RsvOIpY=";
+    sha256 = "sha256-uBiRFuRNtHjoO+l53PUuDMGRlRhJCJ14W6eKoOqHnj0=";
   };
 
   nativeBuildInputs = [ pkg-config ];
