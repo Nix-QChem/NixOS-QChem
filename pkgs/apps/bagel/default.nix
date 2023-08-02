@@ -76,6 +76,7 @@ in stdenv.mkDerivation rec {
     export OMP_NUM_THREADS=1
     export OMPI_MCA_rmaps_base_oversubscribe=1
     export MV2_ENABLE_AFFINITY=0
+    export OMPI_MCA_hwloc_base_binding_policy=none
     # Fix to make mpich run in a sandbox
     export HYDRA_IFACE=lo
 
