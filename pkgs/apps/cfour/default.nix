@@ -1,23 +1,31 @@
-{ stdenv, lib, which, makeWrapper, gfortran, requireFile
-, python3, blas, lapack
-,  mpi ? null
-} :
+{ stdenv
+, lib
+, which
+, makeWrapper
+, gfortran
+, requireFile
+, python3
+, blas
+, lapack
+, mpi
+, enableMpi ? true
+}:
 
 # Make sure to have a correct version of BLAS.
 assert
-  lib.asserts.assertMsg
+lib.asserts.assertMsg
   (blas.isILP64 || blas.passthru.implementation == "mkl")
   "A 64 bit integer implementation of BLAS is required.";
 
 assert
-  lib.asserts.assertMsg lapack.isILP64
+lib.asserts.assertMsg lapack.isILP64
   "A 64 bit integer implementation of LAPACK is required.";
 
 let
-  useMPI = mpi != null;
   mpiImplementation = if mpi.pname == "mvapich" then "mpich" else mpi.pname;
 
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "cfour";
   version = "2.1";
 
@@ -29,7 +37,7 @@ in stdenv.mkDerivation rec {
     lapack
   ];
 
-  propagatedBuildInputs = lib.optional useMPI mpi;
+  propagatedBuildInputs = lib.optional enableMpi mpi;
 
   src = requireFile {
     name = "cfour-public-v${version}.tar.bz2";
@@ -40,15 +48,17 @@ in stdenv.mkDerivation rec {
   postPatch = "patchShebangs ./config/mkdep90.py";
 
   preConfigure =
-    let mpiConfig = lib.optionalString useMPI ''
-          --enable-mpi=${mpiImplementation}
-          --with-mpirun="${mpi}/bin/mpiexec -np \$CFOUR_NUM_CORES"
-          --with-exenodes="${mpi}/bin/mpiexec -np \$CFOUR_NUM_CORES"
-        '';
-     in ''
-       configureFlagsArray+=(
+    let
+      mpiConfig = lib.optionalString enableMpi ''
+        --enable-mpi=${mpiImplementation}
+        --with-mpirun="${mpi}/bin/mpiexec -np \$CFOUR_NUM_CORES"
+        --with-exenodes="${mpi}/bin/mpiexec -np \$CFOUR_NUM_CORES"
+      '';
+    in
+    ''
+      configureFlagsArray+=(
         ${mpiConfig}
-        FCFLAGS="-fno-optimize-strlen -fno-stack-protector"
+        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -fallow-argument-mismatch"
         CFLAGS="-fno-optimize-strlen -fno-stack-protector"
         CXXFLAGS="-fno-optimize-strlen -fno-stack-protector"
       )
@@ -64,7 +74,7 @@ in stdenv.mkDerivation rec {
     done
   '';
 
-  passthru = { inherit mpi; };
+  passthru = lib.optionalAttrs enableMpi { inherit mpi; };
 
   meta = with lib; {
     description = "Specialist coupled cluster software.";
