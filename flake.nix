@@ -43,7 +43,7 @@
         };
       };
 
-      lib = pkgs.lib;
+      inherit (pkgs) lib;
 
       # Cleaned package set, i.e. packages that
       #  * build correctly
@@ -53,7 +53,7 @@
           buildingPkgs = filterAttrs
             (k: v:
               if (v ? meta.broken)
-              then !(v.meta.broken) && isDerivation v
+              then !v.meta.broken && isDerivation v
               else isDerivation v
             )
             pkgs.qchem;
