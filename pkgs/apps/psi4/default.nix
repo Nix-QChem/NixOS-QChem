@@ -9,7 +9,6 @@
 , pkg-config
 , writeTextFile
 , cmake
-, ninja
 , perl
 , gfortran
 , python
@@ -60,6 +59,11 @@ let
     configurePhase = ''
       cmake -Bbuild ${toString specialInstallCmakeFlags}
       cd build
+    '';
+
+    postFixup = ''
+      substituteInPlace $out/share/cmake/CheMPS2/CheMPS2Config.cmake \
+        --replace "1.14.1-2" "1.14.1"
     '';
   });
 
@@ -230,10 +234,11 @@ buildPythonPackage rec {
     "-DENABLE_libefp=ON"
     # CheMPS2
     "-DENABLE_CheMPS2=ON"
-    # Prefix path for all external packages
-    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libecpint};${cppe}\""
+    "-DCheMPS2_DIR=${chemps2_}"
     # ADCC
-    #"-DENABLE_adcc=ON"
+    "-DENABLE_adcc=ON"
+    # Prefix path for all external packages
+    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libecpint};${cppe};${adcc}\""
   ];
 
   format = "other";
