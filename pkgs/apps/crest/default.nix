@@ -1,6 +1,15 @@
-{ stdenv, lib, fetchpatch, makeWrapper, cmake
-, gfortran, blas, lapack, fetchFromGitHub, xtb
-} :
+{ stdenv
+, lib
+, fetchpatch
+, makeWrapper
+, cmake
+, gfortran
+, blas
+, lapack
+, fetchFromGitHub
+, xtb
+, xtb-iff
+}:
 
 stdenv.mkDerivation rec {
   pname = "crest";
@@ -27,7 +36,8 @@ stdenv.mkDerivation rec {
 
   postFixup = ''
     wrapProgram $out/bin/crest \
-      --prefix PATH : "${xtb}/bin"
+      --prefix PATH : "${xtb}/bin" \
+      --prefix PATH : "${xtb-iff}/bin"
   '';
 
   meta = with lib; {

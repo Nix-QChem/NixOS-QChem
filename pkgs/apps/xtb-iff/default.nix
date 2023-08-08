@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, autoPatchelfHook }:
+{ stdenv, lib, fetchurl, autoPatchelfHook }:
 
 stdenv.mkDerivation rec {
   pname = "xtb-iff";
@@ -28,4 +28,12 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "General Intermolecular Force Field based on Tight-Binding Quantum Chemical Calculations";
+    homepage = "https://github.com/grimme-lab/xtbiff";
+    license = licenses.unfree;
+    platforms = [ "x86_64-linux" ];
+    maintainers = [ maintainers.sheepforce ];
+  };
 }
