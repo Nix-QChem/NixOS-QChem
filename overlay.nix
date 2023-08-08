@@ -186,10 +186,7 @@ let
           };
         in molcasOpt.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ [ self.chemps2 ];
-          cmakeFlags = oldAttrs.cmakeFlags ++ [
-            "-DWFA=ON"
-            "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${self.chemps2}/bin"
-          ];
+          cmakeFlags = oldAttrs.cmakeFlags ++ [ "-DWFA=ON" ];
 
           # Needed by libwfa
           CXXFLAGS = [ "-DH5_USE_110_API" ];
