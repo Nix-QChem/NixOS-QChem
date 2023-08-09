@@ -312,6 +312,8 @@ let
           gfortran = final.gfortran11;
         };
 
+        xtb-iff = callPackage ./pkgs/apps/xtb-iff { };
+
         ### Python packages
         python3 = super.python3.override (old: {
           packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
