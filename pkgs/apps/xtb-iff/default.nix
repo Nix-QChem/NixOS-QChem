@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, autoPatchelfHook }:
+{ stdenv, lib, fetchurl, autoPatchelfHook, makeWrapper, xtb }:
 
 stdenv.mkDerivation rec {
   pname = "xtb-iff";
@@ -17,6 +17,8 @@ stdenv.mkDerivation rec {
     runHook postUnpack
   '';
 
+  nativeBuildInputs = [ makeWrapper ];
+
   dontConfigure = true;
   dontBuild = true;
 
@@ -27,6 +29,11 @@ stdenv.mkDerivation rec {
     install xtbiff $out/bin
 
     runHook postInstall
+  '';
+
+  postFixup = ''
+    wrapProgram $out/bin/xtbiff \
+      --set-default XTBPATH ${xtb}/share/xtb
   '';
 
   meta = with lib; {
