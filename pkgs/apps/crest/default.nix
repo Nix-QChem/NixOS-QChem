@@ -37,7 +37,8 @@ stdenv.mkDerivation rec {
   postFixup = ''
     wrapProgram $out/bin/crest \
       --prefix PATH : "${xtb}/bin" \
-      --prefix PATH : "${xtb-iff}/bin"
+      --prefix PATH : "${xtb-iff}/bin" \
+      --set-default XTBPATH ${xtb}/share/xtb
   '';
 
   meta = with lib; {

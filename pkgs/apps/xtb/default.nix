@@ -83,15 +83,14 @@ stdenv.mkDerivation rec {
 
   postFixup = ''
     wrapProgram $out/bin/xtb \
-      --prefix PATH : "${binSearchPath}"
+      --prefix PATH : "${binSearchPath}" \
+      --set-default XTBPATH $out/share/xtb
   '';
 
   doCheck = true;
   preCheck = ''
     export OMP_NUM_THREADS=2
   '';
-
-  setupHooks = [ ./xtbHook.sh ];
 
   passthru = { inherit enableOrca enableTurbomole; };
 
