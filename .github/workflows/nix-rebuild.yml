@@ -46,6 +46,8 @@ jobs:
     steps:
       # Install Nix on the runner
       - uses: cachix/install-nix-action@v20
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v2
       # Pull from the cachix cache
       - uses: cachix/cachix-action@v12
         with:
@@ -77,6 +79,8 @@ jobs:
     steps:
       # Install Nix on the runner
       - uses: cachix/install-nix-action@v20
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v2
       # Pull from the cachix cache
       - uses: cachix/cachix-action@v12
         with:
