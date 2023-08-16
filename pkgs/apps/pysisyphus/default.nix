@@ -168,6 +168,7 @@ buildPythonPackage rec {
     cat ${pysisrc}
     export PATH=$PATH:${binSearchPath}
     export OMPI_MCA_rmaps_base_oversubscribe=1
+    export XTBPATH=${xtb}/share/xtb
   '';
 
   pytestFlagsArray =
