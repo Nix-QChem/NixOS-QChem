@@ -24,6 +24,13 @@ buildPythonPackage rec {
     hash = "sha256-TTVtPVhb7FJnvu/C2yJhxOE/KzuLxe0N4HbpbkE/MTM=";
   };
 
+  postPatch = ''
+    substituteInPlace meson.build \
+      --replace "get_option('python_version')," "get_option('python_version'), pure: false,"
+
+    cat meson.build
+  '';
+
   nativeBuildInputs = [ meson ninja pkg-config meson-python ];
 
   propagatedBuildInputs = [

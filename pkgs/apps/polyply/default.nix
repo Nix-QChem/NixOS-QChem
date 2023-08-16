@@ -12,13 +12,13 @@
 
 buildPythonPackage rec {
   pname = "polyply";
-  version = "1.5.0";
+  version = "unstable-15-08-2023";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "polyply_1.0";
-    rev = "v${version}";
-    hash = "sha256-nyyNjuzD9RSzuo5TQyCP/aHqDj3jZ8Tx5sExUXAswCw=";
+    rev = "1ecd4d585eb00810e547deff63a1debebe071b7e";
+    hash = "sha256-115wCHdthG5kLIukwiOeO1ld7S4h/CFOVRQq92wtiv8=";
   };
 
   postPatch = ''
@@ -36,7 +36,7 @@ buildPythonPackage rec {
     pbr
   ];
 
-  preConfigure = "export PBR_VERSION=${version}";
+  preConfigure = "export PBR_VERSION=1.5.0";
   format = "pyproject";
 
   checkInputs = [ pytestCheckHook ];
