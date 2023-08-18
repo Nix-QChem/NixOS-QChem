@@ -107,7 +107,7 @@ let
 in
 buildPythonPackage rec {
   pname = "pysisyphus";
-  version = "0.8.0a0";
+  version = "0.8.0b0";
 
   nativeBuildInputs = [ makeWrapper setuptools-scm ];
 
@@ -153,7 +153,7 @@ buildPythonPackage rec {
     owner = "eljost";
     repo = pname;
     rev = version;
-    hash = "sha256-NCwhEkSTTNf2uS3BGGrl6i9dGJot/7Vqzvfr4AwwdXk=";
+    hash = "sha256-KNE61U7b+KcPDrThuSDBAGiPjPP5U7CBfuGPr8HkYaw=";
   };
 
   format = "pyproject";
@@ -184,6 +184,7 @@ buildPythonPackage rec {
         "water_fd_hessian"
         "gradient"
         "hcn_neb_dimer_irc"
+        "test_ci_opt[RFOptimizer-opt_kwargs1--78.2487951]" # Broken as of PySCF >= 2.3 as a DFT functional definition was changed
       ];
     in
     [
