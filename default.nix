@@ -11,7 +11,7 @@ let
 
   pkgs = nixpkgs {
     overlays = [ (import ./overlay.nix) ];
-    inherit (prev) config;
+    inherit (prev) config system;
   };
 
 in
