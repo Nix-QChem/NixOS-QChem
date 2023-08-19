@@ -27,8 +27,6 @@ jobs:
           git config --global user.email "username@users.noreply.github.com"
           git commit -m "update flake.lock" flake.lock
       - name: Open Pull request
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git push origin master:flake-lock-update
           gh pr create -B master -H flake-lock-update --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
