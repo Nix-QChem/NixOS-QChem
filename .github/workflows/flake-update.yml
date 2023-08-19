@@ -1,9 +1,12 @@
 name: update flake.lock
+permissions:
+  contents: write
 on:
   schedule:
     # Run every 1st of the month at 12:00
     - cron:  '* 12 1 * *'
   workflow_dispatch:
+
 
 jobs:
   update-flake-lock:
@@ -25,9 +28,10 @@ jobs:
           nix --experimental-features 'nix-command flakes' flake update
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "username@users.noreply.github.com"
+          git checkout -b flake-lock-update
           git commit -m "update flake.lock" flake.lock
       - name: Open Pull request
         run: |
-          git push origin master:flake-lock-update
+          git push origin flake-lock-update:flake-lock-update
           gh pr create -B master -H flake-lock-update --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
 
