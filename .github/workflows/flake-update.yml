@@ -1,0 +1,46 @@
+name: update flake.lock
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  schedule:
+    # Run every 1st of the month at 12:00
+    - cron:  '* 12 1 * *'
+  # Allow manual triggering of action
+  workflow_dispatch:
+
+jobs:
+  update-flake-lock:
+    name: update flake.lock
+    runs-on: ubuntu-latest
+    env:
+      CI_COMMIT_AUTHOR: Continuous Integration
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI_PR_BRANCH: flake-lock-update
+    steps:
+      # Install Nix on the runner
+      - name: Install Nix
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      # Checkout of the current master in the working dir
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      # Update the flake and commit result from master
+      - name: Update flake
+        run: |
+          nix --experimental-features 'nix-command flakes' flake update
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "nix-qchem@users.noreply.github.com"
+          git checkout -b ${{ env.CI_PR_BRANCH }}
+          git commit -m "update flake.lock" flake.lock
+      # Push, create new branch, and create PR
+      # Note: note that action fails if branch alreay exists and push fails
+      - name: Open Pull request
+        run: |
+          git push origin ${{ env.CI_PR_BRANCH }}:${{ env.CI_PR_BRANCH }}
+          gh pr create -B master -H ${{ env.CI_PR_BRANCH }} --title 'Update flake.lock' --body 'Created by Github action'
+
