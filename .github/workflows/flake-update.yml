@@ -3,6 +3,7 @@ on:
   schedule:
     # Run every 1st of the month at 12:00
     - cron:  '* 12 1 * *'
+  workflow_dispatch:
 
 jobs:
   update-flake-lock:
