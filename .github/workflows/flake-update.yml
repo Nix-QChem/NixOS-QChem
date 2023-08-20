@@ -1,6 +1,8 @@
 name: update flake.lock
 permissions:
   contents: write
+  pull-requests: write
+
 on:
   schedule:
     # Run every 1st of the month at 12:00
