@@ -38,7 +38,7 @@ jobs:
           git checkout -b ${{ env.CI_PR_BRANCH }}
           git commit -m "update flake.lock" flake.lock
       # Push, create new branch, and create PR
-      # Note: note that action fails if branch alreay exists and push fails
+      # Note: note that action fails if branch already exists and push fails
       - name: Open Pull request
         run: |
           git push origin ${{ env.CI_PR_BRANCH }}:${{ env.CI_PR_BRANCH }}
