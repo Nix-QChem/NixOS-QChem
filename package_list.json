@@ -689,9 +689,9 @@
   },
   {
     "attribute": "qchem.polyply",
-    "name": "polyply-1.5.0",
-    "pname": "polyply",
-    "version": "1.5.0",
+    "name": "polyply-unstable-15-08-2023",
+    "pname": "polyply-unstable",
+    "version": "15-08-2023",
     "description": "Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates",
     "homepage": "https://github.com/marrink-lab/polyply_1.0"
   },
@@ -713,9 +713,9 @@
   },
   {
     "attribute": "qchem.pysisyphus",
-    "name": "pysisyphus-0.8.0a0",
+    "name": "pysisyphus-0.8.0b0",
     "pname": "pysisyphus",
-    "version": "0.8.0a0",
+    "version": "0.8.0b0",
     "description": "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths",
     "homepage": "https://github.com/eljost/pysisyphus"
   },
@@ -966,5 +966,13 @@
     "version": "6.6.1",
     "description": "Semiempirical extended tight-binding program package",
     "homepage": "https://github.com/grimme-lab/xtb"
+  },
+  {
+    "attribute": "qchem.xtb-iff",
+    "name": "xtb-iff-1.1",
+    "pname": "xtb-iff",
+    "version": "1.1",
+    "description": "General Intermolecular Force Field based on Tight-Binding Quantum Chemical Calculations",
+    "homepage": "https://github.com/grimme-lab/xtbiff"
   }
 ]

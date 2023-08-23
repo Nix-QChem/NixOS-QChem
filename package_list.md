@@ -86,10 +86,10 @@
 | pcmsolver-1.3.0 | qchem.pcmsolver | An API for the Polarizable Continuum Model |
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
 | Pegamoid-2.8 | qchem.pegamoid | Python GUI for OpenMolcas |
-| polyply-1.5.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
+| polyply-unstable-15-08-2023 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.8.1 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
-| pysisyphus-0.8.0a0 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
+| pysisyphus-0.8.0b0 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
 | qdng-20230330 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-3.16.0 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
 | quantum-espresso-6.6 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
@@ -121,3 +121,4 @@
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.2 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
 | xtb-6.6.1 | qchem.xtb | Semiempirical extended tight-binding program package |
+| xtb-iff-1.1 | qchem.xtb-iff | General Intermolecular Force Field based on Tight-Binding Quantum Chemical Calculations |
