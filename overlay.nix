@@ -147,6 +147,8 @@ let
 
         dkh = callPackage ./pkgs/apps/dkh { };
 
+        et = callPackage ./pkgs/apps/et { };
+
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
         exciting = callPackage ./pkgs/apps/exciting { };
