@@ -108,9 +108,6 @@ in stdenv.mkDerivation {
      #
      # Minimal check if installation runs properly
      #
-
-     export OMPI_MCA_rmaps_base_oversubscribe=1
-
      export MOLCAS_WORKDIR=./
      inp=water
 

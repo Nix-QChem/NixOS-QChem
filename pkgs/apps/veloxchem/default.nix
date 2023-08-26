@@ -1,5 +1,5 @@
 { buildPythonPackage, lib, fetchFromGitLab, rsync
-, mpi, xtb, blas
+, mpiCheckPhaseHook, mpi, xtb, blas
 , mpi4py, numpy, pybind11, h5py, psutil, geometric
 , pytest, pytest-cov, openssh
 }:
@@ -55,16 +55,19 @@ buildPythonPackage rec {
     pytest
   ];
 
+  nativeCheckInputs = [
+    mpiCheckPhaseHook
+    pytest
+    openssh
+  ];
+
   checkPhase = ''
-    export OMP_NUM_THREADS=1
-    export OMPI_MCA_rmaps_base_oversubscribe=1
-    export OMPI_MCA_plm_rsh_agent=${lib.getBin openssh}/bin/ssh
-    export MV2_ENABLE_AFFINITY=0
-    # Fix to make mpich run in a sandbox
-    export HYDRA_IFACE=lo
+    runHook preCheck
 
     cd python_tests
     mpirun -np 2 python3 -m pytest
+
+    runHook postCheck
   '';
 
   meta = with lib; {

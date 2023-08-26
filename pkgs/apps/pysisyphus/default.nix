@@ -3,6 +3,7 @@
 , writeTextFile
 , writeScript
 , makeWrapper
+, mpiCheckPhaseHook
 , pytestCheckHook
 , fetchFromGitHub
   # Python dependencies
@@ -160,14 +161,16 @@ buildPythonPackage rec {
 
   preBuild = "export SETUPTOOLS_SCM_PRETEND_VERSION=${version}";
 
-  checkInputs = [ openssh pytestCheckHook ];
+  nativeCheckInputs = [
+    openssh
+    pytestCheckHook
+    mpiCheckPhaseHook
+  ];
 
   preCheck = ''
-    export OMP_NUM_THREADS=1
     export PYSISRC=${pysisrc}
     cat ${pysisrc}
     export PATH=$PATH:${binSearchPath}
-    export OMPI_MCA_rmaps_base_oversubscribe=1
     export XTBPATH=${xtb}/share/xtb
   '';
 
