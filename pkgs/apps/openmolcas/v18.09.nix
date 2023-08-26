@@ -50,7 +50,7 @@ in stdenv.mkDerivation {
   nativeBuildInputs = [ perl cmake texlive.combined.scheme-minimal makeWrapper ];
   buildInputs = [
     gfortran
-    (blas.passthru.provider)
+    blas.passthru.provider
     hdf5-full
     python
     armadillo
@@ -141,7 +141,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Quantum chemistry software package";
-    homepage = https://gitlab.com/Molcas/OpenMolcas;
+    homepage = "https://gitlab.com/Molcas/OpenMolcas";
     maintainers = [ maintainers.markuskowa ];
     license = licenses.lgpl21;
     platforms = platforms.linux;
