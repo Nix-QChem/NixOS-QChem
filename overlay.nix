@@ -151,7 +151,9 @@ let
 
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
-        exciting = callPackage ./pkgs/apps/exciting { };
+        exciting = callPackage ./pkgs/apps/exciting {
+          gfortran = final.gfortran11;
+        };
 
         gabedit = callPackage ./pkgs/apps/gabedit { };
 
