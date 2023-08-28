@@ -93,8 +93,8 @@ in stdenv.mkDerivation rec {
           blas.passthru.implementation               # BLAS implementation that we are using as a name
           blas.passthru.provider                     # Path to the BLAS installation
           (if blas.implementation == "mkl"           # If MKL was selected, it will try to figure out what directory structure is being used.
-             then "proceed"
-             else "${blas.passthru.provider}/lib"
+            then "proceed"
+            else "${blas.passthru.provider}/lib"
           )
           ""                                         # Skip another prompt and proceed to network setup
           target                                     # The target is either sockets or MPI.
