@@ -151,13 +151,15 @@ let
 
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
-        exciting = callPackage ./pkgs/apps/exciting { };
+        exciting = callPackage ./pkgs/apps/exciting {
+          gfortran = final.gfortran11;
+        };
 
         gabedit = callPackage ./pkgs/apps/gabedit { };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           blas = final.blas-ilp64;
-          gfortran = final.gfortran10;
+          gfortran = final.gfortran9;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
@@ -241,6 +243,7 @@ let
 
         qdng = callPackage ./pkgs/apps/qdng {
           stdenv = aggressiveStdenv;
+          protobuf = final.protobuf3_21;
         };
 
         qmcpack = callPackage ./pkgs/apps/qmcpack { };

@@ -1,4 +1,4 @@
-{ stdenv, lib, makeWrapper, fetchFromGitLab, requireFile, gfortran, writeTextFile, cmake, perl
+{ stdenv, lib, makeWrapper, fetchFromGitLab, requireFile, mpiCheckPhaseHook, gfortran, writeTextFile, cmake, perl
 , tcsh, mpi, blas, hostname, openssh, gnused, libxc, ncurses
 , enableMpi ? true
 }:
@@ -93,8 +93,8 @@ in stdenv.mkDerivation rec {
           blas.passthru.implementation               # BLAS implementation that we are using as a name
           blas.passthru.provider                     # Path to the BLAS installation
           (if blas.implementation == "mkl"           # If MKL was selected, it will try to figure out what directory structure is being used.
-             then "proceed"
-             else "${blas.passthru.provider}/lib"
+            then "proceed"
+            else "${blas.passthru.provider}/lib"
           )
           ""                                         # Skip another prompt and proceed to network setup
           target                                     # The target is either sockets or MPI.
@@ -154,12 +154,16 @@ in stdenv.mkDerivation rec {
     '';
 
   doInstallCheck = true;
-  installCheckPhase = ''
-    # MPI fixes in sandbox
-    export HYDRA_IFACE=lo
-    export OMPI_MCA_rmaps_base_oversubscribe=1
 
+  nativeCheckInputs = [
+    mpiCheckPhaseHook
+    openssh
+  ];
+
+  installCheckPhase = ''
+    runHook preInstallCheck
     $out/bin/rungms $out/share/gamess/tests/mcscf/mrpt/parallel/mc-detpt-bic-short.inp ${version} 2 2
+    runHook postInstallCheck
   '';
 
   hardeningDisable = [ "format" ];

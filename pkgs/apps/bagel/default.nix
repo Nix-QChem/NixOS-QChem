@@ -1,5 +1,5 @@
 { stdenv, lib, fetchFromGitHub, autoconf, automake, libtool
-, makeWrapper, openssh
+, makeWrapper, openssh, mpiCheckPhaseHook
 , python3, boost, blas, lapack
 , enableMpi ? true
 , mpi
@@ -28,7 +28,6 @@ in stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ autoconf automake libtool ];
-  checkInputs = [ openssh ];
 
   buildInputs = [
     python3
@@ -71,14 +70,12 @@ in stdenv.mkDerivation rec {
     cp test/* $out/share/tests
   '';
 
+  nativeCheckInputs = [ openssh mpiCheckPhaseHook ];
+
   installCheckPhase = ''
+    runHook preInstallCheck
+
     echo "Running HF test"
-    export OMP_NUM_THREADS=1
-    export OMPI_MCA_rmaps_base_oversubscribe=1
-    export MV2_ENABLE_AFFINITY=0
-    export OMPI_MCA_hwloc_base_binding_policy=none
-    # Fix to make mpich run in a sandbox
-    export HYDRA_IFACE=lo
 
     ${if enableMpi then "mpirun -np 1 $out/bin/BAGEL test/hf_svp_hf.json > log"
     else "$out/bin/BAGEL test/hf_svp_hf.json > log"}
@@ -86,6 +83,8 @@ in stdenv.mkDerivation rec {
     echo "Check output"
     grep "SCF iteration converged" log
     grep "99.847790" log
+
+    runHook postInstallCheck
   '';
 
   doInstallCheck = true;

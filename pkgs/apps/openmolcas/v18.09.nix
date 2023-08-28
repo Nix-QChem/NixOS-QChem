@@ -50,7 +50,7 @@ in stdenv.mkDerivation {
   nativeBuildInputs = [ perl cmake texlive.combined.scheme-minimal makeWrapper ];
   buildInputs = [
     gfortran
-    (blas.passthru.provider)
+    blas.passthru.provider
     hdf5-full
     python
     armadillo
@@ -75,18 +75,17 @@ in stdenv.mkDerivation {
     "-DCTEST=ON"
     "-DCHEMPS2=ON" "-DCHEMPS2_DIR=${chemps2}/bin"
   ] ++ lib.lists.optionals (blas.passthru.implementation == "openblas") [
-         "-DOPENBLASROOT=${symlinkJoin {
-             name = "openblas";
-             paths = [ blas.passthru.provider.all ];
-           }}"
-         "-DLINALG=OpenBLAS" ]
+      "-DOPENBLASROOT=${symlinkJoin {
+        name = "openblas";
+        paths = [ blas.passthru.provider.all ];
+      }}"
+      "-DLINALG=OpenBLAS" ]
     ++ lib.lists.optionals (blas.passthru.implementation == "mkl") [
-         "-DMKLROOT=${blas.passthru.provider}"
-         "-DLINALG=MKL"
-         "-DMKL_LIBRARY_PATH=${blas.passthru.provider}/lib"
-         "-DLIBMKL_CORE=${blas.passthru.provider}/lib/libmkl_core.so"
-       ]
-  ;
+        "-DMKLROOT=${blas.passthru.provider}"
+        "-DLINALG=MKL"
+        "-DMKL_LIBRARY_PATH=${blas.passthru.provider}/lib"
+        "-DLIBMKL_CORE=${blas.passthru.provider}/lib/libmkl_core.so"
+      ];
 
   postConfigure = ''
     # The Makefile will install pymolcas during the build grrr.
@@ -105,37 +104,34 @@ in stdenv.mkDerivation {
   '';
 
   installCheckPhase = ''
-     #
-     # Minimal check if installation runs properly
-     #
+    #
+    # Minimal check if installation runs properly
+    #
+    export MOLCAS_WORKDIR=./
+    inp=water
 
-     export OMPI_MCA_rmaps_base_oversubscribe=1
+    cat << EOF > $inp.xyz
+    3
+    Angstrom
+    O       0.000000  0.000000  0.000000
+    H       0.758602  0.000000  0.504284
+    H       0.758602  0.000000 -0.504284
+    EOF
 
-     export MOLCAS_WORKDIR=./
-     inp=water
+    cat << EOF > $inp.inp
+    &GATEWAY
+    coord=water.xyz
+    basis=sto-3g
+    &SEWARD
+    &SCF
+    EOF
 
-     cat << EOF > $inp.xyz
-     3
-     Angstrom
-     O       0.000000  0.000000  0.000000
-     H       0.758602  0.000000  0.504284
-     H       0.758602  0.000000 -0.504284
-     EOF
+    $out/bin/pymolcas $inp.inp > $inp.out
 
-     cat << EOF > $inp.inp
-     &GATEWAY
-     coord=water.xyz
-     basis=sto-3g
-     &SEWARD
-     &SCF
-     EOF
-
-     $out/bin/pymolcas $inp.inp > $inp.out
-
-     echo "Check for successful run:"
-     grep "Happy landing" $inp.status
-     echo "Check for correct energy:"
-     grep "Total SCF energy" $inp.out | grep 74.880174
+    echo "Check for successful run:"
+    grep "Happy landing" $inp.status
+    echo "Check for correct energy:"
+    grep "Total SCF energy" $inp.out | grep 74.880174
   '';
 
   checkPhase = ''
@@ -144,7 +140,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Quantum chemistry software package";
-    homepage = https://gitlab.com/Molcas/OpenMolcas;
+    homepage = "https://gitlab.com/Molcas/OpenMolcas";
     maintainers = [ maintainers.markuskowa ];
     license = licenses.lgpl21;
     platforms = platforms.linux;
