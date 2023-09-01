@@ -59,6 +59,7 @@ in stdenv.mkDerivation rec {
   installCheckPhase = ''
     runHook preInstallCheck
 
+    export OMPI_NUM_THREADS=2
     # Minimalistic check
     cp ../tests/hf_energy_sto3g/hf_energy_sto3g.inp .
     $out/bin/eT_launch.py hf_energy_sto3g.inp
