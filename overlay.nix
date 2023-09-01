@@ -152,7 +152,7 @@ let
         exatensor = callPackage ./pkgs/apps/exatensor { };
 
         exciting = callPackage ./pkgs/apps/exciting {
-          gfortran = final.gfortran11;
+          gfortran = final.gfortran13;
         };
 
         gabedit = callPackage ./pkgs/apps/gabedit { };
