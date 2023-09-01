@@ -1,33 +1,33 @@
 { lib, stdenv, fetchFromGitHub
 , gfortran, perl, libxslt, runtimeShell
-, blas, lapack, mpi }:
+, blas, lapack, mpi, arpack }:
 
 stdenv.mkDerivation rec {
   pname = "exciting";
-  version = "oxygen.0.5";
+  version = "fluorine.0.0";
 
   src = fetchFromGitHub {
     owner = "exciting";
     repo = "exciting";
     rev = version;
-    sha256 = "sha256-dLG3ReKsDD3ymsirvgNUXpgkf/BnMTP3dDf9gYNPm80=";
+    sha256 = "sha256-C0DcbD795pG9zpWYwrVd28EuM4fYMSKpTDzNQG6RV0E=";
   };
 
   postPatch = ''
-    patchShebangs ./build/utilities ./src/libXC/src/get_funcs.pl
+    patchShebangs ./build/utilities ./external/libXC/src/get_funcs.pl
   '';
 
   preConfigure = ''
     cat > build/make.inc <<EOF
     F90 = gfortran
-    F90_OPTS = -O3 -ffree-line-length-0 -fallow-argument-mismatch
+    F90_OPTS = -O3 -ffree-line-length-0 -fallow-argument-mismatch -fallow-invalid-boz
     CPP_ON_OPTS = -cpp -DXS -DISO -DLIBXC
     F77 = \$(F90)
     F77_OPTS = -O3 -fallow-argument-mismatch
     FCCPP = cpp
 
     # Libraries
-    LIB_ARP = libarpack.a
+    LIB_ARP = -larpack
     # Use native blas/lapack by default
     export USE_SYS_LAPACK=true
     LIB_LPK = -llapack -lblas
@@ -37,7 +37,7 @@ stdenv.mkDerivation rec {
 
     # SMP and MPI compilers, flags and preprocessing variables
     MPIF90 = mpif90
-    MPIF90_OPTS = -DMPI
+    MPIF90_OPTS = -DMPI -fallow-invalid-boz
     MPI_LIBS =
 
     # To use Scalapack, include the preprocessing variable, provide the library path and library name
@@ -61,6 +61,7 @@ stdenv.mkDerivation rec {
     blas
     lapack
     mpi
+    arpack
   ];
 
   installPhase = ''
