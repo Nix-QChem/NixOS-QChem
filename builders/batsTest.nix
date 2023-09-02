@@ -111,6 +111,9 @@ in stdenvNoCC.mkDerivation ({
       echo " $orgName"
       cp $f $orgName
     done
+
+    export OMPI_MCA_hwloc_base_binding_policy=none
+    export MV2_ENABLE_AFFINITY=0
   '';
 
   runPhase = ''
