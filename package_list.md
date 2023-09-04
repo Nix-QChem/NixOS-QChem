@@ -21,9 +21,10 @@
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2023.05.001 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
-| ergoscf-3.8 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
+| ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
+| et-20230823 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
-| exciting-oxygen.0.5 | qchem.exciting | Full-potential all-electron density-functional-theory package |
+| exciting-fluorine.0.0 | qchem.exciting | Full-potential all-electron density-functional-theory package |
 | fftw-double-3.3.10 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.10 | qchem.fftw-mpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.10 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
@@ -41,8 +42,8 @@
 | gromacs-2023.2 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
-| hdf5-1.14.1-2 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
-| hdf5-cpp-fortran-1.14.1-2 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
+| hdf5-1.14.2 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
+| hdf5-cpp-fortran-1.14.2 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
 | i-pi-2.4.0 | qchem.i-pi | A universal force engine for ab initio and force field driven (path integral) molecular dynamics |

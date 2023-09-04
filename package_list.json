@@ -169,11 +169,19 @@
   },
   {
     "attribute": "qchem.ergoscf",
-    "name": "ergoscf-3.8",
+    "name": "ergoscf-3.8.2",
     "pname": "ergoscf",
-    "version": "3.8",
+    "version": "3.8.2",
     "description": "Quantum chemistry program for large-scale self-consistent field calculations",
     "homepage": "http://www.ergoscf.org"
+  },
+  {
+    "attribute": "qchem.et",
+    "name": "et-20230823",
+    "pname": "et",
+    "version": "20230823",
+    "description": "Electronic structure program for coupled cluster",
+    "homepage": "https://gitlab.com/eT-program/eT"
   },
   {
     "attribute": "qchem.exatensor",
@@ -185,8 +193,8 @@
   },
   {
     "attribute": "qchem.exciting",
-    "name": "exciting-oxygen.0.5",
-    "pname": "exciting-oxygen.0.5",
+    "name": "exciting-fluorine.0.0",
+    "pname": "exciting-fluorine.0.0",
     "version": "",
     "description": "Full-potential all-electron density-functional-theory package",
     "homepage": "https://exciting-code.org"
@@ -329,17 +337,17 @@
   },
   {
     "attribute": "qchem.hdf5",
-    "name": "hdf5-1.14.1-2",
+    "name": "hdf5-1.14.2",
     "pname": "hdf5",
-    "version": "1.14.1-2",
+    "version": "1.14.2",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
   {
     "attribute": "qchem.hdf5-full",
-    "name": "hdf5-cpp-fortran-1.14.1-2",
+    "name": "hdf5-cpp-fortran-1.14.2",
     "pname": "hdf5-cpp-fortran",
-    "version": "1.14.1-2",
+    "version": "1.14.2",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
