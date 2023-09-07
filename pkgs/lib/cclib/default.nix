@@ -1,30 +1,54 @@
-{ lib, fetchPypi, buildPythonPackage
-, packaging, numpy, scipy, periodictable, pyqt4
+{ lib
+, fetchPypi
+, buildPythonPackage
+, pythonOlder
+, numpy
+, packaging
+, periodictable
+, scipy
+, ase
+, biopython
+, iodata
+, openbabel-bindings
+, pandas
+, psi4
+, pyscf
 }:
 
 buildPythonPackage rec {
   pname = "cclib";
-  version = "1.7.2";
+  version = "1.8";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-uxa0IjgvR+rWX5K2zS2BJAlDbIMG4MWwSQVjN6Ed/Do=";
+    sha256 = "sha256-Eren7YGR8C+hIyDb3IMFRu4WFei0c349dm80Yiq71SE=";
   };
 
   propagatedBuildInputs = [
     numpy
-    scipy
     packaging
     periodictable
-    pyqt4
+    scipy
   ];
 
-  # fails because of a pyqt4 import test
-  doCheck = false;
+  passthru.optional-dependencies = {
+    ase = [ ase ];
+    biopython = [ biopython ];
+    iodata = [ iodata ];
+    openbabel = [ openbabel-bindings ];
+    pandas = [ pandas ];
+    psi4 = [ psi4 ];
+    pyscf = [ pyscf ];
+  };
+
+  nativeCheckInputs = lib.flatten (lib.attrValues passthru.optional-dependencies);
 
   meta = with lib; {
     description = "Library for parsing and interpreting the results of computational chemistry packages";
     homepage = "https://cclib.github.io/";
+    changelog = "https://github.com/cclib/cclib/releases/tag/${version}";
     license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
   };
