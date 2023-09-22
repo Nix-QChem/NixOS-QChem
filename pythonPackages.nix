@@ -48,6 +48,8 @@ let
 
     psi4 = callPackage ./pkgs/apps/psi4 { };
 
+    pyastronomy = callPackage ./pkgs/lib/pyastronomy { };
+
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
