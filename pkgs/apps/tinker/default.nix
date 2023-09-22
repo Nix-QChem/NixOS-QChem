@@ -1,12 +1,19 @@
-{ stdenv, lib, fetchurl, gfortran, cmake, fftw, pkg-config } :
+{ stdenv
+, lib
+, fetchurl
+, gfortran
+, cmake
+, fftw
+, pkg-config
+}:
 
 stdenv.mkDerivation rec {
   pname = "tinker";
-  version = "8.10.1";
+  version = "8.10.5";
 
-  src = fetchurl  {
+  src = fetchurl {
     url = "https://dasher.wustl.edu/tinker/downloads/tinker-${version}.tar.gz";
-    hash = "sha256-RofWDMRMg0YqFWOZIMSn/lUa7GtB8pXJOWLYO/TvTys=";
+    hash = "sha256-RnN4Px2PNpyekK3W+L5K64ppaVJf2MCbb5e3ypMpTpQ=";
   };
 
   preConfigure = ''
@@ -33,7 +40,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Software Tools for Molecular Design";
-    homepage = "https://dasher.wustl.edu/tinker/";
+    homepage = "https://github.com/TinkerTools/tinker";
     license = licenses.unfree;
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
