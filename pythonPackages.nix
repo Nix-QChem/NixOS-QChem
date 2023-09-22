@@ -56,6 +56,8 @@ let
 
     pyphspu = callPackage ./pkgs/lib/pyphspu { };
 
+    svgutils = callPackage ./pkgs/lib/svgutils { };
+
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
 
     vermouth = callPackage ./pkgs/apps/vermouth { };
