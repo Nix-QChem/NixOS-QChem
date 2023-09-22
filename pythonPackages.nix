@@ -54,6 +54,8 @@ let
 
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
+    pymbar = callPackage ./pkgs/lib/pymbar { };
+
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
       gamess-us = finalPkgs.gamess-us.override {
         enableMpi = false;
