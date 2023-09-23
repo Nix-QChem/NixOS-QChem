@@ -70,7 +70,7 @@ let
 
         # Non-GUI version
         octave-opt = (final.octave.override {
-          inherit (self.aggressiveStdenv) mkDerivation;
+          stdenv = self.aggressiveStdenv;
           enableJava = true;
           jdk = super.jdk8;
           inherit (final)
