@@ -233,6 +233,8 @@ let
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
 
+        poltype2 = callPackage ./pkgs/apps/poltype2 { };
+
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
         psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
