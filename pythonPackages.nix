@@ -30,6 +30,8 @@ let
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
 
+    mendeleev = callPackage ./pkgs/lib/mendeleev { };
+
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
 
     optking = callPackage ./pkgs/lib/optking { };
