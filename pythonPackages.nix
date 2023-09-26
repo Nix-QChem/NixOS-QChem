@@ -70,6 +70,10 @@ let
 
     vermouth = callPackage ./pkgs/apps/vermouth { };
 
+    vmd-python = callPackage ./pkgs/apps/vmd-python {
+      inherit cfg;
+    };
+
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
   } // lib.optionalAttrs prev.isPy27 {
     pyquante = callPackage ./pkgs/apps/pyquante { };

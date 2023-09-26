@@ -302,6 +302,8 @@ let
           else callPackage ./pkgs/apps/vmd { }
         ;
 
+        vmd-python = super.python3.pkgs.toPythonApplication self.python3.pkgs.vmd-python;
+
         vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
 
         wannier90 = callPackage ./pkgs/apps/wannier90 {
