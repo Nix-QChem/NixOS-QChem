@@ -37,6 +37,7 @@ buildFHSUserEnv {
   ]);
 
   profile = ''
+    unset PYTHONPATH
     eval "$(micromamba shell hook -s bash)"
     MAMBA="''${MAMBA_ROOT:-$(mktemp -d)}"
     export MAMBA_ROOT_PREFIX=$MAMBA/.mamba
