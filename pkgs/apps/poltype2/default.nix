@@ -41,13 +41,16 @@ buildFHSUserEnv {
     eval "$(micromamba shell hook -s bash)"
     MAMBA="''${MAMBA_ROOT:-$(mktemp -d)}"
     export MAMBA_ROOT_PREFIX=$MAMBA/.mamba
-    if [ -f $MAMBA/environment.yml ]; then
-      chmod +w $MAMBA/environment.yml && rm $MAMBA/environment.yml
-    fi
-    cp ${src}/Environments/environment.yml $MAMBA/.
+    ENVIRONMENTFILE=$(mktemp --suffix=.yml)
+    cp ${src}/Environments/environment.yml $ENVIRONMENTFILE
     export GDMADIR=${gdma}/bin
     export PSI_SCRATCH="''${PSI_TMP:-$(mktemp -d)}"
-    micromamba env create --yes -f $MAMBA/environment.yml
+    # Create conda environment only if not yet in existence
+    {
+      micromamba env list |& grep "$MAMBA_ROOT_PREFIX/envs/amoebamdpoltype" &> /dev/null
+    } || {
+      micromamba env create --yes -f $ENVIRONMENTFILE
+    }
   '';
 
   runScript = "micromamba run -n amoebamdpoltype python ${src}/PoltypeModules/poltype.py";
