@@ -233,6 +233,8 @@ let
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
 
+        poltype2 = callPackage ./pkgs/apps/poltype2 { };
+
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
         psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
@@ -299,6 +301,8 @@ let
           then callPackage ./pkgs/apps/vmd/binary.nix { }
           else callPackage ./pkgs/apps/vmd { }
         ;
+
+        vmd-python = super.python3.pkgs.toPythonApplication self.python3.pkgs.vmd-python;
 
         vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
 

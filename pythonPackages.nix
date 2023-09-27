@@ -30,6 +30,10 @@ let
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
 
+    mdtraj = callPackage ./pkgs/lib/mdtraj { };
+
+    mendeleev = callPackage ./pkgs/lib/mendeleev { };
+
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
 
     optking = callPackage ./pkgs/lib/optking { };
@@ -46,7 +50,11 @@ let
 
     psi4 = callPackage ./pkgs/apps/psi4 { };
 
+    pyastronomy = callPackage ./pkgs/lib/pyastronomy { };
+
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
+
+    pymbar = callPackage ./pkgs/lib/pymbar { };
 
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
       gamess-us = finalPkgs.gamess-us.override {
@@ -56,9 +64,15 @@ let
 
     pyphspu = callPackage ./pkgs/lib/pyphspu { };
 
+    svgutils = callPackage ./pkgs/lib/svgutils { };
+
     veloxchem = callPackage ./pkgs/apps/veloxchem { };
 
     vermouth = callPackage ./pkgs/apps/vermouth { };
+
+    vmd-python = callPackage ./pkgs/apps/vmd-python {
+      inherit cfg;
+    };
 
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
   } // lib.optionalAttrs prev.isPy27 {
