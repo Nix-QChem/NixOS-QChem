@@ -5,8 +5,6 @@
   # Runtime executable dependencies
 , perl
 , tinker
-, psi4
-, xtb
 , gdma
 , autodock-vina
 }:
@@ -30,24 +28,44 @@ buildFHSUserEnv {
     micromamba
     bashInteractive
     tinker
-    xtb
     gdma
     autodock-vina
     perl
   ]);
 
   profile = ''
+    # Mamba preparation
     unset PYTHONPATH
     eval "$(micromamba shell hook -s bash)"
     MAMBA="''${MAMBA_ROOT:-$(mktemp -d)}"
     export MAMBA_ROOT_PREFIX=$MAMBA/.mamba
-    ENVIRONMENTFILE=$(mktemp --suffix=.yml)
-    cp ${src}/Environments/environment.yml $ENVIRONMENTFILE
+
+    # Configure programmes not managed by Conda
     export GDMADIR=${gdma}/bin
     export PSI_SCRATCH="''${PSI_TMP:-$(mktemp -d)}"
-    # Create conda environment only if not yet in existence
+
+    # Setup "amoebamdpoltype" environment
+    ENVIRONMENTFILE=$(mktemp --suffix=.yml)
+    cp ${src}/Environments/environment.yml $ENVIRONMENTFILE
     {
       micromamba env list |& grep "$MAMBA_ROOT_PREFIX/envs/amoebamdpoltype" &> /dev/null
+    } || {
+      micromamba env create --yes -f $ENVIRONMENTFILE
+    }
+
+    # Setup "xtbenv" environment
+    {
+      micromamba env list |& grep "$MAMBA_ROOT_PREFIX/envs/xtbenv" &> /dev/null
+    } || {
+      micromamba env create --name xtbenv
+      micromamba install -n xtbenv --yes -c conda-forge xtb=6.6.1
+    }
+
+    # Setup "ani" environment
+    ENVIRONMENTFILE=$(mktemp --suffix=.yml)
+    cp ${src}/Environments/ANI.yml $ENVIRONMENTFILE
+    {
+      micromamba env list |& grep "$MAMBA_ROOT_PREFIX/envs/ani" &> /dev/null
     } || {
       micromamba env create --yes -f $ENVIRONMENTFILE
     }
