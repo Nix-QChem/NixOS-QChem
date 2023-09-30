@@ -27,8 +27,8 @@ assert !blas.isILP64 && !lapack.isILP64;
 let
   description = "Semiempirical extended tight-binding program package";
 
-  binSearchPath = lib.strings.makeSearchPath "bin" ([ ]
-    ++ lib.optional enableTurbomole turbomole
+  binSearchPath = lib.strings.makeSearchPath "bin" (
+       lib.optional enableTurbomole turbomole
     ++ lib.optional enableOrca orca
     ++ lib.optional enableTurbomole cefine
   );
