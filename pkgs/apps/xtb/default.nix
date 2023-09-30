@@ -45,6 +45,8 @@ stdenv.mkDerivation rec {
     hash = "sha256-I2K87W/b/Nh2VCkINhmCwe4HwBZ7ZIYM5cUYc/8Hkws=";
   };
 
+  outputs = [ "out" "dev" ];
+
   nativeBuildInputs = [
     gfortran
     cmake
