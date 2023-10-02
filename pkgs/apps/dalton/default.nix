@@ -109,6 +109,8 @@ stdenv.mkDerivation rec {
       mv $dir $out/share/dalton/.
     done
 
+    rm -r $out/share/dalton/tools/CMakeFiles
+
     substituteInPlace $out/bin/dalton \
       --replace 'INSTALL_BASDIR=$SCRIPT_DIR/basis' "INSTALL_BASDIR=$out/share/dalton/basis"
 

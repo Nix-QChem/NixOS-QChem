@@ -27,8 +27,8 @@ assert !blas.isILP64 && !lapack.isILP64;
 let
   description = "Semiempirical extended tight-binding program package";
 
-  binSearchPath = lib.strings.makeSearchPath "bin" ([ ]
-    ++ lib.optional enableTurbomole turbomole
+  binSearchPath = lib.strings.makeSearchPath "bin" (
+       lib.optional enableTurbomole turbomole
     ++ lib.optional enableOrca orca
     ++ lib.optional enableTurbomole cefine
   );
@@ -44,6 +44,8 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     hash = "sha256-I2K87W/b/Nh2VCkINhmCwe4HwBZ7ZIYM5cUYc/8Hkws=";
   };
+
+  outputs = [ "out" "dev" ];
 
   nativeBuildInputs = [
     gfortran
