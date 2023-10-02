@@ -241,6 +241,8 @@ buildPythonPackage rec {
     "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libecpint};${cppe};${adcc}\""
   ];
 
+  outputs = [ "out" "dev" ];
+
   format = "other";
   enableParallelBuilding = true;
 
@@ -251,6 +253,12 @@ buildPythonPackage rec {
     cd build
 
     runHook postConfigure
+  '';
+
+  postInstall = ''
+    # This contains a lot of files that not needed to run the program
+    rm -r $out/share/psi4/samples
+    rm -r $out/lib/psi4/tests/
   '';
 
   postFixup =
