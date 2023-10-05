@@ -1,7 +1,12 @@
-{ lib, stdenv, buildFHSUserEnv, symlinkJoin, optpath } :
+{ lib
+, stdenv
+, buildFHSUserEnv
+, symlinkJoin
+, optpath
+, version ? "16b01"
+}:
 
 let
-  version = "16b01";
   g16root = "${optpath}/gaussian/g${version}";
 
   buildEnv = exe: buildFHSUserEnv {
@@ -12,7 +17,6 @@ let
     runScript = "${g16root}/${exe}";
 
     profile = ''
-      export GAUSS_EXEDIR=${g16root}/g${version}/
       export GAUSS_SCRDIR=$TMPDIR
       export g16root=${optpath}/gaussian
       source ${g16root}/bsd/g16.profile
@@ -22,7 +26,8 @@ let
   executables = [ "g16" "formchk" "freqchk" "cubegen" "trajgen" "unfchk" "rwfdump" ];
 
 
-in symlinkJoin {
+in
+symlinkJoin {
   name = "gaussian-${version}";
   paths = map buildEnv executables;
   meta = with lib; {
