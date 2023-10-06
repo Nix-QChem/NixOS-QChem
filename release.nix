@@ -88,6 +88,9 @@ let
           constituents = selectList [
             "molden"
             "sharc"
+            "psi4"
+            "octave"
+            "gromacsMpi"
           ] ( hydraJobs pkgSet."${cfg.prefix}" )
             ++
             selectList [
@@ -96,6 +99,8 @@ let
               "molcas"
               "molpro"
               "qdng"
+              "gaussview"
+              "orca"
             ] ( hydraJobs pkgSet."${cfg.prefix}".tests );
         };
 
