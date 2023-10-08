@@ -8,7 +8,7 @@
 , scipy
 , ase
 , biopython
-, iodata
+, iodata_alpha
 , openbabel-bindings
 , pandas
 , psi4
@@ -36,7 +36,7 @@ buildPythonPackage rec {
   passthru.optional-dependencies = {
     ase = [ ase ];
     biopython = [ biopython ];
-    iodata = [ iodata ];
+    iodata = [ iodata_alpha ];
     openbabel = [ openbabel-bindings ];
     pandas = [ pandas ];
     psi4 = [ psi4 ];
