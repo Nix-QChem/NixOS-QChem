@@ -17,13 +17,13 @@ with lib;
 
 stdenv.mkDerivation rec {
   pname = "amd-fftw";
-  version = "4.0";
+  version = "4.1";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "amd-fftw";
     rev = version;
-    sha256 = "sha256-6PfTwpFDMLI07055f5I1k7AF5iiqkwRr32PVkuvkrog=";
+    sha256 = "sha256-yBbwSK9kgXPHfIJzAZw9G/a1rHq0B5DOQtj8LOsUsWY=";
   };
 
   patches = [
