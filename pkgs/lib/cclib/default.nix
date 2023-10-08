@@ -27,5 +27,6 @@ buildPythonPackage rec {
     homepage = "https://cclib.github.io/";
     license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
+    broken = true;
   };
 }

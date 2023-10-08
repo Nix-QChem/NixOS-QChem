@@ -45,6 +45,7 @@ buildPythonPackage rec {
   doCheck = true;
 
   meta = with lib; {
+    broken = true;
     description = "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs";
     homepage = "http://orbkit.github.io/";
     license = licenses.lgpl3Only;
