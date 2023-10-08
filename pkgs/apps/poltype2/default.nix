@@ -1,12 +1,11 @@
-{ micromamba
-, lib
+{ lib
 , fetchFromGitHub
 , buildFHSUserEnv
-  # Runtime executable dependencies
-, perl
-, tinker
 , gdma
+, tinker
 , autodock-vina
+, enableGaussian ? false
+, gaussian
 }:
 
 let
@@ -27,11 +26,13 @@ buildFHSUserEnv {
   targetPkgs = pkgs: (with pkgs; [
     micromamba
     bashInteractive
+    perl
+    tcsh
+  ]) ++ [
     tinker
     gdma
     autodock-vina
-    perl
-  ]);
+  ] ++ lib.optional enableGaussian gaussian;
 
   profile = ''
     # Mamba preparation
@@ -43,6 +44,10 @@ buildFHSUserEnv {
     # Configure programmes not managed by Conda
     export GDMADIR=${gdma}/bin
     export PSI_SCRATCH="''${PSI_TMP:-$(mktemp -d)}"
+
+    ${lib.strings.optionalString enableGaussian ''
+    export GAUSS_SCRDIR="''${GAUSS_TMP:-$(mktemp -d)}"
+    ''}
 
     # Setup "amoebamdpoltype" environment
     ENVIRONMENTFILE=$(mktemp --suffix=.yml)
