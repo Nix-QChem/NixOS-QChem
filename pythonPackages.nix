@@ -24,6 +24,8 @@ let
 
     dftbplus = callPackage ./pkgs/apps/dftbplus { };
 
+    iodata_alpha = callPackage ./pkgs/lib/iodata { };
+
     pyqdng = callPackage ./pkgs/apps/pyQDng { };
 
     gator = callPackage ./pkgs/apps/gator { };
