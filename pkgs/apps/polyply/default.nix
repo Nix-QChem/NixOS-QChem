@@ -12,19 +12,18 @@
 
 buildPythonPackage rec {
   pname = "polyply";
-  version = "unstable-15-08-2023";
+  version = "1.6.1";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "polyply_1.0";
-    rev = "1ecd4d585eb00810e547deff63a1debebe071b7e";
-    hash = "sha256-115wCHdthG5kLIukwiOeO1ld7S4h/CFOVRQq92wtiv8=";
+    rev = "v${version}";
+    hash = "sha256-D/k71WpWN6eQMGKTbeveRg9DNjAV6nILD7nVEqg/KHg=";
   };
 
   postPatch = ''
     substituteInPlace setup.cfg \
-      --replace "decorator == 4.4.2" "" \
-      --replace 'networkx ~= 2.0' 'networkx'
+      --replace "decorator == 4.4.2" ""
   '';
 
   propagatedBuildInputs = [
@@ -36,8 +35,8 @@ buildPythonPackage rec {
     pbr
   ];
 
-  preConfigure = "export PBR_VERSION=1.5.0";
-  format = "pyproject";
+  preConfigure = "export PBR_VERSION=${version}";
+  pyproject = true;
 
   checkInputs = [ pytestCheckHook ];
   disabledTests = [ "test_integration_protein" ];
