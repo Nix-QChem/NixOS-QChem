@@ -2,13 +2,13 @@
 
 buildPythonPackage rec {
   pname = "vermouth";
-  version = "0.9.1";
+  version = "0.9.6";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "vermouth-martinize";
     rev = "v${version}";
-    hash = "sha256-Ix17LRY8f9z9UBDELbpaIO7Tt2SvxKtIXr0kgCV24cE=";
+    hash = "sha256-1VAZ3JtUVseRqNwe+6b3xo58wiAaxoeD/oJodDPuspk=";
   };
 
   postPatch = ''
