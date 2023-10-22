@@ -12,13 +12,13 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "et";
-  version = "20230823";
+  version = "20231020";
 
   src = fetchFromGitLab {
     owner = "eT-program";
     repo = "eT";
     rev = "development";
-    sha256 = "sha256-PRgv2KwFugxTdFww3h5AQfuaFo4WdN6VpnyTxX2EP1k=";
+    sha256 = "sha256-t0uHsgLK6xqoY61sOZdI2yxAq2O7+QTvNxJ29rTHqeY=";
   };
 
   nativeBuildInputs = [ cmake ninja gfortran python3 makeWrapper ];
