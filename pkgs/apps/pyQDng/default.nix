@@ -1,15 +1,15 @@
 { lib, buildPythonPackage, fetchFromGitLab, numpy, protobuf } :
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "pyQDng";
-  version = "0.9";
+  version = "0.9.1";
 
   src = fetchFromGitLab {
     domain = "gitlab.fysik.su.se";
     owner = "markus.kowalewski";
     repo = "pyqdng";
-    rev = "98e30612a27618e60e49b18b3eee83ca9bd9c47b";
-    sha256 = "0n54hyywihd4gvfi816wh2s486y9i4wq6mflq472b9i83yb79fz4";
+    rev = "v${version}";
+    sha256 = "sha256-hdmgULSyWnHBxuLXsDgGu1CqjEmm7AWEhx7jgm8g7qw=";
   };
 
   propagatedBuildInputs = [ numpy protobuf ];
