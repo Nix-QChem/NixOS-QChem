@@ -85,6 +85,7 @@ let
         ++ lib.optional hp.avx2Support ["AVX=2" ];
     });
 
+    ucx = recallPackage ucx {};
     ucc = recallPackage ucc {};
     wxmacmolplt = recallPackage wxmacmolplt {};
 

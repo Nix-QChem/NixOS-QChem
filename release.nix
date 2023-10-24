@@ -50,6 +50,8 @@ let
 
         checkMetaRecursively = false;
         checkMeta = true;
+
+        cudaSupport = cfg.useCuda or false;
       };
     };
 
