@@ -9,9 +9,15 @@ let
     else
       (import ./cfg.nix) { allowEnv = true; }; # if no config is given allow env
 
+  # Turn on CUDA in nixpkgs based on qchem settings
+  config = prev.config // {
+    cudaSupport = if cfg ? useCuda then cfg.useCuda else false;
+  };
+
   pkgs = nixpkgs {
     overlays = [ (import ./overlay.nix) ];
-    inherit (prev) config system;
+    inherit (prev) system;
+    inherit config;
   };
 
 in
