@@ -11,7 +11,7 @@ let
 
   # Turn on CUDA in nixpkgs based on qchem settings
   config = prev.config // {
-    cudaSupport = if cfg ? useCuda then cfg.useCuda else false;
+    cudaSupport = cfg.useCuda or false;
   };
 
   pkgs = nixpkgs {

@@ -51,7 +51,7 @@ let
         checkMetaRecursively = false;
         checkMeta = true;
 
-        cudaSupport = if cfg ? useCuda then cfg.useCuda else false;
+        cudaSupport = cfg.useCuda or false;
       };
     };
 
