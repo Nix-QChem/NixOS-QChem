@@ -69,15 +69,12 @@ let
 
     gromacsDouble = recallPackage gromacsDouble {
       cpuAcceleration = if hp.avx2Support then "AVX2_256" else null;
+      enableCuda = false; # CUDA + double prec. not supported
     };
 
     gromacsDoubleMpi = recallPackage gromacsDoubleMpi {
       cpuAcceleration = if hp.avx2Support then "AVX2_256" else null;
-    };
-
-    gromacsCudaMpi = recallPackage gromacsCudaMpi {
-      fftw = self.fftwSinglePrec;
-      cpuAcceleration = if hp.avx2Support then "AVX2_256" else null;
+      enableCuda = false; # CUDA + double prec. not supported
     };
 
     libxsmm = (recallPackage libxsmm {}).overrideAttrs ( x: {
