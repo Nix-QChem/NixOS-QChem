@@ -1,6 +1,17 @@
-{ lib, stdenv, fetchFromGitHub
-, gfortran, perl, libxslt, runtimeShell
-, blas, lapack, mpi, arpack }:
+{ lib
+, stdenv
+, fetchFromGitHub
+, gfortran
+, perl
+, libxslt
+, runtimeShell
+, blas
+, lapack
+, mpi
+, arpack
+, enableSgroup ? false
+, sgroup
+}:
 
 stdenv.mkDerivation rec {
   pname = "exciting";
@@ -63,6 +74,7 @@ stdenv.mkDerivation rec {
     mpi
     arpack
   ];
+  propagatedUserEnvPkgs = lib.optional enableSgroup [ sgroup ];
 
   installPhase = ''
     mkdir -p $out/bin $out/share/exciting/species
