@@ -252,6 +252,8 @@ let
 
         scalapackfx = callPackage ./pkgs/lib/scalapackfx { };
 
+        sgroup = callPackage ./pkgs/apps/sgroup { };
+
         # blank version
         sharc = callPackage ./pkgs/apps/sharc/default.nix {
           hdf4 = super.hdf4.override {
