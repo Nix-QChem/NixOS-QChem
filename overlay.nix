@@ -254,12 +254,15 @@ let
 
         sgroup = callPackage ./pkgs/apps/sgroup { };
 
-        # blank version
-        sharc = callPackage ./pkgs/apps/sharc/default.nix {
+        sharc-unwrapped = callPackage ./pkgs/apps/sharc/unwrapped.nix {
           hdf4 = super.hdf4.override {
             fortranSupport = true;
             szipSupport = true;
           };
+        };
+
+        # blank version
+        sharc = callPackage ./pkgs/apps/sharc/default.nix {
           bagel = self.bagel-serial;
           molpro = self.molpro12; # V2 only compatible with versions up to 2012
           gaussian = if cfg.optpath != null then self.gaussian else null;
