@@ -49,6 +49,8 @@ stdenv.mkDerivation {
     hash = "sha256-aTFrLrp2PTZXvMI4UkXw/hAv225rADwo9W+k09td52U=";
   };
 
+  outputs = [ "out" "doc" "tests" ];
+
   nativeBuildInputs = [ makeWrapper which gfortran ];
   buildInputs = [ blas lapack fftw python ]
     ++ lib.optionals enablePysharc ([ libjpeg hdf5 libjpeg netcdf ] ++ hdf4.all);
@@ -86,7 +88,7 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/bin $out/share/sharc/tests
+    mkdir -p $out/bin
 
     ${lib.optionalString enablePysharc ''
       cd pysharc
@@ -107,12 +109,13 @@ stdenv.mkDerivation {
     mkdir -p $out/${python3.sitePackages}
     cp -r lib/* $out/${python3.sitePackages}/.
 
-    cp doc/* $out/share/sharc
-    cp -r tests/* $out/share/sharc/tests
+    mkdir -p $doc/share/sharc/tests
+    cp doc/* $doc/share/sharc
+
+    mkdir -p $tests/share/sharc/tests
+    cp -r tests/* $tests/share/sharc/tests
 
     chmod +x $out/bin/*
-
-    ln -s $out/share/sharc/tests $out/tests
 
     for i in $(find $out/bin -type f); do
       wrapProgram $i \
