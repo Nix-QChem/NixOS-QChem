@@ -74,7 +74,10 @@ stdenv.mkDerivation rec {
     mpi
     arpack
   ];
-  propagatedUserEnvPkgs = lib.optional enableSgroup [ sgroup ];
+
+  propagatedBuildInputs = [ mpi ];
+  propagatedUserEnvPkgs = [ mpi ] ++ lib.optional enableSgroup sgroup;
+  passthru = { inherit mpi; };
 
   installPhase = ''
     mkdir -p $out/bin $out/share/exciting/species
