@@ -71,7 +71,6 @@ stdenv.mkDerivation rec {
   buildInputs = [
     blas
     lapack
-    mpi
     arpack
   ];
 
