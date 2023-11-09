@@ -9,33 +9,33 @@
   },
   {
     "attribute": "qchem.amd-fftw",
-    "name": "amd-fftw-4.0",
+    "name": "amd-fftw-4.1",
     "pname": "amd-fftw",
-    "version": "4.0",
+    "version": "4.1",
     "description": "Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs",
     "homepage": "http://www.fftw.org/"
   },
   {
     "attribute": "qchem.amd-scalapack",
-    "name": "amd-scalapack-3.0",
+    "name": "amd-scalapack-4.1",
     "pname": "amd-scalapack",
-    "version": "3.0",
+    "version": "4.1",
     "description": "Linear algebra routines for parallel distributed memory machines optimized for AMD processors",
     "homepage": "https://developer.amd.com/amd-aocl/scalapack/"
   },
   {
     "attribute": "qchem.arpack",
-    "name": "arpack-3.8.0",
+    "name": "arpack-3.9.1",
     "pname": "arpack",
-    "version": "3.8.0",
+    "version": "3.9.1",
     "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
     "homepage": "https://github.com/opencollab/arpack-ng"
   },
   {
     "attribute": "qchem.arpack-mpi",
-    "name": "arpack-3.8.0",
+    "name": "arpack-3.9.1",
     "pname": "arpack",
-    "version": "3.8.0",
+    "version": "3.9.1",
     "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
     "homepage": "https://github.com/opencollab/arpack-ng"
   },
@@ -177,9 +177,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-20230823",
+    "name": "et-20231020",
     "pname": "et",
-    "version": "20230823",
+    "version": "20231020",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
@@ -273,49 +273,41 @@
   },
   {
     "attribute": "qchem.gpaw",
-    "name": "gpaw-22.8.0",
+    "name": "gpaw-23.9.1",
     "pname": "gpaw",
-    "version": "22.8.0",
+    "version": "23.9.1",
     "description": "Density functional theory and beyond within the projector-augmented wave method",
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2023.2",
+    "name": "gromacs-2023.3",
     "pname": "gromacs",
-    "version": "2023.2",
-    "description": "Molecular dynamics software package",
-    "homepage": "https://www.gromacs.org"
-  },
-  {
-    "attribute": "qchem.gromacsCudaMpi",
-    "name": "gromacs-2023.2",
-    "pname": "gromacs",
-    "version": "2023.2",
+    "version": "2023.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2023.2",
+    "name": "gromacs-2023.3",
     "pname": "gromacs",
-    "version": "2023.2",
+    "version": "2023.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2023.2",
+    "name": "gromacs-2023.3",
     "pname": "gromacs",
-    "version": "2023.2",
+    "version": "2023.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2023.2",
+    "name": "gromacs-2023.3",
     "pname": "gromacs",
-    "version": "2023.2",
+    "version": "2023.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -489,9 +481,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.25.0",
+    "name": "meep-1.27.0",
     "pname": "meep",
-    "version": "1.25.0",
+    "version": "1.27.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -505,9 +497,9 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-23.06",
+    "name": "openmolcas-23.10",
     "pname": "openmolcas",
-    "version": "23.06",
+    "version": "23.10",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -537,17 +529,17 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-22.0.6",
+    "name": "mopac-22.1.0",
     "pname": "mopac",
-    "version": "22.0.6",
+    "version": "22.1.0",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-4.1.5",
+    "name": "openmpi-4.1.6",
     "pname": "openmpi",
-    "version": "4.1.5",
+    "version": "4.1.6",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
@@ -569,17 +561,17 @@
   },
   {
     "attribute": "qchem.mrchem",
-    "name": "mrchem-1.0.2",
+    "name": "mrchem-1.1.3",
     "pname": "mrchem",
-    "version": "1.0.2",
+    "version": "1.1.3",
     "description": "Numerical real-space code for molecular electronic structure calculations",
     "homepage": "https://mrchem.readthedocs.io"
   },
   {
     "attribute": "qchem.mrcpp",
-    "name": "mrcpp-1.4.2",
+    "name": "mrcpp-1.5.0",
     "pname": "mrcpp",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "description": "General purpose numerical mathematics library based on multiresolution analysis",
     "homepage": "https://mrcpp.readthedocs.io"
   },
@@ -601,25 +593,25 @@
   },
   {
     "attribute": "qchem.nwchem",
-    "name": "nwchem-7.2.0",
+    "name": "nwchem-7.2.1",
     "pname": "nwchem",
-    "version": "7.2.0",
+    "version": "7.2.1",
     "description": "Open Source High-Performance Computational Chemistry",
     "homepage": "https://nwchemgit.github.io"
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-8.2.0",
+    "name": "octave-8.3.0",
     "pname": "octave",
-    "version": "8.2.0",
+    "version": "8.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-8.2.0",
+    "name": "octave-8.3.0",
     "pname": "octave",
-    "version": "8.2.0",
+    "version": "8.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
@@ -697,9 +689,9 @@
   },
   {
     "attribute": "qchem.polyply",
-    "name": "polyply-unstable-15-08-2023",
-    "pname": "polyply-unstable",
-    "version": "15-08-2023",
+    "name": "polyply-1.6.1",
+    "pname": "polyply",
+    "version": "1.6.1",
     "description": "Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates",
     "homepage": "https://github.com/marrink-lab/polyply_1.0"
   },
@@ -713,9 +705,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.8.1",
+    "name": "psi4-1.8.2",
     "pname": "psi4",
-    "version": "1.8.1",
+    "version": "1.8.2",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
@@ -737,9 +729,9 @@
   },
   {
     "attribute": "qchem.qmcpack",
-    "name": "qmcpack-3.16.0",
+    "name": "qmcpack-3.17.1",
     "pname": "qmcpack",
-    "version": "3.16.0",
+    "version": "3.17.1",
     "description": "Many-body ab initio Quantum Monte Carlo code for electronic structure calculations",
     "homepage": "https://www.qmcpack.org"
   },
@@ -774,6 +766,14 @@
     "version": "1.1",
     "description": "Modern Fortran wrappers around ScaLAPACK routines",
     "homepage": "https://github.com/dftbplus/scalapackfx"
+  },
+  {
+    "attribute": "qchem.sgroup",
+    "name": "sgroup-1.0",
+    "pname": "sgroup",
+    "version": "1.0",
+    "description": "Determination of the space group and unit cell for a periodic solid",
+    "homepage": "https://elsevier.digitalcommonsdata.com/datasets/xp76bp3zxs/1"
   },
   {
     "attribute": "qchem.sharc",
@@ -824,6 +824,14 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
+    "attribute": "qchem.sharc-unwrapped",
+    "name": "sharc-3.0.1",
+    "pname": "sharc",
+    "version": "3.0.1",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
     "attribute": "qchem.siesta",
     "name": "siesta-4.1.5",
     "pname": "siesta",
@@ -849,9 +857,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.0.2",
+    "name": "spglib-2.1.0",
     "pname": "spglib",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },
@@ -872,20 +880,12 @@
     "homepage": "http://www.cs.virginia.edu/stream/ref.html"
   },
   {
-    "attribute": "qchem.theodore",
-    "name": "theodore-3.0",
-    "pname": "theodore",
-    "version": "3.0",
-    "description": "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs",
-    "homepage": "http://orbkit.github.io/"
-  },
-  {
     "attribute": "qchem.tinker",
-    "name": "tinker-8.10.1",
+    "name": "tinker-8.10.5",
     "pname": "tinker",
-    "version": "8.10.1",
+    "version": "8.10.5",
     "description": "Software Tools for Molecular Design",
-    "homepage": "https://dasher.wustl.edu/tinker/"
+    "homepage": "https://github.com/TinkerTools/tinker"
   },
   {
     "attribute": "qchem.travis-analyzer",
@@ -912,6 +912,14 @@
     "homepage": null
   },
   {
+    "attribute": "qchem.ucx",
+    "name": "ucx-1.15.0",
+    "pname": "ucx",
+    "version": "1.15.0",
+    "description": "Unified Communication X library",
+    "homepage": "https://www.openucx.org"
+  },
+  {
     "attribute": "qchem.veloxchem",
     "name": "veloxchem-2022-02-24",
     "pname": "veloxchem",
@@ -926,6 +934,14 @@
     "version": "1.9.3",
     "description": "Molecular dynamics visualisation program",
     "homepage": "https://www.ks.uiuc.edu/Research/vmd/"
+  },
+  {
+    "attribute": "qchem.vmd-python",
+    "name": "vmd-python-3.1.2",
+    "pname": "vmd-python",
+    "version": "3.1.2",
+    "description": "Installable VMD as a python module",
+    "homepage": "https://github.com/Eigenstate/vmd-python"
   },
   {
     "attribute": "qchem.vossvolvox",
