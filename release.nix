@@ -127,29 +127,45 @@ let
 
   in pkgsClean;
 
-in {
-  "${cfg.prefix}" = pkgs config (self: super: {});
+  # Aggregate all packages job
+  # Use as all-green-criteria
+  # Note that the aggregate contains the derivations!
+  allJobs = prefix: jobs: let
+    aggrJob = (nixpkgs-final {}).releaseTools.aggregate {
+      name = "all-packages";
+      constituents = with lib;
+      let
+        a2l = mapAttrsToList (_: path: if (lib.isAttrs path && !isDerivation path) then a2l path else path);
+        pnames =
+          mapAttrsRecursiveCond
+            (as: !(as ? "type" && as.type == "derivation"))
+            (path: v: v)
+            jobs
+          ;
+      in a2l pnames;
+    };
+    in {
+      "${prefix}" = jobs // { release-barrier = aggrJob; };
+    };
 
-} # Extra variants for testing purposes
-// (if buildVariants then {
-  "${cfg.prefix}-mpich" = pkgs config (self: super: { mpi = super.mpich; });
+in
+(allJobs cfg.prefix (pkgs config (self: super: {})))
 
-  "${cfg.prefix}-mvapich" = pkgs config (self: super: { mpi = self.mvapich; });
-
-  "${cfg.prefix}-mkl" = pkgs config (self: super: {
+# Variant builds
+// (if buildVariants then
+  (allJobs "${cfg.prefix}-mpich" (pkgs config (self: super: { mpi = super.mpich; }))) //
+  (allJobs "${cfg.prefix}-mvapich" (pkgs config (self: super: { mpi = super.mvapich; }))) //
+  (allJobs "${cfg.prefix}-mkl" (pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.mkl; };
     lapack = super.lapack.override { lapackProvider = super.mkl; };
-  });
-
-  "${cfg.prefix}-netlib" = pkgs config (self: super: {
+  }))) //
+  (allJobs "${cfg.prefix}-netlib" (pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.lapack-reference; };
     lapack = super.lapack.override { lapackProvider = super.lapack-reference; };
-  });
-
-  "${cfg.prefix}-amd" = pkgs config (self: super: {
+  }))) //
+  (allJobs "${cfg.prefix}-amd" (pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.amd-blis; };
     fftw = self.qchem.amd-fftw;
     scalapack = self.qchem.amd-scalapack;
-  });
-}
+  })))
 else {})
