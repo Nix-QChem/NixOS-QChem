@@ -46,6 +46,8 @@ jobs:
     steps:
       # Install Nix on the runner
       - uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
       # Pull from the cachix cache
@@ -63,12 +65,12 @@ jobs:
       - name: Rebuild python3 packages
         run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+            nix build --extra-substituters https://nix-qchem.cachix.org --print-build-logs -f release.nix $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo "qchem.python3.${p}"; done)
           fi
       - name: Rebuild all top-level packages
         run: |
           if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+            nix build --extra-substituters https://nix-qchem.cachix.org --print-build-logs -f release.nix $(for p in $(jq 'del(.topLevel[] | select(. == "release-barrier")) | .topLevel[]' chDerivs.json | tr -d "\""); do echo "qchem.${p}"; done)
           fi
 
   # Rebuild changed derivations as if merged
@@ -79,6 +81,8 @@ jobs:
     steps:
       # Install Nix on the runner
       - uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
       # Pull from the cachix cache
@@ -94,10 +98,10 @@ jobs:
       - name: Rebuild all changed python3 packages
         run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo ".#python3.pkgs.${p}"; done)
+            nix build --extra-substituters https://nix-qchem.cachix.org --print-build-logs -f release.nix $(for p in $(jq '.python3[]' chDerivs.json | tr -d "\""); do echo "qchem.python3.${p}"; done)
           fi
       - name: Rebuild all changed top-level packages
         run: |
           if [ -n "$(jq '.topLevel[]' chDerivs.json)" ]; then
-            nix build --accept-flake-config --print-build-logs $(for p in $(jq '.topLevel[]' chDerivs.json | tr -d "\""); do echo ".#${p}"; done)
+            nix build --extra-substituters https://nix-qchem.cachix.org --print-build-logs -f release.nix $(for p in $(jq 'del(.topLevel[] | select(. == "release-barrier")) | .topLevel[]' chDerivs.json | tr -d "\""); do echo "qchem.${p}"; done)
           fi
