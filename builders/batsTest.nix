@@ -75,6 +75,7 @@ let
   # required for nix-shell mode
   # make phases callable from shell
   setupHook = makeSetupHook {
+    name = "bats-setup-hook";
   } ./batsTest.sh;
 
 
