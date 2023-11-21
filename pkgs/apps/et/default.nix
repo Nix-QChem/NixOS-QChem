@@ -12,13 +12,13 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "et";
-  version = "20231020";
+  version = "20231121";
 
   src = fetchFromGitLab {
     owner = "eT-program";
     repo = "eT";
-    rev = "development";
-    sha256 = "sha256-t0uHsgLK6xqoY61sOZdI2yxAq2O7+QTvNxJ29rTHqeY=";
+    rev = "78ee2c62b70862a991012b276d4c77213aad2cde";
+    sha256 = "sha256-G/wX6o0rZoar5VwgKsgaN0m7jmmSO1xF5/7hjXSNU/c=";
   };
 
   nativeBuildInputs = [ cmake ninja gfortran python3 makeWrapper ];
@@ -59,10 +59,9 @@ in stdenv.mkDerivation rec {
   installCheckPhase = ''
     runHook preInstallCheck
 
-    export OMPI_NUM_THREADS=2
     # Minimalistic check
     cp ../tests/hf_energy_sto3g/hf_energy_sto3g.inp .
-    $out/bin/eT_launch.py hf_energy_sto3g.inp
+    $out/bin/eT_launch.py --omp 2 hf_energy_sto3g.inp
     grep "Total energy:[[:space:]]*-175.0207173" hf_energy_sto3g.out
 
     runHook postInstallCheck
