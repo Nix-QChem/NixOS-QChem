@@ -241,8 +241,6 @@ buildPythonPackage rec {
     "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libecpint};${cppe};${adcc}\""
   ];
 
-  outputs = [ "out" "dev" ];
-
   format = "other";
   enableParallelBuilding = true;
 
