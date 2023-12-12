@@ -177,9 +177,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-20231020",
+    "name": "et-20231121",
     "pname": "et",
-    "version": "20231020",
+    "version": "20231121",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
@@ -329,17 +329,17 @@
   },
   {
     "attribute": "qchem.hdf5",
-    "name": "hdf5-1.14.2",
+    "name": "hdf5-1.14.3",
     "pname": "hdf5",
-    "version": "1.14.2",
+    "version": "1.14.3",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
   {
     "attribute": "qchem.hdf5-full",
-    "name": "hdf5-cpp-fortran-1.14.2",
+    "name": "hdf5-cpp-fortran-1.14.3",
     "pname": "hdf5-cpp-fortran",
-    "version": "1.14.2",
+    "version": "1.14.3",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
@@ -361,9 +361,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-2.4.0",
+    "name": "i-pi-2.6.1",
     "pname": "i-pi",
-    "version": "2.4.0",
+    "version": "2.6.1",
     "description": "A universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "http://ipi-code.org/"
   },
@@ -414,6 +414,14 @@
     "version": "2.7.2",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
+  },
+  {
+    "attribute": "qchem.libmbd",
+    "name": "libMBD-0.12.7",
+    "pname": "libMBD",
+    "version": "0.12.7",
+    "description": "Many-body dispersion library",
+    "homepage": "https://github.com/libmbd/libmbd"
   },
   {
     "attribute": "qchem.libtensor",
@@ -481,9 +489,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.27.0",
+    "name": "meep-1.28.0",
     "pname": "meep",
-    "version": "1.27.0",
+    "version": "1.28.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -593,25 +601,25 @@
   },
   {
     "attribute": "qchem.nwchem",
-    "name": "nwchem-7.2.1",
+    "name": "nwchem-7.2.2",
     "pname": "nwchem",
-    "version": "7.2.1",
+    "version": "7.2.2",
     "description": "Open Source High-Performance Computational Chemistry",
     "homepage": "https://nwchemgit.github.io"
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-8.3.0",
+    "name": "octave-8.4.0",
     "pname": "octave",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-8.3.0",
+    "name": "octave-8.4.0",
     "pname": "octave",
-    "version": "8.3.0",
+    "version": "8.4.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
@@ -625,9 +633,9 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.0.0",
+    "name": "openmm-8.1.0",
     "pname": "openmm",
-    "version": "8.0.0",
+    "version": "8.1.0",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
@@ -737,17 +745,9 @@
   },
   {
     "attribute": "qchem.quantum-espresso",
-    "name": "quantum-espresso-6.6",
+    "name": "quantum-espresso-7.2",
     "pname": "quantum-espresso",
-    "version": "6.6",
-    "description": "Electronic-structure calculations and materials modeling at the nanoscale",
-    "homepage": "https://www.quantum-espresso.org/"
-  },
-  {
-    "attribute": "qchem.quantum-espresso-mpi",
-    "name": "quantum-espresso-6.6",
-    "pname": "quantum-espresso",
-    "version": "6.6",
+    "version": "7.2",
     "description": "Electronic-structure calculations and materials modeling at the nanoscale",
     "homepage": "https://www.quantum-espresso.org/"
   },

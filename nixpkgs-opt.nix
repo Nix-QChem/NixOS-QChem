@@ -31,6 +31,7 @@ let
     gsl = recallPackage gsl {};
     gpaw = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.gpaw {});
     libint = recallPackage libint {};
+    libmbd = recallPackage libmbd {};
     libvori = recallPackage libvori {};
     libxc = recallPackage libxc {};
     meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
