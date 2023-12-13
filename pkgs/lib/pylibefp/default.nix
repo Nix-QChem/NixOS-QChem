@@ -10,13 +10,13 @@
 
 buildPythonPackage rec {
   pname = "pylibefp";
-  version = "0.6.1";
+  version = "0.6.2";
 
   src = fetchFromGitHub  {
     owner = "loriab";
     repo = pname;
-    rev = "v${version}";
-    sha256 = "01cl4byfj16iyv0b684z1jblsk66vhh2bdcfg75nhkspm6pmhz6a";
+    rev = "v${version}"; # v0.6.2 with CMake tweaks
+    hash = "sha256-ZbNmMn5Z9MBLDcTacYKrl4Dno3Gtv2f9xvQ0Obh1s0A=";
   };
 
   nativeBuildInputs = [ cmake ];
