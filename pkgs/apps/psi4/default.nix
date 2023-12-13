@@ -16,7 +16,6 @@
 , qcelemental
 , qcengine
 , numpy
-, pylibefp
 , deepdiff
 , blas
 , lapack
@@ -25,7 +24,6 @@
 , dkh
 , dftd3
 , pcmsolver
-, libefp
 , libecpint
 , cppe
 , chemps2
@@ -135,7 +133,7 @@ let
 in
 buildPythonPackage rec {
   pname = "psi4";
-  version = "1.8.2";
+  version = "1.9";
 
   nativeBuildInputs = [
     cmake
@@ -153,7 +151,6 @@ buildPythonPackage rec {
     lapack
     dkh_
     pcmsolver_
-    libefp
     libecpint
     cppe
     chemps2_
@@ -169,7 +166,6 @@ buildPythonPackage rec {
     qcelemental
     qcengine
     numpy
-    pylibefp
     deepdiff
     dftd3
     chemps2_
@@ -186,11 +182,11 @@ buildPythonPackage rec {
     repo = pname;
     owner = "psi4";
     rev = "v${version}";
-    hash = "sha256-0u1PMe9kY0mFZhQ0ha6Ca97HVY4YykY5ylf4u3RjbfA=";
+    hash = "sha256-h9StfRuu0vwgzgZH6zmUfZlTgCZHHDzVNPIEaWCIWME=";
   };
 
   preConfigure = ''
-    substituteInPlace ./*external/upstream/libint2/CMakeLists.txt \
+    substituteInPlace ./external/upstream/libint2/CMakeLists.txt \
       --replace "https://github.com/loriab/libint/archive/${libintName}.zip" "file://${libintSrc}" \
       --replace "-DWITH_ERI_MAX_AM:STRING=3;2;2" "-DWITH_ERI_MAX_AM:STRING=6;5;4" \
       --replace "-DWITH_ERI3_MAX_AM:STRING=4;3;3" "-DWITH_ERI3_MAX_AM:STRING=6;5;4" \
@@ -231,14 +227,14 @@ buildPythonPackage rec {
     "-DENABLE_ecpint=ON"
     "-Decpint_DIR=${libecpint}"
     # LibEFP
-    "-DENABLE_libefp=ON"
+    "-DENABLE_libefp=OFF"
     # CheMPS2
     "-DENABLE_CheMPS2=ON"
     "-DCheMPS2_DIR=${chemps2_}"
     # ADCC
     "-DENABLE_adcc=ON"
     # Prefix path for all external packages
-    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${libefp};${chemps2_};${libecpint};${cppe};${adcc}\""
+    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${chemps2_};${libecpint};${cppe};${adcc}\""
   ];
 
   format = "other";
