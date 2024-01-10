@@ -57,9 +57,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.97.0",
+    "name": "avogadro2-1.98.1",
     "pname": "avogadro2",
-    "version": "1.97.0",
+    "version": "1.98.1",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
@@ -105,9 +105,9 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-2023.2",
+    "name": "cp2k-2024.1",
     "pname": "cp2k",
-    "version": "2023.2",
+    "version": "2024.1",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
@@ -161,9 +161,9 @@
   },
   {
     "attribute": "qchem.elpa",
-    "name": "elpa-2023.05.001",
+    "name": "elpa-2023.11.001",
     "pname": "elpa",
-    "version": "2023.05.001",
+    "version": "2023.11.001",
     "description": "Eigenvalue Solvers for Petaflop-Applications",
     "homepage": "https://elpa.mpcdf.mpg.de/"
   },
@@ -205,7 +205,7 @@
     "pname": "fftw-double",
     "version": "3.3.10",
     "description": "Fastest Fourier Transform in the West library",
-    "homepage": "http://www.fftw.org/"
+    "homepage": "https://www.fftw.org/"
   },
   {
     "attribute": "qchem.fftw-mpi",
@@ -213,7 +213,7 @@
     "pname": "fftw-double",
     "version": "3.3.10",
     "description": "Fastest Fourier Transform in the West library",
-    "homepage": "http://www.fftw.org/"
+    "homepage": "https://www.fftw.org/"
   },
   {
     "attribute": "qchem.fftwSinglePrec",
@@ -221,7 +221,7 @@
     "pname": "fftw-single",
     "version": "3.3.10",
     "description": "Fastest Fourier Transform in the West library",
-    "homepage": "http://www.fftw.org/"
+    "homepage": "https://www.fftw.org/"
   },
   {
     "attribute": "qchem.gabedit",
@@ -409,9 +409,9 @@
   },
   {
     "attribute": "qchem.libint",
-    "name": "libint-2.7.2",
+    "name": "libint-2.8.1",
     "pname": "libint",
-    "version": "2.7.2",
+    "version": "2.8.1",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
   },
@@ -713,9 +713,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.8.2",
+    "name": "psi4-1.9",
     "pname": "psi4",
-    "version": "1.8.2",
+    "version": "1.9",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
@@ -857,9 +857,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.1.0",
+    "name": "spglib-2.2.0",
     "pname": "spglib",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },
@@ -977,9 +977,9 @@
   },
   {
     "attribute": "qchem.wxmacmolplt",
-    "name": "wxmacmolplt-7.7.2",
+    "name": "wxmacmolplt-7.7.3",
     "pname": "wxmacmolplt",
-    "version": "7.7.2",
+    "version": "7.7.3",
     "description": "Graphical user interface for GAMESS-US",
     "homepage": "https://brettbode.github.io/wxmacmolplt/"
   },
