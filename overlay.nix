@@ -178,11 +178,6 @@ let
 
         mctdh = callPackage ./pkgs/apps/mctdh { };
 
-        molcas1809 = callPackage ./pkgs/apps/openmolcas/v18.09.nix {
-          blas = final.blas-ilp64;
-          gfortran = final.gfortran9;
-        };
-
         molcas = let
           molcasOpt = prev.openmolcas.override {
             stdenv = aggressiveStdenv;
