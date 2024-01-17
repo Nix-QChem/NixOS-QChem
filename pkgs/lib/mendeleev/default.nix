@@ -1,6 +1,7 @@
 { buildPythonPackage
 , fetchFromGitHub
 , lib
+, pythonRelaxDepsHook
 , numpy
 , colorama
 , pyfiglet
@@ -37,6 +38,13 @@ buildPythonPackage rec {
     plotly
     seaborn
     poetry-core
+  ];
+
+  nativeBuildInputs = [
+    pythonRelaxDepsHook
+  ];
+  pythonRelaxDeps = [
+    "pyfiglet"
   ];
 
   pythonImportsCheck = [ "mendeleev" ];
