@@ -1,4 +1,12 @@
-{ lib, buildPythonPackage, fetchFromGitHub, numpy, scipy, pbr, networkx }:
+{ lib
+, buildPythonPackage
+, fetchFromGitHub
+, setuptools
+, numpy
+, scipy
+, pbr
+, networkx
+}:
 
 buildPythonPackage rec {
   pname = "vermouth";
@@ -15,7 +23,10 @@ buildPythonPackage rec {
     substituteInPlace ./setup.cfg --replace 'networkx ~= 2.0' 'networkx'
   '';
 
-  nativeBuildInputs = [ pbr ];
+  nativeBuildInputs = [
+    pbr
+    setuptools
+  ];
   propagatedBuildInputs = [
     numpy
     scipy
