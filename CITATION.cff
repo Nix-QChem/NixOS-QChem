@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+title: NixOS-QChem
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Markus
+    family-names: Kowalewski
+    email: markus.kowalewski@fysik.su.se
+    orcid: 'https://orcid.org/0000-0002-2288-2548'
+  - given-names: Phillip
+    family-names: Seeber
+    email: phillip.seeber@uni-jena.de
+    orcid: 'https://orcid.org/0000-0002-4968-7726'
+identifiers:
+  - type: doi
+    value: 10.1002/qua.26872
+    description: >-
+      M. Kowalewski, P. Seeber, "Sustainable Packaging of
+      Quantum Chemistry Software with the Nix Package
+      Manager", Int. J. Quantum Chem., 122, e26872 (2022).
+repository-code: 'https://github.com/Nix-QChem/NixOS-QChem'
+abstract: >+
+  Nix expressions for HPC/Quantum chemistry software
+  packages.
+
+
+  The goal of this project is to integrate software packages
+  into nixos to make it suitable for running it on a HPC
+  cluster. It provides popular quantum chemistry packages
+  and performance optimization to upstream nixpkgs.
+
+keywords:
+  - nix
+  - hpc
+  - computational-chemistry
+  - quantum-chemistry
+license: MIT
+
