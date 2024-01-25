@@ -25,7 +25,6 @@ abstract: >+
   Nix expressions for HPC/Quantum chemistry software
   packages.
 
-
   The goal of this project is to integrate software packages
   into nixos to make it suitable for running it on a HPC
   cluster. It provides popular quantum chemistry packages
@@ -37,4 +36,16 @@ keywords:
   - computational-chemistry
   - quantum-chemistry
 license: MIT
-
+preferred-citation:
+  type: article
+  authors:
+  - given-names: Markus
+    family-names: Kowalewski
+  - given-names: Phillip
+    family-names: Seeber
+  doi: 10.1002/qua.26872
+  journal: "Int. J. Quantum Chem."
+  start: e26872
+  title: "Sustainable Packaging of Quantum Chemistry Software with the Nix Package Manager"
+  volume: 122
+  year: 2022
