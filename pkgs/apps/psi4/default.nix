@@ -133,7 +133,7 @@ let
 in
 buildPythonPackage rec {
   pname = "psi4";
-  version = "1.9";
+  version = "1.9.1";
 
   nativeBuildInputs = [
     cmake
@@ -182,7 +182,7 @@ buildPythonPackage rec {
     repo = pname;
     owner = "psi4";
     rev = "v${version}";
-    hash = "sha256-h9StfRuu0vwgzgZH6zmUfZlTgCZHHDzVNPIEaWCIWME=";
+    hash = "sha256-eghnSzfbUAtYTW6wbE6KizuDujnH3Tze9zcOY7ATY60=";
   };
 
   preConfigure = ''
