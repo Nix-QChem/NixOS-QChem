@@ -1,45 +1,53 @@
 { stdenv
 , lib
-, fetchpatch
-, makeWrapper
 , cmake
 , gfortran
 , blas
 , lapack
 , fetchFromGitHub
-, xtb
-, xtb-iff
+, tblite
+, mctc-lib
+, toml-f
+, simple-dftd3
+, dftd4
+, multicharge
+, gfn0
+, gfnff
 }:
 
 stdenv.mkDerivation rec {
   pname = "crest";
-  version = "2.12";
+  version = "unstable-2024-02-14";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
-    rev = "v${version}";
-    hash = "sha256-pTOcwKvAX9N2TQhfV9jJhik+0vLQB3MhHzR2fU4+oV0=";
+    rev = "72dcc2d92f933424babb4905a3712559eb74915d";
+    hash = "sha256-Ck38VZBTvbwcVbOOlU1sjzcBmk+NciVsKtG2fPeYeZA=";
   };
+
+  postPatch = ''
+    chmod -R +rwx ./subprojects
+    cp -r ${gfnff.src}/* subprojects/gfnff/.
+    cp -r ${gfn0.src}/* subprojects/gfn0/.
+    chmod -R +rwx ./subprojects
+  '';
 
   nativeBuildInputs = [
     cmake
-    makeWrapper
     gfortran
   ];
 
-  buildInputs = [ blas lapack ];
-
-  FFLAGS = "-ffree-line-length-512";
-
-  hardeningDisable = [ "all" ];
-
-  postFixup = ''
-    wrapProgram $out/bin/crest \
-      --prefix PATH : "${xtb}/bin" \
-      --prefix PATH : "${xtb-iff}/bin" \
-      --set-default XTBPATH ${xtb}/share/xtb
-  '';
+  buildInputs = [
+    tblite
+    mctc-lib
+    toml-f
+    simple-dftd3
+    dftd4
+    multicharge
+    blas
+    lapack
+  ];
 
   meta = with lib; {
     description = "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package";
