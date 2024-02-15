@@ -168,6 +168,8 @@ let
 
         gdma = callPackage ./pkgs/apps/gdma { };
 
+        gfn0 = callPackage ./pkgs/apps/gfn0 { };
+
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         janpa = callPackage ./pkgs/apps/janpa { };
