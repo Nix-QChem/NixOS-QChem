@@ -170,6 +170,8 @@ let
 
         gfn0 = callPackage ./pkgs/apps/gfn0 { };
 
+        gfnff = callPackage ./pkgs/apps/gfnff { };
+
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         janpa = callPackage ./pkgs/apps/janpa { };
