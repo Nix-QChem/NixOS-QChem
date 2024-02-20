@@ -26,8 +26,8 @@ in stdenv.mkDerivation rec {
     else if (mpi.pname == "mpich") then "MPICH"
     else throw "Only openmpi and mpich supported by ${pname}.";
 
-  PATH_OPENMPI = mpi;
-  PATH_MPICH = mpi;
+  PATH_OPENMPI = "${lib.getDev mpi}";
+  PATH_MPICH = "${lib.getDev mpi}";
 
   BLASLIB =
     if (blas.passthru.implementation == "openblas") then "OPENBLAS"
