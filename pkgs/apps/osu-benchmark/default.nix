@@ -16,8 +16,8 @@ in stdenv.mkDerivation {
   propagatedUserEnvPkgs = [ mpi ];
 
   preConfigure = ''
-    export CXX="${mpi}/bin/mpicc"
-    export CC="${mpi}/bin/mpicxx"
+    export CXX="${lib.getDev mpi}/bin/mpicc"
+    export CC="${lib.getDev mpi}/bin/mpicxx"
   '';
 
   postInstall = ''
