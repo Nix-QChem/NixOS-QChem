@@ -22,9 +22,9 @@ stdenv.mkDerivation rec {
   preConfigure = ''
     mkdir build && cd build
 
-    export PATH=$PATH:${mpi}/bin
+    export PATH=$PATH:${lib.getDev mpi}/bin
     configureFlagsArray+=(
-      --with-mpi=${mpi}
+      --with-mpi=${lib.getDev mpi}
       CC=mpicc
       FC=mpif90
       MPICC=mpicc

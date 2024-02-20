@@ -57,7 +57,7 @@ in stdenv.mkDerivation rec {
     let
       # Environment variable required by GAMESS to set correct MPI version in rungms script.
       mpiname = mpi.pname;
-      mpiroot = builtins.toString mpi;
+      mpiroot = "${mpi}";
     in ''
       # patchshebangs does not patch /bin/csh, as it does not recognise those. Also /bin/csh appears
       # in more locations than just shebangs
@@ -100,7 +100,7 @@ in stdenv.mkDerivation rec {
           target                                     # The target is either sockets or MPI.
         ] ++ lib.optionals enableMpi [               # If MPI was selected it ask for the MPI installation details
           mpi.pname                                  # The MPI implementation
-          mpi                                        # Path to the MPI installation
+          "${lib.getDev mpi}"                        # Path to the MPI installation
         ] ++ [                                       # Activation of optional plugins, such as active space CC, LibXC, ...
           "no"
           "no"
