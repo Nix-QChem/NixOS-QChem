@@ -72,6 +72,7 @@ let
 
     vmd-python = callPackage ./pkgs/apps/vmd-python {
       inherit cfg;
+      inherit (finalPkgs.pkgs) mesa;
     };
 
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
