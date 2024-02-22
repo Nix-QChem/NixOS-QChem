@@ -1,30 +1,41 @@
-{ lib, fetchurl, buildPythonPackage
-, numpy, isPy3k
-} :
+{ lib
+, fetchFromGitHub
+, buildPythonPackage
+, python
+, setuptools
+, numpy
+, cython
+}:
 
 buildPythonPackage rec {
-  pname = "pyquante";
-  version = "1.6.5";
-  disabled = isPy3k;
+  pname = "pyquante2";
+  version = "unstable-2024-01-23";
 
-  src = fetchurl {
-    url = "mirror://sourceforge/project/pyquante/PyQuante-1.6/PyQuante-${version}/PyQuante-${version}.tar.gz";
-    sha256 = "1k5prp7y1b94a6s88s1xwm83m973gnda6qmjw7whqz1wa29c2nhl";
+  src = fetchFromGitHub {
+    owner = "rpmuller";
+    repo = pname;
+    rev = "fa02f54318cd704515698808a2eacaea565d2274";
+    hash = "sha256-pRNPu5ZnuWaSF4KCCj4QoBIsU/FlHuMWvBJ1QD/nLuQ=";
   };
+
+  pyproject = true;
+
+  nativeBuildInputs = [ setuptools cython ];
 
   propagatedBuildInputs = [ numpy ];
 
-  doCheck = true;
-
-  checkPhase = ''
-    python Tests/runalltests.py
+  # C-Extensions are not automatically installed and are copied manually
+  postInstall = ''
+    cp -r build/*/pyquante2/cints $out/${python.sitePackages}/pyquante2/.
+    cp -r build/*/pyquante2/cbecke* $out/${python.sitePackages}/pyquante2/.
   '';
+
+  pythnonImportsCheck = [ "pyquante2" "pyquante2.cints.one" ];
 
   meta = with lib; {
     description = "Open-source suite of programs for developing quantum chemistry methods";
-    homepage = "http://pyquante.sourceforge.net/";
+    homepage = "https://github.com/rpmuller/pyquante2";
     license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
-    broken = true;
   };
 }

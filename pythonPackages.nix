@@ -56,6 +56,8 @@ let
 
     pymbar = callPackage ./pkgs/lib/pymbar { };
 
+    pyquante = callPackage ./pkgs/apps/pyquante { };
+
     pysisyphus = callPackage ./pkgs/apps/pysisyphus {
       gamess-us = finalPkgs.gamess-us.override {
         enableMpi = false;
@@ -76,8 +78,6 @@ let
     };
 
     xtb-python = callPackage ./pkgs/lib/xtb-python { };
-  } // lib.optionalAttrs prev.isPy27 {
-    pyquante = callPackage ./pkgs/apps/pyquante { };
   };
 
 in {
