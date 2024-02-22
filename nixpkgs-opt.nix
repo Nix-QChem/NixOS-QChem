@@ -84,6 +84,7 @@ let
 
     ucx = recallPackage ucx {};
     ucc = recallPackage ucc {};
+    wannier90 = recallPackage wannier90 {};
     wxmacmolplt = recallPackage wxmacmolplt {};
 
     hostPlatform = hp;
