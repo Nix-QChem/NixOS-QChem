@@ -6,6 +6,7 @@
 , mpiCheckPhaseHook
 , pytestCheckHook
 , fetchFromGitHub
+, fetchpatch
   # Python dependencies
 , setuptools-scm
 , autograd
@@ -156,6 +157,18 @@ buildPythonPackage rec {
     rev = version;
     hash = "sha256-KNE61U7b+KcPDrThuSDBAGiPjPP5U7CBfuGPr8HkYaw=";
   };
+
+  patches = [
+    # Fixes for new Scipy and Numpy versions, removable on next release
+    (fetchpatch {
+      url = "https://github.com/eljost/pysisyphus/commit/8ccda1f43b00ff2c82d8f6d872ead3f4b700367d.patch";
+      hash = "sha256-aWZlJLKP8Bvqjb8gojuKUiPjGA4b5CjztWEk5DHyI74=";
+    })
+    (fetchpatch {
+      url = "https://github.com/eljost/pysisyphus/commit/99530586cca988e53b6f361af6247dfbfccf728c.patch";
+      hash = "sha256-I7Ef+LYNi7VnYFRYlgSPj3NLtWXwAmAuucu3sskhXsk=";
+    })
+  ];
 
   format = "pyproject";
 
