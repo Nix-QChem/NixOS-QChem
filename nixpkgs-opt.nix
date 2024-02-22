@@ -21,7 +21,8 @@ let
     cp2k = recallPackage cp2k {};
     fftw = recallPackage fftw {};
     dkh = recallPackage dkh {};
-    elpa = recallPackage elpa {};
+    # Currently broken upstream. Put back after next upgrade
+    # elpa = recallPackage elpa {};
     ergoscf = recallPackage ergoscf {};
     harminv = recallPackage harminv {};
     inherit (final) hdf5;
