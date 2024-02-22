@@ -57,9 +57,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.98.1",
+    "name": "avogadro2-1.99.0",
     "pname": "avogadro2",
-    "version": "1.98.1",
+    "version": "1.99.0",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
@@ -113,9 +113,9 @@
   },
   {
     "attribute": "qchem.crest",
-    "name": "crest-2.12",
-    "pname": "crest",
-    "version": "2.12",
+    "name": "crest-unstable-2024-02-14",
+    "pname": "crest-unstable",
+    "version": "2024-02-14",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -158,14 +158,6 @@
     "version": "1.2",
     "description": "Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module",
     "homepage": "https://github.com/psi4/dkh"
-  },
-  {
-    "attribute": "qchem.elpa",
-    "name": "elpa-2023.11.001",
-    "pname": "elpa",
-    "version": "2023.11.001",
-    "description": "Eigenvalue Solvers for Petaflop-Applications",
-    "homepage": "https://elpa.mpcdf.mpg.de/"
   },
   {
     "attribute": "qchem.ergoscf",
@@ -264,6 +256,22 @@
     "homepage": "http://www-stone.ch.cam.ac.uk/pub/gdma/"
   },
   {
+    "attribute": "qchem.gfn0",
+    "name": "gfn0-unstable-2023-07-22",
+    "pname": "gfn0-unstable",
+    "version": "2023-07-22",
+    "description": "Standalone implementation of the GFN0-xTB method",
+    "homepage": "https://github.com/pprcht/gfn0"
+  },
+  {
+    "attribute": "qchem.gfnff",
+    "name": "gfnff-unstable-2024-02-14",
+    "pname": "gfnff-unstable",
+    "version": "2024-02-14",
+    "description": "A standalone library of the GFN-FF method. Extracted in large parts from the xtb program",
+    "homepage": "https://github.com/pprcht/gfnff"
+  },
+  {
     "attribute": "qchem.gmultiwfn",
     "name": "gMultiwfn-3.4.1-0",
     "pname": "gMultiwfn",
@@ -273,41 +281,41 @@
   },
   {
     "attribute": "qchem.gpaw",
-    "name": "gpaw-23.9.1",
+    "name": "gpaw-24.1.0",
     "pname": "gpaw",
-    "version": "23.9.1",
+    "version": "24.1.0",
     "description": "Density functional theory and beyond within the projector-augmented wave method",
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2023.3",
+    "name": "gromacs-2024",
     "pname": "gromacs",
-    "version": "2023.3",
+    "version": "2024",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2023.3",
+    "name": "gromacs-2024",
     "pname": "gromacs",
-    "version": "2023.3",
+    "version": "2024",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2023.3",
+    "name": "gromacs-2024",
     "pname": "gromacs",
-    "version": "2023.3",
+    "version": "2024",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2023.3",
+    "name": "gromacs-2024",
     "pname": "gromacs",
-    "version": "2023.3",
+    "version": "2024",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -505,18 +513,10 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-23.10",
+    "name": "openmolcas-24.02",
     "pname": "openmolcas",
-    "version": "23.10",
+    "version": "24.02",
     "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
-  },
-  {
-    "attribute": "qchem.molcas1809",
-    "name": "openmolcas-18.09-20180902",
-    "pname": "openmolcas",
-    "version": "18.09-20180902",
-    "description": "Quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
@@ -537,9 +537,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-22.1.0",
+    "name": "mopac-22.1.1",
     "pname": "mopac",
-    "version": "22.1.0",
+    "version": "22.1.1",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -561,9 +561,9 @@
   },
   {
     "attribute": "qchem.mrcc",
-    "name": "mrcc-2022.03.18",
+    "name": "mrcc-2023.08.28",
     "pname": "mrcc",
-    "version": "2022.03.18",
+    "version": "2023.08.28",
     "description": "MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations.",
     "homepage": "https://www.mrcc.hu/"
   },
@@ -633,9 +633,9 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.1.0",
+    "name": "openmm-8.1.1",
     "pname": "openmm",
-    "version": "8.1.0",
+    "version": "8.1.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
@@ -713,9 +713,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.9",
+    "name": "psi4-1.9.1",
     "pname": "psi4",
-    "version": "1.9",
+    "version": "1.9.1",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
@@ -857,9 +857,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.2.0",
+    "name": "spglib-2.3.1",
     "pname": "spglib",
-    "version": "2.2.0",
+    "version": "2.3.1",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },
@@ -957,7 +957,7 @@
     "pname": "wannier90",
     "version": "3.1.0",
     "description": "Calculation of maximally localised Wannier functions",
-    "homepage": "http://www.wannier.org"
+    "homepage": "https://github.com/wannier-developers/wannier90"
   },
   {
     "attribute": "qchem.wfaMolcas",
