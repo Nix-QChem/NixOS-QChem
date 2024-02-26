@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, cmake, pugixml, python3, gtest }:
+{ lib, stdenv, fetchFromGitHub, fetchpatch, cmake, pugixml, python3, gtest }:
 
 stdenv.mkDerivation rec {
     pname = "libecpint";
@@ -23,6 +23,14 @@ stdenv.mkDerivation rec {
       rev = "v${version}";
       hash = "sha256-2p2Ndl2TPeTo2310Jsk+TRSou+iYfJR2MdlVddzDPNE=";
     };
+
+    patches = [
+      # Remove on next release, ensures C++14 and GTest compatibility
+      (fetchpatch {
+        url = "https://github.com/robashaw/libecpint/commit/8e788d4ea9b74e464dd834441369e3e8488256d9.patch";
+        hash = "sha256-wcf/b/2+9PabtJMBrj0aTD8owoFt/wMj0f7nXVUucrI=";
+      })
+    ];
 
     cmakeFlags = [
       "-DLIBECPINT_MAX_L=7"
