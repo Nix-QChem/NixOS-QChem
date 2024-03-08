@@ -289,33 +289,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2024",
+    "name": "gromacs-2024.1",
     "pname": "gromacs",
-    "version": "2024",
+    "version": "2024.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2024",
+    "name": "gromacs-2024.1",
     "pname": "gromacs",
-    "version": "2024",
+    "version": "2024.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2024",
+    "name": "gromacs-2024.1",
     "pname": "gromacs",
-    "version": "2024",
+    "version": "2024.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2024",
+    "name": "gromacs-2024.1",
     "pname": "gromacs",
-    "version": "2024",
+    "version": "2024.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
