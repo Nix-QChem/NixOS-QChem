@@ -36,10 +36,10 @@
 | gfnff-unstable-2024-02-14 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-24.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
-| gromacs-2024 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2024 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2024 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2024 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2024.1 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2024.1 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2024.1 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2024.1 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-1.14.3 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
