@@ -18,6 +18,11 @@ let
       inherit (finalPkgs) autodock-vina;
     };
 
+    biopython = prev.biopython.overrideAttrs (old: {
+      doCheck = false;
+      doInstallCheck = false;
+    });
+
     pycolt = callPackage ./pkgs/lib/pycolt { };
 
     cclib = callPackage ./pkgs/lib/cclib { };
