@@ -27,7 +27,8 @@ There is a branch (release-XX.XX) for every stable version of nixpkgs (nixos-XX.
 
 ### Channel
 Via `release.nix` a nix channels compatible nixexprs tarball can be generated:
-`nix-build release.nix -A channel`
+`nix-build release.nix -A qchem.channel`
+If you have set a different `cfg.prefix`/`NIXQC_PREFIX` adapt the expression to match the chosen subset name.
 
 
 ### NUR
