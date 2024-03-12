@@ -12,14 +12,13 @@
 
 buildPythonPackage rec {
   pname = "theodore";
-  version = "3.0";
+  version = "3.1.1";
 
   src = fetchFromGitHub {
     owner = "felixplasser";
     repo = "theodore-qc";
     rev = "v${version}";
-    sha256 = "sha256-HESkOnSWr3kCfCI1reFNx1pLf/nKJgfcfGQxVs5GeCE=";
-    # deepClone = true;
+    hash = "sha256-z3li/X7uQYRqS2GkAGa3sKdQ/1KdOHi0aWhO/HaItH4=";
   };
 
   patches = [
@@ -28,7 +27,8 @@ buildPythonPackage rec {
   ];
 
   checkInputs = [
-    pytest pytest-runner
+    pytest
+    pytest-runner
   ];
 
   propagatedBuildInputs = [
@@ -41,11 +41,9 @@ buildPythonPackage rec {
     openbabel-bindings
   ];
 
-
   doCheck = true;
 
   meta = with lib; {
-    broken = true;
     description = "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs";
     homepage = "http://orbkit.github.io/";
     license = licenses.lgpl3Only;
