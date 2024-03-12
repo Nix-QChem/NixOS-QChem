@@ -1,5 +1,5 @@
 diff --git a/bin/cc2molden.py b/bin/cc2molden.py
-index b7d298b..1656231 100755
+index b7d298b..8130ad3 100755
 --- a/bin/cc2molden.py
 +++ b/bin/cc2molden.py
 @@ -5,7 +5,7 @@ from __future__ import print_function, division
@@ -12,7 +12,7 @@ index b7d298b..1656231 100755
  def print_warning():
      print("cc2molden.py <logfile>")
 diff --git a/theodore/actions/analyze_correlations.py b/theodore/actions/analyze_correlations.py
-index c3574db..dd0e70f 100755
+index c3574db..e13e6d6 100755
 --- a/theodore/actions/analyze_correlations.py
 +++ b/theodore/actions/analyze_correlations.py
 @@ -30,7 +30,7 @@ except:
@@ -23,43 +23,4 @@ index c3574db..dd0e70f 100755
 +    from openbabel import openbabel
      OPENBABEL=True
  except ImportError:
-     print(" *** Warning: python-openbabel not found! ***")
-diff --git a/theodore/actions/cc_opt.py b/theodore/actions/cc_opt.py
-index a93bdea..da95c15 100755
---- a/theodore/actions/cc_opt.py
-+++ b/theodore/actions/cc_opt.py
-@@ -46,7 +46,7 @@ class CCOpt(Action):
-     })
- 
-     def run(logfile, scan, thresh, output):
--           import openbabel
-+           from openbabel import openbabel
- 
-            theo_header.print_header(__class__._colt_description)
- 
-diff --git a/theodore/cclib_interface.py b/theodore/cclib_interface.py
-index fd6ff89..127e7d6 100644
---- a/theodore/cclib_interface.py
-+++ b/theodore/cclib_interface.py
-@@ -9,7 +9,7 @@ import struct
- import numpy
- from . import file_parser, lib_mo, error_handler, units, lib_struc
- try:
--    import openbabel
-+    from openbabel import openbabel
- except ImportError:
-     print(" *** Warning: python-openbabel not found! ***")
-     print(" Using emulation program with limited capabilities ...")
-diff --git a/theodore/lib_struc.py b/theodore/lib_struc.py
-index ed6bec9..330f89a 100644
---- a/theodore/lib_struc.py
-+++ b/theodore/lib_struc.py
-@@ -9,7 +9,7 @@ import os, shutil, locale
- import numpy
- obabel_avail = True
- try:
--    import openbabel
-+    from openbabel import openbabel
- except ImportError:
-     obabel_avail = False
      print(" *** Warning: python-openbabel not found! ***")

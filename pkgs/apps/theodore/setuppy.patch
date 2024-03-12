@@ -1,5 +1,5 @@
 diff --git a/setup.py b/setup.py
-index 3fdea89..f5abb5b 100644
+index 3fdea89..838b5c3 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -9,7 +9,7 @@ with open('README.rst') as readme_file:
@@ -7,7 +7,7 @@ index 3fdea89..f5abb5b 100644
  print(readme)
  
 -requirements = ['pycolt>=0.5', 'cclib>=1.7', 'numpy>=1.17', 'orbkit>=1.0', 'matplotlib', 'openbabel']
-+requirements = ['pycolt>=0.5', 'cclib>=1.7', 'numpy>=1.17', 'orbkit>=1.0', 'matplotlib', 'pyopenbabel>=3.0']
++requirements = ['pycolt>=0.5', 'cclib>=1.7', 'numpy>=1.17', 'orbkit>=1.0', 'matplotlib', 'pyopenbabel']
  
  setup_requirements = ['pytest-runner', ]
  
