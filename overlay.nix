@@ -249,6 +249,8 @@ let
 
         qmcpack = callPackage ./pkgs/apps/qmcpack { };
 
+        salmon = callPackage ./pkgs/apps/salmon { };
+
         scalapackfx = callPackage ./pkgs/lib/scalapackfx { };
 
         sgroup = callPackage ./pkgs/apps/sgroup { };
