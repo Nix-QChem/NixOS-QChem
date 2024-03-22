@@ -39,6 +39,7 @@ stdenv.mkDerivation rec {
   ];
 
   propagatedBuildInputs = [ mpi ];
+  propagatedUserEnvPkgs = [ mpi ];
 
   preConfigure = ''
     cmakeFlagsArray+=(
