@@ -1,6 +1,9 @@
 { stdenv
 , lib
-, cmake
+, meson
+, ninja
+, pkg-config
+, hostname
 , gfortran
 , blas
 , lapack
@@ -15,27 +18,40 @@
 , gfnff
 }:
 
-stdenv.mkDerivation rec {
+let lwoniom = fetchFromGitHub {
+      owner = "crest-lab";
+      repo = "lwoniom";
+      rev = "ab66c7ebc3066328a8fc313dc783aec9b773cad2";
+      hash = "sha256-9FFlaGEHhsdS+23/7FnrteGwI9pvHb/q5A8C3iJxwnQ=";
+    };
+
+in stdenv.mkDerivation rec {
   pname = "crest";
-  version = "unstable-2024-02-14";
+  version = "unstable-2024-03-19";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
-    rev = "72dcc2d92f933424babb4905a3712559eb74915d";
-    hash = "sha256-Ck38VZBTvbwcVbOOlU1sjzcBmk+NciVsKtG2fPeYeZA=";
+    rev = "2719412edf8bb606cebdd4cd6bbb4cdbd249e1e5";
+    hash = "sha256-GakDssC4IoVUmRqKwOa6v6LWl37JUcpStUJN5huEP6c=";
   };
+
+  patches = [ ./build.patch ];
 
   postPatch = ''
     chmod -R +rwx ./subprojects
-    cp -r ${gfnff.src}/* subprojects/gfnff/.
-    cp -r ${gfn0.src}/* subprojects/gfn0/.
+    cp -r ${gfn0.src}/* ./subprojects/gfn0/.
+    cp -r ${gfnff.src}/* ./subprojects/gfnff/.
+    cp -r ${lwoniom}/* ./subprojects/lwoniom/.
     chmod -R +rwx ./subprojects
   '';
 
   nativeBuildInputs = [
-    cmake
+    meson
+    ninja
+    pkg-config
     gfortran
+    hostname
   ];
 
   buildInputs = [
@@ -48,6 +64,12 @@ stdenv.mkDerivation rec {
     blas
     lapack
   ];
+
+  mesonFlags = [
+    "-Dla_backend=netlib"
+  ];
+
+  doCheck = true;
 
   meta = with lib; {
     description = "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package";
