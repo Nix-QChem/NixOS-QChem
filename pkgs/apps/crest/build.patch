@@ -1,0 +1,76 @@
+diff --git a/config/meson.build b/config/meson.build
+index 518ddf1..25d1bd6 100644
+--- a/config/meson.build
++++ b/config/meson.build
+@@ -198,7 +198,6 @@ if get_option('WITH_TBLITE')
+    'tblite',
+    version: '>=0.2',
+    fallback: ['tblite', 'tblite_dep'],
+-   default_options: ['default_library=static', 'api=false'],
+  )
+  exe_deps += tblite_dep
+ endif
+@@ -210,7 +209,6 @@ if get_option('WITH_TOMLF')
+    'toml-f',
+    version: '>=0.2.0',
+    fallback: ['toml-f', 'tomlf_dep'],
+-   default_options: ['default_library=static'],
+  )
+  exe_deps += tomlf_dep
+ endif
+@@ -222,7 +220,7 @@ if get_option('WITH_GFN0')
+    'gfn0',
+ #   version: '>=0.2',
+    fallback: ['gfn0', 'gfn0_dep'],
+-   default_options: ['default_library=static','with_gbsa=true'],
++   default_options: ['with_gbsa=true'],
+  )
+  exe_deps += gfn0_dep
+ endif
+@@ -233,7 +231,7 @@ if get_option('WITH_GFNFF')
+  gfnff_dep = dependency(
+    'gfnff',
+    fallback: ['gfnff', 'gfnff_dep'],
+-   default_options: ['default_library=static','with_gbsa=true'],
++   default_options: ['with_gbsa=true'],
+  )
+  exe_deps += gfnff_dep
+ endif
+@@ -245,7 +243,6 @@ if get_option('WITH_XHCFF')
+  xhcff_dep = dependency(
+    'xhcff',
+    fallback: ['xhcff', 'xhcfflib_dep'],
+-   default_options: ['default_library=static'],
+  )
+  exe_deps += xhcff_dep
+ endif
+@@ -257,11 +254,13 @@ if get_option('WITH_LWONIOM')
+  lwoniom_dep = dependency(
+    'lwoniom',
+    fallback: ['lwoniom', 'lwoniom_dep'],
+-   default_options: ['default_library=static'],
+  )
+  exe_deps += lwoniom_dep
+ endif
+ 
++mctc_dep = dependency('mctc-lib')
++exe_deps += mctc_dep
++
+ 
+ ## ========================================= ##
+ ## populate the data for crest_metadata.fh
+diff --git a/meson.build b/meson.build
+index 87d8876..21cdc82 100644
+--- a/meson.build
++++ b/meson.build
+@@ -22,9 +22,7 @@ project(
+   meson_version: '>=0.63',
+   default_options: [
+     'buildtype=debugoptimized',
+-    'default_library=static',
+-    'c_link_args=-static',
+-    'fortran_link_args=-static',
++    'default_library=both',
+   ],
+ )
+ install = not (meson.is_subproject() and get_option('default_library') == 'static')
