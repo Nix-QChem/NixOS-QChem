@@ -215,6 +215,8 @@ let
 
         gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
 
+        numsa = callPackage ./pkgs/lib/numsa { };
+
         orca = callPackage ./pkgs/apps/orca { };
 
         orient = callPackage ./pkgs/apps/orient { };
