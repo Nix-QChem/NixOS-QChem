@@ -1,5 +1,6 @@
 { stdenv
 , lib
+, unzip
 , makeWrapper
 , requireFile
 , autoPatchelfHook
@@ -22,12 +23,17 @@ let
     then "em64t-unknown-linux-gnu"
     else "x86_64-unknown-linux-gnu";
 
+  version = "7.8.1";
+
+  archiveName = "turbolinux${lib.replaceStrings ["."] [""] version}-TMG";
+
 in
 stdenv.mkDerivation rec {
-  version = "7.8.1";
+  inherit version;
   pname = "turbomole";
 
   nativeBuildInputs = [
+    unzip
     makeWrapper
     autoPatchelfHook
   ];
@@ -45,27 +51,27 @@ stdenv.mkDerivation rec {
   ];
 
   src = requireFile {
-    sha256 = "21518913591e7ab58b3af1c126fdc37fa31cb5507d523b4b04fbe57f63916b5e";
-    name = "turbolinux${lib.replaceStrings ["."] [""] version}-TMG.bin";
+    sha256 = "72b80d06bb4b1a663eb235752ad0d945137d28eba9a5a8e4d9678b8783113f91";
+    name = "${archiveName}.zip";
     url = "https://www.turbomole.org/";
   };
 
   unpackPhase = ''
-    cp ${src} turboinstaller.bin
-    chmod +rwx turboinstaller.bin
+    unzip ${src}
+    chmod +rwx ${archiveName}.bin
   '';
 
   postPatch = ''
     patchelf \
       --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
       --set-rpath "${stdenv.cc.cc.lib}" \
-      turboinstaller.bin
+      ${archiveName}.bin
   '';
 
   dontConfigure = true;
 
   buildPhase = ''
-    ./turboinstaller.bin
+    ./${archiveName}.bin
   '';
 
   /*
