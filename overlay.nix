@@ -133,6 +133,8 @@ let
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
+        cpcm-x = callPackage ./pkgs/lib/cpcm-x { };
+
         crest = callPackage ./pkgs/apps/crest { };
 
         dalton = callPackage ./pkgs/apps/dalton { };
@@ -214,6 +216,8 @@ let
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
         gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
+
+        numsa = callPackage ./pkgs/lib/numsa { };
 
         orca = callPackage ./pkgs/apps/orca { };
 
@@ -320,7 +324,16 @@ let
         };
 
         xtb = callPackage ./pkgs/apps/xtb {
-          gfortran = final.gfortran11;
+          # XTB declares a tblite dependency >= 0.2.0 but actually requires > 0.3.0
+          tblite = super.tblite.overrideAttrs (old: {
+            patches = [ ];
+            src = super.fetchFromGitHub {
+              owner = "tblite";
+              repo = "tblite";
+              rev = "1bd936ca81f6f9ec9bbe65e32bc422ff5388571b";
+              hash = "sha256-ywXpnKU5CkPSp4zfJkFvrN09ptjt3tqq2zSqPcHAv6E=";
+            };
+          });
         };
 
         xtb-iff = callPackage ./pkgs/apps/xtb-iff { };

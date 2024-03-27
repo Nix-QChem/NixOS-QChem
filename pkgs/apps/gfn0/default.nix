@@ -1,6 +1,8 @@
 { stdenv
 , lib
-, cmake
+, meson
+, ninja
+, pkg-config
 , gfortran
 , fetchFromGitHub
 , blas
@@ -9,17 +11,21 @@
 
 stdenv.mkDerivation rec {
   pname = "gfn0";
-  version = "unstable-2023-07-22";
+  version = "unstable-2024-03-07";
 
   src = fetchFromGitHub {
     owner = "pprcht";
     repo = pname;
-    rev = "b0d68ec6b44a176db6c3684d7ccc9776e9a50394";
-    hash = "sha256-257XGz5ZosPnbWjTgM2Bt7hH09ZQkTaW5Vu7udMSIhI=";
+    rev = "1701599ca4298ecb5c3741a9e56d67ce03e9e4c3";
+    hash = "sha256-slUShllJ3shUZaEnEIhy6QbDzteNSlbLrokPKgYhG7I=";
   };
 
+  patches = [ ./build.patch ];
+
   nativeBuildInputs = [
-    cmake
+    meson
+    ninja
+    pkg-config
     gfortran
   ];
 
@@ -28,10 +34,9 @@ stdenv.mkDerivation rec {
     lapack
   ];
 
-  postInstall = ''
-    substituteInPlace $out/lib/cmake/${pname}/${pname}-*.cmake \
-      --replace "libgfn0.a" "libgfn0.${stdenv.hostPlatform.extensions.library}"
-  '';
+  mesonFlags = [
+    "-Dla_backend=netlib"
+  ];
 
   meta = with lib; {
     description = "Standalone implementation of the GFN0-xTB method";
