@@ -133,6 +133,8 @@ let
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
+        cpcm-x = callPackage ./pkgs/lib/cpcm-x { };
+
         crest = callPackage ./pkgs/apps/crest { };
 
         dalton = callPackage ./pkgs/apps/dalton { };
