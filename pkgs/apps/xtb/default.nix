@@ -3,7 +3,9 @@
 , gfortran
 , fetchFromGitHub
 , fetchpatch
-, cmake
+, meson
+, ninja
+, pkg-config
 , makeWrapper
 , blas
 , lapack
@@ -15,6 +17,8 @@
 , simple-dftd3
 , dftd4
 , multicharge
+, cpcm-x
+, git
 , enableTurbomole ? false
 , turbomole
 , enableOrca ? false
@@ -36,21 +40,26 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "xtb";
-  version = "6.6.1";
+  version = "6.7.0";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-I2K87W/b/Nh2VCkINhmCwe4HwBZ7ZIYM5cUYc/8Hkws=";
+    hash = "sha256-H/htbxEFYWo4niWjcrjX4ffdmW0FIzFTAVnYbn2514Y=";
   };
+
+  patches = [ ./build.patch ];
 
   outputs = [ "out" "dev" ];
 
   nativeBuildInputs = [
     gfortran
-    cmake
+    meson
+    ninja
+    pkg-config
     makeWrapper
+    git
   ];
 
   buildInputs = [
@@ -63,25 +72,10 @@ stdenv.mkDerivation rec {
     simple-dftd3
     dftd4
     multicharge
+    cpcm-x
   ];
 
   hardeningDisable = [ "format" ];
-
-  postInstall = ''
-    mkdir -p $out/lib/pkgconfig
-
-    cat > $out/lib/pkgconfig/xtb.pc << EOF
-    prefix=$out
-    libdir=''${prefix}/lib
-    includedir=''${prefix}/include
-
-    Name: ${pname}
-    Description: ${description}
-    Version: ${version}
-    Cflags: -I''${prefix}/include
-    Libs: -L''${prefix}/lib -lxtb
-    EOF
-  '';
 
   postFixup = ''
     wrapProgram $out/bin/xtb \
