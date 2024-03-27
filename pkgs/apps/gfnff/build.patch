@@ -1,0 +1,23 @@
+diff --git a/meson.build b/meson.build
+index f359ceb..932c098 100644
+--- a/meson.build
++++ b/meson.build
+@@ -6,9 +6,7 @@ project(
+   meson_version: '>=0.63',
+   default_options: [
+     'buildtype=debugoptimized',
+-    'default_library=static',
+-    'c_link_args=-static',
+-    'fortran_link_args=-static',
++    'default_library=both',
+   ],
+ )
+ install = not (meson.is_subproject() and get_option('default_library') == 'static')
+@@ -32,6 +30,7 @@ gfnff_lib = library(
+   sources: srcs,
+   dependencies: exe_deps,
+   include_directories: include_directories('include'),
++  install: true,
+ )
+ 
+ # Export as dependency
