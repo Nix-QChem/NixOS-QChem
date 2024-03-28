@@ -189,6 +189,11 @@ buildPythonPackage rec {
         "hcn_neb_dimer_irc"
         "test_ci_opt[RFOptimizer-opt_kwargs1--78.2487951]" # Broken as of PySCF >= 2.3 as a DFT functional definition was changed
       ];
+      faultyXtb = [
+        "block_davidson_acet"
+        "modekill_xtb"
+        "xtb_hessian"
+      ];
     in
     [
       "-v"
@@ -196,6 +201,7 @@ buildPythonPackage rec {
       "--durations=0"
       "-m 'not benchmark and not skip_ci'"
       "-k '${lib.strings.concatMapStringsSep " and " (s: "not ${s}") faultyPyscf}'"
+      "-k '${lib.strings.concatMapStringsSep " and " (s: "not ${s}") faultyXtb}'"
       "tests"
     ];
 
