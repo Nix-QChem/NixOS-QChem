@@ -3,6 +3,7 @@
 , gfortran
 , fetchFromGitHub
 , cmake
+, pkg-config
 , blas
 , lapack
 , mpi
@@ -24,41 +25,35 @@ assert !blas.isILP64 && !lapack.isILP64;
 
 buildPythonPackage rec {
   pname = "dftbplus";
-  version = "22.2";
+  version = "24.1";
 
   src = fetchFromGitHub {
     owner = "dftbplus";
     repo = pname;
     rev = version;
-    hash = "sha256-bADKCee5vBH3aIhuo0Ce/GrZ//nd8j4AcWDSWYoLRY4=";
+    hash = "sha256-lI0l977SYHIgPKZ9037q7IYudAck2vyI2byW0vBB680=";
+    fetchSubmodules = true;
   };
 
   postPatch = ''
     patchShebangs .
 
     substituteInPlace tools/dptools/CMakeLists.txt \
-      --replace '$DESTDIR/' ""
+      --replace-fail '$DESTDIR/' ""
+
+
   '';
 
   nativeBuildInputs = [
     gfortran
     cmake
+    pkg-config
   ];
 
   buildInputs = [
     blas
     lapack
     scalapack
-    test-drive
-    mctc-lib
-    mstore
-    toml-f
-    tblite
-    mpifx
-    scalapackfx
-    simple-dftd3
-    multicharge
-    dftd4
   ];
 
   propagatedBuildInputs = [ numpy ];
@@ -69,8 +64,8 @@ buildPythonPackage rec {
     "-DWITH_API=ON"
     "-DWITH_OMP=ON"
     "-DWITH_MPI=ON"
-    "-DWITH_TBLITE=ON"
-    "-DWITH=SDFTD3=ON"
+    "-DWITH_TBLITE=OFF"
+    "-DWITH_SDFTD3=OFF"
     "-DWITH_PYTHON=ON"
     "-DSCALAPACK_LIBRARY=${scalapack}/lib/libscalapack.so"
   ];
