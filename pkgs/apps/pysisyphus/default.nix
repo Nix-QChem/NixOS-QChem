@@ -109,7 +109,7 @@ let
 in
 buildPythonPackage rec {
   pname = "pysisyphus";
-  version = "0.8.0b0";
+  version = "unstable-2024-03-18";
 
   nativeBuildInputs = [ makeWrapper setuptools-scm ];
 
@@ -154,25 +154,13 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "eljost";
     repo = pname;
-    rev = version;
-    hash = "sha256-KNE61U7b+KcPDrThuSDBAGiPjPP5U7CBfuGPr8HkYaw=";
+    rev = "8f18b82d14e4558dc00f39e4a1f42eaea2adb3de";
+    hash = "sha256-NJIxLhCBv6eYi6y3YYbIDxAfdF9eFSkWXRxgzZHk65w=";
   };
-
-  patches = [
-    # Fixes for new Scipy and Numpy versions, removable on next release
-    (fetchpatch {
-      url = "https://github.com/eljost/pysisyphus/commit/8ccda1f43b00ff2c82d8f6d872ead3f4b700367d.patch";
-      hash = "sha256-aWZlJLKP8Bvqjb8gojuKUiPjGA4b5CjztWEk5DHyI74=";
-    })
-    (fetchpatch {
-      url = "https://github.com/eljost/pysisyphus/commit/99530586cca988e53b6f361af6247dfbfccf728c.patch";
-      hash = "sha256-I7Ef+LYNi7VnYFRYlgSPj3NLtWXwAmAuucu3sskhXsk=";
-    })
-  ];
 
   format = "pyproject";
 
-  preBuild = "export SETUPTOOLS_SCM_PRETEND_VERSION=${version}";
+  preBuild = "export SETUPTOOLS_SCM_PRETEND_VERSION=0.8.0b1";
 
   nativeCheckInputs = [
     openssh
@@ -182,7 +170,6 @@ buildPythonPackage rec {
 
   preCheck = ''
     export PYSISRC=${pysisrc}
-    cat ${pysisrc}
     export PATH=$PATH:${binSearchPath}
     export XTBPATH=${xtb}/share/xtb
   '';

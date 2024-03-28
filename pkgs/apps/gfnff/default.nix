@@ -1,6 +1,8 @@
 { stdenv
 , lib
-, cmake
+, meson
+, ninja
+, pkg-config
 , gfortran
 , fetchFromGitHub
 , blas
@@ -18,8 +20,12 @@ stdenv.mkDerivation rec {
     hash = "sha256-K1KwfrMqnXi1Mj3PDGYgHdG9WLuXFtrNqtfeL5wkDtI=";
   };
 
+  patches = [ ./build.patch ];
+
   nativeBuildInputs = [
-    cmake
+    meson
+    ninja
+    pkg-config
     gfortran
   ];
 
@@ -28,14 +34,9 @@ stdenv.mkDerivation rec {
     lapack
   ];
 
-  cmakeFlags = [
-    "-DBUILD_SHARED_LIBS=${if stdenv.hostPlatform.isStatic then "OFF" else "ON"}"
+  mesonFlags = [
+    "-Dla_backend=netlib"
   ];
-
-  postInstall = ''
-    substituteInPlace $out/lib/cmake/${pname}/${pname}-*.cmake \
-      --replace "libgfnff.a" "libgfnff.${stdenv.hostPlatform.extensions.library}"
-  '';
 
   meta = with lib; {
     description = "A standalone library of the GFN-FF method. Extracted in large parts from the xtb program";
