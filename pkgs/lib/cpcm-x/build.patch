@@ -1,0 +1,34 @@
+diff --git a/config/meson.build b/config/meson.build
+index 25ea458..97c2c86 100644
+--- a/config/meson.build
++++ b/config/meson.build
+@@ -111,13 +111,8 @@ numsa_dep = dependency(
+ )
+ lib_deps += numsa_dep
+ 
++mctc_dep = dependency('mctc-lib')
++lib_deps += mctc_dep
+ 
+-tomlf_prj = subproject(
+-  'toml-f',
+-  version: '>=0.2',
+-  default_options: [
+-    'default_library=static',
+-  ],
+-)
+-tomlf_dep = tomlf_prj.get_variable('tomlf_dep')
++tomlf_dep = dependency('toml-f')
+ lib_deps += tomlf_dep
+diff --git a/meson.build b/meson.build
+index d6241a9..11b8e05 100644
+--- a/meson.build
++++ b/meson.build
+@@ -21,7 +21,7 @@ project(
+   meson_version: '>=0.60.0',
+   default_options: [
+     'buildtype=debugoptimized',
+-    'default_library=static',
++    'default_library=both',
+   ],
+ )
+ 
