@@ -236,6 +236,8 @@ let
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
 
+        plt2cub = callPackage ./pkgs/apps/plt2cub { };
+
         poltype2 = callPackage ./pkgs/apps/poltype2 { };
 
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
