@@ -1,0 +1,12 @@
+diff --git a/assets/templates/xtb.pc b/assets/templates/xtb.pc
+index d7eae88..457a1e9 100644
+--- a/assets/templates/xtb.pc
++++ b/assets/templates/xtb.pc
+@@ -1,6 +1,6 @@
+ prefix=@prefix@
+ libdir=${prefix}/@libdir@
+-includedir=${prefix}/@includedir@
++includedir=@includedir@
+ 
+ Name: @name@
+ Description: @description@

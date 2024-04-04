@@ -49,7 +49,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-H/htbxEFYWo4niWjcrjX4ffdmW0FIzFTAVnYbn2514Y=";
   };
 
-  patches = [ ./build.patch ];
+  patches = [
+    ./build.patch
+    ./pkg-config.patch
+  ];
 
   outputs = [ "out" "dev" ];
 
