@@ -27,13 +27,13 @@ let lwoniom = fetchFromGitHub {
 
 in stdenv.mkDerivation rec {
   pname = "crest";
-  version = "unstable-2024-03-19";
+  version = "3.0";
 
   src = fetchFromGitHub {
-    owner = "grimme-lab";
+    owner = "crest-lab";
     repo = pname;
-    rev = "2719412edf8bb606cebdd4cd6bbb4cdbd249e1e5";
-    hash = "sha256-GakDssC4IoVUmRqKwOa6v6LWl37JUcpStUJN5huEP6c=";
+    rev = "v${version}";
+    hash = "sha256-fXXgoodh6ky4TAuZKx34hLws14f+ozvAHdW80QeI3Uk=";
   };
 
   patches = [ ./build.patch ];
@@ -68,6 +68,13 @@ in stdenv.mkDerivation rec {
   mesonFlags = [
     "-Dla_backend=netlib"
   ];
+
+  # Dynamic libraries are not installed by default and need to be installed
+  # manually.
+  postInstall = ''
+    mkdir -p $out/lib
+    cp ./libcrest.so $out/lib/.
+  '';
 
   doCheck = true;
 
