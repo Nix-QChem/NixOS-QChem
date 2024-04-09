@@ -1,21 +1,19 @@
-{ lib, stdenv, fetchurl, requireFile, gfortran, fftw, protobuf
+{ lib, stdenv, fetchFromGitHub, gfortran, fftw, protobuf
 , blas, lapack
 , automake, autoconf, libtool, zlib, bzip2, libxml2, flex, bison
 } :
 
 assert (!blas.isILP64 && !lapack.isILP64);
 
-let
-  version = "20230330";
-
-in stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "qdng";
-  inherit version;
+  version = "1.0.0";
 
-  src = requireFile {
-    name = "qdng-${version}.tar.xz";
-    sha256 = "sha256-LO3oep4Sh1Lhkxr6qk4h7i/m7I6YyEov5ljDD6wa+pU=";
-    message = "Get a copy of the QDng tarball from Markus...";
+  src = fetchFromGitHub {
+    owner = "quantum-dynamics-ng";
+    repo = "QDng";
+    rev = "v${version}";
+    sha256 = "sha256-T59Bb014KSUOOFTFjPOrWmbF6GqIqAIyrb3Xe5TwU88=";
   };
 
   postPatch = ''
@@ -45,6 +43,6 @@ in stdenv.mkDerivation {
     description = "Quantum dynamics program package";
     platforms = platforms.linux;
     maintainers = [ maintainers.markuskowa ];
-    license = licenses.unfree;
+    license = licenses.gpl3Only;
   };
 }
