@@ -14,9 +14,10 @@
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
 | cp2k-2024.1 | qchem.cp2k | Quantum chemistry and solid state physics program |
-| crest-unstable-2024-02-14 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
+| CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
+| crest-3.0 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
-| dftbplus-22.2 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
+| dftbplus-24.1 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
@@ -32,7 +33,7 @@
 | gator-0.2.0 | qchem.gator | Program for computational spectroscopy and calculations of molecular properties |
 | gaussview-6.0.16 | qchem.gaussview | GUI for the Gaussian quantum chemistry software package |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
-| gfn0-unstable-2023-07-22 | qchem.gfn0 | Standalone implementation of the GFN0-xTB method |
+| gfn0-unstable-2024-03-07 | qchem.gfn0 | Standalone implementation of the GFN0-xTB method |
 | gfnff-unstable-2024-02-14 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-24.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
@@ -42,7 +43,7 @@
 | gromacs-2024.1 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
-| hdf5-1.14.3 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
+| hdf5-cpp-1.14.3 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
 | hdf5-cpp-fortran-1.14.3 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
@@ -53,7 +54,7 @@
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libefp-1.5.0-psi4 | qchem.libefp | Parallel implementation of the Effective Fragment Potential Method |
 | libint-2.8.1 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
-| libMBD-0.12.7 | qchem.libmbd | Many-body dispersion library |
+| libMBD-0.12.8 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
 | libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
@@ -74,7 +75,8 @@
 | mrchem-1.1.3 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
-| multiwfn-3.8-2023-07-19 | qchem.multiwfn | Multifunctional wave function analyser. |
+| multiwfn-3.8-2024-03-14 | qchem.multiwfn | Multifunctional wave function analyser. |
+| numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.2.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-8.4.0 | qchem.octave | Scientific Programming Language |
 | octave-8.4.0 | qchem.octave-opt | Scientific Programming Language |
@@ -87,13 +89,15 @@
 | pcmsolver-1.3.0 | qchem.pcmsolver | An API for the Polarizable Continuum Model |
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
 | Pegamoid-2.8 | qchem.pegamoid | Python GUI for OpenMolcas |
+| plt2cub-1.0 | qchem.plt2cub | Conversion utility for Turbomole's plt file to Cube format |
 | polyply-1.6.1 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.9.1 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
-| pysisyphus-0.8.0b0 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
-| qdng-20230330 | qchem.qdng | Quantum dynamics program package |
+| pysisyphus-unstable-2024-03-18 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
+| qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-3.17.1 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
 | quantum-espresso-7.2 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
+| salmon-2.2.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.1 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | scalapackfx-1.1 | qchem.scalapackfx | Modern Fortran wrappers around ScaLAPACK routines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
@@ -110,9 +114,10 @@
 | spglib-2.3.1 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
+| theodore-3.1.1 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
 | tinker-8.10.5 | qchem.tinker | Software Tools for Molecular Design |
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
-| turbomole-7.7 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
+| turbomole-7.8.1 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.2.0 | qchem.ucc | Collective communication operations API |
 | ucx-1.15.0 | qchem.ucx | Unified Communication X library |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
@@ -123,5 +128,5 @@
 | libwfa-2020-02-19 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.3 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
-| xtb-6.6.1 | qchem.xtb | Semiempirical extended tight-binding program package |
+| xtb-6.7.0 | qchem.xtb | Semiempirical extended tight-binding program package |
 | xtb-iff-1.1 | qchem.xtb-iff | General Intermolecular Force Field based on Tight-Binding Quantum Chemical Calculations |
