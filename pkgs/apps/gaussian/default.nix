@@ -3,23 +3,23 @@
 , buildFHSUserEnv
 , symlinkJoin
 , optpath
-, version ? "16b01"
+, version ? "16c02"
+, g16Root ? "${optpath}/gaussian"
+, g16Dir ? "${g16Root}/g${version}"
 }:
 
 let
-  g16root = "${optpath}/gaussian/g${version}";
-
   buildEnv = exe: buildFHSUserEnv {
     name = exe;
 
     targetPkgs = pkgs: with pkgs; [ tcsh ];
 
-    runScript = "${g16root}/${exe}";
+    runScript = "${g16Dir}/${exe}";
 
     profile = ''
       export GAUSS_SCRDIR=$TMPDIR
-      export g16root=${optpath}/gaussian
-      source ${g16root}/bsd/g16.profile
+      export g16root=${g16Root}
+      source ${g16Dir}/bsd/g16.profile
     '';
   };
 
