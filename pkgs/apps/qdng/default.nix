@@ -44,5 +44,6 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.markuskowa ];
     license = licenses.gpl3Only;
+    homepage = "https://github.com/quantum-dynamics-ng/QDng";
   };
 }
