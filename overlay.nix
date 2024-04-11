@@ -412,7 +412,7 @@ let
           mrcc = nullable mrcc (callPackage ./tests/mrcc { });
           nwchem = callPackage ./tests/nwchem { };
           pyscf = callPackage ./tests/pyscf { };
-          qdng = nullable qdng (callPackage ./tests/qdng { });
+          qdng = callPackage ./tests/qdng { };
           dgemm = callPackage ./tests/dgemm { };
           stream = callPackage ./tests/stream { };
           turbomole = nullable turbomole (callPackage ./tests/turbomole { });

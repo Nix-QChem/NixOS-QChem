@@ -28,7 +28,6 @@
               gaussview = null;
               mrcc = null;
               orca = null;
-              qdng = null;
               vmd = null;
               mesa-qc = null;
               mcdth = null;

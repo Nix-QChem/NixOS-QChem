@@ -112,10 +112,18 @@
     "homepage": "https://www.cp2k.org"
   },
   {
+    "attribute": "qchem.cpcm-x",
+    "name": "CPCM-X-unstable-2024-03-04",
+    "pname": "CPCM-X-unstable",
+    "version": "2024-03-04",
+    "description": "Extended conductor-like polarizable continuum solvation model",
+    "homepage": "https://github.com/grimme-lab/CPCM-X"
+  },
+  {
     "attribute": "qchem.crest",
-    "name": "crest-unstable-2024-02-14",
-    "pname": "crest-unstable",
-    "version": "2024-02-14",
+    "name": "crest-3.0",
+    "pname": "crest",
+    "version": "3.0",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -129,9 +137,9 @@
   },
   {
     "attribute": "qchem.dftbplus",
-    "name": "dftbplus-22.2",
+    "name": "dftbplus-24.1",
     "pname": "dftbplus",
-    "version": "22.2",
+    "version": "24.1",
     "description": "DFTB+ general package for performing fast atomistic simulations",
     "homepage": "https://github.com/dftbplus/dftbplus"
   },
@@ -257,9 +265,9 @@
   },
   {
     "attribute": "qchem.gfn0",
-    "name": "gfn0-unstable-2023-07-22",
+    "name": "gfn0-unstable-2024-03-07",
     "pname": "gfn0-unstable",
-    "version": "2023-07-22",
+    "version": "2024-03-07",
     "description": "Standalone implementation of the GFN0-xTB method",
     "homepage": "https://github.com/pprcht/gfn0"
   },
@@ -337,8 +345,8 @@
   },
   {
     "attribute": "qchem.hdf5",
-    "name": "hdf5-1.14.3",
-    "pname": "hdf5",
+    "name": "hdf5-cpp-1.14.3",
+    "pname": "hdf5-cpp",
     "version": "1.14.3",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
@@ -425,9 +433,9 @@
   },
   {
     "attribute": "qchem.libmbd",
-    "name": "libMBD-0.12.7",
+    "name": "libMBD-0.12.8",
     "pname": "libMBD",
-    "version": "0.12.7",
+    "version": "0.12.8",
     "description": "Many-body dispersion library",
     "homepage": "https://github.com/libmbd/libmbd"
   },
@@ -593,11 +601,19 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.8-2023-07-19",
+    "name": "multiwfn-3.8-2024-03-14",
     "pname": "multiwfn",
-    "version": "3.8-2023-07-19",
+    "version": "3.8-2024-03-14",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
+  },
+  {
+    "attribute": "qchem.numsa",
+    "name": "numsa-unstable-2024-03-04",
+    "pname": "numsa-unstable",
+    "version": "2024-03-04",
+    "description": "Solvent accessible surface area calculation",
+    "homepage": "https://github.com/grimme-lab/numsa"
   },
   {
     "attribute": "qchem.nwchem",
@@ -696,6 +712,14 @@
     "homepage": "https://pypi.org/project/Pegamoid"
   },
   {
+    "attribute": "qchem.plt2cub",
+    "name": "plt2cub-1.0",
+    "pname": "plt2cub",
+    "version": "1.0",
+    "description": "Conversion utility for Turbomole's plt file to Cube format",
+    "homepage": "https://www.turbomole.org/"
+  },
+  {
     "attribute": "qchem.polyply",
     "name": "polyply-1.6.1",
     "pname": "polyply",
@@ -721,17 +745,17 @@
   },
   {
     "attribute": "qchem.pysisyphus",
-    "name": "pysisyphus-0.8.0b0",
-    "pname": "pysisyphus",
-    "version": "0.8.0b0",
+    "name": "pysisyphus-unstable-2024-03-18",
+    "pname": "pysisyphus-unstable",
+    "version": "2024-03-18",
     "description": "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths",
     "homepage": "https://github.com/eljost/pysisyphus"
   },
   {
     "attribute": "qchem.qdng",
-    "name": "qdng-20230330",
+    "name": "qdng-1.0.0",
     "pname": "qdng",
-    "version": "20230330",
+    "version": "1.0.0",
     "description": "Quantum dynamics program package",
     "homepage": null
   },
@@ -750,6 +774,14 @@
     "version": "7.2",
     "description": "Electronic-structure calculations and materials modeling at the nanoscale",
     "homepage": "https://www.quantum-espresso.org/"
+  },
+  {
+    "attribute": "qchem.salmon",
+    "name": "salmon-2.2.0",
+    "pname": "salmon",
+    "version": "2.2.0",
+    "description": "Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience",
+    "homepage": "https://github.com/SALMON-TDDFT/SALMON2"
   },
   {
     "attribute": "qchem.scalapack",
@@ -880,6 +912,14 @@
     "homepage": "http://www.cs.virginia.edu/stream/ref.html"
   },
   {
+    "attribute": "qchem.theodore",
+    "name": "theodore-3.1.1",
+    "pname": "theodore",
+    "version": "3.1.1",
+    "description": "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs",
+    "homepage": "http://orbkit.github.io/"
+  },
+  {
     "attribute": "qchem.tinker",
     "name": "tinker-8.10.5",
     "pname": "tinker",
@@ -897,9 +937,9 @@
   },
   {
     "attribute": "qchem.turbomole",
-    "name": "turbomole-7.7",
+    "name": "turbomole-7.8.1",
     "pname": "turbomole",
-    "version": "7.7",
+    "version": "7.8.1",
     "description": "General purpose quantum chemistry program. Tools, not Toys!",
     "homepage": "https://www.turbomole.org/"
   },
@@ -985,9 +1025,9 @@
   },
   {
     "attribute": "qchem.xtb",
-    "name": "xtb-6.6.1",
+    "name": "xtb-6.7.0",
     "pname": "xtb",
-    "version": "6.6.1",
+    "version": "6.7.0",
     "description": "Semiempirical extended tight-binding program package",
     "homepage": "https://github.com/grimme-lab/xtb"
   },
