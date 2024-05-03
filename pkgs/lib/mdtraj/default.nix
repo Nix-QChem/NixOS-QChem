@@ -31,9 +31,12 @@ buildPythonPackage rec {
 
   buildInputs = [ zlib ];
 
+  nativeBuildInputs = [
+    cython
+  ];
+
   propagatedBuildInputs = [
     setuptools
-    cython
     numpy
     pyparsing
     astunparse
