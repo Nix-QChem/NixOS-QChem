@@ -35,8 +35,6 @@ let
 
     gau2grid = callPackage ./pkgs/apps/gau2grid { };
 
-    mdtraj = callPackage ./pkgs/lib/mdtraj { };
-
     mendeleev = callPackage ./pkgs/lib/mendeleev { };
 
     moltemplate = callPackage ./pkgs/apps/moltemplate { };
