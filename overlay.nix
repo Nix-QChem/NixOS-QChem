@@ -135,7 +135,19 @@ let
 
         cpcm-x = callPackage ./pkgs/lib/cpcm-x { };
 
-        crest = callPackage ./pkgs/apps/crest { };
+        crest = callPackage ./pkgs/apps/crest {
+          # Requires a newer version of tblite. Can likely be removed with next
+          # tblite release
+          tblite = super.tblite.overrideAttrs (old: {
+            patches = [ ];
+            src = super.fetchFromGitHub {
+              owner = "tblite";
+              repo = "tblite";
+              rev = "1bd936ca81f6f9ec9bbe65e32bc422ff5388571b";
+              hash = "sha256-ywXpnKU5CkPSp4zfJkFvrN09ptjt3tqq2zSqPcHAv6E=";
+            };
+          });
+        };
 
         dalton = callPackage ./pkgs/apps/dalton { };
 

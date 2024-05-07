@@ -27,13 +27,13 @@ let lwoniom = fetchFromGitHub {
 
 in stdenv.mkDerivation rec {
   pname = "crest";
-  version = "3.0";
+  version = "3.0.1";
 
   src = fetchFromGitHub {
     owner = "crest-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-fXXgoodh6ky4TAuZKx34hLws14f+ozvAHdW80QeI3Uk=";
+    hash = "sha256-YwPM43jVmiwQOCMXN8tyoxLHtPm36C7N+fEvYsVTp3A=";
   };
 
   patches = [ ./build.patch ];
