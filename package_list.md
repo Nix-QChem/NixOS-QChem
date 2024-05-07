@@ -53,7 +53,7 @@
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libefp-1.5.0-psi4 | qchem.libefp | Parallel implementation of the Effective Fragment Potential Method |
-| libint-2.8.1 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
+| libint-2.9.0 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libMBD-0.12.8 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
@@ -80,7 +80,7 @@
 | nwchem-7.2.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-8.4.0 | qchem.octave | Scientific Programming Language |
 | octave-8.4.0 | qchem.octave-opt | Scientific Programming Language |
-| octopus-13.0 | qchem.octopus | Real-space time dependent density-functional theory code |
+| octopus-14.0 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.1.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-5.0.4 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
@@ -111,15 +111,15 @@
 | siesta-4.1.5 | qchem.siesta | A first-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | A first-principles materials simulation code using DFT |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
-| spglib-2.3.1 | qchem.spglib | C library for finding and handling crystal symmetries |
+| spglib-2.4.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
 | theodore-3.1.1 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
 | tinker-8.10.5 | qchem.tinker | Software Tools for Molecular Design |
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.8.1 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
-| ucc-1.2.0 | qchem.ucc | Collective communication operations API |
-| ucx-1.15.0 | qchem.ucx | Unified Communication X library |
+| ucc-1.3.0 | qchem.ucc | Collective communication operations API |
+| ucx-1.16.0 | qchem.ucx | Unified Communication X library |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
 | vmd-python-3.1.2 | qchem.vmd-python | Installable VMD as a python module |
