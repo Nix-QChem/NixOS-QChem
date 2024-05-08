@@ -113,6 +113,8 @@ let
         #
         # Applications
         #
+        ambertools = super.python3.pkgs.toPythonApplication self.python3.pkgs.ambertools;
+
         autodock-vina = callPackage ./pkgs/apps/autodock-vina { };
 
         autoint = super.python3.pkgs.toPythonApplication self.python3.pkgs.pyphspu;
