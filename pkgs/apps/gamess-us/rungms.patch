@@ -1,8 +1,8 @@
 diff --git a/rungms b/rungms
-index d4cd542..be65ff0 100755
+index 293a3ae..2cbf329 100755
 --- a/rungms
 +++ b/rungms
-@@ -80,10 +80,10 @@
+@@ -95,10 +95,10 @@
  #       both Sun Grid Engine (SGE), and Portable Batch System (PBS).
  #       See also a very old LoadLeveler "ll-gms" for some IBM systems.
  #
@@ -14,19 +14,18 @@ index d4cd542..be65ff0 100755
 +set SCR=$SCRATCH
 +set USERSCR=$SCRATCH
 +set GMSPATH=@out@/bin
+ set DEL_OLD=yes
  #
  # Get any MDI-related options and remove them from the argument list
- #
-@@ -149,7 +149,7 @@ set NCPUS=$3    # number of compute processes to be run
- set LOGN=$5    # number of cores per logical node
+@@ -170,6 +170,7 @@ set FSAVE="$7"  # extra files to save, example: F10, F06 etc.
  #
  # provide defaults if last two arguments are not given to this script
--if (null$VERNO == null) set VERNO=00
+ if (null$VERNO == null) set VERNO=00
 +if (null$VERNO == null || $VERNO == "00") set VERNO=@version@
  if (null$NCPUS == null) set NCPUS=1
  if (null$LOGN == null) set LOGN=0
  #
-@@ -226,7 +226,7 @@ endif
+@@ -248,7 +249,7 @@ endif
  #    define many environment variables setting up file names.
  #    anything can be overridden by a user's own choice, read 2nd.
  #
@@ -35,7 +34,7 @@ index d4cd542..be65ff0 100755
  if (-e $HOME/.gmsrc) then
     echo "reading your own $HOME/.gmsrc"
     source $HOME/.gmsrc
-@@ -656,7 +656,7 @@ if ($TARGET == mpi) then
+@@ -692,7 +693,7 @@ if ($TARGET == mpi) then
     #          this will have directories like include/lib/bin below it.
     #       3. a bit lower, perhaps specify your ifort path information.
     #
@@ -44,7 +43,7 @@ index d4cd542..be65ff0 100755
     #
     #        ISU's various clusters have various iMPI paths, in this order:
     #              dynamo/chemphys2011/exalted/bolt/CyEnce/CJ
-@@ -665,7 +665,7 @@ if ($TARGET == mpi) then
+@@ -701,7 +702,7 @@ if ($TARGET == mpi) then
        #-- DDI_MPI_ROOT=/share/apps/intel/impi/4.0.1.007/intel64
        #-- DDI_MPI_ROOT=/share/apps/intel/impi/4.0.2.003/intel64
        #-- DDI_MPI_ROOT=/share/apps/mpi/impi/intel64
@@ -53,7 +52,7 @@ index d4cd542..be65ff0 100755
        #-- DDI_MPI_ROOT=/share/apps/mpi/impi/intel64
     endif
     #
-@@ -676,22 +676,22 @@ if ($TARGET == mpi) then
+@@ -712,22 +713,22 @@ if ($TARGET == mpi) then
        #-- DDI_MPI_ROOT=/share/apps/mpi/mvapich2-1.9a2-qlc
        #-- DDI_MPI_ROOT=/share/apps/mpi/mvapich2-1.9-generic-gnu
        #-- DDI_MPI_ROOT=/share/apps/mpi/mvapich2-2.0a-generic

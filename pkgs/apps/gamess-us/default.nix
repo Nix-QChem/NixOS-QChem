@@ -1,27 +1,18 @@
 { stdenv, lib, makeWrapper, fetchFromGitLab, requireFile, mpiCheckPhaseHook, gfortran, writeTextFile, cmake, perl
-, tcsh, mpi, blas, hostname, openssh, gnused, libxc, ncurses
+, tcsh, mpi, openblas, hostname, openssh, gnused, libxc, ncurses
 , enableMpi ? true
 }:
-assert
-  lib.asserts.assertMsg
-  (builtins.elem blas.passthru.implementation [ "mkl" "openblas" ])
-  "The BLAS providers can be either MKL or OpenBLAS.";
-
-assert
-  lib.asserts.assertMsg
-  blas.isILP64
-  "A 64 bit integer implementation of BLAS is required.";
 
 let target = if enableMpi then "mpi" else "sockets";
 in stdenv.mkDerivation rec {
   pname = "gamess-us";
-  version = "2021R2P1";
+  version = "2023R1P1";
 
   # The website always provides "gamess-current.tar.gz". However, we expect the file to be renamed,
   # to a more reasonable name.
   src = requireFile rec {
     name = "${pname}-${version}.tar.gz";
-    sha256 = "36a07e3567eec3b804fca41022b45588645215ccf4557d5176fb69d473b9521c";
+    sha256 = "sha256-K3z0rxf7Lqtb82Cb+CBDdyjNNth/RIV9ziW6+p6WIq0=";
     url = "https://www.msg.chem.iastate.edu/gamess/download.html";
   };
 
@@ -30,8 +21,8 @@ in stdenv.mkDerivation rec {
     ./rungms.patch
     # Adaptions to a more nix-like directory structure
     ./AuxDataPath.patch
-    # Link MKL dynamic libraries, instead of static
-    ./mkl.patch
+    # Link OpenBLAS dynamic libraries, instead of static
+    ./openblas.patch
   ];
 
   nativeBuildInputs = [
@@ -45,7 +36,7 @@ in stdenv.mkDerivation rec {
 
   buildInputs = [
     gfortran
-    blas
+    openblas
   ];
 
   propagatedBuildInputs = [
@@ -87,15 +78,12 @@ in stdenv.mkDerivation rec {
           ""                                         # Skip two more prompts
           ""
           version                                    # A version string, which will determine the name of the gamess executable.
+          ""                                         # Are you building for a specific HPC machine? No.
           "gfortran"                                 # The fortran compiler we are using.
           (lib.versions.majorMinor gfortran.version) # Version of gfortran. GAMESS uses different optimisation flags for different versions and becomes numerically wrong if we lie here
           ""                                         # Skip another prompt
-          blas.passthru.implementation               # BLAS implementation that we are using as a name
-          blas.passthru.provider                     # Path to the BLAS installation
-          (if blas.implementation == "mkl"           # If MKL was selected, it will try to figure out what directory structure is being used.
-            then "proceed"
-            else "${blas.passthru.provider}/lib"
-          )
+          "openblas"                                 # BLAS implementation that we are using as a name
+          "${openblas}/lib"                          # Path to the BLAS installation
           ""                                         # Skip another prompt and proceed to network setup
           target                                     # The target is either sockets or MPI.
         ] ++ lib.optionals enableMpi [               # If MPI was selected it ask for the MPI installation details
@@ -162,7 +150,7 @@ in stdenv.mkDerivation rec {
 
   installCheckPhase = ''
     runHook preInstallCheck
-    $out/bin/rungms $out/share/gamess/tests/mcscf/mrpt/parallel/mc-detpt-bic-short.inp ${version} 2 2
+    $out/bin/rungms $out/share/gamess/tests/mcscf/mrpt/parallel/mc-detpt-bic-short.inp ${version} 1 2
     runHook postInstallCheck
   '';
 
