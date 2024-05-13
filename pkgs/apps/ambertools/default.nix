@@ -138,6 +138,7 @@ buildPythonPackage rec {
     description = "Tools for molecular mechanics and molecular dynamics with AMBER";
     homepage = "https://ambermd.org/AmberTools.php";
     license = with licenses; [ lgpl3 bsd3 mit asl20 gpl3Only gpl2Only ];
+    hydraPlatforms = [ ]; # Dont build on Hydra
     platforms = platforms.linux;
   };
 }
