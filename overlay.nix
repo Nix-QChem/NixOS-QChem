@@ -174,8 +174,7 @@ let
         gabedit = callPackage ./pkgs/apps/gabedit { };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
-          blas = final.blas-ilp64;
-          gfortran = final.gfortran9;
+          gfortran = final.gfortran12;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;

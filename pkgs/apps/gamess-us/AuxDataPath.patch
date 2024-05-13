@@ -1,5 +1,5 @@
 diff --git a/gms-files.csh b/gms-files.csh
-index 92d809b..1e8835f 100755
+index 975827f..8708c84 100755
 --- a/gms-files.csh
 +++ b/gms-files.csh
 @@ -29,7 +29,7 @@
@@ -9,5 +9,5 @@ index 92d809b..1e8835f 100755
 -setenv AUXDATA $GMSPATH/auxdata
 +setenv AUXDATA $GMSPATH/../share/gamess/auxdata
  setenv  EXTBAS /dev/null
- setenv  NUCBAS /dev/null
+ setenv  NUCBAS $JOB_PATH/$JOB.nucbas
  setenv  EXTCAB $AUXDATA/AUXBAS/auxdef21

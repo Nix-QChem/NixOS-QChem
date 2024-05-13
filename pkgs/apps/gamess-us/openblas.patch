@@ -1,0 +1,21 @@
+diff --git a/config b/config
+index 2cb4dfc..91c6650 100755
+--- a/config
++++ b/config
+@@ -660,13 +660,13 @@ badibmfortran:
+                echo " "
+                echo "You can search for it with:"
+                echo " "
+-               echo "find / -type f -name libopenblas.a"
++               echo "find / -type f -name libopenblas.so"
+                echo " "
+                echo -n "Enter this full pathname: "
+                set openblaspath=$<
+-               if (!(-e $openblaspath/libopenblas.a)) then
++               if (!(-e $openblaspath/libopenblas.so)) then
+                   echo " "
+-                  echo "The file libopenblas.a does not exist in the directory $openblaspath"
++                  echo "The file libopenblas.so does not exist in the directory $openblaspath"
+                   echo " "
+                   goto badopenblas
+                endif
