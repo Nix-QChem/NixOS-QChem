@@ -45,6 +45,8 @@ let
 
     theodore = callPackage ./pkgs/apps/theodore { };
 
+    ambertools = callPackage ./pkgs/apps/ambertools { };
+
     pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
 
     polyply = callPackage ./pkgs/apps/polyply { };
