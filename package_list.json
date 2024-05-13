@@ -121,9 +121,9 @@
   },
   {
     "attribute": "qchem.crest",
-    "name": "crest-3.0",
+    "name": "crest-3.0.1",
     "pname": "crest",
-    "version": "3.0",
+    "version": "3.0.1",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -641,9 +641,9 @@
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-14.0",
+    "name": "octopus-14.1",
     "pname": "octopus",
-    "version": "14.0",
+    "version": "14.1",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },

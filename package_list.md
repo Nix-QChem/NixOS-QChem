@@ -15,7 +15,7 @@
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
 | cp2k-2024.1 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
-| crest-3.0 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
+| crest-3.0.1 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dftbplus-24.1 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
@@ -80,7 +80,7 @@
 | nwchem-7.2.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-8.4.0 | qchem.octave | Scientific Programming Language |
 | octave-8.4.0 | qchem.octave-opt | Scientific Programming Language |
-| octopus-14.0 | qchem.octopus | Real-space time dependent density-functional theory code |
+| octopus-14.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.1.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-5.0.4 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
