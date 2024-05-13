@@ -59,6 +59,13 @@ let
       if (pkg ? meta && pkg.meta ? broken) then pkg.meta.broken
       else false;
 
+    # Do not build a package on Hydra if meta.hydraPlatforms is empty
+    # and allowUnfree is disabled.
+    isUndistributable = pkg:
+      if (pkg ? meta && pkg.meta ? hydraPlatforms ) then
+      ((lib.length pkg.meta.hydraPlatforms) == 0 && !allowUnfree)
+      else false;
+
     makeForPython = plist:
       pkgSet.lib.foldr (a: b: a // b) {}
       (map (x: { "${x}" = hydraJobs pkgSet."${cfg.prefix}"."${x}".pkgs."${cfg.prefix}"; }) plist);
@@ -69,6 +76,7 @@ let
       (builtins.tryEval (isDerivation v)).value
       && (if allowUnfree then true else (builtins.tryEval v.drvPath).success)
       && (if isBroken v then (builtins.trace "Warning: ${n} is marked broken." false) else true)
+      && (if isUndistributable v then (builtins.trace "Warning: ${n} is marked undistributable." false) else true)
     );
 
     # Filter Attributes from set by name and put them in a list
