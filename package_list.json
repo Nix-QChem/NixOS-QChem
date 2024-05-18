@@ -8,6 +8,14 @@
     "homepage": null
   },
   {
+    "attribute": "qchem.ambertools",
+    "name": "AmberTools-24",
+    "pname": "AmberTools",
+    "version": "24",
+    "description": "Tools for molecular mechanics and molecular dynamics with AMBER",
+    "homepage": "https://ambermd.org/AmberTools.php"
+  },
+  {
     "attribute": "qchem.amd-fftw",
     "name": "amd-fftw-4.1",
     "pname": "amd-fftw",
@@ -233,9 +241,9 @@
   },
   {
     "attribute": "qchem.gamess-us",
-    "name": "gamess-us-2021R2P1",
+    "name": "gamess-us-2023R1P1",
     "pname": "gamess-us",
-    "version": "2021R2P1",
+    "version": "2023R1P1",
     "description": "GAMESS is a program for ab initio molecular quantum chemistry",
     "homepage": "https://www.msg.chem.iastate.edu/gamess/index.html"
   },
