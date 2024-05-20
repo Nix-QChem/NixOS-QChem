@@ -11,9 +11,19 @@ It provides popular quantum chemistry packages and performance optimization to u
 ### Available Packages
 A list packages can be found here: [Package list](./package_list.md)
 
-### Publication
+### Citation
 The design and packaging approach of the overlay are published here:
 [M.Kowalewski, P. Seeber, Int. J. Quantum. Chem., e26872 (2022)](https://doi.org/10.1002/qua.26872)
+
+If you have used NixOS-QChem to perform calculation please cite the above mentioned paper
+with the following sentence. This enable others to reproduce your calculations
+by using the same computational environment.
+```
+All calculation have been performed using a reproducible environment using the
+Nix package manager together with NixOS-QChem (commit <10 digits of SHA-1>) [1].
+
+[1] M.Kowalewski, P. Seeber, Int. J. Quantum. Chem., e26872 (2022).
+```
 
 ## Usage
 
