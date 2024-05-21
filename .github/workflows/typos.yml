@@ -6,11 +6,11 @@ jobs:
     name: Spell check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: get changed files
       id: changed-files
       uses: tj-actions/changed-files@v41
-    - uses: cachix/install-nix-action@v20
+    - uses: cachix/install-nix-action@v27
     - run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           # exclude patches and input files
