@@ -32,9 +32,9 @@ jobs:
       - name: Calculate changed derivations and upload as artifacts
         run: nix eval --impure --expr 'import ./.github/workflows/changedPaths.nix ./pr_head ./pr_base' --json | tee chDerivs.json
       # Upload JSON of the changed derivations
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: Changed-Derivations
+          name: Changed-Derivations-${{ github.event.number }}
           path: chDerivs.json
           retention-days: 1
 
@@ -59,9 +59,9 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       # Get changed derivations as artifact from previous step
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: Changed-Derivations
+          name: Changed-Derivations-${{ github.event.number }}
       - name: Rebuild python3 packages
         run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
@@ -92,9 +92,9 @@ jobs:
       # Checkout merge commit as if PR would already be merged
       - uses: actions/checkout@v4
       # Get changed derivations as artifact from previous step
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: Changed-Derivations
+          name: Changed-Derivations-${{ github.event.number }}
       - name: Rebuild all changed python3 packages
         run: |
           if [ -n "$(jq '.python3[]' chDerivs.json)" ]; then
