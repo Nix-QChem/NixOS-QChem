@@ -12,7 +12,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       # Pull from the cachix cache
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/cachix-action@v15
         with:
           name: nix-qchem
       # Checkout of the current head in the working dir
@@ -49,9 +49,9 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v2
+        uses: DeterminateSystems/magic-nix-cache-action@v6
       # Pull from the cachix cache
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/cachix-action@v15
         with:
           name: nix-qchem
       # Checkout of the current head in the working dir
@@ -84,9 +84,9 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v2
+        uses: DeterminateSystems/magic-nix-cache-action@v6
       # Pull from the cachix cache
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/cachix-action@v15
         with:
           name: nix-qchem
       # Checkout merge commit as if PR would already be merged
