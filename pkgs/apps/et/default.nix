@@ -1,16 +1,29 @@
-{ lib, stdenv, fetchFromGitLab, cmake, gfortran, python3, ninja, makeWrapper
-, boost, eigen, blas-ilp64, lapack-ilp64, libcint }:
+{
+  lib,
+  stdenv,
+  fetchFromGitLab,
+  cmake,
+  gfortran,
+  python3,
+  ninja,
+  makeWrapper,
+  boost,
+  eigen,
+  blas-ilp64,
+  lapack-ilp64,
+  libcint,
+}:
 
 let
   # Custom build with static library
   libcint' = libcint.overrideAttrs (x: {
-      cmakeFlags = x.cmakeFlags ++ [
-        "-DPYPZPX=1"
-        "-DBUILD_SHARED_LIBS=0"
-      ];
+    cmakeFlags = x.cmakeFlags ++ [
+      "-DPYPZPX=1"
+      "-DBUILD_SHARED_LIBS=0"
+    ];
   });
-
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "et";
   version = "20240527";
 
@@ -21,11 +34,24 @@ in stdenv.mkDerivation rec {
     hash = "sha256-z9K/O9nvkKWvxJgrvb70jbfspnMSoZo9Sr0Utf93oVQ=";
   };
 
-  nativeBuildInputs = [ cmake ninja gfortran python3 makeWrapper ];
+  nativeBuildInputs = [
+    cmake
+    ninja
+    gfortran
+    python3
+    makeWrapper
+  ];
 
-  buildInputs = [ boost eigen blas-ilp64 lapack-ilp64 libcint' python3 ];
+  buildInputs = [
+    boost
+    eigen
+    blas-ilp64
+    lapack-ilp64
+    libcint'
+    python3
+  ];
 
-  LIBCINT_ROOT="${libcint'}";
+  LIBCINT_ROOT = "${libcint'}";
 
   # Distilled from setup.py which also runs cmake
   preConfigure = ''
