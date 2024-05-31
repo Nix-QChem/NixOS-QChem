@@ -304,6 +304,14 @@
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
   {
+    "attribute": "qchem.graci",
+    "name": "graci-20231004",
+    "pname": "graci",
+    "version": "20231004",
+    "description": "General Reference Configuration Interaction package",
+    "homepage": null
+  },
+  {
     "attribute": "qchem.gromacs",
     "name": "gromacs-2024.2",
     "pname": "gromacs",
