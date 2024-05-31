@@ -187,6 +187,8 @@ let
 
         gfnff = callPackage ./pkgs/apps/gfnff { };
 
+        graci = callPackage ./pkgs/apps/graci { };
+
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         janpa = callPackage ./pkgs/apps/janpa { };
