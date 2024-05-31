@@ -38,6 +38,7 @@
 | gfnff-unstable-2024-02-14 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-24.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
+| graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
 | gromacs-2024.2 | qchem.gromacs | Molecular dynamics software package |
 | gromacs-2024.2 | qchem.gromacsDouble | Molecular dynamics software package |
 | gromacs-2024.2 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
