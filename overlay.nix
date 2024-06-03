@@ -47,9 +47,14 @@ let
 
       optUpstream = import ./nixpkgs-opt.nix cfg final prev self optStdenv;
 
+      pkgs-by-name = callPackage: dir:
+        lib.mapAttrs (pkg: _: callPackage "${dir}/${pkg}/package.nix" {})
+        (lib.filterAttrs (_: type: type == "directory") (builtins.readDir dir));
     in
     {
-      "${subset}" = optUpstream // {
+      "${subset}" = optUpstream
+        // (pkgs-by-name callPackage ./pkgs/by-name)
+        // {
 
         pkgs = final;
 
@@ -367,9 +372,6 @@ let
         #
         # Libraries
         #
-
-        amd-fftw = callPackage ./pkgs/lib/amd-fftw { };
-
         amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
 
         libecpint = callPackage ./pkgs/lib/libecpint { };
