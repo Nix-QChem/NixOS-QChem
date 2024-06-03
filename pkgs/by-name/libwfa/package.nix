@@ -8,7 +8,7 @@
 assert buildMolcasExe -> !buildMolcasLib;
 
 let
-  libName = if buildMolcasLib == true
+  libName = if buildMolcasLib
     then "libwfa_molcas.a"
     else "libwfa.a";
 
