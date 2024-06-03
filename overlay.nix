@@ -154,7 +154,6 @@ let
           });
         };
 
-        dalton = callPackage ./pkgs/apps/dalton { };
 
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
@@ -164,17 +163,13 @@ let
           inherit (self) exatensor;
         };
 
-        dkh = callPackage ./pkgs/apps/dkh { };
 
-        et = callPackage ./pkgs/apps/et { };
 
-        exatensor = callPackage ./pkgs/apps/exatensor { };
 
         exciting = callPackage ./pkgs/apps/exciting {
           gfortran = final.gfortran13;
         };
 
-        gabedit = callPackage ./pkgs/apps/gabedit { };
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           gfortran = final.gfortran12;
@@ -182,25 +177,17 @@ let
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
 
-        gaussview = callPackage ./pkgs/apps/gaussview { };
 
-        gdma = callPackage ./pkgs/apps/gdma { };
 
-        gfn0 = callPackage ./pkgs/apps/gfn0 { };
 
-        gfnff = callPackage ./pkgs/apps/gfnff { };
 
         graci = callPackage ./pkgs/apps/graci { };
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
-        janpa = callPackage ./pkgs/apps/janpa { };
 
-        luscus = callPackage ./pkgs/apps/luscus { };
 
-        macroqc = callPackage ./pkgs/apps/macroqc { };
 
-        mctdh = callPackage ./pkgs/apps/mctdh { };
 
         molcas = let
           molcasOpt = prev.openmolcas.override {
@@ -223,19 +210,12 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
-        mrcc = callPackage ./pkgs/apps/mrcc { };
 
-        mrchem = callPackage ./pkgs/apps/mrchem { };
 
-        mt-dgemm = callPackage ./pkgs/apps/mt-dgemm { };
 
-        multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
-        gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
 
-        orca = callPackage ./pkgs/apps/orca { };
 
-        orient = callPackage ./pkgs/apps/orient { };
 
         osu-benchmark = callPackage ./pkgs/apps/osu-benchmark {
           # OSU benchmark fails with C++ binddings enabled
@@ -244,15 +224,12 @@ let
           });
         };
 
-        packmol = callPackage ./pkgs/apps/packmol { };
 
         pegamoid = self.python3.pkgs.callPackage ./pkgs/apps/pegamoid { };
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
 
-        plt2cub = callPackage ./pkgs/apps/plt2cub { };
 
-        poltype2 = callPackage ./pkgs/apps/poltype2 { };
 
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
@@ -267,11 +244,8 @@ let
           protobuf = final.protobuf3_21;
         };
 
-        qmcpack = callPackage ./pkgs/apps/qmcpack { };
 
-        salmon = callPackage ./pkgs/apps/salmon { };
 
-        sgroup = callPackage ./pkgs/apps/sgroup { };
 
         sharc-unwrapped = callPackage ./pkgs/apps/sharc/unwrapped.nix {
           hdf4 = super.hdf4.override {
@@ -312,11 +286,8 @@ let
 
         theodore = super.python3.pkgs.toPythonApplication self.python3.pkgs.theodore;
 
-        tinker = callPackage ./pkgs/apps/tinker { };
 
-        travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
 
-        turbomole = callPackage ./pkgs/apps/turbomole { };
 
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
@@ -328,7 +299,6 @@ let
 
         vmd-python = super.python3.pkgs.toPythonApplication self.python3.pkgs.vmd-python;
 
-        vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
@@ -350,7 +320,6 @@ let
           });
         };
 
-        xtb-iff = callPackage ./pkgs/apps/xtb-iff { };
 
         ### Python packages
         python3 = super.python3.override (old: {
@@ -369,9 +338,7 @@ let
 
         writeScriptSlurm = callPackage ./builders/slurmScript.nix { };
 
-        slurm-tools = callPackage ./pkgs/apps/slurm-tools { };
 
-        project-shell = callPackage ./pkgs/apps/project-shell { };
 
         # A wrapper to enforce license checkouts with slurm
         slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };
