@@ -223,8 +223,6 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
-        mpifx = callPackage ./pkgs/lib/mpifx { };
-
         mrcc = callPackage ./pkgs/apps/mrcc { };
 
         mrchem = callPackage ./pkgs/apps/mrchem { };
@@ -234,8 +232,6 @@ let
         multiwfn = callPackage ./pkgs/apps/multiwfn { };
 
         gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
-
-        numsa = callPackage ./pkgs/lib/numsa { };
 
         orca = callPackage ./pkgs/apps/orca { };
 
@@ -274,8 +270,6 @@ let
         qmcpack = callPackage ./pkgs/apps/qmcpack { };
 
         salmon = callPackage ./pkgs/apps/salmon { };
-
-        scalapackfx = callPackage ./pkgs/lib/scalapackfx { };
 
         sgroup = callPackage ./pkgs/apps/sgroup { };
 
