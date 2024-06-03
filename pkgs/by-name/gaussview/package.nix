@@ -75,7 +75,7 @@ in stdenv.mkDerivation {
 
   meta = with lib; {
     description = "GUI for the Gaussian quantum chemistry software package";
-    homepage = http://gaussian.com/gaussian16/;
+    homepage = "http://gaussian.com/gaussian16";
     license = licenses.unfree;
     maintainers = [ maintainers.markuskowa ];
     platforms = [ "x86_64-linux" ];
