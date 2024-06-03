@@ -57,7 +57,7 @@ in stdenv.mkDerivation {
   configurePhase = ''
     cp ${platformcnf} install/platform.cnf.priv
     sed -i 's/EXTERNAL_BLAS.*/EXTERNAL_BLAS=-lblas/;s/EXTERNAL_LAPACK.*/EXTERNAL_LAPACK=-llapack/' \
-         install/compile.cnf_le
+      install/compile.cnf_le
 
     # required for gfortran-10
     sed -i 's/MCTDH_FFLAGS_OPT="/MCTDH_FFLAGS_OPT="-fallow-argument-mismatch /' install/compile.cnf_le
