@@ -140,8 +140,6 @@ let
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
-        cpcm-x = callPackage ./pkgs/lib/cpcm-x { };
-
         crest = callPackage ./pkgs/apps/crest {
           # Requires a newer version of tblite. Can likely be removed with next
           # tblite release
@@ -368,25 +366,6 @@ let
         python2 = super.python2.override (old: {
           packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
         });
-
-        #
-        # Libraries
-        #
-        amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
-
-        libecpint = callPackage ./pkgs/lib/libecpint { };
-
-        libefp = callPackage ./pkgs/lib/libefp { };
-
-        libGDSII = callPackage ./pkgs/lib/libGDSII { };
-
-        libtensor = callPackage ./pkgs/lib/libtensor { };
-
-        libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
-
-        libwfa = callPackage ./pkgs/lib/libwfa { };
-
-        mrcpp = callPackage ./pkgs/lib/mrcpp { };
 
         #
         # Utilities
