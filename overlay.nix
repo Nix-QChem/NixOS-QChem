@@ -154,7 +154,6 @@ let
           });
         };
 
-
         dftd3 = callPackage ./pkgs/apps/dft-d3 { };
 
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
@@ -163,13 +162,9 @@ let
           inherit (self) exatensor;
         };
 
-
-
-
         exciting = callPackage ./pkgs/apps/exciting {
           gfortran = final.gfortran13;
         };
-
 
         gamess-us = callPackage ./pkgs/apps/gamess-us {
           gfortran = final.gfortran12;
@@ -177,17 +172,9 @@ let
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
 
-
-
-
-
         graci = callPackage ./pkgs/apps/graci { };
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
-
-
-
-
 
         molcas = let
           molcasOpt = prev.openmolcas.override {
@@ -210,13 +197,6 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
-
-
-
-
-
-
-
         osu-benchmark = callPackage ./pkgs/apps/osu-benchmark {
           # OSU benchmark fails with C++ binddings enabled
           mpi = self.mpi.overrideAttrs (x: {
@@ -224,12 +204,9 @@ let
           });
         };
 
-
         pegamoid = self.python3.pkgs.callPackage ./pkgs/apps/pegamoid { };
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
-
-
 
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
@@ -243,9 +220,6 @@ let
           stdenv = aggressiveStdenv;
           protobuf = final.protobuf3_21;
         };
-
-
-
 
         sharc-unwrapped = callPackage ./pkgs/apps/sharc/unwrapped.nix {
           hdf4 = super.hdf4.override {
@@ -286,9 +260,6 @@ let
 
         theodore = super.python3.pkgs.toPythonApplication self.python3.pkgs.theodore;
 
-
-
-
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
         vmd =
@@ -298,7 +269,6 @@ let
         ;
 
         vmd-python = super.python3.pkgs.toPythonApplication self.python3.pkgs.vmd-python;
-
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
@@ -337,8 +307,6 @@ let
         nixGL = callPackage ./pkgs/apps/nixgl { };
 
         writeScriptSlurm = callPackage ./builders/slurmScript.nix { };
-
-
 
         # A wrapper to enforce license checkouts with slurm
         slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };
