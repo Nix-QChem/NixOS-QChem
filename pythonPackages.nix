@@ -8,10 +8,12 @@ let
     overlay );
 
   inherit (finalPkgs.pkgs) lib;
+  qlib = import ./lib.nix { inherit lib; };
 
   overlay = {
 
-  } // lib.optionalAttrs prev.isPy3k {
+  } // lib.optionalAttrs prev.isPy3k (qlib.pkgs-by-name callPackage ./pkgs/python-by-name)
+    // lib.optionalAttrs prev.isPy3k {
     adcc = callPackage ./pkgs/apps/adcc { };
 
     autodock-vina = callPackage ./pkgs/apps/autodock-vina/python.nix {
