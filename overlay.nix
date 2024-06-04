@@ -9,31 +9,13 @@ let
       (import ./cfg.nix) { allowEnv = true; }; # if no config is given allow env
 
   inherit (prev) lib;
-
-  # Create a stdenv with CPU optimizations
-  makeOptStdenv = stdenv: arch: extraCflags: if arch == null then stdenv else
-    stdenv.override {
-      name = stdenv.name + "-${arch}";
-
-      # Make sure respective CPU features are set
-      hostPlatform = stdenv.hostPlatform //
-        lib.mapAttrs (p: a: a arch) lib.systems.architectures.predicates;
-
-      # Add additional compiler flags
-      extraAttrs = {
-        mkDerivation = args: (stdenv.mkDerivation args).overrideAttrs (old: {
-          env.NIX_CFLAGS_COMPILE = toString (old.env.NIX_CFLAGS_COMPILE or "")
-            + " -march=${arch} -mtune=${arch} " + extraCflags;
-        });
-      };
-    };
+  qlib = import ./lib.nix { inherit lib; };
 
   # stdenv with CPU flags
-  optStdenv = makeOptStdenv final.stdenv cfg.optArch "";
+  optStdenv = qlib.makeOptStdenv final.stdenv cfg.optArch "";
 
   # stdenv with extra optimization flags, use selectively
-  aggressiveStdenv = makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
-
+  aggressiveStdenv = qlib.makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
 
   #
   # Our package set
@@ -47,15 +29,10 @@ let
 
       optUpstream = import ./nixpkgs-opt.nix cfg final prev self optStdenv;
 
-      pkgs-by-name = callPackage: dir: let
-        path = builtins.path { path = dir; name = "pkgs-by-name";};
-      in
-        lib.mapAttrs (pkg: _: callPackage "${path}/${pkg}/package.nix" {})
-        (lib.filterAttrs (_: type: type == "directory") (builtins.readDir path));
     in
     {
       "${subset}" = optUpstream
-        // (pkgs-by-name callPackage ./pkgs/by-name)
+        // (qlib.pkgs-by-name callPackage ./pkgs/by-name)
         // {
 
         pkgs = final;
