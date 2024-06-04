@@ -23,7 +23,7 @@ buildPythonPackage rec {
   format = "other";
 
   cmakeFlags = [
-   "-DMAX_AM=${toString maxAm}"
+    "-DMAX_AM=${toString maxAm}"
   ];
 
   src = fetchFromGitHub  {
