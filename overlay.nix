@@ -103,10 +103,7 @@ let
 
         autoint = super.python3.pkgs.toPythonApplication self.python3.pkgs.pyphspu;
 
-        bagel = callPackage ./pkgs/apps/bagel {
-        };
-
-        bagel-serial = callPackage ./pkgs/apps/bagel {
+        bagel-serial = callPackage ./pkgs/by-name/bagel/package.nix {
           enableMpi = false;
         };
 
