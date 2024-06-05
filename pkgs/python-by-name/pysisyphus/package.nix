@@ -73,8 +73,8 @@ let
         unfchk = "${gaussian}/bin/unfchk";
         rwfdump = "${gaussian}/bin/rwfdump";
       };
-      text = lib.generators.toINI { } (builtins.listToAttrs ([ ]
-        ++ lib.optional enableMolcas { name = "openmolcas"; value.cmd = "${molcas}/bin/pymolcas"; }
+      text = lib.generators.toINI { } (builtins.listToAttrs (
+        lib.optional enableMolcas { name = "openmolcas"; value.cmd = "${molcas}/bin/pymolcas"; }
         ++ lib.optional enablePsi4 { name = "psi4"; value.cmd = "${psi4Wrapper}"; }
         ++ lib.optional enableWfoverlap { name = "wfoverlap"; value.cmd = "${wfoverlap}/bin/wfoverlap.x"; }
         ++ lib.optional enableMultiwfn { name = "mwfn"; value.cmd = "${multiwfn}/bin/Multiwfn"; }
@@ -90,8 +90,8 @@ let
       name = "pysisrc";
     };
 
-  binSearchPath = lib.makeSearchPath "bin" ([ ]
-    ++ lib.optional enableJmol jmol
+  binSearchPath = lib.makeSearchPath "bin" (
+    lib.optional enableJmol jmol
     ++ lib.optional enableMultiwfn multiwfn
     ++ lib.optional enableXtb xtb
     ++ lib.optional enableMolcas molcas
