@@ -142,8 +142,6 @@ let
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
 
-        graci = callPackage ./pkgs/apps/graci { };
-
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         molcas = let
