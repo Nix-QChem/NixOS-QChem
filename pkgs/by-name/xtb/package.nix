@@ -32,7 +32,7 @@ let
   description = "Semiempirical extended tight-binding program package";
 
   binSearchPath = lib.strings.makeSearchPath "bin" (
-       lib.optional enableTurbomole turbomole
+    lib.optional enableTurbomole turbomole
     ++ lib.optional enableOrca orca
     ++ lib.optional enableTurbomole cefine
   );
