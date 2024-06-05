@@ -107,16 +107,16 @@ let
           enableMpi = false;
         };
 
-        cefine = self.nullable self.turbomole (callPackage ./pkgs/apps/cefine { });
+        cefine = self.nullable self.turbomole (callPackage ./pkgs/by-name/cefine/package.nix { });
 
-        cfour = callPackage ./pkgs/apps/cfour {
+        cfour = callPackage ./pkgs/by-name/cfour/package.nix {
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
         };
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
-        crest = callPackage ./pkgs/apps/crest {
+        crest = callPackage ./pkgs/by-name/crest/package.nix {
           # Requires a newer version of tblite. Can likely be removed with next
           # tblite release
           tblite = super.tblite.overrideAttrs (old: {
@@ -130,19 +130,13 @@ let
           });
         };
 
-        dftd3 = callPackage ./pkgs/apps/dft-d3 { };
-
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
-        dirac = callPackage ./pkgs/apps/dirac {
+        dirac = callPackage ./pkgs/by-name/dirac/package.nix {
           inherit (self) exatensor;
         };
 
-        exciting = callPackage ./pkgs/apps/exciting {
-          gfortran = final.gfortran13;
-        };
-
-        gamess-us = callPackage ./pkgs/apps/gamess-us {
+        gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {
           gfortran = final.gfortran12;
         };
 
@@ -173,7 +167,7 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
-        osu-benchmark = callPackage ./pkgs/apps/osu-benchmark {
+        osu-benchmark = callPackage ./pkgs/by-name/osu-benchmark/package.nix {
           # OSU benchmark fails with C++ binddings enabled
           mpi = self.mpi.overrideAttrs (x: {
             configureFlags = super.lib.remove "--enable-mpi-cxx" x.configureFlags;
@@ -192,7 +186,7 @@ let
 
         q-chem-installer = callPackage ./pkgs/apps/q-chem/installer.nix { };
 
-        qdng = callPackage ./pkgs/apps/qdng {
+        qdng = callPackage ./pkgs/by-name/qdng/package.nix {
           stdenv = aggressiveStdenv;
           protobuf = final.protobuf3_21;
         };
@@ -232,8 +226,6 @@ let
 
         sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
 
-        stream-benchmark = callPackage ./pkgs/apps/stream { };
-
         theodore = super.python3.pkgs.toPythonApplication self.python3.pkgs.theodore;
 
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
@@ -248,12 +240,12 @@ let
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
-        wfoverlap = callPackage ./pkgs/apps/wfoverlap {
+        wfoverlap = callPackage ./pkgs/by-name/wfoverlap/package.nix {
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
         };
 
-        xtb = callPackage ./pkgs/apps/xtb {
+        xtb = callPackage ./pkgs/by-name/xtb/package.nix {
           # XTB declares a tblite dependency >= 0.2.0 but actually requires > 0.3.0
           tblite = super.tblite.overrideAttrs (old: {
             patches = [ ];
