@@ -24,17 +24,15 @@ let
       doInstallCheck = false;
     });
 
-    pyqdng = callPackage ./pkgs/apps/pyQDng { };
-
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
-    pysisyphus = callPackage ./pkgs/apps/pysisyphus {
+    pysisyphus = callPackage ./pkgs/python-by-name/pysisyphus/package.nix {
       gamess-us = finalPkgs.gamess-us.override {
         enableMpi = false;
       };
     };
 
-    vmd-python = callPackage ./pkgs/apps/vmd-python {
+    vmd-python = callPackage ./pkgs/python-by-name/vmd-python/package.nix {
       inherit cfg;
       inherit (finalPkgs.pkgs) mesa;
     };
