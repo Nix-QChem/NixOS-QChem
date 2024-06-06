@@ -73,7 +73,7 @@ let
         ];
 
         cmakeFlags = [
-          "-DHDF5_INC_DIR=${hdf5-fortran}/mod/shared"
+          "-DHDF5_INC_DIR=${lib.getDev hdf5-fortran}/include"
         ];
       }
     )
