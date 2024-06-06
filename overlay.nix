@@ -9,31 +9,13 @@ let
       (import ./cfg.nix) { allowEnv = true; }; # if no config is given allow env
 
   inherit (prev) lib;
-
-  # Create a stdenv with CPU optimizations
-  makeOptStdenv = stdenv: arch: extraCflags: if arch == null then stdenv else
-    stdenv.override {
-      name = stdenv.name + "-${arch}";
-
-      # Make sure respective CPU features are set
-      hostPlatform = stdenv.hostPlatform //
-        lib.mapAttrs (p: a: a arch) lib.systems.architectures.predicates;
-
-      # Add additional compiler flags
-      extraAttrs = {
-        mkDerivation = args: (stdenv.mkDerivation args).overrideAttrs (old: {
-          env.NIX_CFLAGS_COMPILE = toString (old.env.NIX_CFLAGS_COMPILE or "")
-            + " -march=${arch} -mtune=${arch} " + extraCflags;
-        });
-      };
-    };
+  qlib = import ./lib.nix { inherit lib; };
 
   # stdenv with CPU flags
-  optStdenv = makeOptStdenv final.stdenv cfg.optArch "";
+  optStdenv = qlib.makeOptStdenv final.stdenv cfg.optArch "";
 
   # stdenv with extra optimization flags, use selectively
-  aggressiveStdenv = makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
-
+  aggressiveStdenv = qlib.makeOptStdenv final.stdenv cfg.optArch "-O3 -fomit-frame-pointer -ftree-vectorize";
 
   #
   # Our package set
@@ -49,7 +31,9 @@ let
 
     in
     {
-      "${subset}" = optUpstream // {
+      "${subset}" = optUpstream
+        // (qlib.pkgs-by-name callPackage ./pkgs/by-name)
+        // {
 
         pkgs = final;
 
@@ -119,25 +103,20 @@ let
 
         autoint = super.python3.pkgs.toPythonApplication self.python3.pkgs.pyphspu;
 
-        bagel = callPackage ./pkgs/apps/bagel {
-        };
-
-        bagel-serial = callPackage ./pkgs/apps/bagel {
+        bagel-serial = callPackage ./pkgs/by-name/bagel/package.nix {
           enableMpi = false;
         };
 
-        cefine = self.nullable self.turbomole (callPackage ./pkgs/apps/cefine { });
+        cefine = self.nullable self.turbomole (callPackage ./pkgs/by-name/cefine/package.nix { });
 
-        cfour = callPackage ./pkgs/apps/cfour {
+        cfour = callPackage ./pkgs/by-name/cfour/package.nix {
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
         };
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
-        cpcm-x = callPackage ./pkgs/lib/cpcm-x { };
-
-        crest = callPackage ./pkgs/apps/crest {
+        crest = callPackage ./pkgs/by-name/crest/package.nix {
           # Requires a newer version of tblite. Can likely be removed with next
           # tblite release
           tblite = super.tblite.overrideAttrs (old: {
@@ -151,53 +130,19 @@ let
           });
         };
 
-        dalton = callPackage ./pkgs/apps/dalton { };
-
-        dftd3 = callPackage ./pkgs/apps/dft-d3 { };
-
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
-        dirac = callPackage ./pkgs/apps/dirac {
+        dirac = callPackage ./pkgs/by-name/dirac/package.nix {
           inherit (self) exatensor;
         };
 
-        dkh = callPackage ./pkgs/apps/dkh { };
-
-        et = callPackage ./pkgs/apps/et { };
-
-        exatensor = callPackage ./pkgs/apps/exatensor { };
-
-        exciting = callPackage ./pkgs/apps/exciting {
-          gfortran = final.gfortran13;
-        };
-
-        gabedit = callPackage ./pkgs/apps/gabedit { };
-
-        gamess-us = callPackage ./pkgs/apps/gamess-us {
+        gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {
           gfortran = final.gfortran12;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
 
-        gaussview = callPackage ./pkgs/apps/gaussview { };
-
-        gdma = callPackage ./pkgs/apps/gdma { };
-
-        gfn0 = callPackage ./pkgs/apps/gfn0 { };
-
-        gfnff = callPackage ./pkgs/apps/gfnff { };
-
-        graci = callPackage ./pkgs/apps/graci { };
-
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
-
-        janpa = callPackage ./pkgs/apps/janpa { };
-
-        luscus = callPackage ./pkgs/apps/luscus { };
-
-        macroqc = callPackage ./pkgs/apps/macroqc { };
-
-        mctdh = callPackage ./pkgs/apps/mctdh { };
 
         molcas = let
           molcasOpt = prev.openmolcas.override {
@@ -220,40 +165,16 @@ let
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
 
-        mpifx = callPackage ./pkgs/lib/mpifx { };
-
-        mrcc = callPackage ./pkgs/apps/mrcc { };
-
-        mrchem = callPackage ./pkgs/apps/mrchem { };
-
-        mt-dgemm = callPackage ./pkgs/apps/mt-dgemm { };
-
-        multiwfn = callPackage ./pkgs/apps/multiwfn { };
-
-        gmultiwfn = callPackage ./pkgs/apps/gmultiwfn { };
-
-        numsa = callPackage ./pkgs/lib/numsa { };
-
-        orca = callPackage ./pkgs/apps/orca { };
-
-        orient = callPackage ./pkgs/apps/orient { };
-
-        osu-benchmark = callPackage ./pkgs/apps/osu-benchmark {
+        osu-benchmark = callPackage ./pkgs/by-name/osu-benchmark/package.nix {
           # OSU benchmark fails with C++ binddings enabled
           mpi = self.mpi.overrideAttrs (x: {
             configureFlags = super.lib.remove "--enable-mpi-cxx" x.configureFlags;
           });
         };
 
-        packmol = callPackage ./pkgs/apps/packmol { };
-
         pegamoid = self.python3.pkgs.callPackage ./pkgs/apps/pegamoid { };
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
-
-        plt2cub = callPackage ./pkgs/apps/plt2cub { };
-
-        poltype2 = callPackage ./pkgs/apps/poltype2 { };
 
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
@@ -263,18 +184,10 @@ let
 
         q-chem-installer = callPackage ./pkgs/apps/q-chem/installer.nix { };
 
-        qdng = callPackage ./pkgs/apps/qdng {
+        qdng = callPackage ./pkgs/by-name/qdng/package.nix {
           stdenv = aggressiveStdenv;
           protobuf = final.protobuf3_21;
         };
-
-        qmcpack = callPackage ./pkgs/apps/qmcpack { };
-
-        salmon = callPackage ./pkgs/apps/salmon { };
-
-        scalapackfx = callPackage ./pkgs/lib/scalapackfx { };
-
-        sgroup = callPackage ./pkgs/apps/sgroup { };
 
         sharc-unwrapped = callPackage ./pkgs/apps/sharc/unwrapped.nix {
           hdf4 = super.hdf4.override {
@@ -311,15 +224,7 @@ let
 
         sharc-turbomole = with self; nullable turbomole (sharc.override { enableTurbomole = true; });
 
-        stream-benchmark = callPackage ./pkgs/apps/stream { };
-
         theodore = super.python3.pkgs.toPythonApplication self.python3.pkgs.theodore;
-
-        tinker = callPackage ./pkgs/apps/tinker { };
-
-        travis-analyzer = callPackage ./pkgs/apps/travis-analyzer { };
-
-        turbomole = callPackage ./pkgs/apps/turbomole { };
 
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
@@ -331,16 +236,14 @@ let
 
         vmd-python = super.python3.pkgs.toPythonApplication self.python3.pkgs.vmd-python;
 
-        vossvolvox = callPackage ./pkgs/apps/vossvolvox { };
-
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
-        wfoverlap = callPackage ./pkgs/apps/wfoverlap {
+        wfoverlap = callPackage ./pkgs/by-name/wfoverlap/package.nix {
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
         };
 
-        xtb = callPackage ./pkgs/apps/xtb {
+        xtb = callPackage ./pkgs/by-name/xtb/package.nix {
           # XTB declares a tblite dependency >= 0.2.0 but actually requires > 0.3.0
           tblite = super.tblite.overrideAttrs (old: {
             patches = [ ];
@@ -353,7 +256,6 @@ let
           });
         };
 
-        xtb-iff = callPackage ./pkgs/apps/xtb-iff { };
 
         ### Python packages
         python3 = super.python3.override (old: {
@@ -365,38 +267,12 @@ let
         });
 
         #
-        # Libraries
-        #
-
-        amd-fftw = callPackage ./pkgs/lib/amd-fftw { };
-
-        amd-scalapack = callPackage ./pkgs/lib/amd-scalapack { };
-
-        libecpint = callPackage ./pkgs/lib/libecpint { };
-
-        libefp = callPackage ./pkgs/lib/libefp { };
-
-        libGDSII = callPackage ./pkgs/lib/libGDSII { };
-
-        libtensor = callPackage ./pkgs/lib/libtensor { };
-
-        libvdwxc = callPackage ./pkgs/lib/libvdwxc { };
-
-        libwfa = callPackage ./pkgs/lib/libwfa { };
-
-        mrcpp = callPackage ./pkgs/lib/mrcpp { };
-
-        #
         # Utilities
         #
 
         nixGL = callPackage ./pkgs/apps/nixgl { };
 
         writeScriptSlurm = callPackage ./builders/slurmScript.nix { };
-
-        slurm-tools = callPackage ./pkgs/apps/slurm-tools { };
-
-        project-shell = callPackage ./pkgs/apps/project-shell { };
 
         # A wrapper to enforce license checkouts with slurm
         slurmLicenseWrapper = callPackage ./builders/licenseWrapper.nix { };

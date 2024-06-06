@@ -18,8 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: cachix/install-nix-action@v25
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
       - uses: actions/checkout@v4
-      - run: nix flake check --accept-flake-config --no-build
+      - run: |
+          nix-instantiate release.nix -A qchem
+          nix flake check --accept-flake-config --no-build
 
   statix:
     name: statix code check

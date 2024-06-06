@@ -8,11 +8,12 @@ let
     overlay );
 
   inherit (finalPkgs.pkgs) lib;
+  qlib = import ./lib.nix { inherit lib; };
 
   overlay = {
 
-  } // lib.optionalAttrs prev.isPy3k {
-    adcc = callPackage ./pkgs/apps/adcc { };
+  } // lib.optionalAttrs prev.isPy3k (qlib.pkgs-by-name callPackage ./pkgs/python-by-name)
+    // lib.optionalAttrs prev.isPy3k {
 
     autodock-vina = callPackage ./pkgs/apps/autodock-vina/python.nix {
       inherit (finalPkgs) autodock-vina;
@@ -23,66 +24,18 @@ let
       doInstallCheck = false;
     });
 
-    pycolt = callPackage ./pkgs/lib/pycolt { };
-
-    cclib = callPackage ./pkgs/lib/cclib { };
-
-    dftbplus = callPackage ./pkgs/apps/dftbplus { };
-
-    pyqdng = callPackage ./pkgs/apps/pyQDng { };
-
-    gator = callPackage ./pkgs/apps/gator { };
-
-    gau2grid = callPackage ./pkgs/apps/gau2grid { };
-
-    mendeleev = callPackage ./pkgs/lib/mendeleev { };
-
-    moltemplate = callPackage ./pkgs/apps/moltemplate { };
-
-    optking = callPackage ./pkgs/lib/optking { };
-
-    orbkit = callPackage ./pkgs/lib/orbkit { };
-
-    theodore = callPackage ./pkgs/apps/theodore { };
-
-    ambertools = callPackage ./pkgs/apps/ambertools { };
-
-    pdbfixer = callPackage ./pkgs/apps/pdbfixer { };
-
-    polyply = callPackage ./pkgs/apps/polyply { };
-
-    pylibefp = callPackage ./pkgs/lib/pylibefp { };
-
-    psi4 = callPackage ./pkgs/apps/psi4 { };
-
-    pyastronomy = callPackage ./pkgs/lib/pyastronomy { };
-
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
-    pymbar = callPackage ./pkgs/lib/pymbar { };
-
-    pyquante = callPackage ./pkgs/apps/pyquante { };
-
-    pysisyphus = callPackage ./pkgs/apps/pysisyphus {
+    pysisyphus = callPackage ./pkgs/python-by-name/pysisyphus/package.nix {
       gamess-us = finalPkgs.gamess-us.override {
         enableMpi = false;
       };
     };
 
-    pyphspu = callPackage ./pkgs/lib/pyphspu { };
-
-    svgutils = callPackage ./pkgs/lib/svgutils { };
-
-    veloxchem = callPackage ./pkgs/apps/veloxchem { };
-
-    vermouth = callPackage ./pkgs/apps/vermouth { };
-
-    vmd-python = callPackage ./pkgs/apps/vmd-python {
+    vmd-python = callPackage ./pkgs/python-by-name/vmd-python/package.nix {
       inherit cfg;
       inherit (finalPkgs.pkgs) mesa;
     };
-
-    xtb-python = callPackage ./pkgs/lib/xtb-python { };
   };
 
 in {
