@@ -261,7 +261,7 @@
     "pname": "gaussview",
     "version": "6.0.16",
     "description": "GUI for the Gaussian quantum chemistry software package",
-    "homepage": "http://gaussian.com/gaussian16/"
+    "homepage": "http://gaussian.com/gaussian16"
   },
   {
     "attribute": "qchem.gdma",
