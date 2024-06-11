@@ -23,7 +23,7 @@
   pkgs-by-name = callPackage: dir: let
     path = builtins.path { path = dir; name = "pkgs-by-name";};
   in
-    lib.mapAttrs (pkg: _: callPackage "${path}/${pkg}/package.nix" {})
+    lib.mapAttrs (pkg: _: callPackage (path + "/${pkg}/package.nix") {})
     (lib.filterAttrs (_: type: type == "directory") (builtins.readDir path));
 
 }
