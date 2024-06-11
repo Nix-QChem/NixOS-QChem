@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "cefine";
-  version = "2.23";
+  version = "2.24";
 
   nativeBuildInputs = [
     gfortran
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    sha256= "0jjmvcsn5wl0djglmy0ahbx1s6d6g6f04bv2w7rrsvh9has838sa";
+    sha256= "sha256-0vg8AXgdo1Qu81nhStoFWHoMCEuddDA8J/8eLd0JIx4=";
   };
 
   hardeningDisable = [ "format" ];
