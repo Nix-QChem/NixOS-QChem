@@ -2,13 +2,13 @@
 
 buildPythonPackage rec {
   pname = "moltemplate";
-  version = "2.20.5";
+  version = "2.20.21";
 
   src = fetchFromGitHub {
     owner = "jewettaij";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-s0S1jitrYnIp/qhtwf06LnmawVv9JXzU3GCTCAR0W3s=";
+    hash = "sha256-VUv5A+1lchRHRpHKTxxVYorcDB4aiyLj1Og6yLsye8U=";
   };
 
   # The moltemplate.sh script calls all python scripts with a explicit "PYTHON_COMMAND"
