@@ -6,13 +6,13 @@
 
 stdenv.mkDerivation rec {
   pname = "mrchem";
-  version = "1.1.3";
+  version = "1.1.4";
 
   src = fetchFromGitHub {
     owner = "MRChemSoft";
     repo = "mrchem";
     rev = "v${version}";
-    sha256 = "sha256-8zLuCsMyne84dzHksjP7t2M7T7Is2W37pyQ6zymPWa8=";
+    sha256 = "sha256-B/tjFw0LKvCj2m+Do5pA7SJebIb1FdjqNiUJK7cwhCE=";
   };
 
   postPatch = ''
