@@ -16,13 +16,13 @@
 
 buildPythonPackage rec {
   pname = "mendeleev";
-  version = "0.15.0";
+  version = "0.17.0";
 
   src = fetchFromGitHub {
     owner = "lmmentel";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-s5VAXiIHAgOtxIwglelEmB8KNpUcJkQ0FvGRS/b99FM=";
+    hash = "sha256-LYWMbQARuOJXhu4yMAuQqeHckDFVgjwD73bpx5GR15U=";
   };
 
   format = "pyproject";
