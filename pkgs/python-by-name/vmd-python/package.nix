@@ -19,13 +19,13 @@
 
 buildPythonPackage rec {
   pname = "vmd-python";
-  version = "3.1.2";
+  version = "3.1.4";
 
   src = fetchFromGitHub {
     owner = "Eigenstate";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-iz8Ujp+J3Wf6XQJpBylRzC2tUz9D5PMTmwTwEYAvH84=";
+    hash = "sha256-4XZfQkLNhgdVNubjz99pg8Tet0t+bjoR/rFtsPxrZY0=";
   };
 
   postPatch = ''
