@@ -20,10 +20,8 @@
 
   # generic packages-by-name function:
   # Collect all packages from "dir/*/packages.nix" and apply callPackage {}
-  pkgs-by-name = callPackage: dir: let
-    path = builtins.path { path = dir; name = "pkgs-by-name";};
-  in
-    lib.mapAttrs (pkg: _: callPackage (path + "/${pkg}/package.nix") {})
-    (lib.filterAttrs (_: type: type == "directory") (builtins.readDir path));
+  pkgs-by-name = callPackage: dir:
+    lib.mapAttrs (pkg: _: callPackage (dir + "/${pkg}/package.nix") {})
+    (lib.filterAttrs (_: type: type == "directory") (builtins.readDir dir));
 
 }
