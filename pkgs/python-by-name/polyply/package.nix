@@ -12,13 +12,13 @@
 
 buildPythonPackage rec {
   pname = "polyply";
-  version = "1.6.1";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "polyply_1.0";
     rev = "v${version}";
-    hash = "sha256-D/k71WpWN6eQMGKTbeveRg9DNjAV6nILD7nVEqg/KHg=";
+    hash = "sha256-dpempdJYU0G+HEvV0yhS4h+5iKgyLozuJtoAwwrS/Js=";
   };
 
   postPatch = ''
