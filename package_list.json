@@ -89,9 +89,9 @@
   },
   {
     "attribute": "qchem.cefine",
-    "name": "cefine-2.23",
+    "name": "cefine-2.24",
     "pname": "cefine",
-    "version": "2.23",
+    "version": "2.24",
     "description": "Non-interactive command-line wrapper around turbomoles define",
     "homepage": "https://github.com/grimme-lab/cefine"
   },
@@ -553,9 +553,9 @@
   },
   {
     "attribute": "qchem.moltemplate",
-    "name": "moltemplate-2.20.5",
+    "name": "moltemplate-2.20.21",
     "pname": "moltemplate",
-    "version": "2.20.5",
+    "version": "2.20.21",
     "description": "A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies",
     "homepage": "https://www.moltemplate.org/"
   },
@@ -737,9 +737,9 @@
   },
   {
     "attribute": "qchem.polyply",
-    "name": "polyply-1.6.1",
+    "name": "polyply-1.7.0",
     "pname": "polyply",
-    "version": "1.6.1",
+    "version": "1.7.0",
     "description": "Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates",
     "homepage": "https://github.com/marrink-lab/polyply_1.0"
   },
@@ -993,9 +993,9 @@
   },
   {
     "attribute": "qchem.vmd-python",
-    "name": "vmd-python-3.1.2",
+    "name": "vmd-python-3.1.4",
     "pname": "vmd-python",
-    "version": "3.1.2",
+    "version": "3.1.4",
     "description": "Installable VMD as a python module",
     "homepage": "https://github.com/Eigenstate/vmd-python"
   },

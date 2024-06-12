@@ -11,7 +11,7 @@
 | avogadro2-1.99.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2-2022-06-03 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2-2022-06-03 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
-| cefine-2.23 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
+| cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
 | cp2k-2024.1 | qchem.cp2k | Quantum chemistry and solid state physics program |
@@ -69,7 +69,7 @@
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | openmolcas-24.02 | qchem.molcas | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
-| moltemplate-2.20.5 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
+| moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-22.1.1 | qchem.mopac | Semiempirical quantum chemistry |
 | openmpi-4.1.6 | qchem.mpi | Open source MPI-3 implementation |
 | mpifx-1.3.1 | qchem.mpifx | Modern Fortran wrappers around MPI routines |
@@ -92,7 +92,7 @@
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
 | Pegamoid-2.8 | qchem.pegamoid | Python GUI for OpenMolcas |
 | plt2cub-1.0 | qchem.plt2cub | Conversion utility for Turbomole's plt file to Cube format |
-| polyply-1.6.1 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
+| polyply-1.7.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.9.1 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | pysisyphus-unstable-2024-03-18 | qchem.pysisyphus | Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths |
@@ -124,7 +124,7 @@
 | ucx-1.16.0 | qchem.ucx | Unified Communication X library |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
-| vmd-python-3.1.2 | qchem.vmd-python | Installable VMD as a python module |
+| vmd-python-3.1.4 | qchem.vmd-python | Installable VMD as a python module |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
 | wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
 | libwfa-2020-02-19 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
