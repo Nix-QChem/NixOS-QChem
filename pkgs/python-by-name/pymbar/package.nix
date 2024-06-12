@@ -8,13 +8,13 @@
 
 buildPythonPackage rec {
   pname = "pymbar";
-  version = "4.0.2";
+  version = "4.0.3";
 
   src = fetchFromGitHub {
     owner = "choderalab";
     repo = pname;
     rev = version;
-    hash = "sha256-XNkGhEH/X5HBS92xqQHQj14JOSNkHXbLuAZ85cYhcPM=";
+    hash = "sha256-14LdXYwizVxEVWYpqil54kKXTjuXWuf3MNiKmixz4cs=";
   };
 
   propagatedBuildInputs = [
