@@ -1,0 +1,13 @@
+diff --git a/eT_launch.in b/eT_launch.in
+index 47ad557c2..cfbb05019 100644
+--- a/eT_launch.in
++++ b/eT_launch.in
+@@ -219,7 +219,7 @@ def input_parser():
+             "Binary directory(ies). "
+             "'None' results in default executable for corresponding input file."
+         ),
+-        nargs="+",
++        nargs=1,
+         default=[None],
+     )
+ 

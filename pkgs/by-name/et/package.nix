@@ -34,6 +34,8 @@ stdenv.mkDerivation rec {
     hash = "sha256-z9K/O9nvkKWvxJgrvb70jbfspnMSoZo9Sr0Utf93oVQ=";
   };
 
+  patches = [ ./argparse.patch ];
+
   nativeBuildInputs = [
     cmake
     ninja
