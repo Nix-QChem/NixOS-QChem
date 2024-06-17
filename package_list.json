@@ -969,9 +969,9 @@
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.16.0",
+    "name": "ucx-1.17.0",
     "pname": "ucx",
-    "version": "1.16.0",
+    "version": "1.17.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },

@@ -121,7 +121,7 @@
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.8.1 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.3.0 | qchem.ucc | Collective communication operations API |
-| ucx-1.16.0 | qchem.ucx | Unified Communication X library |
+| ucx-1.17.0 | qchem.ucx | Unified Communication X library |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
 | vmd-python-3.1.4 | qchem.vmd-python | Installable VMD as a python module |
