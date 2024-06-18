@@ -617,9 +617,9 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.8-2024-03-14",
+    "name": "multiwfn-3.8-2024-06-14",
     "pname": "multiwfn",
-    "version": "3.8-2024-03-14",
+    "version": "3.8-2024-06-14",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
@@ -793,9 +793,9 @@
   },
   {
     "attribute": "qchem.salmon",
-    "name": "salmon-2.2.0",
+    "name": "salmon-2.2.1",
     "pname": "salmon",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience",
     "homepage": "https://github.com/SALMON-TDDFT/SALMON2"
   },

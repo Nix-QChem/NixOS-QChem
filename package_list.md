@@ -77,7 +77,7 @@
 | mrchem-1.1.4 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
-| multiwfn-3.8-2024-03-14 | qchem.multiwfn | Multifunctional wave function analyser. |
+| multiwfn-3.8-2024-06-14 | qchem.multiwfn | Multifunctional wave function analyser. |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.2.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-8.4.0 | qchem.octave | Scientific Programming Language |
@@ -99,7 +99,7 @@
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-3.17.1 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
 | quantum-espresso-7.2 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
-| salmon-2.2.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
+| salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.1 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | scalapackfx-1.1 | qchem.scalapackfx | Modern Fortran wrappers around ScaLAPACK routines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
