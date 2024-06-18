@@ -109,7 +109,7 @@ let
 in
 buildPythonPackage rec {
   pname = "pysisyphus";
-  version = "unstable-2024-03-18";
+  version = "unstable-2024-06-12";
 
   nativeBuildInputs = [ makeWrapper setuptools-scm ];
 
@@ -154,8 +154,8 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "eljost";
     repo = pname;
-    rev = "8f18b82d14e4558dc00f39e4a1f42eaea2adb3de";
-    hash = "sha256-NJIxLhCBv6eYi6y3YYbIDxAfdF9eFSkWXRxgzZHk65w=";
+    rev = "2a04fa52b8657653c99bc1400709778bd743c909";
+    hash = "sha256-PBccu+Vx2knzms8ezlWPUBFh3iNr32/tF9E7c3woKzI=";
   };
 
   format = "pyproject";
