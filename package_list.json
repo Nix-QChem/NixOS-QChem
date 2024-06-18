@@ -793,9 +793,9 @@
   },
   {
     "attribute": "qchem.salmon",
-    "name": "salmon-2.2.0",
+    "name": "salmon-2.2.1",
     "pname": "salmon",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience",
     "homepage": "https://github.com/SALMON-TDDFT/SALMON2"
   },

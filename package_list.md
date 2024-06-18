@@ -99,7 +99,7 @@
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-3.17.1 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
 | quantum-espresso-7.2 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
-| salmon-2.2.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
+| salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.1 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | scalapackfx-1.1 | qchem.scalapackfx | Modern Fortran wrappers around ScaLAPACK routines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
