@@ -537,9 +537,9 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-24.02",
+    "name": "openmolcas-24.06",
     "pname": "openmolcas",
-    "version": "24.02",
+    "version": "24.06",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
