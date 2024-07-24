@@ -40,13 +40,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "xtb";
-  version = "6.7.0";
+  version = "6.7.1";
 
   src = fetchFromGitHub {
     owner = "grimme-lab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-H/htbxEFYWo4niWjcrjX4ffdmW0FIzFTAVnYbn2514Y=";
+    hash = "sha256-+qgXSMwzD0xSycZIRTokt77fZHHZQ++Npzr7NLlypOA=";
   };
 
   patches = [
