@@ -1,21 +1,31 @@
-{ lib, stdenv, requireFile, autoPatchelfHook, makeWrapper
-, openmpi, openssh, xtb, enableAvx2 ? true
-} :
+{ lib
+, stdenv
+, requireFile
+, autoPatchelfHook
+, makeWrapper
+, openmpi
+, openssh
+, xtb
+, enableAvx2 ? true
+}:
 
 stdenv.mkDerivation {
   pname = "orca";
   version = "6.0.0";
 
-  src = if enableAvx2
-  then requireFile {
-    name = "orca_6_0_0_linux_x86-64_avx2_shared_openmpi416.tar.xz";
-    sha256 = "sha256-AsISlO/nsbch4my5D5juFa1oLQKAcgG30hff5nkFov0=";
-    url = "https://orcaforum.kofo.mpg.de/app.php/portal";
-  } else requireFile {
-    name = "orca_6_0_0_linux_x86-64_shared_openmpi416.tar.xz";
-    sha256 = "sha256-IZvR3rbWSmPLckcZJsuBZly7zewZ+clUl2G+Z9SaKcY=";
-    url = "https://orcaforum.kofo.mpg.de/app.php/portal";
-  };
+  src =
+    if enableAvx2 then
+      requireFile
+        {
+          name = "orca_6_0_0_linux_x86-64_avx2_shared_openmpi416.tar.xz";
+          sha256 = "sha256-AsISlO/nsbch4my5D5juFa1oLQKAcgG30hff5nkFov0=";
+          url = "https://orcaforum.kofo.mpg.de/app.php/portal";
+        } else
+      requireFile {
+        name = "orca_6_0_0_linux_x86-64_shared_openmpi416.tar.xz";
+        sha256 = "sha256-IZvR3rbWSmPLckcZJsuBZly7zewZ+clUl2G+Z9SaKcY=";
+        url = "https://orcaforum.kofo.mpg.de/app.php/portal";
+      };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
   buildInputs = [ openmpi stdenv.cc.cc.lib ];
