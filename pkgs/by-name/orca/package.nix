@@ -1,16 +1,31 @@
-{ lib, stdenv, requireFile, autoPatchelfHook, makeWrapper
-, openmpi, openssh, xtb
-} :
+{ lib
+, stdenv
+, requireFile
+, autoPatchelfHook
+, makeWrapper
+, openmpi
+, openssh
+, xtb
+, enableAvx2 ? true
+}:
 
 stdenv.mkDerivation {
   pname = "orca";
-  version = "5.0.4";
+  version = "6.0.0";
 
-  src = requireFile {
-    name = "orca_5_0_4_linux_x86-64_shared_openmpi411.tar.xz";
-    sha256 = "sha256-xOpa6mDae8sYprcEJgkgb76yp2XG+pWMVonUULWIsDY=";
-    url = "https://orcaforum.kofo.mpg.de/app.php/portal";
-  };
+  src =
+    if enableAvx2 then
+      requireFile
+        {
+          name = "orca_6_0_0_linux_x86-64_avx2_shared_openmpi416.tar.xz";
+          sha256 = "sha256-AsISlO/nsbch4my5D5juFa1oLQKAcgG30hff5nkFov0=";
+          url = "https://orcaforum.kofo.mpg.de/app.php/portal";
+        } else
+      requireFile {
+        name = "orca_6_0_0_linux_x86-64_shared_openmpi416.tar.xz";
+        sha256 = "sha256-IZvR3rbWSmPLckcZJsuBZly7zewZ+clUl2G+Z9SaKcY=";
+        url = "https://orcaforum.kofo.mpg.de/app.php/portal";
+      };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
   buildInputs = [ openmpi stdenv.cc.cc.lib ];
@@ -19,19 +34,21 @@ stdenv.mkDerivation {
     mkdir -p $out/bin $out/lib $out/share/doc/orca
 
     cp autoci_* $out/bin
+    cp openCOSMORS $out/bin
     cp orca_* $out/bin
     cp orca $out/bin
     cp otool_* $out/bin
 
-    cp -r ORCACompoundMethods $out/bin/.
+    cp -r CompoundScripts $out/bin
+    cp -r datasets $out/bin
 
-    cp *.so.5 $out/lib/.
+    cp -r lib/* $out/lib/.
 
     cp *.pdf $out/share/doc/orca
 
-    wrapProgram $out/bin/orca --prefix PATH : '${openmpi}/bin:${openssh}/bin'
+    wrapProgram $out/bin/orca --prefix PATH : '${lib.getBin openmpi}/bin:${lib.getBin openssh}/bin'
 
-    ln -s ${xtb}/bin/xtb $out/bin/otool_xtb
+    ln -s ${lib.getBin xtb}/bin/xtb $out/bin/otool_xtb
   '';
 
   doInstallCheck = true;
@@ -69,7 +86,7 @@ stdenv.mkDerivation {
     description = "Ab initio quantum chemistry program package";
     homepage = "https://orcaforum.kofo.mpg.de/";
     license = licenses.unfree;
-    maintainers = [ maintainers.markuskowa ];
+    maintainers = [ maintainers.markuskowa maintainers.sheepforce ];
     platforms = [ "x86_64-linux" ];
   };
 }
