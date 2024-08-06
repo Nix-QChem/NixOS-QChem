@@ -178,7 +178,7 @@ let
 
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
-        psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
+        psi4 = super.python311.pkgs.toPythonApplication self.python311.pkgs.psi4;
 
         pysisyphus = super.python3.pkgs.toPythonApplication self.python3.pkgs.pysisyphus;
 
