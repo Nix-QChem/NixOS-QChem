@@ -84,7 +84,7 @@
 | octave-8.4.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-14.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.1.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| orca-5.0.4 | qchem.orca | Ab initio quantum chemistry program package |
+| orca-6.0.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
 | packmol-20.14.2 | qchem.packmol | Generating initial configurations for molecular dynamics |
@@ -130,5 +130,5 @@
 | libwfa-2020-02-19 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.3 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
-| xtb-6.7.0 | qchem.xtb | Semiempirical extended tight-binding program package |
+| xtb-6.7.1 | qchem.xtb | Semiempirical extended tight-binding program package |
 | xtb-iff-1.1 | qchem.xtb-iff | General Intermolecular Force Field based on Tight-Binding Quantum Chemical Calculations |
