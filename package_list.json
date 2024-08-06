@@ -348,7 +348,7 @@
     "name": "gsl-2.7.1",
     "pname": "gsl",
     "version": "2.7.1",
-    "description": "GNU Scientific Library, a large numerical library",
+    "description": "The GNU Scientific Library, a large numerical library",
     "homepage": "https://www.gnu.org/software/gsl/"
   },
   {
@@ -396,7 +396,7 @@
     "name": "i-pi-2.6.1",
     "pname": "i-pi",
     "version": "2.6.1",
-    "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
+    "description": "A universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "http://ipi-code.org/"
   },
   {
@@ -521,9 +521,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.29.0",
+    "name": "meep-1.28.0",
     "pname": "meep",
-    "version": "1.29.0",
+    "version": "1.28.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -537,9 +537,9 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-24.06",
+    "name": "openmolcas-24.02",
     "pname": "openmolcas",
-    "version": "24.06",
+    "version": "24.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -708,7 +708,7 @@
     "name": "pcmsolver-1.3.0",
     "pname": "pcmsolver",
     "version": "1.3.0",
-    "description": "API for the Polarizable Continuum Model",
+    "description": "An API for the Polarizable Continuum Model",
     "homepage": "https://pcmsolver.readthedocs.io/en/stable/"
   },
   {
@@ -884,7 +884,7 @@
     "name": "siesta-4.1.5",
     "pname": "siesta",
     "version": "4.1.5",
-    "description": "First-principles materials simulation code using DFT",
+    "description": "A first-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
   {
@@ -892,7 +892,7 @@
     "name": "siesta-4.1.5",
     "pname": "siesta",
     "version": "4.1.5",
-    "description": "First-principles materials simulation code using DFT",
+    "description": "A first-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
   {
@@ -969,9 +969,9 @@
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.17.0",
+    "name": "ucx-1.16.0",
     "pname": "ucx",
-    "version": "1.17.0",
+    "version": "1.16.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },

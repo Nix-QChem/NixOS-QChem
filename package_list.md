@@ -43,13 +43,13 @@
 | gromacs-2024.2 | qchem.gromacsDouble | Molecular dynamics software package |
 | gromacs-2024.2 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
 | gromacs-2024.2 | qchem.gromacsMpi | Molecular dynamics software package |
-| gsl-2.7.1 | qchem.gsl | GNU Scientific Library, a large numerical library |
+| gsl-2.7.1 | qchem.gsl | The GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.3 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
 | hdf5-cpp-fortran-1.14.3 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-2.6.1 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-2.6.1 | qchem.i-pi | A universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
@@ -65,9 +65,9 @@
 | libxsmm-1.16.3 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
-| meep-1.29.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
+| meep-1.28.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
-| openmolcas-24.06 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-24.02 | qchem.molcas | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-22.1.1 | qchem.mopac | Semiempirical quantum chemistry |
@@ -88,7 +88,7 @@
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
 | packmol-20.14.2 | qchem.packmol | Generating initial configurations for molecular dynamics |
-| pcmsolver-1.3.0 | qchem.pcmsolver | API for the Polarizable Continuum Model |
+| pcmsolver-1.3.0 | qchem.pcmsolver | An API for the Polarizable Continuum Model |
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
 | Pegamoid-2.8 | qchem.pegamoid | Python GUI for OpenMolcas |
 | plt2cub-1.0 | qchem.plt2cub | Conversion utility for Turbomole's plt file to Cube format |
@@ -110,8 +110,8 @@
 | sharc-3.0.1 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.1 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.1 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
-| siesta-4.1.5 | qchem.siesta | First-principles materials simulation code using DFT |
-| siesta-4.1.5 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
+| siesta-4.1.5 | qchem.siesta | A first-principles materials simulation code using DFT |
+| siesta-4.1.5 | qchem.siesta-mpi | A first-principles materials simulation code using DFT |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | spglib-2.4.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
@@ -121,7 +121,7 @@
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.8.1 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.3.0 | qchem.ucc | Collective communication operations API |
-| ucx-1.17.0 | qchem.ucx | Unified Communication X library |
+| ucx-1.16.0 | qchem.ucx | Unified Communication X library |
 | veloxchem-2022-02-24 | qchem.veloxchem | Quantum chemistry software for the calculation of molecular properties and spectroscopies |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
 | vmd-python-3.1.4 | qchem.vmd-python | Installable VMD as a python module |
