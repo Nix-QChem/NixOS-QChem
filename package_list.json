@@ -673,9 +673,9 @@
   },
   {
     "attribute": "qchem.orca",
-    "name": "orca-5.0.4",
+    "name": "orca-6.0.0",
     "pname": "orca",
-    "version": "5.0.4",
+    "version": "6.0.0",
     "description": "Ab initio quantum chemistry program package",
     "homepage": "https://orcaforum.kofo.mpg.de/"
   },
@@ -1041,9 +1041,9 @@
   },
   {
     "attribute": "qchem.xtb",
-    "name": "xtb-6.7.0",
+    "name": "xtb-6.7.1",
     "pname": "xtb",
-    "version": "6.7.0",
+    "version": "6.7.1",
     "description": "Semiempirical extended tight-binding program package",
     "homepage": "https://github.com/grimme-lab/xtb"
   },
