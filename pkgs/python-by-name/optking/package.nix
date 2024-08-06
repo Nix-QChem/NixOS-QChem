@@ -11,7 +11,6 @@
 buildPythonPackage rec {
   pname = "optking";
   version = "0.2.1";
-  disabled = pythonAtLeast "3.12";
 
   src = fetchFromGitHub {
     owner = "psi-rking";
@@ -35,5 +34,7 @@ buildPythonPackage rec {
     homepage = "https://github.com/psi-rking/optking";
     license = licenses.bsd3;
     platforms = platforms.unix;
+    broken = pythonAtLeast "3.12";
+
   };
 }
