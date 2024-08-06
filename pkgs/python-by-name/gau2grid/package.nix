@@ -1,4 +1,5 @@
 { lib, buildPythonPackage, fetchFromGitHub, cmake
+, pythonAtLeast
 , numpy
 , setuptools
 , version ? "2.0.7"
@@ -38,5 +39,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/dgasmith/gau2grid";
     license = licenses.bsd3;
     platforms = platforms.all;
+    broken = pythonAtLeast "3.12";
   };
 }
