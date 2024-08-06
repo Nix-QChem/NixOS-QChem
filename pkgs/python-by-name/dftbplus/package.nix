@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, pythonAtLeast
 , gfortran
 , fetchFromGitHub
 , cmake
@@ -78,5 +79,6 @@ buildPythonPackage rec {
     license = with licenses; [ gpl3Plus lgpl3Plus ];
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
+    broken = pythonAtLeast "3.12";
   };
 }
