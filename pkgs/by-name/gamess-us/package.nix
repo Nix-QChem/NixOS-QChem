@@ -23,6 +23,8 @@ in stdenv.mkDerivation rec {
     ./AuxDataPath.patch
     # Link OpenBLAS dynamic libraries, instead of static
     ./openblas.patch
+    # Recognize gcc-12.4 as a valid compiler
+    ./gcc-config.patch
   ];
 
   nativeBuildInputs = [
