@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, pythonAtLeast
 , requireFile
 , makeWrapper
   # Python dependencies
@@ -139,5 +140,6 @@ buildPythonPackage rec {
     homepage = "https://ambermd.org/AmberTools.php";
     license = with licenses; [ lgpl3 bsd3 mit asl20 gpl3Only gpl2Only ];
     platforms = platforms.linux;
+    broken = pythonAtLeast "3.12";
   };
 }
