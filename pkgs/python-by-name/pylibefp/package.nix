@@ -1,4 +1,5 @@
 { buildPythonPackage, lib, fetchFromGitHub, cmake
+, pythonAtLeast
 # Dependencies
 , libefp
 , blas
@@ -44,5 +45,6 @@ buildPythonPackage rec {
     homepage = "http://docs.qcarchive.molssi.org/projects/qcelemental/en/latest/";
     license = licenses.bsd3;
     platforms = platforms.unix;
+    broken = pythonAtLeast "3.12";
   };
 }
