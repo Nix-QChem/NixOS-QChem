@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, pythonAtLeast
 , fetchFromGitHub
 , numpy
 , qcelemental
@@ -10,6 +11,7 @@
 buildPythonPackage rec {
   pname = "optking";
   version = "0.2.1";
+  disabled = pythonAtLeast "3.12";
 
   src = fetchFromGitHub {
     owner = "psi-rking";
