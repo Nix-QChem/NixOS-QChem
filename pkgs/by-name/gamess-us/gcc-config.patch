@@ -1,0 +1,40 @@
+diff --git a/comp b/comp
+index 3cdf0a9..0fc9da2 100755
+--- a/comp
++++ b/comp
+@@ -1260,6 +1260,7 @@ if ($TARGET == ibm64) then
+             case 12.1:
+             case 12.2:
+             case 12.3:
++            case 12.4:
+             case 13.1:
+                if ($GMS_MATHLIB == libflame) then
+                   #keeping these in to fix exam30
+@@ -2209,6 +2210,7 @@ if ($TARGET == linux64) then
+             case 12.1:
+             case 12.2:
+             case 12.3:
++            case 12.4:
+             case 13.1:
+                if ($GMS_MATHLIB == libflame) then
+                   #keeping these in to fix exam30
+diff --git a/config b/config
+index 2cb4dfc..6991eb3 100755
+--- a/config
++++ b/config
+@@ -506,6 +506,7 @@ badibmfortran:
+                case 12.1:
+                case 12.2:
+                case 12.3:
++               case 12.4:
+                case 13.1:
+                   echo "   Good, the newest gfortrans can compile REAL*16 data type."
+                   echo "   Please report any numerical issues you encounter."
+@@ -846,6 +847,7 @@ badlinuxfortran:
+                case 12.1:
+                case 12.2:
+                case 12.3:
++               case 12.4:
+                case 13.1:
+                   echo "   Good, the newest gfortran version number ${GMS_GFORTRAN_VERNO} can compile REAL*16 data type."
+                   echo "   Please report any numerical issues you encounter."

@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, pythonAtLeast
 , fetchFromGitHub
 , cffi
 , numpy
@@ -58,5 +59,6 @@ buildPythonPackage rec {
     license = licenses.lgpl3Only;
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
+    broken = pythonAtLeast "3.12";
   };
 }

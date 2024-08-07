@@ -89,7 +89,7 @@ let
       // { tests = hydraJobs pkgSet."${cfg.prefix}".tests; }
 
       # release set for python packages
-      // makeForPython [ "python2" "python3" ]
+      // makeForPython [ "python2" "python3" "python311" ]
 
       # Have a manadatory test set and a channel
       // rec {

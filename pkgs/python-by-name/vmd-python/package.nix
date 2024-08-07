@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, pythonAtLeast
 , runtimeShell
 , cfg
 , fetchFromGitHub
@@ -62,5 +63,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/Eigenstate/vmd-python";
     license = licenses.unfree;
     maintainers = [ maintainers.sheepforce ];
+    broken = pythonAtLeast "3.12";
   };
 }

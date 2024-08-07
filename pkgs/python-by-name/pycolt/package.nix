@@ -1,4 +1,5 @@
 { lib, fetchPypi, buildPythonPackage
+, isPy311
 , bump2version
 , wheel
 , watchdog
@@ -45,5 +46,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/mfsjmenger/colt";
     license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
+    broken = isPy311;
   };
 }
