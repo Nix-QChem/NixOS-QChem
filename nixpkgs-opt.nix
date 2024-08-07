@@ -21,6 +21,8 @@ let
     cp2k = recallPackage cp2k {};
     fftw = recallPackage fftw {};
     dkh = recallPackage dkh {};
+    dftd4 = recallPackage dftd4 {};
+    simple-dftd3 = recallPackage simple-dftd3 {};
     # Currently broken upstream. Put back after next upgrade
     # elpa = recallPackage elpa {};
     ergoscf = recallPackage ergoscf {};
