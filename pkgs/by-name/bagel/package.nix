@@ -18,13 +18,13 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "bagel";
-  version = "1.2.2-2022-06-03";
+  version = "1.2.2-2024-04-19";
 
   src = fetchFromGitHub {
     owner = "nubakery";
     repo = "bagel";
-    rev = "2955e4d1a17b2855c028f828ce48fc10d76e3cf5";
-    sha256 = "sha256-mRfG2FP9ZHniZO2MBJqi7Bl5kAjD8WQ5W6nD33kjp+Y=";
+    rev = "800fbe21fdf3cba452992499ac70cad31b0250d0";
+    sha256 = "sha256-v2n88qWpk+k0+KbwyFuIg7Spb+eaWxlv9y2JFBBSYvg=";
   };
 
   nativeBuildInputs = [ autoconf automake libtool ];
