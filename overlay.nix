@@ -124,8 +124,8 @@ let
             src = super.fetchFromGitHub {
               owner = "tblite";
               repo = "tblite";
-              rev = "1bd936ca81f6f9ec9bbe65e32bc422ff5388571b";
-              hash = "sha256-ywXpnKU5CkPSp4zfJkFvrN09ptjt3tqq2zSqPcHAv6E=";
+              rev = "4556e28f391573b3c80c94beb7c56313005d5269";
+              hash = "sha256-JmTEnvYqA73vmWQe4cpjvp6/Wwb+elSMDdHTPwD3/jc=";
             };
           });
         };
