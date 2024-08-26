@@ -11,13 +11,13 @@
 
 stdenv.mkDerivation rec {
   pname = "gfn0";
-  version = "unstable-2024-03-07";
+  version = "unstable-2024-07-18";
 
   src = fetchFromGitHub {
     owner = "pprcht";
     repo = pname;
-    rev = "1701599ca4298ecb5c3741a9e56d67ce03e9e4c3";
-    hash = "sha256-slUShllJ3shUZaEnEIhy6QbDzteNSlbLrokPKgYhG7I=";
+    rev = "584cec4b47da23bf3634ef0dd798a1639fcc5e47";
+    hash = "sha256-DULglQ144lLWK7sJkOEtMVmEIokOhYmrH6myBtfcNaA=";
   };
 
   patches = [ ./build.patch ];
