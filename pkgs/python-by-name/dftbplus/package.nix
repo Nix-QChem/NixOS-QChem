@@ -9,15 +9,6 @@
 , lapack
 , mpi
 , scalapack
-, test-drive
-, mctc-lib
-, mstore
-, toml-f
-, tblite
-, mpifx
-, scalapackfx
-, simple-dftd3
-, multicharge
 , dftd4
 , numpy
 }:
@@ -41,8 +32,6 @@ buildPythonPackage rec {
 
     substituteInPlace tools/dptools/CMakeLists.txt \
       --replace-fail '$DESTDIR/' ""
-
-
   '';
 
   nativeBuildInputs = [
@@ -57,7 +46,10 @@ buildPythonPackage rec {
     scalapack
   ];
 
-  propagatedBuildInputs = [ numpy ];
+  propagatedBuildInputs = [ numpy mpi ];
+  propagatedUserEnvPkgs = [ (lib.getBin mpi) ];
+
+  passthru = { inherit mpi; };
 
   format = "other";
 
@@ -65,6 +57,8 @@ buildPythonPackage rec {
     "-DWITH_API=ON"
     "-DWITH_OMP=ON"
     "-DWITH_MPI=ON"
+    "-DCMAKE_Fortran_COMPILER=${lib.getDev mpi}/bin/mpif90"
+    "-DCMAKE_C_COMPILER=${lib.getDev mpi}/bin/mpicc"
     "-DWITH_TBLITE=OFF"
     "-DWITH_SDFTD3=OFF"
     "-DWITH_PYTHON=ON"
