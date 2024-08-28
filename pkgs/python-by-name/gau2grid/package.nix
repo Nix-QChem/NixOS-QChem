@@ -34,11 +34,14 @@ buildPythonPackage rec {
     rev = "v" + version;
   };
 
+  patches = [
+    ./distutils.patch
+  ];
+
   meta = with lib; {
     description = "Fast computation of a gaussian and its derivative on a grid";
     homepage = "https://github.com/dgasmith/gau2grid";
     license = licenses.bsd3;
     platforms = platforms.all;
-    broken = pythonAtLeast "3.12";
   };
 }
