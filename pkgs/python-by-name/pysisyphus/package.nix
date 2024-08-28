@@ -26,7 +26,6 @@
 , psutils
 , qcengine
 , ase
-, xtb-python
 , openbabel-bindings
 , pyscf
   # Runtime dependencies
@@ -135,7 +134,6 @@ buildPythonPackage rec {
     openssh
     pyscf
   ] # Syscalls
-  ++ lib.optional enableXtb xtb-python
   ++ lib.optional enableXtb xtb
   ++ lib.optional enableJmol jmol
   ++ lib.optional enableMultiwfn multiwfn
