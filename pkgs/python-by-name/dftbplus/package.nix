@@ -1,6 +1,5 @@
 { buildPythonPackage
 , lib
-, pythonAtLeast
 , gfortran
 , fetchFromGitHub
 , cmake
@@ -9,35 +8,33 @@
 , lapack
 , mpi
 , scalapack
-, dftd4
 , numpy
+, setuptools
 }:
 
 assert !blas.isILP64 && !lapack.isILP64;
 
 buildPythonPackage rec {
   pname = "dftbplus";
-  version = "24.1";
+  version = "unstable-2024-08-23";
 
   src = fetchFromGitHub {
     owner = "dftbplus";
     repo = pname;
-    rev = version;
-    hash = "sha256-lI0l977SYHIgPKZ9037q7IYudAck2vyI2byW0vBB680=";
+    rev = "3f8a8d15a577ca039950ebbdb6c120667aca5728";
+    hash = "sha256-AJSDBd1BBHYvhVmJPYP7R0UmEiOeUMJlMtX8zdutJMI=";
     fetchSubmodules = true;
   };
 
   postPatch = ''
     patchShebangs .
-
-    substituteInPlace tools/dptools/CMakeLists.txt \
-      --replace-fail '$DESTDIR/' ""
   '';
 
   nativeBuildInputs = [
     gfortran
     cmake
     pkg-config
+    setuptools
   ];
 
   buildInputs = [
@@ -62,10 +59,10 @@ buildPythonPackage rec {
     "-DWITH_TBLITE=OFF"
     "-DWITH_SDFTD3=OFF"
     "-DWITH_PYTHON=ON"
+    "-DENABLE_DYNAMIC_LOADING=ON"
+    "-DBUILD_SHARED_LIBS=ON"
     "-DSCALAPACK_LIBRARY=${scalapack}/lib/libscalapack.so"
   ];
-
-  pythonImportsCheck = [ "dptools" ];
 
   meta = with lib; {
     description = "DFTB+ general package for performing fast atomistic simulations";
@@ -73,6 +70,5 @@ buildPythonPackage rec {
     license = with licenses; [ gpl3Plus lgpl3Plus ];
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
-    broken = pythonAtLeast "3.12";
   };
 }

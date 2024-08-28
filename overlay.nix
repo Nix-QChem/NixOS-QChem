@@ -130,7 +130,7 @@ let
           });
         };
 
-        dftbplus = super.python311.pkgs.toPythonApplication self.python311.pkgs.dftbplus;
+        dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
         dirac = callPackage ./pkgs/by-name/dirac/package.nix {
           inherit (self) exatensor;
