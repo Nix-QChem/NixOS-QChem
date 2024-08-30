@@ -51,7 +51,7 @@ let
     };
     quantum-espresso = recallPackage quantum-espresso {
       hdf5 = final.hdf5-fortran;
-      wannier90 = final.wannier90;
+      inherit (final) wannier90;
     };
     pcmsolver = recallPackage pcmsolver {};
     scalapack = recallPackage scalapack {};
