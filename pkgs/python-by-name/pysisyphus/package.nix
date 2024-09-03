@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, isPy311
 , writeTextFile
 , writeScript
 , makeWrapper
@@ -242,5 +243,6 @@ buildPythonPackage rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
     mainProgram = "pysis";
+    broken = isPy311;
   };
 }
