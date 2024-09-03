@@ -1,4 +1,4 @@
-{ lib, fetchFromGitHub, buildPythonPackage
+{ lib, fetchFromGitHub, buildPythonPackage, isPy311
 , pytest-runner
 , pytest
 , pycolt
@@ -48,5 +48,6 @@ buildPythonPackage rec {
     homepage = "http://orbkit.github.io/";
     license = licenses.lgpl3Only;
     maintainers = [ maintainers.markuskowa ];
+    broken = isPy311; # theodore is not broken, but pycolt is.
   };
 }
