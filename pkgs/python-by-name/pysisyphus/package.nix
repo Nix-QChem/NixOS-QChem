@@ -157,6 +157,11 @@ buildPythonPackage rec {
     hash = "sha256-PBccu+Vx2knzms8ezlWPUBFh3iNr32/tF9E7c3woKzI=";
   };
 
+  patches = [
+    # Fixes test failing by changed ASE API. Remove with next update
+    ./ase.patch
+  ];
+
   format = "pyproject";
 
   preBuild = "export SETUPTOOLS_SCM_PRETEND_VERSION=0.8.0b1";
