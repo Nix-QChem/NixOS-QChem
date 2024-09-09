@@ -1,0 +1,48 @@
+diff --git a/pysisyphus/calculators/FakeASE.py b/pysisyphus/calculators/FakeASE.py
+index 913b40567..0ef644b81 100644
+--- a/pysisyphus/calculators/FakeASE.py
++++ b/pysisyphus/calculators/FakeASE.py
+@@ -1,6 +1,13 @@
++import warnings
++
+ from pysisyphus.constants import BOHR2ANG
+ 
++
+ class FakeASE:
++    """Pysisyphus calculator mimicing an ASE calculator.
++
++    Instances of this class can be set as calculators on ASE Atoms
++    objects."""
+ 
+     def __init__(self, calc):
+         self.calc = calc
+@@ -8,12 +15,15 @@ def __init__(self, calc):
+         self.results = dict()
+ 
+     def get_atoms_coords(self, atoms):
+-        return (atoms.get_chemical_symbols(),
+-                # Convert ASE Angstrom to Bohr for pysisyphus
+-                atoms.get_positions().flatten() / BOHR2ANG
++        return (
++            atoms.get_chemical_symbols(),
++            # Convert ASE Angstrom to Bohr for pysisyphus
++            atoms.get_positions().flatten() / BOHR2ANG,
+         )
+ 
+-    def get_potential_energy(self, atoms=None):
++    def get_potential_energy(self, atoms=None, force_consistent=True):
++        if not force_consistent:
++            warnings.warn("force_consistent=False is ignored by FakeASE!")
+         atoms, coords = self.get_atoms_coords(atoms)
+         results = self.calc.get_energy(atoms, coords)
+ 
+diff --git a/tests/test_fake_ase/test_fake_ase.py b/tests/test_fake_ase/test_fake_ase.py
+index 06c80aa8e..5a578628b 100644
+--- a/tests/test_fake_ase/test_fake_ase.py
++++ b/tests/test_fake_ase/test_fake_ase.py
+@@ -34,4 +34,4 @@ def test_fake_ase_opt():
+ 
+     assert dyn.converged()
+     assert dyn.get_number_of_steps() == 14
+-    assert np.linalg.norm(dyn.f0) == pytest.approx(0.0041871980)
++    assert np.linalg.norm(dyn.forces0) == pytest.approx(0.0041871980)
