@@ -17,19 +17,11 @@
   },
   {
     "attribute": "qchem.amd-fftw",
-    "name": "amd-fftw-4.1",
+    "name": "amd-fftw-4.2",
     "pname": "amd-fftw",
-    "version": "4.1",
+    "version": "4.2",
     "description": "Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs",
     "homepage": "http://www.fftw.org/"
-  },
-  {
-    "attribute": "qchem.amd-scalapack",
-    "name": "amd-scalapack-4.1",
-    "pname": "amd-scalapack",
-    "version": "4.1",
-    "description": "Linear algebra routines for parallel distributed memory machines optimized for AMD processors",
-    "homepage": "https://developer.amd.com/amd-aocl/scalapack/"
   },
   {
     "attribute": "qchem.arpack",
@@ -73,17 +65,17 @@
   },
   {
     "attribute": "qchem.bagel",
-    "name": "bagel-1.2.2-2022-06-03",
+    "name": "bagel-1.2.2-2024-04-19",
     "pname": "bagel",
-    "version": "1.2.2-2022-06-03",
+    "version": "1.2.2-2024-04-19",
     "description": "Brilliantly Advanced General Electronic-structure Library",
     "homepage": "https://nubakery.org"
   },
   {
     "attribute": "qchem.bagel-serial",
-    "name": "bagel-1.2.2-2022-06-03",
+    "name": "bagel-1.2.2-2024-04-19",
     "pname": "bagel",
-    "version": "1.2.2-2022-06-03",
+    "version": "1.2.2-2024-04-19",
     "description": "Brilliantly Advanced General Electronic-structure Library",
     "homepage": "https://nubakery.org"
   },
@@ -113,9 +105,9 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-2024.1",
+    "name": "cp2k-2024.3",
     "pname": "cp2k",
-    "version": "2024.1",
+    "version": "2024.3",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
@@ -129,9 +121,9 @@
   },
   {
     "attribute": "qchem.crest",
-    "name": "crest-3.0.1",
+    "name": "crest-3.0.2",
     "pname": "crest",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -145,9 +137,9 @@
   },
   {
     "attribute": "qchem.dftbplus",
-    "name": "dftbplus-24.1",
-    "pname": "dftbplus",
-    "version": "24.1",
+    "name": "dftbplus-unstable-2024-08-23",
+    "pname": "dftbplus-unstable",
+    "version": "2024-08-23",
     "description": "DFTB+ general package for performing fast atomistic simulations",
     "homepage": "https://github.com/dftbplus/dftbplus"
   },
@@ -158,6 +150,14 @@
     "version": "3.2.1",
     "description": "Dispersion correction for DFT",
     "homepage": "https://github.com/loriab/dftd3"
+  },
+  {
+    "attribute": "qchem.dftd4",
+    "name": "dftd4-3.6.0",
+    "pname": "dftd4",
+    "version": "3.6.0",
+    "description": "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
+    "homepage": "https://github.com/grimme-lab/dftd4"
   },
   {
     "attribute": "qchem.dirac",
@@ -273,17 +273,17 @@
   },
   {
     "attribute": "qchem.gfn0",
-    "name": "gfn0-unstable-2024-03-07",
+    "name": "gfn0-unstable-2024-07-18",
     "pname": "gfn0-unstable",
-    "version": "2024-03-07",
+    "version": "2024-07-18",
     "description": "Standalone implementation of the GFN0-xTB method",
     "homepage": "https://github.com/pprcht/gfn0"
   },
   {
     "attribute": "qchem.gfnff",
-    "name": "gfnff-unstable-2024-02-14",
+    "name": "gfnff-unstable-2024-08-02",
     "pname": "gfnff-unstable",
-    "version": "2024-02-14",
+    "version": "2024-08-02",
     "description": "A standalone library of the GFN-FF method. Extracted in large parts from the xtb program",
     "homepage": "https://github.com/pprcht/gfnff"
   },
@@ -313,41 +313,41 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2024.2",
+    "name": "gromacs-2024.3",
     "pname": "gromacs",
-    "version": "2024.2",
+    "version": "2024.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2024.2",
+    "name": "gromacs-2024.3",
     "pname": "gromacs",
-    "version": "2024.2",
+    "version": "2024.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2024.2",
+    "name": "gromacs-2024.3",
     "pname": "gromacs",
-    "version": "2024.2",
+    "version": "2024.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2024.2",
+    "name": "gromacs-2024.3",
     "pname": "gromacs",
-    "version": "2024.2",
+    "version": "2024.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gsl",
-    "name": "gsl-2.7.1",
+    "name": "gsl-2.8",
     "pname": "gsl",
-    "version": "2.7.1",
+    "version": "2.8",
     "description": "GNU Scientific Library, a large numerical library",
     "homepage": "https://www.gnu.org/software/gsl/"
   },
@@ -361,17 +361,17 @@
   },
   {
     "attribute": "qchem.hdf5",
-    "name": "hdf5-cpp-1.14.3",
+    "name": "hdf5-cpp-1.14.4.3",
     "pname": "hdf5-cpp",
-    "version": "1.14.3",
+    "version": "1.14.4.3",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
   {
     "attribute": "qchem.hdf5-full",
-    "name": "hdf5-cpp-fortran-1.14.3",
+    "name": "hdf5-cpp-fortran-1.14.4.3",
     "pname": "hdf5-cpp-fortran",
-    "version": "1.14.3",
+    "version": "1.14.4.3",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
@@ -393,9 +393,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-2.6.1",
+    "name": "i-pi-3.0",
     "pname": "i-pi",
-    "version": "2.6.1",
+    "version": "3.0",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "http://ipi-code.org/"
   },
@@ -497,9 +497,9 @@
   },
   {
     "attribute": "qchem.libxsmm",
-    "name": "libxsmm-1.16.3",
+    "name": "libxsmm-1.17",
     "pname": "libxsmm",
-    "version": "1.16.3",
+    "version": "1.17",
     "description": "Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives",
     "homepage": "https://github.com/hfp/libxsmm"
   },
@@ -569,9 +569,9 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-4.1.6",
+    "name": "openmpi-5.0.5",
     "pname": "openmpi",
-    "version": "4.1.6",
+    "version": "5.0.5",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
@@ -633,25 +633,25 @@
   },
   {
     "attribute": "qchem.nwchem",
-    "name": "nwchem-7.2.2",
+    "name": "nwchem-7.2.3",
     "pname": "nwchem",
-    "version": "7.2.2",
+    "version": "7.2.3",
     "description": "Open Source High-Performance Computational Chemistry",
     "homepage": "https://nwchemgit.github.io"
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-8.4.0",
+    "name": "octave-9.2.0",
     "pname": "octave",
-    "version": "8.4.0",
+    "version": "9.2.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-8.4.0",
+    "name": "octave-9.2.0",
     "pname": "octave",
-    "version": "8.4.0",
+    "version": "9.2.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
@@ -665,9 +665,9 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.1.1",
+    "name": "openmm-8.1.2",
     "pname": "openmm",
-    "version": "8.1.1",
+    "version": "8.1.2",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
@@ -896,6 +896,14 @@
     "homepage": "https://siesta-project.org/siesta/"
   },
   {
+    "attribute": "qchem.simple-dftd3",
+    "name": "simple-dftd3-1.1.0",
+    "pname": "simple-dftd3",
+    "version": "1.1.0",
+    "description": "Reimplementation of the DFT-D3 program",
+    "homepage": "https://github.com/dftd3/simple-dftd3"
+  },
+  {
     "attribute": "qchem.slurm-tools",
     "name": "slurm-tools-1.2.2",
     "pname": "slurm-tools",
@@ -905,9 +913,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.4.0",
+    "name": "spglib-2.5.0",
     "pname": "spglib",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },

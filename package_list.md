@@ -2,24 +2,24 @@
 |------|-----------|-------------|
 | stdenv-linux-haswell | qchem.aggressiveStdenv | The default build environment for Unix packages in Nixpkgs |
 | AmberTools-24 | qchem.ambertools | Tools for molecular mechanics and molecular dynamics with AMBER |
-| amd-fftw-4.1 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
-| amd-scalapack-4.1 | qchem.amd-scalapack | Linear algebra routines for parallel distributed memory machines optimized for AMD processors |
+| amd-fftw-4.2 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
 | arpack-3.9.1 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
 | arpack-3.9.1 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
 | Autodock-Vina-1.2.3 | qchem.autodock-vina | Molecular docking with classical scoring functions |
 | pyPHSPU-2022-05-23 | qchem.autoint | Poly harmonic spline and partition of unity interpolation |
 | avogadro2-1.99.0 | qchem.avogadro2 | Molecule editor and visualizer |
-| bagel-1.2.2-2022-06-03 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
-| bagel-1.2.2-2022-06-03 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
+| bagel-1.2.2-2024-04-19 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
+| bagel-1.2.2-2024-04-19 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
 | cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
-| cp2k-2024.1 | qchem.cp2k | Quantum chemistry and solid state physics program |
+| cp2k-2024.3 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
-| crest-3.0.1 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
+| crest-3.0.2 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
-| dftbplus-24.1 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
+| dftbplus-unstable-2024-08-23 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
+| dftd4-3.6.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
@@ -34,22 +34,22 @@
 | gator-0.2.0 | qchem.gator | Program for computational spectroscopy and calculations of molecular properties |
 | gaussview-6.0.16 | qchem.gaussview | GUI for the Gaussian quantum chemistry software package |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
-| gfn0-unstable-2024-03-07 | qchem.gfn0 | Standalone implementation of the GFN0-xTB method |
-| gfnff-unstable-2024-02-14 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
+| gfn0-unstable-2024-07-18 | qchem.gfn0 | Standalone implementation of the GFN0-xTB method |
+| gfnff-unstable-2024-08-02 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-24.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2024.2 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2024.2 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2024.2 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2024.2 | qchem.gromacsMpi | Molecular dynamics software package |
-| gsl-2.7.1 | qchem.gsl | GNU Scientific Library, a large numerical library |
+| gromacs-2024.3 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2024.3 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2024.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2024.3 | qchem.gromacsMpi | Molecular dynamics software package |
+| gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
-| hdf5-cpp-1.14.3 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
-| hdf5-cpp-fortran-1.14.3 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
+| hdf5-cpp-1.14.4.3 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
+| hdf5-cpp-fortran-1.14.4.3 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-2.6.1 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.0 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
@@ -62,7 +62,7 @@
 | libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
 | libwfa-2020-02-19 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
 | libxc-6.2.2 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
-| libxsmm-1.16.3 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
+| libxsmm-1.17 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | meep-1.29.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
@@ -71,7 +71,7 @@
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-22.1.1 | qchem.mopac | Semiempirical quantum chemistry |
-| openmpi-4.1.6 | qchem.mpi | Open source MPI-3 implementation |
+| openmpi-5.0.5 | qchem.mpi | Open source MPI-3 implementation |
 | mpifx-1.3.1 | qchem.mpifx | Modern Fortran wrappers around MPI routines |
 | mrcc-2023.08.28 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrchem-1.1.4 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
@@ -79,11 +79,11 @@
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
 | multiwfn-3.8-2024-06-14 | qchem.multiwfn | Multifunctional wave function analyser. |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
-| nwchem-7.2.2 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-8.4.0 | qchem.octave | Scientific Programming Language |
-| octave-8.4.0 | qchem.octave-opt | Scientific Programming Language |
+| nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
+| octave-9.2.0 | qchem.octave | Scientific Programming Language |
+| octave-9.2.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-14.1 | qchem.octopus | Real-space time dependent density-functional theory code |
-| openmm-8.1.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmm-8.1.2 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-6.0.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -112,8 +112,9 @@
 | sharc-3.0.1 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
 | siesta-4.1.5 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
+| simple-dftd3-1.1.0 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
-| spglib-2.4.0 | qchem.spglib | C library for finding and handling crystal symmetries |
+| spglib-2.5.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
 | theodore-3.1.1 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
