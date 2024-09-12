@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, isPy311
 , writeTextFile
 , writeScript
 , makeWrapper
@@ -26,7 +27,6 @@
 , psutils
 , qcengine
 , ase
-, xtb-python
 , openbabel-bindings
 , pyscf
   # Runtime dependencies
@@ -135,7 +135,6 @@ buildPythonPackage rec {
     openssh
     pyscf
   ] # Syscalls
-  ++ lib.optional enableXtb xtb-python
   ++ lib.optional enableXtb xtb
   ++ lib.optional enableJmol jmol
   ++ lib.optional enableMultiwfn multiwfn
@@ -157,6 +156,11 @@ buildPythonPackage rec {
     rev = "2a04fa52b8657653c99bc1400709778bd743c909";
     hash = "sha256-PBccu+Vx2knzms8ezlWPUBFh3iNr32/tF9E7c3woKzI=";
   };
+
+  patches = [
+    # Fixes test failing by changed ASE API. Remove with next update
+    ./ase.patch
+  ];
 
   format = "pyproject";
 
@@ -244,5 +248,6 @@ buildPythonPackage rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
     mainProgram = "pysis";
+    broken = isPy311;
   };
 }

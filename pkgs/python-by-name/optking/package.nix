@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, pythonAtLeast
 , fetchFromGitHub
 , numpy
 , qcelemental
@@ -9,13 +10,13 @@
 
 buildPythonPackage rec {
   pname = "optking";
-  version = "0.2.1";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "psi-rking";
     repo = "optking";
-    rev = "3025f85c47df308c4482341129db9ad5ebc82c6a"; # Tag keeps moving
-    hash = "sha256-mXLBsc4PQjeTjUg0nzf9PI0FF81y77yCJ5l+g47uoD8=";
+    rev = version;
+    hash = "sha256-vHoxmJAfuGHiqXIOb935X1ezTT6AYmTWnLeJZSiB1KY=";
   };
 
   propagatedBuildInputs = [

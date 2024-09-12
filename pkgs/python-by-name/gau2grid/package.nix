@@ -1,4 +1,5 @@
 { lib, buildPythonPackage, fetchFromGitHub, cmake
+, pythonAtLeast
 , numpy
 , setuptools
 , version ? "2.0.7"
@@ -32,6 +33,10 @@ buildPythonPackage rec {
     repo = pname;
     rev = "v" + version;
   };
+
+  patches = [
+    ./distutils.patch
+  ];
 
   meta = with lib; {
     description = "Fast computation of a gaussian and its derivative on a grid";

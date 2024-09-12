@@ -97,7 +97,7 @@ let
         #
         # Applications
         #
-        ambertools = super.python3.pkgs.toPythonApplication self.python3.pkgs.ambertools;
+        ambertools = super.python311.pkgs.toPythonApplication self.python311.pkgs.ambertools;
 
         autodock-vina = callPackage ./pkgs/apps/autodock-vina { };
 
@@ -234,7 +234,7 @@ let
           else callPackage ./pkgs/apps/vmd { }
         ;
 
-        vmd-python = super.python3.pkgs.toPythonApplication self.python3.pkgs.vmd-python;
+        vmd-python = super.python311.pkgs.toPythonApplication self.python311.pkgs.vmd-python;
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
@@ -259,6 +259,11 @@ let
 
         ### Python packages
         python3 = super.python3.override (old: {
+          packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
+        });
+
+        ### Python packages
+        python311 = super.python311.override (old: {
           packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
         });
 

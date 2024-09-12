@@ -1,6 +1,7 @@
 { buildPythonPackage
 , lib
 , fetchFromGitHub
+, isPy311
 , setuptools
 , pytestCheckHook
 , numpy
@@ -65,5 +66,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/cclib/cclib";
     license = licenses.bsd3;
     maintainers = [ maintainers.markuskowa ];
+    broken = isPy311;  # requires psi4, which does not build on python-3.11
   };
 }

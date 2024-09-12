@@ -2,6 +2,7 @@
 , stdenv
 , buildPythonPackage
 , buildPackages
+, isPy311
 , makeWrapper
 , fetchFromGitHub
 , fetchFromGitLab
@@ -293,5 +294,6 @@ buildPythonPackage rec {
     license = licenses.lgpl3;
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
+    broken = isPy311;
   };
 }

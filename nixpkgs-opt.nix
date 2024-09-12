@@ -51,7 +51,10 @@ let
       enableCuda = cfg.useCuda;
       stdenv = final.clangStdenv;
     };
-    quantum-espresso = recallPackage quantum-espresso { hdf5 = final.hdf5-fortran; };
+    quantum-espresso = recallPackage quantum-espresso {
+      hdf5 = final.hdf5-fortran;
+      inherit (final) wannier90;
+    };
     pcmsolver = recallPackage pcmsolver {};
     scalapack = recallPackage scalapack {};
     siesta = recallPackage siesta {};
