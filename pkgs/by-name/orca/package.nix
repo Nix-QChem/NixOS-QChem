@@ -7,7 +7,14 @@
 , openssh
 , xtb
 , enableAvx2 ? true
+
+# Provide path to a custom script for otool_external
+, withCustomOtoolExternal ? false
+, customOtoolExternal ? null
 }:
+
+
+assert withCustomOtoolExternal -> customOtoolExternal != null;
 
 stdenv.mkDerivation {
   pname = "orca";
@@ -30,6 +37,8 @@ stdenv.mkDerivation {
   buildInputs = [ openmpi stdenv.cc.cc.lib ];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin $out/lib $out/share/doc/orca
 
     cp autoci_* $out/bin
@@ -48,6 +57,9 @@ stdenv.mkDerivation {
     wrapProgram $out/bin/orca --prefix PATH : '${lib.getBin openmpi}/bin:${lib.getBin openssh}/bin'
 
     ln -s ${lib.getBin xtb}/bin/xtb $out/bin/otool_xtb
+    ${lib.optionalString withCustomOtoolExternal "ln -s ${customOtoolExternal} $out/bin/otool_external"}
+
+    runHook postInstall
   '';
 
   doInstallCheck = true;
