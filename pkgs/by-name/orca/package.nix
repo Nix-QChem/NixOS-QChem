@@ -7,7 +7,14 @@
 , openssh
 , xtb
 , enableAvx2 ? true
+
+# Provide path to a custom script for otool_external
+, withCustomOtoolExternal ? false
+, customOtoolExternal ? null
 }:
+
+
+assert withCustomOtoolExternal -> customOtoolExternal != null;
 
 stdenv.mkDerivation {
   pname = "orca";
@@ -15,12 +22,11 @@ stdenv.mkDerivation {
 
   src =
     if enableAvx2 then
-      requireFile
-        {
+      requireFile {
           name = "orca_6_0_0_linux_x86-64_avx2_shared_openmpi416.tar.xz";
           sha256 = "sha256-AsISlO/nsbch4my5D5juFa1oLQKAcgG30hff5nkFov0=";
           url = "https://orcaforum.kofo.mpg.de/app.php/portal";
-        } else
+      } else
       requireFile {
         name = "orca_6_0_0_linux_x86-64_shared_openmpi416.tar.xz";
         sha256 = "sha256-IZvR3rbWSmPLckcZJsuBZly7zewZ+clUl2G+Z9SaKcY=";
@@ -31,6 +37,8 @@ stdenv.mkDerivation {
   buildInputs = [ openmpi stdenv.cc.cc.lib ];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin $out/lib $out/share/doc/orca
 
     cp autoci_* $out/bin
@@ -49,6 +57,9 @@ stdenv.mkDerivation {
     wrapProgram $out/bin/orca --prefix PATH : '${lib.getBin openmpi}/bin:${lib.getBin openssh}/bin'
 
     ln -s ${lib.getBin xtb}/bin/xtb $out/bin/otool_xtb
+    ${lib.optionalString withCustomOtoolExternal "ln -s ${customOtoolExternal} $out/bin/otool_external"}
+
+    runHook postInstall
   '';
 
   doInstallCheck = true;
