@@ -15,12 +15,11 @@ stdenv.mkDerivation {
 
   src =
     if enableAvx2 then
-      requireFile
-        {
+      requireFile {
           name = "orca_6_0_0_linux_x86-64_avx2_shared_openmpi416.tar.xz";
           sha256 = "sha256-AsISlO/nsbch4my5D5juFa1oLQKAcgG30hff5nkFov0=";
           url = "https://orcaforum.kofo.mpg.de/app.php/portal";
-        } else
+      } else
       requireFile {
         name = "orca_6_0_0_linux_x86-64_shared_openmpi416.tar.xz";
         sha256 = "sha256-IZvR3rbWSmPLckcZJsuBZly7zewZ+clUl2G+Z9SaKcY=";
