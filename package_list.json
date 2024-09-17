@@ -241,9 +241,9 @@
   },
   {
     "attribute": "qchem.gamess-us",
-    "name": "gamess-us-2023R1P1",
+    "name": "gamess-us-2024R2P1",
     "pname": "gamess-us",
-    "version": "2023R1P1",
+    "version": "2024R2P1",
     "description": "GAMESS is a program for ab initio molecular quantum chemistry",
     "homepage": "https://www.msg.chem.iastate.edu/gamess/index.html"
   },
