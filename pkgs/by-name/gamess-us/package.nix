@@ -6,13 +6,13 @@
 let target = if enableMpi then "mpi" else "sockets";
 in stdenv.mkDerivation rec {
   pname = "gamess-us";
-  version = "2023R1P1";
+  version = "2024R2P1";
 
   # The website always provides "gamess-current.tar.gz". However, we expect the file to be renamed,
   # to a more reasonable name.
   src = requireFile rec {
     name = "${pname}-${version}.tar.gz";
-    sha256 = "sha256-K3z0rxf7Lqtb82Cb+CBDdyjNNth/RIV9ziW6+p6WIq0=";
+    sha256 = "sha256-mQUe3sPLh2aCLh93t7Qc+fLULOYeZnE+S1El9zV83qk=";
     url = "https://www.msg.chem.iastate.edu/gamess/download.html";
   };
 
@@ -25,6 +25,8 @@ in stdenv.mkDerivation rec {
     ./openblas.patch
     # Recognize gcc-12.4 as a valid compiler
     ./gcc-config.patch
+    # Use mpiexec in OpenMPI instead of orterun
+    ./openmpi.patch
   ];
 
   nativeBuildInputs = [
