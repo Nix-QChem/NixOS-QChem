@@ -1,0 +1,13 @@
+diff --git a/rungms b/rungms
+index 1eac5ee..21ced16 100755
+--- a/rungms
++++ b/rungms
+@@ -1104,7 +1104,7 @@ if ($TARGET == mpi) then
+ 
+    case orte:
+       set echo
+-      orterun -np $NPROCS --npernode $PPN2 \
++      mpiexec -np $NPROCS --npernode $PPN2 \
+               $GMSPATH/gamess.$VERNO.x < /dev/null
+       unset echo
+       breaksw
