@@ -132,6 +132,10 @@ let
 
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
+        dice = callPackage ./pkgs/by-name/dice/package.nix {
+          boost = self.boost-mpi;
+        };
+
         dirac = callPackage ./pkgs/by-name/dirac/package.nix {
           inherit (self) exatensor;
         };
