@@ -18,6 +18,10 @@ let
     avogadro2 = recallPackage avogadro2 {};
     arpack = recallPackage arpack {};
     arpack-mpi = recallPackage arpack { useMpi = true; };
+    boost-mpi = recallPackage boost {
+      useMpi = true;
+      inherit (self) mpi;
+    };
     cp2k = recallPackage cp2k {};
     fftw = recallPackage fftw {};
     dkh = recallPackage dkh {};

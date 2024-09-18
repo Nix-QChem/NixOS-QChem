@@ -132,6 +132,10 @@ let
 
         dftbplus = super.python3.pkgs.toPythonApplication self.python3.pkgs.dftbplus;
 
+        dice = callPackage ./pkgs/by-name/dice/package.nix {
+          boost = self.boost-mpi;
+        };
+
         dirac = callPackage ./pkgs/by-name/dirac/package.nix {
           inherit (self) exatensor;
         };
@@ -144,6 +148,8 @@ let
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
+        # Molcas with optimisation and LibWFA support. Note, that this disables
+        # EXPBAS support, however.
         molcas = let
           molcasOpt = prev.openmolcas.override {
             stdenv = aggressiveStdenv;
@@ -161,6 +167,16 @@ let
             cp -r ${self.libwfa.src} External/libwfa
             chmod -R u+w External/
           '';
+        });
+
+        # Molcas with DICE enabled but QCMaquis disabled
+        molcasDice = self.molcas.overrideAttrs (oldAttrs: {
+          propagatedUserEnvPkgs = [ self.dice ];
+          cmakeFlags = oldAttrs.cmakeFlags ++ [
+            "-DDMRG=OFF"
+            "-DNEVPT2=OFF"
+            "-DDICE=ON"
+          ];
         });
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
