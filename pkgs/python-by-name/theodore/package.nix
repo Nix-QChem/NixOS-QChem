@@ -1,5 +1,5 @@
 { lib, fetchFromGitHub, buildPythonPackage, isPy311
-, pytest-runner
+, setuptools
 , pytest
 , pycolt
 , cclib
@@ -26,12 +26,16 @@ buildPythonPackage rec {
     ./setuppy.patch
   ];
 
+  postPatch = ''
+    substituteInPlace setup.py --replace "'pytest-runner', " ""
+  '';
+
   checkInputs = [
     pytest
-    pytest-runner
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
+    setuptools
     pycolt
     cclib
     numpy
@@ -45,7 +49,7 @@ buildPythonPackage rec {
 
   meta = with lib; {
     description = "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs";
-    homepage = "http://orbkit.github.io/";
+    homepage = "https://github.com/felixplasser/theodore-qc";
     license = licenses.lgpl3Only;
     maintainers = [ maintainers.markuskowa ];
     broken = isPy311; # theodore is not broken, but pycolt is.
