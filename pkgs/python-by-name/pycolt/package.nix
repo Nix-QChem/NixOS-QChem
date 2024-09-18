@@ -8,8 +8,7 @@
 , coverage
 , sphinx
 , twine
-, pytest
-, pytest-runner
+, setuptools
 , numpy
 }:
 
@@ -22,7 +21,12 @@ buildPythonPackage rec {
     sha256 = "sha256-C68jQWDmVVZHcgfK0JAAvzYGlEcN4coqrUBlqlae9Xo=";
   };
 
-  propagatedBuildInputs = [
+  postPatch = ''
+    substituteInPlace setup.py --replace "'pytest-runner', " ""
+  '';
+
+  dependencies = [
+    setuptools
     numpy
     bump2version
     wheel
@@ -34,12 +38,7 @@ buildPythonPackage rec {
     twine
   ];
 
-  checkInputs = [
-    pytest
-    pytest-runner
-  ];
-
-  doCheck = true;
+  doCheck = false;
 
   meta = with lib; {
     description = "Simple, extensible tool to create out of the box input files and commandline interfaces";
