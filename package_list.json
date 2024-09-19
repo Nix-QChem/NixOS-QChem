@@ -80,6 +80,14 @@
     "homepage": "https://nubakery.org"
   },
   {
+    "attribute": "qchem.boost-mpi",
+    "name": "boost-1.81.0",
+    "pname": "boost",
+    "version": "1.81.0",
+    "description": "Collection of C++ libraries",
+    "homepage": "http://boost.org/"
+  },
+  {
     "attribute": "qchem.cefine",
     "name": "cefine-2.24",
     "pname": "cefine",
@@ -158,6 +166,14 @@
     "version": "3.6.0",
     "description": "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
     "homepage": "https://github.com/grimme-lab/dftd4"
+  },
+  {
+    "attribute": "qchem.dice",
+    "name": "dice-2024-07-02",
+    "pname": "dice",
+    "version": "2024-07-02",
+    "description": "Heatbath configuration interaction program",
+    "homepage": "https://github.com/sanshar/Dice"
   },
   {
     "attribute": "qchem.dirac",
@@ -537,6 +553,14 @@
   },
   {
     "attribute": "qchem.molcas",
+    "name": "openmolcas-24.06",
+    "pname": "openmolcas",
+    "version": "24.06",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
+    "attribute": "qchem.molcasDice",
     "name": "openmolcas-24.06",
     "pname": "openmolcas",
     "version": "24.06",
@@ -941,7 +965,7 @@
     "pname": "theodore",
     "version": "3.1.1",
     "description": "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs",
-    "homepage": "http://orbkit.github.io/"
+    "homepage": "https://github.com/felixplasser/theodore-qc"
   },
   {
     "attribute": "qchem.tinker",

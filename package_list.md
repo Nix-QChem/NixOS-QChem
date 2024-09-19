@@ -10,6 +10,7 @@
 | avogadro2-1.99.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2-2024-04-19 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2-2024-04-19 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
+| boost-1.81.0 | qchem.boost-mpi | Collection of C++ libraries |
 | cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
@@ -20,6 +21,7 @@
 | dftbplus-unstable-2024-08-23 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
 | dftd4-3.6.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
+| dice-2024-07-02 | qchem.dice | Heatbath configuration interaction program |
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
@@ -68,6 +70,7 @@
 | meep-1.29.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | openmolcas-24.06 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-24.06 | qchem.molcasDice | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-22.1.1 | qchem.mopac | Semiempirical quantum chemistry |
