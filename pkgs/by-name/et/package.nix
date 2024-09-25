@@ -25,13 +25,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "et";
-  version = "20240527";
+  version = "20240909";
 
   src = fetchFromGitLab {
     owner = "eT-program";
     repo = "eT";
-    rev = "52091eb1dab8b29b373aba47f76326188272eae5";
-    hash = "sha256-z9K/O9nvkKWvxJgrvb70jbfspnMSoZo9Sr0Utf93oVQ=";
+    rev = "3b8c3b40b62ec69fa79a57f4f89c856af59456c8";
+    hash = "sha256-2xgT/wShSES5jDw9eSfGXG+9owpriSMEHv4rL/2PD9g=";
   };
 
   patches = [ ./argparse.patch ];
