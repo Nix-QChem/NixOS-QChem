@@ -146,6 +146,8 @@ let
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
 
+        gau2grid = super.python3.pkgs.toPythonApplication self.python3.pkgs.gau2grid;
+
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         # Molcas with optimisation and LibWFA support. Note, that this disables
