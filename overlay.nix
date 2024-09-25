@@ -140,6 +140,10 @@ let
           inherit (self) exatensor;
         };
 
+        exchcxx = callPackage ./pkgs/by-name/exchcxx/package.nix {
+          inherit cfg;
+        };
+
         gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {
           gfortran = final.gfortran12;
         };
