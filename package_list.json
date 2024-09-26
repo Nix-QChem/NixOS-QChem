@@ -201,9 +201,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-20240527",
+    "name": "et-20240909",
     "pname": "et",
-    "version": "20240527",
+    "version": "20240909",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
@@ -921,9 +921,9 @@
   },
   {
     "attribute": "qchem.simple-dftd3",
-    "name": "simple-dftd3-1.1.0",
+    "name": "simple-dftd3-1.1.1",
     "pname": "simple-dftd3",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Reimplementation of the DFT-D3 program",
     "homepage": "https://github.com/dftd3/simple-dftd3"
   },

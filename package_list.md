@@ -25,7 +25,7 @@
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| et-20240527 | qchem.et | Electronic structure program for coupled cluster |
+| et-20240909 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exciting-fluorine.0.0 | qchem.exciting | Full-potential all-electron density-functional-theory package |
 | fftw-double-3.3.10 | qchem.fftw | Fastest Fourier Transform in the West library |
@@ -115,7 +115,7 @@
 | sharc-3.0.1 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
 | siesta-4.1.5 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
-| simple-dftd3-1.1.0 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
+| simple-dftd3-1.1.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | spglib-2.5.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
