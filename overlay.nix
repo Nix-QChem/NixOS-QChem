@@ -205,6 +205,8 @@ let
           protobuf = final.protobuf3_21;
         };
 
+        qmcpack = super.python3.pkgs.toPythonApplication self.python3.pkgs.qmcpack;
+
         sharc-unwrapped = callPackage ./pkgs/apps/sharc/unwrapped.nix {
           hdf4 = super.hdf4.override {
             fortranSupport = true;
