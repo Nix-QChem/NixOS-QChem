@@ -32,6 +32,10 @@ let
       };
     };
 
+    qmcpack = callPackage ./pkgs/python-by-name/qmcpack/package.nix {
+      inherit (finalPkgs.pkgs) libxml2;
+    };
+
     vmd-python = callPackage ./pkgs/python-by-name/vmd-python/package.nix {
       inherit cfg;
       inherit (finalPkgs.pkgs) mesa;
