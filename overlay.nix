@@ -152,6 +152,10 @@ let
 
         gau2grid = super.python3.pkgs.toPythonApplication self.python3.pkgs.gau2grid;
 
+        gauxc = callPackage ./pkgs/by-name/gauxc/package.nix {
+          inherit cfg;
+        };
+
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         # Molcas with optimisation and LibWFA support. Note, that this disables
