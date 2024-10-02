@@ -1,0 +1,44 @@
+diff --git a/cmake/gauxc-linalg-modules.cmake b/cmake/gauxc-linalg-modules.cmake
+index 69a69a7..8640328 100644
+--- a/cmake/gauxc-linalg-modules.cmake
++++ b/cmake/gauxc-linalg-modules.cmake
+@@ -1,11 +1,18 @@
+ include( FetchContent )
+ include( gauxc-dep-versions )
+-FetchContent_Declare( linalg-cmake-modules 
+-  GIT_REPOSITORY ${GAUXC_LINALG_MODULES_REPOSITORY} 
+-  GIT_TAG        ${GAUXC_LINALG_MODULES_REVISION} 
+-)
+-FetchContent_GetProperties( linalg-cmake-modules )
+-if( NOT linalg-cmake-modules_POPULATED )
+-  FetchContent_Populate( linalg-cmake-modules )
+-  list( PREPEND CMAKE_MODULE_PATH ${linalg-cmake-modules_SOURCE_DIR} )
+-endif()
++
++set(LINALG_CMAKE_MODULES_DIR @LINALG_CMAKE_MODULES_DIR@)
++
++if(EXISTS ${LINALG_CMAKE_MODULES_DIR})
++  list(PREPEND CMAKE_MODULE_PATH ${LINALG_CMAKE_MODULES_DIR})
++else()
++  FetchContent_Declare( linalg-cmake-modules 
++    GIT_REPOSITORY ${GAUXC_LINALG_MODULES_REPOSITORY} 
++    GIT_TAG        ${GAUXC_LINALG_MODULES_REVISION} 
++  )
++  FetchContent_GetProperties( linalg-cmake-modules )
++  if( NOT linalg-cmake-modules_POPULATED )
++    FetchContent_Populate( linalg-cmake-modules )
++    list( PREPEND CMAKE_MODULE_PATH ${linalg-cmake-modules_SOURCE_DIR} )
++  endif()
++endif()
+\ No newline at end of file
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 7e51e9f..c733ec9 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -222,5 +222,5 @@ install( FILES
+ )
+ 
+ # Install Custom Find Modules
+-include( ${linalg-cmake-modules_SOURCE_DIR}/LinAlgModulesMacros.cmake )
++include( @LINALG_CMAKE_MODULES_DIR@/LinAlgModulesMacros.cmake )
+ install_linalg_modules( INSTALL_CONFIGDIR )
