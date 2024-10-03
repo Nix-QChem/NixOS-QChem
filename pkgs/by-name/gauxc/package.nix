@@ -96,12 +96,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    blas
-    gau2grid
-    integratorxx
-    exchcxx
     hdf5-mpi
-    highfive-mpi
   ] ++ lib.optionals enableCuda (with cudaPackages; [
     libcublas
     cuda_nvcc
@@ -115,6 +110,11 @@ stdenv.mkDerivation rec {
   ];
 
   propagatedBuildInputs = [
+    highfive-mpi
+    gau2grid
+    integratorxx
+    exchcxx
+    blas
     mpi
   ];
 
