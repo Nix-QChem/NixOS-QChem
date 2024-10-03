@@ -1,4 +1,6 @@
-{ config ? null, stable ? true } :
+{ config ? null, stable ? true
+, nixpkgs ? <nixpkgs>
+} :
 
 
 let
@@ -19,7 +21,7 @@ let
   };
 
   pkgs = if stable then
-    (import <nixpkgs>) input
+    (import nixpkgs) input
   else
     (import (fetchGit { url="https://github.com/NixOS/nixpkgs"; })) input;
 
