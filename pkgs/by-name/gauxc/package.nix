@@ -79,6 +79,10 @@ stdenv.mkDerivation rec {
     # Forces the MPI tests to strictly run after the serial tests. Otherwise,
     # both will occasionally try to write to the same file at the same time.
     ./TestSerial.patch
+
+    # Upstreams config-cmake has a syntax error, so that GauXC cannot be found
+    # as dependency by other projects. This patch fixes the syntax error.
+    ./CmakeConfig.patch
   ];
 
   postPatch = ''
