@@ -7,6 +7,8 @@
     extra-substituters = [ "https://nix-qchem.cachix.org" ];
 
     allow-import-from-derivation = "true";
+
+    sandbox = "relaxed";
   };
 
   outputs = { self, nixpkgs, ... }:

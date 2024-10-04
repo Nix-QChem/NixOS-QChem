@@ -137,7 +137,7 @@ stdenv.mkDerivation rec {
 
 
   # Checks with accelerators don't work in the sandbox
-  doCheck = !enableCuda && !enableHip;
+  doCheck = true; # !enableCuda && !enableHip;
 
   nativeCheckInputs = [ mpiCheckPhaseHook ];
 
@@ -146,6 +146,8 @@ stdenv.mkDerivation rec {
     catch2
     cereal
   ];
+
+  __noChroot = true;
 
   meta = with lib; {
     description = "Evaluation of quantities related to the exchange-correlation energy (e.g. potential, etc) in the Gaussian basis set discretization of Kohn-Sham density function theory";
