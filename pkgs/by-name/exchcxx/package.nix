@@ -7,6 +7,7 @@
 , cfg
 , enableCuda ? cfg.useCuda
 , cudaPackages
+, autoAddDriverRunpath
 , enableHip ? false
 , rocmPackages
 }:
@@ -41,6 +42,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     cmake
+    autoAddDriverRunpath
   ];
 
   buildInputs = lib.optionals enableCuda
