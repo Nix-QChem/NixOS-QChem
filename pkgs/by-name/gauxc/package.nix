@@ -16,6 +16,7 @@
 , mpiCheckPhaseHook
 , pkg-config
 , cfg
+, autoAddDriverRunpath
 , enableCuda ? cfg.useCuda
   # CUDA compute capability. 60 is the minimum required by GauXC. Set according to GPU.
 , cudaArchitecture ? "60"
@@ -93,7 +94,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     pkg-config
-  ];
+  ] ++ lib.optional (enableCuda || enableHip) autoAddDriverRunpath;
 
   buildInputs = [
     hdf5-mpi
