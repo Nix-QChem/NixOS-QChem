@@ -21,6 +21,7 @@
 , cudaArchitecture ? "60"
 , cudaPackages
 , magma-cuda
+, autoAddDriverRunpath
 , enableHip ? false
 , rocmPackages
 , magma-hip
@@ -93,6 +94,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     pkg-config
+    autoAddDriverRunpath
   ];
 
   buildInputs = [
