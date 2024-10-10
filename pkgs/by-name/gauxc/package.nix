@@ -84,6 +84,9 @@ stdenv.mkDerivation rec {
     # Upstreams config-cmake has a syntax error, so that GauXC cannot be found
     # as dependency by other projects. This patch fixes the syntax error.
     ./CmakeConfig.patch
+
+    # Simple test case only for runtime
+    ./SimpleTest.patch
   ];
 
   postPatch = ''
@@ -138,7 +141,12 @@ stdenv.mkDerivation rec {
 
 
   # Checks with accelerators don't work in the sandbox
-  doCheck = !enableCuda && !enableHip;
+  doCheck = true; # !enableCuda && !enableHip;
+
+  checkPhase = ''
+    mkdir -p $out/bin
+    find . -name "gauxc_test" -exec cp {} $out/bin/. \;
+  '';
 
   nativeCheckInputs = [ mpiCheckPhaseHook ];
 

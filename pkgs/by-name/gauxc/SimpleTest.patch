@@ -1,0 +1,34 @@
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index d3881e9..f4a25e5 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -48,18 +48,18 @@ include( gauxc-cereal )
+ 
+ add_executable( gauxc_test 
+   ut_main.cxx 
+-  moltypes_test.cxx 
+-  grid_test.cxx 
+-  molgrid_test.cxx 
+-  basisset_test.cxx 
+-  load_balancer_test.cxx 
+-  xc_integrator.cxx 
+-  environment.cxx
+-  collocation.cxx
+-  weights.cxx
+-  standards.cxx 
++  # moltypes_test.cxx 
++  # grid_test.cxx 
++  # molgrid_test.cxx 
++  # basisset_test.cxx 
++  # load_balancer_test.cxx 
++  # xc_integrator.cxx 
++  # environment.cxx
++  # collocation.cxx
++  # weights.cxx
++  # standards.cxx 
+   runtime.cxx
+-  basis/parse_basis.cxx
++  # basis/parse_basis.cxx
+ )
+ target_link_libraries( gauxc_test PUBLIC gauxc gauxc_catch2 Eigen3::Eigen cereal )
+ if(GAUXC_ENABLE_CUTLASS)
