@@ -1,5 +1,5 @@
 diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
-index d3881e9..f4a25e5 100644
+index d3881e9..94aceca 100644
 --- a/tests/CMakeLists.txt
 +++ b/tests/CMakeLists.txt
 @@ -48,18 +48,18 @@ include( gauxc-cereal )
@@ -7,8 +7,9 @@ index d3881e9..f4a25e5 100644
  add_executable( gauxc_test 
    ut_main.cxx 
 -  moltypes_test.cxx 
--  grid_test.cxx 
--  molgrid_test.cxx 
++  # moltypes_test.cxx 
+   grid_test.cxx 
+   molgrid_test.cxx 
 -  basisset_test.cxx 
 -  load_balancer_test.cxx 
 -  xc_integrator.cxx 
@@ -16,9 +17,6 @@ index d3881e9..f4a25e5 100644
 -  collocation.cxx
 -  weights.cxx
 -  standards.cxx 
-+  # moltypes_test.cxx 
-+  # grid_test.cxx 
-+  # molgrid_test.cxx 
 +  # basisset_test.cxx 
 +  # load_balancer_test.cxx 
 +  # xc_integrator.cxx 
