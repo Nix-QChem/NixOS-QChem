@@ -19,7 +19,7 @@
 , autoAddDriverRunpath
 , enableCuda ? cfg.useCuda
   # CUDA compute capability. 60 is the minimum required by GauXC. Set according to GPU.
-, cudaArchitecture ? "60"
+, cudaArchitecture ? "80"
 , cudaPackages
 , magma-cuda
 , enableHip ? false
