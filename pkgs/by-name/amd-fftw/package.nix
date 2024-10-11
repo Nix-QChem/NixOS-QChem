@@ -13,17 +13,15 @@
 , mpi
 }:
 
-with lib;
-
 stdenv.mkDerivation rec {
   pname = "amd-fftw";
-  version = "4.2";
+  version = "5.0";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "amd-fftw";
     rev = version;
-    sha256 = "sha256-Ye6DSQqio8X1Bgl3iGoPxSg1qQbqsUyTo7XddjhSNmk=";
+    hash = "sha256-I1GWguES90DDnElRyhIJfY3X+e+bnfREQ/7k9pRjHwI=";
   };
 
   patches = [
@@ -39,7 +37,7 @@ stdenv.mkDerivation rec {
   buildInputs = lib.optionals stdenv.cc.isClang [
     # TODO: This may mismatch the LLVM version sin the stdenv, see #79818.
     llvmPackages.openmp
-  ] ++ optional enableMpi mpi;
+  ] ++ lib.optional enableMpi mpi;
 
   AMD_ARCH = amdArch;
 
@@ -48,13 +46,13 @@ stdenv.mkDerivation rec {
       "--enable-threads"
       "--enable-amd-opt"
     ]
-    ++ optional (precision != "double") "--enable-${precision}"
+    ++ lib.optional (precision != "double") "--enable-${precision}"
     # all x86_64 have sse2
     # however, not all float sizes fit
-    ++ optional (stdenv.isx86_64 && (precision == "single" || precision == "double") )  "--enable-sse2"
-    ++ optional enableAvx "--enable-avx"
-    ++ optional enableAvx2 "--enable-avx2"
-    ++ optionals enableMpi [ "--enable-mpi" "--enable-amd-trans" "--enable-amd-mpifft" ]
+    ++ lib.optional (stdenv.isx86_64 && (precision == "single" || precision == "double") )  "--enable-sse2"
+    ++ lib.optional enableAvx "--enable-avx"
+    ++ lib.optional enableAvx2 "--enable-avx2"
+    ++ lib.optionals enableMpi [ "--enable-mpi" "--enable-amd-trans" "--enable-amd-mpifft" ]
     ++ [ "--enable-openmp" ];
 
   enableParallelBuilding = true;
