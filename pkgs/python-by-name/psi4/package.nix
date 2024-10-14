@@ -186,6 +186,8 @@ buildPythonPackage rec {
     hash = "sha256-eghnSzfbUAtYTW6wbE6KizuDujnH3Tze9zcOY7ATY60=";
   };
 
+  outputs = [ "out" "dev" ];
+
   preConfigure = ''
     substituteInPlace ./external/upstream/libint2/CMakeLists.txt \
       --replace "https://github.com/loriab/libint/archive/${libintName}.zip" "file://${libintSrc}" \
