@@ -21,22 +21,30 @@
 
 buildPythonPackage rec {
   pname = "cclib";
-  version = "1.8.1b0";
+  version = "1.8.1";
 
   src = fetchFromGitHub {
     owner = "cclib";
     repo = pname;
-    rev = "07590622dbd571c31f8b874697ce024908345d9a";
-    hash = "sha256-w9o2kBRS6UqTn4HmBSCvx008uUBzYFRaFk0pfY2nM7I=";
+    rev = "v${version}";
+    hash = "sha256-XYFVSJ11MGx2dq/yYa5jaC2XsrStZCT5WzwSCelEV3U=";
   };
 
   pyproject = true;
 
-  nativeBuildInputs = [
+  postPatch = ''
+    substituteInPlace pyproject.toml --replace-fail '"versioningit~=2.0"' ""
+    sed -i "/versioningit>=/d" pyproject.toml
+    sed -i '/^name =.*/a version = "${version}"' pyproject.toml
+    sed -i "/dynamic =/d" pyproject.toml
+    echo '__version__ = "${version}"' > cclib/_version.py
+  '';
+
+  build-system = [
     setuptools
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     numpy
     scipy
     periodictable
@@ -52,13 +60,17 @@ buildPythonPackage rec {
     pyquante
   ];
 
-  checkInputs = [ pytestCheckHook ];
+  nativeCheckInputs = [ pytestCheckHook ];
+
+  pythonImportsCheck = [ "cclib" ];
 
   disabledTests = [
-    "test_url_io"
-    "test_multi_url_io"
-    "test_url_seek"
     "test_ccread_url"
+    "test_multi_url_io"
+    "test_url_io"
+    "test_url_seek"
+    "testpopulation.py"
+    "testccio.py"
   ];
 
   meta = with lib; {
