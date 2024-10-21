@@ -6,7 +6,7 @@
 , openmpi
 , openssh
 , xtb
-, enableAvx2 ? true
+, enableAvx2 ? stdenv.hostPlatform.avx2Support
 
 # Provide path to a custom script for otool_external
 , withCustomOtoolExternal ? false
