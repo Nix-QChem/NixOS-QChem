@@ -5,6 +5,7 @@
 
   nixConfig = {
     extra-substituters = [ "https://nix-qchem.cachix.org" ];
+    extra-trusted-public-keys = [ "nix-qchem.cachix.org-1:ZjRh1PosWRj7qf3eukj4IxjhyXx6ZwJbXvvFk3o3Eos=" ];
 
     allow-import-from-derivation = "true";
   };
