@@ -1,5 +1,6 @@
 { stdenvNoCC, lib, bats, writeShellScript, writeTextFile
 , makeSetupHook
+, mpiCheckPhaseHook
 , overrideDontRun ? false
 } :
 
@@ -20,13 +21,6 @@
 , outFile ? []
 # Some commonly required variables
 , OMP_NUM_THREADS ? 1
-# Allow more CPUs than are available
-, OMPI_MCA_rmaps_base_oversubscribe ? 1
-# UCX fails in sandbox
-, OMPI_MCA_btl ? "self,vader"
-, OMPI_MCA_pml ? "ob1,v,cm"
-# Needed to run MPICH in a sandbox
-, HYDRA_IFACE ? "lo"
 # Place all inputs (packages here)
 , nativeBuildInputs ? []
 , ...
@@ -38,11 +32,6 @@ let
     "phases"
     "testScript"
     "nativeBuildInputs"
-    "OMP_NUM_THREADS"
-    "OMPI_MCA_rmaps_base_oversubscribe"
-    "OMPI_MCA_btl"
-    "OMPI_MCA_pml"
-    "HYDRA_IFACE"
   ];
 
   batsTest = writeTextFile {
@@ -83,29 +72,35 @@ in stdenvNoCC.mkDerivation ({
   inherit
     name
     auxFiles
-    HYDRA_IFACE
-    OMP_NUM_THREADS
-    OMPI_MCA_rmaps_base_oversubscribe;
-
+  ;
 
   phases = lib.optionals (!dontRun) [ "initPhase" "setupPhase" "runPhase" ]
     ++ [ "installPhase" ];
 
   nativeBuildInputs = nativeBuildInputs
-    ++ [ setupHook ] ++ lib.optional (!dontRun) bats;
+    ++ [ mpiCheckPhaseHook setupHook ] ++ lib.optional (!dontRun) bats;
 
   # Required for sandbox env
   initPhase = ''
+    runHook preInit
+
     mkdir -p tmp
     export TMPDIR=$PWD/tmp
 
     # provide a dummy home
     mkdir -p home
     export HOME=$PWD/home
+
+    runHook preCheckHooks
+
+    export OMP_NUM_THREADS=${toString OMP_NUM_THREADS}
+    runHook postInit
   '';
 
   # Ensure aux files are in current directory
   setupPhase = ''
+    runHook preInit
+
     echo "Copying aux files"
     for f in $auxFiles; do
       orgName=$(echo $f |  sed 's:${builtins.storeDir}/::;s/.\{32\}-//')
@@ -113,15 +108,20 @@ in stdenvNoCC.mkDerivation ({
       cp $f $orgName
     done
 
-    export OMPI_MCA_hwloc_base_binding_policy=none
-    export MV2_ENABLE_AFFINITY=0
+    runHook postInit
   '';
 
   runPhase = ''
+    runHook preRun
+
     bats ${batsTest} | tee report
+
+    runHook postRun
   '';
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out
 
     cp ${batsTest} $out/testScript.bats
@@ -144,6 +144,8 @@ in stdenvNoCC.mkDerivation ({
       echo "copy $orgName"
       cp $f $out/$orgName
     done
+
+    runHook postInstall
   '';
 
 
