@@ -1,0 +1,13 @@
+diff --git a/cmake/gauxc-config.cmake.in b/cmake/gauxc-config.cmake.in
+index 648192f..df7968f 100644
+--- a/cmake/gauxc-config.cmake.in
++++ b/cmake/gauxc-config.cmake.in
+@@ -63,7 +63,7 @@ if( GAUXC_HAS_HIP )
+   find_package( hipblas REQUIRED )
+ 
+   list(REMOVE_AT CMAKE_PREFIX_PATH 0 1 2)
+-endif
++endif()
+ 
+ if( GAUXC_HAS_MPI )
+   find_dependency( MPI )

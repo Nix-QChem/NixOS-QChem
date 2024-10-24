@@ -140,11 +140,21 @@ let
           inherit (self) exatensor;
         };
 
+        exchcxx = callPackage ./pkgs/by-name/exchcxx/package.nix {
+          inherit cfg;
+        };
+
         gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {
           gfortran = final.gfortran12;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
+
+        gau2grid = super.python3.pkgs.toPythonApplication self.python3.pkgs.gau2grid;
+
+        gauxc = callPackage ./pkgs/by-name/gauxc/package.nix {
+          inherit cfg;
+        };
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
