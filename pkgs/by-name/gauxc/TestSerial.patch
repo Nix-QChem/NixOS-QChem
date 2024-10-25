@@ -1,0 +1,10 @@
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index d3881e9..2a9b664 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -94,4 +94,5 @@ if( GAUXC_ENABLE_MPI )
+   add_test( NAME GAUXC_MPI_TEST
+             COMMAND ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} 2 ${MPIEXEC_PREFLAGS} $<TARGET_FILE:gauxc_test> ${MPIEXEC_POSTFLAGS}
+   )
++  set_tests_properties(GAUXC_SERIAL_TEST GAUXC_MPI_TEST PROPERTIES RUN_SERIAL TRUE)
+ endif()

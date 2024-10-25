@@ -1,0 +1,13 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index c733ec9..752bfcc 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -28,7 +28,7 @@ include( gauxc-integratorxx )
+ include( gauxc-exchcxx      )
+ 
+ 
+-add_library( gauxc STATIC 
++add_library( gauxc 
+   grid.cxx 
+   grid_impl.cxx 
+   grid_factory.cxx
