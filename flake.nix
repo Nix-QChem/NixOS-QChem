@@ -86,8 +86,8 @@
       };
 
       templates.default = {
-        path = ./template;
-        description = "NixOS-QChem template flake with reasonable defaults and editable configuration";
+        path = ./template/qc;
+        description = "Quantum Chemistry flake";
         welcomeText = ''
           Welcome to the NixOS-QChem template flake with optimised packages for computational chemistry!
 
@@ -95,8 +95,9 @@
 
           The flake aims for reasonable defaults but can be customised to your needs.
           Look for "EDITME" tokens in the flake.nix to find places where you can customise the flake,
-          e.g. by adding or removing unfree packages, changing CPU architecture specific optimisations,
-          or constructing a Python environment suiting your requirements.
+
+          Note, the "nix" and "calcs" subdirectories: to avoid flooding the Nix storen with large files,
+          run your calculations in the "calcs" directory and refer to the "flake" in the "nix" directory.
         '';
       };
     };
