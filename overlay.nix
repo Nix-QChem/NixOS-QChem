@@ -39,7 +39,6 @@ let
 
         inherit callPackage;
         inherit aggressiveStdenv;
-        inherit qlib;
 
         #
         # Upstream overrides

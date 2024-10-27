@@ -72,7 +72,7 @@
       # EDITME
       # Add packages to the default package as you wish
       packages."${system}" = (filterDrvs pkgs.qchem) // {
-        default = pkgs.qchem.qlib.buildEnvMpi pkgs.symlinkJoin {
+        default = pkgs.buildEnv {
           name = "quantum-chemistry";
           paths = [
             # put a list of packages here. e.g.:

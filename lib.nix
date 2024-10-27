@@ -23,10 +23,4 @@
   pkgs-by-name = callPackage: dir:
     lib.mapAttrs (pkg: _: callPackage (dir + "/${pkg}/package.nix") {})
     (lib.filterAttrs (_: type: type == "directory") (builtins.readDir dir));
-
-  buildEnvMpi = symlinkJoin: input:
-    symlinkJoin {
-      inherit (input) name;
-      paths = lib.flatten (map(x: if x ? passthru.mpi then [ x x.passthru.mpi ] else x) input.paths);
-    };
 }
