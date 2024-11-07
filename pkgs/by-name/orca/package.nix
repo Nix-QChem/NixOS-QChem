@@ -18,18 +18,18 @@ assert withCustomOtoolExternal -> customOtoolExternal != null;
 
 stdenv.mkDerivation {
   pname = "orca";
-  version = "6.0.0";
+  version = "6.0.1";
 
   src =
     if enableAvx2 then
       requireFile {
-          name = "orca_6_0_0_linux_x86-64_avx2_shared_openmpi416.tar.xz";
-          sha256 = "sha256-AsISlO/nsbch4my5D5juFa1oLQKAcgG30hff5nkFov0=";
+          name = "orca_6_0_1_linux_x86-64_shared_openmpi416_avx2.tar.xz";
+          sha256 = "sha256-8x+YJWoMZye23f5QqjrGTEVUmYETjWcKV+kBFLS5ydI=";
           url = "https://orcaforum.kofo.mpg.de/app.php/portal";
       } else
       requireFile {
-        name = "orca_6_0_0_linux_x86-64_shared_openmpi416.tar.xz";
-        sha256 = "sha256-IZvR3rbWSmPLckcZJsuBZly7zewZ+clUl2G+Z9SaKcY=";
+        name = "orca_6_0_1_linux_x86-64_shared_openmpi416.tar.xz";
+        sha256 = "sha256-XptJWIN14M5bwydnEnzHJfVCWReAQELN7N/Vxrll72E=";
         url = "https://orcaforum.kofo.mpg.de/app.php/portal";
       };
 
@@ -56,6 +56,9 @@ stdenv.mkDerivation {
 
     wrapProgram $out/bin/orca --prefix PATH : '${lib.getBin openmpi}/bin:${lib.getBin openssh}/bin'
 
+    # ORCA >= 6.0.1 comes with its own xTB binary.
+    # We replace it with ours to get optimisation and patches
+    rm $out/bin/otool_xtb
     ln -s ${lib.getBin xtb}/bin/xtb $out/bin/otool_xtb
     ${lib.optionalString withCustomOtoolExternal "ln -s ${customOtoolExternal} $out/bin/otool_external"}
 
