@@ -77,7 +77,7 @@
 | openmolcas-24.10 | qchem.molcasDice | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
-| mopac-22.1.1 | qchem.mopac | Semiempirical quantum chemistry |
+| mopac-23.0.0 | qchem.mopac | Semiempirical quantum chemistry |
 | openmpi-5.0.5 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-2023.08.28 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrchem-1.1.4 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
@@ -89,7 +89,7 @@
 | octave-9.2.0 | qchem.octave | Scientific Programming Language |
 | octave-9.2.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-14.1 | qchem.octopus | Real-space time dependent density-functional theory code |
-| openmm-8.1.2 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmm-8.2.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-6.0.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
