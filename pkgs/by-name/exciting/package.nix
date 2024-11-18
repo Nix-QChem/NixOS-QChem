@@ -9,19 +9,20 @@
 , lapack
 , mpi
 , arpack
+, scalapack
 , enableSgroup ? false
 , sgroup
 }:
 
 stdenv.mkDerivation rec {
   pname = "exciting";
-  version = "fluorine.0.0";
+  version = "neon.0.1";
 
   src = fetchFromGitHub {
     owner = "exciting";
     repo = "exciting";
     rev = version;
-    sha256 = "sha256-C0DcbD795pG9zpWYwrVd28EuM4fYMSKpTDzNQG6RV0E=";
+    hash = "sha256-BGJdMz/5cfrr0O4DZTx1NonJTalHqlbubMDw6Ot8QGQ=";
   };
 
   postPatch = ''
@@ -48,12 +49,8 @@ stdenv.mkDerivation rec {
 
     # SMP and MPI compilers, flags and preprocessing variables
     MPIF90 = mpif90
-    MPIF90_OPTS = -DMPI -fallow-invalid-boz
-    MPI_LIBS =
-
-    # To use Scalapack, include the preprocessing variable, provide the library path and library name
-    #MPIF90_OPTS = -DMPI -DSCAL
-    #MPI_LIBS = -L/opt/local/lib/ -lscalapack
+    MPIF90_OPTS = -DMPI -DSCAL -fallow-invalid-boz
+    MPI_LIBS = -lscalapack
 
     SMPF90_OPTS = -fopenmp -DUSEOMP
     SMPF77_OPTS = \$(SMPF90_OPTS)
@@ -72,6 +69,7 @@ stdenv.mkDerivation rec {
     blas
     lapack
     arpack
+    scalapack
   ];
 
   propagatedBuildInputs = [ mpi ];
