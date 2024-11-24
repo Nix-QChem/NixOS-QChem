@@ -225,8 +225,8 @@
   },
   {
     "attribute": "qchem.exciting",
-    "name": "exciting-fluorine.0.0",
-    "pname": "exciting-fluorine.0.0",
+    "name": "exciting-neon.0.1",
+    "pname": "exciting-neon.0.1",
     "version": "",
     "description": "Full-potential all-electron density-functional-theory package",
     "homepage": "https://exciting-code.org"
@@ -625,9 +625,9 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-5.0.5",
+    "name": "openmpi-5.0.6",
     "pname": "openmpi",
-    "version": "5.0.5",
+    "version": "5.0.6",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
