@@ -28,7 +28,7 @@
 | et-20240909 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | ExchCXX-unstable-2024-07-28 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
-| exciting-fluorine.0.0 | qchem.exciting | Full-potential all-electron density-functional-theory package |
+| exciting-neon.0.1 | qchem.exciting | Full-potential all-electron density-functional-theory package |
 | fftw-double-3.3.10 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.10 | qchem.fftw-mpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.10 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
@@ -78,7 +78,7 @@
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.0.0 | qchem.mopac | Semiempirical quantum chemistry |
-| openmpi-5.0.5 | qchem.mpi | Open source MPI-3 implementation |
+| openmpi-5.0.6 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-2023.08.28 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrchem-1.1.4 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
