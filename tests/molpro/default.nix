@@ -11,7 +11,7 @@ batsTest {
   testScript = ''
     @test "Run-Molpro" {
       ${molpro}/bin/molpro --launcher \
-        "${molpro}/bin/mpiexec.hydra -iface lo
+        "${molpro}/bin/mpiexec -iface lo
         -np $TEST_NUM_CPUS ${molpro}/bin/molpro.exe" \
         molpro.inp
     }
@@ -31,12 +31,12 @@ batsTest {
     }
 
     @test "CASPT2 Energy" {
-      grep '!RSPT2 STATE 1.1 Energy' molpro.out | tail -1 | grep '\-114.3045096'
+      grep '!RSPT2 STATE 1.1 Energy' molpro.out | tail -1 | grep '\-114.304518'
     }
 
     @test "MRCI Energy" {
-      grep '!MRCI STATE 1.1 Energy' molpro.out | grep '\-114.2818399'
-      grep '!MRCI STATE 2.1 Energy' molpro.out | grep '\-114.0268108'
+      grep '!MRCI STATE 1.1 Energy' molpro.out | grep '\-114.281846'
+      grep '!MRCI STATE 2.1 Energy' molpro.out | grep '\-114.026817'
     }
   '';
 }

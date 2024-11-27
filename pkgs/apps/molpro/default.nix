@@ -1,4 +1,4 @@
-{ lib, stdenv, requireFile, fetchurl, patchelf, python3
+{ lib, stdenv, requireFile, patchelf, python3
 , token
 , comm ? "sockets"
 } :
@@ -7,7 +7,7 @@ assert token != null;
 assert (comm == "sockets") || (comm == "mpipr");
 
 let
-  version = "2021.2.1";
+  version = "2024.3.0";
   url = "http://www.molpro.net";
 
 in stdenv.mkDerivation {
@@ -17,11 +17,11 @@ in stdenv.mkDerivation {
   src = requireFile (if comm == "sockets" then {
     inherit url;
     name = "molpro-mpp-${version}.linux_x86_64_sockets.sh.gz";
-    sha256 = "05ngn0inffng12i3nn820f4cz9g28lz71mi8v5jzvwxbqim0dhds";
+    sha256 = "sha256-3yhUfo/2xYqO8Y22KKpja1kO2JpuV7/lsOBFamOxNUQ=";
   } else {
     inherit url;
     name = "molpro-mpp-${version}.linux_x86_64_mpipr.sh.gz";
-    sha256 = "1hragygrqr3zwimc7c1vv2nkpzgrnjx32xrlsn21r1xgxcp66zni";
+    sha256 = "sha256-mhBhz6SIbbtZ1LcL+sEo33htkVOHYjamPh5db8xPzEs=";
   });
 
   nativeBuildInputs = [ patchelf ];
@@ -48,9 +48,14 @@ in stdenv.mkDerivation {
   postFixup = ''
     #
     # Since version 2019.1 the binaris are dynamically linked
-    for bin in hydra_pmi_proxy molpro.exe mpiexec.hydra; do
+    for bin in ${lib.optionalString (comm == "sockets") "hydra_pmi_proxy mpiexec"} molpro.exe; do
       patchelf \
         --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/$bin
+    done ''
+    + lib.optionalString (comm == "mpipr") ''
+    for bin in hydra_pmi_proxy mpiexec mpiexec.hydra hydra_bstrap_proxy; do
+      patchelf \
+        --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/impi/bin/$bin
     done
   '';
 
@@ -77,8 +82,14 @@ in stdenv.mkDerivation {
      # pretend this is a writable home dir
      export HOME=$PWD
      # need to specify interface or: "MPID_nem_tcp_init(373) gethostbyname failed"
-     $out/bin/molpro --launcher \
-       "$out/bin/mpiexec.hydra -iface lo $out/bin/molpro.exe" $inp.inp
+     ${lib.optionalString (comm == "sockets") ''
+       $out/bin/molpro --launcher \
+          "$out/bin/mpiexec -iface lo $out/bin/molpro.exe" $inp.inp
+     ''}
+     ${lib.optionalString (comm == "mpipr") ''
+      $out/bin/molpro --launcher \
+        $out/bin/molpro.exe $inp.inp
+     ''}
 
      echo "Check for successful run:"
      grep "RHF STATE 1.1 Energy" $inp.out
