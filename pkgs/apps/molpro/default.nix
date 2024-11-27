@@ -51,8 +51,8 @@ in stdenv.mkDerivation {
     for bin in ${lib.optionalString (comm == "sockets") "hydra_pmi_proxy mpiexec"} molpro.exe; do
       patchelf \
         --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/bin/$bin
-    done ''
-    + lib.optionalString (comm == "mpipr") ''
+    done
+    '' + lib.optionalString (comm == "mpipr") ''
     for bin in hydra_pmi_proxy mpiexec mpiexec.hydra hydra_bstrap_proxy; do
       patchelf \
         --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/impi/bin/$bin
@@ -62,39 +62,39 @@ in stdenv.mkDerivation {
   doInstallCheck = true;
 
   installCheckPhase = ''
-     #
-     # Minimal check if installation runs properly
-     #
-     inp=water
+    #
+    # Minimal check if installation runs properly
+    #
+    inp=water
 
-     cat << EOF > $inp.inp
-     basis=STO-3G
-     geom = {
-     3
-     Angstrom
-     O       0.000000  0.000000  0.000000
-     H       0.758602  0.000000  0.504284
-     H       0.758602  0.000000 -0.504284
-     }
-     HF
-     EOF
+    cat << EOF > $inp.inp
+    basis=STO-3G
+    geom = {
+    3
+    Angstrom
+    O       0.000000  0.000000  0.000000
+    H       0.758602  0.000000  0.504284
+    H       0.758602  0.000000 -0.504284
+    }
+    HF
+    EOF
 
-     # pretend this is a writable home dir
-     export HOME=$PWD
-     # need to specify interface or: "MPID_nem_tcp_init(373) gethostbyname failed"
-     ${lib.optionalString (comm == "sockets") ''
-       $out/bin/molpro --launcher \
-          "$out/bin/mpiexec -iface lo $out/bin/molpro.exe" $inp.inp
-     ''}
-     ${lib.optionalString (comm == "mpipr") ''
+    # pretend this is a writable home dir
+    export HOME=$PWD
+    # need to specify interface or: "MPID_nem_tcp_init(373) gethostbyname failed"
+    ${lib.optionalString (comm == "sockets") ''
+      $out/bin/molpro --launcher \
+        "$out/bin/mpiexec -iface lo $out/bin/molpro.exe" $inp.inp
+    ''}
+    ${lib.optionalString (comm == "mpipr") ''
       $out/bin/molpro --launcher \
         $out/bin/molpro.exe $inp.inp
-     ''}
+    ''}
 
-     echo "Check for successful run:"
-     grep "RHF STATE 1.1 Energy" $inp.out
-     echo "Check for correct energy:"
-     grep "RHF STATE 1.1 Energy" $inp.out | grep 74.880174
+    echo "Check for successful run:"
+    grep "RHF STATE 1.1 Energy" $inp.out
+    echo "Check for correct energy:"
+    grep "RHF STATE 1.1 Energy" $inp.out | grep 74.880174
   '';
 
   meta = with lib; {
