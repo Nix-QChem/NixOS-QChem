@@ -937,9 +937,9 @@
   },
   {
     "attribute": "qchem.simple-dftd3",
-    "name": "simple-dftd3-1.2.0",
+    "name": "simple-dftd3-1.2.1",
     "pname": "simple-dftd3",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Reimplementation of the DFT-D3 program",
     "homepage": "https://github.com/dftd3/simple-dftd3"
   },
