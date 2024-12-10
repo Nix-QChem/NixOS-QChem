@@ -117,7 +117,7 @@
 | sharc-3.0.1 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
 | siesta-4.1.5 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
-| simple-dftd3-1.2.0 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
+| simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | spglib-2.5.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
