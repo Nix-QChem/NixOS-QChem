@@ -617,9 +617,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.0.2",
+    "name": "mopac-23.0.3",
     "pname": "mopac",
-    "version": "23.0.2",
+    "version": "23.0.3",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
