@@ -1,6 +1,6 @@
 { lib
 , stdenv
-, buildFHSUserEnv
+, buildFHSEnv
 , symlinkJoin
 , optpath
 , version ? "16c02"
@@ -9,7 +9,7 @@
 }:
 
 let
-  buildEnv = exe: buildFHSUserEnv {
+  buildEnv = exe: buildFHSEnv {
     name = exe;
 
     targetPkgs = pkgs: with pkgs; [ tcsh ];

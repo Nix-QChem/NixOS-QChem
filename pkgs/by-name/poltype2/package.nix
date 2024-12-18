@@ -1,6 +1,6 @@
 { lib
 , fetchFromGitHub
-, buildFHSUserEnv
+, buildFHSEnv
 , gdma
 , tinker
 , autodock-vina
@@ -20,7 +20,7 @@ let
   };
 
 in
-buildFHSUserEnv {
+buildFHSEnv {
   name = "poltype";
 
   targetPkgs = pkgs: (with pkgs; [

@@ -1,4 +1,4 @@
-{ stdenv, writeShellScriptBin, buildFHSUserEnv
+{ stdenv, writeShellScriptBin, buildFHSEnv
 , slurmLicenseWrapper
 , optpath ? null
 , slurmLic ? null
@@ -20,7 +20,7 @@ let
       };
 
 
-in buildFHSUserEnv {
+in buildFHSEnv {
   name="matlab";
 
   targetPkgs = pkgs: (with pkgs;
