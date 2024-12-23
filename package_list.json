@@ -161,9 +161,9 @@
   },
   {
     "attribute": "qchem.dftd4",
-    "name": "dftd4-3.6.0",
+    "name": "dftd4-3.7.0",
     "pname": "dftd4",
-    "version": "3.6.0",
+    "version": "3.7.0",
     "description": "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
     "homepage": "https://github.com/grimme-lab/dftd4"
   },
