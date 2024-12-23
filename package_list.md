@@ -20,7 +20,7 @@
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dftbplus-unstable-2024-08-23 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
-| dftd4-3.6.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
+| dftd4-3.7.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
 | dice-2024-07-02 | qchem.dice | Heatbath configuration interaction program |
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
