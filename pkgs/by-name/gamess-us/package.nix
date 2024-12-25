@@ -73,6 +73,9 @@ in stdenv.mkDerivation rec {
       substituteInPlace lked --replace "libopenblas.a" "libopenblas.so"
     '';
 
+  # Needed to build with gcc-14
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=int-conversion";
+
   # The interactive config script of gamess. Pretty standard build with MPI parallelism, but
   # without additional interfaces (such as libxc, qcengine, tinker, ...)
   configurePhase =
