@@ -1,5 +1,5 @@
-{ stdenv, lib, makeWrapper, fetchFromGitLab, requireFile, mpiCheckPhaseHook, gfortran, writeTextFile, cmake, perl
-, tcsh, mpi, openblas, hostname, openssh, gnused, libxc, ncurses
+{ stdenv, lib, makeWrapper, fetchFromGitLab, requireFile, mpiCheckPhaseHook, gfortran, cmake, perl
+, tcsh, mpi, openblas, hostname, openssh, gnused, ncurses
 , enableMpi ? true
 }:
 
@@ -10,7 +10,7 @@ in stdenv.mkDerivation rec {
 
   # The website always provides "gamess-current.tar.gz". However, we expect the file to be renamed,
   # to a more reasonable name.
-  src = requireFile rec {
+  src = requireFile {
     name = "${pname}-${version}.tar.gz";
     sha256 = "sha256-mQUe3sPLh2aCLh93t7Qc+fLULOYeZnE+S1El9zV83qk=";
     url = "https://www.msg.chem.iastate.edu/gamess/download.html";
