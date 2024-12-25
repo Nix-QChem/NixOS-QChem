@@ -40,6 +40,7 @@ let
     libint = recallPackage libint {};
     libmbd = recallPackage libmbd {};
     libvori = recallPackage libvori {};
+    libvdwxc = recallPackage libvdwxc {};
     libxc = recallPackage libxc {};
     meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
     mkl = recallPackage mkl {};
@@ -63,6 +64,7 @@ let
     scalapack = recallPackage scalapack {};
     siesta = recallPackage siesta {};
     siesta-mpi = recallPackage siesta-mpi {};
+    sirius = recallPackage sirius {};
     spglib = recallPackage spglib {};
 
     fftwSinglePrec = self.fftw.override { precision = "single"; };
