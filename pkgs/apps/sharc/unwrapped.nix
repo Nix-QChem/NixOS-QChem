@@ -1,14 +1,12 @@
 { stdenv
 , lib
 , fetchFromGitHub
-, makeWrapper
 , which
 , gfortran
 , blas
 , lapack
 , fftw
 , python3
-, gnuplot
 , wfoverlap
 , enablePysharc ? true
 , hdf5
