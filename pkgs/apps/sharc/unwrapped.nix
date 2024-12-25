@@ -38,6 +38,9 @@ in stdenv.mkDerivation {
 
   outputs = [ "out" "doc" "tests" ];
 
+  # Needed to build with gcc-14
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion";
+
   passthru = { inherit python; };
 
   nativeBuildInputs = [ which gfortran ];
