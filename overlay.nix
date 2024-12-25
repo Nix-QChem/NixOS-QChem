@@ -99,7 +99,9 @@ let
         #
         ambertools = super.python311.pkgs.toPythonApplication self.python311.pkgs.ambertools;
 
-        autodock-vina = callPackage ./pkgs/apps/autodock-vina { };
+        autodock-vina = callPackage ./pkgs/apps/autodock-vina {
+          boost = final.boost182;
+        };
 
         autoint = super.python3.pkgs.toPythonApplication self.python3.pkgs.pyphspu;
 
