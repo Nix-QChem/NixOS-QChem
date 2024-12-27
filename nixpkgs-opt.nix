@@ -42,6 +42,7 @@ let
     libvori = recallPackage libvori {};
     libvdwxc = recallPackage libvdwxc {};
     libxc = recallPackage libxc {};
+    mpb = recallPackage mpb {};
     meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
     mkl = recallPackage mkl {};
     molden = recallPackage molden {};
