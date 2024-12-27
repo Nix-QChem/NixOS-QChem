@@ -4,6 +4,7 @@
 , pythonRelaxDepsHook
 , numpy
 , colorama
+, pydantic
 , pyfiglet
 , pygments
 , pandas
@@ -16,18 +17,19 @@
 
 buildPythonPackage rec {
   pname = "mendeleev";
-  version = "0.17.0";
+  version = "0.19.0";
 
   src = fetchFromGitHub {
     owner = "lmmentel";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-LYWMbQARuOJXhu4yMAuQqeHckDFVgjwD73bpx5GR15U=";
+    hash = "sha256-P4mDFsI0DnRP5cIwOGRZ/R+kYeMFQj4GISTQIcjsYd8=";
   };
 
   format = "pyproject";
 
   propagatedBuildInputs = [
+    pydantic
     numpy
     colorama
     pyfiglet
