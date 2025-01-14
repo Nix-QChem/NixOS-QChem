@@ -75,6 +75,7 @@ buildPythonPackage rec {
     homepage = "https://veloxchem.org";
     license = [ licenses.lgpl3 ];
     maintainers = [ maintainers.markuskowa ];
+    broken = true; # Needs an update to the latest version
   };
 }
 
