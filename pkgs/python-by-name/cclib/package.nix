@@ -1,6 +1,7 @@
 { buildPythonPackage
 , lib
 , fetchFromGitHub
+, fetchpatch
 , isPy311
 , setuptools
 , pytestCheckHook
@@ -29,6 +30,12 @@ buildPythonPackage rec {
     rev = "v${version}";
     hash = "sha256-XYFVSJ11MGx2dq/yYa5jaC2XsrStZCT5WzwSCelEV3U=";
   };
+
+  patches = [(fetchpatch {
+    name = "numpy-2";
+    url = "https://github.com/cclib/cclib/pull/1513/commits/bfca15ca759f2d8fbb34b4cce24b91c4cd48b20f.patch";
+    hash = "sha256-Pm3CGk6WEzh7Ov9JUrXHESxPanBFNGA49YpVrZBObYk=";
+  })];
 
   pyproject = true;
 
