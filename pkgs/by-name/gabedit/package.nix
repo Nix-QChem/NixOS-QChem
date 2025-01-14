@@ -43,7 +43,8 @@ stdenv.mkDerivation rec {
     OMPCFLAGS = -fopenmp
     DRAWGEOMGL = -DDRAWGEOMGL
 
-    COMMONCFLAGS = -Wformat -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O2 -DENABLE_DEPRECATED $(OMPCFLAGS) $(DRAWGEOMGL) -Wformat-security -Wno-unused-variable
+    COMMONCFLAGS = -Wformat -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O2 -DENABLE_DEPRECATED $(OMPCFLAGS) $(DRAWGEOMGL) -Wformat-security -Wno-unused-variable \
+                   -Wno-error=implicit-function-declaration -Wno-error=int-conversion
     LDFLAGS = -Wl,-z,relro
     EOF
   '';
