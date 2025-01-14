@@ -17,6 +17,7 @@ let
 
     autodock-vina = callPackage ./pkgs/apps/autodock-vina/python.nix {
       inherit (finalPkgs) autodock-vina;
+      boost = finalPkgs.pkgs.boost182;
     };
 
     biopython = prev.biopython.overrideAttrs (old: {
