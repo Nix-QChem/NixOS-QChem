@@ -25,6 +25,8 @@ buildPythonPackage rec {
     export PATH=$PATH:${swig}/bin
   '';
 
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=parentheses";
+
   nativeBuildInputs = [ sphinx ];
 
   buildInputs = [ swig ];
