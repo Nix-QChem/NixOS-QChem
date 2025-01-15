@@ -20,6 +20,8 @@ let
 
     sourceRoot = "plugins";
 
+    env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
+
     makeFlags = [ "LINUXAMD64" ];
 
     preBuild = ''
@@ -66,6 +68,8 @@ in stdenv.mkDerivation {
 
   sourceRoot = "vmd-${version}";
 
+
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
 
   # non-standard configure script
   configurePhase = ''
