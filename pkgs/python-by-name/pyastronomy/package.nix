@@ -18,13 +18,13 @@
 
 buildPythonPackage rec {
   pname = "PyAstronomy";
-  version = "0.19.0";
+  version = "0.22.0";
 
   src = with lib.versions; fetchFromGitHub {
     owner = "sczesla";
     repo = pname;
     rev = "v_${major version}-${minor version}-${patch version}";
-    hash = "sha256-HFlPTvnUtfCrXV2P8kTrqpo2Ph2PoixyoCDXi+kT8ic=";
+    hash = "sha256-eZorxlBHRE6NZH4elF0bRDNo8NY8DFij55uctv+YrK4=";
   };
 
   propagatedBuildInputs = [
