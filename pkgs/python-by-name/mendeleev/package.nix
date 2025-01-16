@@ -13,22 +13,27 @@
 , plotly
 , seaborn
 , poetry-core
+, deprecated
 }:
 
 buildPythonPackage rec {
   pname = "mendeleev";
-  version = "0.19.0";
+  version = "0.20.1";
 
   src = fetchFromGitHub {
     owner = "lmmentel";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-P4mDFsI0DnRP5cIwOGRZ/R+kYeMFQj4GISTQIcjsYd8=";
+    hash = "sha256-NA0pgfhgk1XBA1Ei8IUtYuw8rh53Dp4XBqZ+5btzhYU=";
   };
 
-  format = "pyproject";
+  pyproject = true;
 
-  propagatedBuildInputs = [
+  build-system = [
+    poetry-core
+  ];
+
+  dependencies = [
     pydantic
     numpy
     colorama
@@ -39,7 +44,7 @@ buildPythonPackage rec {
     bokeh
     plotly
     seaborn
-    poetry-core
+    deprecated
   ];
 
   nativeBuildInputs = [
