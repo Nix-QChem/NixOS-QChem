@@ -33,8 +33,8 @@
   },
   {
     "attribute": "qchem.arpack-mpi",
-    "name": "arpack-3.9.1",
-    "pname": "arpack",
+    "name": "arpack-mpi-3.9.1",
+    "pname": "arpack-mpi",
     "version": "3.9.1",
     "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
     "homepage": "https://github.com/opencollab/arpack-ng"
@@ -81,9 +81,9 @@
   },
   {
     "attribute": "qchem.boost-mpi",
-    "name": "boost-1.81.0",
+    "name": "boost-1.87.0",
     "pname": "boost",
-    "version": "1.81.0",
+    "version": "1.87.0",
     "description": "Collection of C++ libraries",
     "homepage": "http://boost.org/"
   },
@@ -113,9 +113,9 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-2024.3",
+    "name": "cp2k-2025.1",
     "pname": "cp2k",
-    "version": "2024.3",
+    "version": "2025.1",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
@@ -272,14 +272,6 @@
     "homepage": "https://www.msg.chem.iastate.edu/gamess/index.html"
   },
   {
-    "attribute": "qchem.gator",
-    "name": "gator-0.2.0",
-    "pname": "gator",
-    "version": "0.2.0",
-    "description": "Program for computational spectroscopy and calculations of molecular properties",
-    "homepage": "https://github.com/gator-program/gator"
-  },
-  {
     "attribute": "qchem.gau2grid",
     "name": "gau2grid-2.0.7",
     "pname": "gau2grid",
@@ -337,9 +329,9 @@
   },
   {
     "attribute": "qchem.gpaw",
-    "name": "gpaw-24.1.0",
+    "name": "gpaw-25.1.0",
     "pname": "gpaw",
-    "version": "24.1.0",
+    "version": "25.1.0",
     "description": "Density functional theory and beyond within the projector-augmented wave method",
     "homepage": "https://wiki.fysik.dtu.dk/gpaw/index.html"
   },
@@ -513,11 +505,11 @@
   },
   {
     "attribute": "qchem.libvdwxc",
-    "name": "libvdwxc-24.02.2020",
-    "pname": "libvdwxc",
+    "name": "libvdwxc-unstable-24.02.2020",
+    "pname": "libvdwxc-unstable",
     "version": "24.02.2020",
     "description": "Portable C library of density functionals with van der Waals interactions for density functional theory",
-    "homepage": "https://libvdwxc.org/"
+    "homepage": "https://libvdwxc.materialsmodeling.org/"
   },
   {
     "attribute": "qchem.libvori",
@@ -624,6 +616,14 @@
     "homepage": "https://github.com/openmopac/mopac"
   },
   {
+    "attribute": "qchem.mpb",
+    "name": "mpb-1.11.1",
+    "pname": "mpb",
+    "version": "1.11.1",
+    "description": "MIT Photonic-Bands: computation of photonic band structures in periodic media",
+    "homepage": "https://mpb.readthedocs.io/en/latest/"
+  },
+  {
     "attribute": "qchem.mpi",
     "name": "openmpi-5.0.6",
     "pname": "openmpi",
@@ -705,9 +705,9 @@
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-14.1",
+    "name": "octopus-15.1",
     "pname": "octopus",
-    "version": "14.1",
+    "version": "15.1",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
@@ -808,14 +808,6 @@
     "homepage": "http://www.psicode.org/"
   },
   {
-    "attribute": "qchem.pysisyphus",
-    "name": "pysisyphus-unstable-2024-06-12",
-    "pname": "pysisyphus-unstable",
-    "version": "2024-06-12",
-    "description": "Python suite for optimization of stationary points on ground- and excited states PES and determination of reaction paths",
-    "homepage": "https://github.com/eljost/pysisyphus"
-  },
-  {
     "attribute": "qchem.qdng",
     "name": "qdng-1.0.0",
     "pname": "qdng",
@@ -825,9 +817,9 @@
   },
   {
     "attribute": "qchem.qmcpack",
-    "name": "qmcpack-3.17.1",
-    "pname": "qmcpack",
-    "version": "3.17.1",
+    "name": "qmcpack-unstable-2025-01-16",
+    "pname": "qmcpack-unstable",
+    "version": "2025-01-16",
     "description": "Many-body ab initio Quantum Monte Carlo code for electronic structure calculations",
     "homepage": "https://www.qmcpack.org"
   },
@@ -849,9 +841,9 @@
   },
   {
     "attribute": "qchem.scalapack",
-    "name": "scalapack-2.2.1",
+    "name": "scalapack-2.2.2",
     "pname": "scalapack",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "description": "Library of high-performance linear algebra routines for parallel distributed memory machines",
     "homepage": "http://www.netlib.org/scalapack/"
   },
@@ -865,57 +857,57 @@
   },
   {
     "attribute": "qchem.sharc",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-bagel",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-full",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-molcas",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-orca",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-turbomole",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-unwrapped",
-    "name": "sharc-3.0.1",
+    "name": "sharc-3.0.2",
     "pname": "sharc",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
@@ -942,6 +934,14 @@
     "version": "1.2.1",
     "description": "Reimplementation of the DFT-D3 program",
     "homepage": "https://github.com/dftd3/simple-dftd3"
+  },
+  {
+    "attribute": "qchem.sirius",
+    "name": "SIRIUS-7.6.1",
+    "pname": "SIRIUS",
+    "version": "7.6.1",
+    "description": "Domain specific library for electronic structure calculations",
+    "homepage": "https://github.com/electronic-structure/SIRIUS"
   },
   {
     "attribute": "qchem.slurm-tools",
@@ -1022,14 +1022,6 @@
     "version": "1.17.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
-  },
-  {
-    "attribute": "qchem.veloxchem",
-    "name": "veloxchem-2022-02-24",
-    "pname": "veloxchem",
-    "version": "2022-02-24",
-    "description": "Quantum chemistry software for the calculation of molecular properties and spectroscopies",
-    "homepage": "https://veloxchem.org"
   },
   {
     "attribute": "qchem.vmd",
