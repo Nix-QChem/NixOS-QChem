@@ -248,6 +248,6 @@ buildPythonPackage rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
     mainProgram = "pysis";
-    broken = isPy311;
+    broken = true; # Development has stalled and no fixed are to be expected anymore
   };
 }

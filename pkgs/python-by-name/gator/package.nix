@@ -51,6 +51,7 @@ buildPythonPackage rec {
     homepage = "https://github.com/gator-program/gator";
     license = licenses.gpl3Only;
     maintainers = [ maintainers.markuskowa ];
+    broken = true; # Needs an update to the latest version
   };
 }
 

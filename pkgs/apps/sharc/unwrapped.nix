@@ -1,14 +1,12 @@
 { stdenv
 , lib
 , fetchFromGitHub
-, makeWrapper
 , which
 , gfortran
 , blas
 , lapack
 , fftw
 , python3
-, gnuplot
 , wfoverlap
 , enablePysharc ? true
 , hdf5
@@ -18,7 +16,7 @@
 }:
 
 let
-  version = "3.0.1";
+  version = "3.0.2";
   python = python3.withPackages (p: with p; [
     numpy
     openbabel-bindings
@@ -33,10 +31,13 @@ in stdenv.mkDerivation {
     owner = "sharc-md";
     repo = "sharc";
     rev = "v${version}";
-    hash = "sha256-aTFrLrp2PTZXvMI4UkXw/hAv225rADwo9W+k09td52U=";
+    hash = "sha256-B4cnqp9YRG4GdkhXSzPJ1uYE55MIT0MwXxxAGuuMDGg=";
   };
 
   outputs = [ "out" "doc" "tests" ];
+
+  # Needed to build with gcc-14
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion";
 
   passthru = { inherit python; };
 

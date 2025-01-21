@@ -1,6 +1,4 @@
 { buildPythonPackage
-, lib
-, fetchFromGitHub
 , boost
 , swig
 , numpy
@@ -9,7 +7,7 @@
 , openbabel-bindings
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   inherit (autodock-vina) pname version src meta;
 
   # Remove hardcoded include paths and fix version constraint formats
@@ -24,6 +22,8 @@ buildPythonPackage rec {
 
     export PATH=$PATH:${swig}/bin
   '';
+
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=parentheses";
 
   nativeBuildInputs = [ sphinx ];
 

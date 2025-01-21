@@ -16,7 +16,7 @@
 , flex
 , bison
 , zlib
-, boost
+, boost186
 , netcdf
 , netcdffortran
 , fftw
@@ -49,7 +49,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     zlib
-    boost
+    boost186
     blas
     lapack
     netcdffortran
