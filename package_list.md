@@ -7,7 +7,7 @@
 | arpack-mpi-3.9.1 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
 | Autodock-Vina-1.2.3 | qchem.autodock-vina | Molecular docking with classical scoring functions |
 | pyPHSPU-2022-05-23 | qchem.autoint | Poly harmonic spline and partition of unity interpolation |
-| avogadro2-1.99.0 | qchem.avogadro2 | Molecule editor and visualizer |
+| avogadro2-1.100.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2-2024-04-19 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2-2024-04-19 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
 | boost-1.87.0 | qchem.boost-mpi | Collection of C++ libraries |

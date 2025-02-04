@@ -57,9 +57,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.99.0",
+    "name": "avogadro2-1.100.0",
     "pname": "avogadro2",
-    "version": "1.99.0",
+    "version": "1.100.0",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
