@@ -135,6 +135,10 @@ buildPythonPackage rec {
       runHook postInstall
     '';
 
+  # There is a force field alias to a non-existing force field in the test leaprc
+  # It is shipped like this in the official tarball.
+  dontCheckForBrokenSymlinks = true;
+
   meta = with lib; {
     description = "Tools for molecular mechanics and molecular dynamics with AMBER";
     homepage = "https://ambermd.org/AmberTools.php";
