@@ -52,6 +52,10 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
+  # Some example files are broken symlinks. They are not problematic for runtime
+  # behaviour.
+  dontCheckForBrokenSymlinks = true;
+
   passthru = { inherit mpi; };
 
   meta = with lib; {
