@@ -43,10 +43,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2024.5 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2024.5 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2024.5 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2024.5 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2025.0 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2025.0 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2025.0 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2025.0 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.5 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
@@ -76,7 +76,7 @@
 | openmolcas-24.10 | qchem.molcasDice | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
-| mopac-23.0.3 | qchem.mopac | Semiempirical quantum chemistry |
+| mopac-23.1.1 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.11.1 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
 | openmpi-5.0.6 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-2023.08.28 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
@@ -86,8 +86,8 @@
 | multiwfn-3.8-2024-06-14 | qchem.multiwfn | Multifunctional wave function analyser. |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-9.3.0 | qchem.octave | Scientific Programming Language |
-| octave-9.3.0 | qchem.octave-opt | Scientific Programming Language |
+| octave-9.4.0 | qchem.octave | Scientific Programming Language |
+| octave-9.4.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-15.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.2.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-6.0.1 | qchem.orca | Ab initio quantum chemistry program package |
@@ -103,7 +103,7 @@
 | psi4-1.9.1 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-unstable-2025-01-16 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
-| quantum-espresso-7.2 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
+| quantum-espresso-7.4.1 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.2 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
