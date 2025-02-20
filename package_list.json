@@ -345,33 +345,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2024.5",
+    "name": "gromacs-2025.0",
     "pname": "gromacs",
-    "version": "2024.5",
+    "version": "2025.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2024.5",
+    "name": "gromacs-2025.0",
     "pname": "gromacs",
-    "version": "2024.5",
+    "version": "2025.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2024.5",
+    "name": "gromacs-2025.0",
     "pname": "gromacs",
-    "version": "2024.5",
+    "version": "2025.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2024.5",
+    "name": "gromacs-2025.0",
     "pname": "gromacs",
-    "version": "2024.5",
+    "version": "2025.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -609,9 +609,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.0.3",
+    "name": "mopac-23.1.1",
     "pname": "mopac",
-    "version": "23.0.3",
+    "version": "23.1.1",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -689,17 +689,17 @@
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-9.3.0",
+    "name": "octave-9.4.0",
     "pname": "octave",
-    "version": "9.3.0",
+    "version": "9.4.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-9.3.0",
+    "name": "octave-9.4.0",
     "pname": "octave",
-    "version": "9.3.0",
+    "version": "9.4.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
@@ -825,9 +825,9 @@
   },
   {
     "attribute": "qchem.quantum-espresso",
-    "name": "quantum-espresso-7.2",
+    "name": "quantum-espresso-7.4.1",
     "pname": "quantum-espresso",
-    "version": "7.2",
+    "version": "7.4.1",
     "description": "Electronic-structure calculations and materials modeling at the nanoscale",
     "homepage": "https://www.quantum-espresso.org/"
   },
