@@ -49,8 +49,8 @@
 | gromacs-2025.0 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
-| hdf5-cpp-1.14.5 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
-| hdf5-cpp-fortran-1.14.5 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
+| hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
+| hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
 | i-pi-3.0 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
@@ -76,7 +76,7 @@
 | openmolcas-24.10 | qchem.molcasDice | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
-| mopac-23.1.1 | qchem.mopac | Semiempirical quantum chemistry |
+| mopac-23.1.2 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.11.1 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
 | openmpi-5.0.6 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-2023.08.28 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
