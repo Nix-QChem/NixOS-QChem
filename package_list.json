@@ -393,17 +393,17 @@
   },
   {
     "attribute": "qchem.hdf5",
-    "name": "hdf5-cpp-1.14.5",
+    "name": "hdf5-cpp-1.14.6",
     "pname": "hdf5-cpp",
-    "version": "1.14.5",
+    "version": "1.14.6",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
   {
     "attribute": "qchem.hdf5-full",
-    "name": "hdf5-cpp-fortran-1.14.5",
+    "name": "hdf5-cpp-fortran-1.14.6",
     "pname": "hdf5-cpp-fortran",
-    "version": "1.14.5",
+    "version": "1.14.6",
     "description": "Data model, library, and file format for storing and managing data",
     "homepage": "https://www.hdfgroup.org/HDF5/"
   },
@@ -609,9 +609,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.1.1",
+    "name": "mopac-23.1.2",
     "pname": "mopac",
-    "version": "23.1.1",
+    "version": "23.1.2",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
