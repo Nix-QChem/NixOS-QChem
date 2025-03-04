@@ -31,6 +31,11 @@ in stdenv.mkDerivation {
 
   installPhase = ''
     sh install.sh -batch -prefix $out
+
+    for f in $(ls $out/src/mpich-install/bin); do
+      ln -s $out/src/mpich-install/bin/''${f} $out/bin/''${f}
+    done
+
   '';
 
   dontStrip = true;
