@@ -31,6 +31,11 @@ in stdenv.mkDerivation {
 
   installPhase = ''
     sh install.sh -batch -prefix $out
+
+    for f in $(ls $out/src/mpich-install/bin); do
+      ln -s $out/src/mpich-install/bin/''${f} $out/bin/''${f}
+    done
+
   '';
 
   dontStrip = true;
@@ -40,36 +45,36 @@ in stdenv.mkDerivation {
   doInstallCheck = false;
 
   installCheckPhase = ''
-     #
-     # Minimal check if installation runs properly
-     #
+    #
+    # Minimal check if installation runs properly
+    #
 
-     export HOST=localhost
+    export HOST=localhost
 
-     export MOLCAS_WORKDIR=./
-     inp=water
+    export MOLCAS_WORKDIR=./
+    inp=water
 
-     cat << EOF > $inp.inp
-     basis=STO-3G
-     geom = {
-     3
-     Angstrom
-     O       0.000000  0.000000  0.000000
-     H       0.758602  0.000000  0.504284
-     H       0.758602  0.000000 -0.504284
-     }
-     HF
-     EOF
+    cat << EOF > $inp.inp
+    basis=STO-3G
+    geom = {
+    3
+    Angstrom
+    O       0.000000  0.000000  0.000000
+    H       0.758602  0.000000  0.504284
+    H       0.758602  0.000000 -0.504284
+    }
+    HF
+    EOF
 
-     # pretend this is a writable home dir
-     export HOME=$PWD
+    # pretend this is a writable home dir
+    export HOME=$PWD
 
-     $out/bin/molpro $inp.inp
+    $out/bin/molpro $inp.inp
 
-     echo "Check for successful run:"
-     grep "RHF STATE  1.1 Energy" $inp.out
-     echo "Check for correct energy:"
-     grep "RHF STATE  1.1 Energy" $inp.out | grep 74.880174
+    echo "Check for successful run:"
+    grep "RHF STATE  1.1 Energy" $inp.out
+    echo "Check for correct energy:"
+    grep "RHF STATE  1.1 Energy" $inp.out | grep 74.880174
   '';
 
   meta = with lib; {
