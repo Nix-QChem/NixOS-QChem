@@ -953,9 +953,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.5.0",
+    "name": "spglib-2.6.0",
     "pname": "spglib",
-    "version": "2.5.0",
+    "version": "2.6.0",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },

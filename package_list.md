@@ -119,7 +119,7 @@
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
 | SIRIUS-7.6.1 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
-| spglib-2.5.0 | qchem.spglib | C library for finding and handling crystal symmetries |
+| spglib-2.6.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
 | theodore-3.1.1 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
