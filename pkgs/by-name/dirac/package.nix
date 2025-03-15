@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = "https://gitlab.com/dirac/dirac/";
     rev = "37b755410d9fdcd9b5e7bba6e43ceb7d5c7b9dae"; # v22.0, fetchgit does not handle the tag on gitlab correctly
-    hash = "sha256-zRpZVShG9zMQbzwqyy1cVpERQK58/K8lp9DBPTTUBo4=";
+    hash = "sha256-QRqKXk0F09ipOFcTIeHdjsYe1IRtXycSGr6FWyOYxG0=";
     deepClone = true;
     fetchSubmodules = true;
   };
