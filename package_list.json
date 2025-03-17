@@ -345,33 +345,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2025.0",
+    "name": "gromacs-2025.1",
     "pname": "gromacs",
-    "version": "2025.0",
+    "version": "2025.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2025.0",
+    "name": "gromacs-2025.1",
     "pname": "gromacs",
-    "version": "2025.0",
+    "version": "2025.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2025.0",
+    "name": "gromacs-2025.1",
     "pname": "gromacs",
-    "version": "2025.0",
+    "version": "2025.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2025.0",
+    "name": "gromacs-2025.1",
     "pname": "gromacs",
-    "version": "2025.0",
+    "version": "2025.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -937,9 +937,9 @@
   },
   {
     "attribute": "qchem.sirius",
-    "name": "SIRIUS-7.6.1",
+    "name": "SIRIUS-7.6.2",
     "pname": "SIRIUS",
-    "version": "7.6.1",
+    "version": "7.6.2",
     "description": "Domain specific library for electronic structure calculations",
     "homepage": "https://github.com/electronic-structure/SIRIUS"
   },
