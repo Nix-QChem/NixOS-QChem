@@ -43,10 +43,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2025.0 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2025.0 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2025.0 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2025.0 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2025.1 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2025.1 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2025.1 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2025.1 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
@@ -117,7 +117,7 @@
 | siesta-4.1.5 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-4.1.5 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
-| SIRIUS-7.6.1 | qchem.sirius | Domain specific library for electronic structure calculations |
+| SIRIUS-7.6.2 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | spglib-2.6.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
