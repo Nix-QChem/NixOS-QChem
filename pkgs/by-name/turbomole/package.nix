@@ -16,14 +16,21 @@
 , coreutils
 , # Configuration
   useMPI ? false
+, version ? "7.9"
 }:
+
+assert builtins.elem version [ "7.9" "7.8.1" ];
+
 let
   systemName =
     if stdenv.isLinux && stdenv.isx86_64
     then "em64t-unknown-linux-gnu"
     else "x86_64-unknown-linux-gnu";
 
-  version = "7.9";
+  versionHashes = {
+    "7.9" = "sha256-F10I3hQATpMCjQF8vwIuQ+sGIo7rKecGdCuuAq8URCY=";
+    "7.8.1" = "72b80d06bb4b1a663eb235752ad0d945137d28eba9a5a8e4d9678b8783113f91";
+  };
 
   archiveName = "turbolinux${lib.replaceStrings ["."] [""] version}-TMG";
 
@@ -51,18 +58,44 @@ stdenv.mkDerivation rec {
   ];
 
   src = requireFile {
-    sha256 = "sha256-F10I3hQATpMCjQF8vwIuQ+sGIo7rKecGdCuuAq8URCY=";
+    sha256 = versionHashes."${version}";
     name = "${archiveName}.zip";
     url = "https://www.turbomole.org/";
   };
 
-  unpackPhase = ''
-    unzip ${src}
-    tar -xvf ${archiveName}.tar
-  '';
+  unpackPhase =
+    if lib.versions.majorMinor version == "7.8" then
+      ''
+        unzip ${src}
+        chmod +rwx ${archiveName}.bin
+      ''
+    else if lib.versions.majorMinor version == "7.9" then
+      ''
+        unzip ${src}
+        tar -xvf ${archiveName}.tar
+      ''
+    else throw "Unsupported version"
+  ;
+
+  postPatch =
+    if lib.versions.majorMinor version == "7.8" then
+      ''
+        patchelf \
+          --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+          --set-rpath "${stdenv.cc.cc.lib}" \
+          ${archiveName}.bin
+      ''
+    else if lib.versions.majorMinor version == "7.9" then null
+    else throw "Unsupported version"
+  ;
 
   dontConfigure = true;
-  dontBuild = true;
+
+  dontBuild = lib.versions.majorMinor version == "7.9";
+  buildPhase =
+    if lib.versions.majorMinor version == "7.8" then ''
+      ./${archiveName}.bin
+    '' else null;
 
   /*
     Sets environment variables, that turbomole potentially uses.

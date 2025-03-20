@@ -256,6 +256,8 @@ let
 
         theodore = super.python3.pkgs.toPythonApplication self.python3.pkgs.theodore;
 
+        turbomole78 = callPackage ./pkgs/by-name/turbomole/package.nix { };
+
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
         vmd =
