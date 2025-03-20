@@ -16,14 +16,21 @@
 , coreutils
 , # Configuration
   useMPI ? false
+, version ? "7.9"
 }:
+
+assert builtins.elem version [ "7.9" "7.8.1" ];
+
 let
   systemName =
     if stdenv.isLinux && stdenv.isx86_64
     then "em64t-unknown-linux-gnu"
     else "x86_64-unknown-linux-gnu";
 
-  version = "7.8.1";
+  versionHashes = {
+    "7.9" = "sha256-F10I3hQATpMCjQF8vwIuQ+sGIo7rKecGdCuuAq8URCY=";
+    "7.8.1" = "72b80d06bb4b1a663eb235752ad0d945137d28eba9a5a8e4d9678b8783113f91";
+  };
 
   archiveName = "turbolinux${lib.replaceStrings ["."] [""] version}-TMG";
 
@@ -51,28 +58,44 @@ stdenv.mkDerivation rec {
   ];
 
   src = requireFile {
-    sha256 = "72b80d06bb4b1a663eb235752ad0d945137d28eba9a5a8e4d9678b8783113f91";
+    sha256 = versionHashes."${version}";
     name = "${archiveName}.zip";
     url = "https://www.turbomole.org/";
   };
 
-  unpackPhase = ''
-    unzip ${src}
-    chmod +rwx ${archiveName}.bin
-  '';
+  unpackPhase =
+    if lib.versions.majorMinor version == "7.8" then
+      ''
+        unzip ${src}
+        chmod +rwx ${archiveName}.bin
+      ''
+    else if lib.versions.majorMinor version == "7.9" then
+      ''
+        unzip ${src}
+        tar -xvf ${archiveName}.tar
+      ''
+    else throw "Unsupported version"
+  ;
 
-  postPatch = ''
-    patchelf \
-      --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-      --set-rpath "${stdenv.cc.cc.lib}" \
-      ${archiveName}.bin
-  '';
+  postPatch =
+    if lib.versions.majorMinor version == "7.8" then
+      ''
+        patchelf \
+          --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+          --set-rpath "${stdenv.cc.cc.lib}" \
+          ${archiveName}.bin
+      ''
+    else if lib.versions.majorMinor version == "7.9" then null
+    else throw "Unsupported version"
+  ;
 
   dontConfigure = true;
 
-  buildPhase = ''
-    ./${archiveName}.bin
-  '';
+  dontBuild = lib.versions.majorMinor version == "7.9";
+  buildPhase =
+    if lib.versions.majorMinor version == "7.8" then ''
+      ./${archiveName}.bin
+    '' else null;
 
   /*
     Sets environment variables, that turbomole potentially uses.
@@ -88,7 +111,6 @@ stdenv.mkDerivation rec {
   */
   installPhase = ''
     runHook preInstall
-
 
     # Copy the entire installation to share/turbomole
     export TURBODIR=$out/share/turbomole
@@ -157,10 +179,10 @@ stdenv.mkDerivation rec {
       for exe in $exesToWrap; do
         echo "Wrapping exe: $exe"
         wrapProgram $exe \
-          --prefix PATH : "${which}/bin" \
-          --prefix PATH : "${coreutils}/bin" \
-          --prefix PATH : "${less}/bin" \
-          --prefix PATH : "${more}/bin" \
+          --prefix PATH : "${lib.getBin which}/bin" \
+          --prefix PATH : "${lib.getBin coreutils}/bin" \
+          --prefix PATH : "${lib.getBin less}/bin" \
+          --prefix PATH : "${lib.getBin more}/bin" \
           --set PAGER "more" \
           --set TURBODIR "$TURBODIR" \
           --set PARA_ARCH "${PARA_ARCH}" \
