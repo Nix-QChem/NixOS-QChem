@@ -125,7 +125,8 @@
 | theodore-3.1.1 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
 | tinker-8.10.5 | qchem.tinker | Software Tools for Molecular Design |
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
-| turbomole-7.8.1 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
+| turbomole-7.9 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
+| turbomole-7.8.1 | qchem.turbomole78 | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.3.0 | qchem.ucc | Collective communication operations API |
 | ucx-1.18.0 | qchem.ucx | Unified Communication X library |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |

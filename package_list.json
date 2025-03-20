@@ -1001,6 +1001,14 @@
   },
   {
     "attribute": "qchem.turbomole",
+    "name": "turbomole-7.9",
+    "pname": "turbomole",
+    "version": "7.9",
+    "description": "General purpose quantum chemistry program. Tools, not Toys!",
+    "homepage": "https://www.turbomole.org/"
+  },
+  {
+    "attribute": "qchem.turbomole78",
     "name": "turbomole-7.8.1",
     "pname": "turbomole",
     "version": "7.8.1",
