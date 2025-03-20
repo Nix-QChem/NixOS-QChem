@@ -23,7 +23,7 @@ let
     then "em64t-unknown-linux-gnu"
     else "x86_64-unknown-linux-gnu";
 
-  version = "7.8.1";
+  version = "7.9";
 
   archiveName = "turbolinux${lib.replaceStrings ["."] [""] version}-TMG";
 
@@ -51,28 +51,18 @@ stdenv.mkDerivation rec {
   ];
 
   src = requireFile {
-    sha256 = "72b80d06bb4b1a663eb235752ad0d945137d28eba9a5a8e4d9678b8783113f91";
+    sha256 = "sha256-F10I3hQATpMCjQF8vwIuQ+sGIo7rKecGdCuuAq8URCY=";
     name = "${archiveName}.zip";
     url = "https://www.turbomole.org/";
   };
 
   unpackPhase = ''
     unzip ${src}
-    chmod +rwx ${archiveName}.bin
-  '';
-
-  postPatch = ''
-    patchelf \
-      --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-      --set-rpath "${stdenv.cc.cc.lib}" \
-      ${archiveName}.bin
+    tar -xvf ${archiveName}.tar
   '';
 
   dontConfigure = true;
-
-  buildPhase = ''
-    ./${archiveName}.bin
-  '';
+  dontBuild = true;
 
   /*
     Sets environment variables, that turbomole potentially uses.
@@ -88,7 +78,6 @@ stdenv.mkDerivation rec {
   */
   installPhase = ''
     runHook preInstall
-
 
     # Copy the entire installation to share/turbomole
     export TURBODIR=$out/share/turbomole
@@ -157,10 +146,10 @@ stdenv.mkDerivation rec {
       for exe in $exesToWrap; do
         echo "Wrapping exe: $exe"
         wrapProgram $exe \
-          --prefix PATH : "${which}/bin" \
-          --prefix PATH : "${coreutils}/bin" \
-          --prefix PATH : "${less}/bin" \
-          --prefix PATH : "${more}/bin" \
+          --prefix PATH : "${lib.getBin which}/bin" \
+          --prefix PATH : "${lib.getBin coreutils}/bin" \
+          --prefix PATH : "${lib.getBin less}/bin" \
+          --prefix PATH : "${lib.getBin more}/bin" \
           --set PAGER "more" \
           --set TURBODIR "$TURBODIR" \
           --set PARA_ARCH "${PARA_ARCH}" \
