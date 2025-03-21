@@ -201,9 +201,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-20240909",
+    "name": "et-20250319",
     "pname": "et",
-    "version": "20240909",
+    "version": "20250319",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
