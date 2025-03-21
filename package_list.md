@@ -53,7 +53,7 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.0 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.1 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2023-08-10 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
