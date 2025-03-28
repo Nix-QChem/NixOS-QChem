@@ -1021,7 +1021,7 @@
     "pname": "ucc",
     "version": "1.3.0",
     "description": "Collective communication operations API",
-    "homepage": null
+    "homepage": "https://openucx.github.io/ucc/"
   },
   {
     "attribute": "qchem.ucx",
