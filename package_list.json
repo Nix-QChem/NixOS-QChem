@@ -913,17 +913,17 @@
   },
   {
     "attribute": "qchem.siesta",
-    "name": "siesta-4.1.5",
+    "name": "siesta-5.2.2",
     "pname": "siesta",
-    "version": "4.1.5",
+    "version": "5.2.2",
     "description": "First-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
   {
     "attribute": "qchem.siesta-mpi",
-    "name": "siesta-4.1.5",
+    "name": "siesta-5.2.2",
     "pname": "siesta",
-    "version": "4.1.5",
+    "version": "5.2.2",
     "description": "First-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
