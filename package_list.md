@@ -114,8 +114,8 @@
 | sharc-3.0.2 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
-| siesta-4.1.5 | qchem.siesta | First-principles materials simulation code using DFT |
-| siesta-4.1.5 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
+| siesta-5.2.2 | qchem.siesta | First-principles materials simulation code using DFT |
+| siesta-5.2.2 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
 | SIRIUS-7.6.2 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
