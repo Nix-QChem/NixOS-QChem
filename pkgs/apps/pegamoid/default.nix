@@ -1,5 +1,5 @@
 { buildPythonApplication
-, python3
+, python
 , fetchFromGitLab
 , lib
 , numpy
@@ -28,7 +28,7 @@ buildPythonApplication rec {
   prePatch = "rm -rf samples screenshots";
 
   preConfigure = ''
-    export PYTHONPATH=$PYTHONPATH:${vtk}/${python3.sitePackages}
+    export PYTHONPATH=$PYTHONPATH:${vtk}/${python.sitePackages}
   '';
 
   propagatedBuildInputs = [
