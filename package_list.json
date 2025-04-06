@@ -561,9 +561,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.29.0",
+    "name": "meep-1.30.0",
     "pname": "meep",
-    "version": "1.29.0",
+    "version": "1.30.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -665,9 +665,9 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.8-2024-06-14",
+    "name": "multiwfn-3.8-2025-03-31",
     "pname": "multiwfn",
-    "version": "3.8-2024-06-14",
+    "version": "3.8-2025-03-31",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
