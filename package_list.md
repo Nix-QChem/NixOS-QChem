@@ -77,7 +77,7 @@
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.1.2 | qchem.mopac | Semiempirical quantum chemistry |
-| mpb-1.11.1 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
+| mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
 | openmpi-5.0.6 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-2023.08.28 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrchem-1.1.4 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
