@@ -160,14 +160,14 @@ let
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
-        # Molcas with optimisation and LibWFA support. Note, that this disables
-        # EXPBAS support, however.
-        molcas = let
-          molcasOpt = prev.openmolcas.override {
-            stdenv = aggressiveStdenv;
-            hdf5-cpp = self.hdf5-full;
-          };
-        in molcasOpt.overrideAttrs (oldAttrs: {
+        # Molcas with optimisation
+        molcas = prev.openmolcas.override {
+          stdenv = aggressiveStdenv;
+          hdf5-cpp = self.hdf5-full;
+        };
+
+        # Molcas with LibWFA support. That disables the EXPBAS module, though.
+        molcasWfa = self.molcas.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ [ self.chemps2 ];
           cmakeFlags = oldAttrs.cmakeFlags ++ [ "-DWFA=ON" ];
 
@@ -181,14 +181,14 @@ let
           '';
         });
 
-        # Molcas with DICE enabled but QCMaquis disabled
+        # Molcas with DICE for HeatBath CI
         molcasDice = self.molcas.overrideAttrs (oldAttrs: {
           propagatedUserEnvPkgs = [ self.dice ];
-          cmakeFlags = oldAttrs.cmakeFlags ++ [
-            "-DDMRG=OFF"
-            "-DNEVPT2=OFF"
-            "-DDICE=ON"
-          ];
+        });
+
+        # Molcas with Neci support for QMC CI solvers including GAS
+        molcasNeci = self.molcas.overrideAttrs (oldAttrs: {
+          propagatedUserEnvPkgs = [ self.neci ];
         });
 
         moltemplate = super.python3.pkgs.toPythonApplication self.python3.pkgs.moltemplate;
