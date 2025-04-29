@@ -481,9 +481,9 @@
   },
   {
     "attribute": "qchem.libint",
-    "name": "libint-2.9.0",
+    "name": "libint-2.10.2",
     "pname": "libint",
-    "version": "2.9.0",
+    "version": "2.10.2",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
   },
@@ -577,17 +577,33 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-24.10",
+    "name": "openmolcas-25.02",
     "pname": "openmolcas",
-    "version": "24.10",
+    "version": "25.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasDice",
-    "name": "openmolcas-24.10",
+    "name": "openmolcas-25.02",
     "pname": "openmolcas",
-    "version": "24.10",
+    "version": "25.02",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
+    "attribute": "qchem.molcasNeci",
+    "name": "openmolcas-25.02",
+    "pname": "openmolcas",
+    "version": "25.02",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
+    "attribute": "qchem.molcasWfa",
+    "name": "openmolcas-25.02",
+    "pname": "openmolcas",
+    "version": "25.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -670,6 +686,14 @@
     "version": "3.8-2025-03-31",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
+  },
+  {
+    "attribute": "qchem.neci",
+    "name": "NECI-unstable-2023-06-20",
+    "pname": "NECI-unstable",
+    "version": "2023-06-20",
+    "description": "Stochastic Quantum Monte Carlo solver for CI-like problems",
+    "homepage": "https://github.com/ghb24/NECI_STABLE"
   },
   {
     "attribute": "qchem.numsa",
