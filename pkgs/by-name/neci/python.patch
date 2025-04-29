@@ -1,0 +1,13 @@
+diff --git a/tools/f90_template.py b/tools/f90_template.py
+index 1d7655b5a..1a7cf2fd7 100755
+--- a/tools/f90_template.py
++++ b/tools/f90_template.py
+@@ -135,7 +135,7 @@ def read_config(fin, silent):
+     # insert into the templated functions.
+     parser = configparser.RawConfigParser()
+ 
+-    parser.readfp(config_lines)
++    parser.read_file(config_lines)
+ 
+     if not silent:
+         print('Producing configurations: ')
