@@ -60,7 +60,7 @@
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libefp-1.5.0-psi4 | qchem.libefp | Parallel implementation of the Effective Fragment Potential Method |
-| libint-2.9.0 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
+| libint-2.10.2 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libMBD-0.12.8 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-unstable-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
@@ -72,8 +72,10 @@
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | meep-1.30.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
-| openmolcas-24.10 | qchem.molcas | Advanced quantum chemistry software package |
-| openmolcas-24.10 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcasNeci | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.1.2 | qchem.mopac | Semiempirical quantum chemistry |
@@ -84,6 +86,7 @@
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
 | multiwfn-3.8-2025-03-31 | qchem.multiwfn | Multifunctional wave function analyser. |
+| NECI-unstable-2023-06-20 | qchem.neci | Stochastic Quantum Monte Carlo solver for CI-like problems |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-9.4.0 | qchem.octave | Scientific Programming Language |
