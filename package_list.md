@@ -89,8 +89,8 @@
 | NECI-unstable-2023-06-20 | qchem.neci | Stochastic Quantum Monte Carlo solver for CI-like problems |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-9.4.0 | qchem.octave | Scientific Programming Language |
-| octave-9.4.0 | qchem.octave-opt | Scientific Programming Language |
+| octave-10.1.0 | qchem.octave | Scientific Programming Language |
+| octave-10.1.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-15.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.2.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-6.0.1 | qchem.orca | Ab initio quantum chemistry program package |
