@@ -75,6 +75,11 @@
         buildInputs = [
           self.formatter."${system}"
           statix
+          pkgs.qchem.dftbplus
+          (pkgs.qchem.python3.withPackages (p: [
+            p.dftbplus
+            p.ase
+          ]))
         ];
       };
 

@@ -25,6 +25,13 @@ let
       doInstallCheck = false;
     });
 
+    dftbplus = callPackage ./pkgs/by-name/dftbplus/pythonapi.nix {
+      dftbplus = finalPkgs.dftbplus;
+    };
+    dptools = callPackage ./pkgs/by-name/dftbplus/dptools.nix {
+      dftbplus = finalPkgs.dftbplus;
+    };
+
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
     pysisyphus = callPackage ./pkgs/python-by-name/pysisyphus/package.nix {
