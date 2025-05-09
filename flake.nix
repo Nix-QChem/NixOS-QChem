@@ -52,9 +52,12 @@
         let
           buildingPkgs = filterAttrs
             (k: v:
-              if (v ? meta.broken)
-              then !v.meta.broken && isDerivation v
-              else isDerivation v
+              if (builtins.tryEval v).success
+              then
+                if (v ? meta.broken)
+                then !v.meta.broken && isDerivation v
+                else isDerivation v
+              else false
             )
             pkgs.qchem;
           securePackages = builtins.removeAttrs buildingPkgs [ "python2" ];
