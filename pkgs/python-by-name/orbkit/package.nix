@@ -5,6 +5,7 @@
 , matplotlib
 , h5py
 , scikitimage
+, isPy311
 }:
 
 buildPythonPackage rec {
@@ -35,5 +36,6 @@ buildPythonPackage rec {
     homepage = "http://orbkit.github.io/";
     license = licenses.lgpl3Only;
     maintainers = [ maintainers.markuskowa ];
+    broken = isPy311;
   };
 }
