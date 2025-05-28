@@ -83,6 +83,8 @@ in stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
+  dontCheckForBrokenSymlinks = true;
+
   meta = with lib; {
     inherit homepage;
     description = "Molecular dynamics visualisation program";
