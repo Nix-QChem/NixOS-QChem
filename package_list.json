@@ -425,9 +425,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.2",
+    "name": "i-pi-3.1.4",
     "pname": "i-pi",
-    "version": "3.1.2",
+    "version": "3.1.4",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "http://ipi-code.org/"
   },
@@ -481,9 +481,9 @@
   },
   {
     "attribute": "qchem.libint",
-    "name": "libint-2.10.2",
+    "name": "libint-2.11.0",
     "pname": "libint",
-    "version": "2.10.2",
+    "version": "2.11.0",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
   },
@@ -561,9 +561,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.30.0",
+    "name": "meep-1.30.1",
     "pname": "meep",
-    "version": "1.30.0",
+    "version": "1.30.1",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -1041,17 +1041,17 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.3.0",
+    "name": "ucc-1.4.4",
     "pname": "ucc",
-    "version": "1.3.0",
+    "version": "1.4.4",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.18.0",
+    "name": "ucx-1.18.1",
     "pname": "ucx",
-    "version": "1.18.0",
+    "version": "1.18.1",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },
