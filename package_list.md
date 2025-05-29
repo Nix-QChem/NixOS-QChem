@@ -43,10 +43,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2025.1 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2025.1 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2025.1 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2025.1 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2025.2 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2025.2 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2025.2 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2025.2 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
