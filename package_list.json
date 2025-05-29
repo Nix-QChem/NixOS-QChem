@@ -481,9 +481,9 @@
   },
   {
     "attribute": "qchem.libint",
-    "name": "libint-2.11.0",
+    "name": "libint-2.11.1",
     "pname": "libint",
-    "version": "2.11.0",
+    "version": "2.11.1",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
   },
