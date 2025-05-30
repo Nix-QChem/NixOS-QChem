@@ -60,7 +60,7 @@
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libefp-1.5.0-psi4 | qchem.libefp | Parallel implementation of the Effective Fragment Potential Method |
-| libint-2.11.0 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
+| libint-2.11.1 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libMBD-0.12.8 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-unstable-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
