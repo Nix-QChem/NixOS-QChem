@@ -729,9 +729,9 @@
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-15.1",
+    "name": "octopus-16.0",
     "pname": "octopus",
-    "version": "15.1",
+    "version": "16.0",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
