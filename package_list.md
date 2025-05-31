@@ -91,7 +91,7 @@
 | nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-10.1.0 | qchem.octave | Scientific Programming Language |
 | octave-10.1.0 | qchem.octave-opt | Scientific Programming Language |
-| octopus-15.1 | qchem.octopus | Real-space time dependent density-functional theory code |
+| octopus-16.0 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.2.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-6.0.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
