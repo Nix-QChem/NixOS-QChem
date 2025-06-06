@@ -713,17 +713,17 @@
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-10.1.0",
+    "name": "octave-10.2.0",
     "pname": "octave",
-    "version": "10.1.0",
+    "version": "10.2.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-10.1.0",
+    "name": "octave-10.2.0",
     "pname": "octave",
-    "version": "10.1.0",
+    "version": "10.2.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
