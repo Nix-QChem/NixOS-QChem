@@ -34,7 +34,7 @@
 | fftw-single-3.3.10 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
 | gabedit-2.5.1 | qchem.gabedit | Graphical User Interface for FireFly (PC-Gamess), Gamess-US, Gaussian, Molcas, Molpro, MPQC, NWChem, OpenMopac, Orca, PSI4 and Q-Chem computational chemistry packages |
 | gamess-us-2024R2P1 | qchem.gamess-us | GAMESS is a program for ab initio molecular quantum chemistry |
-| gau2grid-2.0.7 | qchem.gau2grid | Fast computation of a gaussian and its derivative on a grid |
+| gau2grid-2.0.8 | qchem.gau2grid | Fast computation of a gaussian and its derivative on a grid |
 | gaussview-6.0.16 | qchem.gaussview | GUI for the Gaussian quantum chemistry software package |
 | GauXC-unstable-2024-09-30 | qchem.gauxc | Evaluation of quantities related to the exchange-correlation energy (e.g. potential, etc) in the Gaussian basis set discretization of Kohn-Sham density function theory |
 | gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
@@ -53,7 +53,7 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.1.4 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.5 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2023-08-10 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
