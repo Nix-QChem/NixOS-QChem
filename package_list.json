@@ -273,9 +273,9 @@
   },
   {
     "attribute": "qchem.gau2grid",
-    "name": "gau2grid-2.0.7",
+    "name": "gau2grid-2.0.8",
     "pname": "gau2grid",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "description": "Fast computation of a gaussian and its derivative on a grid",
     "homepage": "https://github.com/dgasmith/gau2grid"
   },
