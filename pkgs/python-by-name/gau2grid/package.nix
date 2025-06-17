@@ -2,8 +2,8 @@
 , pythonAtLeast
 , numpy
 , setuptools
-, version ? "2.0.7"
-, sha256 ? "1c01flf0xlm68dsv0a4n6bxglyj3x5mj8shmxglfpywbf74i3vnb"
+, version ? "2.0.8"
+, hash ? "sha256-5FRN2IUN79oylLGFoRQobK1altZiSuPt9gXCzeP+iC4="
 # Configuration options
 , maxAm ? 7
 } :
@@ -28,15 +28,11 @@ buildPythonPackage rec {
   ];
 
   src = fetchFromGitHub  {
-    inherit sha256;
-    owner = "dgasmith";
+    inherit hash;
+    owner = "psi4";
     repo = pname;
     rev = "v" + version;
   };
-
-  patches = [
-    ./distutils.patch
-  ];
 
   meta = with lib; {
     description = "Fast computation of a gaussian and its derivative on a grid";
