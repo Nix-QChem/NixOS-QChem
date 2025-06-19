@@ -18,18 +18,18 @@ assert withCustomOtoolExternal -> customOtoolExternal != null;
 
 stdenv.mkDerivation {
   pname = "orca";
-  version = "6.0.1";
+  version = "6.1.0";
 
   src =
     if enableAvx2 then
       requireFile {
-          name = "orca_6_0_1_linux_x86-64_shared_openmpi416_avx2.tar.xz";
-          sha256 = "sha256-8x+YJWoMZye23f5QqjrGTEVUmYETjWcKV+kBFLS5ydI=";
+          name = "orca_6_1_0_linux_x86-64_shared_openmpi418_avx2.tar.xz";
+          sha256 = "sha256-8JoItZcbGNH4U2T35Xvs21F5+93BoWNoAlUVIe93h3Q=";
           url = "https://orcaforum.kofo.mpg.de/app.php/portal";
       } else
       requireFile {
-        name = "orca_6_0_1_linux_x86-64_shared_openmpi416.tar.xz";
-        sha256 = "sha256-XptJWIN14M5bwydnEnzHJfVCWReAQELN7N/Vxrll72E=";
+        name = "orca_6_1_0_linux_x86-64_shared_openmpi418.tar.xz";
+        sha256 = "sha256-2fSrancryXSzWMp+Ak+lH9z/vyt4xpvjlFs9rlDaYEY=";
         url = "https://orcaforum.kofo.mpg.de/app.php/portal";
       };
 
@@ -46,8 +46,6 @@ stdenv.mkDerivation {
     cp orca_* $out/bin
     cp orca $out/bin
     cp otool_* $out/bin
-
-    cp -r CompoundScripts $out/bin
     cp -r datasets $out/bin
 
     cp -r lib/* $out/lib/.
