@@ -31,11 +31,11 @@
 
 buildPythonPackage rec {
   pname = "AmberTools";
-  version = "24";
+  version = "25";
 
   src = requireFile {
-    name = "AmberTools${version}.tar.bz2";
-    sha256 = "sha256-UvtPszcKibfOc4otw+UTwvwZQ/3ktDgYRtnnXMSNhA8=";
+    name = "ambertools${version}.tar.bz2";
+    sha256 = "sha256-rACbKt6yXM0hkdsokFuGffSSQOA43FkPQj7fDYT4oTs=";
     url = "https://ambermd.org/AmberTools.php";
   };
 
@@ -66,6 +66,8 @@ buildPythonPackage rec {
   cmakeFlags = [
     "-DCOMPILER=AUTO"
     "-DDOWNLOAD_MINICONDA=OFF"
+    "-DCHECK_UPDATES=OFF"
+    "-DAPPLY_UPDATES=OFF"
     "-DOPENMP=ON"
     "-DTRUST_SYSTEM_LIBS=ON"
   ];
