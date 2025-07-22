@@ -1,7 +1,7 @@
 { buildPythonPackage
 , lib
-, pythonAtLeast
 , fetchFromGitHub
+, setuptools
 , numpy
 , qcelemental
 , qcengine
@@ -18,6 +18,9 @@ buildPythonPackage rec {
     rev = version;
     hash = "sha256-vHoxmJAfuGHiqXIOb935X1ezTT6AYmTWnLeJZSiB1KY=";
   };
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   propagatedBuildInputs = [
     numpy
