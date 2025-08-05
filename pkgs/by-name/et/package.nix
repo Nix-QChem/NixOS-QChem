@@ -23,15 +23,15 @@ let
     ];
   });
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "et";
-  version = "20250319";
+  version = "20250710";
 
   src = fetchFromGitLab {
     owner = "eT-program";
     repo = "eT";
-    rev = "ae16f1f8417dbfb6af9ee2a025f7c58a87972b0d";
-    hash = "sha256-7gQwtlLSOxiy3XLMwaHvWLIEVq3gw5vSiDoV1k1wz+w=";
+    rev = "b05e753c1df6b4355f45adea84503044090509e5";
+    hash = "sha256-8l3gWfC9OwUjuLdPomyuIPIjmiO8al0lOkrofFezGpo=";
   };
 
   patches = [ ./argparse.patch ];
