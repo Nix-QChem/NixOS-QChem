@@ -1,4 +1,5 @@
 { lib, fetchFromGitHub, buildPythonPackage
+, setuptools
 , cython
 , numpy
 , scipy
@@ -18,6 +19,9 @@ buildPythonPackage rec {
     rev = "dcfcc2028b8459a0d8647243cc8e1c30384aa829";
     sha256 = "sha256-Sg/fl9ts9m8M2uDHtFAZnI7sHd7QpY9wln+9R/xedko=";
   };
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   propagatedBuildInputs = [
     cython

@@ -1,5 +1,5 @@
 { lib, buildPythonPackage, fetchFromGitLab
-, numpy, scipy, h5py } :
+, numpy, scipy, h5py, setuptools } :
 
 buildPythonPackage {
   pname = "pyPHSPU";
@@ -12,6 +12,9 @@ buildPythonPackage {
     rev = "e4d64b41b6f850b19b2701409dc243af2ecbefcf";
     sha256 = "0r21vm8smc2j2bpamfl6aja8vd1s0c84mcjqvhdc96j2j6ld7a4n";
   };
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   propagatedBuildInputs = [
     numpy

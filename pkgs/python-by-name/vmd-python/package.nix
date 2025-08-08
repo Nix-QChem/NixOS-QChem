@@ -1,6 +1,7 @@
 { buildPythonPackage
 , lib
 , pythonAtLeast
+, setuptools
 , runtimeShell
 , cfg
 , fetchFromGitHub
@@ -35,6 +36,9 @@ buildPythonPackage rec {
     substituteInPlace vmd/plugins/vmdtkcon/tkcon-2.3/docs/perl.txt vmd/plugins/autoimd/namdrun.tcl vmd/vmd_src/configure \
       --replace "/bin/sh" "${runtimeShell}"
   '';
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   nativeBuildInputs = [ perl ];
 

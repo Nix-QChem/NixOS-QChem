@@ -22,11 +22,14 @@ buildPythonPackage rec {
   #      in path. The python scripts have proper shebangs, which work flawlessly
   patches = [ ./pythoncall.patch ];
 
+  pyproject = true;
+  build-system = [ setuptools ];
+
   nativeBuildInputs = [ makeWrapper ];
 
   # Moltemplate actually requires setuptools at runtime to find files (the pkg_resources module)
   # and unfortunately it really needs to be a propagatedBuildInput
-  propagatedBuildInputs = [ numpy setuptools ];
+  propagatedBuildInputs = [ numpy ];
 
   doCheck = false; # There are no checks
   pythonImportsCheck = [ "moltemplate" ];

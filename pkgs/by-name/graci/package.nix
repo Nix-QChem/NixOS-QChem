@@ -88,6 +88,9 @@ python3.pkgs.buildPythonApplication (
       sympy
     ];
 
+    pyproject = true;
+    build-system = [ python3.pkgs.setuptools ];
+
     patches = [ ./lib-path.patch ];
 
     postPatch = ''
