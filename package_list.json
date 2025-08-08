@@ -145,9 +145,9 @@
   },
   {
     "attribute": "qchem.dftbplus",
-    "name": "dftbplus-unstable-2024-08-23",
+    "name": "dftbplus-unstable-2025-04-11",
     "pname": "dftbplus-unstable",
-    "version": "2024-08-23",
+    "version": "2025-04-11",
     "description": "DFTB+ general package for performing fast atomistic simulations",
     "homepage": "https://github.com/dftbplus/dftbplus"
   },
@@ -201,9 +201,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-20250319",
+    "name": "et-20250710",
     "pname": "et",
-    "version": "20250319",
+    "version": "20250710",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
