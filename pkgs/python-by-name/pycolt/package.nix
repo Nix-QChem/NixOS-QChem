@@ -25,8 +25,10 @@ buildPythonPackage rec {
     substituteInPlace setup.py --replace "'pytest-runner', " ""
   '';
 
+  pyproject = true;
+  build-system = [ setuptools ];
+
   dependencies = [
-    setuptools
     numpy
     bump2version
     wheel

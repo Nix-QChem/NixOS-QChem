@@ -18,6 +18,9 @@ buildPythonPackage rec {
     sha256 = "sha256-r93uzCLCi7gpAPtakmMy2MRGMv+scbmFcoeK1rDdvG8=";
   };
 
+  pyproject = true;
+  build-system = [ setuptools ];
+
   nativeBuildInputs = [ pkg-config ];
 
   buildInputs = [ blas libtensor pybind11 ];

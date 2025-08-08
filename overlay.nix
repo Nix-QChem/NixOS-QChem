@@ -274,6 +274,7 @@ let
         };
 
         xtb = callPackage ./pkgs/by-name/xtb/package.nix {
+          meson = self.meson_1_7_2;
           # XTB declares a tblite dependency >= 0.2.0 but actually requires > 0.3.0
           tblite = super.tblite.overrideAttrs (old: {
             patches = [ ];

@@ -11,10 +11,12 @@ buildPythonPackage rec {
     hash = "sha256-XrGP+hYi2+5Nw9nPJkmsCfiNO6Q6kENhG3LUjxEzVD8=";
   };
 
+  pyproject = true;
+  build-system = [ setuptools ];
+
   propagatedBuildInputs = [
     openmm
     numpy
-    setuptools
   ];
 
   pythonImportsCheck = [ "pdbfixer" ];

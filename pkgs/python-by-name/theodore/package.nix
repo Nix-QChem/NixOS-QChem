@@ -26,6 +26,9 @@ buildPythonPackage rec {
     ./setuppy.patch
   ];
 
+  pyproject = true;
+  build-system = [ setuptools ];
+
   postPatch = ''
     substituteInPlace setup.py --replace "'pytest-runner', " ""
   '';
@@ -35,7 +38,6 @@ buildPythonPackage rec {
   ];
 
   dependencies = [
-    setuptools
     pycolt
     cclib
     numpy

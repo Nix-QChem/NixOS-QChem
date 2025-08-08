@@ -9,9 +9,9 @@
   },
   {
     "attribute": "qchem.ambertools",
-    "name": "AmberTools-24",
+    "name": "AmberTools-25",
     "pname": "AmberTools",
-    "version": "24",
+    "version": "25",
     "description": "Tools for molecular mechanics and molecular dynamics with AMBER",
     "homepage": "https://ambermd.org/AmberTools.php"
   },
@@ -425,9 +425,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.5",
+    "name": "i-pi-3.1.5.1",
     "pname": "i-pi",
-    "version": "3.1.5",
+    "version": "3.1.5.1",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "https://ipi-code.org/"
   },
@@ -566,6 +566,14 @@
     "version": "1.30.1",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
+  },
+  {
+    "attribute": "qchem.meson_1_7_2",
+    "name": "meson-1.7.2",
+    "pname": "meson",
+    "version": "1.7.2",
+    "description": "Open source, fast and friendly build system made in Python",
+    "homepage": "https://mesonbuild.com"
   },
   {
     "attribute": "qchem.mkl",
@@ -737,17 +745,17 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.2.0",
+    "name": "openmm-8.3.1",
     "pname": "openmm",
-    "version": "8.2.0",
+    "version": "8.3.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
   {
     "attribute": "qchem.orca",
-    "name": "orca-6.0.1",
+    "name": "orca-6.1.0",
     "pname": "orca",
-    "version": "6.0.1",
+    "version": "6.1.0",
     "description": "Ab initio quantum chemistry program package",
     "homepage": "https://orcaforum.kofo.mpg.de/"
   },
@@ -793,9 +801,9 @@
   },
   {
     "attribute": "qchem.pegamoid",
-    "name": "Pegamoid-2.8",
+    "name": "Pegamoid-2.12.3",
     "pname": "Pegamoid",
-    "version": "2.8",
+    "version": "2.12.3",
     "description": "Python GUI for OpenMolcas",
     "homepage": "https://pypi.org/project/Pegamoid"
   },

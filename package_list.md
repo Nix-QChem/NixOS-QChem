@@ -1,7 +1,7 @@
 | name | attribute | description |
 |------|-----------|-------------|
 | stdenv-linux-haswell | qchem.aggressiveStdenv | The default build environment for Unix packages in Nixpkgs |
-| AmberTools-24 | qchem.ambertools | Tools for molecular mechanics and molecular dynamics with AMBER |
+| AmberTools-25 | qchem.ambertools | Tools for molecular mechanics and molecular dynamics with AMBER |
 | amd-fftw-5.0 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
 | arpack-3.9.1 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
 | arpack-mpi-3.9.1 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
@@ -53,7 +53,7 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.1.5 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.5.1 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2023-08-10 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
@@ -71,6 +71,7 @@
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | meep-1.30.1 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
+| meson-1.7.2 | qchem.meson_1_7_2 | Open source, fast and friendly build system made in Python |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | openmolcas-25.06 | qchem.molcas | Advanced quantum chemistry software package |
 | openmolcas-25.06 | qchem.molcasDice | Advanced quantum chemistry software package |
@@ -92,14 +93,14 @@
 | octave-10.2.0 | qchem.octave | Scientific Programming Language |
 | octave-10.2.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.0 | qchem.octopus | Real-space time dependent density-functional theory code |
-| openmm-8.2.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| orca-6.0.1 | qchem.orca | Ab initio quantum chemistry program package |
+| openmm-8.3.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| orca-6.1.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
 | packmol-20.14.2 | qchem.packmol | Generating initial configurations for molecular dynamics |
 | pcmsolver-1.3.0 | qchem.pcmsolver | API for the Polarizable Continuum Model |
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
-| Pegamoid-2.8 | qchem.pegamoid | Python GUI for OpenMolcas |
+| Pegamoid-2.12.3 | qchem.pegamoid | Python GUI for OpenMolcas |
 | plt2cub-1.0 | qchem.plt2cub | Conversion utility for Turbomole's plt file to Cube format |
 | polyply-1.7.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
