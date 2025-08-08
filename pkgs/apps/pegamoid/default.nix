@@ -1,31 +1,34 @@
 { buildPythonApplication
 , python
+, setuptools
 , fetchFromGitLab
 , lib
 , numpy
 , h5py
 , pyqt5
 , qtpy
-, future
 , vtk
 , qt5
 }:
 
 buildPythonApplication rec {
   pname = "Pegamoid";
-  version = "2.8";
+  version = "2.12.3";
 
   src = fetchFromGitLab {
     owner = "jellby";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-RhUPXQvNmuDiNgS60PttvwIjpGSM1+5CaBwrrTI7XfM=";
+    hash = "sha256-QEEF3KZp0u5uRzYk4B7VVbV7nCbGhovlZxljQLn3g48=";
   };
 
 
   # The samples and screenshots directories confuse setuptools and they
   # refuse to build as long as these directories are present.
   prePatch = "rm -rf samples screenshots";
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   preConfigure = ''
     export PYTHONPATH=$PYTHONPATH:${vtk}/${python.sitePackages}
@@ -37,7 +40,6 @@ buildPythonApplication rec {
     pyqt5
     qtpy
     vtk
-    future
   ];
 
   nativeBuildInputs = [ qt5.wrapQtAppsHook ];
