@@ -1,4 +1,5 @@
 { buildPythonPackage
+, setuptools
 , fetchFromGitHub
 , lib
 , numpy
@@ -16,6 +17,9 @@ buildPythonPackage rec {
     rev = version;
     hash = "sha256-14LdXYwizVxEVWYpqil54kKXTjuXWuf3MNiKmixz4cs=";
   };
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   propagatedBuildInputs = [
     numpy

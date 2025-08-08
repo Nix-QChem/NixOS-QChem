@@ -1,4 +1,4 @@
-{ lib, buildPythonPackage, fetchFromGitLab, numpy, protobuf } :
+{ lib, buildPythonPackage, fetchFromGitLab, numpy, protobuf, setuptools } :
 
 buildPythonPackage rec {
   pname = "pyQDng";
@@ -11,6 +11,9 @@ buildPythonPackage rec {
     rev = "v${version}";
     sha256 = "sha256-hdmgULSyWnHBxuLXsDgGu1CqjEmm7AWEhx7jgm8g7qw=";
   };
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   propagatedBuildInputs = [ numpy protobuf ];
 

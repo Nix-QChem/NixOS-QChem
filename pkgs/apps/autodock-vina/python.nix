@@ -1,4 +1,5 @@
 { buildPythonPackage
+, setuptools
 , boost
 , swig
 , numpy
@@ -22,6 +23,9 @@ buildPythonPackage {
 
     export PATH=$PATH:${swig}/bin
   '';
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   env.NIX_CFLAGS_COMPILE = "-Wno-error=parentheses";
 
