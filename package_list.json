@@ -1049,17 +1049,17 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.4.4",
+    "name": "ucc-1.5.0",
     "pname": "ucc",
-    "version": "1.4.4",
+    "version": "1.5.0",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.18.1",
+    "name": "ucx-1.19.0",
     "pname": "ucx",
-    "version": "1.18.1",
+    "version": "1.19.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },
