@@ -28,7 +28,7 @@
     "name": "arpack-3.9.1",
     "pname": "arpack",
     "version": "3.9.1",
-    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
+    "description": "Collection of Fortran77 subroutines to solve large scale eigenvalue problems",
     "homepage": "https://github.com/opencollab/arpack-ng"
   },
   {
@@ -36,7 +36,7 @@
     "name": "arpack-mpi-3.9.1",
     "pname": "arpack-mpi",
     "version": "3.9.1",
-    "description": "A collection of Fortran77 subroutines to solve large scale eigenvalueproblems.",
+    "description": "Collection of Fortran77 subroutines to solve large scale eigenvalue problems",
     "homepage": "https://github.com/opencollab/arpack-ng"
   },
   {

@@ -3,8 +3,8 @@
 | stdenv-linux-haswell | qchem.aggressiveStdenv | The default build environment for Unix packages in Nixpkgs |
 | AmberTools-25 | qchem.ambertools | Tools for molecular mechanics and molecular dynamics with AMBER |
 | amd-fftw-5.0 | qchem.amd-fftw | Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs |
-| arpack-3.9.1 | qchem.arpack | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
-| arpack-mpi-3.9.1 | qchem.arpack-mpi | A collection of Fortran77 subroutines to solve large scale eigenvalueproblems. |
+| arpack-3.9.1 | qchem.arpack | Collection of Fortran77 subroutines to solve large scale eigenvalue problems |
+| arpack-mpi-3.9.1 | qchem.arpack-mpi | Collection of Fortran77 subroutines to solve large scale eigenvalue problems |
 | Autodock-Vina-1.2.3 | qchem.autodock-vina | Molecular docking with classical scoring functions |
 | pyPHSPU-2022-05-23 | qchem.autoint | Poly harmonic spline and partition of unity interpolation |
 | avogadro2-1.100.0 | qchem.avogadro2 | Molecule editor and visualizer |
