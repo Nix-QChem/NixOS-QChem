@@ -489,9 +489,9 @@
   },
   {
     "attribute": "qchem.libmbd",
-    "name": "libMBD-0.12.8",
+    "name": "libMBD-0.13.0",
     "pname": "libMBD",
-    "version": "0.12.8",
+    "version": "0.13.0",
     "description": "Many-body dispersion library",
     "homepage": "https://github.com/libmbd/libmbd"
   },
