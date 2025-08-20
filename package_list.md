@@ -70,7 +70,7 @@
 | libxsmm-1.17 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
-| meep-1.30.1 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
+| meep-1.31.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | meson-1.7.2 | qchem.meson_1_7_2 | Open source, fast and friendly build system made in Python |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | openmolcas-25.06 | qchem.molcas | Advanced quantum chemistry software package |
