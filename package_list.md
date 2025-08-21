@@ -53,14 +53,14 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.1.5 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.5.1 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2023-08-10 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libefp-1.5.0-psi4 | qchem.libefp | Parallel implementation of the Effective Fragment Potential Method |
-| libint-2.11.1 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
+| libint-2.11.0 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libMBD-0.12.8 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-unstable-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
@@ -72,10 +72,10 @@
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | meep-1.30.1 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
-| openmolcas-25.06 | qchem.molcas | Advanced quantum chemistry software package |
-| openmolcas-25.06 | qchem.molcasDice | Advanced quantum chemistry software package |
-| openmolcas-25.06 | qchem.molcasNeci | Advanced quantum chemistry software package |
-| openmolcas-25.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcasNeci | Advanced quantum chemistry software package |
+| openmolcas-25.02 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.1.2 | qchem.mopac | Semiempirical quantum chemistry |
@@ -89,11 +89,11 @@
 | NECI-unstable-2023-06-20 | qchem.neci | Stochastic Quantum Monte Carlo solver for CI-like problems |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
-| octave-10.2.0 | qchem.octave | Scientific Programming Language |
-| octave-10.2.0 | qchem.octave-opt | Scientific Programming Language |
-| octopus-16.0 | qchem.octopus | Real-space time dependent density-functional theory code |
+| octave-10.1.0 | qchem.octave | Scientific Programming Language |
+| octave-10.1.0 | qchem.octave-opt | Scientific Programming Language |
+| octopus-15.1 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.2.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| orca-6.0.1 | qchem.orca | Ab initio quantum chemistry program package |
+| orca-6.1.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
 | packmol-20.14.2 | qchem.packmol | Generating initial configurations for molecular dynamics |

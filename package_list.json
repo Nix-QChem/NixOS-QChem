@@ -425,11 +425,11 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.5",
+    "name": "i-pi-3.1.5.1",
     "pname": "i-pi",
-    "version": "3.1.5",
+    "version": "3.1.5.1",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
-    "homepage": "https://ipi-code.org/"
+    "homepage": "http://ipi-code.org/"
   },
   {
     "attribute": "qchem.iboview",
@@ -481,9 +481,9 @@
   },
   {
     "attribute": "qchem.libint",
-    "name": "libint-2.11.1",
+    "name": "libint-2.11.0",
     "pname": "libint",
-    "version": "2.11.1",
+    "version": "2.11.0",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
   },
@@ -577,33 +577,33 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.02",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasDice",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.02",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasNeci",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.02",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasWfa",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.02",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -713,25 +713,25 @@
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-10.2.0",
+    "name": "octave-10.1.0",
     "pname": "octave",
-    "version": "10.2.0",
+    "version": "10.1.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-10.2.0",
+    "name": "octave-10.1.0",
     "pname": "octave",
-    "version": "10.2.0",
+    "version": "10.1.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-16.0",
+    "name": "octopus-15.1",
     "pname": "octopus",
-    "version": "16.0",
+    "version": "15.1",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
@@ -745,9 +745,9 @@
   },
   {
     "attribute": "qchem.orca",
-    "name": "orca-6.0.1",
+    "name": "orca-6.1.0",
     "pname": "orca",
-    "version": "6.0.1",
+    "version": "6.1.0",
     "description": "Ab initio quantum chemistry program package",
     "homepage": "https://orcaforum.kofo.mpg.de/"
   },
