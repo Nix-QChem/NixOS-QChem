@@ -145,7 +145,7 @@ let
         };
 
         gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {
-          gfortran = final.gfortran12;
+          gfortran = final.gfortran14;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
