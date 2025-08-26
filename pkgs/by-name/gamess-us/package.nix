@@ -23,7 +23,7 @@ in stdenv.mkDerivation rec {
     ./AuxDataPath.patch
     # Link OpenBLAS dynamic libraries, instead of static
     ./openblas.patch
-    # Recognize gcc-12.4 as a valid compiler
+    # Recognize any gcc-13/14 as a valid compiler
     ./gcc-config.patch
     # Use mpiexec in OpenMPI instead of orterun
     ./openmpi.patch
