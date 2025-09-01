@@ -14,19 +14,19 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "libwfa";
-  version = "2020-02-19";
+  version = "2024-10-07";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
-    rev = "f1d102d6c18aa1de72e8cb8707f2d40918392ed9";
-    sha256 = "1ncx870jkpy86x6ppc8ccxjagb9bja8x7rk296hsmndsjhkca1ff";
+    rev = "261d88f5a0d7bdf24ec09a426f0b45b97caf909a";
+    hash = "sha256-F6LqmnVx64KTiMW+3X4jV1EoCioco1MQ+LBMjXtBBQs=";
   };
 
   nativeBuildInputs = [ cmake ];
   buildInputs = [ armadillo blas hdf5-cpp ];
 
-  CXXFLAGS = [ "-DH5_USE_110_API" ];
+  env.NIX_CFLAGS_COMPILE = [ "-std=c++14" ];
 
   cmakeFlags = [ "-DARMA_HEADER=ON" ]
     ++ lib.optional buildMolcasLib "-DMOLCAS_LIB=ON"

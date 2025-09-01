@@ -22,7 +22,90 @@ let
       useMpi = true;
       inherit (self) mpi;
     };
-    cp2k = recallPackage cp2k {};
+
+    # This a modified version of the upstream override.
+    cp2k =
+      # CP2K requires all dependencies from the Grimme ecosystem to be build with
+      # CMake instead of Meson. Unfortunately most other consumers require meson
+      let
+        grimmeCmake = final.lib.makeScope final.newScope (grimmeSelf: {
+          mctc-lib = final.mctc-lib.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) jonquil toml-f;
+            inherit (self) stdenv;
+          };
+
+          toml-f = final.toml-f.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) test-drive;
+          };
+
+          dftd4 = final.dftd4.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) mstore mctc-lib multicharge;
+            inherit (self) stdenv;
+          };
+
+          jonquil = final.jonquil.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) toml-f test-drive;
+          };
+
+          mstore = final.mstore.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) mctc-lib;
+          };
+
+          multicharge = final.multicharge.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) mctc-lib mstore;
+            inherit (self) stdenv;
+          };
+
+          test-drive = final.test-drive.override { buildType = "cmake"; };
+
+          simple-dftd3 = final.simple-dftd3.override {
+            buildType = "cmake";
+            inherit (grimmeSelf) mctc-lib mstore toml-f;
+            inherit (self) stdenv;
+          };
+
+          tblite = final.tblite.override {
+            buildType = "cmake";
+            inherit (grimmeSelf)
+              mctc-lib
+              mstore
+              toml-f
+              multicharge
+              dftd4
+              simple-dftd3
+              ;
+            inherit (self) stdenv;
+          };
+
+          sirius = final.sirius.override {
+            inherit (grimmeSelf)
+              mctc-lib
+              toml-f
+              multicharge
+              dftd4
+              simple-dftd3
+              ;
+            inherit (self) stdenv;
+          };
+        });
+      in
+      final.cp2k.override {
+        inherit (grimmeCmake)
+          toml-f
+          dftd4
+          simple-dftd3
+          tblite
+          sirius
+        ;
+        libxc = pkgs.libxc_7;
+      };
+
     fftw = recallPackage fftw {};
     dkh = recallPackage dkh {};
     dftd4 = recallPackage dftd4 {};
@@ -42,6 +125,7 @@ let
     libvori = recallPackage libvori {};
     libvdwxc = recallPackage libvdwxc {};
     libxc = recallPackage libxc {};
+    libxc_7 = recallPackage libxc_7 {};
     mpb = recallPackage mpb {};
     meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
     mkl = recallPackage mkl {};

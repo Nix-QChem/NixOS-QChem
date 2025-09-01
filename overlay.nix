@@ -145,7 +145,7 @@ let
         };
 
         gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {
-          gfortran = final.gfortran12;
+          gfortran = final.gfortran14;
         };
 
         gator = super.python3.pkgs.toPythonApplication self.python3.pkgs.gator;
@@ -170,7 +170,7 @@ let
           cmakeFlags = oldAttrs.cmakeFlags ++ [ "-DWFA=ON" ];
 
           # Needed by libwfa
-          CXXFLAGS = [ "-DH5_USE_110_API" ];
+          env.NIX_CFLAGS_COMPILE = "-std=c++14";
 
           prePatch = ''
             rm -r External/libwfa

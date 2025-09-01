@@ -14,7 +14,7 @@
 | cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
-| cp2k-2025.1 | qchem.cp2k | Quantum chemistry and solid state physics program |
+| cp2k-2025.2 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
 | crest-3.0.2 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
@@ -65,8 +65,9 @@
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-unstable-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
 | libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
-| libwfa-2020-02-19 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
+| libwfa-2024-10-07 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
 | libxc-6.2.2 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
+| libxc-7.0.0 | qchem.libxc_7 | Library of exchange-correlation functionals for density-functional theory |
 | libxsmm-1.17 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
@@ -121,7 +122,7 @@
 | siesta-5.2.2 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-5.2.2 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
-| SIRIUS-7.6.2 | qchem.sirius | Domain specific library for electronic structure calculations |
+| SIRIUS-7.8.0-unstable-2025-07-23 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | spglib-2.6.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
@@ -137,7 +138,7 @@
 | vmd-python-3.1.4 | qchem.vmd-python | Installable VMD as a python module |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
 | wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
-| libwfa-2020-02-19 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
+| libwfa-2024-10-07 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.3 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
 | xtb-6.7.1 | qchem.xtb | Semiempirical extended tight-binding program package |
