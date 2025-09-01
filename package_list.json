@@ -113,9 +113,9 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-2025.1",
+    "name": "cp2k-2025.2",
     "pname": "cp2k",
-    "version": "2025.1",
+    "version": "2025.2",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
@@ -521,9 +521,9 @@
   },
   {
     "attribute": "qchem.libwfa",
-    "name": "libwfa-2020-02-19",
+    "name": "libwfa-2024-10-07",
     "pname": "libwfa",
-    "version": "2020-02-19",
+    "version": "2024-10-07",
     "description": "Wave-function analysis tool library for quantum chemical applications",
     "homepage": "https://github.com/libwfa/libwfa"
   },
@@ -532,6 +532,14 @@
     "name": "libxc-6.2.2",
     "pname": "libxc",
     "version": "6.2.2",
+    "description": "Library of exchange-correlation functionals for density-functional theory",
+    "homepage": "https://www.tddft.org/programs/Libxc/"
+  },
+  {
+    "attribute": "qchem.libxc_7",
+    "name": "libxc-7.0.0",
+    "pname": "libxc",
+    "version": "7.0.0",
     "description": "Library of exchange-correlation functionals for density-functional theory",
     "homepage": "https://www.tddft.org/programs/Libxc/"
   },
@@ -969,9 +977,9 @@
   },
   {
     "attribute": "qchem.sirius",
-    "name": "SIRIUS-7.6.2",
+    "name": "SIRIUS-7.8.0-unstable-2025-07-23",
     "pname": "SIRIUS",
-    "version": "7.6.2",
+    "version": "7.8.0-unstable-2025-07-23",
     "description": "Domain specific library for electronic structure calculations",
     "homepage": "https://github.com/electronic-structure/SIRIUS"
   },
@@ -1097,9 +1105,9 @@
   },
   {
     "attribute": "qchem.wfaMolcas",
-    "name": "libwfa-2020-02-19",
+    "name": "libwfa-2024-10-07",
     "pname": "libwfa",
-    "version": "2020-02-19",
+    "version": "2024-10-07",
     "description": "Wave-function analysis tool library for quantum chemical applications",
     "homepage": "https://github.com/libwfa/libwfa"
   },
