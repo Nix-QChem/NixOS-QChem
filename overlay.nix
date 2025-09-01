@@ -170,7 +170,7 @@ let
           cmakeFlags = oldAttrs.cmakeFlags ++ [ "-DWFA=ON" ];
 
           # Needed by libwfa
-          CXXFLAGS = [ "-DH5_USE_110_API" ];
+          env.NIX_CFLAGS_COMPILE = "-std=c++14";
 
           prePatch = ''
             rm -r External/libwfa
