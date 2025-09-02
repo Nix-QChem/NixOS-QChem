@@ -26,7 +26,7 @@ in stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake ];
   buildInputs = [ armadillo blas hdf5-cpp ];
 
-  env.NIX_CFLAGS_COMPILE = [ "-std=c++14" ];
+  env.NIX_CFLAGS_COMPILE = "-std=c++14";
 
   cmakeFlags = [ "-DARMA_HEADER=ON" ]
     ++ lib.optional buildMolcasLib "-DMOLCAS_LIB=ON"
