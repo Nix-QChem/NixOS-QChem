@@ -17,99 +17,38 @@ let
     stdenv = optStdenv;
     avogadro2 = recallPackage avogadro2 {};
     arpack = recallPackage arpack {};
-    arpack-mpi = recallPackage arpack { useMpi = true; };
+    arpack-mpi = recallPackage arpack {
+      inherit (self) mpi;
+      useMpi = true;
+    };
     boost-mpi = recallPackage boost {
       useMpi = true;
       inherit (self) mpi;
     };
 
-    # This a modified version of the upstream override.
-    cp2k =
-      # CP2K requires all dependencies from the Grimme ecosystem to be build with
-      # CMake instead of Meson. Unfortunately most other consumers require meson
-      let
-        grimmeCmake = final.lib.makeScope final.newScope (grimmeSelf: {
-          mctc-lib = final.mctc-lib.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) jonquil toml-f;
-            inherit (self) stdenv;
-          };
+    cp2k = recallPackage cp2k {
+      libxc = pkgs.libxc_7;
+      inherit (final)
+        mpi
+        fftw
+        dbcsr
+        dftd4
+        simple-dftd3
+        sirius
+        multicharge
+        libxsmm
+        spglib
+        scalapack
+      ;
+    };
 
-          toml-f = final.toml-f.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) test-drive;
-          };
-
-          dftd4 = final.dftd4.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) mstore mctc-lib multicharge;
-            inherit (self) stdenv;
-          };
-
-          jonquil = final.jonquil.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) toml-f test-drive;
-          };
-
-          mstore = final.mstore.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) mctc-lib;
-          };
-
-          multicharge = final.multicharge.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) mctc-lib mstore;
-            inherit (self) stdenv;
-          };
-
-          test-drive = final.test-drive.override { buildType = "cmake"; };
-
-          simple-dftd3 = final.simple-dftd3.override {
-            buildType = "cmake";
-            inherit (grimmeSelf) mctc-lib mstore toml-f;
-            inherit (self) stdenv;
-          };
-
-          tblite = final.tblite.override {
-            buildType = "cmake";
-            inherit (grimmeSelf)
-              mctc-lib
-              mstore
-              toml-f
-              multicharge
-              dftd4
-              simple-dftd3
-              ;
-            inherit (self) stdenv;
-          };
-
-          sirius = final.sirius.override {
-            inherit (grimmeSelf)
-              mctc-lib
-              toml-f
-              multicharge
-              dftd4
-              simple-dftd3
-              ;
-            inherit (self) stdenv;
-          };
-        });
-      in
-      final.cp2k.override {
-        inherit (grimmeCmake)
-          toml-f
-          dftd4
-          simple-dftd3
-          tblite
-          sirius
-        ;
-        libxc = pkgs.libxc_7;
-      };
-
+    dbscr = recallPackage dbcsr {};
     fftw = recallPackage fftw {};
+    fftwMpi = recallPackage fftwMpi {
+      inherit (final) mpi;
+    };
     dkh = recallPackage dkh {};
     dftd4 = recallPackage dftd4 {};
-    simple-dftd3 = recallPackage simple-dftd3 {};
     # Currently broken upstream. Put back after next upgrade
     # elpa = recallPackage elpa {};
     ergoscf = recallPackage ergoscf {};
@@ -123,16 +62,21 @@ let
     libint = recallPackage libint {};
     libmbd = recallPackage libmbd {};
     libvori = recallPackage libvori {};
-    libvdwxc = recallPackage libvdwxc {};
+    libvdwxc = recallPackage libvdwxc {
+      inherit (final) mpi fftwMpi;
+    };
     libxc = recallPackage libxc {};
     libxc_7 = recallPackage libxc_7 {};
+    mctc-lib = recallPackage mctc-lib {};
     mpb = recallPackage mpb {};
     meep = python3.pkgs.toPythonApplication (recallPackage python3.pkgs.meep {});
     mkl = recallPackage mkl {};
     molden = recallPackage molden {};
     mopac = recallPackage mopac {};
     mpi = recallPackage mpi {};
+    multicharge = recallPackage multicharge {};
     nwchem = recallPackage nwchem {
+      inherit (self) mpi;
       blas = final.blas-ilp64;
       lapack = final.lapack-ilp64;
     };
@@ -149,9 +93,13 @@ let
     scalapack = recallPackage scalapack {};
     siesta = recallPackage siesta {};
     siesta-mpi = recallPackage siesta-mpi {};
-    sirius = recallPackage sirius {};
+    sirius = recallPackage sirius {
+      inherit (final) scalapack mpi;
+    };
     spglib = recallPackage spglib {};
 
+    # tblite is broken with meson
+    # tblite = recallPackage tblite {};
     fftwSinglePrec = self.fftw.override { precision = "single"; };
 
     gromacs = recallPackage gromacs {
