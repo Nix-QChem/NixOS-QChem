@@ -21,13 +21,13 @@
 
 buildPythonPackage rec {
   pname = "qmcpack";
-  version = "unstable-2025-01-16";
+  version = "4.1.0";
 
   src = fetchFromGitHub {
     owner = "QMCPACK";
     repo = "qmcpack";
-    rev = "0373d2c6c20ef45412805cd973b522e5a988d832";
-    sha256 = "sha256-CyCGj8cY907RjkMZexnMyC8wEtuXcDYyJe/jeWrWDg8=";
+    rev = "v${version}";
+    sha256 = "sha256-husQiSm4xSgOVd15KU7+dNqkZL6dCclyLKgJeDmRe04=";
   };
 
   format = "other";
