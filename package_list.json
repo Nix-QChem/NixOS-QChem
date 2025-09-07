@@ -345,33 +345,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2025.2",
+    "name": "gromacs-2025.3",
     "pname": "gromacs",
-    "version": "2025.2",
+    "version": "2025.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2025.2",
+    "name": "gromacs-2025.3",
     "pname": "gromacs",
-    "version": "2025.2",
+    "version": "2025.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2025.2",
+    "name": "gromacs-2025.3",
     "pname": "gromacs",
-    "version": "2025.2",
+    "version": "2025.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2025.2",
+    "name": "gromacs-2025.3",
     "pname": "gromacs",
-    "version": "2025.2",
+    "version": "2025.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -857,9 +857,9 @@
   },
   {
     "attribute": "qchem.qmcpack",
-    "name": "qmcpack-unstable-2025-01-16",
-    "pname": "qmcpack-unstable",
-    "version": "2025-01-16",
+    "name": "qmcpack-4.1.0",
+    "pname": "qmcpack",
+    "version": "4.1.0",
     "description": "Many-body ab initio Quantum Monte Carlo code for electronic structure calculations",
     "homepage": "https://www.qmcpack.org"
   },

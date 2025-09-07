@@ -43,10 +43,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2025.2 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2025.2 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2025.2 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2025.2 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2025.3 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2025.3 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2025.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2025.3 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
@@ -107,7 +107,7 @@
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.9.1 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
-| qmcpack-unstable-2025-01-16 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
+| qmcpack-4.1.0 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
 | quantum-espresso-7.4.1 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.2 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
