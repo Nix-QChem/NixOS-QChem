@@ -92,7 +92,10 @@ let
     pcmsolver = recallPackage pcmsolver {};
     scalapack = recallPackage scalapack {};
     siesta = recallPackage siesta {};
-    siesta-mpi = recallPackage siesta-mpi {};
+    siesta-mpi = recallPackage siesta-mpi {
+      inherit (final) scalapack mpi;
+    };
+    simple-dftd3 = recallPackage simple-dftd3 {};
     sirius = recallPackage sirius {
       inherit (final) scalapack mpi;
     };
