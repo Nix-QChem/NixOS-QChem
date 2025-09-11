@@ -159,10 +159,7 @@ let
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
 
         # Molcas with optimisation
-        molcas = prev.openmolcas.override {
-          stdenv = aggressiveStdenv;
-          hdf5-cpp = self.hdf5-full;
-        };
+        molcas = self.openmolcas;
 
         # Molcas with LibWFA support. That disables the EXPBAS module, though.
         molcasWfa = self.molcas.overrideAttrs (oldAttrs: {
