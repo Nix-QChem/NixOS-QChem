@@ -40,17 +40,11 @@ let
         inherit callPackage;
         inherit aggressiveStdenv;
 
-        #
-        # Upstream overrides
-        #
-
-        # For molcas and chemps2
+        # For chemps2
         hdf5-full = self.hdf5.override {
           cppSupport = true;
           fortranSupport = true;
         };
-
-        fftw-mpi = self.fftw.override { enableMpi = true; };
 
         # Non-GUI version
         octave-opt = (final.octave.override {
