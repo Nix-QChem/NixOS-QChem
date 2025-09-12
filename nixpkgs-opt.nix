@@ -45,6 +45,7 @@ let
       i-pi = recallPackage final.i-pi {};
       gsl = recallPackage final.gsl {};
       gpaw = final.python3.pkgs.toPythonApplication (recallPackage final.python3.pkgs.gpaw {});
+      lapack-reference = recallPackage final.lapack-reference {};
       libint = recallPackage final.libint {};
       libmbd = recallPackage final.libmbd {};
       libvori = recallPackage final.libvori {};

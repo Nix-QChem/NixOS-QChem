@@ -168,8 +168,8 @@ in
     lapack = super.lapack.override { lapackProvider = super.mkl; };
   }))) //
   (allJobs "${cfg.prefix}-netlib" (pkgs config (self: super: {
-    blas = super.blas.override { blasProvider = super.lapack-reference; };
-    lapack = super.lapack.override { lapackProvider = super.lapack-reference; };
+    blas = super.blas.override { blasProvider = self.qchem.lapack-reference; };
+    lapack = super.lapack.override { lapackProvider = self.qchem.lapack-reference; };
   }))) //
   (allJobs "${cfg.prefix}-amd" (pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.amd-blis; };
