@@ -6,13 +6,13 @@ assert blas.isILP64 == lapack.isILP64;
 
 stdenv.mkDerivation rec {
   pname = "amd-scalapack";
-  version = "4.2";
+  version = "5.0";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "aocl-scalapack";
     rev = "${version}";
-    sha256 = "sha256-bvGDUYtG6N2PTRYyvnnd8YgGfuU0ClyMoeoHlEnI2PM=";
+    sha256 = "sha256-2EcxTUk60g6wUZIHb6k8PwXWy7lBz5OgpfdkgEdCmx4=";
   };
 
   passthru.isILP64 = blas.isILP64;
@@ -26,7 +26,10 @@ stdenv.mkDerivation rec {
     "-DBUILD_SHARED_LIBS=ON"
     "-DBUILD_STATIC_LIBS=OFF"
     "-DUSE_OPTIMIZED_LAPACK_BLAS=ON"
+    "-DSCALAPACK_BUILD_TESTS=ON"
   ] ++ lib.optional blas.isILP64 "-DENABLE_ILP64=ON";
+
+  env.NIX_CFLAGS_COMPILE = "-Wno-incompatible-pointer-types";
 
   preConfigure = ''
     cmakeFlagsArray+=( "-DCMAKE_Fortran_FLAGS=-fallow-argument-mismatch" )
@@ -51,7 +54,6 @@ stdenv.mkDerivation rec {
     license = licenses.bsd3;
     platforms = [ "x86_64-linux" ];
     maintainers = with maintainers; [ markuskowa ];
-    broken = true; # Some tests hang (openmpi-5 problem?)
   };
 
 }
