@@ -7,7 +7,6 @@
 , precision ? "double"
 , enableAvx ? true
 , enableAvx2 ? true
-, enableFma ? false # not supported
 , amdArch ? "znver2"
 , enableMpi ? false
 , mpi
@@ -15,13 +14,13 @@
 
 stdenv.mkDerivation rec {
   pname = "amd-fftw";
-  version = "5.0";
+  version = "5.1";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "amd-fftw";
     rev = version;
-    hash = "sha256-I1GWguES90DDnElRyhIJfY3X+e+bnfREQ/7k9pRjHwI=";
+    hash = "sha256-U0YoAdE2cOIgKtfq5K3+1aCxOO0k9ZayMnrp7za2Auo=";
   };
 
   patches = [
