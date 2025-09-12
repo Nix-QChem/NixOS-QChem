@@ -69,6 +69,7 @@ let
         enableCuda = cfg.useCuda;
         stdenv = final.clangStdenv;
       };
+      openmolcas = recallPackage final.openmolcas {};
       quantum-espresso = recallPackage final.quantum-espresso {
         hdf5 = final.hdf5-fortran;
       };
