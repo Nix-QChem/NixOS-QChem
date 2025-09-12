@@ -17,11 +17,19 @@
   },
   {
     "attribute": "qchem.amd-fftw",
-    "name": "amd-fftw-5.0",
+    "name": "amd-fftw-5.1",
     "pname": "amd-fftw",
-    "version": "5.0",
+    "version": "5.1",
     "description": "Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs",
     "homepage": "http://www.fftw.org/"
+  },
+  {
+    "attribute": "qchem.amd-scalapack",
+    "name": "amd-scalapack-5.0",
+    "pname": "amd-scalapack",
+    "version": "5.0",
+    "description": "Linear algebra routines for parallel distributed memory machines optimized for AMD processors",
+    "homepage": "https://developer.amd.com/amd-aocl/scalapack/"
   },
   {
     "attribute": "qchem.arpack",
@@ -144,6 +152,14 @@
     "homepage": "https://daltonprogram.org/"
   },
   {
+    "attribute": "qchem.dbcsr",
+    "name": "dbcsr-2.8.0",
+    "pname": "dbcsr",
+    "version": "2.8.0",
+    "description": "Distributed Block Compressed Sparse Row matrix library",
+    "homepage": "https://github.com/cp2k/dbcsr"
+  },
+  {
     "attribute": "qchem.dftbplus",
     "name": "dftbplus-unstable-2025-04-11",
     "pname": "dftbplus-unstable",
@@ -190,6 +206,14 @@
     "version": "1.2",
     "description": "Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module",
     "homepage": "https://github.com/psi4/dkh"
+  },
+  {
+    "attribute": "qchem.elpa",
+    "name": "elpa-2025.01.002",
+    "pname": "elpa",
+    "version": "2025.01.002",
+    "description": "Eigenvalue Solvers for Petaflop-Applications",
+    "homepage": "https://elpa.mpcdf.mpg.de/"
   },
   {
     "attribute": "qchem.ergoscf",
@@ -240,7 +264,7 @@
     "homepage": "https://www.fftw.org/"
   },
   {
-    "attribute": "qchem.fftw-mpi",
+    "attribute": "qchem.fftwMpi",
     "name": "fftw-double-3.3.10",
     "pname": "fftw-double",
     "version": "3.3.10",
@@ -456,6 +480,14 @@
     "homepage": "http://janpa.sourceforge.net/"
   },
   {
+    "attribute": "qchem.lapack-reference",
+    "name": "liblapack-3.12.1",
+    "pname": "liblapack",
+    "version": "3.12.1",
+    "description": "Linear Algebra PACKage",
+    "homepage": "http://www.netlib.org/lapack/"
+  },
+  {
     "attribute": "qchem.libGDSII",
     "name": "libGDSII-0.21",
     "pname": "libGDSII",
@@ -568,6 +600,14 @@
     "homepage": "https://macroqc.hacettepe.edu.tr/index.html"
   },
   {
+    "attribute": "qchem.mctc-lib",
+    "name": "mctc-lib-0.4.2",
+    "pname": "mctc-lib",
+    "version": "0.4.2",
+    "description": "Modular computation tool chain library",
+    "homepage": "https://github.com/grimme-lab/mctc-lib"
+  },
+  {
     "attribute": "qchem.meep",
     "name": "meep-1.31.0",
     "pname": "meep",
@@ -590,6 +630,14 @@
     "version": "2023.1.0.46342",
     "description": "Intel OneAPI Math Kernel Library",
     "homepage": "https://software.intel.com/en-us/mkl"
+  },
+  {
+    "attribute": "qchem.molbar",
+    "name": "MolBar-1.1.3",
+    "pname": "MolBar",
+    "version": "1.1.3",
+    "description": "Unique molecular identifiers for molecular barcoding",
+    "homepage": "https://git.rwth-aachen.de/bannwarthlab/molbar"
   },
   {
     "attribute": "qchem.molcas",
@@ -696,6 +744,14 @@
     "homepage": "https://portal.nersc.gov/project/m888/apex/"
   },
   {
+    "attribute": "qchem.multicharge",
+    "name": "multicharge-0.3.1",
+    "pname": "multicharge",
+    "version": "0.3.1",
+    "description": "Electronegativity equilibration model for atomic partial charges",
+    "homepage": "https://github.com/grimme-lab/multicharge"
+  },
+  {
     "attribute": "qchem.multiwfn",
     "name": "multiwfn-3.8-2025-03-31",
     "pname": "multiwfn",
@@ -758,6 +814,14 @@
     "version": "8.3.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
+  },
+  {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-25.06",
+    "pname": "openmolcas",
+    "version": "25.06",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.orca",
@@ -992,12 +1056,28 @@
     "homepage": "https://github.com/markuskowa/slurm-tools"
   },
   {
+    "attribute": "qchem.spfft",
+    "name": "SpFFT-1.1.1",
+    "pname": "SpFFT",
+    "version": "1.1.1",
+    "description": "Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support",
+    "homepage": "https://github.com/eth-cscs/SpFFT"
+  },
+  {
     "attribute": "qchem.spglib",
     "name": "spglib-2.6.0",
     "pname": "spglib",
     "version": "2.6.0",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
+  },
+  {
+    "attribute": "qchem.spla",
+    "name": "spla-1.6.1",
+    "pname": "spla",
+    "version": "1.6.1",
+    "description": "Specialized Parallel Linear Algebra, providing distributed GEMM functionality for specific matrix distributions with optional GPU acceleration",
+    "homepage": "https://github.com/eth-cscs/spla"
   },
   {
     "attribute": "qchem.stdenv",
@@ -1014,6 +1094,14 @@
     "version": "2013",
     "description": "Measure memory transfer rates in MB/s for simple computational kernels",
     "homepage": "http://www.cs.virginia.edu/stream/ref.html"
+  },
+  {
+    "attribute": "qchem.tblite",
+    "name": "tblite-0.5.0",
+    "pname": "tblite",
+    "version": "0.5.0",
+    "description": "Light-weight tight-binding framework",
+    "homepage": "https://github.com/tblite/tblite"
   },
   {
     "attribute": "qchem.theodore",
