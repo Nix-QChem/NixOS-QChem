@@ -91,7 +91,7 @@ let
       # release set for python packages
       // makeForPython [ "python2" "python3" "python311" ]
 
-      # Have a manadatory test set and a channel
+      # Have a mandatory test set and a channel
       // rec {
         tested = pkgSet.releaseTools.aggregate {
           name = "tested-programs";
@@ -168,8 +168,8 @@ in
     lapack = super.lapack.override { lapackProvider = super.mkl; };
   }))) //
   (allJobs "${cfg.prefix}-netlib" (pkgs config (self: super: {
-    blas = super.blas.override { blasProvider = super.lapack-reference; };
-    lapack = super.lapack.override { lapackProvider = super.lapack-reference; };
+    blas = super.blas.override { blasProvider = self.qchem.lapack-reference; };
+    lapack = super.lapack.override { lapackProvider = self.qchem.lapack-reference; };
   }))) //
   (allJobs "${cfg.prefix}-amd" (pkgs config (self: super: {
     blas = super.blas.override { blasProvider = super.amd-blis; };
