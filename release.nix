@@ -91,7 +91,7 @@ let
       # release set for python packages
       // makeForPython [ "python2" "python3" "python311" ]
 
-      # Have a manadatory test set and a channel
+      # Have a mandatory test set and a channel
       // rec {
         tested = pkgSet.releaseTools.aggregate {
           name = "tested-programs";
