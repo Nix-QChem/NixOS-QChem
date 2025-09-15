@@ -2,20 +2,26 @@
 
 buildPythonPackage rec {
   pname = "pyQDng";
-  version = "0.9.1";
+  version = "0.9.2";
 
   src = fetchFromGitLab {
     domain = "gitlab.fysik.su.se";
     owner = "markus.kowalewski";
     repo = "pyqdng";
     rev = "v${version}";
-    sha256 = "sha256-hdmgULSyWnHBxuLXsDgGu1CqjEmm7AWEhx7jgm8g7qw=";
+    sha256 = "sha256-P7iLFt6I2dTVoRK4Blvx/hnQW7Vcn9EZu5e65DXutqE=";
   };
 
   pyproject = true;
   build-system = [ setuptools ];
 
   propagatedBuildInputs = [ numpy protobuf ];
+
+  doCheck = true;
+
+  checkPhase = ''
+    python ./tests.py
+  '';
 
   meta = with lib; {
     description = "Python package for handling QDng binary files";
