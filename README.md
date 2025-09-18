@@ -40,10 +40,10 @@ Via `release.nix` a nix channels compatible nixexprs tarball can be generated:
 `nix-build release.nix -A qchem.channel`
 If you have set a different `cfg.prefix`/`NIXQC_PREFIX` adapt the expression to match the chosen subset name.
 
-
-### NUR
-The applications from the overlay are also available via [Nix User Repository (NUR)](https://github.com/nix-community/NUR) (qchem repo).
-Access via e.g.: `nix-shell -p nur.repos.qchem.<package name>`.
+### Flakes
+All free packages can used directly via nix flakes:
+E.g. `nix run github:Nix-QChem/NixOS-QChem#psi4`
+or  `nix shell github:Nix-QChem/NixOS-QChem#psi4`
 
 ### Binary cache
 The latest builds for the master branch and stable version are stored on [Cachix](https://app.cachix.org/):
