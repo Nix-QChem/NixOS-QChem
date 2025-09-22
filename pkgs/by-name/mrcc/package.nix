@@ -10,7 +10,7 @@
 
 stdenv.mkDerivation rec {
   pname = "mrcc";
-  version = "2023.08.28";
+  version = "25.1.1";
 
   nativeBuildInputs = [
     makeWrapper
@@ -21,9 +21,9 @@ stdenv.mkDerivation rec {
       dashVersion = lib.strings.replaceStrings [ "." ] [ "-" ] version;
     in
     requireFile rec {
-      name = "mrcc.${dashVersion}.binary.tar.gz";
-      sha256 = "sha256-FNfIGSA3AuC2X2iOl9HiIt7mV+oNDqCpP04z6eaD228=";
-      url = "https://www.mrcc.hu/index.php/download-mrcc/mrcc-binary/summary/4-mrcc-binary/126-mrcc-${dashVersion}-binary-tar";
+      name = "mrcc.${version}.binary.tar.gz";
+      sha256 = "sha256-1nDQf8eOeH7org9PEGIpN/He0DJmzVQ7qHsGOMKWeHQ=";
+      url = "https://www.mrcc.hu/index.php/download-mrcc/mrcc-binary/summary/4-mrcc-binary/185-mrcc-${dashVersion}-binary-tar";
       message = ''
         The MRCC source code and binaries are not publicly available. Obtain your own license at
         https://www.mrcc.hu and download the binaries at ${url}. Add the archive ${name} to the nix
