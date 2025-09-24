@@ -12,10 +12,10 @@ stdenv.mkDerivation rec {
   buildInputs = [ python3 ];
 
   # Needs the .git subdirectory to generate a version string.
-  src = fetchgit  {
+  src = fetchgit {
     url = "https://gitlab.com/anthonyjs/${pname}.git";
-    rev = "e2d289a25bc56278ef7962413201327eac68d11b";
-    sha256= "0i6i2vz2lc0bj4sfragavxbx30zwxkh4lhjrk8lag0739xzhxr30";
+    rev = "6b8e81ec141fade2cc24c142d58ce82178c85f61";
+    hash = "sha256-7841FVV9tTJgRVEn1yEf5Qs2MGr3JLzG6GgXidnrwTQ=";
     leaveDotGit = true;
   };
 
