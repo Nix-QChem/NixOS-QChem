@@ -15,19 +15,20 @@
 , numpy
 , importlib-resources
 , pytest
+, swig
 , enableCuda ? cfg.useCuda
 , cudaPackages
 }:
 
 buildPythonPackage rec {
   pname = "vmd-python";
-  version = "3.1.4";
+  version = "3.1.7";
 
   src = fetchFromGitHub {
     owner = "Eigenstate";
     repo = pname;
-    rev = "v${version}";
-    hash = "sha256-4XZfQkLNhgdVNubjz99pg8Tet0t+bjoR/rFtsPxrZY0=";
+    rev = "65f10e87983d0ebd8e761a2a8499df5bf654373e";
+    hash = "sha256-1koMd7GU8KQjxpL5/FOCZWr/+iFTcsF/JCm++xIgvhc=";
   };
 
   postPatch = ''
@@ -38,7 +39,7 @@ buildPythonPackage rec {
   '';
 
   pyproject = true;
-  build-system = [ setuptools ];
+  build-system = [ setuptools swig ];
 
   nativeBuildInputs = [ perl ];
 
@@ -51,7 +52,7 @@ buildPythonPackage rec {
     mesa
   ] ++ lib.optional enableCuda cudaPackages.cudatoolkit;
 
-  propagatedBuildInputs = [
+  dependencies = [
     numpy
     importlib-resources
   ];
@@ -67,6 +68,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/Eigenstate/vmd-python";
     license = licenses.unfree;
     maintainers = [ maintainers.sheepforce ];
-    broken = pythonAtLeast "3.12";
+    broken = pythonAtLeast "3.13";
   };
 }
