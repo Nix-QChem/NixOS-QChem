@@ -2,10 +2,7 @@
 , lib
 , makeWrapper
 , requireFile
-, writeScript
-, writeTextFile
 , which
-, coreutils
 }:
 
 stdenv.mkDerivation rec {
