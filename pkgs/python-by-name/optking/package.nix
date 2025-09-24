@@ -10,19 +10,19 @@
 
 buildPythonPackage rec {
   pname = "optking";
-  version = "0.3.0";
+  version = "0.4.2";
 
   src = fetchFromGitHub {
     owner = "psi-rking";
     repo = "optking";
     rev = version;
-    hash = "sha256-vHoxmJAfuGHiqXIOb935X1ezTT6AYmTWnLeJZSiB1KY=";
+    hash = "sha256-/iRSZaP4FAtAROyIL+R1vGWTG4OZ35wgwNoGUKH9RsY=";
   };
 
   pyproject = true;
   build-system = [ setuptools ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     numpy
     qcelemental
     qcengine
