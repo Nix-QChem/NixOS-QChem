@@ -2,15 +2,12 @@
 , lib
 , makeWrapper
 , requireFile
-, writeScript
-, writeTextFile
 , which
-, coreutils
 }:
 
 stdenv.mkDerivation rec {
   pname = "mrcc";
-  version = "25.1.1";
+  version = "25.1.2";
 
   nativeBuildInputs = [
     makeWrapper
@@ -22,7 +19,7 @@ stdenv.mkDerivation rec {
     in
     requireFile rec {
       name = "mrcc.${version}.binary.tar.gz";
-      sha256 = "sha256-1nDQf8eOeH7org9PEGIpN/He0DJmzVQ7qHsGOMKWeHQ=";
+      sha256 = "sha256-gJ67tufd7KhLd2+WPG9EYfMG+SgbCnzIuADYN2eg4o0=";
       url = "https://www.mrcc.hu/index.php/download-mrcc/mrcc-binary/summary/4-mrcc-binary/185-mrcc-${dashVersion}-binary-tar";
       message = ''
         The MRCC source code and binaries are not publicly available. Obtain your own license at
