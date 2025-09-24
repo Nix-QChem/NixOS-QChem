@@ -285,6 +285,11 @@ let
         });
 
         ### Python packages
+        python312 = super.python312.override (old: {
+          packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
+        });
+
+        ### Python packages
         python311 = super.python311.override (old: {
           packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
         });
