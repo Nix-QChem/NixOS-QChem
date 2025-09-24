@@ -36,6 +36,7 @@
 , boost
 , adcc
 , optking
+, qcmanybody
 , pytest
 , mrcc
 , enableMrcc ? false
@@ -135,7 +136,7 @@ let
 in
 buildPythonPackage rec {
   pname = "psi4";
-  version = "1.9.1";
+  version = "1.10";
 
   nativeBuildInputs = [
     cmake
@@ -172,6 +173,7 @@ buildPythonPackage rec {
     dftd3
     chemps2_
     optking
+    qcmanybody
     pytest
   ]
   ++ qcelemental.passthru.requiredPythonModules
@@ -183,8 +185,8 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     repo = pname;
     owner = "psi4";
-    rev = "v${version}";
-    hash = "sha256-eghnSzfbUAtYTW6wbE6KizuDujnH3Tze9zcOY7ATY60=";
+    tag = "v${version}";
+    hash = "sha256-CzeyPuzWWsiULG8x0Ecn+3VR8cNW2UO1EOy9pZA/9c0=";
   };
 
   preConfigure = ''
