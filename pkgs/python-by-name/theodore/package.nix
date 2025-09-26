@@ -12,13 +12,13 @@
 
 buildPythonPackage rec {
   pname = "theodore";
-  version = "3.1.1";
+  version = "3.2";
 
   src = fetchFromGitHub {
     owner = "felixplasser";
     repo = "theodore-qc";
     rev = "v${version}";
-    hash = "sha256-z3li/X7uQYRqS2GkAGa3sKdQ/1KdOHi0aWhO/HaItH4=";
+    hash = "sha256-WKgLlZ7X5tVPPghWsqV3I6qAmXU7zxEhd7JJpSRVOWE=";
   };
 
   patches = [
