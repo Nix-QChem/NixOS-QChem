@@ -6,8 +6,7 @@
 , numpy
 , orbkit
 , matplotlib
-, openbabel
-, openbabel-bindings
+, pkgs
 }:
 
 buildPythonPackage rec {
@@ -43,8 +42,7 @@ buildPythonPackage rec {
     numpy
     orbkit
     matplotlib
-    openbabel
-    openbabel-bindings
+    pkgs.openbabel
   ];
 
   doCheck = true;
