@@ -55,5 +55,6 @@ buildPythonApplication rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
     mainProgram = "pegamoid.py";
+    broken = true; # https://gitlab.com/Jellby/Pegamoid/-/issues/23
   };
 }
