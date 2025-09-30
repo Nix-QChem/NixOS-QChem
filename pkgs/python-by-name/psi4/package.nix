@@ -82,11 +82,9 @@ let
     '';
   });
 
-  libintName = "new-cmake-2023-take2-b";
-  libintRev = "577d295947c0baab8560a51fc437a3c992b5c5c9"; # Pinned commit from "new-cmake-2023-take2-b"
   libintSrc = fetchurl {
-    url = "https://github.com/loriab/libint/archive/${libintRev}.zip";
-    hash = "sha256-sulMRuGFAhpCzWd7nP4FC3IcI1oJsdYykTPI0MRgDN4=";
+    url = "https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-7-7-4-12-7-5_mm10f12ob2_0.tgz";
+    hash = "sha256-II44D4o0IwZDbTZB1qzAcCTCcXtuy1XJREP6Ic/BV4M=";
   };
 
   testInputs = {
@@ -191,11 +189,7 @@ buildPythonPackage rec {
 
   preConfigure = ''
     substituteInPlace ./external/upstream/libint2/CMakeLists.txt \
-      --replace "https://github.com/loriab/libint/archive/${libintName}.zip" "file://${libintSrc}" \
-      --replace "-DWITH_ERI_MAX_AM:STRING=3;2;2" "-DWITH_ERI_MAX_AM:STRING=6;5;4" \
-      --replace "-DWITH_ERI3_MAX_AM:STRING=4;3;3" "-DWITH_ERI3_MAX_AM:STRING=6;5;4" \
-      --replace "-DWITH_ERI2_MAX_AM:STRING=4;3;3" "-DWITH_ERI2_MAX_AM:STRING=6;5;4" \
-      --replace "-DWITH_MAX_AM:STRING=4;3;3" "-DWITH_MAX_AM:STRING=6;5;4"
+      --replace-fail 'https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-''${_url_am_src}_mm10f12ob2_0.tgz' "file://${libintSrc}" \
   '';
 
   cmakeFlags = [
@@ -211,8 +205,7 @@ buildPythonPackage rec {
     "-DCMAKE_INSIST_FIND_PACKAGE_gau2grid=ON"
     "-Dgau2grid_DIR=${gau2grid}/share/cmake/gau2grid"
     # libint
-    "-DMAX_AM_ERI=6"
-    "-DBUILD_Libint2_GENERATOR=ON"
+    "-DMAX_AM_ERI=7"
     # libxc
     "-DCMAKE_INSIST_FIND_PACKAGE_Libxc=ON"
     "-DLibxc_DIR=${libxc}/share/cmake/Libxc"
