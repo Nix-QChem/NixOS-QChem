@@ -12,14 +12,14 @@
 }:
 
 buildPythonApplication rec {
-  pname = "Pegamoid";
-  version = "2.12.3";
+  pname = "pegamoid";
+  version = "2.12.4";
 
   src = fetchFromGitLab {
     owner = "jellby";
-    repo = pname;
+    repo = "Pegamoid";
     rev = "v${version}";
-    hash = "sha256-QEEF3KZp0u5uRzYk4B7VVbV7nCbGhovlZxljQLn3g48=";
+    hash = "sha256-29EIrbhanZTl1sY7d5KGU6nKleuS4ddmdf/655gJaGY=";
   };
 
 
@@ -55,6 +55,5 @@ buildPythonApplication rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
     mainProgram = "pegamoid.py";
-    broken = true; # https://gitlab.com/Jellby/Pegamoid/-/issues/23
   };
 }
