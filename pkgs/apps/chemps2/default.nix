@@ -20,6 +20,8 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
+
   preCheck = ''
     export LD_LIBRARY_PATH=$PWD/CheMPS2
     export OMP_NUM_THREADS=2

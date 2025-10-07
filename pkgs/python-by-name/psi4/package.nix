@@ -52,6 +52,7 @@ let
     "-DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF"
     "-DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON"
     "-DCMAKE_SKIP_BUILD_RPATH=ON"
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   chemps2_ = chemps2.overrideAttrs (oldAttrs: rec {
