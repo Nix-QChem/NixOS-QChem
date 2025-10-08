@@ -50,6 +50,9 @@ stdenv.mkDerivation rec {
     # Pass -fallow-argument-mismatch also to the pelib build. The Cmake build system will
     # override the environment variable already set.
     ./pelib-fortran.patch
+
+    # fix build with cmake >=4
+    ./cmake4.patch
   ];
 
   postPatch = ''
@@ -68,6 +71,7 @@ stdenv.mkDerivation rec {
     export MATHROOT=${blas}
 
     cmakeFlagsArray+=(
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
       "-DENABLE_MPI=ON"
       "-DMATH_LIB_SEARCH_ORDER=SYSTEM_NATIVE"
       "-DBLAS_LANG=Fortran"

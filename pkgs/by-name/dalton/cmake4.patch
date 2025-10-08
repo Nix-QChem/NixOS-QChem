@@ -1,0 +1,31 @@
+diff --git a/external/gen1int/CMakeLists.txt b/external/gen1int/CMakeLists.txt
+index 337d689..a105604 100755
+--- a/external/gen1int/CMakeLists.txt
++++ b/external/gen1int/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ # Required version of CMake
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
++CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+ 
+ # Project name
+ PROJECT(Gen1Int C Fortran)
+diff --git a/external/pelib/CMakeLists.txt b/external/pelib/CMakeLists.txt
+index 09f3cf6..dab0635 100755
+--- a/external/pelib/CMakeLists.txt
++++ b/external/pelib/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ 
+ project(PElib LANGUAGES Fortran VERSION 1.6)
+ 
+diff --git a/external/qfitlib/CMakeLists.txt b/external/qfitlib/CMakeLists.txt
+index 131af9e..0158c2d 100755
+--- a/external/qfitlib/CMakeLists.txt
++++ b/external/qfitlib/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ 
+ project(qfitlib Fortran)
+ option(ENABLE_QFIT_TOOLS "Build standalone QFITLIB tools." OFF)

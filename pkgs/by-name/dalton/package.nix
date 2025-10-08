@@ -69,13 +69,18 @@ stdenv.mkDerivation rec {
     hash = "sha256-Rn1BZsJrQ0jYBUoQQafDpbpz19wc2LHWof5N6ZlKE1U=";
   };
 
-  postPatch = ''
+  patches = [ ./cmake4.patch ];
+
+  prePatch = ''
     cp -r ${gen1intSrc}/* external/gen1int/.
     cp -r ${pelibSrc}/* external/pelib/.
     cp -r ${qfitlibSrc}/* external/qfitlib/.
 
     chmod -R +rwx external/*
 
+  '';
+
+  postPatch = ''
     patchShebangs .
   '';
 
@@ -83,12 +88,13 @@ stdenv.mkDerivation rec {
   CC = "mpicc";
   CXX = "mpicxx";
 
+  cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
   /*
     Cmake is required to build but adding it to the buildinputs then ignores the setup script.
     Therefore i call the script here manually but cmake is invoked by setup.
   */
   configurePhase = ''
-    ./setup --prefix=$out --mpi && cd build
+    ./setup --prefix=$out --mpi -D CMAKE_POLICY_VERSION_MINIMUM=3.5 && cd build
   '';
 
   enableParallelBuilding = true;
