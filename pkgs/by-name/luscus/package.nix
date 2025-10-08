@@ -28,6 +28,8 @@ stdenv.mkDerivation rec {
     #sed -i "s|\$RUNDIR/|$out/bin/|" ./*/*/*.sh
   '';
 
+  cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
+
   # This is missing for some reason:
   LDFLAGS = "-lGLU";
   env.NIX_CFLAGS_COMPILE = "-fcommon";

@@ -35,6 +35,7 @@ stdenv.mkDerivation rec {
     };
 
     cmakeFlags = [
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
       "-DCMAKE_INSTALL_PREFIX=$out"
       "-DNAMESPACE_INSTALL_INCLUDEDIR=/"
       "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"

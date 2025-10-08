@@ -47,6 +47,7 @@ let
           blas
           lapack
         ];
+        cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
       }
     )
   );
@@ -74,6 +75,7 @@ let
 
         cmakeFlags = [
           "-DHDF5_INC_DIR=${lib.getDev hdf5-fortran}/include"
+          "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
         ];
       }
     )
