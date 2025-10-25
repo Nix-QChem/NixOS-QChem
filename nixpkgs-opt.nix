@@ -18,9 +18,7 @@ let
 
       avogadro2 = recallPackage final.avogadro2 {};
       arpack = recallPackage final.arpack {};
-      arpack-mpi = recallPackage final.arpack {
-        useMpi = true;
-      };
+      arpack-mpi = recallPackage final.arpack-mpi {};
       boost-mpi = recallPackage final.boost {
         useMpi = true;
       };
