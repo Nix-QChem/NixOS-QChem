@@ -7,13 +7,13 @@
 
 stdenv.mkDerivation rec {
   pname = "IntegratorXX";
-  version = "unstable-2023-08-10";
+  version = "unstable-2025-09-09";
 
   src = fetchFromGitHub {
     owner = "wavefunction91";
     repo = pname;
-    rev = "ea07dedd37e7bd49ea06394eb811599002b34b49";
-    hash = "sha256-L9IuzkvQGxfUJ+7x63IxETfvIwCCcxWW9AXUKTnKMYY=";
+    rev = "1369be58d7a3235dac36d75dd964fef058830622";
+    hash = "sha256-+ZThFqJ9Z1aTpwoVIbnAZ7VkFVdHxpjpnylYVxtB6jA=";
   };
 
   nativeBuildInputs = [
