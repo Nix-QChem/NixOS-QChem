@@ -136,6 +136,7 @@ let
 
         exchcxx = callPackage ./pkgs/by-name/exchcxx/package.nix {
           inherit cfg;
+          libxc = self.libxc_7;
         };
 
         gamess-us = callPackage ./pkgs/by-name/gamess-us/package.nix {

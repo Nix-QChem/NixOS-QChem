@@ -29,15 +29,14 @@ let
 
 in
 stdenv.mkDerivation rec {
-  pname = "ExchCXX";
-  version = "unstable-2024-07-28";
+  pname = "exchcxx";
+  version = "1.0.0";
 
-  # Upstream version is from wavefunction91, but has HIP bugs not fixed yet
   src = fetchFromGitHub {
-    owner = "ryanstocks00";
-    repo = pname;
-    rev = "8a0004609afc710bdad4367867026a9daa0a758b";
-    hash = "sha256-38jicRJzoTKM1wIm2rj++4mUPCUwW6ZYvmNepkFlG0Y=";
+    owner = "wavefunction91";
+    repo = "ExchCXX";
+    tag = "v${version}";
+    hash = "sha256-Ar83mWSmaJVrG8b7NXaLpC7a5Mka6+CnXg2RRa8k+J0=";
   };
 
   nativeBuildInputs = [
