@@ -65,9 +65,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.100.0",
+    "name": "avogadro2-1.101.0",
     "pname": "avogadro2",
-    "version": "1.100.0",
+    "version": "1.101.0",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
@@ -209,9 +209,9 @@
   },
   {
     "attribute": "qchem.elpa",
-    "name": "elpa-2025.01.002",
+    "name": "elpa-2025.06.001",
     "pname": "elpa",
-    "version": "2025.01.002",
+    "version": "2025.06.001",
     "description": "Eigenvalue Solvers for Petaflop-Applications",
     "homepage": "https://elpa.mpcdf.mpg.de/"
   },
@@ -241,9 +241,9 @@
   },
   {
     "attribute": "qchem.exchcxx",
-    "name": "ExchCXX-unstable-2024-07-28",
-    "pname": "ExchCXX-unstable",
-    "version": "2024-07-28",
+    "name": "exchcxx-1.0.0",
+    "pname": "exchcxx",
+    "version": "1.0.0",
     "description": "Exchange correlation library for density functional theory calculations",
     "homepage": "https://github.com/wavefunction91/ExchCXX"
   },
@@ -313,9 +313,9 @@
   },
   {
     "attribute": "qchem.gauxc",
-    "name": "GauXC-unstable-2024-09-30",
-    "pname": "GauXC-unstable",
-    "version": "2024-09-30",
+    "name": "gauxc-1.0",
+    "pname": "gauxc",
+    "version": "1.0",
     "description": "Evaluation of quantities related to the exchange-correlation energy (e.g. potential, etc) in the Gaussian basis set discretization of Kohn-Sham density function theory",
     "homepage": "https://github.com/wavefunction91/GauXC"
   },
@@ -465,9 +465,9 @@
   },
   {
     "attribute": "qchem.integratorxx",
-    "name": "IntegratorXX-unstable-2023-08-10",
+    "name": "IntegratorXX-unstable-2025-09-09",
     "pname": "IntegratorXX-unstable",
-    "version": "2023-08-10",
+    "version": "2025-09-09",
     "description": "Reusable DFT Grids for the Masses",
     "homepage": "https://github.com/wavefunction91/IntegratorXX"
   },
@@ -513,9 +513,9 @@
   },
   {
     "attribute": "qchem.libint",
-    "name": "libint-2.11.1",
+    "name": "libint-2.11.2",
     "pname": "libint",
-    "version": "2.11.1",
+    "version": "2.11.2",
     "description": "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     "homepage": "https://github.com/evaleev/libint"
   },
@@ -601,9 +601,9 @@
   },
   {
     "attribute": "qchem.mctc-lib",
-    "name": "mctc-lib-0.4.2",
+    "name": "mctc-lib-0.5.0",
     "pname": "mctc-lib",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "description": "Modular computation tool chain library",
     "homepage": "https://github.com/grimme-lab/mctc-lib"
   },
@@ -689,9 +689,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.1.2",
+    "name": "mopac-23.2",
     "pname": "mopac",
-    "version": "23.1.2",
+    "version": "23.2",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -705,17 +705,17 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-5.0.6",
+    "name": "openmpi-5.0.8",
     "pname": "openmpi",
-    "version": "5.0.6",
+    "version": "5.0.8",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
   {
     "attribute": "qchem.mrcc",
-    "name": "mrcc-2023.08.28",
+    "name": "mrcc-25.1.2",
     "pname": "mrcc",
-    "version": "2023.08.28",
+    "version": "25.1.2",
     "description": "MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations.",
     "homepage": "https://www.mrcc.hu/"
   },
@@ -753,9 +753,9 @@
   },
   {
     "attribute": "qchem.multiwfn",
-    "name": "multiwfn-3.8-2025-03-31",
+    "name": "multiwfn-3.8-2025-10-02",
     "pname": "multiwfn",
-    "version": "3.8-2025-03-31",
+    "version": "3.8-2025-10-02",
     "description": "Multifunctional wave function analyser.",
     "homepage": "http://sobereva.com/multiwfn/index.html"
   },
@@ -785,25 +785,25 @@
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-10.2.0",
+    "name": "octave-10.3.0",
     "pname": "octave",
-    "version": "10.2.0",
+    "version": "10.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-10.2.0",
+    "name": "octave-10.3.0",
     "pname": "octave",
-    "version": "10.2.0",
+    "version": "10.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-16.0",
+    "name": "octopus-16.2",
     "pname": "octopus",
-    "version": "16.0",
+    "version": "16.2",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
@@ -910,6 +910,14 @@
     "version": "1.9.1",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
+  },
+  {
+    "attribute": "qchem.python312",
+    "name": "python3-3.12.11",
+    "pname": "python3",
+    "version": "3.12.11",
+    "description": "High-level dynamically-typed programming language",
+    "homepage": "https://www.python.org"
   },
   {
     "attribute": "qchem.qdng",
@@ -1105,9 +1113,9 @@
   },
   {
     "attribute": "qchem.theodore",
-    "name": "theodore-3.1.1",
+    "name": "theodore-3.2",
     "pname": "theodore",
-    "version": "3.1.1",
+    "version": "3.2",
     "description": "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs",
     "homepage": "https://github.com/felixplasser/theodore-qc"
   },
@@ -1145,9 +1153,9 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.5.0",
+    "name": "ucc-1.5.1",
     "pname": "ucc",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
@@ -1169,9 +1177,9 @@
   },
   {
     "attribute": "qchem.vmd-python",
-    "name": "vmd-python-3.1.4",
+    "name": "vmd-python-3.1.7",
     "pname": "vmd-python",
-    "version": "3.1.4",
+    "version": "3.1.7",
     "description": "Installable VMD as a python module",
     "homepage": "https://github.com/Eigenstate/vmd-python"
   },

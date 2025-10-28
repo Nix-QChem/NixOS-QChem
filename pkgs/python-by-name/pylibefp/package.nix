@@ -1,4 +1,8 @@
-{ buildPythonPackage, lib, fetchFromGitHub, cmake
+{ buildPythonPackage
+, lib
+, fetchFromGitHub
+, cmake
+, fetchpatch
 , pythonAtLeast
 # Dependencies
 , libefp
@@ -19,6 +23,14 @@ buildPythonPackage rec {
     rev = "v${version}"; # v0.6.2 with CMake tweaks
     hash = "sha256-ZbNmMn5Z9MBLDcTacYKrl4Dno3Gtv2f9xvQ0Obh1s0A=";
   };
+
+  patches = [
+    (fetchpatch {
+      name = "cmake4-1";
+      url = "https://github.com/loriab/pylibefp/commit/ece077b65558033c2ef08ad04159b333d5767619.patch";
+      hash = "sha256-QUJqDlH6PojRrRn89ppHgsRkB0vNmNCheTBz/SayHoU=";
+    })
+  ];
 
   nativeBuildInputs = [ cmake ];
 

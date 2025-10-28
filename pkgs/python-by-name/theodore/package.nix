@@ -7,7 +7,6 @@
 , orbkit
 , matplotlib
 , openbabel
-, openbabel-bindings
 }:
 
 buildPythonPackage rec {
@@ -37,6 +36,8 @@ buildPythonPackage rec {
     pytest
   ];
 
+  dontCheckRuntimeDeps = true;
+
   dependencies = [
     pycolt
     cclib
@@ -44,7 +45,6 @@ buildPythonPackage rec {
     orbkit
     matplotlib
     openbabel
-    openbabel-bindings
   ];
 
   doCheck = true;

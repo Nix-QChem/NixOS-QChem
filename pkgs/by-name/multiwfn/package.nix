@@ -7,18 +7,18 @@
 , libGL
 , motif
 , mkl
-, flint
+, flint3
 }:
 
 stdenv.mkDerivation rec {
   pname = "multiwfn";
-  version = "3.8-2025-03-31";
+  version = "3.8-2025-10-02";
 
   src = fetchFromGitLab {
     owner = "theoretical-chemistry-jena/quantum-chemistry";
     repo = pname;
-    rev = "736fcdd2b2342df78c6c2c910e2e2643683991e9";
-    hash = "sha256-o3mAG+0YVXdmSkpETzvM1tWY97b+GDk4MM2jCJKlyUE=";
+    rev = "6918986d31395bbcf0b62f97d2444a5dbc2a2e41";
+    hash = "sha256-LSv0CbTnvT6rqzJGRx0vMeXGO0usnee+fh9g27+6n1U=";
   };
 
   preConfigure = "cd src";
@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
     libGL
     motif
     mkl
-    flint
+    flint3
   ];
 
   enableParallelBuilding = true;

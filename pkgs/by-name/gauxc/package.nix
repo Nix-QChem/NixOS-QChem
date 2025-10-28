@@ -33,8 +33,8 @@ let
   linalgCmake = fetchFromGitHub {
     owner = "wavefunction91";
     repo = "linalg-cmake-modules";
-    rev = "28ceaa9738f14935aa544289fa2fe4c4cc955d0e";
-    hash = "sha256-EGPubUYlZjgJRnUdtgCG+aKcmkpQk1m9N3VVYMgIwic=";
+    rev = "9d2c273a671d6811e9fd432f6a4fa3d915b144b8";
+    hash = "sha256-/OfP869HawRLCNLC5QMP3YgdrkgCkPGcv/YFwDhbPso=";
   };
 
   rocmMerged = symlinkJoin {
@@ -55,15 +55,14 @@ let
 
 in
 stdenv.mkDerivation rec {
-  pname = "GauXC";
-  version = "unstable-2024-09-30";
+  pname = "gauxc";
+  version = "1.0";
 
-  # Upstream version is from wavefunction91, but has HIP bugs not fixed yet
   src = fetchFromGitHub {
-    owner = "ryanstocks00";
-    repo = pname;
-    rev = "ecf6eacc411a4cfe09e6f8e5b3b2855264e0ffb7";
-    hash = "sha256-uqVkQfn5UWxJq3DUnxgkoIfEflU/kQXyvJZlmeQk+pM=";
+    owner = "wavefunction91";
+    repo = "GauXC";
+    tag = "v${version}";
+    hash = "sha256-ZdgwxZ/V/CZZaOSSDKo3XLPC+7yckozEGCPW8jD6ES8=";
   };
 
   patches = [
@@ -81,14 +80,17 @@ stdenv.mkDerivation rec {
     # both will occasionally try to write to the same file at the same time.
     ./TestSerial.patch
 
-    # Upstreams config-cmake has a syntax error, so that GauXC cannot be found
-    # as dependency by other projects. This patch fixes the syntax error.
-    ./CmakeConfig.patch
+    # GauXC wants to build cereal with special flags in place. This patch allows
+    # using cereal.src and avoids the otherwise required network access
+    ./cereal.patch
   ];
 
   postPatch = ''
     substituteInPlace cmake/gauxc-linalg-modules.cmake src/CMakeLists.txt \
       --subst-var-by "LINALG_CMAKE_MODULES_DIR" "${linalgCmake}"
+
+    substituteInPlace cmake/BuildFindCereal.cmake \
+      --subst-var-by "cereal" "${cereal.src}"
   '';
 
   nativeBuildInputs = [
@@ -145,7 +147,6 @@ stdenv.mkDerivation rec {
   checkInputs = [
     eigen
     catch2
-    cereal
   ];
 
   meta = with lib; {

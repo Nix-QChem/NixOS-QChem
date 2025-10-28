@@ -17,7 +17,6 @@
 , bison
 , zlib
 , boost186
-, netcdf
 , netcdffortran
 , fftw
 , blas
@@ -38,6 +37,17 @@ buildPythonPackage rec {
     sha256 = "sha256-rACbKt6yXM0hkdsokFuGffSSQOA43FkPQj7fDYT4oTs=";
     url = "https://ambermd.org/AmberTools.php";
   };
+
+  postPatch = ''
+    substituteInPlace AmberTools/src/cpptraj/CMakeLists.txt --replace-fail \
+      'cmake_minimum_required(VERSION 3.3)' \
+      'cmake_minimum_required(VERSION 3.10)'
+
+    substituteInPlace AmberTools/src/cphstats/CMakeLists.txt --replace-fail \
+      'cmake_minimum_required(VERSION 3.1)' \
+      'cmake_minimum_required(VERSION 3.10)'
+  '';
+
 
   nativeBuildInputs = [
     cmake

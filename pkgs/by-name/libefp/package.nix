@@ -5,7 +5,6 @@
 # Config
 , fraglib_deep ? false
 , fraglib_underscore_l ? false
-, psi4_patches ? true
 , version ? "1.5.0-psi4"
 , rev ? "15cd7ce91239c04b5c32ed101bde6cc36c57550a"
 , sha256 ? "0jcvl3chni4f0hddx9blaia3kccfqx7cszrwavp0a35d42n0x5i2"
@@ -36,6 +35,7 @@ stdenv.mkDerivation rec {
     };
 
     cmakeFlags = [
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
       "-DCMAKE_INSTALL_PREFIX=$out"
       "-DNAMESPACE_INSTALL_INCLUDEDIR=/"
       "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF"

@@ -13,6 +13,8 @@ stdenv.mkDerivation rec {
     hash = "sha256-rC8JORAxlYjURfocCY4LRQmONeRaRAy876++mHx9xAM=";
   };
 
+  cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
+
   hardeningDisable = [ "format" ];
 
   meta = with lib; {

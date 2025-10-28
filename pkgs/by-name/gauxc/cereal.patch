@@ -1,0 +1,14 @@
+diff --git a/cmake/BuildFindCereal.cmake b/cmake/BuildFindCereal.cmake
+index f6787d4d..9f2070d5 100644
+--- a/cmake/BuildFindCereal.cmake
++++ b/cmake/BuildFindCereal.cmake
+@@ -9,8 +9,7 @@ if( NOT cereal_FOUND )
+ 
+   FetchContent_Declare(
+     cereal
+-    GIT_REPOSITORY ${GAUXC_CEREAL_REPOSITORY} 
+-    GIT_TAG        ${GAUXC_CEREAL_REVISION} 
++    URL file://@cereal@
+   )
+ 
+   FetchContent_GetProperties(cereal)

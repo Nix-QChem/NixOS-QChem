@@ -10,13 +10,13 @@
 
 let
   pname = "poltype2";
-  version = "unstable-2023-09-09";
+  version = "unstable-2025-10-25";
 
   src = fetchFromGitHub {
     owner = "TinkerTools";
     repo = pname;
-    rev = "3497187";
-    hash = "sha256-Qu2g97zbdOZT6jsR2k+Xarfj9AKs252aLlgPi8JTd/8=";
+    rev = "6a2c7daf9963126c7f85bb06cd059b7af2648cc8";
+    hash = "sha256-z2F5MhjwphjKYrNjdZ2ZLKgCS4Bv+iXh/F6NIeW/EpE=";
   };
 
 in
@@ -77,4 +77,6 @@ buildFHSEnv {
   '';
 
   runScript = "micromamba run -n amoebamdpoltype python ${src}/PoltypeModules/poltype.py";
+
+  meta.broken = true; # https://github.com/NixOS/nixpkgs/issues/456288
 }

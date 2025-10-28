@@ -1,0 +1,54 @@
+diff --git a/external/gen1int/CMakeLists.txt b/external/gen1int/CMakeLists.txt
+index 93e4b46..a105604 100644
+--- a/external/gen1int/CMakeLists.txt
++++ b/external/gen1int/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ # Required version of CMake
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
++CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+ 
+ # Project name
+ PROJECT(Gen1Int C Fortran)
+diff --git a/external/laplace-minimax/CMakeLists.txt b/external/laplace-minimax/CMakeLists.txt
+index 4a851db..5fe998e 100644
+--- a/external/laplace-minimax/CMakeLists.txt
++++ b/external/laplace-minimax/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ 
+ # project name
+ project(laplace-minimax Fortran)
+diff --git a/external/pelib/CMakeLists.txt b/external/pelib/CMakeLists.txt
+index 3635f81..7d64751 100644
+--- a/external/pelib/CMakeLists.txt
++++ b/external/pelib/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ 
+ project(pelib Fortran)
+ 
+diff --git a/external/stieltjes/CMakeLists.txt b/external/stieltjes/CMakeLists.txt
+index ab0b674..82b6d60 100644
+--- a/external/stieltjes/CMakeLists.txt
++++ b/external/stieltjes/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ 
+ project(stieltjes)
+ 
+diff --git a/src/xcfun/CMakeLists.txt b/src/xcfun/CMakeLists.txt
+index 9c23a2b..76711f0 100644
+--- a/src/xcfun/CMakeLists.txt
++++ b/src/xcfun/CMakeLists.txt
+@@ -10,7 +10,7 @@
+ #
+ #
+ 
+-cmake_minimum_required(VERSION 2.6)
++cmake_minimum_required(VERSION 3.5)
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+ 
+ if(NOT CMAKE_BUILD_TYPE)
