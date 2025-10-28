@@ -3,7 +3,6 @@
 , buildPythonPackage
 , buildPackages
 , isPy311
-, makeWrapper
 , fetchFromGitHub
 , fetchFromGitLab
 , fetchurl
@@ -23,7 +22,8 @@
 , gau2grid
 , libxc
 , dkh
-, dftd3
+, simple-dftd3
+, dftd4
 , pcmsolver
 , libecpint
 , cppe
@@ -87,6 +87,13 @@ let
     hash = "sha256-II44D4o0IwZDbTZB1qzAcCTCcXtuy1XJREP6Ic/BV4M=";
   };
 
+  /*
+  libintSrc = fetchurl {
+    url = "https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-5-4-3-6-5-4_mm10f12ob2_0.tgz";
+    hash = "sha256-nAe4IC79ZqXba+fci17PQaOetzp1F0jwofLR61+IPrI=";
+  };
+  */
+
   testInputs = {
     h2o_omp25_opt = writeTextFile {
       name = "h2o_omp25_opt";
@@ -127,6 +134,7 @@ let
         }
 
         gradient("b3lyp-d3bj")
+        gradient("WB97X3C")
       '';
     };
   };
@@ -140,7 +148,6 @@ buildPythonPackage rec {
     cmake
     perl
     gfortran
-    makeWrapper
     pkg-config
   ];
 
@@ -168,7 +175,8 @@ buildPythonPackage rec {
     qcengine
     numpy
     deepdiff
-    dftd3
+    simple-dftd3
+    dftd4
     chemps2_
     optking
     qcmanybody
@@ -188,6 +196,8 @@ buildPythonPackage rec {
   };
 
   preConfigure = ''
+    export NIX_BUILD_CORES=4
+
     substituteInPlace ./external/upstream/libint2/CMakeLists.txt \
       --replace-fail 'https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-''${_url_am_src}_mm10f12ob2_0.tgz' "file://${libintSrc}" \
   '';
@@ -252,30 +262,31 @@ buildPythonPackage rec {
     rm -r $out/lib/psi4/tests/
   '';
 
-  postFixup =
+  postFixup = ''
+    # Symlinks so that the lib directory is easy to find for python.
+    mkdir -p $out/${python.sitePackages}
+    ln -s $out/lib/psi4 $out/${python.sitePackages}/.
+
+    # The symlink needs a fix for the PSIDATADIR on python side as its expecting to be installed
+    # somewhere else.
+    substituteInPlace $out/${python.sitePackages}/psi4/__init__.py \
+      --replace 'elif "CMAKE_INSTALL_DATADIR" in data_dir:' 'else:' \
+      --replace 'data_dir = os.path.sep.join([os.path.abspath(os.path.dirname(__file__)), "share", "psi4"])' 'data_dir = "@out@/share/psi4"' \
+      --subst-var out
+  '';
+
+  pythonPath = [ simple-dftd3 dftd4 ];
+
+  makeWrapperArgs =
     let
-      binSearchPath = with lib; strings.makeSearchPath "bin" ([ dftd3 ]
+      binSearchPath = lib.strings.makeSearchPath "bin" ([ ]
         ++ lib.optional enableMrcc mrcc
         ++ lib.optional enableCfour cfour
       );
-
     in
-    ''
-      # Make libraries and external binaries available
-      wrapProgram $out/bin/psi4 \
-        --prefix PATH : ${binSearchPath}
-
-      # Symlinks so that the lib directory is easy to find for python.
-      mkdir -p $out/${python.sitePackages}
-      ln -s $out/lib/psi4 $out/${python.sitePackages}/.
-
-      # The symlink needs a fix for the PSIDATADIR on python side as its expecting to be installed
-      # somewhere else.
-      substituteInPlace $out/${python.sitePackages}/psi4/__init__.py \
-        --replace 'elif "CMAKE_INSTALL_DATADIR" in data_dir:' 'else:' \
-        --replace 'data_dir = os.path.sep.join([os.path.abspath(os.path.dirname(__file__)), "share", "psi4"])' 'data_dir = "@out@/share/psi4"' \
-        --subst-var out
-    '';
+    [
+      "--prefix PATH : ${binSearchPath}"
+    ];
 
   doInstallCheck = true;
   installCheckPhase = ''
