@@ -1,0 +1,21 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "type": "SoftwareSourceCode",
+    "applicationCategory": "Chemistry",
+    "codeRepository": "https://github.com/Nix-QChem/NixOS-QChem",
+    "description": "Nix expressions for HPC/quantum chemistry software packages.",
+    "keywords": [
+        "quantum chemistry",
+        "computational chemistry",
+        "nix",
+        "high performance computing"
+    ],
+    "license": "https://spdx.org/licenses/MIT",
+    "name": "NixOS-QChem",
+    "operatingSystem": "Linux",
+    "programmingLanguage": "Nix",
+    "softwareRequirements": "https://nixos.org/",
+    "issueTracker": "https://github.com/Nix-QChem/NixOS-QChem/issues",
+    "referencePublication": "DOI:10.1002/qua.26872"
+}
+
