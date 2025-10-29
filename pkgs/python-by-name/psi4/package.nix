@@ -3,7 +3,6 @@
 , buildPythonPackage
 , buildPackages
 , isPy311
-, makeWrapper
 , fetchFromGitHub
 , fetchFromGitLab
 , fetchurl
@@ -23,7 +22,8 @@
 , gau2grid
 , libxc
 , dkh
-, dftd3
+, simple-dftd3
+, dftd4
 , pcmsolver
 , libecpint
 , cppe
@@ -36,6 +36,7 @@
 , boost
 , adcc
 , optking
+, qcmanybody
 , pytest
 , mrcc
 , enableMrcc ? false
@@ -81,12 +82,17 @@ let
     '';
   });
 
-  libintName = "new-cmake-2023-take2-b";
-  libintRev = "577d295947c0baab8560a51fc437a3c992b5c5c9"; # Pinned commit from "new-cmake-2023-take2-b"
   libintSrc = fetchurl {
-    url = "https://github.com/loriab/libint/archive/${libintRev}.zip";
-    hash = "sha256-sulMRuGFAhpCzWd7nP4FC3IcI1oJsdYykTPI0MRgDN4=";
+    url = "https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-7-7-4-12-7-5_mm10f12ob2_0.tgz";
+    hash = "sha256-II44D4o0IwZDbTZB1qzAcCTCcXtuy1XJREP6Ic/BV4M=";
   };
+
+  /*
+  libintSrc = fetchurl {
+    url = "https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-5-4-3-6-5-4_mm10f12ob2_0.tgz";
+    hash = "sha256-nAe4IC79ZqXba+fci17PQaOetzp1F0jwofLR61+IPrI=";
+  };
+  */
 
   testInputs = {
     h2o_omp25_opt = writeTextFile {
@@ -128,6 +134,7 @@ let
         }
 
         gradient("b3lyp-d3bj")
+        gradient("WB97X3C")
       '';
     };
   };
@@ -135,13 +142,12 @@ let
 in
 buildPythonPackage rec {
   pname = "psi4";
-  version = "1.9.1";
+  version = "1.10";
 
   nativeBuildInputs = [
     cmake
     perl
     gfortran
-    makeWrapper
     pkg-config
   ];
 
@@ -169,9 +175,11 @@ buildPythonPackage rec {
     qcengine
     numpy
     deepdiff
-    dftd3
+    simple-dftd3
+    dftd4
     chemps2_
     optking
+    qcmanybody
     pytest
   ]
   ++ qcelemental.passthru.requiredPythonModules
@@ -183,17 +191,15 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     repo = pname;
     owner = "psi4";
-    rev = "v${version}";
-    hash = "sha256-eghnSzfbUAtYTW6wbE6KizuDujnH3Tze9zcOY7ATY60=";
+    tag = "v${version}";
+    hash = "sha256-CzeyPuzWWsiULG8x0Ecn+3VR8cNW2UO1EOy9pZA/9c0=";
   };
 
   preConfigure = ''
+    export NIX_BUILD_CORES=4
+
     substituteInPlace ./external/upstream/libint2/CMakeLists.txt \
-      --replace "https://github.com/loriab/libint/archive/${libintName}.zip" "file://${libintSrc}" \
-      --replace "-DWITH_ERI_MAX_AM:STRING=3;2;2" "-DWITH_ERI_MAX_AM:STRING=6;5;4" \
-      --replace "-DWITH_ERI3_MAX_AM:STRING=4;3;3" "-DWITH_ERI3_MAX_AM:STRING=6;5;4" \
-      --replace "-DWITH_ERI2_MAX_AM:STRING=4;3;3" "-DWITH_ERI2_MAX_AM:STRING=6;5;4" \
-      --replace "-DWITH_MAX_AM:STRING=4;3;3" "-DWITH_MAX_AM:STRING=6;5;4"
+      --replace-fail 'https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-''${_url_am_src}_mm10f12ob2_0.tgz' "file://${libintSrc}" \
   '';
 
   cmakeFlags = [
@@ -209,8 +215,7 @@ buildPythonPackage rec {
     "-DCMAKE_INSIST_FIND_PACKAGE_gau2grid=ON"
     "-Dgau2grid_DIR=${gau2grid}/share/cmake/gau2grid"
     # libint
-    "-DMAX_AM_ERI=6"
-    "-DBUILD_Libint2_GENERATOR=ON"
+    "-DMAX_AM_ERI=7"
     # libxc
     "-DCMAKE_INSIST_FIND_PACKAGE_Libxc=ON"
     "-DLibxc_DIR=${libxc}/share/cmake/Libxc"
@@ -257,30 +262,31 @@ buildPythonPackage rec {
     rm -r $out/lib/psi4/tests/
   '';
 
-  postFixup =
+  postFixup = ''
+    # Symlinks so that the lib directory is easy to find for python.
+    mkdir -p $out/${python.sitePackages}
+    ln -s $out/lib/psi4 $out/${python.sitePackages}/.
+
+    # The symlink needs a fix for the PSIDATADIR on python side as its expecting to be installed
+    # somewhere else.
+    substituteInPlace $out/${python.sitePackages}/psi4/__init__.py \
+      --replace 'elif "CMAKE_INSTALL_DATADIR" in data_dir:' 'else:' \
+      --replace 'data_dir = os.path.sep.join([os.path.abspath(os.path.dirname(__file__)), "share", "psi4"])' 'data_dir = "@out@/share/psi4"' \
+      --subst-var out
+  '';
+
+  pythonPath = [ simple-dftd3 dftd4 ];
+
+  makeWrapperArgs =
     let
-      binSearchPath = with lib; strings.makeSearchPath "bin" ([ dftd3 ]
+      binSearchPath = lib.strings.makeSearchPath "bin" ([ ]
         ++ lib.optional enableMrcc mrcc
         ++ lib.optional enableCfour cfour
       );
-
     in
-    ''
-      # Make libraries and external binaries available
-      wrapProgram $out/bin/psi4 \
-        --prefix PATH : ${binSearchPath}
-
-      # Symlinks so that the lib directory is easy to find for python.
-      mkdir -p $out/${python.sitePackages}
-      ln -s $out/lib/psi4 $out/${python.sitePackages}/.
-
-      # The symlink needs a fix for the PSIDATADIR on python side as its expecting to be installed
-      # somewhere else.
-      substituteInPlace $out/${python.sitePackages}/psi4/__init__.py \
-        --replace 'elif "CMAKE_INSTALL_DATADIR" in data_dir:' 'else:' \
-        --replace 'data_dir = os.path.sep.join([os.path.abspath(os.path.dirname(__file__)), "share", "psi4"])' 'data_dir = "@out@/share/psi4"' \
-        --subst-var out
-    '';
+    [
+      "--prefix PATH : ${binSearchPath}"
+    ];
 
   doInstallCheck = true;
   installCheckPhase = ''
