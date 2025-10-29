@@ -204,7 +204,7 @@ let
 
         qdng = callPackage ./pkgs/by-name/qdng/package.nix {
           stdenv = aggressiveStdenv;
-          protobuf = final.protobuf3_21;
+          protobuf = final.protobuf_21;
         };
 
         qmcpack = super.python3.pkgs.toPythonApplication self.python3.pkgs.qmcpack;
