@@ -321,9 +321,9 @@
   },
   {
     "attribute": "qchem.gdma",
-    "name": "gdma-2.3.3",
+    "name": "gdma-2.3.3-unstable-2023-06-03",
     "pname": "gdma",
-    "version": "2.3.3",
+    "version": "2.3.3-unstable-2023-06-03",
     "description": "Global Distributed Multipole Analysis from Gaussian Wavefunctions",
     "homepage": "http://www-stone.ch.cam.ac.uk/pub/gdma/"
   },
@@ -449,9 +449,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.6",
+    "name": "i-pi-3.1.7",
     "pname": "i-pi",
-    "version": "3.1.6",
+    "version": "3.1.7",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "https://ipi-code.org/"
   },
@@ -689,9 +689,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.2",
+    "name": "mopac-23.2.1",
     "pname": "mopac",
-    "version": "23.2",
+    "version": "23.2.1",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -816,14 +816,6 @@
     "homepage": "https://openmm.org/"
   },
   {
-    "attribute": "qchem.openmolcas",
-    "name": "openmolcas-25.06",
-    "pname": "openmolcas",
-    "version": "25.06",
-    "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
-  },
-  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.0",
     "pname": "orca",
@@ -849,9 +841,9 @@
   },
   {
     "attribute": "qchem.packmol",
-    "name": "packmol-20.14.2",
+    "name": "packmol-21.1.0",
     "pname": "packmol",
-    "version": "20.14.2",
+    "version": "21.1.0",
     "description": "Generating initial configurations for molecular dynamics",
     "homepage": "http://m3g.iqm.unicamp.br/packmol/home.shtml"
   },
@@ -873,9 +865,9 @@
   },
   {
     "attribute": "qchem.pegamoid",
-    "name": "Pegamoid-2.12.3",
-    "pname": "Pegamoid",
-    "version": "2.12.3",
+    "name": "pegamoid-2.12.4",
+    "pname": "pegamoid",
+    "version": "2.12.4",
     "description": "Python GUI for OpenMolcas",
     "homepage": "https://pypi.org/project/Pegamoid"
   },
@@ -905,9 +897,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.9.1",
+    "name": "psi4-1.10",
     "pname": "psi4",
-    "version": "1.9.1",
+    "version": "1.10",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },

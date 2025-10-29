@@ -40,7 +40,7 @@
 | gau2grid-2.0.8 | qchem.gau2grid | Fast computation of a gaussian and its derivative on a grid |
 | gaussview-6.0.16 | qchem.gaussview | GUI for the Gaussian quantum chemistry software package |
 | gauxc-1.0 | qchem.gauxc | Evaluation of quantities related to the exchange-correlation energy (e.g. potential, etc) in the Gaussian basis set discretization of Kohn-Sham density function theory |
-| gdma-2.3.3 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
+| gdma-2.3.3-unstable-2023-06-03 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gfn0-unstable-2024-07-18 | qchem.gfn0 | Standalone implementation of the GFN0-xTB method |
 | gfnff-unstable-2024-08-02 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
@@ -56,7 +56,7 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.1.6 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.7 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2025-09-09 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
@@ -86,7 +86,7 @@
 | openmolcas-25.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
-| mopac-23.2 | qchem.mopac | Semiempirical quantum chemistry |
+| mopac-23.2.1 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
 | openmpi-5.0.8 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-25.1.2 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
@@ -102,18 +102,17 @@
 | octave-10.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.3.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-25.06 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
-| packmol-20.14.2 | qchem.packmol | Generating initial configurations for molecular dynamics |
+| packmol-21.1.0 | qchem.packmol | Generating initial configurations for molecular dynamics |
 | pcmsolver-1.3.0 | qchem.pcmsolver | API for the Polarizable Continuum Model |
 | pdbfixer-1.8.1 | qchem.pdbfixer | Toolkit for molecular simulation using high performance GPU code |
-| Pegamoid-2.12.3 | qchem.pegamoid | Python GUI for OpenMolcas |
+| pegamoid-2.12.4 | qchem.pegamoid | Python GUI for OpenMolcas |
 | plt2cub-1.0 | qchem.plt2cub | Conversion utility for Turbomole's plt file to Cube format |
 | polyply-1.7.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
-| psi4-1.9.1 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
+| psi4-1.10 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | python3-3.12.11 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-4.1.0 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
