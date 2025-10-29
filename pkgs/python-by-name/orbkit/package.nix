@@ -5,11 +5,11 @@
 , scipy
 , matplotlib
 , h5py
-, scikitimage
+, scikit-image
 , isPy311
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "orbkit";
   version = "1.1.0";
 
@@ -29,7 +29,7 @@ buildPythonPackage rec {
     scipy
     matplotlib
     h5py
-    scikitimage
+    scikit-image
   ];
 
   # fails because of a pyqt4 import test
