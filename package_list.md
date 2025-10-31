@@ -8,7 +8,7 @@
 | arpack-mpi-3.9.1 | qchem.arpack-mpi | Collection of Fortran77 subroutines to solve large scale eigenvalue problems |
 | Autodock-Vina-1.2.3 | qchem.autodock-vina | Molecular docking with classical scoring functions |
 | pyPHSPU-2022-05-23 | qchem.autoint | Poly harmonic spline and partition of unity interpolation |
-| avogadro2-1.101.0 | qchem.avogadro2 | Molecule editor and visualizer |
+| avogadro2-1.102.1 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2-2024-04-19 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2-2024-04-19 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
 | boost-1.87.0 | qchem.boost-mpi | Collection of C++ libraries |
@@ -130,7 +130,7 @@
 | siesta-5.2.2 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-5.2.2 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
-| SIRIUS-7.8.0-unstable-2025-07-23 | qchem.sirius | Domain specific library for electronic structure calculations |
+| SIRIUS-7.9.0 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | SpFFT-1.1.1 | qchem.spfft | Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support |
 | spglib-2.6.0 | qchem.spglib | C library for finding and handling crystal symmetries |
