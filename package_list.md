@@ -88,7 +88,7 @@
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.2.1 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
-| openmpi-5.0.8 | qchem.mpi | Open source MPI-3 implementation |
+| openmpi-5.0.9 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-25.1.2 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrchem-1.1.4 | qchem.mrchem | Numerical real-space code for molecular electronic structure calculations |
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
