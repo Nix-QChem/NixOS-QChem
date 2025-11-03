@@ -705,9 +705,9 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-5.0.8",
+    "name": "openmpi-5.0.9",
     "pname": "openmpi",
-    "version": "5.0.8",
+    "version": "5.0.9",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
