@@ -52,6 +52,12 @@ stdenv.mkDerivation rec {
   patches = [
     ./build.patch
     ./pkg-config.patch
+
+    # Fixes QCG crash with current xTB versions
+    (fetchpatch {
+      url = "https://patch-diff.githubusercontent.com/raw/grimme-lab/xtb/pull/1089.patch";
+      hash = "sha256-ZB/yz1EAfuxVwYFr5xjpgrDg09/3YLC45AzXkuzax84=";
+    })
   ];
 
   outputs = [ "out" "dev" ];
