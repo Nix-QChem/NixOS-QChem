@@ -689,9 +689,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.2.1",
+    "name": "mopac-23.2.2",
     "pname": "mopac",
-    "version": "23.2.1",
+    "version": "23.2.2",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -809,9 +809,9 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.3.1",
+    "name": "openmm-8.4.0",
     "pname": "openmm",
-    "version": "8.3.1",
+    "version": "8.4.0",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
