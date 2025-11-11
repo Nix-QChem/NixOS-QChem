@@ -28,7 +28,7 @@
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2025.06.001 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| et-20250710 | qchem.et | Electronic structure program for coupled cluster |
+| et-2.0.1 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exchcxx-1.0.0 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
 | exciting-neon.0.1 | qchem.exciting | Full-potential all-electron density-functional-theory package |
