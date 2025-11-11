@@ -23,15 +23,15 @@ let
     ];
   });
 in
-stdenv.mkDerivation {
+stdenv.mkDerivation (final: {
   pname = "et";
-  version = "20250710";
+  version = "2.0.1";
 
   src = fetchFromGitLab {
     owner = "eT-program";
     repo = "eT";
-    rev = "b05e753c1df6b4355f45adea84503044090509e5";
-    hash = "sha256-8l3gWfC9OwUjuLdPomyuIPIjmiO8al0lOkrofFezGpo=";
+    tag = "v${final.version}";
+    hash = "sha256-bU2rCwC6ADZMEOaBvEgIP25hhOoeYhP5W5Yh4RqLTT4=";
   };
 
   patches = [ ./argparse.patch ];
@@ -88,9 +88,9 @@ stdenv.mkDerivation {
     runHook preInstallCheck
 
     # Minimalistic check
-    cp ../tests/hf_energy_sto3g/hf_energy_sto3g.inp .
-    $out/bin/eT_launch.py --omp 2 hf_energy_sto3g.inp
-    grep "Total energy:[[:space:]]*-175.0207173" hf_energy_sto3g.out
+    cp ../tests/hf_3-21g/hf_3-21g.inp .
+    $out/bin/eT_launch.py --omp 2 hf_3-21g.inp
+    grep "Total energy:[[:space:]]*-176.449193" hf_3-21g.out
 
     runHook postInstallCheck
   '';
@@ -101,4 +101,4 @@ stdenv.mkDerivation {
     maintainers = [ maintainers.markuskowa ];
     license = licenses.gpl3Only;
   };
-}
+})
