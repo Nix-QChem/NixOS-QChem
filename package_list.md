@@ -28,7 +28,7 @@
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2025.06.001 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| et-20250710 | qchem.et | Electronic structure program for coupled cluster |
+| et-2.0.1 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exchcxx-1.0.0 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
 | exciting-neon.0.1 | qchem.exciting | Full-potential all-electron density-functional-theory package |
@@ -85,6 +85,7 @@
 | openmolcas-25.06 | qchem.molcasNeci | Advanced quantum chemistry software package |
 | openmolcas-25.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
+| molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.2.2 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
