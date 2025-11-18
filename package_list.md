@@ -103,6 +103,7 @@
 | octave-10.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.4.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmolcas-25.06 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -114,12 +115,13 @@
 | polyply-1.7.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.10 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
-| python3-3.12.11 | qchem.python312 | High-level dynamically-typed programming language |
+| python3-3.12.12 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | qmcpack-4.1.0 | qchem.qmcpack | Many-body ab initio Quantum Monte Carlo code for electronic structure calculations |
 | quantum-espresso-7.4.1 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.2 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
+| scalapack-2.2.2 | qchem.scalapack-ilp64 | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
 | sharc-3.0.2 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |

@@ -62,6 +62,7 @@ let
       nwchem = recallPackage final.nwchem {
         blas = final.blas-ilp64;
         lapack = final.lapack-ilp64;
+        scalapack = final.scalapack-ilp64;
       };
       octopus = recallPackage final.octopus {};
       openmm = recallPackage final.openmm {
@@ -74,6 +75,7 @@ let
       };
       pcmsolver = recallPackage final.pcmsolver {};
       scalapack = recallPackage final.scalapack {};
+      scalapack-ilp64 = recallPackage final.scalapack-ilp64 {};
       siesta = recallPackage final.siesta {};
       siesta-mpi = recallPackage final.siesta-mpi {};
       simple-dftd3 = recallPackage final.simple-dftd3 {};
