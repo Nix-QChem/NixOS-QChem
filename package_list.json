@@ -824,6 +824,14 @@
     "homepage": "https://openmm.org/"
   },
   {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-25.06",
+    "pname": "openmolcas",
+    "version": "25.06",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.0",
     "pname": "orca",
@@ -913,9 +921,9 @@
   },
   {
     "attribute": "qchem.python312",
-    "name": "python3-3.12.11",
+    "name": "python3-3.12.12",
     "pname": "python3",
-    "version": "3.12.11",
+    "version": "3.12.12",
     "description": "High-level dynamically-typed programming language",
     "homepage": "https://www.python.org"
   },
@@ -953,6 +961,14 @@
   },
   {
     "attribute": "qchem.scalapack",
+    "name": "scalapack-2.2.2",
+    "pname": "scalapack",
+    "version": "2.2.2",
+    "description": "Library of high-performance linear algebra routines for parallel distributed memory machines",
+    "homepage": "http://www.netlib.org/scalapack/"
+  },
+  {
+    "attribute": "qchem.scalapack-ilp64",
     "name": "scalapack-2.2.2",
     "pname": "scalapack",
     "version": "2.2.2",
