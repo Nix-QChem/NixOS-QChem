@@ -47,6 +47,11 @@ stdenv.mkDerivation rec {
     cp iboview $out/bin/.
   '';
 
+  qtWrapperArgs = [
+    # Required on wayland to force xwayland usage. Graphics issues otherwise.
+    "--set-default QT_QPA_PLATFORM xcb"
+  ];
+
   meta = with lib; {
     description = "Calculator and visualiser for Intrinsic Bond Orbitals";
     homepage = "http://www.iboview.org/index.html";
