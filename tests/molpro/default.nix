@@ -3,6 +3,7 @@
 batsTest {
   name = "molpro";
   auxFiles = [ ./molpro.inp ];
+  numCpus = 3;
 
   outFile = [ "molpro.out" ];
 
@@ -10,10 +11,7 @@ batsTest {
 
   testScript = ''
     @test "Run-Molpro" {
-      ${molpro}/bin/molpro --launcher \
-        "${molpro}/bin/mpiexec -iface lo
-        -np $TEST_NUM_CPUS ${molpro}/bin/molpro.exe" \
-        molpro.inp
+      ${molpro}/bin/molpro -n $TEST_NUM_CPUS  molpro.inp
     }
 
     @test "HF Energy" {

@@ -366,8 +366,6 @@ let
         #
         molpro = callPackage ./pkgs/apps/molpro { token = cfg.licMolpro; };
 
-        molpro-pr = self.molpro.override { comm = "mpipr"; };
-
         molpro12 = callPackage ./pkgs/apps/molpro/2012.nix { token = cfg.licMolpro; };
 
         molpro-ext = callPackage ./pkgs/apps/molpro/custom.nix { token = cfg.licMolpro; };
