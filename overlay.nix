@@ -353,8 +353,6 @@ let
         # provide null molpro attrs in case there is no license
         molpro = null;
         molpro12 = null;
-        molpro-ext = null;
-
         q-chem = null;
 
         # Provide null gaussian attrs in case optpath is not set
@@ -367,8 +365,6 @@ let
         molpro = callPackage ./pkgs/apps/molpro { token = cfg.licMolpro; };
 
         molpro12 = callPackage ./pkgs/apps/molpro/2012.nix { token = cfg.licMolpro; };
-
-        molpro-ext = callPackage ./pkgs/apps/molpro/custom.nix { token = cfg.licMolpro; };
 
       } // lib.optionalAttrs (cfg.licQChem != null) {
         q-chem = callPackage ./pkgs/apps/q-chem/default.nix {
