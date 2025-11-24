@@ -824,14 +824,6 @@
     "homepage": "https://openmm.org/"
   },
   {
-    "attribute": "qchem.openmolcas",
-    "name": "openmolcas-25.06",
-    "pname": "openmolcas",
-    "version": "25.06",
-    "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
-  },
-  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.0",
     "pname": "orca",
