@@ -46,10 +46,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2025.3 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2025.3 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2025.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2025.3 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2025.4 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2025.4 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2025.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2025.4 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
@@ -80,10 +80,10 @@
 | meson-1.7.2 | qchem.meson_1_7_2 | Open source, fast and friendly build system made in Python |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
-| openmolcas-25.06 | qchem.molcas | Advanced quantum chemistry software package |
-| openmolcas-25.06 | qchem.molcasDice | Advanced quantum chemistry software package |
-| openmolcas-25.06 | qchem.molcasNeci | Advanced quantum chemistry software package |
-| openmolcas-25.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
+| openmolcas-25.10 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-25.10 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-25.10 | qchem.molcasNeci | Advanced quantum chemistry software package |
+| openmolcas-25.10 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
