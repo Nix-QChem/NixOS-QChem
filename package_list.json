@@ -369,33 +369,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2025.3",
+    "name": "gromacs-2025.4",
     "pname": "gromacs",
-    "version": "2025.3",
+    "version": "2025.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2025.3",
+    "name": "gromacs-2025.4",
     "pname": "gromacs",
-    "version": "2025.3",
+    "version": "2025.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2025.3",
+    "name": "gromacs-2025.4",
     "pname": "gromacs",
-    "version": "2025.3",
+    "version": "2025.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2025.3",
+    "name": "gromacs-2025.4",
     "pname": "gromacs",
-    "version": "2025.3",
+    "version": "2025.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -641,33 +641,33 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.10",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.10",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasDice",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.10",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.10",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasNeci",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.10",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.10",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasWfa",
-    "name": "openmolcas-25.06",
+    "name": "openmolcas-25.10",
     "pname": "openmolcas",
-    "version": "25.06",
+    "version": "25.10",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
