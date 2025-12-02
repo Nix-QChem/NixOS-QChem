@@ -10,28 +10,43 @@
 , wfoverlap
 , enablePysharc ? true
 , hdf5
-, hdf4 # HDF4 would need Fortran support in nixpkgs
+, hdf4
 , netcdf
 , libjpeg
 }:
 
 let
-  version = "3.0.2";
+  version = "4.0.2";
   python = python3.withPackages (p: with p; [
     numpy
     openbabel-bindings
     setuptools
+    scipy
+    pyscf
+    openmm
+    numba
+    h5py
+    matplotlib
+    pyparsing
+    sympy
+    pyyaml
+    torch
+    pytest
+    ase
+    opt-einsum
+    threadpoolctl
   ]);
 
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation (finalAttrs: {
   pname = "sharc";
   inherit version;
 
   src = fetchFromGitHub {
     owner = "sharc-md";
-    repo = "sharc";
+    repo = "sharc4";
     rev = "v${version}";
-    hash = "sha256-B4cnqp9YRG4GdkhXSzPJ1uYE55MIT0MwXxxAGuuMDGg=";
+    hash = "sha256-f0qpvGWzI8I7xGMh8bzyiXEOJ69OKWbT6D2ltLbQOwQ=";
   };
 
   outputs = [ "out" "doc" "tests" ];
@@ -45,51 +60,59 @@ in stdenv.mkDerivation {
   buildInputs = [ blas lapack fftw python ]
     ++ lib.optionals enablePysharc ([ libjpeg hdf5 libjpeg netcdf ] ++ hdf4.all);
 
-  patches = [
-    # Molpro tests require more memory
-    ./molpro_tests.patch
-  ];
 
   postPatch = ''
     # SHARC make file (dynamics fixes)
     sed -i 's:^EXEDIR.*=.*:EXEDIR = ''${out}/bin:' source/Makefile;
 
     # purify output
-    substituteInPlace source/Makefile --replace 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
-                                      --replace 'shell hostname' 'shell echo nixos' \
-                                      --replace 'shell pwd' 'shell echo nixos' \
-                                      --replace '-ldf' '-lhdf'
-
-    rm bin/*.x
+    substituteInPlace source/Makefile \
+      --replace-fail 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
+      --replace-fail 'shell hostname' 'shell echo nixos' \
+      --replace-fail 'shell pwd' 'shell echo nixos' \
+      --replace-fail '-ldf' '-lhdf'
 
     patchShebangs wfoverlap/scripts
   '';
 
-  configurePhase = lib.optionalString enablePysharc ''
+  configurePhase = lib.optionalString (!enablePysharc) ''
     runHook preConfigure
 
-    substituteInPlace source/Makefile --replace 'USE_PYSHARC := false' 'USE_PYSHARC := true'
+    substituteInPlace source/Makefile \
+      --replace-fail 'USE_PYSHARC := true' 'USE_PYSHARC := false'
 
     runHook postConfigure
   '';
 
-  enableParallelBuilding = true;
+  buildPhase = ''
+    runHook preBuild
+
+    ${lib.optionalString enablePysharc ''
+      cd pysharc
+      make ${builtins.toString finalAttrs.makeFlags}
+      make install ${builtins.toString finalAttrs.makeFlags}
+      cd ..
+    ''}
+
+    cd source
+    make ${builtins.toString finalAttrs.makeFlags}
+
+    runHook postBuild
+  '';
+
+  makeFlags = [
+    "USE_COMPILER=gnu"
+    "USE_LIBS=gnu"
+  ];
+
+  enableParallelBuilding = false; # Totally wrong order otherwise
 
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/bin
 
-    ${lib.optionalString enablePysharc ''
-      cd pysharc
-      make
-      make install
-      cd ..
-    ''
-    }
-
-    cd source
-    make install
+    make install ${builtins.toString finalAttrs.makeFlags}
     cd ..
 
     cp -u bin/* $out/bin
@@ -128,4 +151,4 @@ in stdenv.mkDerivation {
     maintainers = [ maintainers.markuskowa ];
     platforms = platforms.linux;
   };
-}
+})
