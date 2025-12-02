@@ -37,7 +37,8 @@ let
     threadpoolctl
   ]);
 
-in stdenv.mkDerivation (finalAttrs: {
+in
+stdenv.mkDerivation (finalAttrs: {
   pname = "sharc";
   inherit version;
 
@@ -65,10 +66,11 @@ in stdenv.mkDerivation (finalAttrs: {
     sed -i 's:^EXEDIR.*=.*:EXEDIR = ''${out}/bin:' source/Makefile;
 
     # purify output
-    substituteInPlace source/Makefile --replace-fail 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
-                                      --replace-fail 'shell hostname' 'shell echo nixos' \
-                                      --replace-fail 'shell pwd' 'shell echo nixos' \
-                                      --replace-fail '-ldf' '-lhdf'
+    substituteInPlace source/Makefile \
+      --replace-fail 'shell date' "shell echo $SOURCE_DATE_EPOCH" \
+      --replace-fail 'shell hostname' 'shell echo nixos' \
+      --replace-fail 'shell pwd' 'shell echo nixos' \
+      --replace-fail '-ldf' '-lhdf'
 
     patchShebangs wfoverlap/scripts
   '';
@@ -76,7 +78,8 @@ in stdenv.mkDerivation (finalAttrs: {
   configurePhase = lib.optionalString (!enablePysharc) ''
     runHook preConfigure
 
-    substituteInPlace source/Makefile --replace-fail 'USE_PYSHARC := true' 'USE_PYSHARC := false'
+    substituteInPlace source/Makefile \
+      --replace-fail 'USE_PYSHARC := true' 'USE_PYSHARC := false'
 
     runHook postConfigure
   '';
