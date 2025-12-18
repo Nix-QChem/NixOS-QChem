@@ -19,7 +19,7 @@
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
 | crest-3.0.2 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
-| dbcsr-2.8.0 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
+| dbcsr-2.9.0 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
 | dftbplus-unstable-2025-04-11 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
 | dftd4-3.7.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
@@ -132,7 +132,7 @@
 | siesta-5.2.2 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-5.2.2 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
-| SIRIUS-7.9.0 | qchem.sirius | Domain specific library for electronic structure calculations |
+| SIRIUS-7.10.0 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | SpFFT-1.1.1 | qchem.spfft | Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support |
 | spglib-2.6.0 | qchem.spglib | C library for finding and handling crystal symmetries |

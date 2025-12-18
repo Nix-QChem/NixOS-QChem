@@ -153,9 +153,9 @@
   },
   {
     "attribute": "qchem.dbcsr",
-    "name": "dbcsr-2.8.0",
+    "name": "dbcsr-2.9.0",
     "pname": "dbcsr",
-    "version": "2.8.0",
+    "version": "2.9.0",
     "description": "Distributed Block Compressed Sparse Row matrix library",
     "homepage": "https://github.com/cp2k/dbcsr"
   },
@@ -1057,9 +1057,9 @@
   },
   {
     "attribute": "qchem.sirius",
-    "name": "SIRIUS-7.9.0",
+    "name": "SIRIUS-7.10.0",
     "pname": "SIRIUS",
-    "version": "7.9.0",
+    "version": "7.10.0",
     "description": "Domain specific library for electronic structure calculations",
     "homepage": "https://github.com/electronic-structure/SIRIUS"
   },
