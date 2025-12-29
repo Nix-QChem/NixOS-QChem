@@ -32,6 +32,8 @@ let
       inherit (finalPkgs) dftbplus;
     };
 
+    psi4 = callPackage ./pkgs/python-by-name/psi4/package.nix { inherit (finalPkgs) libxc; };
+
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
 
     pysisyphus = callPackage ./pkgs/python-by-name/pysisyphus/package.nix {
