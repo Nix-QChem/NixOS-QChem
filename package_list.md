@@ -19,7 +19,7 @@
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
 | crest-3.0.2 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
-| dbcsr-2.9.0 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
+| dbcsr-2.9.1 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
 | dftbplus-unstable-2025-04-11 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
 | dftd4-3.7.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
@@ -103,6 +103,7 @@
 | octave-10.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.4.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmolcas-25.10 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -135,7 +136,7 @@
 | SIRIUS-7.10.0 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | SpFFT-1.1.1 | qchem.spfft | Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support |
-| spglib-2.6.0 | qchem.spglib | C library for finding and handling crystal symmetries |
+| spglib-2.7.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | spla-1.6.1 | qchem.spla | Specialized Parallel Linear Algebra, providing distributed GEMM functionality for specific matrix distributions with optional GPU acceleration |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
@@ -145,8 +146,8 @@
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.9 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | turbomole-7.8.1 | qchem.turbomole78 | General purpose quantum chemistry program. Tools, not Toys! |
-| ucc-1.5.1 | qchem.ucc | Collective communication operations API |
-| ucx-1.19.0 | qchem.ucx | Unified Communication X library |
+| ucc-1.6.0 | qchem.ucc | Collective communication operations API |
+| ucx-1.19.1 | qchem.ucx | Unified Communication X library |
 | vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
 | vmd-python-3.1.7 | qchem.vmd-python | Installable VMD as a python module |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |

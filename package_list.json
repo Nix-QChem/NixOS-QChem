@@ -153,9 +153,9 @@
   },
   {
     "attribute": "qchem.dbcsr",
-    "name": "dbcsr-2.9.0",
+    "name": "dbcsr-2.9.1",
     "pname": "dbcsr",
-    "version": "2.9.0",
+    "version": "2.9.1",
     "description": "Distributed Block Compressed Sparse Row matrix library",
     "homepage": "https://github.com/cp2k/dbcsr"
   },
@@ -824,6 +824,14 @@
     "homepage": "https://openmm.org/"
   },
   {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-25.10",
+    "pname": "openmolcas",
+    "version": "25.10",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.0",
     "pname": "orca",
@@ -1081,9 +1089,9 @@
   },
   {
     "attribute": "qchem.spglib",
-    "name": "spglib-2.6.0",
+    "name": "spglib-2.7.0",
     "pname": "spglib",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "C library for finding and handling crystal symmetries",
     "homepage": "https://spglib.github.io/spglib/"
   },
@@ -1161,17 +1169,17 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.5.1",
+    "name": "ucc-1.6.0",
     "pname": "ucc",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.19.0",
+    "name": "ucx-1.19.1",
     "pname": "ucx",
-    "version": "1.19.0",
+    "version": "1.19.1",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },
