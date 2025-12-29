@@ -23,10 +23,7 @@ let
         useMpi = true;
       };
 
-      cp2k = recallPackage final.cp2k {
-        libxc = self.libxc_7;
-      };
-
+      cp2k = recallPackage final.cp2k {};
       dbcsr = recallPackage final.dbcsr {};
       fftw = recallPackage final.fftw {};
       fftwMpi = recallPackage final.fftwMpi {};
