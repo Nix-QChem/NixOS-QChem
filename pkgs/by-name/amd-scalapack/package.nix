@@ -6,13 +6,13 @@ assert blas.isILP64 == lapack.isILP64;
 
 stdenv.mkDerivation rec {
   pname = "amd-scalapack";
-  version = "5.0";
+  version = "5.2";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "aocl-scalapack";
     rev = "${version}";
-    sha256 = "sha256-2EcxTUk60g6wUZIHb6k8PwXWy7lBz5OgpfdkgEdCmx4=";
+    sha256 = "sha256-vtN0e1Kzehb8zBX/T5eOvA4UMUTm4XuUbuBu74iECg0=";
   };
 
   passthru.isILP64 = blas.isILP64;
