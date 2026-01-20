@@ -68,6 +68,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/Eigenstate/vmd-python";
     license = licenses.unfree;
     maintainers = [ maintainers.sheepforce ];
-    broken = pythonAtLeast "3.13";
+    broken = true; # Requires Python <= 3.12 but python dependencies in nixpkgs only build with >= 3.13.
   };
 }
