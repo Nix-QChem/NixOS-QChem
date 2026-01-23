@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
     "-DSCALAPACK_BUILD_TESTS=ON"
   ] ++ lib.optional blas.isILP64 "-DENABLE_ILP64=ON";
 
-  env.NIX_CFLAGS_COMPILE = "-Wno-incompatible-pointer-types";
+  env.NIX_CFLAGS_COMPILE = "-Wno-incompatible-pointer-types -std=gnu17";
 
   preConfigure = ''
     cmakeFlagsArray+=( "-DCMAKE_Fortran_FLAGS=-fallow-argument-mismatch" )
