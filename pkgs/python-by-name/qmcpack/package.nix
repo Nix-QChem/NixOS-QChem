@@ -95,5 +95,6 @@ buildPythonPackage rec {
     homepage = "https://www.qmcpack.org";
     license = licenses.ncsa;
     maintainers = [ maintainers.markuskowa ];
+    broken = true;
   };
 }
