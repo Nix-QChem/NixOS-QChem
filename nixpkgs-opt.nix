@@ -111,7 +111,8 @@ let
 
       ucx = recallPackage final.ucx {};
       ucc = recallPackage final.ucc {};
-      wannier90 = recallPackage final.wannier90 {};
+
+      wannier90 = final.wannier90;
       wxmacmolplt = recallPackage final.wxmacmolplt {};
     });
 
