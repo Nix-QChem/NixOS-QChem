@@ -20,7 +20,7 @@ let
 
     sourceRoot = "plugins";
 
-    env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
+    env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration -std=gnu17";
 
     makeFlags = [ "LINUXAMD64" ];
 
