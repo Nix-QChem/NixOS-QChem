@@ -111,7 +111,7 @@ let
 
       ucx = recallPackage final.ucx {};
       ucc = recallPackage final.ucc {};
-      wannier90 = recallPackage final.wannier90 {};
+      wannier90 = recallPackage final.wannier90 { inherit (final) stdenv; };
       wxmacmolplt = recallPackage final.wxmacmolplt {};
     });
 
