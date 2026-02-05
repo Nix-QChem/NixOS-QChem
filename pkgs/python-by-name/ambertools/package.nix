@@ -71,6 +71,9 @@ buildPythonPackage rec {
     readline
   ];
 
+  # Needed for gcc-15 build
+  env.NIX_CFLAGS = "-Wno-error=no-template-body";
+
   format = "other";
 
   cmakeFlags = [
