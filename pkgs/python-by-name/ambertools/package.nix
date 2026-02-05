@@ -38,6 +38,8 @@ buildPythonPackage rec {
     url = "https://ambermd.org/AmberTools.php";
   };
 
+  patches = [ ./cstdint-gcc-15.patch ];
+
   postPatch = ''
     substituteInPlace AmberTools/src/cpptraj/CMakeLists.txt --replace-fail \
       'cmake_minimum_required(VERSION 3.3)' \
@@ -72,7 +74,7 @@ buildPythonPackage rec {
   ];
 
   # Needed for gcc-15 build
-  env.NIX_CFLAGS = "-Wno-error=no-template-body";
+  env.NIX_CFLAGS = "-Wno-error=template-body -Wno-error=maybe-uninitialized";
 
   format = "other";
 
