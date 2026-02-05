@@ -6,6 +6,7 @@
 , qcelemental
 , qcengine
 , msgpack
+, isPy311
 }:
 
 buildPythonPackage rec {
@@ -37,5 +38,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/psi-rking/optking";
     license = licenses.bsd3;
     platforms = platforms.unix;
+    broken = isPy311; # django is currently broken on python311
   };
 }
