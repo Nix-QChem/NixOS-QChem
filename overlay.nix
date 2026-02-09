@@ -162,7 +162,7 @@ let
           cmakeFlags = oldAttrs.cmakeFlags ++ [ "-DWFA=ON" ];
 
           # Needed by libwfa
-          env.NIX_CFLAGS_COMPILE = "-std=c++14";
+          env.NIX_CFLAGS_COMPILE = "-std=c++14 -std=gnu17";
 
           prePatch = ''
             rm -r External/libwfa

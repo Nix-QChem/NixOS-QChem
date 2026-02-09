@@ -25,9 +25,9 @@
   },
   {
     "attribute": "qchem.amd-scalapack",
-    "name": "amd-scalapack-5.0",
+    "name": "amd-scalapack-5.2",
     "pname": "amd-scalapack",
-    "version": "5.0",
+    "version": "5.2",
     "description": "Linear algebra routines for parallel distributed memory machines optimized for AMD processors",
     "homepage": "https://developer.amd.com/amd-aocl/scalapack/"
   },
@@ -209,9 +209,9 @@
   },
   {
     "attribute": "qchem.elpa",
-    "name": "elpa-2025.06.001",
+    "name": "elpa-2025.06.002",
     "pname": "elpa",
-    "version": "2025.06.001",
+    "version": "2025.06.002",
     "description": "Eigenvalue Solvers for Petaflop-Applications",
     "homepage": "https://elpa.mpcdf.mpg.de/"
   },
@@ -369,33 +369,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2025.4",
+    "name": "gromacs-2026.0",
     "pname": "gromacs",
-    "version": "2025.4",
+    "version": "2026.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2025.4",
+    "name": "gromacs-2026.0",
     "pname": "gromacs",
-    "version": "2025.4",
+    "version": "2026.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2025.4",
+    "name": "gromacs-2026.0",
     "pname": "gromacs",
-    "version": "2025.4",
+    "version": "2026.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2025.4",
+    "name": "gromacs-2026.0",
     "pname": "gromacs",
-    "version": "2025.4",
+    "version": "2026.0",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -688,6 +688,22 @@
     "homepage": "https://www.molgw.org/"
   },
   {
+    "attribute": "qchem.molpro",
+    "name": "molpro-2025.4.1",
+    "pname": "molpro",
+    "version": "2025.4.1",
+    "description": "Quantum chemistry program package",
+    "homepage": "http://www.molpro.net"
+  },
+  {
+    "attribute": "qchem.molpro12",
+    "name": "molpro-2012.1.12",
+    "pname": "molpro",
+    "version": "2012.1.12",
+    "description": "Quantum chemistry program package",
+    "homepage": "https://www.molpro.net"
+  },
+  {
     "attribute": "qchem.moltemplate",
     "name": "moltemplate-2.20.21",
     "pname": "moltemplate",
@@ -726,14 +742,6 @@
     "version": "25.1.2",
     "description": "MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations.",
     "homepage": "https://www.mrcc.hu/"
-  },
-  {
-    "attribute": "qchem.mrchem",
-    "name": "mrchem-1.1.4",
-    "pname": "mrchem",
-    "version": "1.1.4",
-    "description": "Numerical real-space code for molecular electronic structure calculations",
-    "homepage": "https://mrchem.readthedocs.io"
   },
   {
     "attribute": "qchem.mrcpp",
@@ -822,6 +830,14 @@
     "version": "8.4.0",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
+  },
+  {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-25.10",
+    "pname": "openmolcas",
+    "version": "25.10",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.orca",
@@ -928,14 +944,6 @@
     "homepage": "https://github.com/quantum-dynamics-ng/QDng"
   },
   {
-    "attribute": "qchem.qmcpack",
-    "name": "qmcpack-4.1.0",
-    "pname": "qmcpack",
-    "version": "4.1.0",
-    "description": "Many-body ab initio Quantum Monte Carlo code for electronic structure calculations",
-    "homepage": "https://www.qmcpack.org"
-  },
-  {
     "attribute": "qchem.quantum-espresso",
     "name": "quantum-espresso-7.4.1",
     "pname": "quantum-espresso",
@@ -1008,6 +1016,14 @@
     "homepage": "https://www.sharc-md.org"
   },
   {
+    "attribute": "qchem.sharc-molpro",
+    "name": "sharc-3.0.2",
+    "pname": "sharc",
+    "version": "3.0.2",
+    "description": "Molecular dynamics (MD) program suite for excited states",
+    "homepage": "https://www.sharc-md.org"
+  },
+  {
     "attribute": "qchem.sharc-orca",
     "name": "sharc-3.0.2",
     "pname": "sharc",
@@ -1033,17 +1049,17 @@
   },
   {
     "attribute": "qchem.siesta",
-    "name": "siesta-5.2.2",
+    "name": "siesta-5.4.1",
     "pname": "siesta",
-    "version": "5.2.2",
+    "version": "5.4.1",
     "description": "First-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
   {
     "attribute": "qchem.siesta-mpi",
-    "name": "siesta-5.2.2",
+    "name": "siesta-5.4.1",
     "pname": "siesta",
-    "version": "5.2.2",
+    "version": "5.4.1",
     "description": "First-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
@@ -1182,14 +1198,6 @@
     "version": "1.9.3",
     "description": "Molecular dynamics visualisation program",
     "homepage": "https://www.ks.uiuc.edu/Research/vmd/"
-  },
-  {
-    "attribute": "qchem.vmd-python",
-    "name": "vmd-python-3.1.7",
-    "pname": "vmd-python",
-    "version": "3.1.7",
-    "description": "Installable VMD as a python module",
-    "homepage": "https://github.com/Eigenstate/vmd-python"
   },
   {
     "attribute": "qchem.vossvolvox",

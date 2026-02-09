@@ -67,6 +67,7 @@ in stdenv.mkDerivation rec {
 
   mesonFlags = [
     "-Dla_backend=netlib"
+    "-Dc_args=-std=gnu17"
   ];
 
   # Dynamic libraries are not installed by default and need to be installed

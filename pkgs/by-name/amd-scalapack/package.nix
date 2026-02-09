@@ -6,13 +6,13 @@ assert blas.isILP64 == lapack.isILP64;
 
 stdenv.mkDerivation rec {
   pname = "amd-scalapack";
-  version = "5.0";
+  version = "5.2";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "aocl-scalapack";
     rev = "${version}";
-    sha256 = "sha256-2EcxTUk60g6wUZIHb6k8PwXWy7lBz5OgpfdkgEdCmx4=";
+    sha256 = "sha256-vtN0e1Kzehb8zBX/T5eOvA4UMUTm4XuUbuBu74iECg0=";
   };
 
   passthru.isILP64 = blas.isILP64;
@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
     "-DSCALAPACK_BUILD_TESTS=ON"
   ] ++ lib.optional blas.isILP64 "-DENABLE_ILP64=ON";
 
-  env.NIX_CFLAGS_COMPILE = "-Wno-incompatible-pointer-types";
+  env.NIX_CFLAGS_COMPILE = "-Wno-incompatible-pointer-types -std=gnu17";
 
   preConfigure = ''
     cmakeFlagsArray+=( "-DCMAKE_Fortran_FLAGS=-fallow-argument-mismatch" )
