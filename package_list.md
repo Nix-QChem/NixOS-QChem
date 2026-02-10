@@ -86,8 +86,6 @@
 | openmolcas-25.10 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
-| molpro-2025.4.1 | qchem.molpro | Quantum chemistry program package |
-| molpro-2012.1.12 | qchem.molpro12 | Quantum chemistry program package |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.2.2 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
@@ -104,7 +102,6 @@
 | octave-10.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.4.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-25.10 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.0 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -127,7 +124,6 @@
 | sharc-3.0.2 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-full | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-molcas | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-molpro | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |

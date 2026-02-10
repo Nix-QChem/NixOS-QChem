@@ -688,22 +688,6 @@
     "homepage": "https://www.molgw.org/"
   },
   {
-    "attribute": "qchem.molpro",
-    "name": "molpro-2025.4.1",
-    "pname": "molpro",
-    "version": "2025.4.1",
-    "description": "Quantum chemistry program package",
-    "homepage": "http://www.molpro.net"
-  },
-  {
-    "attribute": "qchem.molpro12",
-    "name": "molpro-2012.1.12",
-    "pname": "molpro",
-    "version": "2012.1.12",
-    "description": "Quantum chemistry program package",
-    "homepage": "https://www.molpro.net"
-  },
-  {
     "attribute": "qchem.moltemplate",
     "name": "moltemplate-2.20.21",
     "pname": "moltemplate",
@@ -830,14 +814,6 @@
     "version": "8.4.0",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
-  },
-  {
-    "attribute": "qchem.openmolcas",
-    "name": "openmolcas-25.10",
-    "pname": "openmolcas",
-    "version": "25.10",
-    "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.orca",
@@ -1009,14 +985,6 @@
   },
   {
     "attribute": "qchem.sharc-molcas",
-    "name": "sharc-3.0.2",
-    "pname": "sharc",
-    "version": "3.0.2",
-    "description": "Molecular dynamics (MD) program suite for excited states",
-    "homepage": "https://www.sharc-md.org"
-  },
-  {
-    "attribute": "qchem.sharc-molpro",
     "name": "sharc-3.0.2",
     "pname": "sharc",
     "version": "3.0.2",
