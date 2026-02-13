@@ -1,0 +1,14 @@
+diff --git a/setup.py b/setup.py
+index 8bbb234..49c9e62 100644
+--- a/setup.py
++++ b/setup.py
+@@ -33,6 +33,9 @@ with open(path.join(here, "requirements.txt")) as requirements_file:
+     # Parse requirements.txt, ignoring any commented-out lines.
+     requirements = [line for line in requirements_file.read().splitlines() if not line.startswith("#")]
+ 
++    # drop version constraints
++    requirements = list(map(lambda x: x.split('==')[0], requirements))
++
+ with open(path.join(here, "README.rst"), encoding="utf-8") as readme_file:
+     readme = readme_file.read()
+ 
