@@ -56,7 +56,7 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.1.7 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.8 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2025-09-09 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
@@ -87,7 +87,7 @@
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
-| mopac-23.2.2 | qchem.mopac | Semiempirical quantum chemistry |
+| mopac-23.2.3 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
 | openmpi-5.0.9 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-25.1.2 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |

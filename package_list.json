@@ -449,9 +449,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.7",
+    "name": "i-pi-3.1.8",
     "pname": "i-pi",
-    "version": "3.1.7",
+    "version": "3.1.8",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "https://ipi-code.org/"
   },
@@ -697,9 +697,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.2.2",
+    "name": "mopac-23.2.3",
     "pname": "mopac",
-    "version": "23.2.2",
+    "version": "23.2.3",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
