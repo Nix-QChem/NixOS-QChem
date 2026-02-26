@@ -18,18 +18,18 @@ assert withCustomOtoolExternal -> customOtoolExternal != null;
 
 stdenv.mkDerivation {
   pname = "orca";
-  version = "6.1.0";
+  version = "6.1.1";
 
   src =
     if enableAvx2 then
       requireFile {
-          name = "orca_6_1_0_linux_x86-64_shared_openmpi418_avx2.tar.xz";
-          sha256 = "sha256-8JoItZcbGNH4U2T35Xvs21F5+93BoWNoAlUVIe93h3Q=";
+          name = "orca_6_1_1_linux_x86-64_shared_openmpi418_avx2.tar.xz";
+          sha256 = "sha256-Xq9nb5cRo4g11gkmQyGjAma0h7ZUd1R4At7e6YK8gtU=";
           url = "https://orcaforum.kofo.mpg.de/app.php/portal";
       } else
       requireFile {
-        name = "orca_6_1_0_linux_x86-64_shared_openmpi418.tar.xz";
-        sha256 = "sha256-2fSrancryXSzWMp+Ak+lH9z/vyt4xpvjlFs9rlDaYEY=";
+        name = "orca_6_1_1_linux_x86-64_shared_openmpi418.tar.xz";
+        sha256 = "sha256-oLwdbSw8AGIDZ7vF2/KzpwGKvJLR/2XwbOxG91NQub4=";
         url = "https://orcaforum.kofo.mpg.de/app.php/portal";
       };
 
