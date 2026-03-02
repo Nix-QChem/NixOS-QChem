@@ -35,9 +35,8 @@ stdenv.mkDerivation rec {
   # Dirac requires a multitude of submodules, which all need to be present.
   src = fetchgit {
     url = "https://gitlab.com/dirac/dirac/";
-    rev = "37b755410d9fdcd9b5e7bba6e43ceb7d5c7b9dae"; # v22.0, fetchgit does not handle the tag on gitlab correctly
-    hash = "sha256-QRqKXk0F09ipOFcTIeHdjsYe1IRtXycSGr6FWyOYxG0=";
-    deepClone = true;
+    rev = "v${version}";
+    hash = "sha256-tDir+lLJyAzxO46eSNx3EPrDBsdZNGXDNKL/zd81y2A=";
     fetchSubmodules = true;
   };
 
