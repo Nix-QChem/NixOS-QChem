@@ -233,8 +233,6 @@ buildPythonPackage rec {
     # LibEcpInt
     "-DENABLE_ecpint=ON"
     "-Decpint_DIR=${libecpint}"
-    # LibEFP
-    "-DENABLE_libefp=OFF"
     # CheMPS2
     "-DENABLE_CheMPS2=ON"
     "-DCheMPS2_DIR=${chemps2_}"
