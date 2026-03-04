@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "mirror://sourceforge/project/luscus/luscus_${version}.tar.gz";
-    sha256 = "18vkqn29lgix08bxrmnpvrzj575402disg9bqa41qvkbb3g0igz1";
+    hash = "sha256-I+njP7tjscIAJQis0lRNP4k37fPmxAJ/+nDalb4yKtA=";
   };
 
   postPatch = ''
