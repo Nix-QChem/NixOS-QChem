@@ -8,18 +8,23 @@
 , qcelemental
 , zstandard
 , pytestCheckHook
+, pythonRelaxDepsHook
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "QCManyBody";
-  version = "0.5.1";
+  version = "0.6.1";
 
   src = fetchFromGitHub {
     owner = "MolSSI";
-    repo = pname;
-    rev = "v${version}";
-    hash = "sha256-4/DIR9Y//CUlZQTxLO4L8DSju07gJ0iZobmpfIus2Cw=";
+    repo = finalAttrs.pname;
+    rev = "v${finalAttrs.version}";
+    hash = "sha256-zCFWIfvVPnoaS2W7kmY2F8CWlrvPzCUoGfn2YFxGz/8=";
   };
+
+  nativeBuildInputs = [ pythonRelaxDepsHook ];
+
+  pythonRelaxDeps = [ "qcelemental" ];
 
   pyproject = true;
   build-system = [
@@ -44,4 +49,4 @@ buildPythonPackage rec {
     license = licenses.bsd3;
     platforms = platforms.unix;
   };
-}
+})
