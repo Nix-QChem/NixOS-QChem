@@ -127,7 +127,9 @@ let
         };
 
         dice = callPackage ./pkgs/by-name/dice/package.nix {
-          boost = self.boost-mpi;
+          boost = final.boost186.override {
+            useMpi = true;
+          };
         };
 
         dirac = callPackage ./pkgs/by-name/dirac/package.nix {
