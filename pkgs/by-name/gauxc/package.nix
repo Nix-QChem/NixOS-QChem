@@ -13,6 +13,7 @@
 , eigen
 , catch2
 , cereal
+, boost
 , mpiCheckPhaseHook
 , pkg-config
 , cfg
@@ -54,15 +55,15 @@ let
   };
 
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "gauxc";
-  version = "1.0";
+  version = "1.0-unstable-2026-01-30";
 
   src = fetchFromGitHub {
     owner = "wavefunction91";
     repo = "GauXC";
-    tag = "v${version}";
-    hash = "sha256-ZdgwxZ/V/CZZaOSSDKo3XLPC+7yckozEGCPW8jD6ES8=";
+    rev = "44048d4afa3ddf5fd1976725213970323e3771a3";
+    hash = "sha256-4QOUxiuLtHMP5+b6O5QqvuFMFlwH4u1v0goApntEqTw=";
   };
 
   patches = [
@@ -70,27 +71,14 @@ stdenv.mkDerivation rec {
     # Substitute @LINALG_CMAKE_MODULES_DIR@ with the path to the prefetched linalg-cmake-modules repository.
     ./Linalg.patch
 
-    # Allows usage of a installed HighFive version instead of fetching it
-    ./HighFive.patch
-
-    # Removes the hardcoded forced static linking
-    ./DynamicLinking.patch
-
     # Forces the MPI tests to strictly run after the serial tests. Otherwise,
     # both will occasionally try to write to the same file at the same time.
     ./TestSerial.patch
-
-    # GauXC wants to build cereal with special flags in place. This patch allows
-    # using cereal.src and avoids the otherwise required network access
-    ./cereal.patch
   ];
 
   postPatch = ''
     substituteInPlace cmake/gauxc-linalg-modules.cmake src/CMakeLists.txt \
       --subst-var-by "LINALG_CMAKE_MODULES_DIR" "${linalgCmake}"
-
-    substituteInPlace cmake/BuildFindCereal.cmake \
-      --subst-var-by "cereal" "${cereal.src}"
   '';
 
   nativeBuildInputs = [
@@ -100,6 +88,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     hdf5-mpi
+    boost
   ] ++ lib.optionals enableCuda (with cudaPackages; [
     libcublas
     cuda_nvcc
@@ -156,4 +145,4 @@ stdenv.mkDerivation rec {
     platforms = [ "x86_64-linux" ];
     maintainers = [ maintainers.sheepforce ];
   };
-}
+})

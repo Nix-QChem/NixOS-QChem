@@ -151,6 +151,18 @@ let
 
         gauxc = callPackage ./pkgs/by-name/gauxc/package.nix {
           inherit cfg;
+          highfive-mpi = final.highfive-mpi.overrideAttrs (old: {
+            version = "2.10.1";
+            src = super.fetchFromGitHub {
+              owner = "highfive-devs";
+              repo = "highfive";
+              tag = "v2.10.1";
+              hash = "sha256-Nv+nbel/xGlGTB8sKF0EM1xwz/ZEri5uGB7ma6Ba6fo=";
+            };
+            cmakeFlags = old.cmakeFlags ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
+            buildInputs = old.buildInputs ++ [ final.boost183 ];
+          });
+          boost = final.boost183;
         };
 
         iboview = prev.libsForQt5.callPackage ./pkgs/apps/iboview { };
