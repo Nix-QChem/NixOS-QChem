@@ -1,8 +1,8 @@
 diff --git a/build/python/setup.py b/build/python/setup.py
-index 938732e..d823861 100644
+index 22ab37b..beb9500 100644
 --- a/build/python/setup.py
 +++ b/build/python/setup.py
-@@ -239,14 +239,8 @@ class CustomBuildExt(build_ext):
+@@ -209,14 +209,8 @@ class CustomBuildExt(build_ext):
          build_ext.finalize_options(self)
  
          # Boost
@@ -19,20 +19,3 @@ index 938732e..d823861 100644
  
          self.include_dirs.append(self.boost_include_dir)
          self.library_dirs.append(self.boost_library_dir)
-@@ -258,6 +252,7 @@ class CustomBuildExt(build_ext):
- 
-         # Vina
-         self.include_dirs.append('src/lib')
-+        self.include_dirs.append('../../src/lib')
-         # SWIG
-         # shadow, creates a pythonic wrapper around vina
-         # castmode
-@@ -358,7 +353,7 @@ setup(
-     packages=['vina'],
-     package_dir=package_dir,
-     install_requires=['numpy>=1.18'],
--    python_requires='>=3.5.*',
-+    python_requires='>=3.5',
-     ext_modules=[obextension],
-     #entry_points={"console_scripts": ["vina = vina.vina_cli:main"]},
-     classifiers=[
