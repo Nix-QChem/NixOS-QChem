@@ -7,18 +7,19 @@
 , pbr
 , tqdm
 , numba
+, pysmiles
 , pytestCheckHook
 }:
 
 buildPythonPackage rec {
   pname = "polyply";
-  version = "1.7.0";
+  version = "1.8.0";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "polyply_1.0";
     rev = "v${version}";
-    hash = "sha256-dpempdJYU0G+HEvV0yhS4h+5iKgyLozuJtoAwwrS/Js=";
+    hash = "sha256-Mzmce3noziwi2qsoUmbzf3va7gdDjMdZRToeFb0S+oc=";
   };
 
   postPatch = ''
@@ -26,13 +27,14 @@ buildPythonPackage rec {
       --replace "decorator == 4.4.2" ""
   '';
 
-  propagatedBuildInputs = [
+  dependencies = [
     numpy
     scipy
     vermouth
     tqdm
     numba
     pbr
+    pysmiles
   ];
 
   preConfigure = "export PBR_VERSION=${version}";
