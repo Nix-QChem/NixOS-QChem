@@ -10,24 +10,24 @@
 
 buildPythonPackage rec {
   pname = "vermouth";
-  version = "0.9.6";
+  version = "0.15.0";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "vermouth-martinize";
     rev = "v${version}";
-    hash = "sha256-1VAZ3JtUVseRqNwe+6b3xo58wiAaxoeD/oJodDPuspk=";
+    hash = "sha256-3dC9duHicsQJG/leRAyYKLAFnUvMgHKAjM9J6OuU7U0=";
   };
 
   postPatch = ''
     substituteInPlace ./setup.cfg --replace 'networkx ~= 2.0' 'networkx'
   '';
 
-  nativeBuildInputs = [
+  build-system = [
     pbr
     setuptools
   ];
-  propagatedBuildInputs = [
+  dependencies = [
     numpy
     scipy
     networkx
