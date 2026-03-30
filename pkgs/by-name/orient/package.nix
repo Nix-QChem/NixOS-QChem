@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchgit, writeTextFile, git, gfortran, blas, lapack,
+{ stdenv, lib, fetchFromGitLab, writeTextFile, gfortran, blas, lapack,
   xorg, python3, libGL, libGLU, freeglut
 }:
 
@@ -35,23 +35,19 @@ let
     '';
   };
 
-in stdenv.mkDerivation rec {
+in stdenv.mkDerivation (finalAttrs: {
   pname = "orient";
   version = "5.0.10";
 
-  # The build system requires the git directory to be present.
-  # Therefore don't use fetchFromGitlab, but fetchgit, which allows
-  # to keep the git directory.
-  src = fetchgit {
-    url = "https://gitlab.com/anthonyjs/${pname}.git";
+  src = fetchFromGitLab {
+    owner = "anthonyjs";
+    repo = "orient";
     rev = "64cab885b460239d195c2cf239ad892fea005f22";
-    sha256 = "sha256-lJ4FyhjobJc7V9doyb6gowheKVCc27XcP36BX1Du1po=";
-    leaveDotGit = true;
+    hash = "sha256-LPqYbMzzpK0CCxShJOzCyf6xykBETA/oys6C760cJjg=";
   };
 
   nativeBuildInputs = [
     gfortran
-    git
   ];
 
   buildInputs = [
@@ -65,10 +61,15 @@ in stdenv.mkDerivation rec {
 
   propagatedBuildInputs = [ pythonWP ];
 
-  patches = [ ./MakePrefix.patch ];
+  patches = [
+    ./MakePrefix.patch
+    ./UseCommitEnvVar.patch
+  ];
 
   postPatch = ''
     patchShebangs .
+
+    export ORIENT_COMMIT=${finalAttrs.src.rev}
 
     # Write a custom Makefile for Gfortran/Nix
     rm ./x86-64/gfortran/Flags
@@ -84,4 +85,4 @@ in stdenv.mkDerivation rec {
     platforms = [ "x86_64-linux" ];
     maintainers = [ maintainers.sheepforce ];
   };
-}
+})

@@ -1,0 +1,25 @@
+diff --git a/bin/version.py b/bin/version.py
+--- a/bin/version.py
++++ b/bin/version.py
+@@ -7,9 +7,8 @@
+ import argparse
+ import re
+ from datetime import datetime
+-# import os
++import os
+ # import string
+-import subprocess
+ 
+ this = __file__
+ parser = argparse.ArgumentParser(
+@@ -33,9 +32,7 @@
+     patchlevel = re.sub("PATCHLEVEL +:= +", "", line)
+ 
+ now = datetime.today().strftime('%d %B %Y at %H:%M:%S')
+-log = subprocess.check_output("git log -n 1 --oneline", shell=True,
+-                              universal_newlines=True)
+-commit = log.split()[0]
++commit = os.environ.get("ORIENT_COMMIT", "unknown")
+ print(commit)
+ 
+ with open(args.v90,"w") as OUT:
