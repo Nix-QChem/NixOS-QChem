@@ -149,6 +149,13 @@ stdenv.mkDerivation rec {
     catch2
   ];
 
+  # Increase default test timeout from 1500s. Some tests take too long on slower machines.
+  preCheck = ''
+    checkFlagsArray+=(
+      "ARGS=--timeout 9000"
+    )
+  '';
+
   meta = with lib; {
     description = "Evaluation of quantities related to the exchange-correlation energy (e.g. potential, etc) in the Gaussian basis set discretization of Kohn-Sham density function theory";
     homepage = "https://github.com/wavefunction91/GauXC";
