@@ -8,6 +8,7 @@
 , tqdm
 , numba
 , pysmiles
+, cgsmiles
 , pytestCheckHook
 }:
 
@@ -24,7 +25,14 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace setup.cfg \
-      --replace "decorator == 4.4.2" ""
+      --replace-fail "decorator == 4.4.2" ""
+
+    # Handle both NetworkX node-link key conventions ("links" and "edges").
+    substituteInPlace polyply/src/simple_seq_parsers.py \
+      --replace-fail "json_graph.node_link_graph(data)" "json_graph.node_link_graph(data, edges=\"links\" if \"links\" in data else \"edges\")"
+
+    substituteInPlace polyply/tests/test_gen_seq.py \
+      --replace-fail "json_graph.node_link_graph(js_graph)" "json_graph.node_link_graph(js_graph, edges=\"links\" if \"links\" in js_graph else \"edges\")"
   '';
 
   dependencies = [
@@ -35,6 +43,7 @@ buildPythonPackage rec {
     numba
     pbr
     pysmiles
+    cgsmiles
   ];
 
   preConfigure = "export PBR_VERSION=${version}";
