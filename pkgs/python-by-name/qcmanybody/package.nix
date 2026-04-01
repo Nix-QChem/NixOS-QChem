@@ -1,5 +1,6 @@
 { buildPythonPackage
 , lib
+, isPy311
 , fetchFromGitHub
 , setuptools
 , setuptools-scm
@@ -48,5 +49,6 @@ buildPythonPackage (finalAttrs: {
     homepage = "https://github.com/MolSSI/QCManyBody";
     license = licenses.bsd3;
     platforms = platforms.unix;
+    broken = isPy311;
   };
 })
