@@ -7,32 +7,43 @@
 , pbr
 , tqdm
 , numba
+, pysmiles
+, cgsmiles
 , pytestCheckHook
 }:
 
 buildPythonPackage rec {
   pname = "polyply";
-  version = "1.7.0";
+  version = "1.8.0";
 
   src = fetchFromGitHub {
     owner = "marrink-lab";
     repo = "polyply_1.0";
     rev = "v${version}";
-    hash = "sha256-dpempdJYU0G+HEvV0yhS4h+5iKgyLozuJtoAwwrS/Js=";
+    hash = "sha256-Mzmce3noziwi2qsoUmbzf3va7gdDjMdZRToeFb0S+oc=";
   };
 
   postPatch = ''
     substituteInPlace setup.cfg \
-      --replace "decorator == 4.4.2" ""
+      --replace-fail "decorator == 4.4.2" ""
+
+    # Handle both NetworkX node-link key conventions ("links" and "edges").
+    substituteInPlace polyply/src/simple_seq_parsers.py \
+      --replace-fail "json_graph.node_link_graph(data)" "json_graph.node_link_graph(data, edges=\"links\" if \"links\" in data else \"edges\")"
+
+    substituteInPlace polyply/tests/test_gen_seq.py \
+      --replace-fail "json_graph.node_link_graph(js_graph)" "json_graph.node_link_graph(js_graph, edges=\"links\" if \"links\" in js_graph else \"edges\")"
   '';
 
-  propagatedBuildInputs = [
+  dependencies = [
     numpy
     scipy
     vermouth
     tqdm
     numba
     pbr
+    pysmiles
+    cgsmiles
   ];
 
   preConfigure = "export PBR_VERSION=${version}";

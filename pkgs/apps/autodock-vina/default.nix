@@ -7,13 +7,13 @@
 
 stdenv.mkDerivation rec {
   pname = "Autodock-Vina";
-  version = "1.2.3";
+  version = "1.2.7";
 
   src = fetchFromGitHub {
     owner = "ccsb-scripps";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-oOpwhRmpS5WfnuqxkjxGsGtrofPxUt8bH9ggzm5rrR8=";
+    hash = "sha256-AQJl/EUAkdIQJZSN27sbjG7dYbQxeEb8Pd+p2kKRnvA=";
   };
 
   postPatch = ''

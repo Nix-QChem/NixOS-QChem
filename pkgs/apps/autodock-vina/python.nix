@@ -1,4 +1,5 @@
 { buildPythonPackage
+, isPy311
 , setuptools
 , boost
 , swig
@@ -9,7 +10,8 @@
 }:
 
 buildPythonPackage {
-  inherit (autodock-vina) pname version src meta;
+  inherit (autodock-vina) pname version src;
+  meta = autodock-vina.meta // { broken = isPy311; };
 
   # Remove hardcoded include paths and fix version constraint formats
   patches = [

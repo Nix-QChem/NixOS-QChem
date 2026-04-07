@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation {
   pname = "dice";
-  version = "2024-07-02";
+  version = "1.0-unstable-2025-06-15";
 
   src = fetchFromGitHub {
     owner = "sanshar";
     repo = "dice";
-    rev = "0f52b621b79cfef83dc161e0a30120f7cc86bd42";
-    hash = "sha256-v33uaFY9m2Aewm48iePHUuKBMkxcdMLgin10s/PYgcc=";
+    rev = "f0f0850de73f2f02953ff6552315889d47255b6f";
+    hash = "sha256-LK0FOcvneHsKxogX7yu1p2yOzM18F95jjYBRqrYCcEc=";
   };
 
   buildInputs = [
