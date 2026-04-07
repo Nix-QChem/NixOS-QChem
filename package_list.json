@@ -808,14 +808,6 @@
     "homepage": "https://openmm.org/"
   },
   {
-    "attribute": "qchem.openmolcas",
-    "name": "openmolcas-26.02",
-    "pname": "openmolcas",
-    "version": "26.02",
-    "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
-  },
-  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.1",
     "pname": "orca",
@@ -937,17 +929,17 @@
   },
   {
     "attribute": "qchem.scalapack",
-    "name": "scalapack-2.2.2",
+    "name": "scalapack-2.2.3",
     "pname": "scalapack",
-    "version": "2.2.2",
+    "version": "2.2.3",
     "description": "Library of high-performance linear algebra routines for parallel distributed memory machines",
     "homepage": "http://www.netlib.org/scalapack/"
   },
   {
     "attribute": "qchem.scalapack-ilp64",
-    "name": "scalapack-2.2.2",
+    "name": "scalapack-2.2.3",
     "pname": "scalapack",
-    "version": "2.2.2",
+    "version": "2.2.3",
     "description": "Library of high-performance linear algebra routines for parallel distributed memory machines",
     "homepage": "http://www.netlib.org/scalapack/"
   },
