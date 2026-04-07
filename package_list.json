@@ -49,9 +49,9 @@
   },
   {
     "attribute": "qchem.autodock-vina",
-    "name": "Autodock-Vina-1.2.3",
+    "name": "Autodock-Vina-1.2.7",
     "pname": "Autodock-Vina",
-    "version": "1.2.3",
+    "version": "1.2.7",
     "description": "Molecular docking with classical scoring functions",
     "homepage": "https://github.com/ccsb-scripps/AutoDock-Vina"
   },
@@ -65,9 +65,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.102.1",
+    "name": "avogadro2-1.103.0",
     "pname": "avogadro2",
-    "version": "1.102.1",
+    "version": "1.103.0",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
@@ -89,9 +89,9 @@
   },
   {
     "attribute": "qchem.boost-mpi",
-    "name": "boost-1.87.0",
+    "name": "boost-1.89.0",
     "pname": "boost",
-    "version": "1.87.0",
+    "version": "1.89.0",
     "description": "Collection of C++ libraries",
     "homepage": "http://boost.org/"
   },
@@ -185,9 +185,9 @@
   },
   {
     "attribute": "qchem.dice",
-    "name": "dice-2024-07-02",
+    "name": "dice-1.0-unstable-2025-06-15",
     "pname": "dice",
-    "version": "2024-07-02",
+    "version": "1.0-unstable-2025-06-15",
     "description": "Heatbath configuration interaction program",
     "homepage": "https://github.com/sanshar/Dice"
   },
@@ -209,9 +209,9 @@
   },
   {
     "attribute": "qchem.elpa",
-    "name": "elpa-2025.06.002",
+    "name": "elpa-2026.02.001",
     "pname": "elpa",
-    "version": "2025.06.002",
+    "version": "2026.02.001",
     "description": "Eigenvalue Solvers for Petaflop-Applications",
     "homepage": "https://elpa.mpcdf.mpg.de/"
   },
@@ -313,9 +313,9 @@
   },
   {
     "attribute": "qchem.gauxc",
-    "name": "gauxc-1.0",
+    "name": "gauxc-1.0-unstable-2026-01-30",
     "pname": "gauxc",
-    "version": "1.0",
+    "version": "1.0-unstable-2026-01-30",
     "description": "Evaluation of quantities related to the exchange-correlation energy (e.g. potential, etc) in the Gaussian basis set discretization of Kohn-Sham density function theory",
     "homepage": "https://github.com/wavefunction91/GauXC"
   },
@@ -369,33 +369,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2026.0",
+    "name": "gromacs-2026.1",
     "pname": "gromacs",
-    "version": "2026.0",
+    "version": "2026.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2026.0",
+    "name": "gromacs-2026.1",
     "pname": "gromacs",
-    "version": "2026.0",
+    "version": "2026.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2026.0",
+    "name": "gromacs-2026.1",
     "pname": "gromacs",
-    "version": "2026.0",
+    "version": "2026.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2026.0",
+    "name": "gromacs-2026.1",
     "pname": "gromacs",
-    "version": "2026.0",
+    "version": "2026.1",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -449,9 +449,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.8",
+    "name": "i-pi-3.1.11",
     "pname": "i-pi",
-    "version": "3.1.8",
+    "version": "3.1.11",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "https://ipi-code.org/"
   },
@@ -502,14 +502,6 @@
     "version": "1.0.7",
     "description": "C++ library for the efficient evaluation of integrals over effective core potentials",
     "homepage": "https://github.com/robashaw/libecpint"
-  },
-  {
-    "attribute": "qchem.libefp",
-    "name": "libefp-1.5.0-psi4",
-    "pname": "libefp",
-    "version": "1.5.0-psi4",
-    "description": "Parallel implementation of the Effective Fragment Potential Method",
-    "homepage": "https://github.com/ilyak/libefp"
   },
   {
     "attribute": "qchem.libint",
@@ -609,9 +601,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.31.0",
+    "name": "meep-1.32.0",
     "pname": "meep",
-    "version": "1.31.0",
+    "version": "1.32.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -641,33 +633,33 @@
   },
   {
     "attribute": "qchem.molcas",
-    "name": "openmolcas-25.10",
+    "name": "openmolcas-26.02",
     "pname": "openmolcas",
-    "version": "25.10",
+    "version": "26.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasDice",
-    "name": "openmolcas-25.10",
+    "name": "openmolcas-26.02",
     "pname": "openmolcas",
-    "version": "25.10",
+    "version": "26.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasNeci",
-    "name": "openmolcas-25.10",
+    "name": "openmolcas-26.02",
     "pname": "openmolcas",
-    "version": "25.10",
+    "version": "26.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.molcasWfa",
-    "name": "openmolcas-25.10",
+    "name": "openmolcas-26.02",
     "pname": "openmolcas",
-    "version": "25.10",
+    "version": "26.02",
     "description": "Advanced quantum chemistry software package",
     "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
@@ -697,9 +689,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.2.3",
+    "name": "mopac-23.2.4",
     "pname": "mopac",
-    "version": "23.2.3",
+    "version": "23.2.4",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -713,9 +705,9 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-5.0.9",
+    "name": "openmpi-5.0.10",
     "pname": "openmpi",
-    "version": "5.0.9",
+    "version": "5.0.10",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
@@ -785,17 +777,17 @@
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-10.3.0",
+    "name": "octave-11.1.0",
     "pname": "octave",
-    "version": "10.3.0",
+    "version": "11.1.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-10.3.0",
+    "name": "octave-11.1.0",
     "pname": "octave",
-    "version": "10.3.0",
+    "version": "11.1.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
@@ -809,17 +801,25 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.4.0",
+    "name": "openmm-8.5.0",
     "pname": "openmm",
-    "version": "8.4.0",
+    "version": "8.5.0",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
   {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-26.02",
+    "pname": "openmolcas",
+    "version": "26.02",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
     "attribute": "qchem.orca",
-    "name": "orca-6.1.0",
+    "name": "orca-6.1.1",
     "pname": "orca",
-    "version": "6.1.0",
+    "version": "6.1.1",
     "description": "Ab initio quantum chemistry program package",
     "homepage": "https://orcaforum.kofo.mpg.de/"
   },
@@ -881,9 +881,9 @@
   },
   {
     "attribute": "qchem.polyply",
-    "name": "polyply-1.7.0",
+    "name": "polyply-1.8.0",
     "pname": "polyply",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "description": "Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates",
     "homepage": "https://github.com/marrink-lab/polyply_1.0"
   },
@@ -905,9 +905,9 @@
   },
   {
     "attribute": "qchem.python312",
-    "name": "python3-3.12.12",
+    "name": "python3-3.12.13",
     "pname": "python3",
-    "version": "3.12.12",
+    "version": "3.12.13",
     "description": "High-level dynamically-typed programming language",
     "homepage": "https://www.python.org"
   },
@@ -921,9 +921,9 @@
   },
   {
     "attribute": "qchem.quantum-espresso",
-    "name": "quantum-espresso-7.4.1",
+    "name": "quantum-espresso-7.5",
     "pname": "quantum-espresso",
-    "version": "7.4.1",
+    "version": "7.5",
     "description": "Electronic-structure calculations and materials modeling at the nanoscale",
     "homepage": "https://www.quantum-espresso.org/"
   },
@@ -1153,9 +1153,9 @@
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.19.1",
+    "name": "ucx-1.20.0",
     "pname": "ucx",
-    "version": "1.19.1",
+    "version": "1.20.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },
