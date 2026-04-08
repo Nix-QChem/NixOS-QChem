@@ -101,7 +101,6 @@
 | octave-11.1.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.2 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.5.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-26.02 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -117,8 +116,8 @@
 | qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
 | quantum-espresso-7.5 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
-| scalapack-2.2.2 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
-| scalapack-2.2.2 | qchem.scalapack-ilp64 | Library of high-performance linear algebra routines for parallel distributed memory machines |
+| scalapack-2.2.3 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
+| scalapack-2.2.3 | qchem.scalapack-ilp64 | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
 | sharc-3.0.2 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
 | sharc-3.0.2 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
