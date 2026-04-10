@@ -1,8 +1,35 @@
-{ stdenv, lib, requireFile, makeWrapper, writeScriptBin, bash, perl, tcl-8_5, tk-8_5
-, netcdf, libGLU, xorg, fltk, vrpn, flex, bison, mesa, cudatoolkit, autoPatchelfHook
+{ stdenv
+, lib
+, requireFile
+, makeWrapper
+, writeScriptBin
+, bash
+, perl
+, tcl
+, tk
+, netcdf
+, libGLU
+, libX11
+, libxinerama
+, libxi
+, fltk
+, vrpn
+, flex
+, bison
+, mesa
+, cudatoolkit
+  # New
+, atkmm
+, libxkbcommon
+, pango
+, dbus
+, gtk3
+, gdk-pixbuf
+  #
+, autoPatchelfHook
 }:
 assert
-  lib.asserts.assertMsg
+lib.asserts.assertMsg
   (stdenv.isLinux && stdenv.isx86_64)
   "The VMD binaries require an x86_64 linux OS with CUDA support.";
 
@@ -10,12 +37,12 @@ let homepage = "https://www.ks.uiuc.edu/Research/vmd/";
 
 in stdenv.mkDerivation rec {
   pname = "vmd";
-  version = "1.9.3";
+  version = "2.0.0";
 
   src = requireFile {
     url = homepage;
-    name = "vmd-1.9.3.bin.LINUXAMD64-CUDA8-OptiX4-OSPRay111p1.opengl.tar.gz";
-    sha256 = "9427a7acb1c7809525f70f635bceeb7eff8e7574e7e3565d6f71f3d6ce405a71";
+    name = "vmd-2.0.0.bin.LINUXAMD64.tar.gz";
+    sha256 = "sha256-dBnGp7VV7KRD/KaUu+bpLv79sHDYMJUZbtrerQhx1+Y=";
   };
 
   nativeBuildInputs = [
@@ -26,20 +53,25 @@ in stdenv.mkDerivation rec {
 
   buildInputs = [
     libGLU
-    xorg.libX11
-    xorg.libXinerama
-    xorg.libXi
-    tcl-8_5
-    tk-8_5
+    libX11
+    libxinerama
+    libxi
+    tcl
+    tk
     netcdf
     fltk
     vrpn
     flex
     bison
-    mesa.drivers
+    atkmm
+    libxkbcommon
+    pango
+    dbus
+    gtk3
+    gdk-pixbuf
+    mesa
     cudatoolkit.out
     cudatoolkit.lib
-    # nvidia_x11
   ];
 
   postPatch = ''
@@ -65,7 +97,8 @@ in stdenv.mkDerivation rec {
 
   postInstall = ''
     # Needs libcuda.so.1 but only finds libcuda.so
-    ln -s ${cudatoolkit}/targets/x86_64-linux/lib/stubs/libcuda.so $out/lib/libcuda.so.1
+    ln -s ${cudatoolkit}/lib/stubs/libcuda.so $out/lib/libcuda.so.1
+    ln -s ${cudatoolkit}/lib/libcudart.so $out/lib/libcudart.so.9.0
 
     # Makes tachyon available
     ln -s $out/lib/vmd/{stride,surf,tachyon}_LINUXAMD64 $out/bin/.
