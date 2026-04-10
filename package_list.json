@@ -908,7 +908,7 @@
     "name": "qdng-1.0.0",
     "pname": "qdng",
     "version": "1.0.0",
-    "description": "Quantum dynamics program package",
+    "description": "Molecular wavepacket dynamics package",
     "homepage": "https://github.com/quantum-dynamics-ng/QDng"
   },
   {
@@ -953,57 +953,57 @@
   },
   {
     "attribute": "qchem.sharc",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-bagel",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-full",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-molcas",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-orca",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-turbomole",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-unwrapped",
-    "name": "sharc-3.0.2",
+    "name": "sharc-4.0.2",
     "pname": "sharc",
-    "version": "3.0.2",
+    "version": "4.0.2",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },

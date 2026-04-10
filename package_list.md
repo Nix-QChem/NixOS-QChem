@@ -113,19 +113,19 @@
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.10 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | python3-3.12.13 | qchem.python312 | High-level dynamically-typed programming language |
-| qdng-1.0.0 | qchem.qdng | Quantum dynamics program package |
+| qdng-1.0.0 | qchem.qdng | Molecular wavepacket dynamics package |
 | quantum-espresso-7.5 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.3 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | scalapack-2.2.3 | qchem.scalapack-ilp64 | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
-| sharc-3.0.2 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-full | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-molcas | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
-| sharc-3.0.2 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc-bagel | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc-full | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc-molcas | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc-orca | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc-turbomole | Molecular dynamics (MD) program suite for excited states |
+| sharc-4.0.2 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
 | siesta-5.4.1 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-5.4.1 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
