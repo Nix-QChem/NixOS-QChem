@@ -216,11 +216,6 @@ let
 
         q-chem-installer = callPackage ./pkgs/apps/q-chem/installer.nix { };
 
-        qdng = callPackage ./pkgs/by-name/qdng/package.nix {
-          stdenv = aggressiveStdenv;
-          protobuf = final.protobuf_21;
-        };
-
         qmcpack = super.python3.pkgs.toPythonApplication self.python3.pkgs.qmcpack;
 
         sharc-unwrapped = callPackage ./pkgs/apps/sharc/unwrapped.nix {

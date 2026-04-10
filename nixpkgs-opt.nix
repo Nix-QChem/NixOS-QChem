@@ -67,6 +67,7 @@ let
         stdenv = final.clangStdenv;
       };
       openmolcas = recallPackage final.openmolcas {};
+      qdng = recallPackage final.qdng {};
       quantum-espresso = recallPackage final.quantum-espresso {
         hdf5 = final.hdf5-fortran;
       };
