@@ -8,7 +8,7 @@
 | arpack-mpi-3.9.1 | qchem.arpack-mpi | Collection of Fortran77 subroutines to solve large scale eigenvalue problems |
 | Autodock-Vina-1.2.7 | qchem.autodock-vina | Molecular docking with classical scoring functions |
 | pyPHSPU-2022-05-23 | qchem.autoint | Poly harmonic spline and partition of unity interpolation |
-| avogadro2-1.103.0 | qchem.avogadro2 | Molecule editor and visualizer |
+| avogadro2-2.0.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2-2024-04-19 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2-2024-04-19 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
 | boost-1.89.0 | qchem.boost-mpi | Collection of C++ libraries |
@@ -56,7 +56,7 @@
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
 | hpl-2.3 | qchem.hpl | Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers |
-| i-pi-3.1.11 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
+| i-pi-3.1.12 | qchem.i-pi | Universal force engine for ab initio and force field driven (path integral) molecular dynamics |
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2025-09-09 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
@@ -99,7 +99,7 @@
 | nwchem-7.2.3 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-11.1.0 | qchem.octave | Scientific Programming Language |
 | octave-11.1.0 | qchem.octave-opt | Scientific Programming Language |
-| octopus-16.2 | qchem.octopus | Real-space time dependent density-functional theory code |
+| octopus-16.3 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.5.0 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
