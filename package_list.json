@@ -65,9 +65,9 @@
   },
   {
     "attribute": "qchem.avogadro2",
-    "name": "avogadro2-1.103.0",
+    "name": "avogadro2-2.0.0",
     "pname": "avogadro2",
-    "version": "1.103.0",
+    "version": "2.0.0",
     "description": "Molecule editor and visualizer",
     "homepage": "https://github.com/OpenChemistry/avogadroapp"
   },
@@ -449,9 +449,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.11",
+    "name": "i-pi-3.1.12",
     "pname": "i-pi",
-    "version": "3.1.11",
+    "version": "3.1.12",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "https://ipi-code.org/"
   },
@@ -793,9 +793,9 @@
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-16.2",
+    "name": "octopus-16.3",
     "pname": "octopus",
-    "version": "16.2",
+    "version": "16.3",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
   },
