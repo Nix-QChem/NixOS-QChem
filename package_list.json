@@ -801,9 +801,9 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.5.0",
+    "name": "openmm-8.5.1",
     "pname": "openmm",
-    "version": "8.5.0",
+    "version": "8.5.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
