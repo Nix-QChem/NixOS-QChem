@@ -259,12 +259,6 @@ let
 
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
-        vmd =
-          if cfg.useCuda
-          then callPackage ./pkgs/apps/vmd/binary.nix { }
-          else callPackage ./pkgs/apps/vmd { }
-        ;
-
         vmd-python = super.python311.pkgs.toPythonApplication self.python311.pkgs.vmd-python;
 
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
