@@ -1,0 +1,12 @@
+--- a/psi4/src/export_cubeprop.cc
++++ b/psi4/src/export_cubeprop.cc
+@@ -32,6 +32,9 @@
+ #include "psi4/liboptions/liboptions.h"
+ #include "psi4/libmints/wavefunction.h"
+ #include "psi4/libmints/matrix.h"
+ #include "psi4/libmints/basisset.h"
++// pybind11 >= 3.0 requires the complete definition of libint2::Shell when
++// generating copy-constructor machinery for psi::BasisSet.
++#include <libint2/shell.h>
+ 
+ using namespace psi;
