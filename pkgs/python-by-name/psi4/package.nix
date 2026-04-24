@@ -195,6 +195,12 @@ buildPythonPackage rec {
     hash = "sha256-CzeyPuzWWsiULG8x0Ecn+3VR8cNW2UO1EOy9pZA/9c0=";
   };
 
+  patches = [
+    # pybind11 >= 3.0 requires the complete definition of libint2::Shell when
+    # generating copy-constructor machinery for psi::BasisSet.
+    ./libint2-shell-complete-type.patch
+  ];
+
   preConfigure = ''
     export NIX_BUILD_CORES=4
 

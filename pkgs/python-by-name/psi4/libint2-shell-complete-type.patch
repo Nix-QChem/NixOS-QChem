@@ -1,0 +1,52 @@
+--- a/psi4/src/export_cubeprop.cc
++++ b/psi4/src/export_cubeprop.cc
+@@ -32,6 +32,9 @@
+ #include "psi4/liboptions/liboptions.h"
+ #include "psi4/libmints/wavefunction.h"
+ #include "psi4/libmints/matrix.h"
+ #include "psi4/libmints/basisset.h"
++// pybind11 >= 3.0 requires the complete definition of libint2::Shell when
++// generating copy-constructor machinery for psi::BasisSet.
++#include <libint2/shell.h>
+ 
+ using namespace psi;
+
+--- a/psi4/src/export_fock.cc
++++ b/psi4/src/export_fock.cc
+@@ -38,6 +38,9 @@
+ #include "psi4/libmints/matrix.h"
+ #include "psi4/libmints/vector.h"
+ #include "psi4/libmints/basisset.h"
++// pybind11 >= 3.0 requires the complete definition of libint2::Shell when
++// generating copy-constructor machinery for psi::BasisSet.
++#include <libint2/shell.h>
+ #include "psi4/libmints/wavefunction.h"
+ #include "psi4/libpsi4util/process.h"
+ #include "psi4/libscf_solver/sad.h"
+
+--- a/psi4/src/export_functional.cc
++++ b/psi4/src/export_functional.cc
+@@ -41,6 +41,9 @@
+ #include "psi4/libfock/v.h"
+ #include "psi4/libfock/points.h"
+ #include "psi4/libfock/cubature.h"
+ #include "psi4/libmints/basisset.h"
++// pybind11 >= 3.0 requires the complete definition of libint2::Shell when
++// generating copy-constructor machinery for psi::BasisSet.
++#include <libint2/shell.h>
+ #include "psi4/libsapt_solver/fdds_disp.h"
+ #include "psi4/libqt/qt.h"
+ #include "psi4/libpsi4util/process.h"
+
+--- a/psi4/src/export_wavefunction.cc
++++ b/psi4/src/export_wavefunction.cc
+@@ -31,6 +31,9 @@
+ #include "psi4/pybind11.h"
+
+ #include "psi4/libmints/basisset.h"
++// pybind11 >= 3.0 requires the complete definition of libint2::Shell when
++// generating copy-constructor machinery for psi::BasisSet.
++#include <libint2/shell.h>
+ #include "psi4/libmints/sobasis.h"
+ #include "psi4/libmints/molecule.h"
+ #include "psi4/libmints/vector.h"
