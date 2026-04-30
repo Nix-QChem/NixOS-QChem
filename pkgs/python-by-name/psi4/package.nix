@@ -283,8 +283,7 @@ buildPythonPackage rec {
 
   makeWrapperArgs =
     let
-      binSearchPath = lib.strings.makeSearchPath "bin" ([ ]
-        ++ lib.optional enableMrcc mrcc
+      binSearchPath = lib.strings.makeSearchPath "bin" (lib.optional enableMrcc mrcc
         ++ lib.optional enableCfour cfour
       );
     in
