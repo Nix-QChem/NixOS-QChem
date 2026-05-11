@@ -832,14 +832,6 @@
     "homepage": "https://openmm.org/"
   },
   {
-    "attribute": "qchem.openmolcas",
-    "name": "openmolcas-26.02",
-    "pname": "openmolcas",
-    "version": "26.02",
-    "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
-  },
-  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.1",
     "pname": "orca",
@@ -1057,9 +1049,9 @@
   },
   {
     "attribute": "qchem.simple-dftd3",
-    "name": "simple-dftd3-1.2.1",
+    "name": "simple-dftd3-1.3.2",
     "pname": "simple-dftd3",
-    "version": "1.2.1",
+    "version": "1.3.2",
     "description": "Reimplementation of the DFT-D3 program",
     "homepage": "https://github.com/dftd3/simple-dftd3"
   },

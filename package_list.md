@@ -104,7 +104,6 @@
 | octopus-16.3 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openblas-0.3.33 | qchem.openblas | Basic Linear Algebra Subprograms |
 | openmm-8.5.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-26.02 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -132,7 +131,7 @@
 | sharc-4.0.2 | qchem.sharc-unwrapped | Molecular dynamics (MD) program suite for excited states |
 | siesta-5.4.1 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-5.4.1 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
-| simple-dftd3-1.2.1 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
+| simple-dftd3-1.3.2 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
 | SIRIUS-7.10.0 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | SpFFT-1.1.1 | qchem.spfft | Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support |
