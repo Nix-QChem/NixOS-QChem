@@ -88,6 +88,14 @@
     "homepage": "https://nubakery.org"
   },
   {
+    "attribute": "qchem.blas",
+    "name": "blas-3",
+    "pname": "blas",
+    "version": "3",
+    "description": "openblas with just the BLAS C and FORTRAN ABI",
+    "homepage": "https://github.com/OpenMathLib/OpenBLAS"
+  },
+  {
     "attribute": "qchem.boost-mpi",
     "name": "boost-1.89.0",
     "pname": "boost",
@@ -409,9 +417,9 @@
   },
   {
     "attribute": "qchem.harminv",
-    "name": "harminv-1.4.2",
+    "name": "harminv-1.4.3",
     "pname": "harminv",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "description": "Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids",
     "homepage": "https://github.com/NanoComp/harminv"
   },
@@ -478,6 +486,14 @@
     "version": "2.02",
     "description": "Natural atomic orbital population analysis",
     "homepage": "http://janpa.sourceforge.net/"
+  },
+  {
+    "attribute": "qchem.lapack",
+    "name": "lapack-3",
+    "pname": "lapack",
+    "version": "3",
+    "description": "openblas with just the LAPACK C and FORTRAN ABI",
+    "homepage": "https://github.com/OpenMathLib/OpenBLAS"
   },
   {
     "attribute": "qchem.lapack-reference",
@@ -601,9 +617,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.32.0",
+    "name": "meep-1.33.0",
     "pname": "meep",
-    "version": "1.32.0",
+    "version": "1.33.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -689,9 +705,9 @@
   },
   {
     "attribute": "qchem.mopac",
-    "name": "mopac-23.2.4",
+    "name": "mopac-23.2.5",
     "pname": "mopac",
-    "version": "23.2.4",
+    "version": "23.2.5",
     "description": "Semiempirical quantum chemistry",
     "homepage": "https://github.com/openmopac/mopac"
   },
@@ -800,12 +816,28 @@
     "homepage": "https://octopus-code.org"
   },
   {
+    "attribute": "qchem.openblas",
+    "name": "openblas-0.3.33",
+    "pname": "openblas",
+    "version": "0.3.33",
+    "description": "Basic Linear Algebra Subprograms",
+    "homepage": "https://github.com/OpenMathLib/OpenBLAS"
+  },
+  {
     "attribute": "qchem.openmm",
     "name": "openmm-8.5.1",
     "pname": "openmm",
     "version": "8.5.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
+  },
+  {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-26.02",
+    "pname": "openmolcas",
+    "version": "26.02",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.orca",
@@ -1137,9 +1169,9 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.6.0",
+    "name": "ucc-1.7.0",
     "pname": "ucc",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
@@ -1153,9 +1185,9 @@
   },
   {
     "attribute": "qchem.vmd",
-    "name": "vmd-1.9.3",
+    "name": "vmd-2.0.0",
     "pname": "vmd",
-    "version": "1.9.3",
+    "version": "2.0.0",
     "description": "Molecular dynamics visualisation program",
     "homepage": "https://www.ks.uiuc.edu/Research/vmd/"
   },

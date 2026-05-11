@@ -11,6 +11,7 @@
 | avogadro2-2.0.0 | qchem.avogadro2 | Molecule editor and visualizer |
 | bagel-1.2.2-2024-04-19 | qchem.bagel | Brilliantly Advanced General Electronic-structure Library |
 | bagel-1.2.2-2024-04-19 | qchem.bagel-serial | Brilliantly Advanced General Electronic-structure Library |
+| blas-3 | qchem.blas | openblas with just the BLAS C and FORTRAN ABI |
 | boost-1.89.0 | qchem.boost-mpi | Collection of C++ libraries |
 | cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
@@ -51,7 +52,7 @@
 | gromacs-2026.1 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
 | gromacs-2026.1 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
-| harminv-1.4.2 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
+| harminv-1.4.3 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
 | hdf5-cpp-fortran-1.14.6 | qchem.hdf5-full | Data model, library, and file format for storing and managing data |
 | hpcg-3.1 | qchem.hpcg | HPC conjugate gradient benchmark |
@@ -60,6 +61,7 @@
 | IboView-20211019-RevA | qchem.iboview | Calculator and visualiser for Intrinsic Bond Orbitals |
 | IntegratorXX-unstable-2025-09-09 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
+| lapack-3 | qchem.lapack | openblas with just the LAPACK C and FORTRAN ABI |
 | liblapack-3.12.1 | qchem.lapack-reference | Linear Algebra PACKage |
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
@@ -75,7 +77,7 @@
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | mctc-lib-0.5.1 | qchem.mctc-lib | Modular computation tool chain library |
-| meep-1.32.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
+| meep-1.33.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | meson-1.7.2 | qchem.meson_1_7_2 | Open source, fast and friendly build system made in Python |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
@@ -86,7 +88,7 @@
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.20.21 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
-| mopac-23.2.4 | qchem.mopac | Semiempirical quantum chemistry |
+| mopac-23.2.5 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
 | openmpi-5.0.10 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-25.1.2 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
@@ -100,7 +102,9 @@
 | octave-11.1.0 | qchem.octave | Scientific Programming Language |
 | octave-11.1.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.3 | qchem.octopus | Real-space time dependent density-functional theory code |
+| openblas-0.3.33 | qchem.openblas | Basic Linear Algebra Subprograms |
 | openmm-8.5.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmolcas-26.02 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -142,9 +146,9 @@
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.9 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | turbomole-7.8.1 | qchem.turbomole78 | General purpose quantum chemistry program. Tools, not Toys! |
-| ucc-1.6.0 | qchem.ucc | Collective communication operations API |
+| ucc-1.7.0 | qchem.ucc | Collective communication operations API |
 | ucx-1.20.0 | qchem.ucx | Unified Communication X library |
-| vmd-1.9.3 | qchem.vmd | Molecular dynamics visualisation program |
+| vmd-2.0.0 | qchem.vmd | Molecular dynamics visualisation program |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
 | wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
 | libwfa-2024-10-07 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |

@@ -115,6 +115,25 @@ let
 
       inherit (final) wannier90;
       wxmacmolplt = recallPackage final.wxmacmolplt {};
+
+      #
+      # FIXME: this is temporary
+      #
+      blas = recallPackage final.blas {};
+      lapack = recallPackage final.lapack {};
+      # blas-ilp64 = recallPackage final.blas-ilp64 {};
+      # lapack-ilp64 = recallPackage final.ilp64 {};
+      openblas = final.openblas.overrideAttrs (oa: rec {
+        version = "0.3.33";
+        src = prev.fetchFromGitHub {
+          owner = "OpenMathLib";
+          repo = "OpenBLAS";
+          rev = "v${version}";
+          hash = "sha256-EArf0K2Gs+w8IRD5wkMOQv79e8yMoTgQfa9kzjXKn3Y=";
+        };
+        patches = [(lib.elemAt oa.patches 0)];
+        preCheck = "export OMP_NUM_THREADS=2";
+      });
     });
 
 in optSet
