@@ -47,10 +47,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2026.1 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2026.1 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2026.1 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2026.1 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2026.2 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2026.2 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2026.2 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2026.2 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.3 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
@@ -66,7 +66,7 @@
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libint-2.11.2 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
-| libMBD-0.13.0 | qchem.libmbd | Many-body dispersion library |
+| libMBD-0.14.0 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
 | libvdwxc-unstable-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
 | libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
@@ -104,7 +104,6 @@
 | octopus-16.3 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openblas-0.3.33 | qchem.openblas | Basic Linear Algebra Subprograms |
 | openmm-8.5.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-26.02 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
