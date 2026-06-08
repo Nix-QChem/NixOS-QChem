@@ -85,6 +85,7 @@ stdenv.mkDerivation rec {
     description = "DFTB+ general package for performing fast atomistic simulations";
     homepage = "https://github.com/dftbplus/dftbplus";
     license = with licenses; [ gpl3Plus lgpl3Plus ];
+    mainProgram = "dftb+";
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
   };
