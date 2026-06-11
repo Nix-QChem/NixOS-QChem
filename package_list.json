@@ -793,17 +793,17 @@
   },
   {
     "attribute": "qchem.octave",
-    "name": "octave-11.2.0",
+    "name": "octave-11.3.0",
     "pname": "octave",
-    "version": "11.2.0",
+    "version": "11.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
   {
     "attribute": "qchem.octave-opt",
-    "name": "octave-11.2.0",
+    "name": "octave-11.3.0",
     "pname": "octave",
-    "version": "11.2.0",
+    "version": "11.3.0",
     "description": "Scientific Programming Language",
     "homepage": "https://www.gnu.org/software/octave/"
   },
@@ -825,9 +825,9 @@
   },
   {
     "attribute": "qchem.openmm",
-    "name": "openmm-8.5.1",
+    "name": "openmm-8.5.2",
     "pname": "openmm",
-    "version": "8.5.1",
+    "version": "8.5.2",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
