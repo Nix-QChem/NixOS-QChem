@@ -457,9 +457,9 @@
   },
   {
     "attribute": "qchem.i-pi",
-    "name": "i-pi-3.1.12",
+    "name": "i-pi-3.2.0",
     "pname": "i-pi",
-    "version": "3.1.12",
+    "version": "3.2.0",
     "description": "Universal force engine for ab initio and force field driven (path integral) molecular dynamics",
     "homepage": "https://ipi-code.org/"
   },
