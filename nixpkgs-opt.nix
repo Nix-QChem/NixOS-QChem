@@ -56,11 +56,7 @@ let
       mopac = recallPackage final.mopac {};
       mpi = recallPackage final.mpi {};
       multicharge = recallPackage final.multicharge {};
-      nwchem = recallPackage final.nwchem {
-        blas = final.blas-ilp64;
-        lapack = final.lapack-ilp64;
-        scalapack = final.scalapack-ilp64;
-      };
+      nwchem = recallPackage final.nwchem { };
       octopus = recallPackage final.octopus {};
       openmm = recallPackage final.openmm {
         enableCuda = cfg.useCuda;
@@ -73,7 +69,10 @@ let
       };
       pcmsolver = recallPackage final.pcmsolver {};
       scalapack = recallPackage final.scalapack {};
-      scalapack-ilp64 = recallPackage final.scalapack-ilp64 {};
+      scalapack-ilp64 = recallPackage final.scalapack-ilp64 {
+        blas = final.blas-ilp64;
+        lapack = final.lapack-ilp64;
+      };
       siesta = recallPackage final.siesta {};
       siesta-mpi = recallPackage final.siesta-mpi {};
       simple-dftd3 = recallPackage final.simple-dftd3 {};
