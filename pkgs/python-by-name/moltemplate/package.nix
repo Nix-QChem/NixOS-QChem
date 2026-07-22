@@ -2,37 +2,41 @@
 
 buildPythonPackage rec {
   pname = "moltemplate";
-  version = "2.20.21";
+  version = "2.22.4";
 
   src = fetchFromGitHub {
     owner = "jewettaij";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-VUv5A+1lchRHRpHKTxxVYorcDB4aiyLj1Og6yLsye8U=";
+    hash = "sha256-YYgnswwwjKPr33UAZAVtiTj7ledwy8htlR7jknrjuSo=";
   };
-
-  # The moltemplate.sh script calls all python scripts with a explicit "PYTHON_COMMAND"
-  # which is just the python interpreter found in PATH via which.
-  # This breaks for 2 reasons:
-  #   1) python scripts in $out/bin are wrapped so that they find python modules, and
-  #      then become a bash script actually. Calling them with a python interpreter
-  #      fails, of course. Also the python interpreter found in the path is not aware of
-  #      all moltemplate dependencies
-  #   2) at runtime there is no reason for moltemplate to have a python interpreter globally
-  #      in path. The python scripts have proper shebangs, which work flawlessly
-  patches = [ ./pythoncall.patch ];
 
   pyproject = true;
   build-system = [ setuptools ];
 
   nativeBuildInputs = [ makeWrapper ];
 
-  # Moltemplate actually requires setuptools at runtime to find files (the pkg_resources module)
-  # and unfortunately it really needs to be a propagatedBuildInput
   propagatedBuildInputs = [ numpy ];
 
   doCheck = false; # There are no checks
   pythonImportsCheck = [ "moltemplate" ];
+
+  # moltemplate.sh (and emoltemplate.sh, cleanup_moltemplate.sh) invoke the
+  # *.py console_scripts via `python3 "<file>.py"`.  The default
+  # wrapPythonPrograms replaces those .py files with bash wrappers (so they
+  # find their python dependencies), which breaks this `python3 file.py`
+  # invocation with a SyntaxError.  Instead, leave the .py files as proper
+  # Python (they already carry a nix store python shebang) and only wrap the
+  # shell entry points with the python interpreter on PATH.
+  dontWrapPythonPrograms = true;
+  postFixup = ''
+    buildPythonPath "$out $pythonPath"
+    for script in moltemplate.sh emoltemplate.sh cleanup_moltemplate.sh; do
+      wrapProgram "$out/bin/$script" \
+        --prefix PATH ':' "$program_PATH" \
+        --prefix PYTHONPATH ':' "$program_PYTHONPATH"
+    done
+  '';
 
   meta = with lib; {
     homepage = "https://www.moltemplate.org/";
