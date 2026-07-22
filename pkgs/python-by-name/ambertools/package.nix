@@ -1,13 +1,25 @@
 { buildPythonPackage
 , lib
-, pythonAtLeast
 , requireFile
 , makeWrapper
+, cython
   # Python dependencies
 , numpy
 , scipy
 , matplotlib
 , setuptools
+, pandas
+, numba
+, gemmi
+, biopython
+, rich
+, freesasa
+, scikit-learn
+, sympy
+, pydantic
+, psutil
+, networkx
+, distutils
   # Native dependencies
 , gfortran
 , cmake
@@ -26,30 +38,27 @@
 , apbs
 , arpack
 , runtimeShell
+, autoPatchelfHook
 }:
 
 buildPythonPackage rec {
   pname = "AmberTools";
-  version = "25";
+  version = "26";
 
   src = requireFile {
     name = "ambertools${version}.tar.bz2";
-    sha256 = "sha256-rACbKt6yXM0hkdsokFuGffSSQOA43FkPQj7fDYT4oTs=";
+    sha256 = "sha256-XUbu88K7fVv56MDDit00QG6mfj8OQJesnRHYpURTjJw=";
     url = "https://ambermd.org/AmberTools.php";
   };
 
-  patches = [ ./cstdint-gcc-15.patch ];
+  patches = [
+    # Keep nix dependencies. The build system assumes it provides all packages,
+    # including stuff like numpy, otherwise, itself.
+    ./pythonpath-keep-env.patch
 
-  postPatch = ''
-    substituteInPlace AmberTools/src/cpptraj/CMakeLists.txt --replace-fail \
-      'cmake_minimum_required(VERSION 3.3)' \
-      'cmake_minimum_required(VERSION 3.10)'
-
-    substituteInPlace AmberTools/src/cphstats/CMakeLists.txt --replace-fail \
-      'cmake_minimum_required(VERSION 3.1)' \
-      'cmake_minimum_required(VERSION 3.10)'
-  '';
-
+    # Remove a pip install from a subpackage. We provide these deps ourselves.
+    ./pype-resp-no-pip.patch
+  ];
 
   nativeBuildInputs = [
     cmake
@@ -57,6 +66,9 @@ buildPythonPackage rec {
     flex
     bison
     makeWrapper
+    cython
+    # Fixes references to /build/ and the adds the references to $out/lib libraries
+    autoPatchelfHook
   ];
 
   buildInputs = [
@@ -72,9 +84,6 @@ buildPythonPackage rec {
     apbs
     readline
   ];
-
-  # Needed for gcc-15 build
-  env.NIX_CFLAGS = "-Wno-error=template-body -Wno-error=maybe-uninitialized";
 
   format = "other";
 
@@ -96,19 +105,28 @@ buildPythonPackage rec {
     scipy
     matplotlib
     setuptools
+    pandas
+    numba
+    gemmi
+    biopython
+    rich
+    freesasa
+    scikit-learn
+    sympy
+    pydantic
+    psutil
+    networkx
+    distutils
   ];
 
   buildPhase = ''
     runHook preBuild
-
     make -j $NIX_BUILD_CORES
-
     runHook postBuild
   '';
 
   installPhase =
     let
-
       wrongBash = [
         "am1bcc"
         "antechamber"
@@ -120,7 +138,6 @@ buildPythonPackage rec {
         "parmcal"
         "parmchk2"
         "prepgen"
-        "reduce"
         "residuegen"
         "respgen"
         "XrayPrep"
@@ -130,6 +147,10 @@ buildPythonPackage rec {
       runHook preInstall
 
       make install
+
+      # Install libnlopt.so* to $out/lib so that the RPATH entries in AmberTools binaries can find it.
+      mkdir -p $out/lib
+      find $NIX_BUILD_TOP -name 'libnlopt.so*' -exec cp -a {} $out/lib/ \; 2>/dev/null || true
 
       # Some scripts hardcode /bin/bash. Not only necessary as their shebang, but
       # some also generate bash scripts with wrong shebangs.
@@ -144,13 +165,20 @@ buildPythonPackage rec {
       for PROG in $out/bin/*; do
         if [[ -f $PROG ]]; then
           wrapProgram $PROG \
-            --set AMBERHOME $out \
-            --set QUICK_BASIS=$out/AmberTools/src/quick/basis
+            --set-default AMBERHOME $out \
+            --set-default QUICK_BASIS=$out/AmberTools/src/quick/basis
         fi
       done
 
       runHook postInstall
     '';
+
+  # Help autopatchelfhook to find C libs shipped with AmberTools (e.g. libcpptraj.so)
+  appendRunpaths = [ "${placeholder "out"}/lib" ];
+
+  # Multiple CPython libs have /build references. They are fixed by autopatchelfHook
+  # later, so we skip this check here.
+  noAuditTmpdir = true;
 
   # There is a force field alias to a non-existing force field in the test leaprc
   # It is shipped like this in the official tarball.
@@ -161,6 +189,5 @@ buildPythonPackage rec {
     homepage = "https://ambermd.org/AmberTools.php";
     license = with licenses; [ lgpl3 bsd3 mit asl20 gpl3Only gpl2Only ];
     platforms = platforms.linux;
-    broken = pythonAtLeast "3.12";
   };
 }

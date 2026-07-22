@@ -1,0 +1,11 @@
+--- a/cmake/PythonBuildConfig.cmake
++++ b/cmake/PythonBuildConfig.cmake
+@@ -132,7 +132,7 @@
+ 		set(PY_INTERP_FOR_RELATIVE_PYTHONPATH ${PYTHON_EXECUTABLE} CACHE INTERNAL "The python interpreter used to run the PREFIX_RELATIVE_PYTHONPATH check" FORCE)
+ 	endif()
+ 			
+-	set(PYTHONPATH_SET_CMD "\"PYTHONPATH=\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_POSTFIX}${PREFIX_RELATIVE_PYTHONPATH}\"")
++	set(PYTHONPATH_SET_CMD "\"PYTHONPATH=\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_POSTFIX}${PREFIX_RELATIVE_PYTHONPATH}:\$ENV{PYTHONPATH}\"")
+ 	
+ 	# argument to force Python packages to get installed into the Amber install dir
+ 	set(PYTHON_PREFIX_ARG \"--prefix=\${CMAKE_INSTALL_PREFIX_BS}\")
