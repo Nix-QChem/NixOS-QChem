@@ -112,19 +112,7 @@ let
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
-        crest = callPackage ./pkgs/by-name/crest/package.nix { } /*{
-          # Requires a newer version of tblite. Can likely be removed with next
-          # tblite release
-          tblite = super.tblite.overrideAttrs (old: {
-            patches = [ ];
-            src = super.fetchFromGitHub {
-              owner = "tblite";
-              repo = "tblite";
-              rev = "4556e28f391573b3c80c94beb7c56313005d5269";
-              hash = "sha256-JmTEnvYqA73vmWQe4cpjvp6/Wwb+elSMDdHTPwD3/jc=";
-            };
-          });
-        }*/;
+        crest = callPackage ./pkgs/by-name/crest/package.nix { };
 
         dice = callPackage ./pkgs/by-name/dice/package.nix {
           boost = final.boost186.override {
