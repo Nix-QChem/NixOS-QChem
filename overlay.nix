@@ -112,7 +112,7 @@ let
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
-        crest = callPackage ./pkgs/by-name/crest/package.nix {
+        crest = callPackage ./pkgs/by-name/crest/package.nix { } /*{
           # Requires a newer version of tblite. Can likely be removed with next
           # tblite release
           tblite = super.tblite.overrideAttrs (old: {
@@ -124,7 +124,7 @@ let
               hash = "sha256-JmTEnvYqA73vmWQe4cpjvp6/Wwb+elSMDdHTPwD3/jc=";
             };
           });
-        };
+        }*/;
 
         dice = callPackage ./pkgs/by-name/dice/package.nix {
           boost = final.boost186.override {
@@ -267,21 +267,6 @@ let
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
         };
-
-        xtb = callPackage ./pkgs/by-name/xtb/package.nix {
-          meson = self.meson_1_7_2;
-          # XTB declares a tblite dependency >= 0.2.0 but actually requires > 0.3.0
-          tblite = super.tblite.overrideAttrs (old: {
-            patches = [ ];
-            src = super.fetchFromGitHub {
-              owner = "tblite";
-              repo = "tblite";
-              rev = "1bd936ca81f6f9ec9bbe65e32bc422ff5388571b";
-              hash = "sha256-ywXpnKU5CkPSp4zfJkFvrN09ptjt3tqq2zSqPcHAv6E=";
-            };
-          });
-        };
-
 
         ### Python packages
         python3 = super.python3.override (old: {

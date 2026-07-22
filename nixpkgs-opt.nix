@@ -81,6 +81,7 @@ let
       spla = recallPackage final.spla {};
       spfft = recallPackage final.spfft {};
       tblite = recallPackage final.tblite {};
+      xtb = recallPackage final.xtb {};
 
       # gromacs = recallPackage final.gromacs {};
       # gromacsMpi = recallPackage final.gromacsMpi {};
