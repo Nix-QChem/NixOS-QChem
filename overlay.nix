@@ -247,8 +247,6 @@ let
 
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
-        vmd-python = super.python311.pkgs.toPythonApplication self.python311.pkgs.vmd-python;
-
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
         wfoverlap = callPackage ./pkgs/by-name/wfoverlap/package.nix {
