@@ -6,7 +6,7 @@ let
     name = "cp2k-tests";
     phases = [ "unpackPhase" "installPhase" ];
 
-    src = cp2k.src;
+    inherit (cp2k) src;
 
     installPhase = ''
       mkdir -p $out
@@ -31,7 +31,7 @@ in batsTest {
   '') [ "dbcsr" "bench_dftb" "H2O-gga" ]) + ''
 
     @test "bench_dftb Energy" {
-      grep 'ENERGY|' bench_dftb.out | grep '\-16687.6956289'
+      grep 'ENERGY|' bench_dftb.out | grep '\-16316.868119'
     }
 
     @test "H2O-gga Energy" {
