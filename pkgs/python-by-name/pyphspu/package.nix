@@ -3,14 +3,14 @@
 
 buildPythonPackage {
   pname = "pyPHSPU";
-  version = "2022-05-23";
+  version = "0.10.0";
 
   src = fetchFromGitLab {
     owner = "markus.kowalewski";
     repo = "pyphspu";
     domain = "gitlab.fysik.su.se";
-    rev = "e4d64b41b6f850b19b2701409dc243af2ecbefcf";
-    sha256 = "0r21vm8smc2j2bpamfl6aja8vd1s0c84mcjqvhdc96j2j6ld7a4n";
+    rev = "v0.10.0";
+    hash = "sha256-t4rzuWvbyUCtdopNMUBaP7lhBJz9UVHDF1my0gND3vE=";
   };
 
   pyproject = true;
