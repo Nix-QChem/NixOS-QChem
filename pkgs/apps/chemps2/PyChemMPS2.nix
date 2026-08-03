@@ -3,7 +3,7 @@
 } :
 
 buildPythonPackage {
-  pname = "PyCheMPS2";
+  pname = "CheMPS2";
   inherit (chemps2) version src meta;
 
   pyproject = true;
