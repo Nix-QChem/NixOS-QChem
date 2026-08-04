@@ -14,13 +14,13 @@
 
 stdenv.mkDerivation rec {
   pname = "amd-fftw";
-  version = "5.1";
+  version = "5.3";
 
   src = fetchFromGitHub {
     owner = "amd";
     repo = "amd-fftw";
     rev = version;
-    hash = "sha256-U0YoAdE2cOIgKtfq5K3+1aCxOO0k9ZayMnrp7za2Auo=";
+    hash = "sha256-vHdMBOUbf8G5ZowqzOGMID5nRxkYAHsbL/pnz8CWY28=";
   };
 
   patches = [
@@ -44,6 +44,7 @@ stdenv.mkDerivation rec {
     [ "--enable-shared"
       "--enable-threads"
       "--enable-amd-opt"
+      "--enable-dynamic-dispatcher"
     ]
     ++ lib.optional (precision != "double") "--enable-${precision}"
     # all x86_64 have sse2
