@@ -60,6 +60,13 @@ buildPythonPackage rec {
     ./pype-resp-no-pip.patch
   ];
 
+  # Force pytraj to regenerate Cython sources from .pyx instead of using
+  # pre-generated .cpp files that are incompatible with Python 3.14.
+  postPatch = ''
+    substituteInPlace AmberTools/src/pytraj/base_setup/build_config.py \
+      --replace-fail "self.use_prebuilt = True" "self.use_prebuilt = False"
+  '';
+
   nativeBuildInputs = [
     cmake
     gfortran

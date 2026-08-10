@@ -91,7 +91,7 @@ let
         #
         # Applications
         #
-        ambertools = super.python312.pkgs.toPythonApplication self.python312.pkgs.ambertools;
+        ambertools = super.python3.pkgs.toPythonApplication self.python3.pkgs.ambertools;
 
         autodock-vina = callPackage ./pkgs/apps/autodock-vina {
           boost = final.boost182;
