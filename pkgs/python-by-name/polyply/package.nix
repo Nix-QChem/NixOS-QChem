@@ -33,6 +33,10 @@ buildPythonPackage rec {
 
     substituteInPlace polyply/tests/test_gen_seq.py \
       --replace-fail "json_graph.node_link_graph(js_graph)" "json_graph.node_link_graph(js_graph, edges=\"links\" if \"links\" in js_graph else \"edges\")"
+
+    # Fix trailing comma in pytest parametrize argument names (rejected by pytest >= 8)
+    substituteInPlace polyply/tests/test_simple_seq_parsers.py \
+      --replace-fail "'extension, '" "'extension'"
   '';
 
   dependencies = [
