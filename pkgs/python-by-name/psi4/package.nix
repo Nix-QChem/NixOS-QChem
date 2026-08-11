@@ -87,6 +87,14 @@ let
     hash = "sha256-II44D4o0IwZDbTZB1qzAcCTCcXtuy1XJREP6Ic/BV4M=";
   };
 
+  # adcc imports pkg_resources, which is no longer shipped with setuptools >= 81.
+  adcc_ = adcc.overrideAttrs (oldAttrs: {
+    postFixup = (oldAttrs.postFixup or "") + ''
+      substituteInPlace $out/${python.sitePackages}/adcc/misc.py \
+        --replace-fail "from pkg_resources import parse_version" "from packaging.version import Version as parse_version"
+    '';
+  });
+
   /*
   libintSrc = fetchurl {
     url = "https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-5-4-3-6-5-4_mm10f12ob2_0.tgz";
@@ -142,7 +150,7 @@ let
 in
 buildPythonPackage rec {
   pname = "psi4";
-  version = "1.10";
+  version = "1.11";
 
   nativeBuildInputs = [
     cmake
@@ -169,7 +177,7 @@ buildPythonPackage rec {
   ];
 
   propagatedBuildInputs = [
-    adcc
+    adcc_
     pybind11
     qcelemental
     qcengine
@@ -192,7 +200,7 @@ buildPythonPackage rec {
     repo = pname;
     owner = "psi4";
     tag = "v${version}";
-    hash = "sha256-CzeyPuzWWsiULG8x0Ecn+3VR8cNW2UO1EOy9pZA/9c0=";
+    hash = "sha256-R4jwDN/mZ/PqcQ8dU9khv8WlN5fGbrS3cg1/YFX0zX8=";
   };
 
   patches = [
@@ -202,8 +210,6 @@ buildPythonPackage rec {
   ];
 
   preConfigure = ''
-    export NIX_BUILD_CORES=4
-
     substituteInPlace ./external/upstream/libint2/CMakeLists.txt \
       --replace-fail 'https://github.com/loriab/libint/releases/download/v0.1/libint-2.8.1-''${_url_am_src}_mm10f12ob2_0.tgz' "file://${libintSrc}" \
   '';
@@ -245,7 +251,7 @@ buildPythonPackage rec {
     # ADCC
     "-DENABLE_adcc=ON"
     # Prefix path for all external packages
-    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${chemps2_};${libecpint};${cppe};${adcc}\""
+    "-DCMAKE_PREFIX_PATH=\"${gau2grid};${libxc};${qcelemental};${pcmsolver_};${dkh_};${chemps2_};${libecpint};${cppe};${adcc_}\""
   ];
 
   format = "other";
