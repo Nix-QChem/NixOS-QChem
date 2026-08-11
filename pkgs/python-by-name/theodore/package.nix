@@ -11,13 +11,13 @@
 
 buildPythonPackage rec {
   pname = "theodore";
-  version = "3.2";
+  version = "3.2.1";
 
   src = fetchFromGitHub {
     owner = "felixplasser";
     repo = "theodore-qc";
     rev = "v${version}";
-    hash = "sha256-WKgLlZ7X5tVPPghWsqV3I6qAmXU7zxEhd7JJpSRVOWE=";
+    hash = "sha256-vzfqHWnuJsZqknGxC4PF/ppNAbDVy9JdOEWnC3zz/rk=";
   };
 
   patches = [
@@ -29,7 +29,9 @@ buildPythonPackage rec {
   build-system = [ setuptools ];
 
   postPatch = ''
-    substituteInPlace setup.py --replace "'pytest-runner', " ""
+    substituteInPlace setup.py \
+      --replace-fail "'pytest-runner', " "" \
+      --replace-fail "version='3.0_alpha'" "version='${version}'"
   '';
 
   checkInputs = [
