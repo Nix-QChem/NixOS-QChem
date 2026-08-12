@@ -9,25 +9,25 @@
   },
   {
     "attribute": "qchem.ambertools",
-    "name": "AmberTools-25",
+    "name": "AmberTools-26",
     "pname": "AmberTools",
-    "version": "25",
+    "version": "26",
     "description": "Tools for molecular mechanics and molecular dynamics with AMBER",
     "homepage": "https://ambermd.org/AmberTools.php"
   },
   {
     "attribute": "qchem.amd-fftw",
-    "name": "amd-fftw-5.1",
+    "name": "amd-fftw-5.3",
     "pname": "amd-fftw",
-    "version": "5.1",
+    "version": "5.3",
     "description": "Fastest Fourier Transform in the West library optimized for AMD Epyc CPUs",
     "homepage": "http://www.fftw.org/"
   },
   {
     "attribute": "qchem.amd-scalapack",
-    "name": "amd-scalapack-5.2",
+    "name": "amd-scalapack-5.3",
     "pname": "amd-scalapack",
-    "version": "5.2",
+    "version": "5.3",
     "description": "Linear algebra routines for parallel distributed memory machines optimized for AMD processors",
     "homepage": "https://developer.amd.com/amd-aocl/scalapack/"
   },
@@ -57,9 +57,9 @@
   },
   {
     "attribute": "qchem.autoint",
-    "name": "pyPHSPU-2022-05-23",
+    "name": "pyPHSPU-0.10.0",
     "pname": "pyPHSPU",
-    "version": "2022-05-23",
+    "version": "0.10.0",
     "description": "Poly harmonic spline and partition of unity interpolation",
     "homepage": "https://gitlab.fysik.su.se/markus.kowalewski/pyphspu"
   },
@@ -86,14 +86,6 @@
     "version": "1.2.2-2024-04-19",
     "description": "Brilliantly Advanced General Electronic-structure Library",
     "homepage": "https://nubakery.org"
-  },
-  {
-    "attribute": "qchem.blas",
-    "name": "blas-3",
-    "pname": "blas",
-    "version": "3",
-    "description": "openblas with just the BLAS C and FORTRAN ABI",
-    "homepage": "https://github.com/OpenMathLib/OpenBLAS"
   },
   {
     "attribute": "qchem.boost-mpi",
@@ -129,9 +121,9 @@
   },
   {
     "attribute": "qchem.cp2k",
-    "name": "cp2k-2025.2",
+    "name": "cp2k-2026.1-unstable-2026-06-16",
     "pname": "cp2k",
-    "version": "2025.2",
+    "version": "2026.1-unstable-2026-06-16",
     "description": "Quantum chemistry and solid state physics program",
     "homepage": "https://www.cp2k.org"
   },
@@ -145,9 +137,9 @@
   },
   {
     "attribute": "qchem.crest",
-    "name": "crest-3.0.2",
-    "pname": "crest",
-    "version": "3.0.2",
+    "name": "crest-unstable-2026-06-16",
+    "pname": "crest-unstable",
+    "version": "2026-06-16",
     "description": "Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/crest"
   },
@@ -161,9 +153,9 @@
   },
   {
     "attribute": "qchem.dbcsr",
-    "name": "dbcsr-2.9.1",
+    "name": "dbcsr-2.10.0",
     "pname": "dbcsr",
-    "version": "2.9.1",
+    "version": "2.10.0",
     "description": "Distributed Block Compressed Sparse Row matrix library",
     "homepage": "https://github.com/cp2k/dbcsr"
   },
@@ -185,9 +177,9 @@
   },
   {
     "attribute": "qchem.dftd4",
-    "name": "dftd4-3.7.0",
+    "name": "dftd4-4.2.0",
     "pname": "dftd4",
-    "version": "3.7.0",
+    "version": "4.2.0",
     "description": "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
     "homepage": "https://github.com/grimme-lab/dftd4"
   },
@@ -217,9 +209,9 @@
   },
   {
     "attribute": "qchem.elpa",
-    "name": "elpa-2026.02.001",
+    "name": "elpa-2026.02.002",
     "pname": "elpa",
-    "version": "2026.02.001",
+    "version": "2026.02.002",
     "description": "Eigenvalue Solvers for Petaflop-Applications",
     "homepage": "https://elpa.mpcdf.mpg.de/"
   },
@@ -233,9 +225,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-2.5.0",
+    "name": "et-2.5.1",
     "pname": "et",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
@@ -265,25 +257,25 @@
   },
   {
     "attribute": "qchem.fftw",
-    "name": "fftw-double-3.3.10",
+    "name": "fftw-double-3.3.11",
     "pname": "fftw-double",
-    "version": "3.3.10",
+    "version": "3.3.11",
     "description": "Fastest Fourier Transform in the West library",
     "homepage": "https://www.fftw.org/"
   },
   {
     "attribute": "qchem.fftwMpi",
-    "name": "fftw-double-3.3.10",
+    "name": "fftw-double-3.3.11",
     "pname": "fftw-double",
-    "version": "3.3.10",
+    "version": "3.3.11",
     "description": "Fastest Fourier Transform in the West library",
     "homepage": "https://www.fftw.org/"
   },
   {
     "attribute": "qchem.fftwSinglePrec",
-    "name": "fftw-single-3.3.10",
+    "name": "fftw-single-3.3.11",
     "pname": "fftw-single",
-    "version": "3.3.10",
+    "version": "3.3.11",
     "description": "Fastest Fourier Transform in the West library",
     "homepage": "https://www.fftw.org/"
   },
@@ -377,33 +369,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2026.2",
+    "name": "gromacs-2026.3",
     "pname": "gromacs",
-    "version": "2026.2",
+    "version": "2026.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2026.2",
+    "name": "gromacs-2026.3",
     "pname": "gromacs",
-    "version": "2026.2",
+    "version": "2026.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2026.2",
+    "name": "gromacs-2026.3",
     "pname": "gromacs",
-    "version": "2026.2",
+    "version": "2026.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2026.2",
+    "name": "gromacs-2026.3",
     "pname": "gromacs",
-    "version": "2026.2",
+    "version": "2026.3",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -488,14 +480,6 @@
     "homepage": "http://janpa.sourceforge.net/"
   },
   {
-    "attribute": "qchem.lapack",
-    "name": "lapack-3",
-    "pname": "lapack",
-    "version": "3",
-    "description": "openblas with just the LAPACK C and FORTRAN ABI",
-    "homepage": "https://github.com/OpenMathLib/OpenBLAS"
-  },
-  {
     "attribute": "qchem.lapack-reference",
     "name": "liblapack-3.12.1",
     "pname": "liblapack",
@@ -529,9 +513,9 @@
   },
   {
     "attribute": "qchem.libmbd",
-    "name": "libMBD-0.14.0",
+    "name": "libMBD-0.15.0",
     "pname": "libMBD",
-    "version": "0.14.0",
+    "version": "0.15.0",
     "description": "Many-body dispersion library",
     "homepage": "https://github.com/libmbd/libmbd"
   },
@@ -617,19 +601,11 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.33.0",
+    "name": "meep-1.34.0",
     "pname": "meep",
-    "version": "1.33.0",
+    "version": "1.34.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
-  },
-  {
-    "attribute": "qchem.meson_1_7_2",
-    "name": "meson-1.7.2",
-    "pname": "meson",
-    "version": "1.7.2",
-    "description": "Open source, fast and friendly build system made in Python",
-    "homepage": "https://mesonbuild.com"
   },
   {
     "attribute": "qchem.mkl",
@@ -697,9 +673,9 @@
   },
   {
     "attribute": "qchem.moltemplate",
-    "name": "moltemplate-2.20.21",
+    "name": "moltemplate-2.22.4",
     "pname": "moltemplate",
-    "version": "2.20.21",
+    "version": "2.22.4",
     "description": "A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies",
     "homepage": "https://www.moltemplate.org/"
   },
@@ -753,9 +729,9 @@
   },
   {
     "attribute": "qchem.multicharge",
-    "name": "multicharge-0.3.1",
+    "name": "multicharge-0.5.0",
     "pname": "multicharge",
-    "version": "0.3.1",
+    "version": "0.5.0",
     "description": "Electronegativity equilibration model for atomic partial charges",
     "homepage": "https://github.com/grimme-lab/multicharge"
   },
@@ -785,9 +761,9 @@
   },
   {
     "attribute": "qchem.nwchem",
-    "name": "nwchem-7.2.3",
+    "name": "nwchem-7.3.1",
     "pname": "nwchem",
-    "version": "7.2.3",
+    "version": "7.3.1",
     "description": "Open Source High-Performance Computational Chemistry",
     "homepage": "https://nwchemgit.github.io"
   },
@@ -809,19 +785,11 @@
   },
   {
     "attribute": "qchem.octopus",
-    "name": "octopus-16.3",
+    "name": "octopus-16.4",
     "pname": "octopus",
-    "version": "16.3",
+    "version": "16.4",
     "description": "Real-space time dependent density-functional theory code",
     "homepage": "https://octopus-code.org"
-  },
-  {
-    "attribute": "qchem.openblas",
-    "name": "openblas-0.3.33",
-    "pname": "openblas",
-    "version": "0.3.33",
-    "description": "Basic Linear Algebra Subprograms",
-    "homepage": "https://github.com/OpenMathLib/OpenBLAS"
   },
   {
     "attribute": "qchem.openmm",
@@ -830,6 +798,14 @@
     "version": "8.5.2",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
+  },
+  {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-26.02",
+    "pname": "openmolcas",
+    "version": "26.02",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.orca",
@@ -873,9 +849,9 @@
   },
   {
     "attribute": "qchem.pdbfixer",
-    "name": "pdbfixer-1.8.1",
+    "name": "pdbfixer-1.12",
     "pname": "pdbfixer",
-    "version": "1.8.1",
+    "version": "1.12",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
   },
@@ -913,9 +889,9 @@
   },
   {
     "attribute": "qchem.psi4",
-    "name": "psi4-1.10",
+    "name": "psi4-1.11",
     "pname": "psi4",
-    "version": "1.10",
+    "version": "1.11",
     "description": "Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python",
     "homepage": "http://www.psicode.org/"
   },
@@ -929,9 +905,9 @@
   },
   {
     "attribute": "qchem.qdng",
-    "name": "qdng-1.0.0",
+    "name": "qdng-1.0.1",
     "pname": "qdng",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Molecular wavepacket dynamics package",
     "homepage": "https://github.com/quantum-dynamics-ng/QDng"
   },
@@ -1033,17 +1009,17 @@
   },
   {
     "attribute": "qchem.siesta",
-    "name": "siesta-5.4.1",
+    "name": "siesta-5.4.2",
     "pname": "siesta",
-    "version": "5.4.1",
+    "version": "5.4.2",
     "description": "First-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
   {
     "attribute": "qchem.siesta-mpi",
-    "name": "siesta-5.4.1",
+    "name": "siesta-5.4.2",
     "pname": "siesta",
-    "version": "5.4.1",
+    "version": "5.4.2",
     "description": "First-principles materials simulation code using DFT",
     "homepage": "https://siesta-project.org/siesta/"
   },
@@ -1113,17 +1089,17 @@
   },
   {
     "attribute": "qchem.tblite",
-    "name": "tblite-0.5.0",
+    "name": "tblite-0.6.0",
     "pname": "tblite",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "description": "Light-weight tight-binding framework",
     "homepage": "https://github.com/tblite/tblite"
   },
   {
     "attribute": "qchem.theodore",
-    "name": "theodore-3.2",
+    "name": "theodore-3.2.1",
     "pname": "theodore",
-    "version": "3.2",
+    "version": "3.2.1",
     "description": "Parallel Python program package for post-processing wave function data from output files of quantum chemical programs",
     "homepage": "https://github.com/felixplasser/theodore-qc"
   },
@@ -1161,17 +1137,17 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.7.0",
+    "name": "ucc-1.8.0",
     "pname": "ucc",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.20.1",
+    "name": "ucx-1.21.0",
     "pname": "ucx",
-    "version": "1.20.1",
+    "version": "1.21.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
   },
@@ -1225,10 +1201,10 @@
   },
   {
     "attribute": "qchem.xtb",
-    "name": "xtb-6.7.1",
+    "name": "xtb-6.7.1-unstable-2026-07-13",
     "pname": "xtb",
-    "version": "6.7.1",
-    "description": "Semiempirical extended tight-binding program package",
+    "version": "6.7.1-unstable-2026-07-13",
+    "description": "Semiempirical Extended Tight-Binding Program Package",
     "homepage": "https://github.com/grimme-lab/xtb"
   },
   {
