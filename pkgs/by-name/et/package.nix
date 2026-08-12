@@ -34,7 +34,10 @@ stdenv.mkDerivation (final: {
     hash = "sha256-JjWBvpna4Dx8FgVA/nalTwA8PPByd2ErAe0xUN89wYg=";
   };
 
-  patches = [ ./argparse.patch ];
+  patches = [
+    ./argparse.patch
+    ./reduced_mass.patch
+  ];
 
   nativeBuildInputs = [
     cmake
