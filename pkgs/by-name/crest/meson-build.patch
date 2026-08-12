@@ -1,0 +1,35 @@
+diff --git a/config/meson.build b/config/meson.build
+index 9961692..2e1e027 100644
+--- a/config/meson.build
++++ b/config/meson.build
+@@ -201,6 +201,8 @@ if get_option('WITH_TBLITE')
+    default_options: ['default_library=static', 'api=false'],
+  )
+  exe_deps += tblite_dep
++  mctc_dep = dependency('mctc-lib')
++  exe_deps += mctc_dep
+ endif
+ 
+ # TOML-F
+@@ -245,7 +247,7 @@ if get_option('WITH_LIBPVOL')
+  libpvol_dep = dependency(
+    'libpvol',
+    fallback: ['libpvol', 'libpvol_dep'],
+-   default_options: ['default_library=static'],
++   default_options: ['default_library=static', 'WITH_TESTS=false'],
+  )
+  exe_deps += libpvol_dep
+ endif
+diff --git a/meson.build b/meson.build
+index 22a016d..6c46868 100644
+--- a/meson.build
++++ b/meson.build
+@@ -23,8 +23,6 @@ project(
+   default_options: [
+     'buildtype=debugoptimized',
+     'default_library=static',
+-    'c_link_args=-static',
+-    'fortran_link_args=-static',
+   ],
+ )
+ install = not (meson.is_subproject() and get_option('default_library') == 'static')

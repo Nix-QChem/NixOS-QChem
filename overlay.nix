@@ -91,7 +91,7 @@ let
         #
         # Applications
         #
-        ambertools = super.python311.pkgs.toPythonApplication self.python311.pkgs.ambertools;
+        ambertools = super.python3.pkgs.toPythonApplication self.python3.pkgs.ambertools;
 
         autodock-vina = callPackage ./pkgs/apps/autodock-vina {
           boost = final.boost182;
@@ -112,19 +112,7 @@ let
 
         chemps2 = callPackage ./pkgs/apps/chemps2 { };
 
-        crest = callPackage ./pkgs/by-name/crest/package.nix {
-          # Requires a newer version of tblite. Can likely be removed with next
-          # tblite release
-          tblite = super.tblite.overrideAttrs (old: {
-            patches = [ ];
-            src = super.fetchFromGitHub {
-              owner = "tblite";
-              repo = "tblite";
-              rev = "4556e28f391573b3c80c94beb7c56313005d5269";
-              hash = "sha256-JmTEnvYqA73vmWQe4cpjvp6/Wwb+elSMDdHTPwD3/jc=";
-            };
-          });
-        };
+        crest = callPackage ./pkgs/by-name/crest/package.nix { };
 
         dice = callPackage ./pkgs/by-name/dice/package.nix {
           boost = final.boost186.override {
@@ -259,29 +247,12 @@ let
 
         veloxchem = super.python3.pkgs.toPythonApplication self.python3.pkgs.veloxchem;
 
-        vmd-python = super.python311.pkgs.toPythonApplication self.python311.pkgs.vmd-python;
-
         wfaMolcas = self.libwfa.override { buildMolcasExe = true; };
 
         wfoverlap = callPackage ./pkgs/by-name/wfoverlap/package.nix {
           blas = final.blas-ilp64;
           lapack = final.lapack-ilp64;
         };
-
-        xtb = callPackage ./pkgs/by-name/xtb/package.nix {
-          meson = self.meson_1_7_2;
-          # XTB declares a tblite dependency >= 0.2.0 but actually requires > 0.3.0
-          tblite = super.tblite.overrideAttrs (old: {
-            patches = [ ];
-            src = super.fetchFromGitHub {
-              owner = "tblite";
-              repo = "tblite";
-              rev = "1bd936ca81f6f9ec9bbe65e32bc422ff5388571b";
-              hash = "sha256-ywXpnKU5CkPSp4zfJkFvrN09ptjt3tqq2zSqPcHAv6E=";
-            };
-          });
-        };
-
 
         ### Python packages
         python3 = super.python3.override (old: {
@@ -290,11 +261,6 @@ let
 
         ### Python packages
         python312 = super.python312.override (old: {
-          packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
-        });
-
-        ### Python packages
-        python311 = super.python311.override (old: {
           packageOverrides = super.lib.composeExtensions (old.packageOverrides or (_: _: { })) (pythonOverrides cfg self super);
         });
 

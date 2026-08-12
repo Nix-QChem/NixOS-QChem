@@ -17,7 +17,7 @@
 } :
 
 buildPythonPackage rec {
-  pname = "autocas";
+  pname = "scine_autocas";
   version = "3.0.0";
 
   src = fetchFromGitHub {

@@ -1,22 +1,30 @@
-{ buildPythonPackage, lib, fetchFromGitHub, openmm, numpy, setuptools } :
+{ buildPythonPackage
+, lib
+, fetchFromGitHub
+, openmm
+, numpy
+, setuptools
+, legacy-cgi
+}:
 
 buildPythonPackage rec {
   pname = "pdbfixer";
-  version = "1.8.1";
+  version = "1.12";
 
   src = fetchFromGitHub {
     owner = "openmm";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-XrGP+hYi2+5Nw9nPJkmsCfiNO6Q6kENhG3LUjxEzVD8=";
+    hash = "sha256-X2P5cWmdvAjY9dMFB+R21advkdYizR8PmevMPR0RR0o=";
   };
 
   pyproject = true;
   build-system = [ setuptools ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     openmm
     numpy
+    legacy-cgi
   ];
 
   pythonImportsCheck = [ "pdbfixer" ];

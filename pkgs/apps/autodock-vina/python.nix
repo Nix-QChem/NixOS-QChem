@@ -10,8 +10,10 @@
 }:
 
 buildPythonPackage {
-  inherit (autodock-vina) pname version src;
+  inherit (autodock-vina) version src;
   meta = autodock-vina.meta // { broken = isPy311; };
+
+  pname = "vina";
 
   # Remove hardcoded include paths and fix version constraint formats
   patches = [

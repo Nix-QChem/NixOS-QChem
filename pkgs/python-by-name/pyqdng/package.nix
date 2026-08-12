@@ -2,14 +2,14 @@
 
 buildPythonPackage rec {
   pname = "pyQDng";
-  version = "0.10.0";
+  version = "0.10.1";
 
   src = fetchFromGitLab {
     domain = "gitlab.fysik.su.se";
     owner = "markus.kowalewski";
     repo = "pyqdng";
     rev = "v${version}";
-    sha256 = "sha256-dMUcT5Kt0clVYTOZReamMPS7bpIvYJjJUTJZA0CCkow=";
+    sha256 = "sha256-t/BCExkW2uzhQ7mkr/GR0F5BsKz/QNYfo2sj1VfM/Kk=";
   };
 
   pyproject = true;

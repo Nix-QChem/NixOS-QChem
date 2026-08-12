@@ -56,11 +56,7 @@ let
       mopac = recallPackage final.mopac {};
       mpi = recallPackage final.mpi {};
       multicharge = recallPackage final.multicharge {};
-      nwchem = recallPackage final.nwchem {
-        blas = final.blas-ilp64;
-        lapack = final.lapack-ilp64;
-        scalapack = final.scalapack-ilp64;
-      };
+      nwchem = recallPackage final.nwchem { };
       octopus = recallPackage final.octopus {};
       openmm = recallPackage final.openmm {
         enableCuda = cfg.useCuda;
@@ -73,7 +69,10 @@ let
       };
       pcmsolver = recallPackage final.pcmsolver {};
       scalapack = recallPackage final.scalapack {};
-      scalapack-ilp64 = recallPackage final.scalapack-ilp64 {};
+      scalapack-ilp64 = recallPackage final.scalapack-ilp64 {
+        blas = final.blas-ilp64;
+        lapack = final.lapack-ilp64;
+      };
       siesta = recallPackage final.siesta {};
       siesta-mpi = recallPackage final.siesta-mpi {};
       simple-dftd3 = recallPackage final.simple-dftd3 {};
@@ -82,6 +81,7 @@ let
       spla = recallPackage final.spla {};
       spfft = recallPackage final.spfft {};
       tblite = recallPackage final.tblite {};
+      xtb = recallPackage final.xtb {};
 
       # gromacs = recallPackage final.gromacs {};
       # gromacsMpi = recallPackage final.gromacsMpi {};
@@ -116,24 +116,6 @@ let
       inherit (final) wannier90;
       wxmacmolplt = recallPackage final.wxmacmolplt {};
 
-      #
-      # FIXME: this is temporary
-      #
-      blas = recallPackage final.blas {};
-      lapack = recallPackage final.lapack {};
-      # blas-ilp64 = recallPackage final.blas-ilp64 {};
-      # lapack-ilp64 = recallPackage final.ilp64 {};
-      openblas = final.openblas.overrideAttrs (oa: rec {
-        version = "0.3.33";
-        src = prev.fetchFromGitHub {
-          owner = "OpenMathLib";
-          repo = "OpenBLAS";
-          rev = "v${version}";
-          hash = "sha256-EArf0K2Gs+w8IRD5wkMOQv79e8yMoTgQfa9kzjXKn3Y=";
-        };
-        patches = [(lib.elemAt oa.patches 0)];
-        preCheck = "export OMP_NUM_THREADS=2";
-      });
     });
 
 in optSet

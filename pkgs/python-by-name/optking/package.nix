@@ -11,13 +11,13 @@
 
 buildPythonPackage rec {
   pname = "optking";
-  version = "0.4.2";
+  version = "0.5.0";
 
   src = fetchFromGitHub {
     owner = "psi-rking";
     repo = "optking";
     rev = version;
-    hash = "sha256-tx+JNxo3HceYDPNxCN170OMU/T9e8J+BhFZv0RNUZ74=";
+    hash = "sha256-l+l7uw6OUIpqV3EqqdZzqoibd1C+OARZlt8QTuNszbM=";
   };
 
   pyproject = true;

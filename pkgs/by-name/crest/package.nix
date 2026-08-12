@@ -24,25 +24,40 @@ let lwoniom = fetchFromGitHub {
       rev = "ab66c7ebc3066328a8fc313dc783aec9b773cad2";
       hash = "sha256-9FFlaGEHhsdS+23/7FnrteGwI9pvHb/q5A8C3iJxwnQ=";
     };
+    libpvol = fetchFromGitHub {
+      owner = "neudecker-group";
+      repo = "libpvol";
+      rev = "55f4a7362ac81a119b97484f7fa0de577209146f";
+      hash = "sha256-9b6Z8bFZccU4TDpWj4lCLgd7BHGiZwRBkv23FaO5rdA=";
+    };
 
 in stdenv.mkDerivation rec {
   pname = "crest";
-  version = "3.0.2";
+  version = "unstable-2026-06-16";
 
   src = fetchFromGitHub {
     owner = "crest-lab";
     repo = pname;
-    rev = "v${version}";
-    hash = "sha256-AVLCC5banxmBQX8tuN2zSQbM7wKwrymfXLT5MBQSpPY=";
+    rev = "cfdc301f759686b0fd66ced63b5ddbd6c693fa4f";
+    hash = "sha256-QXYkdGnn1KXa7tlQFsT1rsbDbdtqQVcSY3i6Odtj15Y=";
   };
 
-  patches = [ ./build.patch ];
+  patches = [
+    # Fix static linking and missing MCTC-Lib dependency
+    ./meson-build.patch
+    # add missing function arguments to tblite
+    ./tblite-api.patch
+  ];
 
+  # Meson subprojects that are not packaged in nixpkgs are vendored from the
+  # pinned upstream sources, matching the directory names declared in the
+  # corresponding *.wrap files.
   postPatch = ''
     chmod -R +rwx ./subprojects
     cp -r ${gfn0.src}/* ./subprojects/gfn0/.
     cp -r ${gfnff.src}/* ./subprojects/gfnff/.
     cp -r ${lwoniom}/* ./subprojects/lwoniom/.
+    cp -r ${libpvol}/* ./subprojects/pvol/.
     chmod -R +rwx ./subprojects
   '';
 
@@ -67,7 +82,8 @@ in stdenv.mkDerivation rec {
 
   mesonFlags = [
     "-Dla_backend=netlib"
-    "-Dc_args=-std=gnu17"
+    "-Ddefault_library=shared"
+    "-DWITH_LIBPVOL=true"
   ];
 
   # Dynamic libraries are not installed by default and need to be installed

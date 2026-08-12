@@ -1,0 +1,13 @@
+--- a/AmberTools/src/PyPE_RESP/setup.py
++++ b/AmberTools/src/PyPE_RESP/setup.py
+@@ -86,10 +86,6 @@
+ 
+         sys.exit()
+ 
+-subprocess.check_call([sys.executable, "-m", "pip", "install", "pandas"])
+-subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy"])
+-subprocess.check_call([sys.executable, "-m", "pip", "install", "scipy"])
+-subprocess.check_call([sys.executable, "-m", "pip", "install", "f90nml"])
+ setup(
+     name=NAME,
+     version=about['__version__'],

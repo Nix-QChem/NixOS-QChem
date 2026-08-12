@@ -14,13 +14,13 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "QCManyBody";
-  version = "0.7.0";
+  version = "0.7.1";
 
   src = fetchFromGitHub {
     owner = "MolSSI";
     repo = finalAttrs.pname;
     rev = "v${finalAttrs.version}";
-    hash = "sha256-dh8AVBKz8JvNf+xT4KyZlb7HJv2ObgNjk9PmUKpv/iw=";
+    hash = "sha256-Wl3XilaEawYrfoD80s8B4UG4HFnUqM5Vt3aez/m+jlw=";
   };
 
   nativeBuildInputs = [ pythonRelaxDepsHook ];
