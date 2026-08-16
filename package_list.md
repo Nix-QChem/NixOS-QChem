@@ -15,7 +15,7 @@
 | cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
-| cp2k-2026.1-unstable-2026-06-16 | qchem.cp2k | Quantum chemistry and solid state physics program |
+| cp2k-2026.2 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
 | crest-unstable-2026-06-16 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
@@ -78,10 +78,10 @@
 | meep-1.34.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
-| openmolcas-26.02 | qchem.molcas | Advanced quantum chemistry software package |
-| openmolcas-26.02 | qchem.molcasDice | Advanced quantum chemistry software package |
-| openmolcas-26.02 | qchem.molcasNeci | Advanced quantum chemistry software package |
-| openmolcas-26.02 | qchem.molcasWfa | Advanced quantum chemistry software package |
+| openmolcas-26.06 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-26.06 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-26.06 | qchem.molcasNeci | Advanced quantum chemistry software package |
+| openmolcas-26.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.22.4 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
@@ -111,7 +111,7 @@
 | polyply-1.8.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.11 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
-| python3-3.12.13 | qchem.python312 | High-level dynamically-typed programming language |
+| python3-3.12.14 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.1 | qchem.qdng | Molecular wavepacket dynamics package |
 | quantum-espresso-7.5 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
