@@ -27,6 +27,36 @@ Nix package manager together with NixOS-QChem (commit <10 digits of SHA-1>) [1].
 
 ## Usage
 
+### Template Flake
+We provide a template [Nix Flake](https://nixos.wiki/wiki/Flakes) ready for use and with reasonable defaults and easy customisability.
+Get the template:
+
+```bash
+nix flake init -t github:nix-qchem/nixos-qchem
+```
+
+In the so obtained `flake.nix` look for `EDITME` tokens to find places for common modifications such as:
+
+  * CPU architecture specific optimisations
+  * Enabling or disabling certain unfree packages
+  * Definition of a custom Python environment with packages you require
+  * ...
+
+A useful directory layout for a project may look like this:
+
+```
+PROJECT/
+├── calculations/
+├── .envrc
+└── nix
+    ├── flake.lock
+    └── flake.nix
+```
+
+With `.envrc` containing `use flake ./nix`.
+If you are using [DirEnv](https://direnv.net/) you get your software environment for your project by merely entering the `PROJECT` directory.
+
+
 ### Overlay
 The repository comes as a nixpkgs overlay (see [Nixpkgs manual](https://nixos.org/nixpkgs/manual/#chap-overlays) for how to install an overlay).
 The contents of the overlay will be placed in an attribute set under nixpkgs (default `qchem`). The original, but overridden nixpkgs will be placed in `qchem.pkgs`. This allows for composition of the overlay with different variants.

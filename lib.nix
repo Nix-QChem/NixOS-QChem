@@ -23,5 +23,4 @@
   pkgs-by-name = callPackage: dir:
     lib.mapAttrs (pkg: _: callPackage (dir + "/${pkg}/package.nix") {})
     (lib.filterAttrs (_: type: type == "directory") (builtins.readDir dir));
-
 }
