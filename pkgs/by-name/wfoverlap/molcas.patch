@@ -1,0 +1,65 @@
+diff --git a/wfoverlap/source/Makefile b/wfoverlap/source/Makefile
+index a2f179a..04b82fa 100644
+--- a/wfoverlap/source/Makefile
++++ b/wfoverlap/source/Makefile
+@@ -73,6 +73,10 @@ OPTOBS = read_dalton.o read_molcas.o
+ # LIBS = $(MOLCAS)/lib/libmolcas.a $(LALIB)
+ # OPTOBS = read_dalton_dummy.o read_molcas.o
+
++# activate Molcas interface
++LIBS = -lmolcas -lhdf5 -lxcf03 -lxc -lwignernj -Wl,--allow-shlib-undefined $(LALIB)
++OPTOBS = read_dalton_dummy.o read_molcas.o
++
+ ############## Compilation routines #############
+
+ .PHONY: all clean test alloc install
+diff --git a/wfoverlap/source/read_molcas.f90 b/wfoverlap/source/read_molcas.f90
+index 18d2fef..5f4344c 100644
+--- a/wfoverlap/source/read_molcas.f90
++++ b/wfoverlap/source/read_molcas.f90
+@@ -54,9 +54,12 @@ CONTAINS
+     INTEGER(KIND=ilong), DIMENSION(:),ALLOCATABLE :: nbas
+     REAL*8, DIMENSION(:),ALLOCATABLE :: temp
+     INTEGER:: allocstat
++    CHARACTER(LEN=8):: one_file
+
+     ! CALL link_it()
++    CALL GAInit()
+     CALL getenvinit()
++    CALL IniMem()
+     CALL fioinit()
+     CALL NameRun('RUNFILE')
+     CALL Get_iScalar('nSym',nsym)
+@@ -96,7 +99,13 @@ CONTAINS
+     IF(allocstat.NE.0) STOP
+
+     mc1=1
+-    CALL rdonexx(irc,iCode,'Mltpl  0',mc1,temp,ilOne,nvalid,trim(adjustl(file)))
++    IF (len_trim(file).GT.8) THEN
++      one_file='WFOVLONE'
++      CALL execute_command_line('ln -sf "'//trim(adjustl(file))//'" WFOVLONE')
++    ELSE
++      one_file=trim(adjustl(file))
++    END IF
++    CALL rdonexx(irc,iCode,'Mltpl  0',mc1,temp,ilOne,nvalid,one_file)
+
+     k=0
+     IF (same_aos)THEN
+@@ -418,7 +427,7 @@ CONTAINS
+ !@ifdef molcas_ext
+ !      Call qEnter_('RdOne')
+ !@else
+-      Call qEnter('RdOne')
++!      Call qEnter('RdOne')
+ !@endif
+       rc    = rc0000
+       LuOne = AuxOne(pLu  )
+@@ -729,7 +738,7 @@ CONTAINS
+ !@ifdef molcas_ext
+ !      Call qExit_('RdOne')
+ !@else
+-      Call qExit('RdOne')
++!      Call qExit('RdOne')
+ !@endif
+       Return
+       END SUBROUTINE rdonexx
