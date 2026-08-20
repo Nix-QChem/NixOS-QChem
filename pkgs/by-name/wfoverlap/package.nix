@@ -1,4 +1,14 @@
-{ stdenv, lib, fetchFromGitHub, gfortran, blas, lapack } :
+{ stdenv,
+  lib,
+  fetchFromGitHub,
+  gfortran,
+  blas,
+  lapack,
+  molcas,
+  hdf5-cpp,
+  libxc,
+  libwignernj,
+} :
 
 assert
   lib.asserts.assertMsg
@@ -27,9 +37,16 @@ stdenv.mkDerivation rec {
     gfortran
     blas
     lapack
+    (molcas.override { enableQcmaquis = false; })
+    hdf5-cpp
+    libxc
+    libwignernj
   ];
 
-  patches = [ ./Makefile.patch ];
+  patches = [
+    ./Makefile.patch
+    ./molcas.patch
+  ];
 
   dontConfigure = true;
 
