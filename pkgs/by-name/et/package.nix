@@ -25,13 +25,13 @@ let
 in
 stdenv.mkDerivation (final: {
   pname = "et";
-  version = "2.5.1";
+  version = "2.5.2";
 
   src = fetchFromGitLab {
     owner = "eT-program";
     repo = "eT";
     tag = "v${final.version}";
-    hash = "sha256-JjWBvpna4Dx8FgVA/nalTwA8PPByd2ErAe0xUN89wYg=";
+    hash = "sha256-/sqyXi0Ilfhj8tMje1WKb4atzQUQIgRjBI91skA8pi4=";
   };
 
   patches = [
