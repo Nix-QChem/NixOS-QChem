@@ -40,6 +40,12 @@ let
       gamess-us = finalPkgs.gamess-us.override {
         enableMpi = false;
       };
+      enableOrca = finalPkgs.orca != null;
+      enableTurbomole = finalPkgs.turbomole != null;
+      enableGaussian = finalPkgs.gaussian != null;
+      enableCfour = finalPkgs.cfour != null;
+      enableMolpro = finalPkgs.molpro != null;
+      enableGamess = finalPkgs.gamess-us != null;
     };
 
     qmcpack = callPackage ./pkgs/python-by-name/qmcpack/package.nix {
