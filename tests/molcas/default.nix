@@ -8,7 +8,6 @@ batsTest {
 
   nativeBuildInputs = [ molcas openssh ];
 
-  # MPI mode seems to be broken
   TEST_NUM_CPUS=1;
 
   # Use OpenMP
