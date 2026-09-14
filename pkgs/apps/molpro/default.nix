@@ -1,21 +1,25 @@
 { lib, stdenv, requireFile, patchelf, python3
 , token
+, variant ? "aocl"
 } :
 
 assert token != null;
+assert lib.elem variant [ "aocl" "mkl" ];
 
 let
-  version = "2025.4.1";
+  version = "2026.1.0";
   url = "http://www.molpro.net";
 
 in stdenv.mkDerivation {
   pname = "molpro";
   inherit version;
 
-  src = requireFile   {
+  src = requireFile {
     inherit url;
-    name = "molpro-mpp-${version}.linux_x86_64.sh.gz";
-    sha256 = "sha256-nWMj2Jro1+R7YO/AfM29F3X5rDQQHzHDk2KwYOShQbY=";
+    name = "molpro-mpp-${version}.linux_x86_64-${variant}.sh.gz";
+    sha256 = if (variant == "aocl")
+      then "sha256-fSunl7dr+Ngu6u9N4qA4MSnBA2fbCYWYkhBxEOI/7LA="
+      else "sha256-1V2pE6GC1uo4u6l3zO4wjt0tWZ11KRKySCff/9zhSJE=";
   };
 
   nativeBuildInputs = [ patchelf ];
