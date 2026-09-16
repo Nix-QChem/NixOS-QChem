@@ -56,7 +56,7 @@ in stdenv.mkDerivation rec {
     ++ optional enableMpi "--with-mpi=${mpiType}"
     ++ optional ( !enableMpi ) "--disable-smith"
     ++ optional ( !enableScalapack ) "--disable-scalapack"
-    ++ optional useMKL"--enable-mkl";
+    ++ optional useMKL "--enable-mkl";
 
   preConfigure = ''
     ./autogen.sh
