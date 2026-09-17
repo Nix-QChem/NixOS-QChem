@@ -39,6 +39,7 @@ let
       hpcg = recallPackage final.hpcg {};
       i-pi = recallPackage final.i-pi {};
       gsl = recallPackage final.gsl {};
+      globalarrays = recallPackage final.globalarrays {};
       gpaw = final.python3.pkgs.toPythonApplication (recallPackage final.python3.pkgs.gpaw {});
       lapack-reference = recallPackage final.lapack-reference {};
       libint = recallPackage final.libint {};

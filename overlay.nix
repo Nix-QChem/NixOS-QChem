@@ -159,27 +159,7 @@ let
         molcas = self.openmolcas;
 
         # OpenMolcas with MPI support.
-        molcasMPI =
-          let
-            mpi = self.mpi;
-            globalarrays = super.globalarrays.override {
-              inherit mpi;
-              stdenv = self.stdenv;
-              # Use the same ILP64 BLAS library as OpenMolcas.
-              blas = final.blas-ilp64;
-            };
-          in
-          (self.molcas.override {
-            enableMpi = true;
-            inherit globalarrays mpi;
-          }).overrideAttrs (oldAttrs: {
-            # Replace nixpkgs' DGA flag with explicit external GA.
-            cmakeFlags =
-              builtins.filter
-                (flag: !(lib.hasPrefix "-DDGA" flag))
-                oldAttrs.cmakeFlags
-              ++ [ "-DGA=ON" "-DGA_BUILD=OFF" ];
-          });
+        molcasMPI = self.molcas.override { enableMpi = true; };
 
         # Molcas with LibWFA support. That disables the EXPBAS module, though.
         molcasWfa = self.molcas.overrideAttrs (oldAttrs: {
