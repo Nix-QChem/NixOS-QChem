@@ -40,6 +40,7 @@ let
       i-pi = recallPackage final.i-pi {};
       gsl = recallPackage final.gsl {};
       globalarrays = recallPackage final.globalarrays {};
+      globalarrays-ilp64 = recallPackage final.globalarrays-ilp64 {};
       gpaw = final.python3.pkgs.toPythonApplication (recallPackage final.python3.pkgs.gpaw {});
       lapack-reference = recallPackage final.lapack-reference {};
       libint = recallPackage final.libint {};
