@@ -158,6 +158,9 @@ let
         # Molcas with optimisation
         molcas = self.openmolcas;
 
+        # OpenMolcas with MPI support.
+        molcasMpi = self.molcas.override { enableMpi = true; };
+
         # Molcas with LibWFA support. That disables the EXPBAS module, though.
         molcasWfa = self.molcas.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ [ self.chemps2 ];
@@ -297,6 +300,10 @@ let
           hpcg = callPackage ./tests/hpcg { };
           hpl = callPackage ./tests/hpl { };
           molcas = callPackage ./tests/molcas { };
+          molcasMpi = callPackage ./tests/molcas {
+            molcas = self.molcasMpi;
+            enableMpi = true;
+          };
           molpro = nullable molpro (callPackage ./tests/molpro { });
           mrcc = nullable mrcc (callPackage ./tests/mrcc { });
           nwchem = callPackage ./tests/nwchem { };

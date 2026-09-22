@@ -1,24 +1,33 @@
-{ batsTest, molcas, openssh } :
+{ lib, batsTest, molcas, mpi, openssh
+, enableMpi ? false
+, TEST_NUM_CPUS ? if enableMpi then 2 else 1
+, OMP_NUM_THREADS ? if enableMpi then 1 else 2
+}:
 
 batsTest {
-  name = "molcas";
+  name = "molcas${lib.optionalString enableMpi "-mpi"}";
   auxFiles = [ ./molcas.inp ];
 
   outFile = [ "molcas.out" ];
 
-  nativeBuildInputs = [ molcas openssh ];
+  nativeBuildInputs = [ molcas openssh ] ++ lib.optional enableMpi mpi;
 
-  # MPI mode seems to be broken
-  TEST_NUM_CPUS=1;
+  inherit TEST_NUM_CPUS OMP_NUM_THREADS;
+  numCpus = TEST_NUM_CPUS;
 
-  # Use OpenMP
-  OMP_NUM_THREADS=2;
+  testScript = lib.optionalString enableMpi ''
+    @test "OpenMolcas uses MPI" {
+      grep -F "${mpi}/bin/mpiexec" "${molcas}/molcas.rte"
+    }
+  '' + ''
 
-  testScript = ''
     @test "Run-Molcas" {
-      # Run on 2 CPUs to test parallelism
       env > env
       ${molcas}/bin/pymolcas -np $TEST_NUM_CPUS molcas.inp > molcas.out
+      grep -F "Happy landing" molcas.out
+      ${lib.optionalString enableMpi ''
+        grep -F "launched $TEST_NUM_CPUS MPI processes, running in PARALLEL mode (work-sharing enabled)" molcas.out
+      ''}
     }
 
     @test "HF Energy" {

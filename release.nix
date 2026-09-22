@@ -107,6 +107,7 @@ let
               "cp2k"
               "nwchem"
               "molcas"
+              "molcasMpi"
               "molpro"
               "qdng"
               "gaussview"

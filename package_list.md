@@ -80,6 +80,7 @@
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
 | openmolcas-26.06 | qchem.molcas | Advanced quantum chemistry software package |
 | openmolcas-26.06 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-26.06 | qchem.molcasMpi | Advanced quantum chemistry software package |
 | openmolcas-26.06 | qchem.molcasNeci | Advanced quantum chemistry software package |
 | openmolcas-26.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
