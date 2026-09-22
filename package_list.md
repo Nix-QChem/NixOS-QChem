@@ -43,6 +43,8 @@
 | gdma-2.3.3-unstable-2023-06-03 | qchem.gdma | Global Distributed Multipole Analysis from Gaussian Wavefunctions |
 | gfn0-unstable-2024-07-18 | qchem.gfn0 | Standalone implementation of the GFN0-xTB method |
 | gfnff-unstable-2024-08-02 | qchem.gfnff | A standalone library of the GFN-FF method. Extracted in large parts from the xtb program |
+| globalarrays-5.9.2 | qchem.globalarrays | Global Arrays Programming Models |
+| globalarrays-5.9.2 | qchem.globalarrays-ilp64 | Global Arrays Programming Models |
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
