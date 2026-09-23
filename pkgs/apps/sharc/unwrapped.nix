@@ -16,7 +16,7 @@
 }:
 
 let
-  version = "4.0.2";
+  version = "4.1";
   python = python3.withPackages (p: with p; [
     numpy
     openbabel-bindings
@@ -46,7 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "sharc-md";
     repo = "sharc4";
     rev = "v${version}";
-    hash = "sha256-f0qpvGWzI8I7xGMh8bzyiXEOJ69OKWbT6D2ltLbQOwQ=";
+    hash = "sha256-xMMfTLHTOsI/6CYk+25Qa+V9ufOA5rU4we4pEcmR+tg=";
   };
 
   outputs = [ "out" "doc" "tests" ];
@@ -64,6 +64,12 @@ stdenv.mkDerivation (finalAttrs: {
   postPatch = ''
     # SHARC make file (dynamics fixes)
     sed -i 's:^EXEDIR.*=.*:EXEDIR = ''${out}/bin:' source/Makefile;
+
+    # Fix logical comparisons using == (hard error in gcc-14+ gfortran)
+    substituteInPlace source/data_extractor_NetCDFmodule.f90 \
+      --replace-fail 'laser_b==.false.' 'laser_b .eqv. .false.' \
+      --replace-fail 'laser_egrad==.false.' 'laser_egrad .eqv. .false.' \
+      --replace-fail 'laser_e==.true.' 'laser_e .eqv. .true.'
 
     # purify output
     substituteInPlace source/Makefile \
