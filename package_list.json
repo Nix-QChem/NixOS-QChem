@@ -969,57 +969,57 @@
   },
   {
     "attribute": "qchem.sharc",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-bagel",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-full",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-molcas",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-orca",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-turbomole",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
   {
     "attribute": "qchem.sharc-unwrapped",
-    "name": "sharc-4.0.2",
+    "name": "sharc-4.1",
     "pname": "sharc",
-    "version": "4.0.2",
+    "version": "4.1",
     "description": "Molecular dynamics (MD) program suite for excited states",
     "homepage": "https://www.sharc-md.org"
   },
