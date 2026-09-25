@@ -1,0 +1,31 @@
+--- a/source/dftd4_interface.F90	2026-09-25 13:46:53.549447013 +0200
++++ b/source/dftd4_interface.F90	2026-09-25 13:49:47.320709839 +0200
+@@ -16,6 +16,7 @@
+   use iso_c_binding
+   use iso_fortran_env, only: wp => real64
+   use mctc_io, only: structure_type, new
++  use mctc_env_error, only: error_type
+   use dftd4, only: d4_model, new_d4_model, damping_param, &
+                    get_rational_damping, get_dispersion, realspace_cutoff
+   use dftd4_damping_rational, only: rational_damping_param
+@@ -92,6 +93,7 @@
+ 
+     type(structure_type) :: mol
+     type(d4_model) :: disp
++    type(error_type), allocatable :: error
+     class(damping_param), allocatable :: param
+     character(len=:), allocatable :: fname
+     real(wp), allocatable :: g(:, :)
+@@ -109,7 +111,11 @@
+ 
+     call new(mol, num=int(z, OQP_D4_INT_KIND), xyz=real(xyz, wp), &
+              charge=real(total_charge, wp))
+-    call new_d4_model(disp, mol)
++    call new_d4_model(error, disp, mol)
++    if (allocated(error)) then
++      ier = 3
++      return
++    end if
+     select case (param_mode)
+     case (0)
+       call get_rational_damping(trim(fname), param, s9=1.0_wp)
