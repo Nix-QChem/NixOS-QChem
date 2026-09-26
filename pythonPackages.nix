@@ -32,6 +32,16 @@ let
       inherit (finalPkgs) dftbplus;
     };
 
+    openqp = callPackage ./pkgs/python-by-name/openqp/package.nix {
+      blas = finalPkgs.pkgs.blas-ilp64;
+      lapack = finalPkgs.pkgs.lapack-ilp64;
+      libxc = finalPkgs.libxc_7;
+      inherit (finalPkgs) libint libecpint mpi;
+      # Pass the grimme library packages (not Python bindings) from nixpkgs.
+      # The makeScope in package.nix overrides these to cmake+ILP64 builds.
+      inherit (finalPkgs.pkgs) mctc-lib multicharge dftd4 mstore newScope;
+    };
+
     psi4 = callPackage ./pkgs/python-by-name/psi4/package.nix { inherit (finalPkgs) libxc; };
 
     pychemps2 = callPackage ./pkgs/apps/chemps2/PyChemMPS2.nix { };
