@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation rec {
   pname = "salmon";
-  version = "2.2.1";
+  version = "2.3.0";
 
   src = fetchFromGitHub {
     owner = "SALMON-TDDFT";
     repo = "SALMON2";
     rev = "v.${version}";
-    hash = "sha256-xE/2PCLkdUmSOUSbCD9SaqB09U04x8s8leh43g+rRgw=";
+    hash = "sha256-ki4ADVhNGew/hAGtcaYdcOetl1OAW3EPqTPHrB1daOw=";
   };
 
   patches = [
