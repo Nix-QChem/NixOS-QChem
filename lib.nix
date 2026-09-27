@@ -12,8 +12,10 @@
       # Add additional compiler flags
       extraAttrs = {
         mkDerivation = args: (stdenv.mkDerivation args).overrideAttrs (old: {
-          env.NIX_CFLAGS_COMPILE = toString (old.env.NIX_CFLAGS_COMPILE or "")
-            + " -march=${arch} -mtune=${arch} " + extraCflags;
+          env = (old.env or {}) // {
+            NIX_CFLAGS_COMPILE = toString (old.env.NIX_CFLAGS_COMPILE or "")
+              + " -march=${arch} -mtune=${arch} " + extraCflags;
+          };
         });
       };
     };
