@@ -117,7 +117,7 @@
 | python3-3.12.14 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.1 | qchem.qdng | Molecular wavepacket dynamics package |
 | quantum-espresso-7.5 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
-| salmon-2.2.1 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
+| salmon-2.3.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.3 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | scalapack-2.2.3 | qchem.scalapack-ilp64 | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | sgroup-1.0 | qchem.sgroup | Determination of the space group and unit cell for a periodic solid |
