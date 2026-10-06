@@ -721,9 +721,9 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-5.0.10",
+    "name": "openmpi-5.0.11",
     "pname": "openmpi",
-    "version": "5.0.10",
+    "version": "5.0.11",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
@@ -824,6 +824,14 @@
     "homepage": "https://openmm.org/"
   },
   {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-26.06",
+    "pname": "openmolcas",
+    "version": "26.06",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.1",
     "pname": "orca",
@@ -913,9 +921,9 @@
   },
   {
     "attribute": "qchem.python312",
-    "name": "python3-3.12.14",
+    "name": "python3-3.12.15",
     "pname": "python3",
-    "version": "3.12.14",
+    "version": "3.12.15",
     "description": "High-level dynamically-typed programming language",
     "homepage": "https://www.python.org"
   },
@@ -1153,9 +1161,9 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.8.0",
+    "name": "ucc-1.9.0",
     "pname": "ucc",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },
