@@ -124,6 +124,7 @@ stdenv.mkDerivation (finalAttrs: {
     cp -u bin/* $out/bin
     cp wfoverlap/scripts/* $out/bin
     cp ${wfoverlap}/bin/wfoverlap.x $out/bin/wfoverlap_ascii.x
+    ln $out/bin/wfoverlap_ascii.x $out/bin/wfoverlap.x
 
     mkdir -p $out/${python3.sitePackages}
     cp -r lib/* $out/${python3.sitePackages}/.
