@@ -20,21 +20,27 @@
 
 assert !blas.isILP64 && !lapack.isILP64;
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "dftbplus";
-  version = "unstable-2025-04-11";
+  version = "25.1";
 
   src = fetchFromGitHub {
     owner = "dftbplus";
-    repo = pname;
-    rev = "d5fd71f1b0da85ec9f3ef43462d07afd4d745ec1";
-    hash = "sha256-ub34vZcfOuNMsjDabMQrYYBAA37xCg1tDAd8SPK5eoc=";
+    repo = finalAttrs.pname;
+    tag = finalAttrs.version;
+    hash = "sha256-9EcHYZuGYvWMoZA6NXmnR8NSgjmRbT0NZ2eaKQYe6b0=";
     fetchSubmodules = true;
   };
 
   postPatch = ''
     patchShebangs .
   '';
+
+  patches = [
+    # GCC 16 gfortran respects the module-level 'private' for bind(C) procedures,
+    # hiding the C API symbols from the shared library. Make them public.
+    ./gcc16-capi-visibility.patch
+  ];
 
   nativeBuildInputs = [
     gfortran
@@ -48,7 +54,7 @@ stdenv.mkDerivation rec {
     lapack
     plumed
   ] ++ lib.optional enableMpi scalapack
-    ++ lib.optionals rocmSupport (with rocmPackages; [
+  ++ lib.optionals rocmSupport (with rocmPackages; [
     magma
     hip-common
     clr
@@ -89,4 +95,4 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
   };
-}
+})
