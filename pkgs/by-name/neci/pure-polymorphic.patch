@@ -1,0 +1,79 @@
+--- a/src/excitation_types.fpp
++++ b/src/excitation_types.fpp
+@@ -335,7 +335,7 @@
+     end function
+ 
+ !>  Create an excitation from an excitation matrix and excitation level IC
+-    pure function create_excitation(ic, ex) result(exc)
++    function create_excitation(ic, ex) result(exc)
+         !>  The excitation level. (1=Excite_1_t, 2=Excite_2_t, ...)
+         integer, intent(in) :: IC
+         !>  An excitation matrix as in the %val component of
+--- a/src/gasci_supergroup_index.fpp
++++ b/src/gasci_supergroup_index.fpp
+@@ -707,7 +707,7 @@
+     end function
+ 
+ 
+-    pure function construct_SuperGroupIndexer_t(GAS_spec, N) result(idxer)
++    function construct_SuperGroupIndexer_t(GAS_spec, N) result(idxer)
+         class(GASSpec_t), intent(in) :: GAS_spec
+         integer, intent(in) :: N
+         type(SuperGroupIndexer_t) :: idxer
+--- a/src/gasci_disconnected.fpp
++++ b/src/gasci_disconnected.fpp
+@@ -101,7 +101,7 @@
+ 
+ contains
+ 
+-    pure function construct_GAS_disc_ExcGenerator_t(GAS_spec) result(res)
++    function construct_GAS_disc_ExcGenerator_t(GAS_spec) result(res)
+         class(GASSpec_t), intent(in) :: GAS_spec
+         type(GAS_disc_ExcGenerator_t) :: res
+ 
+--- a/src/gasci_on_the_fly_heat_bath.fpp
++++ b/src/gasci_on_the_fly_heat_bath.fpp
+@@ -95,20 +95,20 @@
+ 
+ contains
+ 
+-    pure function construct_GAS_heat_bath_ExcGenerator_t(GAS_spec) result(res)
++    function construct_GAS_heat_bath_ExcGenerator_t(GAS_spec) result(res)
+         class(GASSpec_t), intent(in) :: GAS_spec
+         type(GAS_heat_bath_ExcGenerator_t) :: res
+         res%singles_generator = GAS_singles_heat_bath_ExcGen_t(GAS_spec)
+         res%doubles_generator = GAS_doubles_heat_bath_ExcGenerator_t(GAS_spec)
+     end function
+ 
+-    pure function construct_GAS_singles_heat_bath_ExcGen_t(GAS_spec) result(res)
++    function construct_GAS_singles_heat_bath_ExcGen_t(GAS_spec) result(res)
+         class(GASSpec_t), intent(in) :: GAS_spec
+         type(GAS_singles_heat_bath_ExcGen_t) :: res
+         res%GAS_spec = GAS_spec
+     end function
+ 
+-    pure function construct_GAS_doubles_heat_bath_ExcGen_t(GAS_spec) result(res)
++    function construct_GAS_doubles_heat_bath_ExcGen_t(GAS_spec) result(res)
+         class(GASSpec_t), intent(in) :: GAS_spec
+         type(GAS_doubles_heat_bath_ExcGenerator_t) :: res
+         res%GAS_spec = GAS_spec
+--- a/src/unit_test_helper_excitgen.F90
++++ b/src/unit_test_helper_excitgen.F90
+@@ -555,7 +555,7 @@
+             this%total_ms, this%uhf, this%hermitian)
+     end subroutine
+ 
+-    pure function construct_RandomFciDumpWriter_t(n_spat_orbs, nI, sparse, sparseT, filepath, uhf, hermitian) result(res)
++    function construct_RandomFciDumpWriter_t(n_spat_orbs, nI, sparse, sparseT, filepath, uhf, hermitian) result(res)
+         integer, intent(in) :: n_spat_orbs, nI(:)
+         real(dp), intent(in) :: sparse, sparseT
+         character(*), optional, intent(in) :: filepath
+@@ -576,7 +576,7 @@
+                 )
+     end function
+ 
+-    pure function construct_GAS_RandomFciDumpWriter_t(GAS_spec, nI, sparse, sparseT, filepath, uhf, hermitian) result(res)
++    function construct_GAS_RandomFciDumpWriter_t(GAS_spec, nI, sparse, sparseT, filepath, uhf, hermitian) result(res)
+         class(GASSpec_t), intent(in) :: GAS_spec
+         integer, intent(in) :: nI(:)
+         real(dp), intent(in) :: sparse, sparseT
