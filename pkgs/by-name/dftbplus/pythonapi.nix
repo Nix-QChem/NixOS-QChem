@@ -1,9 +1,9 @@
 { buildPythonPackage
-, lib
 , dftbplus
 , numpy
 , hatchling
 , dptools
+, pyprojectVersionPatchHook
 }:
 
 buildPythonPackage rec {
@@ -13,6 +13,10 @@ buildPythonPackage rec {
   src = "${dftbplus.src}/tools/pythonapi";
 
   pyproject = true;
+
+  nativeBuildInputs = [
+    pyprojectVersionPatchHook
+  ];
 
   buildInputs = [
     dftbplus
