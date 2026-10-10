@@ -20,7 +20,7 @@
 | crest-unstable-2026-06-16 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dbcsr-2.10.0 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
-| dftbplus-unstable-2025-04-11 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
+| dftbplus-25.1 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
 | dftd4-4.2.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
 | dice-1.0-unstable-2025-06-15 | qchem.dice | Heatbath configuration interaction program |
@@ -28,7 +28,7 @@
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2026.02.002 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| et-2.5.2 | qchem.et | Electronic structure program for coupled cluster |
+| et-2.6.0 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exchcxx-1.0.0 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
 | exciting-neon.0.1 | qchem.exciting | Full-potential all-electron density-functional-theory package |
@@ -48,10 +48,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2026.3 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2026.3 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2026.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2026.3 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.3 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
