@@ -1,0 +1,22 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -152,6 +152,7 @@
+ set(linalg_lib_options none auto netlib
+     Apple
+ #    Generic
++    system
+ #    ACML ACML_MP ACML_GPU
+ #    NAS
+ #    Arm Arm_mp Arm_ilp64 Arm_ilp64_mp
+@@ -405,6 +406,11 @@
+   endif()
+ endif()
+ 
++if(ENABLE_DFTD4)
++  add_custom_target(mctc-lib)
++  add_custom_target(multicharge)
++  add_custom_target(dftd4)
++endif()
+ add_subdirectory(external)
+ 
+ add_definitions(-DOQP)
