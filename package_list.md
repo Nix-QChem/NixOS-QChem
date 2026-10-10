@@ -20,7 +20,7 @@
 | crest-unstable-2026-06-16 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dbcsr-2.10.0 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
-| dftbplus-unstable-2025-04-11 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
+| dftbplus-25.1 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
 | dftd4-4.2.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
 | dice-1.0-unstable-2025-06-15 | qchem.dice | Heatbath configuration interaction program |
@@ -28,7 +28,7 @@
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2026.02.002 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| et-2.5.2 | qchem.et | Electronic structure program for coupled cluster |
+| et-2.6.0 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exchcxx-1.0.0 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
 | exciting-neon.0.1 | qchem.exciting | Full-potential all-electron density-functional-theory package |
@@ -48,10 +48,10 @@
 | gMultiwfn-3.4.1-0 | qchem.gmultiwfn | gfortran port of Multiwfn |
 | gpaw-25.1.0 | qchem.gpaw | Density functional theory and beyond within the projector-augmented wave method |
 | graci-20231004 | qchem.graci | General Reference Configuration Interaction package |
-| gromacs-2026.3 | qchem.gromacs | Molecular dynamics software package |
-| gromacs-2026.3 | qchem.gromacsDouble | Molecular dynamics software package |
-| gromacs-2026.3 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
-| gromacs-2026.3 | qchem.gromacsMpi | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacs | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacsDouble | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacsDoubleMpi | Molecular dynamics software package |
+| gromacs-2026.4 | qchem.gromacsMpi | Molecular dynamics software package |
 | gsl-2.8 | qchem.gsl | GNU Scientific Library, a large numerical library |
 | harminv-1.4.3 | qchem.harminv | Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids |
 | hdf5-cpp-1.14.6 | qchem.hdf5 | Data model, library, and file format for storing and managing data |
@@ -90,7 +90,7 @@
 | moltemplate-2.22.4 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.2.5 | qchem.mopac | Semiempirical quantum chemistry |
 | mpb-1.12.0 | qchem.mpb | MIT Photonic-Bands: computation of photonic band structures in periodic media |
-| openmpi-5.0.10 | qchem.mpi | Open source MPI-3 implementation |
+| openmpi-5.0.11 | qchem.mpi | Open source MPI-3 implementation |
 | mrcc-25.1.2 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
@@ -103,6 +103,7 @@
 | octave-11.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.4 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.6.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmolcas-26.06 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -114,7 +115,7 @@
 | polyply-1.8.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.11 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
-| python3-3.12.14 | qchem.python312 | High-level dynamically-typed programming language |
+| python3-3.12.15 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.1 | qchem.qdng | Molecular wavepacket dynamics package |
 | quantum-espresso-7.5 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.3.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
@@ -144,7 +145,7 @@
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
 | turbomole-7.9 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | turbomole-7.8.1 | qchem.turbomole78 | General purpose quantum chemistry program. Tools, not Toys! |
-| ucc-1.8.0 | qchem.ucc | Collective communication operations API |
+| ucc-1.9.0 | qchem.ucc | Collective communication operations API |
 | ucx-1.22.0 | qchem.ucx | Unified Communication X library |
 | vmd-2.0.0 | qchem.vmd | Molecular dynamics visualisation program |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |

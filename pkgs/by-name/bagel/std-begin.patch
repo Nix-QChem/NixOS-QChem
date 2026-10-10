@@ -1,0 +1,14 @@
+--- a/btas/array_adaptor.h	2026-10-07 15:05:22.782319989 +0200
++++ b/btas/array_adaptor.h	2026-10-07 15:05:22.793319842 +0200
+@@ -164,8 +164,10 @@
+   const T* cbegin(T* x) {
+     return x;
+   }
++  // take the pointer by reference so that arrays do not decay to it
++  // and the overload does not collide with libstdc++'s std::begin(T (&)[N])
+   template <typename T>
+-  T* begin(T* x) {
++  T* begin(T* const& x) {
+     return x;
+   }
+ 

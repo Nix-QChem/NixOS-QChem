@@ -30,6 +30,9 @@ stdenv.mkDerivation rec {
   patches = [
     # Replaces a deprecated RawConfigParser.readfp() with RawConfigParser.read_file()
     ./python.patch
+    # Pure functions must not return polymorphic allocatables (F2008 C1278a),
+    # which is enforced by newer gfortran versions
+    ./pure-polymorphic.patch
   ];
 
   nativeBuildInputs = [

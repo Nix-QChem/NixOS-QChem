@@ -161,9 +161,9 @@
   },
   {
     "attribute": "qchem.dftbplus",
-    "name": "dftbplus-unstable-2025-04-11",
-    "pname": "dftbplus-unstable",
-    "version": "2025-04-11",
+    "name": "dftbplus-25.1",
+    "pname": "dftbplus",
+    "version": "25.1",
     "description": "DFTB+ general package for performing fast atomistic simulations",
     "homepage": "https://github.com/dftbplus/dftbplus"
   },
@@ -225,9 +225,9 @@
   },
   {
     "attribute": "qchem.et",
-    "name": "et-2.5.2",
+    "name": "et-2.6.0",
     "pname": "et",
-    "version": "2.5.2",
+    "version": "2.6.0",
     "description": "Electronic structure program for coupled cluster",
     "homepage": "https://gitlab.com/eT-program/eT"
   },
@@ -385,33 +385,33 @@
   },
   {
     "attribute": "qchem.gromacs",
-    "name": "gromacs-2026.3",
+    "name": "gromacs-2026.4",
     "pname": "gromacs",
-    "version": "2026.3",
+    "version": "2026.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDouble",
-    "name": "gromacs-2026.3",
+    "name": "gromacs-2026.4",
     "pname": "gromacs",
-    "version": "2026.3",
+    "version": "2026.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsDoubleMpi",
-    "name": "gromacs-2026.3",
+    "name": "gromacs-2026.4",
     "pname": "gromacs",
-    "version": "2026.3",
+    "version": "2026.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
   {
     "attribute": "qchem.gromacsMpi",
-    "name": "gromacs-2026.3",
+    "name": "gromacs-2026.4",
     "pname": "gromacs",
-    "version": "2026.3",
+    "version": "2026.4",
     "description": "Molecular dynamics software package",
     "homepage": "https://www.gromacs.org"
   },
@@ -721,9 +721,9 @@
   },
   {
     "attribute": "qchem.mpi",
-    "name": "openmpi-5.0.10",
+    "name": "openmpi-5.0.11",
     "pname": "openmpi",
-    "version": "5.0.10",
+    "version": "5.0.11",
     "description": "Open source MPI-3 implementation",
     "homepage": "https://www.open-mpi.org/"
   },
@@ -824,6 +824,14 @@
     "homepage": "https://openmm.org/"
   },
   {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-26.06",
+    "pname": "openmolcas",
+    "version": "26.06",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
+  },
+  {
     "attribute": "qchem.orca",
     "name": "orca-6.1.1",
     "pname": "orca",
@@ -913,9 +921,9 @@
   },
   {
     "attribute": "qchem.python312",
-    "name": "python3-3.12.14",
+    "name": "python3-3.12.15",
     "pname": "python3",
-    "version": "3.12.14",
+    "version": "3.12.15",
     "description": "High-level dynamically-typed programming language",
     "homepage": "https://www.python.org"
   },
@@ -1153,9 +1161,9 @@
   },
   {
     "attribute": "qchem.ucc",
-    "name": "ucc-1.8.0",
+    "name": "ucc-1.9.0",
     "pname": "ucc",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "description": "Collective communication operations API",
     "homepage": "https://openucx.github.io/ucc/"
   },

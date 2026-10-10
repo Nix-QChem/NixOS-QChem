@@ -1,0 +1,15 @@
+GCC 16 gfortran respects the module-level 'private' access specifier for bind(C)
+procedures, causing the C API symbols to be marked HIDDEN in the object file and
+not exported from the shared library. Make the bind(C) procedures public.
+
+--- a/src/dftbp/api/mm/capi.F90
++++ b/src/dftbp/api/mm/capi.F90
+@@ -19,7 +19,7 @@
+   use dftbp_mmapi, only : TDftbPlus, TDftbPlus_destruct, TDftbPlus_init, TDftbPlusAtomList,&
+       & TDftbPlusInput
+   implicit none
+-  private
++  public
+ 
+ 
+   !> DFTB+ input tree

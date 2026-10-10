@@ -27,6 +27,12 @@ in stdenv.mkDerivation rec {
     sha256 = "sha256-v2n88qWpk+k0+KbwyFuIg7Spb+eaWxlv9y2JFBBSYvg=";
   };
 
+  patches = [
+    # BTAS' std::begin(T*) overload is ambiguous with
+    # std::begin(T (&)[N]) from libstdc++ for array arguments
+    ./std-begin.patch
+  ];
+
   nativeBuildInputs = [ autoconf automake libtool ];
 
   buildInputs = [
