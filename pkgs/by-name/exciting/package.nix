@@ -1,14 +1,17 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, cmake
 , gfortran
 , perl
+, python3
 , libxslt
 , runtimeShell
 , blas
 , lapack
+, fftw
+, fftwFloat
 , mpi
-, arpack
 , scalapack
 , enableSgroup ? false
 , sgroup
@@ -16,59 +19,41 @@
 
 stdenv.mkDerivation rec {
   pname = "exciting";
-  version = "neon.0.1";
+  version = "sodium.0.2";
 
   src = fetchFromGitHub {
     owner = "exciting";
     repo = "exciting";
     rev = version;
-    hash = "sha256-BGJdMz/5cfrr0O4DZTx1NonJTalHqlbubMDw6Ot8QGQ=";
+    hash = "sha256-M8Oyon5dbFtocIamAiepFQw06teKBQrVslU/ktC9A0s=";
   };
 
+  outputs = [ "out" "dev" ];
   postPatch = ''
-    patchShebangs ./build/utilities ./external/libXC/src/get_funcs.pl
+    # Remove the bundled cmake binary
+    rm -r external/cmake-*
+
+    # Do not optimize for the build machine
+    substituteInPlace cmake/CompilerFlags.cmake \
+      --replace-fail '-march=''${ARCH_MARCH} ' ""
+
+    patchShebangs .
   '';
 
-  preConfigure = ''
-    cat > build/make.inc <<EOF
-    F90 = gfortran
-    F90_OPTS = -O3 -ffree-line-length-0 -fallow-argument-mismatch -fallow-invalid-boz
-    CPP_ON_OPTS = -cpp -DXS -DISO -DLIBXC
-    F77 = \$(F90)
-    F77_OPTS = -O3 -fallow-argument-mismatch
-    FCCPP = cpp
+  nativeBuildInputs = [
+    cmake
+    gfortran
+    perl
+    python3
+    libxslt
+    mpi
+  ];
 
-    # Libraries
-    LIB_ARP = -larpack
-    # Use native blas/lapack by default
-    export USE_SYS_LAPACK=true
-    LIB_LPK = -llapack -lblas
-    LIB_FFT = fftlib.a
-    LIB_BZINT = libbzint.a
-    LIBS = \$(LIB_ARP) \$(LIB_LPK) \$(LIB_FFT) \$(LIB_BZINT)
-
-    # SMP and MPI compilers, flags and preprocessing variables
-    MPIF90 = mpif90
-    MPIF90_OPTS = -DMPI -DSCAL -fallow-invalid-boz
-    MPI_LIBS = -lscalapack
-
-    SMPF90_OPTS = -fopenmp -DUSEOMP
-    SMPF77_OPTS = \$(SMPF90_OPTS)
-    SMP_LIBS =
-
-    BUILDMPI = true
-    BUILDSMP = true
-    BUILDMPISMP = true
-    EOF
-  '';
-
-  enableParallelBuilding = true;
-
-  nativeBuildInputs = [ perl libxslt gfortran ];
   buildInputs = [
     blas
     lapack
-    arpack
+    fftw
+    fftwFloat
     scalapack
   ];
 
@@ -76,31 +61,41 @@ stdenv.mkDerivation rec {
   propagatedUserEnvPkgs = [ mpi ] ++ lib.optional enableSgroup sgroup;
   passthru = { inherit mpi; };
 
-  installPhase = ''
-    mkdir -p $out/bin $out/share/exciting/species
+  cmakeFlags = [
+    (lib.cmakeBool "MPI" true)
+    (lib.cmakeBool "OMP" true)
+    (lib.cmakeBool "SCALAPACK" true)
+    (lib.cmakeFeature "SCALAPACK_ROOT" "${scalapack}")
+    (lib.cmakeFeature "FFTW3_ROOT" "${lib.getDev fftw}")
+    (lib.cmakeBool "UNIT_TESTS" false)
+  ];
 
-    cp species/* $out/share/exciting/species/
+  enableParallelBuilding = true;
 
+  postInstall = ''
+    mkdir -p $out/share/exciting/species
+    cp ../species/* $out/share/exciting/species/
 
-    cp bin/exciting_mpismp $out/bin/.exciting_mpismp-wrapped
-    cp bin/exciting_smp $out/bin/.exciting_smp-wrapped
+    # Replace upstream's symlink with a wrapper that resolves $EXCITINGROOT
+    rm $out/bin/exciting
+    mv $out/bin/exciting_mpismp $out/bin/.exciting_mpismp-wrapped
 
-    cat > $out/bin/exciting_smp <<EOF
+    cat > $out/bin/exciting_mpismp <<EOF
     #!${runtimeShell}
     if [ -n "\$1" ]; then
       sed 's:\$EXCITINGROOT:$out/share/exciting:' \$1 > \$1s
-
-      IFS='_' read -ra VARIANT <<< "\$(basename \$0)"
-      $out/bin/.exciting_\''${VARIANT[-1]}-wrapped \$1s
+      exec $out/bin/.exciting_mpismp-wrapped \$1s
     else
       printf "Missing input file"
       exit 1
     fi
     EOF
 
-    chmod +x $out/bin/exciting_smp
+    chmod +x $out/bin/exciting_mpismp
 
-    ln -s $out/bin/exciting_smp $out/bin/exciting_mpismp
+    # The MPI/OpenMP binary also runs without mpirun
+    ln -s $out/bin/exciting_mpismp $out/bin/exciting_smp
+    ln -s $out/bin/exciting_mpismp $out/bin/exciting
   '';
 
   meta = with lib; {
@@ -108,5 +103,6 @@ stdenv.mkDerivation rec {
     homepage = "https://exciting-code.org";
     license = with licenses; [ gpl2Plus gpl3Only bsd3 bsd0 ];
     maintainers = [ maintainers.markuskowa ];
+    platforms = platforms.linux;
   };
 }
