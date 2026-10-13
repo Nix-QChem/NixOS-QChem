@@ -31,7 +31,7 @@
 | et-2.6.0 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exchcxx-1.0.0 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
-| exciting-neon.0.1 | qchem.exciting | Full-potential all-electron density-functional-theory package |
+| exciting-sodium.0.2 | qchem.exciting | Full-potential all-electron density-functional-theory package |
 | fftw-double-3.3.11 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.11 | qchem.fftwMpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.11 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |

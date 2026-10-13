@@ -249,8 +249,8 @@
   },
   {
     "attribute": "qchem.exciting",
-    "name": "exciting-neon.0.1",
-    "pname": "exciting-neon.0.1",
+    "name": "exciting-sodium.0.2",
+    "pname": "exciting-sodium.0.2",
     "version": "",
     "description": "Full-potential all-electron density-functional-theory package",
     "homepage": "https://exciting-code.org"
