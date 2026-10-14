@@ -1,0 +1,21 @@
+--- a/cmake/oqp_functions.cmake	2026-09-25 12:40:49.611902735 +0200
++++ b/cmake/oqp_functions.cmake	2026-09-25 12:40:49.640902501 +0200
+@@ -360,6 +360,18 @@
+     elseif(linalg_lib STREQUAL netlib)
+         # Explicit user choice of the bundled reference BLAS: do nothing.
+ 
++    elseif(linalg_lib STREQUAL system)
++      # Use BLAS/LAPACK libraries provided externally via
++      # OQP_BLAS_LIBRARIES and OQP_LAPACK_LIBRARIES CMake variables.
++      # This bypasses find_package(BLAS) entirely, so cleanBlasVars()
++      # does not clear the provided paths.
++      set(BLAS_FOUND TRUE)
++      set(LAPACK_FOUND TRUE)
++      set(BLAS_LIBRARIES ${OQP_BLAS_LIBRARIES})
++      set(LAPACK_LIBRARIES ${OQP_LAPACK_LIBRARIES})
++      set(BLAS_SIZEOF_INTEGER ${BLA_SIZEOF_INTEGER})
++      set(LAPACK_SIZEOF_INTEGER ${BLA_SIZEOF_INTEGER})
++
+     elseif(linalg_lib STREQUAL Apple)
+       # macOS: Accelerate's modern ILP64 interface via symbol interposition
+       # (see findAccelerateILP64 above; OpenQP is ILP64-only).

@@ -199,6 +199,8 @@ let
 
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
 
+        openqp = super.python3.pkgs.toPythonApplication self.python3.pkgs.openqp;
+
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
         psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
