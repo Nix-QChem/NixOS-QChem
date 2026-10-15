@@ -134,7 +134,7 @@
 | SIRIUS-7.10.0 | qchem.sirius | Domain specific library for electronic structure calculations |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | SpFFT-1.1.1 | qchem.spfft | Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support |
-| spglib-2.7.0 | qchem.spglib | C library for finding and handling crystal symmetries |
+| spglib-2.8.0 | qchem.spglib | C library for finding and handling crystal symmetries |
 | spla-1.6.1 | qchem.spla | Specialized Parallel Linear Algebra, providing distributed GEMM functionality for specific matrix distributions with optional GPU acceleration |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
