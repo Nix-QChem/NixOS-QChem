@@ -103,7 +103,6 @@
 | octave-11.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.4 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.6.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-26.06 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
