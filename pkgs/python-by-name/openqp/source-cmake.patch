@@ -1,0 +1,105 @@
+--- a/source/CMakeLists.txt	2026-09-25 12:28:26.543280649 +0200
++++ b/source/CMakeLists.txt	2026-09-25 14:31:33.094601856 +0200
+@@ -115,7 +115,9 @@
+   add_dependencies(oqp libint2)
+   target_include_directories(oqp PUBLIC ${LIBINT2_SOURCE_DIR}/include)
+   target_include_directories(oqp PUBLIC ${LIBINT2_BUILD_DIR}/include)
+-  target_include_directories(oqp PUBLIC ${LIBINT2_BUILD_DIR}/fortran)
++  include_directories(BEFORE ${CMAKE_BINARY_DIR}/source)
++include_directories(BEFORE ${OQP_SYSTEM_LIBINT}/include/fortran)
++target_include_directories(oqp PUBLIC ${OQP_SYSTEM_LIBINT}/include)
+   target_link_libraries(oqp ${LIBINT2_LIBRARY})
+   if("${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU")
+     target_link_libraries(oqp stdc++)
+@@ -138,9 +140,9 @@
+ add_dependencies(oqp dftd4)
+ set(DFTD4_MODTAG ${CMAKE_Fortran_COMPILER_ID}-${CMAKE_Fortran_COMPILER_VERSION})
+ target_include_directories(oqp PRIVATE
+-        ${DFTD4_INSTALL}/include/mctc-lib/modules
+-        ${DFTD4_INSTALL}/include/multicharge/${DFTD4_MODTAG}
+-        ${DFTD4_INSTALL}/include/dftd4/${DFTD4_MODTAG})
++        ${OQP_SYSTEM_MCTC_LIB_INCLUDE}/mctc-lib/modules
++        ${OQP_SYSTEM_MULTICHARGE_INCLUDE}/multicharge/${CMAKE_Fortran_COMPILER_ID}-${CMAKE_Fortran_COMPILER_VERSION}
++        ${OQP_SYSTEM_DFTD4_INCLUDE})
+ if(BUILD_SHARED_LIBS)
+   # Link liboqp only to the shared libraries whose APIs the shim calls
+   # directly. dftd4 records its canonical multicharge and mctc-lib SOVERSION
+@@ -156,8 +158,8 @@
+     endif()
+   endforeach()
+   target_link_libraries(oqp
+-          "$<BUILD_INTERFACE:${DFTD4_DFTD4_LIB}>"
+-          "$<BUILD_INTERFACE:${DFTD4_MCTC_LIB}>")
++          -ldftd4
++          -lmctc-lib)
+ else()
+   # Static archives do not carry transitive link dependencies.  Keep all three
+   # on the in-tree link line and export relocatable -L/-l requirements for
+@@ -181,9 +183,9 @@
+             ${BLAS_LIBRARIES})
+   else()
+     target_link_libraries(oqp
+-            "$<BUILD_INTERFACE:${DFTD4_DFTD4_LIB}>"
+-            "$<BUILD_INTERFACE:${DFTD4_MULTICHARGE_LIB}>"
+-            "$<BUILD_INTERFACE:${DFTD4_MCTC_LIB}>"
++            -ldftd4
++            -lmulticharge
++            -lmctc-lib
+             "$<INSTALL_INTERFACE:dftd4>"
+             "$<INSTALL_INTERFACE:multicharge>"
+             "$<INSTALL_INTERFACE:mctc-lib>")
+@@ -247,25 +249,7 @@
+ # runtime SONAME/install-name that liboqp and the DFT-D4 libraries reference.
+ # Replacing one of these files with an ABI-compatible build therefore changes
+ # the implementation used at the next process start.
+-if(NOT ENABLE_DFTD4)
+-  # nothing to install
+-elseif(BUILD_SHARED_LIBS)
+-  install(FILES "${DFTD4_MCTC_RUNTIME_SOURCE}"
+-          DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-          RENAME "${DFTD4_MCTC_RUNTIME_NAME}")
+-  install(FILES "${DFTD4_MULTICHARGE_RUNTIME_SOURCE}"
+-          DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-          RENAME "${DFTD4_MULTICHARGE_RUNTIME_NAME}")
+-  install(FILES "${DFTD4_DFTD4_RUNTIME_SOURCE}"
+-          DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-          RENAME "${DFTD4_DFTD4_RUNTIME_NAME}")
+-else()
+-  install(FILES
+-          "${DFTD4_MCTC_LIB}"
+-          "${DFTD4_MULTICHARGE_LIB}"
+-          "${DFTD4_DFTD4_LIB}"
+-          DESTINATION ${CMAKE_INSTALL_LIBDIR})
+-endif()
++# DFT-D4 runtime libraries come from nixpkgs (skip install)
+ 
+ # CMake's generated macOS install_name_tool command can be defeated when the
+ # GNU Darwin linker has already injected @loader_path: its duplicate add makes
+@@ -289,26 +273,4 @@
+ # or on an upstream URL remaining available. BUILD-INFO.json records resolved
+ # build settings; the checked-in unified patches record the two build-file-only
+ # modifications exactly.
+-if(ENABLE_DFTD4)
+-set(_OQP_DFTD4_SOURCE_DESTINATION
+-    "${CMAKE_INSTALL_DATADIR}/corresponding-source/dftd4-stack")
+-install(DIRECTORY "${DFTD4_MCTC_SOURCE_DIR}/"
+-        DESTINATION "${_OQP_DFTD4_SOURCE_DESTINATION}/${DFTD4_MCTC_SOURCE_NAME}")
+-install(DIRECTORY "${DFTD4_MC_SOURCE_DIR}/"
+-        DESTINATION "${_OQP_DFTD4_SOURCE_DESTINATION}/${DFTD4_MULTICHARGE_SOURCE_NAME}")
+-install(DIRECTORY "${DFTD4_D4_SOURCE_DIR}/"
+-        DESTINATION "${_OQP_DFTD4_SOURCE_DESTINATION}/${DFTD4_DFTD4_SOURCE_NAME}")
+-install(FILES
+-        "${CMAKE_SOURCE_DIR}/external/dftd4-corresponding-source/README.md"
+-        "${CMAKE_SOURCE_DIR}/external/dftd4-corresponding-source/apply-patch.cmake"
+-        "${CMAKE_SOURCE_DIR}/external/dftd4-corresponding-source/generate-build-info.cmake"
+-        "${DFTD4_BUILD_INFO_FILE}"
+-        DESTINATION "${_OQP_DFTD4_SOURCE_DESTINATION}")
+-install(FILES
+-        "${DFTD4_MCTC_PATCH}"
+-        "${DFTD4_DFTD4_PATCH}"
+-        DESTINATION "${_OQP_DFTD4_SOURCE_DESTINATION}/patches")
+-install(FILES "${CMAKE_SOURCE_DIR}/external/CMakeLists.txt"
+-        DESTINATION "${_OQP_DFTD4_SOURCE_DESTINATION}"
+-        RENAME "openqp-external-build.cmake")
+-endif()  # ENABLE_DFTD4
++# DFT-D4 corresponding-source install skipped (libraries from nixpkgs)

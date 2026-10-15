@@ -1,0 +1,348 @@
+diff --git a/source/basis_api.F90 b/source/basis_api.F90
+index f733f40..ae9166e 100644
+--- a/source/basis_api.F90
++++ b/source/basis_api.F90
+@@ -60,6 +60,7 @@ module basis_api
+     public append_ecp
+     public map_shell2basis_set
+     public print_basis 
++  public :: print_all_shells
+ 
+ contains
+    !> @brief Append the current electron shell from an external handle.
+diff --git a/source/c_interop.F90 b/source/c_interop.F90
+index a33bd51..9f281cb 100644
+--- a/source/c_interop.F90
++++ b/source/c_interop.F90
+@@ -14,6 +14,15 @@ module c_interop
+   public oqp_init
+   public oqp_handle_refresh_ptr
+   public oqp_handle_get_info
++  public :: oqp_alloc
++  public :: oqp_clean
++  public :: oqp_del
++  public :: oqp_get
++  public :: oqp_get_basis
++  public :: oqp_get_basis_spherical
++  public :: oqp_get_natom
++  public :: oqp_get_nbf
++  public :: oqp_set_atoms
+ 
+   interface oqp_handle_get_info
+     module procedure oqp_handle_get_info_f
+diff --git a/source/mathlib/mathlib.F90 b/source/mathlib/mathlib.F90
+index 7cf0ef2..1309fe5 100644
+--- a/source/mathlib/mathlib.F90
++++ b/source/mathlib/mathlib.F90
+@@ -25,6 +25,8 @@ module mathlib
+   end interface unpack_matrix
+   public :: pack_matrix, unpack_matrix
+   public :: pack_f90, unpack_f90
++  public :: PACK_F77
++  public :: UNPACK_F77
+ 
+ contains
+ 
+diff --git a/source/modules/caspt2_gradient.F90 b/source/modules/caspt2_gradient.F90
+index ec6b4ae..c32b742 100644
+--- a/source/modules/caspt2_gradient.F90
++++ b/source/modules/caspt2_gradient.F90
+@@ -59,6 +59,7 @@ module caspt2_gradient_mod
+   integer, parameter :: i8 = c_int64_t
+ 
+   public :: caspt2_gradient
++  public :: caspt2_gradient_C
+ 
+   !> `info` slots handed back to the caller (all double):
+   integer, parameter :: PT2_G_NVEC  = 0  !< factorization rank actually used
+diff --git a/source/modules/casscf_ao_gradient.F90 b/source/modules/casscf_ao_gradient.F90
+index f5c8368..e6fe8eb 100644
+--- a/source/modules/casscf_ao_gradient.F90
++++ b/source/modules/casscf_ao_gradient.F90
+@@ -67,6 +67,7 @@ module casscf_ao_gradient_mod
+   integer, parameter :: i8 = c_int64_t
+ 
+   public :: casscf_ao_gradient
++  public :: casscf_ao_gradient_C
+ 
+   !> `info` slots handed back to the caller (all double):
+   integer, parameter :: CAS_AG_NSEP  = 0  !< separable factors contracted
+diff --git a/source/modules/casscf_driver.F90 b/source/modules/casscf_driver.F90
+index 5209e3c..77aada5 100644
+--- a/source/modules/casscf_driver.F90
++++ b/source/modules/casscf_driver.F90
+@@ -149,6 +149,7 @@ module casscf_driver_mod
+   !> conventions.  Exporting the three pieces it needs is what keeps the
+   !> gradient from re-deriving any of that and drifting from the energy.
+   public :: cas_ctx_t, cas_context_init, cas_evaluate
++  public :: casscf_energy_C
+ 
+   ! ------------------------------------------------------------------ schema
+   ! AUTHORITATIVE OPTION SCHEMA -- mirrored in include/oqp.h and in
+diff --git a/source/modules/casscf_gradient.F90 b/source/modules/casscf_gradient.F90
+index e0035d2..fc2d8d0 100644
+--- a/source/modules/casscf_gradient.F90
++++ b/source/modules/casscf_gradient.F90
+@@ -142,6 +142,7 @@ module casscf_gradient_mod
+   character(len=*), parameter :: module_name = "casscf_gradient_mod"
+ 
+   public :: casscf_gradient
++  public :: casscf_gradient_C
+ 
+   !> `info` slots handed back to the caller (all double):
+   integer, parameter :: CAS_G_GNORM  = 0  !< |g_orb|, the orbital-rotation gradient
+diff --git a/source/modules/ccsd_t_energy.F90 b/source/modules/ccsd_t_energy.F90
+index 09aadb7..126307d 100644
+--- a/source/modules/ccsd_t_energy.F90
++++ b/source/modules/ccsd_t_energy.F90
+@@ -17,6 +17,7 @@ module ccsd_t_energy_mod
+ 
+   private
+   public :: ccsd_t_energy
++  public :: ccsd_t_energy_C
+ 
+   character(len=*), parameter :: module_name = "ccsd_t_energy_mod"
+ 
+diff --git a/source/modules/electric_moments.F90 b/source/modules/electric_moments.F90
+index 22beb2d..832fd9f 100644
+--- a/source/modules/electric_moments.F90
++++ b/source/modules/electric_moments.F90
+@@ -8,6 +8,8 @@ module electric_moments_mod
+   public electric_moments
+   public electric_moments_excited
+   public electric_dipole_au_C
++  public :: electric_moments_C
++  public :: electric_moments_excited_C
+ 
+ contains
+ 
+diff --git a/source/modules/fci_hamiltonian.F90 b/source/modules/fci_hamiltonian.F90
+index fb90b19..23404c3 100644
+--- a/source/modules/fci_hamiltonian.F90
++++ b/source/modules/fci_hamiltonian.F90
+@@ -43,6 +43,10 @@ module fci_hamiltonian_mod
+   !> byte-for-byte the same enumeration.
+   public :: fci_sort_dets, fci_dense_build, fci_diag_build, fci_matvec_apply
+   public :: oqp_dsyevd_f
++  public :: fci_dense_hamiltonian
++  public :: fci_hamiltonian_diag
++  public :: fci_hamiltonian_matvec
++  public :: oqp_dsyevd
+ 
+ contains
+ 
+diff --git a/source/modules/fci_integrals.F90 b/source/modules/fci_integrals.F90
+index ebb8340..86fc7ce 100644
+--- a/source/modules/fci_integrals.F90
++++ b/source/modules/fci_integrals.F90
+@@ -11,6 +11,7 @@ module fci_integrals_mod
+   private
+ 
+   public fci_ao_integrals
++  public :: fci_ao_integrals_C
+ 
+   type, extends(int2_compute_data_t) :: fci_eri_data_t
+     integer :: nbf = 0
+diff --git a/source/modules/fci_sigma_strings.F90 b/source/modules/fci_sigma_strings.F90
+index ac5aa30..f561c92 100644
+--- a/source/modules/fci_sigma_strings.F90
++++ b/source/modules/fci_sigma_strings.F90
+@@ -73,6 +73,7 @@ module fci_sigma_strings_mod
+ 
+   public :: fci_sigma_strings, rdm12_strings, spin_square_strings
+   public :: fci_set_work_bytes_cap, fci_get_work_bytes_cap
++  public :: rdm12_strings_c
+ 
+ contains
+ 
+diff --git a/source/modules/hf_energy.f90 b/source/modules/hf_energy.f90
+index 1410a62..8c90687 100644
+--- a/source/modules/hf_energy.f90
++++ b/source/modules/hf_energy.f90
+@@ -7,6 +7,7 @@ module hf_energy_mod
+   private
+ 
+   public hf_energy
++  public :: hf_energy_C
+ 
+ contains
+ 
+diff --git a/source/modules/hf_gradient.F90 b/source/modules/hf_gradient.F90
+index 25ba664..34448ba 100644
+--- a/source/modules/hf_gradient.F90
++++ b/source/modules/hf_gradient.F90
+@@ -51,6 +51,7 @@ module hf_gradient_mod
+   public hf_gradient
+   public grd2_rhf_compute_data_t
+   public grd2_uhf_compute_data_t
++  public :: hf_gradient_C
+ 
+ !###############################################################################
+ 
+diff --git a/source/modules/int1e.F90 b/source/modules/int1e.F90
+index 3806af9..572a108 100644
+--- a/source/modules/int1e.F90
++++ b/source/modules/int1e.F90
+@@ -6,6 +6,7 @@ module int1e_mod
+ 
+   private
+   public int1e
++  public :: int1e_C
+ 
+ contains
+ 
+diff --git a/source/modules/int2e.F90 b/source/modules/int2e.F90
+index 40069c6..0d59fc3 100644
+--- a/source/modules/int2e.F90
++++ b/source/modules/int2e.F90
+@@ -9,6 +9,7 @@ module int2e_mod
+ 
+   private
+   public int2e
++  public :: int2e_C
+ 
+ !> @brief Consumer that scatters computed shell-quartet ERIs into a dense
+ !>        (nbf,nbf,nbf,nbf) AO tensor, applying the full 8-fold permutational
+diff --git a/source/modules/mp2_energy.F90 b/source/modules/mp2_energy.F90
+index 6476ed4..91d096a 100644
+--- a/source/modules/mp2_energy.F90
++++ b/source/modules/mp2_energy.F90
+@@ -14,6 +14,7 @@ module mp2_energy_mod
+ 
+   private
+   public :: mp2_energy
++  public :: mp2_energy_C
+ 
+   character(len=*), parameter :: module_name = "mp2_energy_mod"
+ 
+diff --git a/source/modules/mp2_gradient.F90 b/source/modules/mp2_gradient.F90
+index 1cb7cfd..4e078b9 100644
+--- a/source/modules/mp2_gradient.F90
++++ b/source/modules/mp2_gradient.F90
+@@ -30,6 +30,7 @@ module mp2_gradient_mod
+   integer, parameter :: DEFAULT_MAX_NBF = 60
+ 
+   public :: mp2_gradient
++  public :: mp2_gradient_C
+ 
+   ! The derivative-ERI consumer.  d0 is the converged RHF spin-summed density,
+   ! dc is the relaxed MP2 correction to the spin-summed density, and g2c is the
+diff --git a/source/modules/namd.F90 b/source/modules/namd.F90
+index 45b3383..751ba48 100644
+--- a/source/modules/namd.F90
++++ b/source/modules/namd.F90
+@@ -73,6 +73,8 @@ module namd_mod
+   public :: namd_droplet_boundary
+   public :: namd_com_restraint
+   public :: namd_langevin_thermostat
++  public :: namd_counter_random_C
++  public :: namd_hop_C
+ 
+   !> Default empirical decoherence constant C in the energy-based correction
+   !> (Granucci & Persico, J. Chem. Phys. 126, 134114 (2007)), in Hartree.
+diff --git a/source/modules/nevpt2_gradient.F90 b/source/modules/nevpt2_gradient.F90
+index 097df66..8032111 100644
+--- a/source/modules/nevpt2_gradient.F90
++++ b/source/modules/nevpt2_gradient.F90
+@@ -54,6 +54,7 @@ module nevpt2_gradient_mod
+   private
+ 
+   public :: nevpt2_gradient
++  public :: nevpt2_gradient_C
+ 
+   !> Status codes returned to the Python driver.  Mirrors the NEVPT2_G_* block
+   !> in include/oqp.h.
+diff --git a/source/modules/nevpt2_koopmans.F90 b/source/modules/nevpt2_koopmans.F90
+index 7beebf8..cf8a99a 100644
+--- a/source/modules/nevpt2_koopmans.F90
++++ b/source/modules/nevpt2_koopmans.F90
+@@ -62,6 +62,11 @@ module nevpt2_koopmans_mod
+   integer, parameter :: dp = c_double
+ 
+   public :: nevpt2_f3ca_f3ac, nevpt2_a16, nevpt2_a22
++  public :: nevpt2_a12
++  public :: nevpt2_a13
++  public :: nevpt2_a7
++  public :: nevpt2_a9
++  public :: nevpt2_hdm3
+ 
+ contains
+ 
+diff --git a/source/modules/nmr_giao_shielding.F90 b/source/modules/nmr_giao_shielding.F90
+index 5fe2cb0..a11cdb6 100644
+--- a/source/modules/nmr_giao_shielding.F90
++++ b/source/modules/nmr_giao_shielding.F90
+@@ -7,6 +7,8 @@ module nmr_giao_shielding_mod
+ 
+   private
+   public nmr_giao_shielding_debug
++  public :: nmr_giao_shielding_C
++  public :: nmr_giao_shielding_debug_C
+ 
+ contains
+ 
+diff --git a/source/modules/nmr_shielding.F90 b/source/modules/nmr_shielding.F90
+index 8eb582b..fcc9db1 100644
+--- a/source/modules/nmr_shielding.F90
++++ b/source/modules/nmr_shielding.F90
+@@ -6,6 +6,7 @@ module nmr_shielding_mod
+ 
+   private
+   public nmr_shielding
++  public :: nmr_shielding_C
+ 
+ contains
+ 
+diff --git a/source/modules/population_analysis.F90 b/source/modules/population_analysis.F90
+index 0c400f5..01c8a62 100644
+--- a/source/modules/population_analysis.F90
++++ b/source/modules/population_analysis.F90
+@@ -14,6 +14,9 @@ module population_analysis
+   public POP_MULLIKEN
+   public POP_LOWDIN
+   public mulliken_excited
++  public :: lowdin_C
++  public :: mulliken_C
++  public :: mulliken_excited_C
+ 
+ !--------------------------------------------------------------------------------
+ 
+diff --git a/source/modules/qdpt2_kernel.F90 b/source/modules/qdpt2_kernel.F90
+index 7767b51..14fab27 100644
+--- a/source/modules/qdpt2_kernel.F90
++++ b/source/modules/qdpt2_kernel.F90
+@@ -47,6 +47,7 @@ module qdpt2_kernel_mod
+   integer, parameter :: i8 = c_int64_t
+   integer, parameter :: dp = c_double
+ 
++  public :: qdpt2_stream_kernel
+ contains
+ 
+   pure function popcnt_below(w, pos) result(n)
+diff --git a/source/modules/qmmm.F90 b/source/modules/qmmm.F90
+index aa5f221..7134e19 100644
+--- a/source/modules/qmmm.F90
++++ b/source/modules/qmmm.F90
+@@ -15,6 +15,10 @@ module qmmm_mod
+   public espf_op_corr
+   public add_potqm_contributions
+   public form_esp_charges_excited
++  public :: espf_op_corr_C
++  public :: form_esp_charges_C
++  public :: grad_esp_qmmm_C
++  public :: grad_esp_qmmm_excited_C
+ 
+   contains
+ 
+diff --git a/source/modules/soc_mrsf.F90 b/source/modules/soc_mrsf.F90
+index 8564a12..cd5921b 100644
+--- a/source/modules/soc_mrsf.F90
++++ b/source/modules/soc_mrsf.F90
+@@ -10,6 +10,7 @@ module soc_mrsf_mod
+ 
+   private
+   public soc_mrsf
++  public :: soc_mrsf_C
+ 
+ contains
+ 

@@ -1,0 +1,19 @@
+--- a/tests/test_cam_hessian.py
++++ b/tests/test_cam_hessian.py
+@@ -14,6 +14,7 @@ import os
+ import unittest
+ from pathlib import Path
+ 
++import tempfile
+ import numpy as np
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+@@ -66,7 +67,7 @@ class CamAnalyticHessian(unittest.TestCase):
+     def _hessian(self, tag, charge, mult, scf, hess_type):
+         from oqp.pyoqp import Runner
+ 
+-        workdir = Path(f"/tmp/oqp_cam_hess_{tag}_{hess_type}")
++        workdir = Path(tempfile.gettempdir()) / f"oqp_cam_hess_{tag}_{hess_type}"
+         workdir.mkdir(exist_ok=True)
+         inp = workdir / "oh.inp"
+         inp.write_text(INPUT_TMPL.format(charge=charge, mult=mult, scf=scf,
