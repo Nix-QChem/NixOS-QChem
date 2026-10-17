@@ -91,6 +91,14 @@ let
         #
         # Applications
         #
+        newtonxSrc = super.fetchFromGitLab {
+          owner = "light-and-molecules";
+          repo = "newton-x-package";
+          rev = "dfe5405eb06a345d2d99684e3c4a80b6f1c1a348";
+          hash = "sha256-1DQlVggU5UgTNbxFx3mwvkw8nmjIKYM43FrWlMzjOWQ=";
+          fetchSubmodules = true;
+        };
+
         ambertools = super.python3.pkgs.toPythonApplication self.python3.pkgs.ambertools;
 
         autodock-vina = callPackage ./pkgs/apps/autodock-vina {
@@ -200,6 +208,10 @@ let
         pdbfixer = super.python3.pkgs.toPythonApplication self.python3.pkgs.pdbfixer;
 
         openqp = super.python3.pkgs.toPythonApplication self.python3.pkgs.openqp;
+
+        legion = super.python3.pkgs.toPythonApplication self.python3.pkgs.legion;
+
+        ulamdyn = super.python3.pkgs.toPythonApplication self.python3.pkgs.ulamdyn;
 
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
