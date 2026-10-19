@@ -201,6 +201,8 @@ let
 
         openqp = super.python3.pkgs.toPythonApplication self.python3.pkgs.openqp;
 
+        legion = super.python3.pkgs.toPythonApplication self.python3.pkgs.legion;
+
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
         psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
