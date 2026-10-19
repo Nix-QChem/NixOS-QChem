@@ -203,6 +203,8 @@ let
 
         legion = super.python3.pkgs.toPythonApplication self.python3.pkgs.legion;
 
+        ulamdyn = super.python3.pkgs.toPythonApplication self.python3.pkgs.ulamdyn;
+
         polyply = super.python3.pkgs.toPythonApplication self.python3.pkgs.polyply;
 
         psi4 = super.python3.pkgs.toPythonApplication self.python3.pkgs.psi4;
