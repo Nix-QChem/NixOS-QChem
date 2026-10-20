@@ -5,6 +5,7 @@
 , isPy311
 , fetchFromGitHub
 , fetchFromGitLab
+, fetchpatch
 , fetchurl
 , pkg-config
 , writeTextFile
@@ -207,6 +208,12 @@ buildPythonPackage rec {
     # pybind11 >= 3.0 requires the complete definition of libint2::Shell when
     # generating copy-constructor machinery for psi::BasisSet.
     ./libint2-shell-complete-type.patch
+    # pybind11 >= 3.0: SADGuess is neither copyable nor movable, return a shared_ptr
+    # https://github.com/psi4/psi4/pull/3480
+    (fetchpatch {
+      url = "https://github.com/psi4/psi4/commit/1ddd0b3a85d949347bfc6fb9c40571aecffacc9e.patch";
+      hash = "sha256-yGIe1Nl8/gJYnu0XDwHIoKEweKH0B9AhfGIxTPLsrwM=";
+    })
   ];
 
   preConfigure = ''
@@ -289,12 +296,11 @@ buildPythonPackage rec {
 
   makeWrapperArgs =
     let
-      binSearchPath = lib.strings.makeSearchPath "bin" (lib.optional enableMrcc mrcc
-        ++ lib.optional enableCfour cfour
-      );
+      binPkgs = lib.optional enableMrcc mrcc
+        ++ lib.optional enableCfour cfour;
     in
-    [
-      "--prefix PATH : ${binSearchPath}"
+    lib.optionals (binPkgs != [ ]) [
+      "--prefix" "PATH" ":" (lib.makeBinPath binPkgs)
     ];
 
   doInstallCheck = true;
