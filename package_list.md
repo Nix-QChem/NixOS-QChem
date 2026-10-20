@@ -15,6 +15,7 @@
 | cefine-2.24 | qchem.cefine | Non-interactive command-line wrapper around turbomoles define |
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
+| cioverlap-26a | qchem.cioverlap | CI vector overlap calculation tools for non-adiabatic molecular dynamics |
 | cp2k-2026.2 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
 | crest-unstable-2026-06-16 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
@@ -63,12 +64,13 @@
 | IntegratorXX-unstable-2025-09-09 | qchem.integratorxx | Reusable DFT Grids for the Masses |
 | janpa-2.02 | qchem.janpa | Natural atomic orbital population analysis |
 | liblapack-3.12.1 | qchem.lapack-reference | Linear Algebra PACKage |
+| legion-1.0.0 | qchem.legion | Nonadiabatic molecular dynamics with Gaussian wavepackets (Newton-X package component) |
 | libGDSII-0.21 | qchem.libGDSII | Library and command-line utility for reading GDSII geometry files |
 | libecpint-1.0.7 | qchem.libecpint | C++ library for the efficient evaluation of integrals over effective core potentials |
 | libint-2.11.2 | qchem.libint | Library for the evaluation of molecular integrals of many-body operators over Gaussian functions |
 | libMBD-0.15.0 | qchem.libmbd | Many-body dispersion library |
 | libtensor-3.0.1 | qchem.libtensor | C++ library for tensor computations |
-| libvdwxc-unstable-24.02.2020 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
+| libvdwxc-0.5.0 | qchem.libvdwxc | Portable C library of density functionals with van der Waals interactions for density functional theory |
 | libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
 | libwfa-2024-10-07 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
 | libxc-6.2.2 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
@@ -77,7 +79,7 @@
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | mctc-lib-0.5.1 | qchem.mctc-lib | Modular computation tool chain library |
-| meep-1.34.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
+| meep-1.35.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
 | openmolcas-26.06 | qchem.molcas | Advanced quantum chemistry software package |
@@ -97,12 +99,16 @@
 | multicharge-0.5.0 | qchem.multicharge | Electronegativity equilibration model for atomic partial charges |
 | multiwfn-3.8-2025-10-02 | qchem.multiwfn | Multifunctional wave function analyser. |
 | NECI-unstable-2023-06-20 | qchem.neci | Stochastic Quantum Monte Carlo solver for CI-like problems |
+| newton-x-26a | qchem.newton-x | Newton-X: general purpose program for nonadiabatic dynamics |
+| newtonx-cs-26a | qchem.newtonx-cs | Newton-X CS: surface hopping molecular dynamics (classic Fortran code) |
+| newtonx-ns-26a | qchem.newtonx-ns | Newton-X NS: surface hopping molecular dynamics (core Fortran code) |
 | numsa-unstable-2024-03-04 | qchem.numsa | Solvent accessible surface area calculation |
 | nwchem-7.3.1 | qchem.nwchem | Open Source High-Performance Computational Chemistry |
 | octave-11.3.0 | qchem.octave | Scientific Programming Language |
 | octave-11.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.4 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.6.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
+| openmolcas-26.06 | qchem.openmolcas | Advanced quantum chemistry software package |
 | openqp-1.3.1 | qchem.openqp | Open Quantum Platform - quantum chemistry program centered on MRSF-TDDFT |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
@@ -132,7 +138,8 @@
 | siesta-5.4.2 | qchem.siesta | First-principles materials simulation code using DFT |
 | siesta-5.4.2 | qchem.siesta-mpi | First-principles materials simulation code using DFT |
 | simple-dftd3-1.6.0 | qchem.simple-dftd3 | Reimplementation of the DFT-D3 program |
-| SIRIUS-7.10.0 | qchem.sirius | Domain specific library for electronic structure calculations |
+| SIRIUS-7.12.0 | qchem.sirius | Domain specific library for electronic structure calculations |
+| skitten-26a | qchem.skitten | SSE-based surface hopping dynamics program (Newton-X package component) |
 | slurm-tools-1.2.2 | qchem.slurm-tools | Collection of scripts to integrate nix and slurm |
 | SpFFT-1.1.1 | qchem.spfft | Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support |
 | spglib-2.8.0 | qchem.spglib | C library for finding and handling crystal symmetries |
@@ -147,6 +154,7 @@
 | turbomole-7.8.1 | qchem.turbomole78 | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.9.0 | qchem.ucc | Collective communication operations API |
 | ucx-1.22.0 | qchem.ucx | Unified Communication X library |
+| ulamdyn-1.1.1 | qchem.ulamdyn | Unsupervised learning analysis for molecular dynamics data (Newton-X package component) |
 | vmd-2.0.0 | qchem.vmd | Molecular dynamics visualisation program |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
 | wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |

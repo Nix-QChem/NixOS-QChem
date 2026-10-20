@@ -120,6 +120,14 @@
     "homepage": "http://sebwouters.github.io/CheMPS2"
   },
   {
+    "attribute": "qchem.cioverlap",
+    "name": "cioverlap-26a",
+    "pname": "cioverlap",
+    "version": "26a",
+    "description": "CI vector overlap calculation tools for non-adiabatic molecular dynamics",
+    "homepage": "https://gitlab.com/light-and-molecules/cioverlap"
+  },
+  {
     "attribute": "qchem.cp2k",
     "name": "cp2k-2026.2",
     "pname": "cp2k",
@@ -504,6 +512,14 @@
     "homepage": "http://www.netlib.org/lapack/"
   },
   {
+    "attribute": "qchem.legion",
+    "name": "legion-1.0.0",
+    "pname": "legion",
+    "version": "1.0.0",
+    "description": "Nonadiabatic molecular dynamics with Gaussian wavepackets (Newton-X package component)",
+    "homepage": "https://gitlab.com/light-and-molecules/legion"
+  },
+  {
     "attribute": "qchem.libGDSII",
     "name": "libGDSII-0.21",
     "pname": "libGDSII",
@@ -545,9 +561,9 @@
   },
   {
     "attribute": "qchem.libvdwxc",
-    "name": "libvdwxc-unstable-24.02.2020",
-    "pname": "libvdwxc-unstable",
-    "version": "24.02.2020",
+    "name": "libvdwxc-0.5.0",
+    "pname": "libvdwxc",
+    "version": "0.5.0",
     "description": "Portable C library of density functionals with van der Waals interactions for density functional theory",
     "homepage": "https://libvdwxc.materialsmodeling.org/"
   },
@@ -617,9 +633,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.34.0",
+    "name": "meep-1.35.0",
     "pname": "meep",
-    "version": "1.34.0",
+    "version": "1.35.0",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
@@ -776,6 +792,30 @@
     "homepage": "https://github.com/ghb24/NECI_STABLE"
   },
   {
+    "attribute": "qchem.newton-x",
+    "name": "newton-x-26a",
+    "pname": "newton-x",
+    "version": "26a",
+    "description": "Newton-X: general purpose program for nonadiabatic dynamics",
+    "homepage": "https://gitlab.com/light-and-molecules/newton-x-package"
+  },
+  {
+    "attribute": "qchem.newtonx-cs",
+    "name": "newtonx-cs-26a",
+    "pname": "newtonx-cs",
+    "version": "26a",
+    "description": "Newton-X CS: surface hopping molecular dynamics (classic Fortran code)",
+    "homepage": "https://gitlab.com/light-and-molecules/newtonx-cs"
+  },
+  {
+    "attribute": "qchem.newtonx-ns",
+    "name": "newtonx-ns-26a",
+    "pname": "newtonx-ns",
+    "version": "26a",
+    "description": "Newton-X NS: surface hopping molecular dynamics (core Fortran code)",
+    "homepage": "https://gitlab.com/light-and-molecules/newtonx"
+  },
+  {
     "attribute": "qchem.numsa",
     "name": "numsa-unstable-2024-03-04",
     "pname": "numsa-unstable",
@@ -822,6 +862,14 @@
     "version": "8.6.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
+  },
+  {
+    "attribute": "qchem.openmolcas",
+    "name": "openmolcas-26.06",
+    "pname": "openmolcas",
+    "version": "26.06",
+    "description": "Advanced quantum chemistry software package",
+    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.openqp",
@@ -1057,11 +1105,19 @@
   },
   {
     "attribute": "qchem.sirius",
-    "name": "SIRIUS-7.10.0",
+    "name": "SIRIUS-7.12.0",
     "pname": "SIRIUS",
-    "version": "7.10.0",
+    "version": "7.12.0",
     "description": "Domain specific library for electronic structure calculations",
     "homepage": "https://github.com/electronic-structure/SIRIUS"
+  },
+  {
+    "attribute": "qchem.skitten",
+    "name": "skitten-26a",
+    "pname": "skitten",
+    "version": "26a",
+    "description": "SSE-based surface hopping dynamics program (Newton-X package component)",
+    "homepage": "https://gitlab.com/light-and-molecules/skitten"
   },
   {
     "attribute": "qchem.slurm-tools",
@@ -1174,6 +1230,14 @@
     "version": "1.22.0",
     "description": "Unified Communication X library",
     "homepage": "https://www.openucx.org"
+  },
+  {
+    "attribute": "qchem.ulamdyn",
+    "name": "ulamdyn-1.1.1",
+    "pname": "ulamdyn",
+    "version": "1.1.1",
+    "description": "Unsupervised learning analysis for molecular dynamics data (Newton-X package component)",
+    "homepage": "https://gitlab.com/light-and-molecules/ulamdyn"
   },
   {
     "attribute": "qchem.vmd",
