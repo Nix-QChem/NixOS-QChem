@@ -189,7 +189,7 @@
     "pname": "dftd4",
     "version": "4.2.0",
     "description": "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
-    "homepage": "https://github.com/grimme-lab/dftd4"
+    "homepage": "https://github.com/dftd4/dftd4"
   },
   {
     "attribute": "qchem.dice",
@@ -862,14 +862,6 @@
     "version": "8.6.1",
     "description": "Toolkit for molecular simulation using high performance GPU code",
     "homepage": "https://openmm.org/"
-  },
-  {
-    "attribute": "qchem.openmolcas",
-    "name": "openmolcas-26.06",
-    "pname": "openmolcas",
-    "version": "26.06",
-    "description": "Advanced quantum chemistry software package",
-    "homepage": "https://gitlab.com/Molcas/OpenMolcas"
   },
   {
     "attribute": "qchem.openqp",
