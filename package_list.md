@@ -122,7 +122,7 @@
 | psi4-1.11 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
 | python3-3.12.15 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.1 | qchem.qdng | Molecular wavepacket dynamics package |
-| quantum-espresso-7.5 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
+| quantum-espresso-7.6 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.3.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
 | scalapack-2.2.3 | qchem.scalapack | Library of high-performance linear algebra routines for parallel distributed memory machines |
 | scalapack-2.2.3 | qchem.scalapack-ilp64 | Library of high-performance linear algebra routines for parallel distributed memory machines |
@@ -156,7 +156,7 @@
 | ulamdyn-1.1.1 | qchem.ulamdyn | Unsupervised learning analysis for molecular dynamics data (Newton-X package component) |
 | vmd-2.0.0 | qchem.vmd | Molecular dynamics visualisation program |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
-| wannier90-3.1.0 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
+| wannier90-4.0.3 | qchem.wannier90 | Calculation of maximally localised Wannier functions |
 | libwfa-2024-10-07 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.3 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
