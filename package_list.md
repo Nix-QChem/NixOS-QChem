@@ -82,11 +82,11 @@
 | meep-1.35.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
-| openmolcas-26.06 | qchem.molcas | Advanced quantum chemistry software package |
-| openmolcas-26.06 | qchem.molcasDice | Advanced quantum chemistry software package |
-| openmolcas-26.06 | qchem.molcasMpi | Advanced quantum chemistry software package |
-| openmolcas-26.06 | qchem.molcasNeci | Advanced quantum chemistry software package |
-| openmolcas-26.06 | qchem.molcasWfa | Advanced quantum chemistry software package |
+| openmolcas-26.10 | qchem.molcas | Advanced quantum chemistry software package |
+| openmolcas-26.10 | qchem.molcasDice | Advanced quantum chemistry software package |
+| openmolcas-26.10 | qchem.molcasMpi | Advanced quantum chemistry software package |
+| openmolcas-26.10 | qchem.molcasNeci | Advanced quantum chemistry software package |
+| openmolcas-26.10 | qchem.molcasWfa | Advanced quantum chemistry software package |
 | molden-6.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.22.4 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
