@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, gtk2, pkg-config, xorg, libGL, libGLU, gnome2, pango }:
+{ lib, stdenv, fetchurl, gtk3, pkg-config, libx11, libGL, libGLU, pango, wrapGAppsHook3 }:
 
 stdenv.mkDerivation rec {
   pname = "gabedit";
@@ -11,24 +11,32 @@ stdenv.mkDerivation rec {
       hash = "sha256-78sAFRrzg/Zi1TWno2orDtLxTEIIYaKIB/6qnpOL/54=";
     };
 
+  # Port from GTK2/GtkGLExt to GTK3.
+  # src/Common/Gtk3Compat.{c,h} emulate the removed GTK2 drawing API (GdkGC, GdkPixmap)
+  # on top of cairo, src/Common/GtkGLCompat.{c,h} replace GtkGLExt with a GLX context.
+  # OpenGL requires the X11 GDK backend (XWayland works).
+  patches = [ ./gtk3.patch ];
+
   nativeBuildInputs = [
     pkg-config
+    wrapGAppsHook3
   ];
 
   buildInputs = [
-    gtk2
+    gtk3
     pango
     libGL
     libGLU
-    xorg.libX11
-    gnome2.gtkglext
+    libx11
   ];
 
   # Adapted from platforms/CONFIG.linux64
   configurePhase = ''
+    runHook preConfigure
+
     cat > CONFIG << EOF
-    GTKLIB = `pkg-config gtk+-2.0 --libs`  -Wl,--export-dynamic -lgtkglext-x11-1.0 -lgdkglext-x11-1.0 -lGLU -lGL -lgtk-x11-2.0 -lX11 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lpangocairo-1.0 -lcairo -lpango-1.0 -lfreetype -lz -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lglib-2.0
-    GTKCFLAGS = `pkg-config gtk+-2.0 --cflags` -I${gnome2.gtkglext}/include/gtkglext-1.0 -I${gnome2.gtkglext}/lib/gtkglext-1.0/include
+    GTKLIB = `pkg-config --libs gtk+-3.0 pangoft2 glu gl x11`
+    GTKCFLAGS = `pkg-config --cflags gtk+-3.0 pangoft2 glu gl x11` -include $PWD/src/Common/Gtk3Compat.h
 
     OGLLIB=-lGL -lGLU
 
@@ -43,17 +51,22 @@ stdenv.mkDerivation rec {
     OMPCFLAGS = -fopenmp
     DRAWGEOMGL = -DDRAWGEOMGL
 
-    COMMONCFLAGS = -Wformat -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O2 -DENABLE_DEPRECATED $(OMPCFLAGS) $(DRAWGEOMGL) -Wformat-security -Wno-unused-variable -Wno-error=implicit-function-declaration -Wno-error=int-conversion -std=gnu17
+    COMMONCFLAGS = -Wformat -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O2 -DENABLE_DEPRECATED \$(OMPCFLAGS) \$(DRAWGEOMGL) -Wformat-security -Wno-unused-variable -Wno-deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=int-conversion -Wno-error=incompatible-pointer-types -std=gnu17
     LDFLAGS = -Wl,-z,relro
     EOF
+
+    runHook postConfigure
   '';
 
   enableParallelBuilding = true;
 
   installPhase = ''
-    mkdir -p $out/bin
+    runHook preInstall
 
+    mkdir -p $out/bin
     cp gabedit $out/bin/
+
+    runHook postInstall
   '';
 
   meta = with lib; {
@@ -62,5 +75,6 @@ stdenv.mkDerivation rec {
     license = licenses.mit;
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
+    mainProgram = "gabedit";
   };
 }
