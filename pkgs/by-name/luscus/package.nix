@@ -5,8 +5,9 @@
 , pkg-config
 , libGLU
 , libGL
-, gtk2
-, gnome2
+, gtk3
+, libx11
+, wrapGAppsHook3
 }:
 
 stdenv.mkDerivation rec {
@@ -31,11 +32,11 @@ stdenv.mkDerivation rec {
   cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
 
   # This is missing for some reason:
-  LDFLAGS = "-lGLU";
+  env.LDFLAGS = "-lGLU -lGL";
   env.NIX_CFLAGS_COMPILE = "-fcommon";
 
-  nativeBuildInputs = [ cmake pkg-config ];
-  buildInputs = [ libGLU libGL gtk2 gnome2.gtkglext ];
+  nativeBuildInputs = [ cmake pkg-config wrapGAppsHook3 ];
+  buildInputs = [ libGLU libGL gtk3 libx11 ];
 
   postInstall = ''
     find ../ -name "babel_*.sh" -exec install -m 755 \{} $out/bin \; -print
