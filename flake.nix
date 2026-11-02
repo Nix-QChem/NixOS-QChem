@@ -1,7 +1,7 @@
 {
   description = "NixOS-QChem flake";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
 
   nixConfig = {
     extra-substituters = [ "https://nix-qchem.cachix.org" ];

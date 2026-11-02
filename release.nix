@@ -23,7 +23,7 @@ let
   cfg = (import ./cfg.nix) config;
 
   nixpkgs-final = if pin then
-    import ./nixpkgs-pin.nix (import nixpkgs {})
+    import ./nixpkgs-pin.nix
     else import nixpkgs;
 
   # use unmodified lib

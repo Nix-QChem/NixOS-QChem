@@ -1,7 +1,7 @@
 final: prev:
 
 let
-  nixpkgs = import ./nixpkgs-pin.nix prev;
+  nixpkgs = import ./nixpkgs-pin.nix;
 
   cfg =
     if (builtins.hasAttr "qchem-config" prev.config) then
