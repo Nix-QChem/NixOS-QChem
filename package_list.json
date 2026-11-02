@@ -288,14 +288,6 @@
     "homepage": "https://www.fftw.org/"
   },
   {
-    "attribute": "qchem.gabedit",
-    "name": "gabedit-2.5.1",
-    "pname": "gabedit",
-    "version": "2.5.1",
-    "description": "Graphical User Interface for FireFly (PC-Gamess), Gamess-US, Gaussian, Molcas, Molpro, MPQC, NWChem, OpenMopac, Orca, PSI4 and Q-Chem computational chemistry packages",
-    "homepage": "https://gabedit.sourceforge.net/"
-  },
-  {
     "attribute": "qchem.gamess-us",
     "name": "gamess-us-2024R2P1",
     "pname": "gamess-us",

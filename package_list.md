@@ -36,7 +36,6 @@
 | fftw-double-3.3.11 | qchem.fftw | Fastest Fourier Transform in the West library |
 | fftw-double-3.3.11 | qchem.fftwMpi | Fastest Fourier Transform in the West library |
 | fftw-single-3.3.11 | qchem.fftwSinglePrec | Fastest Fourier Transform in the West library |
-| gabedit-2.5.1 | qchem.gabedit | Graphical User Interface for FireFly (PC-Gamess), Gamess-US, Gaussian, Molcas, Molpro, MPQC, NWChem, OpenMopac, Orca, PSI4 and Q-Chem computational chemistry packages |
 | gamess-us-2024R2P1 | qchem.gamess-us | GAMESS is a program for ab initio molecular quantum chemistry |
 | gau2grid-2.0.8 | qchem.gau2grid | Fast computation of a gaussian and its derivative on a grid |
 | gaussview-6.0.16 | qchem.gaussview | GUI for the Gaussian quantum chemistry software package |
