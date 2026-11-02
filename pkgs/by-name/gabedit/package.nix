@@ -61,6 +61,7 @@ stdenv.mkDerivation rec {
     homepage = "https://gabedit.sourceforge.net/";
     license = licenses.mit;
     platforms = platforms.linux;
+    broken = true; # 2026-11-02, requires GTK-2
     maintainers = [ maintainers.sheepforce ];
   };
 }
