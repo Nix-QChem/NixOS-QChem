@@ -625,9 +625,9 @@
   },
   {
     "attribute": "qchem.meep",
-    "name": "meep-1.35.0",
+    "name": "meep-1.35.1",
     "pname": "meep",
-    "version": "1.35.0",
+    "version": "1.35.1",
     "description": "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
     "homepage": "https://meep.readthedocs.io/en/latest/"
   },
