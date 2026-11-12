@@ -953,9 +953,9 @@
   },
   {
     "attribute": "qchem.python312",
-    "name": "python3-3.12.15",
+    "name": "python3-3.12.16",
     "pname": "python3",
-    "version": "3.12.15",
+    "version": "3.12.16",
     "description": "High-level dynamically-typed programming language",
     "homepage": "https://www.python.org"
   },

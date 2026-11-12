@@ -119,7 +119,7 @@
 | polyply-1.8.0 | qchem.polyply | Generate input parameters and coordinates for atomistic and coarse-grained simulations of polymers, ssDNA, and carbohydrates |
 | project-shell-0.9 | qchem.project-shell | shell.nix generator |
 | psi4-1.11 | qchem.psi4 | Open-Source Quantum Chemistry – an electronic structure package in C++ driven by Python |
-| python3-3.12.15 | qchem.python312 | High-level dynamically-typed programming language |
+| python3-3.12.16 | qchem.python312 | High-level dynamically-typed programming language |
 | qdng-1.0.1 | qchem.qdng | Molecular wavepacket dynamics package |
 | quantum-espresso-7.6 | qchem.quantum-espresso | Electronic-structure calculations and materials modeling at the nanoscale |
 | salmon-2.3.0 | qchem.salmon | Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience |
