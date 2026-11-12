@@ -6,7 +6,7 @@
         "narHash": "sha256-jnNhqdXGJs5qIvdzFwABBvhzuPHLK09CcWKtvYVxVOk=",
         "rev": "9397dcb09c9598a33509fbc0cce699bd4e6c84d5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1117836.9397dcb09c95/nixexprs.tar.zst?lastModified=1794408178&rev=9397dcb09c9598a33509fbc0cce699bd4e6c84d5"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1117836.9397dcb09c95/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
