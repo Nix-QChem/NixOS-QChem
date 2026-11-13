@@ -78,7 +78,7 @@
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
 | mctc-lib-0.5.1 | qchem.mctc-lib | Modular computation tool chain library |
-| meep-1.35.0 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
+| meep-1.35.1 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
 | openmolcas-26.10 | qchem.molcas | Advanced quantum chemistry software package |
