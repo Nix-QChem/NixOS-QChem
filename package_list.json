@@ -1213,7 +1213,7 @@
     "pname": "ucx",
     "version": "1.22.0",
     "description": "Unified Communication X library",
-    "homepage": "https://www.openucx.org"
+    "homepage": "https://openucx.readthedocs.io"
   },
   {
     "attribute": "qchem.ulamdyn",
