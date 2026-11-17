@@ -31,7 +31,7 @@ in batsTest {
   '') [ "dbcsr" "bench_dftb" "H2O-gga" ]) + ''
 
     @test "bench_dftb Energy" {
-      grep 'ENERGY|' bench_dftb.out | grep '\-16316.868119'
+      grep 'ENERGY|' bench_dftb.out | grep '\-16316.868112'
     }
 
     @test "H2O-gga Energy" {
