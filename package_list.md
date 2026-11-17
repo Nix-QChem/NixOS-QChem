@@ -16,14 +16,14 @@
 | cfour-2.1 | qchem.cfour | Specialist coupled cluster software. |
 | CheMPS2-1.8.12 | qchem.chemps2 | A spin-adapted implementation of DMRG for ab initio quantum chemistry |
 | cioverlap-26a | qchem.cioverlap | CI vector overlap calculation tools for non-adiabatic molecular dynamics |
-| cp2k-2026.2 | qchem.cp2k | Quantum chemistry and solid state physics program |
+| cp2k-2026.2-unstable-2026-11-05 | qchem.cp2k | Quantum chemistry and solid state physics program |
 | CPCM-X-unstable-2024-03-04 | qchem.cpcm-x | Extended conductor-like polarizable continuum solvation model |
 | crest-unstable-2026-06-16 | qchem.crest | Conformer-Rotamer Ensemble Sampling Tool based on the xtb Semiempirical Extended Tight-Binding Program Package |
 | dalton-2020.1 | qchem.dalton | Quantum chemistry code specialised on exotic properties. |
 | dbcsr-2.10.0 | qchem.dbcsr | Distributed Block Compressed Sparse Row matrix library |
 | dftbplus-25.1 | qchem.dftbplus | DFTB+ general package for performing fast atomistic simulations |
 | dftd3-3.2.1 | qchem.dftd3 | Dispersion correction for DFT |
-| dftd4-4.2.0 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
+| dftd4-4.3.1 | qchem.dftd4 | Generally Applicable Atomic-Charge Dependent London Dispersion Correction |
 | dice-1.0-unstable-2025-06-15 | qchem.dice | Heatbath configuration interaction program |
 | dirac-22.0 | qchem.dirac | The DIRAC program computes molecular properties using relativistic quantum chemical methods. |
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
@@ -73,11 +73,11 @@
 | libvori-220621 | qchem.libvori | Library for Voronoi integration of electron densities |
 | libwfa-2024-10-07 | qchem.libwfa | Wave-function analysis tool library for quantum chemical applications |
 | libxc-6.2.2 | qchem.libxc | Library of exchange-correlation functionals for density-functional theory |
-| libxc-7.0.0 | qchem.libxc_7 | Library of exchange-correlation functionals for density-functional theory |
+| libxc-7.1.2 | qchem.libxc_7 | Library of exchange-correlation functionals for density-functional theory |
 | libxsmm-1.17 | qchem.libxsmm | Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives |
 | luscus-0.8.6 | qchem.luscus | Portable GUI for MOLCAS and other quantum chemical software |
 | MacroQC-1.0.6-2022-09-09 | qchem.macroqc | An electronic structure theory software for large-scale applications |
-| mctc-lib-0.5.1 | qchem.mctc-lib | Modular computation tool chain library |
+| mctc-lib-0.7.0 | qchem.mctc-lib | Modular computation tool chain library |
 | meep-1.35.1 | qchem.meep | Free finite-difference time-domain (FDTD) software for electromagnetic simulations |
 | mkl-2023.1.0.46342 | qchem.mkl | Intel OneAPI Math Kernel Library |
 | MolBar-1.1.3 | qchem.molbar | Unique molecular identifiers for molecular barcoding |
@@ -95,7 +95,7 @@
 | mrcc-25.1.2 | qchem.mrcc | MRCC is a suite of ab initio and density functional quantum chemistry programs for high-accuracy electronic structure calculations. |
 | mrcpp-1.5.0 | qchem.mrcpp | General purpose numerical mathematics library based on multiresolution analysis |
 | mt-dgeem-20160114 | qchem.mt-dgemm | Simple matrix multiplication performance test |
-| multicharge-0.5.0 | qchem.multicharge | Electronegativity equilibration model for atomic partial charges |
+| multicharge-0.6.0 | qchem.multicharge | Electronegativity equilibration model for atomic partial charges |
 | multiwfn-3.8-2025-10-02 | qchem.multiwfn | Multifunctional wave function analyser. |
 | NECI-unstable-2023-06-20 | qchem.neci | Stochastic Quantum Monte Carlo solver for CI-like problems |
 | newton-x-26a | qchem.newton-x | Newton-X: general purpose program for nonadiabatic dynamics |
@@ -107,7 +107,7 @@
 | octave-11.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.4 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.6.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openqp-1.3.1 | qchem.openqp | Open Quantum Platform - quantum chemistry program centered on MRSF-TDDFT |
+| openmolcas-26.10 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
@@ -144,7 +144,7 @@
 | spla-1.6.1 | qchem.spla | Specialized Parallel Linear Algebra, providing distributed GEMM functionality for specific matrix distributions with optional GPU acceleration |
 | stdenv-linux-haswell | qchem.stdenv | The default build environment for Unix packages in Nixpkgs |
 | stream-benchmark-2013 | qchem.stream-benchmark | Measure memory transfer rates in MB/s for simple computational kernels |
-| tblite-0.6.0 | qchem.tblite | Light-weight tight-binding framework |
+| tblite-0.8.0 | qchem.tblite | Light-weight tight-binding framework |
 | theodore-3.2.1 | qchem.theodore | Parallel Python program package for post-processing wave function data from output files of quantum chemical programs |
 | tinker-8.10.5 | qchem.tinker | Software Tools for Molecular Design |
 | travis-analyzer-29Jul2022 | qchem.travis-analyzer | Molecular dynamics trajectory analyzer and visualizer |
@@ -159,5 +159,5 @@
 | libwfa-2024-10-07 | qchem.wfaMolcas | Wave-function analysis tool library for quantum chemical applications |
 | wfoverlap-24.08.2020 | qchem.wfoverlap | Efficient calculation of wavefunction overlaps |
 | wxmacmolplt-7.7.3 | qchem.wxmacmolplt | Graphical user interface for GAMESS-US |
-| xtb-6.7.1-unstable-2026-07-13 | qchem.xtb | Semiempirical Extended Tight-Binding Program Package |
+| xtb-6.8.0 | qchem.xtb | Semiempirical Extended Tight-Binding Program Package |
 | xtb-iff-1.1 | qchem.xtb-iff | General Intermolecular Force Field based on Tight-Binding Quantum Chemical Calculations |

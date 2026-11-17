@@ -1,8 +1,46 @@
-diff --git a/src/calculator/tblite_api.F90 b/src/calculator/tblite_api.F90
-index 34e72df..4d8e416 100644
 --- a/src/calculator/tblite_api.F90
 +++ b/src/calculator/tblite_api.F90
-@@ -376,7 +376,7 @@ contains  !> MODULE PROCEDURES START HERE
+@@ -190,8 +190,9 @@
+     use tblite_container,only:container_type
+     use tblite_solvation,only:new_solvation,tblite_solvation_type => solvation_type, &
+     &                         solvent_data,get_solvent_data,solvation_input,  &
+-    &                         cpcm_input,alpb_input,alpb_solvation, &
++    &                         ddx_input,ddx_solvation_model,alpb_input,alpb_solvation, &
+     &                         cds_input,new_solvation_cds,shift_input,new_solvation_shift
++    use tblite_features,only:get_tblite_feature
+ #endif
+     implicit none
+     type(coord),intent(in)  :: mol
+@@ -264,10 +265,24 @@
+       shift_tmp%solvent=solv_data%solvent
+       !shift_tmp%method=method
+       allocate (solv_inp%shift, source=shift_tmp)
+-    case ('cpcm')
+-      if (pr) call tblite%ctx%message("tblite> using CPCM/"//solvdum)
+-      allocate (solv_inp%cpcm)
+-      solv_inp%cpcm = cpcm_input(solv_data%eps)
++    case ('cpcm','cosmo','pcm')
++      !> Continuum solvation models are provided via the ddX library since
++      !> tblite 0.7.0 and require tblite compiled with ddX support (ddx=true)
++      if (.not.get_tblite_feature('ddx')) then
++        if (pr) call tblite%ctx%message("tblite> "//trim(smodel)// &
++        &  " solvation requires tblite compiled with ddX support!")
++        return
++      end if
++      if (pr) call tblite%ctx%message("tblite> using "//trim(smodel)//"/"//solvdum)
++      allocate (solv_inp%ddx)
++      select case (trim(smodel))
++      case ('cosmo')
++        solv_inp%ddx = ddx_input(ddx_solvation_model%cosmo,solv_data%eps)
++      case ('pcm')
++        solv_inp%ddx = ddx_input(ddx_solvation_model%pcm,solv_data%eps)
++      case default !> cpcm
++        solv_inp%ddx = ddx_input(ddx_solvation_model%cpcm,solv_data%eps)
++      end select
+     case ('alpb')
+       if (pr) call tblite%ctx%message("tblite> using ALPB/"//solvdum)
+       alpb_tmp%dielectric_const = solv_data%eps
+@@ -376,7 +391,7 @@
        call ceh_singlepoint(tblite%ctx,tblite%calc,mctcmol,tblite%wfn, &
        &              tblite%accuracy,verbosity)
      case (xtblvl%eeq)
