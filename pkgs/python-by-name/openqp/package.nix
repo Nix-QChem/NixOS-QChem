@@ -231,5 +231,8 @@ buildPythonPackage (finalAttrs: {
     platforms = platforms.linux;
     maintainers = [ maintainers.sheepforce ];
     mainProgram = "openqp";
+    # Source repository (Open-Quantum-Platform/openqp) was deleted from GitHub.
+    # Marked broken until the upstream source is available again.
+    broken = true;
   };
 })
