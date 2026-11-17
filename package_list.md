@@ -29,7 +29,7 @@
 | dkh-1.2 | qchem.dkh | Arbitrary-order scalar-relativistic Douglas-Kroll-Hess module |
 | elpa-2026.02.002 | qchem.elpa | Eigenvalue Solvers for Petaflop-Applications |
 | ergoscf-3.8.2 | qchem.ergoscf | Quantum chemistry program for large-scale self-consistent field calculations |
-| et-2.6.0 | qchem.et | Electronic structure program for coupled cluster |
+| et-2.6.1 | qchem.et | Electronic structure program for coupled cluster |
 | exatensor-2020-07-15 | qchem.exatensor | ExaTENSOR is a basic numerical tensor algebra library fordistributed HPC systems equipped with multicore CPU and NVIDIA or AMD GPU. |
 | exchcxx-1.0.0 | qchem.exchcxx | Exchange correlation library for density functional theory calculations |
 | exciting-sodium.0.2 | qchem.exciting | Full-potential all-electron density-functional-theory package |
@@ -107,7 +107,6 @@
 | octave-11.3.0 | qchem.octave-opt | Scientific Programming Language |
 | octopus-16.4 | qchem.octopus | Real-space time dependent density-functional theory code |
 | openmm-8.6.1 | qchem.openmm | Toolkit for molecular simulation using high performance GPU code |
-| openmolcas-26.10 | qchem.openmolcas | Advanced quantum chemistry software package |
 | orca-6.1.1 | qchem.orca | Ab initio quantum chemistry program package |
 | orient-5.0.10 | qchem.orient | Program for carrying out calculations of various kinds for an assembly of interacting molecules |
 | osu-benchmark-5.6.3 | qchem.osu-benchmark | MPI micro benchmark suite |
