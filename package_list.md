@@ -86,7 +86,7 @@
 | openmolcas-26.10 | qchem.molcasMpi | Advanced quantum chemistry software package |
 | openmolcas-26.10 | qchem.molcasNeci | Advanced quantum chemistry software package |
 | openmolcas-26.10 | qchem.molcasWfa | Advanced quantum chemistry software package |
-| molden-6.3 | qchem.molden | Display and manipulate molecular structures |
+| molden-7.3 | qchem.molden | Display and manipulate molecular structures |
 | molgw-3.4 | qchem.molgw | Many-body perturbation theory for atoms, molecules, and clusters |
 | moltemplate-2.22.4 | qchem.moltemplate | A general cross-platform tool for preparing simulations of molecules and complex molecular assemblies |
 | mopac-23.2.5 | qchem.mopac | Semiempirical quantum chemistry |

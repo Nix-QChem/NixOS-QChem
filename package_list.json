@@ -689,9 +689,9 @@
   },
   {
     "attribute": "qchem.molden",
-    "name": "molden-6.3",
+    "name": "molden-7.3",
     "pname": "molden",
-    "version": "6.3",
+    "version": "7.3",
     "description": "Display and manipulate molecular structures",
     "homepage": "http://www3.cmbi.umcn.nl/molden/"
   },
