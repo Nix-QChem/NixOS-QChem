@@ -30,7 +30,7 @@
 }:
 assert
 lib.asserts.assertMsg
-  (stdenv.isLinux && stdenv.isx86_64)
+  (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isx86_64)
   "The VMD binaries require an x86_64 linux OS with CUDA support.";
 
 let homepage = "https://www.ks.uiuc.edu/Research/vmd/";

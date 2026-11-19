@@ -23,7 +23,7 @@ assert builtins.elem version [ "7.9" "7.8.1" ];
 
 let
   systemName =
-    if stdenv.isLinux && stdenv.isx86_64
+    if stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isx86_64
     then "em64t-unknown-linux-gnu"
     else "x86_64-unknown-linux-gnu";
 
