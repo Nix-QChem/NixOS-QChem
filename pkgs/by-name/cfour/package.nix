@@ -58,7 +58,7 @@ stdenv.mkDerivation rec {
     ''
       configureFlagsArray+=(
         ${mpiConfig}
-        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -fallow-argument-mismatch"
+        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -std=legacy"
         CFLAGS="-fno-optimize-strlen -fno-stack-protector"
         CXXFLAGS="-fno-optimize-strlen -fno-stack-protector"
       )
