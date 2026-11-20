@@ -66,9 +66,7 @@ let
       };
       openmolcas = recallPackage final.openmolcas {};
       qdng = recallPackage final.qdng {};
-      quantum-espresso = recallPackage final.quantum-espresso {
-        hdf5 = final.hdf5-fortran;
-      };
+      quantum-espresso = recallPackage final.quantum-espresso {};
       pcmsolver = recallPackage final.pcmsolver {};
       scalapack = recallPackage final.scalapack {};
       scalapack-ilp64 = recallPackage final.scalapack-ilp64 {
