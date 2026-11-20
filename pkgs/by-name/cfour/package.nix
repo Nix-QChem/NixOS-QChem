@@ -1,6 +1,7 @@
 { stdenv
 , lib
 , which
+, hostname
 , makeWrapper
 , gfortran
 , requireFile
@@ -58,7 +59,7 @@ stdenv.mkDerivation rec {
     ''
       configureFlagsArray+=(
         ${mpiConfig}
-        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -fallow-argument-mismatch"
+        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -std=legacy"
         CFLAGS="-fno-optimize-strlen -fno-stack-protector"
         CXXFLAGS="-fno-optimize-strlen -fno-stack-protector"
       )
@@ -70,7 +71,7 @@ stdenv.mkDerivation rec {
     for exe in $out/bin/*; do
       wrapProgram $exe \
         --set-default CFOUR_NUM_CORES 1 \
-        --prefix PATH : "${which}/bin"
+        --prefix PATH : "${lib.makeBinPath [ which hostname ]}"
     done
   '';
 
