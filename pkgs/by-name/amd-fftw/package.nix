@@ -49,7 +49,7 @@ stdenv.mkDerivation rec {
     ++ lib.optional (precision != "double") "--enable-${precision}"
     # all x86_64 have sse2
     # however, not all float sizes fit
-    ++ lib.optional (stdenv.isx86_64 && (precision == "single" || precision == "double") )  "--enable-sse2"
+    ++ lib.optional (stdenv.hostPlatform.isx86_64 && (precision == "single" || precision == "double") )  "--enable-sse2"
     ++ lib.optional enableAvx "--enable-avx"
     ++ lib.optional enableAvx2 "--enable-avx2"
     ++ lib.optionals enableMpi [ "--enable-mpi" "--enable-amd-trans" "--enable-amd-mpifft" ]
@@ -67,4 +67,3 @@ stdenv.mkDerivation rec {
     platforms = [ "x86_64-linux" ];
   };
 }
-
