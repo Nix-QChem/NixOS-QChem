@@ -54,6 +54,40 @@ stdenv.mkDerivation rec {
       --replace-fail \
         "call MPI_ABORT(MPI_COMM_WORLD,mpierr)" \
         "call MPI_ABORT(MPI_COMM_WORLD,1,mpierr)"
+
+    # Don't skip MPI_FINALIZE on normal exits
+    substituteInPlace intprc/intproc.f \
+      --replace-fail \
+        $'       CALL CRAPSO\n       STOP\n' \
+        $'       CALL CRAPSO\n       CALL FINALIZE("intprc")\n       STOP\n'
+    substituteInPlace fillfc/fillfcdrv.f \
+      --replace-fail \
+        $'      call crapso\n      stop\n' \
+        $'      call crapso\n      call finalize("fillfc")\n      stop\n'
+    substituteInPlace prepfc2f/prepfc2f.f \
+      --replace-fail \
+        $'       call crapso\n       stop\n' \
+        $'       call crapso\n       call finalize("prepfc2f")\n       stop\n'
+    substituteInPlace sdcc/sdcc.f \
+      --replace-fail \
+        $'               CALL CRAPSO\n               STOP\n' \
+        $'               CALL CRAPSO\n               CALL FINALIZE("sdcc")\n               STOP\n' \
+      --replace-fail \
+        $'         CALL CRAPSO\n         STOP\n' \
+        $'         CALL CRAPSO\n         CALL FINALIZE("sdcc")\n         STOP\n'
+    substituteInPlace symcor/symcor.f \
+      --replace-fail \
+        $'        CALL CRAPSO\n        STOP\n' \
+        $'        CALL CRAPSO\n        CALL FINALIZE("symcor")\n        STOP\n'
+    substituteInPlace cubic/fcubic.f \
+      --replace-fail \
+        $'NX,NATOM)\n\n      STOP\n' \
+        $'NX,NATOM)\n\n      CALL FINALIZE("cubic")\n      STOP\n'
+    # finish_cfour ends the C and C++ modules.
+    substituteInPlace libr/fortran.f \
+      --replace-fail \
+        $'      CALL CRAPSO\n\n      END\n' \
+        $'      CALL CRAPSO\n      CALL FINALIZE("finish_cfour")\n\n      END\n'
   '';
 
   preConfigure =
