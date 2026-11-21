@@ -46,7 +46,15 @@ stdenv.mkDerivation rec {
     url = "http://www.cfour.de/";
   };
 
-  postPatch = "patchShebangs ./config/mkdep90.py";
+  postPatch = ''
+    patchShebangs ./config/mkdep90.py
+
+    # Prevent continuing on to new modules upon MPI_ABORT
+    substituteInPlace libr/errex.f libr/errex2.f \
+      --replace-fail \
+        "call MPI_ABORT(MPI_COMM_WORLD,mpierr)" \
+        "call MPI_ABORT(MPI_COMM_WORLD,1,mpierr)"
+  '';
 
   preConfigure =
     let
