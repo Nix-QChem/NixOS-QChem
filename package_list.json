@@ -1201,9 +1201,9 @@
   },
   {
     "attribute": "qchem.ucx",
-    "name": "ucx-1.22.0",
+    "name": "ucx-1.23.2",
     "pname": "ucx",
-    "version": "1.22.0",
+    "version": "1.23.2",
     "description": "Unified Communication X library",
     "homepage": "https://openucx.readthedocs.io"
   },

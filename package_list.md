@@ -150,7 +150,7 @@
 | turbomole-7.9 | qchem.turbomole | General purpose quantum chemistry program. Tools, not Toys! |
 | turbomole-7.8.1 | qchem.turbomole78 | General purpose quantum chemistry program. Tools, not Toys! |
 | ucc-1.9.0 | qchem.ucc | Collective communication operations API |
-| ucx-1.22.0 | qchem.ucx | Unified Communication X library |
+| ucx-1.23.2 | qchem.ucx | Unified Communication X library |
 | ulamdyn-1.1.1 | qchem.ulamdyn | Unsupervised learning analysis for molecular dynamics data (Newton-X package component) |
 | vmd-2.0.0 | qchem.vmd | Molecular dynamics visualisation program |
 | vossvolvox-21.11.2021 | qchem.vossvolvox | Volume voxelator and calculator for PDBs |
