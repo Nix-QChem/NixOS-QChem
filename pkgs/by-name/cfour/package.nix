@@ -88,6 +88,12 @@ stdenv.mkDerivation rec {
       --replace-fail \
         $'      CALL CRAPSO\n\n      END\n' \
         $'      CALL CRAPSO\n      CALL FINALIZE("finish_cfour")\n\n      END\n'
+
+    # Fix xvip crash on stray pointer; 0 means no triples list
+    substituteInPlace vip/doeomip1.f vip/doeomip2ni.f vip/edensip.f vip/edensipni.f \
+      --replace-fail "IUHF,443,494,0)" "IUHF,443,494,0,0)"
+    substituteInPlace vip/edensip.f vip/edensipni.f \
+      --replace-fail "IUHF,460,494,2)" "IUHF,460,494,2,0)"
   '';
 
   preConfigure =
