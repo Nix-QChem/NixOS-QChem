@@ -1,6 +1,7 @@
 { stdenv
 , lib
 , which
+, hostname
 , makeWrapper
 , gfortran
 , requireFile
@@ -45,7 +46,55 @@ stdenv.mkDerivation rec {
     url = "http://www.cfour.de/";
   };
 
-  postPatch = "patchShebangs ./config/mkdep90.py";
+  postPatch = ''
+    patchShebangs ./config/mkdep90.py
+
+    # Prevent continuing on to new modules upon MPI_ABORT
+    substituteInPlace libr/errex.f libr/errex2.f \
+      --replace-fail \
+        "call MPI_ABORT(MPI_COMM_WORLD,mpierr)" \
+        "call MPI_ABORT(MPI_COMM_WORLD,1,mpierr)"
+
+    # Don't skip MPI_FINALIZE on normal exits
+    substituteInPlace intprc/intproc.f \
+      --replace-fail \
+        $'       CALL CRAPSO\n       STOP\n' \
+        $'       CALL CRAPSO\n       CALL FINALIZE("intprc")\n       STOP\n'
+    substituteInPlace fillfc/fillfcdrv.f \
+      --replace-fail \
+        $'      call crapso\n      stop\n' \
+        $'      call crapso\n      call finalize("fillfc")\n      stop\n'
+    substituteInPlace prepfc2f/prepfc2f.f \
+      --replace-fail \
+        $'       call crapso\n       stop\n' \
+        $'       call crapso\n       call finalize("prepfc2f")\n       stop\n'
+    substituteInPlace sdcc/sdcc.f \
+      --replace-fail \
+        $'               CALL CRAPSO\n               STOP\n' \
+        $'               CALL CRAPSO\n               CALL FINALIZE("sdcc")\n               STOP\n' \
+      --replace-fail \
+        $'         CALL CRAPSO\n         STOP\n' \
+        $'         CALL CRAPSO\n         CALL FINALIZE("sdcc")\n         STOP\n'
+    substituteInPlace symcor/symcor.f \
+      --replace-fail \
+        $'        CALL CRAPSO\n        STOP\n' \
+        $'        CALL CRAPSO\n        CALL FINALIZE("symcor")\n        STOP\n'
+    substituteInPlace cubic/fcubic.f \
+      --replace-fail \
+        $'NX,NATOM)\n\n      STOP\n' \
+        $'NX,NATOM)\n\n      CALL FINALIZE("cubic")\n      STOP\n'
+    # finish_cfour ends the C and C++ modules.
+    substituteInPlace libr/fortran.f \
+      --replace-fail \
+        $'      CALL CRAPSO\n\n      END\n' \
+        $'      CALL CRAPSO\n      CALL FINALIZE("finish_cfour")\n\n      END\n'
+
+    # Fix xvip crash on stray pointer; 0 means no triples list
+    substituteInPlace vip/doeomip1.f vip/doeomip2ni.f vip/edensip.f vip/edensipni.f \
+      --replace-fail "IUHF,443,494,0)" "IUHF,443,494,0,0)"
+    substituteInPlace vip/edensip.f vip/edensipni.f \
+      --replace-fail "IUHF,460,494,2)" "IUHF,460,494,2,0)"
+  '';
 
   preConfigure =
     let
@@ -58,7 +107,7 @@ stdenv.mkDerivation rec {
     ''
       configureFlagsArray+=(
         ${mpiConfig}
-        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -fallow-argument-mismatch"
+        FCFLAGS="-fno-optimize-strlen -fno-stack-protector -std=legacy"
         CFLAGS="-fno-optimize-strlen -fno-stack-protector"
         CXXFLAGS="-fno-optimize-strlen -fno-stack-protector"
       )
@@ -70,7 +119,7 @@ stdenv.mkDerivation rec {
     for exe in $out/bin/*; do
       wrapProgram $exe \
         --set-default CFOUR_NUM_CORES 1 \
-        --prefix PATH : "${which}/bin"
+        --prefix PATH : "${lib.makeBinPath [ which hostname ]}"
     done
   '';
 
